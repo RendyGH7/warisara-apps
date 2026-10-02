@@ -241,7 +241,7 @@ window.WARISARA_PRELOADER = {
     let progress = 0;
     let stanzaIndex = 0;
     const startTime = performance.now();
-    const sequenceDuration = 5500; // 5.5 seconds for a majestic movie intro pacing
+    const sequenceDuration = 6200; // 6.2 seconds for a calm, luxurious movie intro pacing
 
     const tick = () => {
       if (this.isFinished) return;
@@ -250,7 +250,7 @@ window.WARISARA_PRELOADER = {
       const target = Math.min(100, Math.floor((elapsed / sequenceDuration) * 100));
 
       if (progress < target) {
-        progress += Math.max(1, Math.floor((target - progress) * 0.22));
+        progress += Math.max(1, Math.floor((target - progress) * 0.18));
         if (progress > 100) progress = 100;
 
         if (this.progressBar) this.progressBar.style.width = `${progress}%`;
@@ -285,10 +285,10 @@ window.WARISARA_PRELOADER = {
 
     requestAnimationFrame(tick);
 
-    // Failover safeguard: never block user beyond 7.5s
+    // Failover safeguard: never block user beyond 8.2s
     setTimeout(() => {
       if (!this.isFinished) this.finish();
-    }, 7500);
+    }, 8200);
   },
 
   finish: function () {
@@ -315,14 +315,14 @@ window.WARISARA_PRELOADER = {
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));
-    }, 380);
+    }, 320);
 
     // Clean up DOM after completion
     setTimeout(() => {
       if (this.container && this.container.parentNode) {
         this.container.remove();
       }
-    }, 1800);
+    }, 1900);
   }
 };
 
