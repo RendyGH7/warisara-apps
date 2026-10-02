@@ -7,6 +7,8 @@
  */
 
 window.WARISARA_NAVBAR = {
+  isInitialized: false,
+
   init: function () {
     const navbar = document.getElementById("main-navbar");
     const navContainer = document.getElementById("desktop-nav-menu") || document.querySelector("#main-navbar nav");
@@ -16,10 +18,16 @@ window.WARISARA_NAVBAR = {
     const mobileNavClose = document.getElementById("mobile-nav-close");
     const desktopNavLinks = document.querySelectorAll("#main-navbar .nav-link");
     const mobileNavLinks = document.querySelectorAll("#mobile-nav-drawer .mobile-nav-link");
-    const exploreBtns = document.querySelectorAll(".btn-nav-explore");
+    const exploreBtns = document.querySelectorAll(".btn-nav-explore, .btn-nav-icon");
     const brandLogo = document.querySelector("#main-navbar a[href='#hero']");
 
     if (!navContainer) return;
+
+    if (this.isInitialized) {
+      if (typeof this.refresh === "function") this.refresh();
+      return;
+    }
+    this.isInitialized = true;
 
     // Ensure sliding pill exists in desktop nav container
     if (!pill) {
@@ -52,6 +60,7 @@ window.WARISARA_NAVBAR = {
       const height = linkRect.height;
 
       if (!smooth) {
+        // Suppress ALL transitions for instant snap — critical on first load
         pill.style.transition = "none";
       } else {
         pill.style.transition =
@@ -62,6 +71,45 @@ window.WARISARA_NAVBAR = {
       pill.style.width = `${width}px`;
       pill.style.height = `${height}px`;
       pill.style.opacity = "1";
+      // Reveal pill only after its position is set — no more top-left flash
+      pill.style.visibility = "visible";
+    }
+
+    function determineCurrentPage() {
+      const bodyPage = document.body.dataset.page;
+      if (bodyPage) return bodyPage;
+      const path = window.location.pathname;
+      const file = path.split("/").pop() || "index.html";
+      const clean = file.replace(".html", "").toLowerCase();
+      if (!clean || clean === "index") return "index";
+      return clean;
+    }
+
+    function isLinkMatch(href, dataPage, targetId) {
+      if (!href && !dataPage) return false;
+      const cleanTarget = (targetId || "").replace(/^module-/, "");
+      const cleanHref = href.replace(/^#module-/, "").replace(/^#/, "");
+      if (dataPage && (dataPage === targetId || dataPage === cleanTarget)) return true;
+      if (targetId === "index" || targetId === "hero") {
+        return (
+          href === "#hero" ||
+          href === "index.html" ||
+          href === "../index.html" ||
+          href === "/" ||
+          href.endsWith("/index.html") ||
+          dataPage === "hero" ||
+          dataPage === "index"
+        );
+      }
+      return (
+        href === `#${targetId}` ||
+        href === `#module-${cleanTarget}` ||
+        cleanHref === cleanTarget ||
+        dataPage === cleanTarget ||
+        href === `${cleanTarget}.html` ||
+        href === `pages/${cleanTarget}.html` ||
+        href.endsWith(`/${cleanTarget}.html`)
+      );
     }
 
     function setActiveLink(targetId, smooth = true) {
@@ -69,8 +117,9 @@ window.WARISARA_NAVBAR = {
       let activeDesktopLink = null;
 
       desktopNavLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (href === `#${targetId}`) {
+        const href = link.getAttribute("href") || "";
+        const dataPage = link.getAttribute("data-page");
+        if (isLinkMatch(href, dataPage, targetId)) {
           link.classList.add("active");
           activeDesktopLink = link;
         } else {
@@ -79,8 +128,9 @@ window.WARISARA_NAVBAR = {
       });
 
       mobileNavLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (href === `#${targetId}`) {
+        const href = link.getAttribute("href") || "";
+        const dataPage = link.getAttribute("data-page");
+        if (isLinkMatch(href, dataPage, targetId)) {
           link.classList.add("active");
         } else {
           link.classList.remove("active");
@@ -114,14 +164,18 @@ window.WARISARA_NAVBAR = {
 
       let targetLink = null;
       desktopNavLinks.forEach((link) => {
-        if (link.getAttribute("href") === `#${targetId}`) {
+        const href = link.getAttribute("href") || "";
+        const dataPage = link.getAttribute("data-page");
+        if (isLinkMatch(href, dataPage, targetId)) {
           targetLink = link;
         }
       });
 
       // Synchronize mobile links immediately
       mobileNavLinks.forEach((link) => {
-        if (link.getAttribute("href") === `#${targetId}`) {
+        const href = link.getAttribute("href") || "";
+        const dataPage = link.getAttribute("data-page");
+        if (isLinkMatch(href, dataPage, targetId)) {
           link.classList.add("active");
         } else {
           link.classList.remove("active");
@@ -200,7 +254,9 @@ window.WARISARA_NAVBAR = {
 
         // Finalize active classes
         desktopNavLinks.forEach((link) => {
-          if (link.getAttribute("href") === `#${targetId}`) {
+          const href = link.getAttribute("href") || "";
+          const dataPage = link.getAttribute("data-page");
+          if (href === `#${targetId}` || dataPage === targetId || (targetId === "hero" && href === "#hero")) {
             link.classList.add("active");
           } else {
             link.classList.remove("active");
@@ -233,7 +289,9 @@ window.WARISARA_NAVBAR = {
           // Cross-fade link active label as the pill glides halfway
           if (progress >= 0.45) {
             desktopNavLinks.forEach((link) => {
-              if (link.getAttribute("href") === `#${targetId}`) {
+              const href = link.getAttribute("href") || "";
+              const dataPage = link.getAttribute("data-page");
+              if (href === `#${targetId}` || dataPage === targetId || (targetId === "hero" && href === "#hero")) {
                 link.classList.add("active");
               } else {
                 link.classList.remove("active");
@@ -379,46 +437,69 @@ window.WARISARA_NAVBAR = {
     });
 
     // =========================================================================
-    // 6. SCROLL-SPY WITH RAF THROTTLING
+    // 6. SCROLL-SPY WITH RAF THROTTLING & PIXEL-PERFECT VIEWPORT INTERSECTION
     // =========================================================================
-    const sectionTargetMap = {
-      "hero": "hero",
-      "why-heritage": "why-heritage",
-      "featured-heritage": "featured-heritage",
-      "meet-makers": "meet-makers",
-      "economy": "meet-makers",
-      "creative-lab": "creative-lab",
-      "learning": "learning"
-    };
+    const core10Sections = [
+      { id: "hero", target: "hero" },
+      { id: "module-jelajahi", target: "jelajahi" },
+      { id: "module-warisan", target: "warisan" },
+      { id: "module-makers", target: "makers" },
+      { id: "module-ekonomi-kreatif", target: "ekonomi-kreatif" },
+      { id: "module-heritage-modern", target: "heritage-modern" },
+      { id: "module-creative-lab", target: "creative-lab" },
+      { id: "module-belajar", target: "belajar" },
+      { id: "module-cerita", target: "cerita" },
+      { id: "module-pass-it-on", target: "pass-it-on" }
+    ];
 
-    const sectionElements = Object.keys(sectionTargetMap)
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    this.refresh = function () {
+      updateScrollSpy();
+      const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active");
+      if (activeLink) movePillTo(activeLink, false);
+    };
 
     let isScrollSpyScheduled = false;
 
     const updateScrollSpy = () => {
       if (isProgrammaticScrolling) return;
 
-      const scrollPos = window.scrollY + 220;
-      let activeTarget = "hero";
+      const currentPage = determineCurrentPage();
+      if (currentPage !== "index" && currentPage !== "hero") return;
 
-      for (let i = 0; i < sectionElements.length; i++) {
-        const sec = sectionElements[i];
-        const top = sec.offsetTop;
-        const height = sec.offsetHeight;
-
-        if (scrollPos >= top && scrollPos < top + height) {
-          activeTarget = sectionTargetMap[sec.id] || sec.id;
-          break;
-        } else if (scrollPos >= top) {
-          activeTarget = sectionTargetMap[sec.id] || sec.id;
+      // 1. Near the top of the landing page: lock to hero (Peta Jelajah)
+      if (window.scrollY <= 140) {
+        if (currentActiveTarget !== "hero" && currentActiveTarget !== "index") {
+          setActiveLink("hero", true);
         }
+        return;
       }
 
-      // Check if at page bottom
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
-        activeTarget = "learning";
+      // 2. Near bottom of page: lock to pass-it-on
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollBottom = window.innerHeight + window.scrollY;
+      if (scrollHeight - scrollBottom <= 120) {
+        if (currentActiveTarget !== "pass-it-on") {
+          setActiveLink("pass-it-on", true);
+        }
+        return;
+      }
+
+      // 3. Viewport intersection: test which section intersects the upper-middle viewport trigger (35% from top)
+      const triggerY = window.innerHeight * 0.35;
+      let activeTarget = "hero";
+
+      for (let i = 0; i < core10Sections.length; i++) {
+        const item = core10Sections[i];
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerY && rect.bottom > triggerY) {
+            activeTarget = item.target;
+            break;
+          } else if (rect.top <= triggerY) {
+            activeTarget = item.target;
+          }
+        }
       }
 
       if (activeTarget !== currentActiveTarget) {
@@ -440,23 +521,34 @@ window.WARISARA_NAVBAR = {
 
     // Handle Resize (Keep pill perfectly aligned without transition lag)
     window.addEventListener("resize", () => {
-      const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active");
+      const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active") ||
+                         document.querySelector("#desktop-nav-menu .nav-link");
       if (activeLink) {
         movePillTo(activeLink, false);
       }
     }, { passive: true });
 
     // Initialize pill position immediately on load
-    setActiveLink("hero", false);
+    const initialPage = determineCurrentPage();
+    setActiveLink(initialPage, false);
 
-    // After custom Google Web Fonts finish loading, recalculate pill width accurately
+    const syncInitialPill = () => {
+      const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active") ||
+                         document.querySelector("#desktop-nav-menu .nav-link");
+      if (activeLink) {
+        movePillTo(activeLink, false);
+      }
+    };
+
+    // Recalculate pill position on events that change layout geometry.
+    // fonts.ready = Google Fonts loaded (text reflows, link widths change).
+    // window load = all resources done, final layout stable.
+    // No polling setTimeouts — they cause the 1-second delayed "snap" the user saw.
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active");
-        if (activeLink) {
-          movePillTo(activeLink, false);
-        }
-      });
+      document.fonts.ready.then(syncInitialPill);
     }
+    window.addEventListener("load", syncInitialPill);
+    window.addEventListener("warisara:hero-animated", syncInitialPill);
+    window.addEventListener("pageshow", syncInitialPill);
   }
 };

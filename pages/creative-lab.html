@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Lab Canvas — WARISARA</title>
+  <meta name="description"
+    content="Studio kanvas digital interaktif: kustomisasi pola geometris batik, tenun, dan songket Nusantara, atur densitas, dan unduh pola beresolusi tinggi." />
+
+  <!-- Google Fonts: Fraunces & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Google Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
+  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#F6F1E7',
+            'bg-alt': '#EFE7D8',
+            surface: '#FBF8F2',
+            'surface-dim': '#ECE4D4',
+            ink: '#1A1612',
+            'ink-soft': '#3A322A',
+            'ink-muted': '#6B6258',
+            'hero-bg': '#151310',
+            indigo: {
+              900: '#16213A',
+              700: '#233A5E',
+              500: '#35578A',
+              300: '#6B8AB8'
+            },
+            forest: {
+              900: '#1E2E24',
+              700: '#2E4A38',
+              500: '#3F6350'
+            },
+            terracotta: {
+              700: '#A8512F',
+              500: '#C06A42',
+              300: '#DDA07C'
+            },
+            brass: {
+              600: '#A47E3F',
+              400: '#C9A567',
+              200: '#E6D3A7'
+            },
+            border: '#D9CDB8',
+            'border-dark': '#2F2A23'
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Modular CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="creative-lab">
+
+  <!-- =========================================================================
+       01. MAIN NAVIGATION
+       ========================================================================= -->
+  <header id="main-navbar"
+    class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
+    <!-- Brand Logo -->
+    <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
+      <span
+        class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
+    </a>
+
+    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
+    <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
+      aria-label="Navigasi Utama">
+      <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
+      <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
+      <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
+      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
+      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
+      <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
+      <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
+      <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
+      <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
+    </nav>
+
+    <!-- Header Action Button & Mobile Hamburger -->
+    <div class="flex items-center gap-2.5 flex-shrink-0">
+      <a href="belajar.html" class="btn-nav-icon" aria-label="Kuis Budaya" title="Kuis Budaya">
+        <span class="material-symbols-outlined text-base">school</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn"
+        class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
+        aria-label="Buka Menu Navigasi">
+        <span class="material-symbols-outlined text-xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-nav-drawer"
+    class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <span
+          class="w-7 h-7 rounded-full brand-glass-badge flex items-center justify-center font-display text-xs font-bold">W</span>
+        <span class="font-display text-lg font-bold text-surface tracking-wider">WARISARA</span>
+      </div>
+      <button id="mobile-nav-close"
+        class="text-surface/80 hover:text-surface p-1.5 rounded-full hover:bg-white/10 transition-colors"
+        aria-label="Tutup Menu">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+    </div>
+    <div class="flex flex-col gap-1 text-xs sm:text-sm font-medium text-surface/90">
+      <a href="../index.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="index">
+        <span class="material-symbols-outlined text-sm text-brass-400">map</span>
+        <span>01. Peta Jelajah Nusantara</span>
+      </a>
+      <a href="jelajahi.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
+        <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
+        <span>02. Jelajahi 38 Provinsi</span>
+      </a>
+      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
+        <span>03. Karya Pusaka & Tradisi</span>
+      </a>
+      <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
+        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
+        <span>04. Profil Pelestari Budaya</span>
+      </a>
+      <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
+        <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
+        <span>05. Ekonomi Kreatif & Produk</span>
+      </a>
+      <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
+        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
+        <span>06. Heritage × Modern</span>
+      </a>
+      <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
+        <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
+        <span>07. Creative Lab Canvas</span>
+      </a>
+      <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
+        <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
+        <span>08. Pusat Belajar & Kuis</span>
+      </a>
+      <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
+        <span>09. Cerita yang Diwariskan</span>
+      </a>
+      <a href="pass-it-on.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
+        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
+        <span>10. Pesan Penutup: Pass It On</span>
+      </a>
+    </div>
+    <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
+      <span>Kembali ke Peta</span>
+      <span class="material-symbols-outlined text-sm">north_east</span>
+    </a>
+  </div>
+
+  <!-- =========================================================================
+       PAGE CONTENT MODULE
+       ========================================================================= -->
+  <main id="page-content" class="page-module-main">
+  <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-terracotta-900/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="glass-pill mb-4 inline-block">Halaman 07 • Studio Interaktif</span>
+      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
+        Creative Lab Canvas
+      </h1>
+      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light">
+        Rancang dan kreasikan pola geometris berbasis ornamen batik, songket, dan tenun Nusantara. Eksplorasi perpaduan warna dan unduh hasil karya dalam format resolusi tinggi.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CANVAS STUDIO WORKSPACE
+       ========================================================================= -->
+  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[70vh]">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Studio Controls (Left Column: 5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- 1. Motif Selector -->
+        <div class="glass-card p-6">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400 block mb-3">01 • Pilih Dasar Motif</span>
+          <div class="grid grid-cols-2 gap-2">
+            <button data-motif="kawung" class="motif-btn active text-left p-3 rounded-xl border border-brass-400 bg-brass-400/20 text-brass-300 text-xs font-semibold transition-all">
+              <span class="block">Batik Kawung</span>
+              <span class="text-[10px] text-surface/50 font-normal">Empat Arah Semesta</span>
+            </button>
+            <button data-motif="parang" class="motif-btn text-left p-3 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 text-xs font-semibold transition-all">
+              <span class="block">Parang Rusak</span>
+              <span class="text-[10px] text-surface/50 font-normal">Ombak Kesatria</span>
+            </button>
+            <button data-motif="songket" class="motif-btn text-left p-3 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 text-xs font-semibold transition-all">
+              <span class="block">Songket Belah Ketupat</span>
+              <span class="text-[10px] text-surface/50 font-normal">Keseimbangan Minang</span>
+            </button>
+            <button data-motif="truntum" class="motif-btn text-left p-3 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 text-xs font-semibold transition-all">
+              <span class="block">Batik Truntum</span>
+              <span class="text-[10px] text-surface/50 font-normal">Bintang Cinta Bersemi</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Color Palette -->
+        <div class="glass-card p-6">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400 block mb-3">02 • Warna Garis Ornamen</span>
+          <div class="flex items-center gap-3">
+            <button data-color="#16213A" class="color-btn w-9 h-9 rounded-full bg-[#16213A] border-2 border-white/20 hover:scale-110 transition-transform active ring-2 ring-brass-400" title="Indigo Nusantara"></button>
+            <button data-color="#A8512F" class="color-btn w-9 h-9 rounded-full bg-[#A8512F] border-2 border-white/20 hover:scale-110 transition-transform" title="Terracotta Soga"></button>
+            <button data-color="#A47E3F" class="color-btn w-9 h-9 rounded-full bg-[#A47E3F] border-2 border-white/20 hover:scale-110 transition-transform" title="Emas Kuningan"></button>
+            <button data-color="#1E2E24" class="color-btn w-9 h-9 rounded-full bg-[#1E2E24] border-2 border-white/20 hover:scale-110 transition-transform" title="Hijau Hutan Rimbang"></button>
+            <button data-color="#1A1612" class="color-btn w-9 h-9 rounded-full bg-[#1A1612] border-2 border-white/20 hover:scale-110 transition-transform" title="Tinta Klasik"></button>
+          </div>
+        </div>
+
+        <!-- 3. Canvas Background Tone -->
+        <div class="glass-card p-6">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400 block mb-3">03 • Warna Dasar Kanvas</span>
+          <div class="grid grid-cols-3 gap-2">
+            <button data-bg="#F6F1E7" class="bg-tone-btn active p-2.5 rounded-xl border border-brass-400 text-xs text-brass-300 font-semibold bg-[#F6F1E7]/10">Daluang Alami</button>
+            <button data-bg="#151310" class="bg-tone-btn p-2.5 rounded-xl border border-white/10 text-xs text-surface/70 hover:border-white/20">Hitam Keraton</button>
+            <button data-bg="#FBF8F2" class="bg-tone-btn p-2.5 rounded-xl border border-white/10 text-xs text-surface/70 hover:border-white/20">Putih Mori</button>
+          </div>
+        </div>
+
+        <!-- 4. Sliders: Density & Thickness -->
+        <div class="glass-card p-6 space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="text-surface/80">Kerapatan Pola (Densitas)</span>
+              <span id="density-val" class="font-mono text-brass-300 font-bold">4x4</span>
+            </div>
+            <input id="slider-density" type="range" min="2" max="8" value="4" step="1"
+              class="w-full accent-brass-400 bg-white/10 rounded-lg cursor-pointer h-1.5" />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="text-surface/80">Ketebalan Garis Canting</span>
+              <span id="thickness-val" class="font-mono text-brass-300 font-bold">2.5px</span>
+            </div>
+            <input id="slider-thickness" type="range" min="1" max="6" value="2.5" step="0.5"
+              class="w-full accent-brass-400 bg-white/10 rounded-lg cursor-pointer h-1.5" />
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-3">
+          <button id="btn-download-pattern" class="flex-1 btn-glass-gold flex items-center justify-center gap-2 py-3">
+            <span class="material-symbols-outlined text-sm">download</span>
+            <span>Unduh Pola PNG (HD)</span>
+          </button>
+          <button id="btn-randomize-pattern" class="p-3 rounded-full border border-white/15 hover:border-white/30 text-surface/80 hover:text-surface transition-colors" title="Acak Desain">
+            <span class="material-symbols-outlined text-xl">shuffle</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Canvas Display Viewport (Right Column: 7 Cols) -->
+      <div class="lg:col-span-7 flex flex-col items-center">
+        <div class="w-full max-w-lg p-4 sm:p-6 rounded-3xl bg-[#120F0D] border border-white/15 shadow-2xl relative">
+          <!-- Canvas Aspect Ratio Container -->
+          <div class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-inner border border-white/10">
+            <canvas id="creative-canvas" width="600" height="600" class="w-full h-full block bg-[#F6F1E7]"></canvas>
+          </div>
+
+          <!-- Canvas Meta Tag -->
+          <div class="flex items-center justify-between mt-4 px-2 text-[11px] text-surface/60">
+            <span id="canvas-pattern-label">Motif: Batik Kawung • Indigo</span>
+            <span class="font-mono">Resolusi: 600 × 600 px</span>
+          </div>
+        </div>
+
+        <!-- Motif Philosophy Meaning Card -->
+        <div class="w-full max-w-lg mt-6 p-5 rounded-2xl glass-card">
+          <div class="flex items-center gap-2 text-brass-400 text-xs font-semibold uppercase tracking-wider mb-2">
+            <span class="material-symbols-outlined text-sm">info</span>
+            <span id="motif-info-title">Makna Filosofi Kawung</span>
+          </div>
+          <p id="motif-info-desc" class="text-xs text-surface/80 font-light leading-relaxed">
+            Pola lingkaran lonjong menyerupai buah kolang-kaling yang tersusun empat arah mata angin. Melambangkan kesucian batin, ketulusan budi, dan manusia sebagai pusat penjaga harmoni alam.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
+      <div class="flex items-center gap-6">
+        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
+        <a href="belajar.html" class="hover:text-surface">Kuis Budaya</a>
+        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/page-transition.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script>
+    function initCreativeLabPage() {
+      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
+
+      const canvas = document.getElementById("creative-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      let currentMotif = "kawung";
+      let currentColor = "#16213A";
+      let currentBg = "#F6F1E7";
+      let currentDensity = 4;
+      let currentThickness = 2.5;
+
+      const motifBtns = document.querySelectorAll(".motif-btn");
+      const colorBtns = document.querySelectorAll(".color-btn");
+      const bgBtns = document.querySelectorAll(".bg-tone-btn");
+      const sliderDensity = document.getElementById("slider-density");
+      const sliderThickness = document.getElementById("slider-thickness");
+      const densityVal = document.getElementById("density-val");
+      const thicknessVal = document.getElementById("thickness-val");
+      const downloadBtn = document.getElementById("btn-download-pattern");
+      const randomizeBtn = document.getElementById("btn-randomize-pattern");
+
+      const labelEl = document.getElementById("canvas-pattern-label");
+      const motifInfoTitle = document.getElementById("motif-info-title");
+      const motifInfoDesc = document.getElementById("motif-info-desc");
+
+      const motifDescriptions = {
+        kawung: {
+          title: "Makna Filosofi Batik Kawung",
+          desc: "Pola lingkaran lonjong menyerupai buah kolang-kaling yang tersusun empat arah mata angin. Melambangkan kesucian batin, ketulusan budi, dan manusia sebagai pusat penjaga harmoni alam semesta."
+        },
+        parang: {
+          title: "Makna Filosofi Batik Parang Rusak",
+          desc: "Pola diagonal tegas berkesinambungan menyerupai hantaman ombak samudra ke batu karang. Mengajarkan keteguhan moral kesatria yang pantang menyerah dalam menundukkan ego diri."
+        },
+        songket: {
+          title: "Makna Motif Songket Belah Ketupat (Saik Kalam)",
+          desc: "Geometri belah ketupat seimbang khas tenunan Minangkabau. Menggambarkan ketepatan kata, kesantunan budi bicara, dan kearifan dalam bermusyawarah demi mufakat bersama."
+        },
+        truntum: {
+          title: "Makna Filosofi Motif Truntum",
+          desc: "Motif bintang kuntum bunga ciptaan Ratu Kencana. Bermakna cinta kasih yang tulus, bersemi, dan terus tumbuh kembali di tengah kegelapan malam."
+        }
+      };
+
+      function draw() {
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.fillStyle = currentBg;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentThickness;
+
+        const cellSize = w / currentDensity;
+
+        for (let x = 0; x < w; x += cellSize) {
+          for (let y = 0; y < h; y += cellSize) {
+            const cx = x + cellSize / 2;
+            const cy = y + cellSize / 2;
+
+            if (currentMotif === "kawung") {
+              const r = cellSize / 2.3;
+              ctx.beginPath();
+              ctx.ellipse(cx, cy, r, r / 2.6, 0, 0, Math.PI * 2);
+              ctx.ellipse(cx, cy, r, r / 2.6, Math.PI / 2, 0, Math.PI * 2);
+              ctx.stroke();
+
+              ctx.beginPath();
+              ctx.arc(cx, cy, r / 4, 0, Math.PI * 2);
+              ctx.fillStyle = currentColor;
+              ctx.fill();
+            } else if (currentMotif === "parang") {
+              ctx.beginPath();
+              ctx.moveTo(x, y + cellSize);
+              ctx.lineTo(x + cellSize, y);
+              ctx.stroke();
+
+              ctx.beginPath();
+              ctx.arc(cx, cy, cellSize / 5, 0, Math.PI * 2);
+              ctx.stroke();
+            } else if (currentMotif === "songket") {
+              ctx.beginPath();
+              ctx.moveTo(cx, y + 4);
+              ctx.lineTo(x + cellSize - 4, cy);
+              ctx.lineTo(cx, y + cellSize - 4);
+              ctx.lineTo(x + 4, cy);
+              ctx.closePath();
+              ctx.stroke();
+
+              // Inner diamond
+              ctx.beginPath();
+              ctx.moveTo(cx, y + cellSize / 4);
+              ctx.lineTo(x + (cellSize * 3) / 4, cy);
+              ctx.lineTo(cx, y + (cellSize * 3) / 4);
+              ctx.lineTo(x + cellSize / 4, cy);
+              ctx.closePath();
+              ctx.stroke();
+            } else if (currentMotif === "truntum") {
+              // 8-pointed star flower
+              const r = cellSize / 3;
+              for (let i = 0; i < 4; i++) {
+                const angle = (i * Math.PI) / 4;
+                ctx.beginPath();
+                ctx.moveTo(cx - Math.cos(angle) * r, cy - Math.sin(angle) * r);
+                ctx.lineTo(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
+                ctx.stroke();
+              }
+              ctx.beginPath();
+              ctx.arc(cx, cy, r / 3.5, 0, Math.PI * 2);
+              ctx.fillStyle = currentColor;
+              ctx.fill();
+            }
+          }
+        }
+
+        if (labelEl) {
+          labelEl.textContent = `Motif: ${currentMotif.toUpperCase()} • Garis: ${currentColor} • Background: ${currentBg}`;
+        }
+      }
+
+      // Event Listeners
+      motifBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          motifBtns.forEach((b) => {
+            b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+            b.classList.add("border-white/10", "text-surface/70");
+          });
+          btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+          btn.classList.remove("border-white/10", "text-surface/70");
+
+          currentMotif = btn.dataset.motif;
+          if (motifDescriptions[currentMotif]) {
+            motifInfoTitle.textContent = motifDescriptions[currentMotif].title;
+            motifInfoDesc.textContent = motifDescriptions[currentMotif].desc;
+          }
+          draw();
+        });
+      });
+
+      colorBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          colorBtns.forEach((b) => b.classList.remove("ring-2", "ring-brass-400"));
+          btn.classList.add("ring-2", "ring-brass-400");
+          currentColor = btn.dataset.color;
+          draw();
+        });
+      });
+
+      bgBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          bgBtns.forEach((b) => {
+            b.classList.remove("active", "border-brass-400", "text-brass-300", "bg-[#F6F1E7]/10");
+            b.classList.add("border-white/10", "text-surface/70");
+          });
+          btn.classList.add("active", "border-brass-400", "text-brass-300", "bg-[#F6F1E7]/10");
+          btn.classList.remove("border-white/10", "text-surface/70");
+          currentBg = btn.dataset.bg;
+          draw();
+        });
+      });
+
+      if (sliderDensity) {
+        sliderDensity.addEventListener("input", (e) => {
+          currentDensity = parseInt(e.target.value, 10);
+          densityVal.textContent = `${currentDensity}x${currentDensity}`;
+          draw();
+        });
+      }
+
+      if (sliderThickness) {
+        sliderThickness.addEventListener("input", (e) => {
+          currentThickness = parseFloat(e.target.value);
+          thicknessVal.textContent = `${currentThickness}px`;
+          draw();
+        });
+      }
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener("click", () => {
+          const link = document.createElement("a");
+          link.download = `WARISARA-${currentMotif.toUpperCase()}-Canvas.png`;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        });
+      }
+
+      if (randomizeBtn) {
+        randomizeBtn.addEventListener("click", () => {
+          const motifs = ["kawung", "parang", "songket", "truntum"];
+          const colors = ["#16213A", "#A8512F", "#A47E3F", "#1E2E24", "#1A1612"];
+          const bgs = ["#F6F1E7", "#151310", "#FBF8F2"];
+
+          const randomMotif = motifs[Math.floor(Math.random() * motifs.length)];
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          const randomBg = bgs[Math.floor(Math.random() * bgs.length)];
+          const randomDensity = Math.floor(Math.random() * 5) + 3;
+
+          currentMotif = randomMotif;
+          currentColor = randomColor;
+          currentBg = randomBg;
+          currentDensity = randomDensity;
+
+          sliderDensity.value = randomDensity;
+          densityVal.textContent = `${randomDensity}x${randomDensity}`;
+
+          motifBtns.forEach((b) => {
+            if (b.dataset.motif === randomMotif) {
+              b.click();
+            }
+          });
+
+          draw();
+        });
+      }
+
+      // Initial draw
+      draw();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCreativeLabPage);
+    } else {
+      initCreativeLabPage();
+    }
+    window.initCreativeLabPage = initCreativeLabPage;
+  </script>
+</body>
+
+</html>

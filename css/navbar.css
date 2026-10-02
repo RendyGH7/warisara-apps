@@ -10,46 +10,65 @@
   --nav-text-on-gold: #FFFBF5;
 }
 
+/* ── Base layout: Floating Glass Navbar (Fixed at top, follows user on all scrolls) ────── */
 #main-navbar.glass-nav {
   position: fixed !important;
   top: 1rem;
   left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 66rem;
-  z-index: 50;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  width: 94%;
+  max-width: 78rem;
+  z-index: 900;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
   background-color: rgba(12, 10, 8, 0.92);
   backdrop-filter: blur(24px) saturate(190%);
   -webkit-backdrop-filter: blur(24px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65);
-  border-radius: 9999px;
-  transition: background-color var(--duration-base) var(--ease-premium),
-    border-color var(--duration-base) var(--ease-premium),
-    box-shadow var(--duration-base) var(--ease-premium),
-    top var(--duration-base) var(--ease-premium);
+  /* Smoothly animate entrance and scroll states */
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease,
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Hidden ONLY when Grand Cinematic Loading Screen is active on initial load of index.html ─── */
+body.preloader-active #main-navbar.glass-nav,
+body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(-24px) !important;
+  pointer-events: none !important;
 }
 
 @media (min-width: 640px) {
   #main-navbar.glass-nav {
     top: 1.25rem;
+    padding: 0.5rem 1.5rem;
   }
 }
 
+/* Scrolled state — stays fixed & follows user with deeper luxury glass and gold rim */
 #main-navbar.glass-nav.scrolled {
   background-color: rgba(8, 7, 5, 0.97);
-  border-color: rgba(181, 123, 58, 0.35);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+  border-color: rgba(181, 123, 58, 0.42);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.88), 0 0 20px rgba(138, 88, 34, 0.2);
 }
 
-/* Brand Badge (Warm Brown-Gold, Solid, No Gradient) */
+/* ── Brand Badge ─────────────────────────────────────────────────────────── */
 .brand-glass-badge {
   background-color: var(--nav-brown-gold);
   color: var(--nav-text-on-gold);
   font-weight: 800;
   border: 1px solid var(--nav-brown-gold-border);
   box-shadow: 0 2px 8px var(--nav-brown-gold-glow);
-  transition: all var(--duration-fast) var(--ease-snappy);
+  transition: background-color 200ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .group:hover .brand-glass-badge {
@@ -57,14 +76,18 @@
   transform: scale(1.06);
 }
 
-/* Desktop Navigation Container */
+/* ── Desktop Nav Container ───────────────────────────────────────────────── */
 #desktop-nav-menu {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Animated Sliding Active Pill (Smooth Gold-Brown Glider) */
+/* ── Animated Sliding Active Pill ────────────────────────────────────────── */
+/*  visibility:hidden keeps it completely invisible until JS has calculated
+    and set its position for the first time. Once movePillTo() runs, JS sets
+    visibility:visible so it appears exactly where it belongs — no slide from
+    (0,0) origin flash. */
 .nav-active-pill {
   position: absolute;
   top: 0;
@@ -78,40 +101,56 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0;
+  visibility: hidden;
   transform: translate3d(0, 0, 0);
+  /* Only transition after JS has set visibility — the JS movePillTo() sets
+     transition:'none' for the first snap, then restores CSS transition. */
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.25s ease;
+              opacity 0.28s ease;
   will-change: transform, width;
 }
 
-/* Navigation Links */
+/* ── Navigation Links ────────────────────────────────────────────────────── */
 .nav-link {
   position: relative;
   z-index: 2;
-  padding: 0.42rem 0.95rem;
+  padding: 0.35rem 0.5rem;
   border-radius: 9999px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.8125rem;
+  font-size: 0.71rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   background-color: transparent !important;
   border: 1px solid transparent;
   text-decoration: none;
-  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              background-color 0.2s ease,
+  transition: color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.15s ease;
   user-select: none;
   white-space: nowrap;
 }
 
-.nav-link:hover:not(.active) {
-  color: #FFFFFF;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+@media (min-width: 1280px) {
+  .nav-link {
+    padding: 0.38rem 0.64rem;
+    font-size: 0.75rem;
+  }
 }
 
-/* Active State (Text transforms to crisp ivory-white with zero layout shift) */
+@media (min-width: 1440px) {
+  .nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.79rem;
+  }
+}
+
+.nav-link:hover:not(.active) {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* Active link — ivory-white text above the gold pill */
 .nav-link.active {
   color: var(--nav-text-on-gold) !important;
   font-weight: 700 !important;
@@ -124,22 +163,56 @@
   transform: scale(0.96);
 }
 
-/* Simple Modern Explore Button (Solid Brown-Gold, Strong, No Gradients) */
+/* ── Explore Action Buttons (Compact Round Icon & Pill) ──────────────────── */
+.btn-nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background-color: var(--nav-brown-gold);
+  color: var(--nav-text-on-gold);
+  border: 1px solid var(--nav-brown-gold-border);
+  box-shadow: 0 3px 10px var(--nav-brown-gold-glow);
+  transition: background-color 200ms ease,
+              transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 200ms ease;
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-nav-icon:hover {
+  background-color: var(--nav-brown-gold-hover);
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(138, 88, 34, 0.55);
+}
+
+.btn-nav-icon:active {
+  transform: scale(0.95);
+}
+
 .btn-nav-explore {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
   background-color: var(--nav-brown-gold);
   color: var(--nav-text-on-gold);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 0.45rem 1.15rem;
+  padding: 0.42rem 1.05rem;
   border-radius: 9999px;
   border: 1px solid var(--nav-brown-gold-border);
   box-shadow: 0 3px 12px var(--nav-brown-gold-glow);
-  transition: all var(--duration-fast) var(--ease-snappy);
+  transition: background-color 200ms ease,
+              transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 200ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-nav-explore:hover {
@@ -152,7 +225,7 @@
   transform: translateY(0) scale(0.97);
 }
 
-/* Mobile Drawer (Clean Dark Glass, High Contrast) */
+/* ── Mobile Drawer ───────────────────────────────────────────────────────── */
 #mobile-nav-drawer {
   background-color: rgba(12, 10, 8, 0.98);
   backdrop-filter: blur(28px) saturate(200%);
@@ -160,6 +233,9 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
   border-radius: 1.25rem;
+  /* CSS-driven open/close — not Tailwind transition-all */
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 260ms ease-out;
 }
 
 #mobile-nav-drawer .mobile-nav-link {

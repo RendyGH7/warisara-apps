@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>38 Provinsi Nusantara — WARISARA</title>
+  <meta name="description"
+    content="Eksplorasi warisan budaya dan kriya adiluhung dari 38 provinsi di seluruh Nusantara dalam satu wadah digital terpadu." />
+
+  <!-- Google Fonts: Fraunces (Editorial Serif) & Manrope (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Google Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
+  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#F6F1E7',
+            'bg-alt': '#EFE7D8',
+            surface: '#FBF8F2',
+            'surface-dim': '#ECE4D4',
+            ink: '#1A1612',
+            'ink-soft': '#3A322A',
+            'ink-muted': '#6B6258',
+            'hero-bg': '#151310',
+            indigo: {
+              900: '#16213A',
+              700: '#233A5E',
+              500: '#35578A',
+              300: '#6B8AB8'
+            },
+            forest: {
+              900: '#1E2E24',
+              700: '#2E4A38',
+              500: '#3F6350'
+            },
+            terracotta: {
+              700: '#A8512F',
+              500: '#C06A42',
+              300: '#DDA07C'
+            },
+            brass: {
+              600: '#A47E3F',
+              400: '#C9A567',
+              200: '#E6D3A7'
+            },
+            border: '#D9CDB8',
+            'border-dark': '#2F2A23'
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Modular CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="jelajahi">
+
+  <!-- =========================================================================
+       01. MAIN NAVIGATION
+       ========================================================================= -->
+  <header id="main-navbar"
+    class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
+    <!-- Brand Logo -->
+    <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
+      <span
+        class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
+    </a>
+
+    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
+    <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
+      aria-label="Navigasi Utama">
+      <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
+      <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
+      <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
+      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
+      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
+      <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
+      <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
+      <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
+      <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
+    </nav>
+
+    <!-- Header Action Button & Mobile Hamburger -->
+    <div class="flex items-center gap-2.5 flex-shrink-0">
+      <a href="../index.html" class="btn-nav-icon" aria-label="Peta Interaktif" title="Peta Interaktif">
+        <span class="material-symbols-outlined text-base">map</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn"
+        class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
+        aria-label="Buka Menu Navigasi">
+        <span class="material-symbols-outlined text-xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Floating Glass Drawer Menu -->
+  <div id="mobile-nav-drawer"
+    class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <span
+          class="w-7 h-7 rounded-full brand-glass-badge flex items-center justify-center font-display text-xs font-bold">W</span>
+        <span class="font-display text-lg font-bold text-surface tracking-wider">WARISARA</span>
+      </div>
+      <button id="mobile-nav-close"
+        class="text-surface/80 hover:text-surface p-1.5 rounded-full hover:bg-white/10 transition-colors"
+        aria-label="Tutup Menu">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+    </div>
+    <div class="flex flex-col gap-1 text-xs sm:text-sm font-medium text-surface/90">
+      <a href="../index.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="index">
+        <span class="material-symbols-outlined text-sm text-brass-400">map</span>
+        <span>01. Peta Jelajah Nusantara</span>
+      </a>
+      <a href="jelajahi.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
+        <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
+        <span>02. Jelajahi 38 Provinsi</span>
+      </a>
+      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
+        <span>03. Karya Pusaka & Tradisi</span>
+      </a>
+      <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
+        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
+        <span>04. Profil Pelestari Budaya</span>
+      </a>
+      <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
+        <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
+        <span>05. Ekonomi Kreatif & Produk</span>
+      </a>
+      <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
+        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
+        <span>06. Heritage × Modern</span>
+      </a>
+      <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
+        <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
+        <span>07. Creative Lab Canvas</span>
+      </a>
+      <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
+        <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
+        <span>08. Pusat Belajar & Kuis</span>
+      </a>
+      <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
+        <span>09. Cerita yang Diwariskan</span>
+      </a>
+      <a href="pass-it-on.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
+        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
+        <span>10. Pesan Penutup: Pass It On</span>
+      </a>
+    </div>
+    <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
+      <span>Kembali ke Peta</span>
+      <span class="material-symbols-outlined text-sm">north_east</span>
+    </a>
+  </div>
+
+  <!-- =========================================================================
+       PAGE CONTENT MODULE
+       ========================================================================= -->
+  <main id="page-content" class="page-module-main">
+    <!-- PAGE HEADER HERO -->
+    <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="glass-pill mb-4 inline-block">Halaman 02 • Ensiklopedia Budaya</span>
+      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
+        38 Provinsi Nusantara
+      </h1>
+      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+        Jelajahi keragaman kriya adiluhung, filosofi tradisi, dan pelestari lokal dari Sabang sampai Merauke dalam satu sistem data terpadu.
+      </p>
+
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-6 border-t border-white/10 text-center">
+        <div>
+          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
+          <span class="text-[11px] uppercase tracking-wider text-surface/60">Provinsi</span>
+        </div>
+        <div>
+          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">17.500+</span>
+          <span class="text-[11px] uppercase tracking-wider text-surface/60">Pulau</span>
+        </div>
+        <div>
+          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">1.340+</span>
+          <span class="text-[11px] uppercase tracking-wider text-surface/60">Suku Bangsa</span>
+        </div>
+        <div>
+          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">2.200+</span>
+          <span class="text-[11px] uppercase tracking-wider text-surface/60">WBTb Resmi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FILTER & SEARCH TOOLBAR
+       ========================================================================= -->
+  <section class="sticky top-20 sm:top-24 z-30 py-4 px-4 bg-[#181512]/90 backdrop-blur-md border-y border-border-dark">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Search Input -->
+      <div class="relative w-full md:w-80">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
+        <input id="province-search-input" type="text" placeholder="Cari provinsi, ibu kota, kriya..."
+          class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+      </div>
+
+      <!-- Island Filter Pills -->
+      <div id="island-filters" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs no-scrollbar">
+        <button data-island="all" class="island-btn active px-3.5 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua (38)</button>
+        <button data-island="Sumatera" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sumatera</button>
+        <button data-island="Jawa" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Jawa</button>
+        <button data-island="Bali & Nusa Tenggara" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Bali & Nusa Tenggara</button>
+        <button data-island="Kalimantan" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kalimantan</button>
+        <button data-island="Sulawesi" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sulawesi</button>
+        <button data-island="Maluku & Papua" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Maluku & Papua</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PROVINCES GRID SECTION
+       ========================================================================= -->
+  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
+    <div class="max-w-6xl mx-auto">
+      <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between">
+        <span>Menampilkan <strong id="visible-count" class="text-brass-300">38</strong> dari 38 Provinsi</span>
+        <span class="text-[11px]">Klik kartu untuk membaca rincian pusaka</span>
+      </div>
+
+      <!-- Grid Container -->
+      <div id="provinces-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamically rendered via JavaScript from window.PROVINCES_DATA -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="provinces-empty-state" class="hidden text-center py-16 text-surface/60">
+        <span class="material-symbols-outlined text-4xl mb-2 text-surface/30">search_off</span>
+        <h3 class="font-display text-xl font-light text-surface">Provinsi Tidak Ditemukan</h3>
+        <p class="text-xs mt-1">Coba gunakan kata kunci pencarian lain atau pilih tab pulau yang berbeda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PROVINCE DETAIL MODAL (FULL EXPERIENCE)
+       ========================================================================= -->
+  <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div id="province-detail-modal" class="modal-container max-w-2xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
+        <div>
+          <span id="modal-province-island" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-2">PULAU</span>
+          <h2 id="modal-province-name" class="font-display text-2xl sm:text-3xl font-light text-surface">Nama Provinsi</h2>
+          <p class="text-xs text-surface/60 mt-1">Ibu Kota: <strong id="modal-province-capital" class="text-surface/90 font-medium">Kota</strong></p>
+        </div>
+        <button id="modal-close-btn" class="p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors" aria-label="Tutup">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/80">
+        <!-- Statement -->
+        <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1 leading-relaxed">
+          "Pernyataan filosofis kebudayaan provinsi."
+        </blockquote>
+
+        <!-- Description -->
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-1">Sekilas Budaya</h4>
+          <p id="modal-province-desc" class="font-light leading-relaxed">Deskripsi singkat latar belakang tradisi.</p>
+        </div>
+
+        <!-- Craft Highlight -->
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-400 block mb-1">Kriya & Keahlian Utama</span>
+          <p id="modal-craft-highlight" class="font-display text-base text-surface font-light">Tenun Ikat, Ukiran Kayu, Seni Logam</p>
+        </div>
+
+        <!-- Heritage List -->
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-3">Warisan Budaya Unggulan (WBTb)</h4>
+          <div id="modal-heritage-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Maker Voice -->
+        <div class="p-4 rounded-2xl bg-forest-900/20 border border-forest-500/20">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Suara Pelestari Tradisi</span>
+          <p id="modal-maker-quote" class="italic text-surface/90 mb-2 leading-relaxed">"Kutipan dari pengrajin atau pemangku adat."</p>
+          <div class="flex items-center justify-between text-[11px] text-surface/60 pt-2 border-t border-forest-500/20">
+            <span id="modal-maker-name" class="font-semibold text-surface">Nama Maestro</span>
+            <span id="modal-maker-role">Perajin Adat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
+        <a href="warisan.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
+          <span>Katalog Pusaka Lengkap</span>
+          <span class="material-symbols-outlined text-sm">north_east</span>
+        </a>
+        <button id="modal-btn-dismiss" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
+      </div>
+    </div>
+  </div>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
+      <div class="flex items-center gap-6">
+        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
+        <a href="warisan.html" class="hover:text-surface">Karya Pusaka</a>
+        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../data/provinces.js"></script>
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/page-transition.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script>
+    function initJelajahiPage() {
+      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
+
+      const gridEl = document.getElementById("provinces-grid");
+      const emptyStateEl = document.getElementById("provinces-empty-state");
+      const visibleCountEl = document.getElementById("visible-count");
+      const searchInput = document.getElementById("province-search-input");
+      const islandBtns = document.querySelectorAll(".island-btn");
+
+      // Modal elements
+      const modalOverlay = document.getElementById("province-modal-overlay");
+      const modalCloseBtn = document.getElementById("modal-close-btn");
+      const modalDismissBtn = document.getElementById("modal-btn-dismiss");
+
+      let currentIsland = "all";
+      let searchQuery = "";
+
+      const provincesArray = window.PROVINCES_DATA ? Object.values(window.PROVINCES_DATA) : [];
+
+      function renderProvinces() {
+        if (!gridEl) return;
+
+        const filtered = provincesArray.filter((prov) => {
+          const matchIsland = currentIsland === "all" || prov.island.toLowerCase() === currentIsland.toLowerCase();
+          const query = searchQuery.toLowerCase().trim();
+          const matchQuery = !query ||
+            prov.name.toLowerCase().includes(query) ||
+            prov.capital.toLowerCase().includes(query) ||
+            prov.craftHighlight.toLowerCase().includes(query) ||
+            prov.island.toLowerCase().includes(query);
+
+          return matchIsland && matchQuery;
+        });
+
+        if (visibleCountEl) visibleCountEl.textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          gridEl.innerHTML = "";
+          emptyStateEl.classList.remove("hidden");
+          return;
+        }
+
+        emptyStateEl.classList.add("hidden");
+        gridEl.innerHTML = filtered.map((prov) => `
+          <div class="province-card glass-card p-6 flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1 duration-300"
+               data-province-id="${prov.id}">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">
+                  ${prov.island}
+                </span>
+                <span class="text-[11px] text-surface/50 font-mono">Ibu Kota: ${prov.capital}</span>
+              </div>
+              <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors mb-2">
+                ${prov.name}
+              </h3>
+              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 line-clamp-2">
+                "${prov.shortStatement}"
+              </p>
+            </div>
+            
+            <div>
+              <div class="pt-3 border-t border-white/10 mb-4">
+                <span class="text-[10px] uppercase tracking-wider text-surface/50 block mb-1">Keahlian Unggulan</span>
+                <p class="text-xs text-surface/90 font-medium">${prov.craftHighlight}</p>
+              </div>
+              <div class="flex items-center justify-between text-xs text-brass-400 font-semibold uppercase tracking-wider">
+                <span>Pelajari Tradisi</span>
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+        `).join("");
+
+        // Attach click triggers to open modal
+        gridEl.querySelectorAll(".province-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const provId = card.dataset.provinceId;
+            openProvinceModal(provId);
+          });
+        });
+      }
+
+      function openProvinceModal(provId) {
+        const prov = window.PROVINCES_DATA ? window.PROVINCES_DATA[provId] : null;
+        if (!prov || !modalOverlay) return;
+
+        document.getElementById("modal-province-name").textContent = prov.name;
+        document.getElementById("modal-province-island").textContent = `PULAU ${prov.island.toUpperCase()}`;
+        document.getElementById("modal-province-capital").textContent = prov.capital;
+        document.getElementById("modal-province-statement").textContent = `"${prov.shortStatement}"`;
+        document.getElementById("modal-province-desc").textContent = prov.shortDescription;
+        document.getElementById("modal-craft-highlight").textContent = prov.craftHighlight;
+
+        if (prov.maker) {
+          document.getElementById("modal-maker-name").textContent = prov.maker.name;
+          document.getElementById("modal-maker-role").textContent = prov.maker.role;
+          document.getElementById("modal-maker-quote").textContent = `"${prov.maker.quote}"`;
+        }
+
+        const listEl = document.getElementById("modal-heritage-list");
+        if (listEl && prov.heritage) {
+          listEl.innerHTML = prov.heritage.map((item) => `
+            <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10">
+              <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 mb-1">
+                ${item.category}
+              </span>
+              <h5 class="font-display text-sm font-normal text-surface">${item.name}</h5>
+              <p class="text-[11px] text-surface/70 mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+          `).join("");
+        }
+
+        modalOverlay.classList.remove("hidden");
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        if (modalOverlay) {
+          modalOverlay.classList.remove("active");
+          modalOverlay.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
+      }
+
+      if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
+      if (modalDismissBtn) modalDismissBtn.addEventListener("click", closeModal);
+      if (modalOverlay) {
+        modalOverlay.addEventListener("click", (e) => {
+          if (e.target === modalOverlay) closeModal();
+        });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      // Filter events
+      islandBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          islandBtns.forEach((b) => {
+            b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300", "font-semibold");
+            b.classList.add("border-white/10", "text-surface/70");
+          });
+          btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300", "font-semibold");
+          btn.classList.remove("border-white/10", "text-surface/70");
+          currentIsland = btn.dataset.island;
+          renderProvinces();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = e.target.value;
+          renderProvinces();
+        });
+      }
+
+      // Initial render
+      renderProvinces();
+
+      // Check URL query param e.g. ?province=aceh or ?province=bali
+      const urlParams = new URLSearchParams(window.location.search);
+      const provParam = urlParams.get("province");
+      if (provParam && window.PROVINCES_DATA && window.PROVINCES_DATA[provParam]) {
+        setTimeout(() => {
+          openProvinceModal(provParam);
+        }, 200);
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initJelajahiPage);
+    } else {
+      initJelajahiPage();
+    }
+    window.initJelajahiPage = initJelajahiPage;
+  </script>
+</body>
+
+</html>

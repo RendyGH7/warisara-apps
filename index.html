@@ -75,45 +75,49 @@
   <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/creative-lab.css" />
+  <link rel="stylesheet" href="css/transitions.css" />
+  <link rel="stylesheet" href="css/loading-screen.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
-<body class="bg-bg text-ink selection:bg-brass-400 selection:text-ink font-body">
+<body class="bg-bg text-ink selection:bg-brass-400 selection:text-ink font-body" data-page="index">
 
   <!-- =========================================================================
        01. MAIN NAVIGATION — MODERN MINIMALIST GLASSMORPHISM (CLEAN & NON-GRADIENT)
        ========================================================================= -->
   <header id="main-navbar"
-    class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
+    class="px-4 sm:px-6 py-2 flex items-center justify-between glass-nav">
     <!-- Brand Logo -->
-    <a href="#hero" class="flex items-center gap-2.5 group focus:outline-none" aria-label="WARISARA Beranda">
+    <a href="#hero" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <span
         class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
-      <span class="font-display text-lg sm:text-xl font-bold tracking-widest text-surface">WARISARA</span>
     </a>
 
-    <!-- Desktop Navigation Links -->
-    <nav id="desktop-nav-menu" class="hidden md:flex items-center gap-1 sm:gap-1.5 text-xs lg:text-sm font-medium relative py-1 px-1.5 rounded-full"
+    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
+    <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
-      <a href="#hero" class="nav-link">Peta Jelajah</a>
-      <a href="#why-heritage" class="nav-link">Filosofi</a>
-      <a href="#featured-heritage" class="nav-link">Karya Pusaka</a>
-      <a href="#meet-makers" class="nav-link">Para Penjaga</a>
-      <a href="#creative-lab" class="nav-link">Creative Lab</a>
-      <a href="#learning" class="nav-link">Belajar</a>
+      <a href="#hero" class="nav-link active" data-page="hero">Peta Jelajah</a>
+      <a href="#module-jelajahi" class="nav-link" data-page="jelajahi">38 Provinsi</a>
+      <a href="#module-warisan" class="nav-link" data-page="warisan">Karya Pusaka</a>
+      <a href="#module-makers" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="#module-ekonomi-kreatif" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="#module-heritage-modern" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
+      <a href="#module-creative-lab" class="nav-link" data-page="creative-lab">Creative Lab</a>
+      <a href="#module-belajar" class="nav-link" data-page="belajar">Belajar</a>
+      <a href="#module-cerita" class="nav-link" data-page="cerita">Cerita</a>
+      <a href="#module-pass-it-on" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
     <!-- Header Action Button & Mobile Hamburger -->
-    <div class="flex items-center gap-3">
-      <a href="#hero" class="hidden sm:inline-flex btn-nav-explore">
-        <span>Jelajahi</span>
-        <span class="material-symbols-outlined text-sm">north_east</span>
+    <div class="flex items-center gap-2.5 flex-shrink-0">
+      <a href="#module-pass-it-on" class="btn-nav-icon" aria-label="Pass It On" title="Pass It On">
+        <span class="material-symbols-outlined text-base">favorite</span>
       </a>
 
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn"
-        class="md:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
+        class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
         aria-label="Buka Menu Navigasi">
         <span class="material-symbols-outlined text-xl">menu</span>
       </button>
@@ -122,7 +126,7 @@
 
   <!-- Mobile Floating Glass Drawer Menu -->
   <div id="mobile-nav-drawer"
-    class="fixed top-20 inset-x-4 max-w-sm mx-auto p-6 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-5">
+    class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 -translate-y-full opacity-0 pointer-events-none xl:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
       <div class="flex items-center gap-2">
         <span
@@ -135,22 +139,92 @@
         <span class="material-symbols-outlined text-xl">close</span>
       </button>
     </div>
-    <div class="flex flex-col gap-2 text-sm font-medium text-surface/90">
-      <a href="#hero" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Peta Jelajah</a>
-      <a href="#why-heritage"
-        class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Filosofi</a>
-      <a href="#featured-heritage"
-        class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Karya Pusaka</a>
-      <a href="#meet-makers" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Para
-        Penjaga</a>
-      <a href="#creative-lab" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Creative
-        Lab</a>
-      <a href="#learning" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">Belajar</a>
+    
+    <!-- Navigasi Seluruh Modul Beranda -->
+    <div class="text-[10px] uppercase font-bold tracking-widest text-brass-400 px-2 pt-1">Alur Beranda Terhubung</div>
+    <div class="flex flex-col gap-1 text-xs sm:text-sm font-medium text-surface/90">
+      <a href="#hero" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="hero">
+        <span class="material-symbols-outlined text-sm text-brass-400">map</span>
+        <span>01. Peta Jelajah Nusantara</span>
+      </a>
+      <a href="#module-jelajahi" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
+        <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
+        <span>02. 38 Provinsi Nusantara</span>
+      </a>
+      <a href="#module-warisan" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
+        <span>03. Karya Pusaka Nusantara</span>
+      </a>
+      <a href="#module-makers" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
+        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
+        <span>04. Para Penjaga Tradisi</span>
+      </a>
+      <a href="#module-ekonomi-kreatif" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
+        <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
+        <span>05. Ekonomi Kreatif & Kriya</span>
+      </a>
+      <a href="#module-heritage-modern" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
+        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
+        <span>06. Heritage × Modern</span>
+      </a>
+      <a href="#module-creative-lab" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
+        <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
+        <span>07. Creative Lab Canvas</span>
+      </a>
+      <a href="#module-belajar" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
+        <span class="material-symbols-outlined text-sm text-forest-400">school</span>
+        <span>08. Belajar Dari Akar</span>
+      </a>
+      <a href="#module-cerita" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
+        <span>09. Cerita yang Diwariskan</span>
+      </a>
+      <a href="#module-pass-it-on" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
+        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
+        <span>10. Ikrar Pass It On</span>
+      </a>
     </div>
-    <a href="#hero" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
-      <span>Mulai Menjelajah</span>
-      <span class="material-symbols-outlined text-sm">north_east</span>
-    </a>
+
+    <!-- Akses Halaman Mandiri -->
+    <div class="text-[10px] uppercase font-bold tracking-widest text-brass-400 px-2 pt-2 border-t border-white/10">Buka Halaman Mandiri</div>
+    <div class="grid grid-cols-2 gap-2 text-[11px]">
+      <a href="pages/jelajahi.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-brass-400">travel_explore</span>
+        <span>38 Provinsi</span>
+      </a>
+      <a href="pages/warisan.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-terracotta-400">category</span>
+        <span>Karya Pusaka</span>
+      </a>
+      <a href="pages/makers.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-forest-400">person_pin</span>
+        <span>Pelestari</span>
+      </a>
+      <a href="pages/ekonomi-kreatif.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-brass-400">storefront</span>
+        <span>Produk Lokal</span>
+      </a>
+      <a href="pages/heritage-modern.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-indigo-400">auto_fix_high</span>
+        <span>Modern</span>
+      </a>
+      <a href="pages/creative-lab.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-brass-400">palette</span>
+        <span>Lab Canvas</span>
+      </a>
+      <a href="pages/belajar.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-indigo-400">school</span>
+        <span>Kuis Budaya</span>
+      </a>
+      <a href="pages/cerita.html" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 flex items-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs text-terracotta-400">auto_stories</span>
+        <span>Cerita Rakyat</span>
+      </a>
+      <a href="pages/pass-it-on.html" class="col-span-2 p-2 rounded-xl bg-brass-500/20 border border-brass-400/30 text-brass-300 font-semibold flex items-center justify-center gap-1.5 transition-colors">
+        <span class="material-symbols-outlined text-xs">favorite</span>
+        <span>Ikrar Budaya Penuh</span>
+      </a>
+    </div>
   </div>
 
   <!-- =========================================================================
@@ -162,7 +236,7 @@
     <!-- Hero Antique Batik & Nautical Canvas Backdrop (Clean Center, Ornate Borders) -->
     <div class="hero-canvas-bg absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0"
       aria-hidden="true">
-      <img src="assets/images/hero/bg-hero-batik-hd.png"
+      <img src="assets/images/hero/bg-hero-batik-hd.jpg"
         class="hero-canvas-image w-full h-full object-cover object-center pointer-events-none select-none"
         alt="Latar Belakang Batik Antik Nusantara" />
       <div class="hero-vignette-overlay absolute inset-0 pointer-events-none"></div>
@@ -214,12 +288,12 @@
 
     <!-- Interactive SVG Indonesia Map Container (Enlarged & Clean Viewport Framing) -->
     <div id="hero-map-wrapper"
-      class="relative z-10 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1520px] mx-auto my-0 flex-1 flex items-center justify-center min-h-[200px] sm:min-h-[260px] md:min-h-[300px] transition-all duration-700 opacity-0 scale-95">
+      class="relative z-10 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1520px] mx-auto my-0 flex-1 flex items-center justify-center min-h-[200px] sm:min-h-[260px] md:min-h-[300px]">
       <div id="map-container"
         class="relative w-full aspect-[982/390] max-h-[74vh] sm:max-h-[78vh] flex items-center justify-center">
 
         <!-- SVG Map of Indonesia (38 Provinces) -->
-        <svg id="indonesia-map-svg" viewBox="0 18 982 390" class="w-full h-full filter drop-shadow-2xl" role="region"
+        <svg id="indonesia-map-svg" viewBox="0 18 982 390" class="w-full h-full" role="region"
           aria-label="Peta Interaktif 38 Provinsi Indonesia" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="mapGlow" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -465,7 +539,7 @@
 
     <!-- Map Prompt & Scroll Indicator -->
     <div id="hero-map-prompt"
-      class="relative z-10 flex flex-col items-center justify-center text-center mt-1 transition-opacity duration-700 opacity-0">
+      class="relative z-10 flex flex-col items-center justify-center text-center mt-1 hero-map-prompt-anim">
       <div
         class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs uppercase tracking-widest text-surface/60 font-semibold mb-0.5">
         <span class="material-symbols-outlined text-sm text-brass-400">touch_app</span>
@@ -479,10 +553,10 @@
        03. PROVINCE DETAIL CENTER POP-UP MODAL (PRD Bab 11 & HERO SPEC Bab 17)
        ========================================================================= -->
   <div id="province-modal-overlay"
-    class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 opacity-0 pointer-events-none transition-all duration-400 flex items-center justify-center p-4 sm:p-6"
+    class="fixed inset-0 bg-black/75 z-50 opacity-0 pointer-events-none flex items-center justify-center p-4 sm:p-6"
     aria-hidden="true">
     <div id="province-detail-modal"
-      class="relative max-w-2xl sm:max-w-3xl w-full max-h-[88vh] bg-[#171411]/95 text-surface border border-brass-600/30 rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] backdrop-blur-2xl overflow-hidden flex flex-col transform scale-90 opacity-0 transition-all duration-400 ease-out modal-batik-texture"
+      class="relative max-w-2xl sm:max-w-3xl w-full max-h-[88vh] bg-[#171411]/98 text-surface border border-brass-600/30 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col modal-batik-texture"
       role="dialog" aria-modal="true" aria-labelledby="modal-province-name">
 
       <!-- Ambient Cultural Glow -->
@@ -589,9 +663,9 @@
           <span>Kembali ke Peta</span>
         </button>
 
-        <a id="modal-btn-explore-heritage" href="#featured-heritage"
+        <a id="modal-btn-explore-heritage" href="pages/jelajahi.html"
           class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-brass-600 hover:bg-brass-500 text-ink text-xs font-bold tracking-wider uppercase transition-transform hover:scale-102 flex items-center justify-center gap-2 shadow-md">
-          <span>Jelajahi Karya Warisan</span>
+          <span>Jelajahi Provinsi Ini</span>
           <span class="material-symbols-outlined text-sm">north_east</span>
         </a>
       </div>
@@ -601,245 +675,638 @@
 
 
   <!-- =========================================================================
-       04. SECTION 02: WHY HERITAGE MATTERS (PRD Bab 12.1)
+       HYBRID LANDING PAGE SHOWCASE MODULES (Connecting to Deep Modular Pages)
        ========================================================================= -->
-  <section id="why-heritage"
-    class="section-spacer bg-hero-bg text-surface border-t border-border-dark section-batik-truntum">
-    <div
-      class="section-container max-w-4xl text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-      <div class="glass-card-light p-8 sm:p-12 relative overflow-hidden">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-brass-400 bg-brass-500/15 border border-brass-400/30 mb-4">Filosofi
-          Pusaka</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-light text-surface tracking-tight mb-6">
-          Warisan bukan sekadar benda.
-        </h2>
-        <p class="font-display italic text-xl sm:text-2xl text-brass-200/90 max-w-2xl mx-auto mb-6 leading-relaxed">
-          "Di balik sebuah motif terdapat pengetahuan. Di balik sebuah karya terdapat tangan. Di balik sebuah tradisi
-          terdapat cerita."
-        </p>
-        <div class="editorial-divider mt-8"></div>
-      </div>
-    </div>
-  </section>
+  <main id="app-dynamic-modules" class="relative z-10 space-y-0">
 
-  <!-- =========================================================================
-       05. SECTION 03: FEATURED HERITAGE (PRD Bab 12.2)
-       ========================================================================= -->
-  <section id="featured-heritage"
-    class="section-spacer bg-[#181512] text-surface border-t border-border-dark section-batik-ceplok">
-    <div class="section-container">
-      <div class="max-w-2xl mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-terracotta-400 bg-terracotta-500/15 border border-terracotta-500/30 mb-2">Kurasi
-          Nusantara</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Karya & Tradisi Adiluhung</h2>
-        <p class="text-sm text-surface/70 mt-2">Koleksi terpilih warisan takbenda yang diakui dunia atas keagungan nilai
-          dan estetikanya.</p>
-      </div>
-
-      <div id="featured-heritage-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <!-- Populated via js/sections/heritage.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       06. SECTION 04: MEET THE MAKERS (PRD Bab 12.3)
-       ========================================================================= -->
-  <section id="meet-makers"
-    class="section-spacer bg-hero-bg text-surface border-t border-border-dark section-batik-parang">
-    <div class="section-container">
-      <div class="max-w-2xl mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-forest-500 bg-forest-500/15 border border-forest-500/30 mb-2">Manusia
-          di Balik Karya</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Mereka yang menjaganya tetap hidup</h2>
-        <p class="text-sm text-surface/70 mt-2">Mengenal para empu, penenun, dan perajin yang mendedikasikan hidup demi
-          kelestarian pusaka.</p>
-      </div>
-
-      <div id="makers-grid"
-        class="grid grid-cols-1 md:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <!-- Populated via js/sections/makers.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       07. SECTION 05: FROM HANDS TO HOME (PRD Bab 12.4 - Ekonomi Kreatif)
-       ========================================================================= -->
-  <section id="economy"
-    class="section-spacer bg-[#181512] text-surface border-t border-border-dark section-batik-songket">
-    <div class="section-container">
-      <div class="max-w-2xl mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-terracotta-400 bg-terracotta-500/15 border border-terracotta-500/30 mb-2">Ekonomi
-          Kreatif Lokal</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Dari tangan, menjadi karya</h2>
-        <p class="text-sm text-surface/70 mt-2">Menghubungkan ketelatenan karya tangan pengrajin dengan ruang hidup masa
-          kini.</p>
-      </div>
-
-      <div id="products-grid"
-        class="grid grid-cols-1 md:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <!-- Populated via js/sections/economy.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       08. SECTION 07: CREATIVE LAB (PRD Bab 12.6 - Interaktif Canvas)
-       ========================================================================= -->
-  <section id="creative-lab"
-    class="section-spacer bg-hero-bg text-surface border-t border-border-dark section-batik-kawung">
-    <div class="section-container">
-      <div
-        class="text-center max-w-2xl mx-auto mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-brass-400 bg-brass-500/15 border border-brass-400/30 mb-2">Eksplorasi
-          Pola Digital</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Kenali akar. Ciptakan sesuatu yang baru.
-        </h2>
-        <p class="text-sm text-surface/70 mt-2">Generate pola geometris berbasis motif Nusantara dengan kanvas
-          interaktif
-          murni.</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
-        <!-- Canvas Studio -->
-        <div class="lg:col-span-7 flex justify-center">
-          <div
-            class="canvas-container w-full aspect-square max-w-[420px] flex items-center justify-center p-4 glass-card-light">
-            <canvas id="creative-canvas" width="400" height="400"
-              class="w-full h-full rounded-xl shadow-inner"></canvas>
+    <!-- =======================================================================
+         02. 38 PROVINSI NUSANTARA SHOWCASE
+         ======================================================================= -->
+    <section id="module-jelajahi" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brass-500/10 border border-brass-400/30 text-brass-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">travel_explore</span>
+            <span>02. Peta & Direktori Kebudayaan</span>
           </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            38 Provinsi, Satu Jiwa Nusantara
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Jelajahi kekayaan pusaka, kearifan lokal, dan ragam kriya adiluhung dari ujung barat Sabang hingga ufuk timur Merauke.
+          </p>
         </div>
 
-        <!-- Controls Studio -->
-        <div class="lg:col-span-5 glass-card-light p-6 sm:p-8 space-y-6">
-          <div>
-            <label class="text-xs font-bold uppercase tracking-widest text-brass-300/80 mb-3 block">Pilih Motif
-              Dasar</label>
-            <div class="grid grid-cols-3 gap-2">
-              <button
-                class="motif-btn active py-2.5 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider pattern-option-btn text-center transition-all"
-                data-motif="kawung">Kawung</button>
-              <button
-                class="motif-btn py-2.5 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider pattern-option-btn text-center transition-all"
-                data-motif="parang">Parang</button>
-              <button
-                class="motif-btn py-2.5 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider pattern-option-btn text-center transition-all"
-                data-motif="songket">Songket</button>
+        <!-- Province Highlights Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          <!-- Card 1: Aceh -->
+          <div class="glass-card p-6 flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">Sumatera</span>
+                <span class="text-[11px] text-surface/50 font-mono">Banda Aceh</span>
+              </div>
+              <h3 class="font-display text-2xl font-light text-surface group-hover:text-brass-300 transition-colors mb-2">Aceh</h3>
+              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 italic">"Serambi Mekkah dengan filosofi Tari Saman dan Rencong pusaka pelindung marwah."</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-brass-400 font-semibold">
+              <span>Keahlian: Rencong & Kupiah Meukeutop</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
           </div>
 
-          <div>
-            <label class="text-xs font-bold uppercase tracking-widest text-brass-300/80 mb-3 block">Palet Warna
-              Nusantara</label>
-            <div class="flex items-center gap-3">
-              <button
-                class="color-btn w-9 h-9 rounded-full bg-[#16213A] ring-2 ring-brass-400 shadow-md transition-transform hover:scale-110"
-                data-color="#16213A" aria-label="Indigo"></button>
-              <button class="color-btn w-9 h-9 rounded-full bg-[#A8512F] shadow-md transition-transform hover:scale-110"
-                data-color="#A8512F" aria-label="Terracotta"></button>
-              <button class="color-btn w-9 h-9 rounded-full bg-[#2E4A38] shadow-md transition-transform hover:scale-110"
-                data-color="#2E4A38" aria-label="Forest Green"></button>
-              <button class="color-btn w-9 h-9 rounded-full bg-[#A47E3F] shadow-md transition-transform hover:scale-110"
-                data-color="#A47E3F" aria-label="Brass"></button>
+          <!-- Card 2: DI Yogyakarta -->
+          <div class="glass-card p-6 flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">Jawa</span>
+                <span class="text-[11px] text-surface/50 font-mono">Yogyakarta</span>
+              </div>
+              <h3 class="font-display text-2xl font-light text-surface group-hover:text-brass-300 transition-colors mb-2">DI Yogyakarta</h3>
+              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 italic">"Pusat kebudayaan Mataram Islam, batik tulis keraton, dan filosofi Hamemayu Hayuning Bawana."</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-brass-400 font-semibold">
+              <span>Keahlian: Batik Tulis & Keris Mataram</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-border/60 flex flex-col gap-2">
-            <button id="canvas-download-btn" class="btn-glass-gold w-full justify-center shadow-md">
-              <span class="material-symbols-outlined text-sm">download</span>
-              <span>Unduh Pola Inspirasi</span>
-            </button>
-            <span class="text-[11px] text-center text-surface/60 italic">Karya inspirasi digital berbasis geometri
-              budaya
-              Nusantara.</span>
+          <!-- Card 3: Bali -->
+          <div class="glass-card p-6 flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">Bali & NT</span>
+                <span class="text-[11px] text-surface/50 font-mono">Denpasar</span>
+              </div>
+              <h3 class="font-display text-2xl font-light text-surface group-hover:text-brass-300 transition-colors mb-2">Bali</h3>
+              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 italic">"Pulau Dewata berlandaskan Tri Hita Karana, tenun sakral Endek, dan seni ukir adiluhung."</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-brass-400 font-semibold">
+              <span>Keahlian: Tenun Endek & Ukir Pahat Bali</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics Banner & Full Page Jump -->
+        <div class="bg-gradient-to-r from-brass-600/15 via-terracotta-600/10 to-transparent border border-brass-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center md:text-left w-full md:w-auto">
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-brass-300">38</div>
+              <div class="text-[11px] text-surface/60 uppercase tracking-wider">Provinsi Lengkap</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-surface">1.340+</div>
+              <div class="text-[11px] text-surface/60 uppercase tracking-wider">Suku Bangsa</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-terracotta-300">718</div>
+              <div class="text-[11px] text-surface/60 uppercase tracking-wider">Bahasa Daerah</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-forest-300">1.700+</div>
+              <div class="text-[11px] text-surface/60 uppercase tracking-wider">WBTb Terdata</div>
+            </div>
+          </div>
+
+          <a href="pages/jelajahi.html" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-brass-600 hover:bg-brass-500 text-ink font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg hover:shadow-brass-500/30 hover:scale-105 flex-shrink-0">
+            <span>Buka Direktori 38 Provinsi Lengkap</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         03. KARYA PUSAKA & TRADISI SHOWCASE
+         ======================================================================= -->
+    <section id="module-warisan" class="section-spacer section-batik-ceplok-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta-500/10 border border-terracotta-400/30 text-terracotta-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">category</span>
+            <span>03. Karya Pusaka & Tradisi</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Mahakarya Agung yang Melampaui Abad
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Dari kilau pamor keris hingga rajutan benang emas songket, selami filosofi mendalam di balik benda pusaka Nusantara.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <!-- Card 1 -->
+          <div class="glass-card p-5 flex flex-col justify-between group hover:border-terracotta-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30 mb-3 inline-block">UNESCO 2009</span>
+              <h3 class="font-display text-xl font-normal text-surface group-hover:text-terracotta-300 transition-colors mb-2">Batik Parang Rusak</h3>
+              <p class="text-xs text-surface/70 font-light italic line-clamp-3 mb-4">"Kesinambungan perjuangan manusia dalam menaklukkan ego dan hawa nafsu laksana ombak laut selatan."</p>
+            </div>
+            <div class="text-[11px] text-surface/50 border-t border-white/10 pt-2 flex items-center justify-between">
+              <span>DI Yogyakarta</span>
+              <span class="text-terracotta-300 font-semibold">Wastra Klasik</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card p-5 flex flex-col justify-between group hover:border-terracotta-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-500/20 text-brass-300 border border-brass-500/30 mb-3 inline-block">UNESCO 2005</span>
+              <h3 class="font-display text-xl font-normal text-surface group-hover:text-brass-300 transition-colors mb-2">Keris Nogososro</h3>
+              <p class="text-xs text-surface/70 font-light italic line-clamp-3 mb-4">"Penyatuan material bumi dan meteorit langit sebagai lambang kemuliaan jiwa ksatria."</p>
+            </div>
+            <div class="text-[11px] text-surface/50 border-t border-white/10 pt-2 flex items-center justify-between">
+              <span>Jawa Tengah</span>
+              <span class="text-brass-300 font-semibold">Tosan Aji</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card p-5 flex flex-col justify-between group hover:border-terracotta-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-forest-500/20 text-forest-300 border border-forest-500/30 mb-3 inline-block">WBTb Nasional</span>
+              <h3 class="font-display text-xl font-normal text-surface group-hover:text-forest-300 transition-colors mb-2">Tenun Hinggi Sumba</h3>
+              <p class="text-xs text-surface/70 font-light italic line-clamp-3 mb-4">"Relasi sakral antara roh leluhur Marapu, keberanian prajurit berkuda, dan kehormatan klan."</p>
+            </div>
+            <div class="text-[11px] text-surface/50 border-t border-white/10 pt-2 flex items-center justify-between">
+              <span>Nusa Tenggara Timur</span>
+              <span class="text-forest-300 font-semibold">Tenun Ikat</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card p-5 flex flex-col justify-between group hover:border-terracotta-400/60 transition-all hover:-translate-y-1 duration-300">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-3 inline-block">UNESCO 2003</span>
+              <h3 class="font-display text-xl font-normal text-surface group-hover:text-indigo-300 transition-colors mb-2">Wayang Purwa Bima</h3>
+              <p class="text-xs text-surface/70 font-light italic line-clamp-3 mb-4">"Penegakan keadilan tanpa kompromi, kejujuran batiniah, dan pencarian jati diri sejati."</p>
+            </div>
+            <div class="text-[11px] text-surface/50 border-t border-white/10 pt-2 flex items-center justify-between">
+              <span>Jawa Timur & Tengah</span>
+              <span class="text-indigo-300 font-semibold">Tatahan Kulit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="pages/warisan.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-terracotta-400/40 text-terracotta-300 hover:bg-terracotta-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors">
+            <span>Eksplorasi Seluruh Koleksi Pusaka</span>
+            <span class="material-symbols-outlined text-sm">north_east</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         04. PARA PENJAGA TRADISI SHOWCASE
+         ======================================================================= -->
+    <section id="module-makers" class="section-spacer section-batik-parang-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-500/10 border border-forest-400/30 text-forest-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">person_pin</span>
+            <span>04. Suara Penjaga Tradisi</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Tangan-Tangan yang Merawat Ingatan Bangsa
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Mengenal para maestro kriya yang mendedikasikan seluruh hidupnya menjaga api pengetahuan leluhur tetap menyala.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <!-- Maker 1 -->
+          <div class="glass-card p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3.5 mb-4">
+                <div class="w-12 h-12 rounded-full bg-brass-500/20 border border-brass-400/40 flex items-center justify-center text-brass-300 font-display text-lg font-bold">MC</div>
+                <div>
+                  <h4 class="font-display text-lg text-surface font-semibold">Mbah Cipto</h4>
+                  <p class="text-xs text-brass-400 font-medium">Empu Pembatik Tulis Klasik (Solo)</p>
+                </div>
+              </div>
+              <p class="font-display italic text-sm text-surface/90 leading-relaxed mb-4">
+                "Menorehkan lilin canting adalah melatih nafas dan membersihkan hati dari ketergesaan dunia modern."
+              </p>
+            </div>
+            <div class="text-[11px] text-surface/50 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>Dedikasi: 48 Tahun Berkarya</span>
+              <span class="text-brass-300">Pewarna Soga Alami</span>
+            </div>
+          </div>
+
+          <!-- Maker 2 -->
+          <div class="glass-card p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3.5 mb-4">
+                <div class="w-12 h-12 rounded-full bg-terracotta-500/20 border border-terracotta-400/40 flex items-center justify-center text-terracotta-300 font-display text-lg font-bold">MR</div>
+                <div>
+                  <h4 class="font-display text-lg text-surface font-semibold">Mama Rambu Koni</h4>
+                  <p class="text-xs text-terracotta-400 font-medium">Penenun Pewarna Alami (Sumba)</p>
+                </div>
+              </div>
+              <p class="font-display italic text-sm text-surface/90 leading-relaxed mb-4">
+                "Warna biru dari daun wora dan merah dari akar mengkudu menjaga napas leluhur kami tetap hidup di tiap helai benang."
+              </p>
+            </div>
+            <div class="text-[11px] text-surface/50 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>Dedikasi: 35 Tahun Berkarya</span>
+              <span class="text-terracotta-300">Tenun Ikat Marapu</span>
+            </div>
+          </div>
+
+          <!-- Maker 3 -->
+          <div class="glass-card p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3.5 mb-4">
+                <div class="w-12 h-12 rounded-full bg-forest-500/20 border border-forest-400/40 flex items-center justify-center text-forest-300 font-display text-lg font-bold">PM</div>
+                <div>
+                  <h4 class="font-display text-lg text-surface font-semibold">Panrita Lopi Muhammad</h4>
+                  <p class="text-xs text-forest-400 font-medium">Maestro Pembuat Pinisi (Bulukumba)</p>
+                </div>
+              </div>
+              <p class="font-display italic text-sm text-surface/90 leading-relaxed mb-4">
+                "Kayu bitti dan ulin kami satukan dengan pasak kayu dan doa agar pinisi tegar mengarungi badai samudra terdalam."
+              </p>
+            </div>
+            <div class="text-[11px] text-surface/50 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>Dedikasi: 40 Tahun Berkarya</span>
+              <span class="text-forest-300">Arsitektur Bahari</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="pages/makers.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-forest-400/40 text-forest-300 hover:bg-forest-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors">
+            <span>Kenali Profil Lengkap Seluruh Maestro</span>
+            <span class="material-symbols-outlined text-sm">record_voice_over</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         05. EKONOMI KREATIF & PRODUK LOKAL SHOWCASE
+         ======================================================================= -->
+    <section id="module-ekonomi-kreatif" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brass-500/10 border border-brass-400/30 text-brass-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">storefront</span>
+            <span>05. Dari Tangan ke Ruang Modern</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Etalase Kriya Berdaya Saing Global
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Menghubungkan apresiasi karya otentik dengan pemberdayaan ekonomi komunitas perajin di pelosok Nusantara.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <!-- Product 1 -->
+          <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-forest-500/20 text-forest-300 border border-forest-500/30 mb-2 inline-block">Eco & Slow Fashion</span>
+              <h4 class="font-display text-lg text-surface group-hover:text-brass-300 transition-colors mb-1">Syal Tenun Sabana</h4>
+              <p class="text-xs text-surface/60 mb-3">Sumba Timur, NTT</p>
+              <p class="text-xs text-surface/80 font-light leading-relaxed mb-4">Ditenun 40 hari dengan 4 kali proses celup alami akar mengkudu liar.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-brass-300">Rp 850.000</span>
+              <span class="text-[10px] text-surface/50">100% Pemberdayaan</span>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30 mb-2 inline-block">Kriya Tanah Liat</span>
+              <h4 class="font-display text-lg text-surface group-hover:text-terracotta-300 transition-colors mb-1">Vas Kendi Maling</h4>
+              <p class="text-xs text-surface/60 mb-3">Banyumulek, Lombok Barat</p>
+              <p class="text-xs text-surface/80 font-light leading-relaxed mb-4">Diisi air dari bawah tanpa tumpah, mengajarkan filosofi kejujuran batin.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-terracotta-300">Rp 320.000</span>
+              <span class="text-[10px] text-surface/50">Gerabah Asli</span>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-500/20 text-brass-300 border border-brass-500/30 mb-2 inline-block">Warisan Langka</span>
+              <h4 class="font-display text-lg text-surface group-hover:text-brass-300 transition-colors mb-1">Selendang Tekat Emas</h4>
+              <p class="text-xs text-surface/60 mb-3">Daik Lingga, Kepulauan Riau</p>
+              <p class="text-xs text-surface/80 font-light leading-relaxed mb-4">Sulam tekat teliti dengan benang kawat perak berlapis suasa di atas sutra.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-brass-300">Rp 1.250.000</span>
+              <span class="text-[10px] text-surface/50">Sutra Tekat</span>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group hover:border-brass-400/60 transition-all hover:-translate-y-1">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-2 inline-block">UNESCO Safeguarding</span>
+              <h4 class="font-display text-lg text-surface group-hover:text-indigo-300 transition-colors mb-1">Noken Serat Anggrek</h4>
+              <p class="text-xs text-surface/60 mb-3">Wamena, Papua Pegunungan</p>
+              <p class="text-xs text-surface/80 font-light leading-relaxed mb-4">Simbol rahim ibu, kesuburan, dan persaudaraan masyarakat adat Papua.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-indigo-300">Rp 275.000</span>
+              <span class="text-[10px] text-surface/50">Anyaman Kepala</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="pages/ekonomi-kreatif.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brass-600 hover:bg-brass-500 text-ink text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors">
+            <span>Kunjungi Etalase Produk Lokal Penuh</span>
+            <span class="material-symbols-outlined text-sm">storefront</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         06. HERITAGE × MODERN SHOWCASE
+         ======================================================================= -->
+    <section id="module-heritage-modern" class="section-spacer section-batik-ceplok-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/30 text-indigo-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">auto_fix_high</span>
+            <span>06. Dialog Zaman</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Harmoni Pusaka Leluhur & Inovasi Modern
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Bagaimana generasi muda menerjemahkan pakem klasik ke dalam medium seni generatif, mode kontemporer, dan arsitektur masa depan.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined">code</span>
+            </div>
+            <h4 class="font-display text-xl text-surface mb-2">Generative Batik Code</h4>
+            <p class="text-xs text-surface/70 leading-relaxed">Algoritma parametrik yang menghidupkan kembali struktur fraktal batik klasik ke dalam visual interaktif tanpa batas.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-brass-500/20 text-brass-300 flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined">checkroom</span>
+            </div>
+            <h4 class="font-display text-xl text-surface mb-2">Neo-Songket Runway</h4>
+            <p class="text-xs text-surface/70 leading-relaxed">Tenun berpadu siluet urban haute couture, membawa filosofi Melayu dan Minang ke panggung pekan mode internasional.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-terracotta-500/20 text-terracotta-300 flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined">graphic_eq</span>
+            </div>
+            <h4 class="font-display text-xl text-surface mb-2">Acoustic Gamelan Fusion</h4>
+            <p class="text-xs text-surface/70 leading-relaxed">Harmonisasi laras Slendro dan Pelog dengan lanskap suara ambient elektronik yang menenangkan jiwa.</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="pages/heritage-modern.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-indigo-400/40 text-indigo-300 hover:bg-indigo-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors">
+            <span>Eksplorasi Inovasi Heritage Modern</span>
+            <span class="material-symbols-outlined text-sm">auto_fix_high</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         07. CREATIVE LAB CANVAS SHOWCASE
+         ======================================================================= -->
+    <section id="module-creative-lab" class="section-spacer section-batik-parang-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brass-500/10 border border-brass-400/30 text-brass-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">palette</span>
+            <span>07. Creative Lab Canvas</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Ciptakan Komposisi Motif Khas Anda
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Uji coba algoritma pola geometris batik dan tenun Nusantara langsung di studio kanvas interaktif.
+          </p>
+        </div>
+
+        <!-- Mini Canvas Interactive Widget -->
+        <div class="max-w-4xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-brass-400/30 mb-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Canvas Preview -->
+            <div class="lg:col-span-7 flex flex-col items-center justify-center">
+              <div class="relative w-full aspect-square max-w-[340px] rounded-2xl overflow-hidden border-2 border-brass-500/40 shadow-2xl bg-[#F6F1E7]">
+                <canvas id="creative-canvas" width="400" height="400" class="w-full h-full block"></canvas>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="lg:col-span-5 flex flex-col gap-5">
+              <div>
+                <label class="text-xs font-bold uppercase tracking-wider text-brass-400 block mb-2">Pilih Pola Motif:</label>
+                <div class="grid grid-cols-3 gap-2">
+                  <button class="motif-btn active px-3 py-2 rounded-xl text-xs font-semibold bg-brass-500/20 border border-brass-400 text-brass-300" data-motif="kawung">Kawung</button>
+                  <button class="motif-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 text-surface/80 hover:bg-white/10" data-motif="parang">Parang</button>
+                  <button class="motif-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 text-surface/80 hover:bg-white/10" data-motif="songket">Songket</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-xs font-bold uppercase tracking-wider text-brass-400 block mb-2">Warna Tinta:</label>
+                <div class="flex items-center gap-3">
+                  <button class="color-btn w-8 h-8 rounded-full bg-[#16213A] ring-2 ring-brass-400 transition-all" data-color="#16213A" title="Indigo Nusantara"></button>
+                  <button class="color-btn w-8 h-8 rounded-full bg-[#A8512F] transition-all" data-color="#A8512F" title="Terracotta"></button>
+                  <button class="color-btn w-8 h-8 rounded-full bg-[#1E2E24] transition-all" data-color="#1E2E24" title="Forest Green"></button>
+                  <button class="color-btn w-8 h-8 rounded-full bg-[#A47E3F] transition-all" data-color="#A47E3F" title="Brass Gold"></button>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-col gap-2.5">
+                <button id="canvas-download-btn" class="w-full py-2.5 rounded-full bg-brass-600 hover:bg-brass-500 text-ink text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-sm">download</span>
+                  <span>Unduh Pola Motif (PNG)</span>
+                </button>
+                <a href="pages/creative-lab.html" class="w-full py-2 rounded-full border border-white/15 hover:border-white/30 text-surface/80 hover:text-surface text-center text-xs font-semibold transition-colors">
+                  Buka Studio Lab Penuh
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- =========================================================================
-       09. SECTION 08: BELAJAR DARI AKAR (PRD Bab 12.7 - Micro Learning)
-       ========================================================================= -->
-  <section id="learning"
-    class="section-spacer bg-[#181512] text-surface border-t border-border-dark section-batik-megamendung">
-    <div class="section-container max-w-4xl">
-      <div class="text-center mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700">
-        <span
-          class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-forest-500 bg-forest-500/15 border border-forest-500/30 mb-2">Pendidikan
-          Berbasis Lokal</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Belajar Dari Akar</h2>
-        <p class="text-sm text-surface/70 mt-2">Pahami makna filosofis mendalam di balik karya leluhur melalui kuis
-          ringkas.</p>
-      </div>
 
-      <div class="quiz-card glass-card-light p-6 sm:p-8">
-        <div class="flex items-center justify-between text-xs text-surface/60 mb-4 pb-3 border-b border-border/60">
-          <span>Modul 01 • Filosofi Batik Parang</span>
-          <span id="quiz-progress-counter" class="font-semibold text-brass-400">1 Modul Tersedia</span>
+    <!-- =======================================================================
+         08. BELAJAR DARI AKAR SHOWCASE
+         ======================================================================= -->
+    <section id="module-belajar" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-500/10 border border-forest-400/30 text-forest-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">school</span>
+            <span>08. Pusat Belajar & Kuis Budaya</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Uji Wawasan Budaya Nusantara
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Pelajari glosarium tradisi, makna simbolik pusaka, dan asah pengetahuan Anda dalam kuis interaktif yang seru.
+          </p>
         </div>
 
-        <h3 class="font-display text-xl sm:text-2xl font-normal text-surface mb-3">
-          Apa makna ombak berkesinambungan pada motif Parang Rusak?
-        </h3>
+        <!-- Mini Quiz Teaser Card -->
+        <div class="max-w-2xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-forest-500/30 mb-10 text-center">
+          <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-forest-500/20 text-forest-300 mb-4 inline-block">Kuis Cuplikan Interaktif</span>
+          <h3 class="font-display text-xl sm:text-2xl text-surface font-light mb-6">
+            "Bahan alami apa yang secara tradisional digunakan oleh perajin Sumba untuk menghasilkan warna merah pekat pada Tenun Ikat?"
+          </h3>
 
-        <p class="text-sm text-surface/75 mb-6 leading-relaxed font-light">
-          Motif Parang diciptakan oleh Sultan Agung dari Mataram saat bertapa di pesisir Pantai Selatan, terinspirasi
-          gulungan ombak yang tak kenal lelah menghantam karang.
-        </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-left text-xs">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">A</span>
+              <span>Kunyit & Bunga Telang</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-forest-500/20 border border-forest-400 text-forest-200 font-semibold flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-forest-500 text-ink flex items-center justify-center font-bold">B</span>
+              <span>Akar Pohon Mengkudu (Kombu) ✓</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">C</span>
+              <span>Kulit Kayu Mahoni</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">D</span>
+              <span>Daun Pandan Suji</span>
+            </div>
+          </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button
-            class="quiz-option-btn text-left p-4 rounded-xl border border-white/10 bg-white/5 hover:border-brass-400/60 hover:bg-white/10 text-xs font-medium text-surface transition-all shadow-sm"
-            data-correct="true">
-            A. Keteguhan hati & semangat pantang menyerah mengarungi hidup
-          </button>
-          <button
-            class="quiz-option-btn text-left p-4 rounded-xl border border-white/10 bg-white/5 hover:border-brass-400/60 hover:bg-white/10 text-xs font-medium text-surface transition-all shadow-sm"
-            data-correct="false">
-            B. Peringatan akan bahaya badai laut yang menghancurkan
-          </button>
+          <a href="pages/belajar.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-forest-600 hover:bg-forest-500 text-surface text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors">
+            <span>Mulai Kuis Lengkap (10 Tantangan)</span>
+            <span class="material-symbols-outlined text-sm">school</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         09. CERITA YANG DIWARISKAN SHOWCASE
+         ======================================================================= -->
+    <section id="module-cerita" class="section-spacer section-batik-ceplok-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta-500/10 border border-terracotta-400/30 text-terracotta-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">auto_stories</span>
+            <span>09. Tutur Lisan Nusantara</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Hikayat, Legenda & Falsafah Hidup
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Menyelami pesan kebajikan dan kearifan ekologis yang diwariskan para tetua melalui untaian kisah rakyat.
+          </p>
         </div>
 
-        <div class="quiz-feedback hidden"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 mb-3 inline-block">Sulawesi Selatan</span>
+              <h4 class="font-display text-xl text-surface mb-2">Pelayaran Sawerigading</h4>
+              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Kisah epik I La Galigo tentang lahirnya kapal Pinisi dan sumpah para pembuatnya yang menyatu dengan samudra."</p>
+            </div>
+            <a href="pages/cerita.html" class="text-xs text-terracotta-300 font-semibold flex items-center gap-1 hover:underline">
+              <span>Baca Kisah Lengkap</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-500/20 text-brass-300 mb-3 inline-block">Bali (Tenganan)</span>
+              <h4 class="font-display text-xl text-surface mb-2">Tenun Gringsing</h4>
+              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Dewa Indra mengabadikan gemerlap bintang malam dalam benang ikat ganda sebagai pelindung dari kegelapan."</p>
+            </div>
+            <a href="pages/cerita.html" class="text-xs text-brass-300 font-semibold flex items-center gap-1 hover:underline">
+              <span>Baca Kisah Lengkap</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-forest-500/20 text-forest-300 mb-3 inline-block">Kalimantan Tengah</span>
+              <h4 class="font-display text-xl text-surface mb-2">Falsafah Huma Betang</h4>
+              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Rumah panjang Dayak tempat puluhan keluarga hidup rukun di bawah satu atap ulin dengan musyawarah."</p>
+            </div>
+            <a href="pages/cerita.html" class="text-xs text-forest-300 font-semibold flex items-center gap-1 hover:underline">
+              <span>Baca Kisah Lengkap</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="pages/cerita.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-terracotta-400/40 text-terracotta-300 hover:bg-terracotta-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors">
+            <span>Jelajahi Seluruh Cerita Rakyat Nusantara</span>
+            <span class="material-symbols-outlined text-sm">auto_stories</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- =========================================================================
-       10. SECTION 10: PASS IT ON & FOOTER (PRD Bab 12.9)
-       ========================================================================= -->
-  <section
-    class="section-spacer bg-hero-bg text-surface border-t border-border-dark text-center relative overflow-hidden section-batik-unified">
-    <div class="absolute -top-32 -left-32 w-80 h-80 bg-indigo-900/25 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-terracotta-700/20 rounded-full blur-3xl pointer-events-none">
-    </div>
 
-    <div
-      class="section-container max-w-3xl scroll-reveal opacity-0 translate-y-8 transition-all duration-700 relative z-10">
-      <div class="glass-panel p-8 sm:p-12">
-        <span class="glass-pill mb-3">Pesan Penutup</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-light tracking-tight mb-6 mt-2 text-surface">
-          Warisan tidak berhenti pada kita. Kita meneruskannya.
-        </h2>
-        <p class="text-sm sm:text-base text-surface/75 leading-relaxed mb-8 max-w-xl mx-auto font-light">
-          Setiap generasi memiliki tanggung jawab untuk menjaga, menghargai, dan mengembangkan pusaka Nusantara.
-        </p>
+    <!-- =======================================================================
+         10. PASS IT ON — IKRAR BUDAYA SHOWCASE
+         ======================================================================= -->
+    <section id="module-pass-it-on" class="section-spacer section-batik-parang-dark border-t border-border-dark">
+      <div class="section-container">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brass-500/10 border border-brass-400/30 text-brass-300 text-[11px] font-bold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined text-xs">favorite</span>
+            <span>10. Ikrar Generasi Penerus</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
+            Yang Diwariskan, Yang Kita Teruskan
+          </h2>
+          <p class="text-surface/75 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+            Warisan Nusantara tidak akan bertahan jika hanya disimpan di museum. Buat ikrar budaya Anda dan jadilah bagian dari pelestari masa depan.
+          </p>
+        </div>
 
-        <button id="pass-it-on-share-btn" class="btn-glass-gold">
-          <span class="material-symbols-outlined text-sm">share</span>
-          <span>Bagikan Kisah Nusantara</span>
-        </button>
+        <div class="max-w-xl mx-auto glass-card p-8 rounded-3xl border border-brass-400/40 text-center shadow-2xl">
+          <div class="w-16 h-16 rounded-full brand-glass-badge mx-auto flex items-center justify-center font-display text-2xl font-bold text-ink mb-4">W</div>
+          <h3 class="font-display text-2xl text-surface font-semibold mb-2">Ikrar Penjaga Budaya</h3>
+          <p class="text-xs text-surface/80 font-light leading-relaxed mb-6 italic">
+            "Saya berkomitmen untuk mempelajari, mengapresiasi, dan meneruskan karya adiluhung Nusantara kepada generasi mendatang."
+          </p>
+
+          <a href="pages/pass-it-on.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brass-600 hover:bg-brass-500 text-ink text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-lg hover:shadow-brass-500/30 hover:scale-105">
+            <span>Tandatangani & Buat Kartu Ikrar Budaya</span>
+            <span class="material-symbols-outlined text-sm">edit_note</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <footer
     class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center footer-batik-texture">
@@ -854,32 +1321,25 @@
   </footer>
 
   <!-- Modular Application Scripts in Correct Dependency Order -->
+  <script src="js/utils/loading-screen.js"></script>
   <script src="js/utils/helpers.js"></script>
   <script src="js/utils/animation.js"></script>
   <script src="js/utils/scroll.js"></script>
+  <script src="js/utils/page-transition.js"></script>
 
-  <script src="js/data/provinces.js"></script>
-  <script src="js/data/heritage.js"></script>
-  <script src="js/data/makers.js"></script>
-  <script src="js/data/products.js"></script>
+  <script src="data/provinces.js"></script>
+  <script src="data/heritage.js"></script>
+  <script src="data/makers.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/quiz.js"></script>
+  <script src="data/stories.js"></script>
 
-  <script src="js/components/navbar.js"></script>
-  <script src="js/components/province-panel.js"></script>
-  <script src="js/components/modal.js"></script>
-  <script src="js/components/audio-player.js"></script>
-  <script src="js/components/quiz.js"></script>
+  <script src="js/components/navbar.js?v=5"></script>
+  <script src="js/components/province-panel.js?v=5"></script>
+  <script src="js/sections/hero.js?v=5"></script>
+  <script src="js/sections/creative-lab.js?v=5"></script>
 
-  <script src="js/sections/hero.js"></script>
-  <script src="js/sections/heritage.js"></script>
-  <script src="js/sections/makers.js"></script>
-  <script src="js/sections/economy.js"></script>
-  <script src="js/sections/modern.js"></script>
-  <script src="js/sections/creative-lab.js"></script>
-  <script src="js/sections/learning.js"></script>
-  <script src="js/sections/stories.js"></script>
-  <script src="js/sections/pass-it-on.js"></script>
-
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=5"></script>
 </body>
 
 </html>

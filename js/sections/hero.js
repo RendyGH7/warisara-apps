@@ -28,34 +28,14 @@ window.WARISARA_HERO_MAP = {
 
     this.populateMobileDropdown();
     this.bindMapEvents();
-    this.animateEntrance();
+    // NOTE: entrance animation is handled by CSS @keyframes in hero.css —
+    // no JS class toggling needed here.
     this.startTaglineCycle();
   },
 
-  animateEntrance: function () {
-    const mapWrapper = document.getElementById("hero-map-wrapper");
-    const promptBlock = document.getElementById("hero-map-prompt");
-
-    // Map: reveal after a short pause so letters have time to animate first
-    setTimeout(() => {
-      if (mapWrapper) {
-        mapWrapper.classList.remove("opacity-0", "scale-95");
-        mapWrapper.classList.add("opacity-100", "scale-100");
-      }
-    }, 350);
-
-    setTimeout(() => {
-      if (promptBlock) {
-        promptBlock.classList.remove("opacity-0");
-        promptBlock.classList.add("opacity-100");
-      }
-    }, 700);
-  },
-
   /**
-   * Rotating Nusantara tagline — cycles through phrases every 3.5 s.
-   * Uses CSS animation classes (tagline-active / tagline-exit) for
-   * smooth crossfade. First phrase appears after letters finish (900ms).
+   * Rotating Nusantara tagline — cycles through phrases every 3.8 s.
+   * Starts only after loading screen is dismissed and title letters enter.
    */
   startTaglineCycle: function () {
     const wrapper = document.getElementById("hero-tagline-wrapper");
@@ -69,16 +49,12 @@ window.WARISARA_HERO_MAP = {
     const showPhrase = (index) => {
       phrases.forEach((el, i) => {
         if (i === index) {
-          // Remove exit class if lingering, then trigger entrance
           el.classList.remove("tagline-exit");
-          // Force reflow so animation restarts cleanly
           void el.offsetWidth;
           el.classList.add("tagline-active");
         } else if (el.classList.contains("tagline-active")) {
-          // Exit the currently visible phrase
           el.classList.remove("tagline-active");
           el.classList.add("tagline-exit");
-          // Clean up exit class after animation ends
           el.addEventListener("animationend", () => {
             el.classList.remove("tagline-exit");
           }, { once: true });
@@ -86,14 +62,23 @@ window.WARISARA_HERO_MAP = {
       });
     };
 
-    // First phrase appears after letter entrance animation completes
-    setTimeout(() => {
-      showPhrase(0);
-      this._taglineTimer = setInterval(() => {
-        current = (current + 1) % phrases.length;
-        showPhrase(current);
-      }, 3500);
-    }, 900);
+    const runSequence = () => {
+      // First phrase appears after letter entrance completes (~1600ms)
+      setTimeout(() => {
+        showPhrase(0);
+        if (this._taglineTimer) clearInterval(this._taglineTimer);
+        this._taglineTimer = setInterval(() => {
+          current = (current + 1) % phrases.length;
+          showPhrase(current);
+        }, 3800);
+      }, 1600);
+    };
+
+    if (document.body.classList.contains("hero-animated") || !document.getElementById("warisara-preloader")) {
+      runSequence();
+    } else {
+      window.addEventListener("warisara:hero-animated", runSequence, { once: true });
+    }
   },
 
   populateMobileDropdown: function () {
@@ -188,7 +173,7 @@ window.WARISARA_HERO_MAP = {
     }
   },
 
-  animateViewBox: function (targetX, targetY, targetW, targetH, duration = 1100, callback = null) {
+  animateViewBox: function (targetX, targetY, targetW, targetH, duration = 500, callback = null) {
     if (!this.svgMap) return;
 
     // Cancel any in-flight animation immediately
@@ -229,25 +214,18 @@ window.WARISARA_HERO_MAP = {
       this.svgMap.setAttribute("viewBox", `${curX.toFixed(3)} ${curY.toFixed(3)} ${curW.toFixed(3)} ${curH.toFixed(3)}`);
 
       // ── Synchronized Background Parallax ──────────────────────────────────
-      // We match the SVG zoom ratio so the background scales in harmony with
-      // the island map. Parallax pan follows the viewport center offset.
       if (this.bgImage) {
         const baseW = 982;   // SVG natural width
         const baseH = 390;   // SVG natural height
-        const zoomRatio = baseW / Math.max(1, curW);  // > 1 when zoomed in
+        const zoomRatio = baseW / Math.max(1, curW);
 
-        // How far the viewport center has drifted from the SVG center (–1 to +1)
         const normX = ((curX + curW * 0.5) - baseW * 0.5) / (baseW * 0.5);
         const normY = ((curY + curH * 0.5) - baseH * 0.5) / (baseH * 0.5);
 
-        // Background scales gently (0.22 factor = subtle depth cue, not 1:1)
         const bgScale = 1.01 + (zoomRatio - 1) * 0.22;
-
-        // Pan in the opposite direction to the viewport drift (parallax)
         const bgPanX = -normX * 28;
         const bgPanY = -normY * 18;
 
-        // Single composed transform — no CSS transition fighting this
         this.bgImage.style.transform = `scale(${bgScale.toFixed(5)}) translate(${bgPanX.toFixed(3)}px, ${bgPanY.toFixed(3)}px)`;
       }
       // ──────────────────────────────────────────────────────────────────────
@@ -256,8 +234,8 @@ window.WARISARA_HERO_MAP = {
         this._animFrameId = requestAnimationFrame(step);
       } else {
         this._animFrameId = null;
-        // Release the GPU layer hint
-        if (this.bgImage) this.bgImage.style.willChange = "transform";
+        // Release the GPU layer hint to free memory
+        if (this.bgImage) this.bgImage.style.willChange = "auto";
         if (callback) callback();
       }
     };
@@ -274,9 +252,8 @@ window.WARISARA_HERO_MAP = {
 
     if (this.svgMap) {
       this.svgMap.classList.add("map-dimmed");
-      this.svgMap.querySelectorAll(".map-province-group").forEach((g) => g.classList.remove("active"));
-      this.svgMap.querySelectorAll(".map-province-path").forEach((p) => p.classList.remove("active"));
-      this.svgMap.querySelectorAll(".map-marker").forEach((m) => m.classList.remove("active"));
+      // Fast selective removal instead of querying all nodes
+      this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
 
       const targetGroup = this.svgMap.querySelector(`.map-province-group[data-province="${provId}"]`);
       if (targetGroup) {
@@ -293,15 +270,15 @@ window.WARISARA_HERO_MAP = {
       this.provinceSelectDropdown.value = provId;
     }
 
-    // 1. Smoothly glide camera into the selected province
+    // 1. Smoothly glide camera into the selected province (snappy 500ms)
     this.focusMapOnProvince(data.svgCenter);
 
-    // 2. Open panel quickly — don't make user wait for full zoom to finish
+    // 2. Open panel as camera settles into place
     if (shouldOpenPanel && window.WARISARA_PROVINCE_PANEL) {
       if (this._modalTimer) clearTimeout(this._modalTimer);
       this._modalTimer = setTimeout(() => {
         window.WARISARA_PROVINCE_PANEL.openPanel(data);
-      }, 180);
+      }, 260);
     }
   },
 
@@ -310,17 +287,16 @@ window.WARISARA_HERO_MAP = {
 
     const baseW = 982;
     const baseH = 390;
-    const zoomFactor = 1.85;  // Comfortable zoom — shows the province clearly without extreme crop
+    const zoomFactor = 1.85;
 
     const newWidth  = baseW / zoomFactor;
     const newHeight = baseH / zoomFactor;
 
-    // Allow slight overflow beyond SVG bounds so edge provinces (Sabang, Papua) aren't clamped
     const newMinX = center.x - newWidth  / 2;
     const newMinY = center.y - newHeight / 2;
 
-    // 1 100 ms — smooth cinematic glide into the province
-    this.animateViewBox(newMinX, newMinY, newWidth, newHeight, 1100, callback);
+    // Snappy, silky-smooth 500ms camera glide into the province
+    this.animateViewBox(newMinX, newMinY, newWidth, newHeight, 500, callback);
     this.isZoomed = true;
   },
 
@@ -329,12 +305,10 @@ window.WARISARA_HERO_MAP = {
 
     if (this._modalTimer) clearTimeout(this._modalTimer);
 
-    // 1 000 ms smooth zoom-out back to full Indonesia view
-    this.animateViewBox(0, 18, 982, 390, 1000, () => {
+    // Fast 480ms smooth zoom-out back to full Indonesia view
+    this.animateViewBox(0, 18, 982, 390, 480, () => {
       this.svgMap.classList.remove("map-dimmed");
-      this.svgMap.querySelectorAll(".map-province-group").forEach((g) => g.classList.remove("active"));
-      this.svgMap.querySelectorAll(".map-province-path").forEach((p) => p.classList.remove("active"));
-      this.svgMap.querySelectorAll(".map-marker").forEach((m) => m.classList.remove("active"));
+      this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
       this.selectedProvinceId = null;
       this.isZoomed = false;
       if (callback) callback();

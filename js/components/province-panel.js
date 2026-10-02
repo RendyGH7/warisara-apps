@@ -66,12 +66,17 @@ window.WARISARA_PROVINCE_PANEL = {
     if (islandEl) islandEl.textContent = `PULAU ${province.island.toUpperCase()}`;
     if (capitalEl) capitalEl.textContent = province.capital;
     if (statementEl) statementEl.textContent = `"${province.shortStatement}"`;
-    if (descEl) descEl.textContent = province.shortDescription;
+    if (descEl) descEl.textContent = province.shortDescription || "";
     if (craftHighlightEl) craftHighlightEl.textContent = province.craftHighlight;
-
     if (makerNameEl && province.maker) makerNameEl.textContent = province.maker.name;
     if (makerRoleEl && province.maker) makerRoleEl.textContent = province.maker.role;
     if (makerQuoteEl && province.maker) makerQuoteEl.textContent = `"${province.maker.quote}"`;
+
+    if (this.exploreBtn && province.id) {
+      this.exploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
+      const btnSpan = this.exploreBtn.querySelector("span:not(.material-symbols-outlined)");
+      if (btnSpan) btnSpan.textContent = `Jelajahi ${province.name}`;
+    }
 
     if (heritageListEl && province.heritage) {
       heritageListEl.innerHTML = "";

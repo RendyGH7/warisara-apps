@@ -1,0 +1,150 @@
+/* ==========================================================================
+   WARISARA — LUXURY CINEMATIC PAGE TRANSITIONS & ANIMATIONS
+   ========================================================================== */
+
+/* ── Page Transition Veil / Curtain Overlay ────────────────────────────── */
+#page-transition-veil {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #1E1A16 0%, #0F0D0B 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#page-transition-veil.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Shimmering Golden Ornament inside the Veil */
+.veil-shimmer-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(201, 165, 103, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.veil-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transform: scale(0.92);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#page-transition-veil.active .veil-content {
+  transform: scale(1);
+}
+
+.veil-logo-badge {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #8A5822 0%, #C9A567 100%);
+  border: 2px solid #E6D3A7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1612;
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  box-shadow: 0 0 35px rgba(201, 165, 103, 0.45);
+  animation: veilPulse 1.6s ease-in-out infinite;
+}
+
+.veil-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.25em;
+  color: #FBF8F2;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.veil-bar-track {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.veil-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, transparent);
+  border-radius: 9999px;
+  animation: veilSweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes veilPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(201, 165, 103, 0.3);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(201, 165, 103, 0.65);
+  }
+}
+
+@keyframes veilSweep {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+/* ── Page Entrance Animation for Body (Pure Opacity — keeps position:fixed at viewport root) ── */
+.page-fade-in {
+  animation: pageEntranceFade 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pageEntranceFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ── Interactive Stagger Reveal Utilities ─────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }

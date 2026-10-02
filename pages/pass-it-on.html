@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pass It On — WARISARA</title>
+  <meta name="description"
+    content="Manifesto dan ikrar penjaga kebudayaan: warisan tidak berhenti pada kita, kita yang meneruskan api peradaban Nusantara ke generasi masa depan." />
+
+  <!-- Google Fonts: Fraunces & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Google Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
+  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#F6F1E7',
+            'bg-alt': '#EFE7D8',
+            surface: '#FBF8F2',
+            'surface-dim': '#ECE4D4',
+            ink: '#1A1612',
+            'ink-soft': '#3A322A',
+            'ink-muted': '#6B6258',
+            'hero-bg': '#151310',
+            indigo: {
+              900: '#16213A',
+              700: '#233A5E',
+              500: '#35578A',
+              300: '#6B8AB8'
+            },
+            forest: {
+              900: '#1E2E24',
+              700: '#2E4A38',
+              500: '#3F6350'
+            },
+            terracotta: {
+              700: '#A8512F',
+              500: '#C06A42',
+              300: '#DDA07C'
+            },
+            brass: {
+              600: '#A47E3F',
+              400: '#C9A567',
+              200: '#E6D3A7'
+            },
+            border: '#D9CDB8',
+            'border-dark': '#2F2A23'
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Modular CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="pass-it-on">
+
+  <!-- =========================================================================
+       01. MAIN NAVIGATION
+       ========================================================================= -->
+  <header id="main-navbar"
+    class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
+    <!-- Brand Logo -->
+    <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
+      <span
+        class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
+    </a>
+
+    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
+    <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
+      aria-label="Navigasi Utama">
+      <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
+      <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
+      <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
+      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
+      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
+      <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
+      <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
+      <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
+      <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
+    </nav>
+
+    <!-- Header Action Button & Mobile Hamburger -->
+    <div class="flex items-center gap-2.5 flex-shrink-0">
+      <a href="../index.html" class="btn-nav-icon" aria-label="Beranda Peta" title="Beranda Peta">
+        <span class="material-symbols-outlined text-base">home</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn"
+        class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
+        aria-label="Buka Menu Navigasi">
+        <span class="material-symbols-outlined text-xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-nav-drawer"
+    class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <span
+          class="w-7 h-7 rounded-full brand-glass-badge flex items-center justify-center font-display text-xs font-bold">W</span>
+        <span class="font-display text-lg font-bold text-surface tracking-wider">WARISARA</span>
+      </div>
+      <button id="mobile-nav-close"
+        class="text-surface/80 hover:text-surface p-1.5 rounded-full hover:bg-white/10 transition-colors"
+        aria-label="Tutup Menu">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+    </div>
+    <div class="flex flex-col gap-1 text-xs sm:text-sm font-medium text-surface/90">
+      <a href="../index.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="index">
+        <span class="material-symbols-outlined text-sm text-brass-400">map</span>
+        <span>01. Peta Jelajah Nusantara</span>
+      </a>
+      <a href="jelajahi.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
+        <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
+        <span>02. Jelajahi 38 Provinsi</span>
+      </a>
+      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
+        <span>03. Karya Pusaka & Tradisi</span>
+      </a>
+      <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
+        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
+        <span>04. Profil Pelestari Budaya</span>
+      </a>
+      <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
+        <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
+        <span>05. Ekonomi Kreatif & Produk</span>
+      </a>
+      <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
+        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
+        <span>06. Heritage × Modern</span>
+      </a>
+      <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
+        <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
+        <span>07. Creative Lab Canvas</span>
+      </a>
+      <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
+        <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
+        <span>08. Pusat Belajar & Kuis</span>
+      </a>
+      <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
+        <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
+        <span>09. Cerita yang Diwariskan</span>
+      </a>
+      <a href="pass-it-on.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
+        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
+        <span>10. Pesan Penutup: Pass It On</span>
+      </a>
+    </div>
+    <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
+      <span>Kembali ke Peta</span>
+      <span class="material-symbols-outlined text-sm">north_east</span>
+    </a>
+  </div>
+
+  <!-- =========================================================================
+       PAGE CONTENT MODULE
+       ========================================================================= -->
+  <main id="page-content" class="page-module-main">
+  <section class="relative pt-36 sm:pt-44 pb-20 sm:pb-28 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/35 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-terracotta-900/35 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="glass-pill mb-4 inline-block">Halaman 10 • Manifesto & Estafet Budaya</span>
+      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
+        Warisan Tidak Berhenti Pada Kita.
+      </h1>
+      <p class="font-display italic text-2xl sm:text-3xl text-brass-300 font-light mb-6">
+        "Kita yang Meneruskannya."
+      </p>
+      <p class="text-base sm:text-lg text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-10">
+        Menjaga warisan bukan berarti membekukannya di museum kaca yang dingin. Menjaga warisan berarti menghidupkannya dalam denyut keseharian, mendukung para perajin, dan bangga mengenakan identitas bangsa.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4 PILARS OF PRESERVATION
+       ========================================================================= -->
+  <section class="py-12 px-4 sm:px-6 bg-[#181512] border-t border-border-dark">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-widest text-brass-400 font-bold block mb-2">Empat Langkah Nyata</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Bagaimana Kita Meneruskannya?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card p-6 text-center">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-900/40 border border-indigo-500/30 flex items-center justify-center text-indigo-300 mx-auto mb-4">
+            <span class="material-symbols-outlined text-2xl">auto_stories</span>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-400 block mb-1">Langkah 01</span>
+          <h3 class="font-display text-lg text-surface mb-2 font-normal">Memahami Akar</h3>
+          <p class="text-xs text-surface/70 leading-relaxed font-light">Pelajari filosofi dan makna di balik motif agar karya tradisi tidak dipandang sekadar corak dekoratif hampa nilai.</p>
+        </div>
+
+        <div class="glass-card p-6 text-center">
+          <div class="w-12 h-12 rounded-2xl bg-terracotta-900/40 border border-terracotta-500/30 flex items-center justify-center text-terracotta-300 mx-auto mb-4">
+            <span class="material-symbols-outlined text-2xl">checkroom</span>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-400 block mb-1">Langkah 02</span>
+          <h3 class="font-display text-lg text-surface mb-2 font-normal">Mengenakan Wastra</h3>
+          <p class="text-xs text-surface/70 leading-relaxed font-light">Jadikan kain batik tulis dan tenun ikat bagian dari busana harian dengan bangga di ruang kerja maupun pertemuan internasional.</p>
+        </div>
+
+        <div class="glass-card p-6 text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brass-900/40 border border-brass-500/30 flex items-center justify-center text-brass-300 mx-auto mb-4">
+            <span class="material-symbols-outlined text-2xl">handshake</span>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400 block mb-1">Langkah 03</span>
+          <h3 class="font-display text-lg text-surface mb-2 font-normal">Mendukung Perajin</h3>
+          <p class="text-xs text-surface/70 leading-relaxed font-light">Beli karya otentik buatan tangan dari komunitas perajin lokal untuk menjaga kesinambungan ekonomi keluarga mereka.</p>
+        </div>
+
+        <div class="glass-card p-6 text-center">
+          <div class="w-12 h-12 rounded-2xl bg-forest-900/40 border border-forest-500/30 flex items-center justify-center text-forest-300 mx-auto mb-4">
+            <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-forest-400 block mb-1">Langkah 04</span>
+          <h3 class="font-display text-lg text-surface mb-2 font-normal">Menceritakan Kembali</h3>
+          <p class="text-xs text-surface/70 leading-relaxed font-light">Bagikan cerita para penjaga tradisi melalui media sosial dan obrolan keluarga agar api kearifan terus menyala.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PLEDGE GENERATOR (IKRAR DIGITAL PENJAGA BUDAYA)
+       ========================================================================= -->
+  <section class="py-16 px-4 sm:px-6 bg-[#151310] relative">
+    <div class="max-w-3xl mx-auto glass-panel p-8 sm:p-12 relative z-10">
+      <div class="text-center mb-8">
+        <span class="glass-pill mb-3">Ikrar Nyata Generasi Penerus</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-light text-surface">Ikrar Penjaga Budaya Nusantara</h2>
+        <p class="text-xs sm:text-sm text-surface/70 mt-2">Buat komitmen pribadi Anda dan dapatkan Kartu Ikrar Digital untuk dibagikan.</p>
+      </div>
+
+      <!-- Generator Form -->
+      <div class="space-y-4 mb-8">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-surface/60 mb-1.5">Nama Anda</label>
+          <input id="pledge-name" type="text" placeholder="Masukkan nama lengkap Anda..."
+            class="w-full px-4 py-3 text-sm rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-surface/60 mb-1.5">Komitmen Pelestarian</label>
+          <select id="pledge-commitment"
+            class="w-full px-4 py-3 text-sm rounded-xl bg-[#1D1915] border border-white/10 text-surface focus:outline-none focus:border-brass-400 transition-colors">
+            <option value="Bangga mengenakan wastra tradisional dalam kehidupan modern">Bangga mengenakan wastra tradisional dalam kehidupan modern</option>
+            <option value="Mendukung dan membeli karya kriya asli buatan pengrajin lokal">Mendukung dan membeli karya kriya asli buatan pengrajin lokal</option>
+            <option value="Mempelajari dan menceritakan filosofi pusaka kepada generasi selanjutnya">Mempelajari dan menceritakan filosofi pusaka kepada generasi selanjutnya</option>
+            <option value="Menjaga kelestarian lingkungan alam tempat lahirnya bahan kriya tradisi">Menjaga kelestarian lingkungan alam tempat lahirnya bahan kriya tradisi</option>
+          </select>
+        </div>
+
+        <button id="btn-generate-pledge" class="w-full btn-glass-gold justify-center py-3.5 mt-2">
+          <span>Buat Kartu Ikrar Budaya</span>
+          <span class="material-symbols-outlined text-sm">verified</span>
+        </button>
+      </div>
+
+      <!-- Preview Pledge Card -->
+      <div id="pledge-card-preview" class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-white/[0.06] to-transparent border border-brass-400/40 shadow-2xl relative overflow-hidden text-center">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 text-[10px] uppercase tracking-widest text-brass-400">
+          <span>WARISARA • KARTU IKRAR BUDAYA</span>
+          <span id="pledge-card-date">2026</span>
+        </div>
+
+        <div class="py-6">
+          <span class="text-xs text-surface/60 block mb-1">Saya yang berikrar:</span>
+          <h3 id="card-name" class="font-display text-2xl sm:text-3xl text-brass-200 font-light mb-4">Nama Sahabat Budaya</h3>
+          <p id="card-commitment" class="font-display italic text-base sm:text-lg text-surface/90 max-w-lg mx-auto leading-relaxed">
+            "Berkomitmen bangga mengenakan wastra tradisional dalam kehidupan modern dan meneruskan estafet tradisi."
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-surface/60">
+          <span>#WarisaraPassItOn</span>
+          <span class="text-brass-300 font-medium">Penjaga Warisan Nusantara</span>
+        </div>
+      </div>
+
+      <!-- Share Action -->
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button id="btn-share-pledge" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+          <span class="material-symbols-outlined text-sm">share</span>
+          <span id="share-btn-text">Bagikan Komitmen Saya</span>
+        </button>
+        <a href="../index.html" class="w-full sm:w-auto px-6 py-3 rounded-full border border-brass-400/50 hover:border-brass-400 text-brass-300 text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+          <span class="material-symbols-outlined text-sm">map</span>
+          <span>Kembali ke Peta Jelajah</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
+      <div class="flex items-center gap-6">
+        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
+        <a href="jelajahi.html" class="hover:text-surface">38 Provinsi</a>
+        <a href="warisan.html" class="hover:text-surface">Karya Pusaka</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/page-transition.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script>
+    function initPassItOnPage() {
+      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
+
+      const nameInput = document.getElementById("pledge-name");
+      const commitSelect = document.getElementById("pledge-commitment");
+      const genBtn = document.getElementById("btn-generate-pledge");
+      const shareBtn = document.getElementById("btn-share-pledge");
+      const cardName = document.getElementById("card-name");
+      const cardCommit = document.getElementById("card-commitment");
+      const cardDate = document.getElementById("pledge-card-date");
+      const shareBtnText = document.getElementById("share-btn-text");
+
+      const today = new Date();
+      if (cardDate) cardDate.textContent = today.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" });
+
+      if (genBtn) {
+        genBtn.addEventListener("click", () => {
+          const name = nameInput.value.trim() || "Sahabat Budaya";
+          const commit = commitSelect.value;
+
+          cardName.textContent = name;
+          cardCommit.textContent = `"${commit} demi kesinambungan peradaban Nusantara."`;
+          genBtn.classList.add("scale-95");
+          setTimeout(() => genBtn.classList.remove("scale-95"), 150);
+        });
+      }
+
+      if (shareBtn) {
+        shareBtn.addEventListener("click", () => {
+          const name = cardName.textContent;
+          const text = `Saya, ${name}, berikrar di WARISARA: ${cardCommit.textContent} #WarisaraPassItOn`;
+
+          if (navigator.share) {
+            navigator.share({
+              title: "Ikrar Penjaga Budaya — WARISARA",
+              text: text,
+              url: window.location.href
+            }).catch(() => {});
+          } else {
+            navigator.clipboard.writeText(text).then(() => {
+              shareBtnText.textContent = "Ikrar Berhasil Disalin!";
+              setTimeout(() => {
+                shareBtnText.textContent = "Bagikan Komitmen Saya";
+              }, 2500);
+            });
+          }
+        });
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPassItOnPage);
+    } else {
+      initPassItOnPage();
+    }
+    window.initPassItOnPage = initPassItOnPage;
+  </script>
+</body>
+
+</html>
