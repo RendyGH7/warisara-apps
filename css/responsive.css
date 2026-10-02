@@ -1,0 +1,354 @@
+/* ==========================================================================
+   WARISARA — COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
+   Supports Mobile Phones (320px - 480px), Large Phones (480px - 640px),
+   Tablets (640px - 1024px), Laptops (1024px - 1440px), and Ultra-Wide Screens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. GLOBAL ACCESSIBILITY & TOUCH OPTIMIZATIONS
+   -------------------------------------------------------------------------- */
+:focus-visible:not(svg):not(svg *):not(.map-province-group):not(.map-province-path):not(.map-marker) {
+  outline: 2px solid var(--color-brass-400);
+  outline-offset: 3px;
+}
+
+svg, svg *, .map-province-group, .map-province-path, .map-marker {
+  outline: none !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent horizontal viewport shifting on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Safe Area Insets for Modern Mobile Phones (Notches & Home Indicators) */
+@supports (padding: max(0px)) {
+  #main-navbar.glass-nav {
+    top: max(0.75rem, env(safe-area-inset-top));
+  }
+  
+  #mobile-nav-drawer {
+    top: max(4.5rem, calc(env(safe-area-inset-top) + 3.75rem));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+  
+  footer {
+    padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   02. MOBILE SMALL & EXTRA SMALL SCREENS (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  /* Fluid Spacers */
+  .section-spacer {
+    padding-top: 3.25rem !important;
+    padding-bottom: 3.25rem !important;
+  }
+
+  .section-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Compact Navbar for Small Screens */
+  #main-navbar.glass-nav {
+    width: 95% !important;
+    padding: 0.45rem 0.75rem !important;
+    top: 0.65rem !important;
+  }
+
+  /* Hero Section Typography on Small Mobile */
+  #hero-intro-block h1 {
+    font-size: 1.95rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  #hero-intro-block p.font-display {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  #hero-intro-block p.text-surface\/70 {
+    font-size: 0.75rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Hero Map Container */
+  #hero-map-wrapper {
+    min-height: 280px !important;
+    padding: 0 !important;
+  }
+
+  #map-container {
+    max-height: 52vh !important;
+    aspect-ratio: 982 / 410 !important;
+  }
+
+  /* Map Marker Touch Targets on Mobile */
+  .map-marker {
+    r: 4.5px !important;
+    stroke-width: 1.2px !important;
+  }
+
+  /* Modal Dialog for Small Mobile */
+  #province-modal-overlay {
+    padding: 0.65rem !important;
+  }
+
+  #province-detail-modal {
+    max-height: 92vh !important;
+    border-radius: 1.25rem !important;
+  }
+
+  #province-detail-modal .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  #province-detail-modal h2#modal-province-name {
+    font-size: 1.65rem !important;
+  }
+
+  #modal-province-statement {
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Cards in Sections */
+  .glass-card-light,
+  .glass-card,
+  .glass-panel {
+    padding: 1.25rem !important;
+    border-radius: 1rem !important;
+  }
+
+  /* Section Headings */
+  h2.font-display {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Creative Lab Canvas Mobile Fitting */
+  .canvas-container {
+    max-width: 290px !important;
+    padding: 0.5rem !important;
+  }
+
+  #creative-canvas {
+    max-width: 270px !important;
+    max-height: 270px !important;
+  }
+
+  .pattern-option-btn {
+    padding: 0.5rem 0.25rem !important;
+    font-size: 0.6875rem !important;
+  }
+
+  .color-btn {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  /* Quiz Buttons */
+  .quiz-option-btn {
+    padding: 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Footer */
+  footer {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    font-size: 0.6875rem !important;
+  }
+
+  footer .flex-col {
+    gap: 0.75rem !important;
+  }
+
+  footer .flex.items-center.gap-6 {
+    gap: 0.85rem !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   03. MOBILE MEDIUM & LARGE PHONES (481px - 640px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 481px) and (max-width: 640px) {
+  .section-spacer {
+    padding-top: 3.75rem !important;
+    padding-bottom: 3.75rem !important;
+  }
+
+  .section-container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  #hero-intro-block h1 {
+    font-size: 2.35rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  #map-container {
+    max-height: 58vh !important;
+  }
+
+  .map-marker {
+    r: 4.2px !important;
+  }
+
+  .canvas-container {
+    max-width: 340px !important;
+  }
+
+  #creative-canvas {
+    max-width: 320px !important;
+    max-height: 320px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   04. TABLETS & IPADS (641px - 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-spacer {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+
+  .section-container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  #main-navbar.glass-nav {
+    width: 90% !important;
+    max-width: 50rem !important;
+  }
+
+  /* Tablet Map View */
+  #map-container {
+    max-height: 68vh !important;
+    aspect-ratio: 982 / 390 !important;
+  }
+
+  .map-marker {
+    r: 3.8px !important;
+  }
+
+  /* Tablet Grids */
+  #featured-heritage-grid,
+  #makers-grid,
+  #products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Modal on Tablets */
+  #province-detail-modal {
+    max-width: 88vw !important;
+  }
+
+  #modal-heritage-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Creative Lab on Tablets */
+  .canvas-container {
+    max-width: 380px !important;
+  }
+
+  #creative-canvas {
+    max-width: 360px !important;
+    max-height: 360px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   05. LAPTOPS & DESKTOPS (1025px - 1440px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  #map-container {
+    max-height: 78vh !important;
+    aspect-ratio: 982 / 390 !important;
+  }
+
+  .map-marker {
+    r: 3.5px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   06. ULTRA-WIDE & 4K DISPLAYS (>= 1440px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+  .section-container {
+    max-width: 1440px !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  #hero-map-wrapper {
+    max-width: 1440px !important;
+  }
+
+  #map-container {
+    max-height: 80vh !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   07. TOUCH-SPECIFIC INTERACTION RULES
+   -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+  /* On touch devices, hide hover tooltip to prevent sticky tooltips */
+  .map-tooltip {
+    display: none !important;
+  }
+
+  /* Provide slightly larger touch pulse on markers */
+  .map-marker {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .map-province-path {
+    cursor: pointer;
+  }
+
+  /* Buttons touch response */
+  .btn-primary,
+  .btn-secondary,
+  .btn-glass-gold,
+  .btn-nav-explore,
+  .pattern-option-btn,
+  .color-btn,
+  .quiz-option-btn {
+    min-height: 44px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   08. ACCESSIBILITY — REDUCED MOTION SUPPORT
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

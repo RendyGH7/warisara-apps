@@ -1,0 +1,179 @@
+/* ==========================================================================
+   WARISARA — MODERN HIGH-CONTRAST GLASS NAVBAR (BROWN-GOLD & NON-GRADIENT)
+   ========================================================================== */
+
+:root {
+  --nav-brown-gold: #8A5822;
+  --nav-brown-gold-hover: #9E672B;
+  --nav-brown-gold-border: #B57B3A;
+  --nav-brown-gold-glow: rgba(138, 88, 34, 0.4);
+  --nav-text-on-gold: #FFFBF5;
+}
+
+#main-navbar.glass-nav {
+  position: fixed !important;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 66rem;
+  z-index: 50;
+  background-color: rgba(12, 10, 8, 0.92);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65);
+  border-radius: 9999px;
+  transition: background-color var(--duration-base) var(--ease-premium),
+    border-color var(--duration-base) var(--ease-premium),
+    box-shadow var(--duration-base) var(--ease-premium),
+    top var(--duration-base) var(--ease-premium);
+}
+
+@media (min-width: 640px) {
+  #main-navbar.glass-nav {
+    top: 1.25rem;
+  }
+}
+
+#main-navbar.glass-nav.scrolled {
+  background-color: rgba(8, 7, 5, 0.97);
+  border-color: rgba(181, 123, 58, 0.35);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+}
+
+/* Brand Badge (Warm Brown-Gold, Solid, No Gradient) */
+.brand-glass-badge {
+  background-color: var(--nav-brown-gold);
+  color: var(--nav-text-on-gold);
+  font-weight: 800;
+  border: 1px solid var(--nav-brown-gold-border);
+  box-shadow: 0 2px 8px var(--nav-brown-gold-glow);
+  transition: all var(--duration-fast) var(--ease-snappy);
+}
+
+.group:hover .brand-glass-badge {
+  background-color: var(--nav-brown-gold-hover);
+  transform: scale(1.06);
+}
+
+/* Desktop Navigation Container */
+#desktop-nav-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Animated Sliding Active Pill (Smooth Gold-Brown Glider) */
+.nav-active-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: var(--nav-brown-gold);
+  border: 1px solid var(--nav-brown-gold-border);
+  box-shadow: 0 4px 14px var(--nav-brown-gold-glow);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.25s ease;
+  will-change: transform, width;
+}
+
+/* Navigation Links */
+.nav-link {
+  position: relative;
+  z-index: 2;
+  padding: 0.42rem 0.95rem;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background-color: transparent !important;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.2s ease,
+              transform 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nav-link:hover:not(.active) {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Active State (Text transforms to crisp ivory-white with zero layout shift) */
+.nav-link.active {
+  color: var(--nav-text-on-gold) !important;
+  font-weight: 700 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.nav-link:active {
+  transform: scale(0.96);
+}
+
+/* Simple Modern Explore Button (Solid Brown-Gold, Strong, No Gradients) */
+.btn-nav-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--nav-brown-gold);
+  color: var(--nav-text-on-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid var(--nav-brown-gold-border);
+  box-shadow: 0 3px 12px var(--nav-brown-gold-glow);
+  transition: all var(--duration-fast) var(--ease-snappy);
+}
+
+.btn-nav-explore:hover {
+  background-color: var(--nav-brown-gold-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(138, 88, 34, 0.55);
+}
+
+.btn-nav-explore:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Mobile Drawer (Clean Dark Glass, High Contrast) */
+#mobile-nav-drawer {
+  background-color: rgba(12, 10, 8, 0.98);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  border-radius: 1.25rem;
+}
+
+#mobile-nav-drawer .mobile-nav-link {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#mobile-nav-drawer .mobile-nav-link.active {
+  background-color: var(--nav-brown-gold);
+  color: var(--nav-text-on-gold);
+  font-weight: 700;
+  border: 1px solid rgba(181, 123, 58, 0.4);
+  box-shadow: 0 4px 12px var(--nav-brown-gold-glow);
+}

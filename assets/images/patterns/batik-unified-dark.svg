@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      .b-track { fill: none; stroke: #D4AF37; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+      .b-accent { fill: none; stroke: #E6C66D; stroke-width: 0.8; stroke-dasharray: 2 4; }
+      .b-star { fill: #F3E5AB; }
+      .b-node { fill: #D4AF37; }
+    </style>
+  </defs>
+
+  <!-- Clean, Spacious Royal Batik Parang-Kencana (120x120 seamless tile) -->
+  <!-- Diagonal Stream 1 (Center) -->
+  <path class="b-track" d="M-20,20 Q10,10 40,40 T100,100 T160,160" />
+  <path class="b-accent" d="M-20,28 Q10,18 40,48 T100,108 T160,168" />
+  
+  <!-- Diagonal Stream 2 (Top-Right) -->
+  <path class="b-track" d="M40,-40 Q70,-50 100,-20 T160,40" />
+  <path class="b-accent" d="M40,-32 Q70,-42 100,-12 T160,48" />
+
+  <!-- Diagonal Stream 3 (Bottom-Left) -->
+  <path class="b-track" d="M-40,40 Q-10,30 20,60 T80,120 T140,180" />
+  <path class="b-accent" d="M-40,48 Q-10,38 20,68 T80,128 T140,188" />
+
+  <!-- Diagonal Stream 4 (Upper Left & Lower Right corners) -->
+  <path class="b-track" d="M0,-80 Q30,-90 60,-60 T120,0" />
+  <path class="b-track" d="M0,120 Q30,110 60,140 T120,200" />
+
+  <!-- Graceful Cultural Motifs (Bunga Pusaka / Truntum Starlets with ample spacing) -->
+  <!-- Starlet 1 at (60, 20) -->
+  <g transform="translate(60, 20)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <path class="b-accent" d="M-10,0 L10,0 M0,-10 L0,10" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+
+  <!-- Starlet 2 at (20, 100) -->
+  <g transform="translate(20, 100)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <path class="b-accent" d="M-10,0 L10,0 M0,-10 L0,10" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+
+  <!-- Starlet 3 at (100, 60) -->
+  <g transform="translate(100, 60)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <path class="b-accent" d="M-10,0 L10,0 M0,-10 L0,10" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+
+  <!-- Starlet 4 for seamless tiling at (0, 0), (120, 0), (0, 120), (120, 120) -->
+  <g transform="translate(0, 0)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+  <g transform="translate(120, 0)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+  <g transform="translate(0, 120)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+  <g transform="translate(120, 120)">
+    <circle class="b-track" cx="0" cy="0" r="7" />
+    <polygon class="b-star" points="0,-4 3,0 0,4 -3,0" />
+    <circle class="b-node" cx="0" cy="0" r="1.5" />
+  </g>
+</svg>

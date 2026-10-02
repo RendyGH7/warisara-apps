@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <style>
+      .k-stroke { fill: none; stroke: #D4AF37; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+      .k-inner { fill: none; stroke: #F3E5AB; stroke-width: 0.8; stroke-dasharray: 2 3; }
+      .k-dot { fill: #D4AF37; }
+      .k-accent { fill: #E6C66D; opacity: 0.6; }
+    </style>
+  </defs>
+  <g>
+    <!-- Top Petal -->
+    <path class="k-stroke" d="M40,40 C28,25 28,10 40,0 C52,10 52,25 40,40 Z" />
+    <path class="k-inner" d="M40,36 C32,24 32,12 40,4 C48,12 48,24 40,36 Z" />
+    <circle class="k-dot" cx="40" cy="18" r="2" />
+    
+    <!-- Bottom Petal -->
+    <path class="k-stroke" d="M40,40 C28,55 28,70 40,80 C52,70 52,55 40,40 Z" />
+    <path class="k-inner" d="M40,44 C32,56 32,68 40,76 C48,68 48,56 40,44 Z" />
+    <circle class="k-dot" cx="40" cy="62" r="2" />
+    
+    <!-- Left Petal -->
+    <path class="k-stroke" d="M40,40 C25,28 10,28 0,40 C10,52 25,52 40,40 Z" />
+    <path class="k-inner" d="M36,40 C24,32 12,32 4,40 C12,48 24,48 36,40 Z" />
+    <circle class="k-dot" cx="18" cy="40" r="2" />
+    
+    <!-- Right Petal -->
+    <path class="k-stroke" d="M40,40 C55,28 70,28 80,40 C70,52 55,52 40,40 Z" />
+    <path class="k-inner" d="M44,40 C56,32 68,32 76,40 C68,48 56,48 44,40 Z" />
+    <circle class="k-dot" cx="62" cy="40" r="2" />
+
+    <!-- Corner Ellipses for seamless tile -->
+    <!-- Top Left -->
+    <path class="k-stroke" d="M0,0 C12,15 12,30 0,40 C-12,30 -12,15 0,0 Z" />
+    <path class="k-stroke" d="M0,0 C15,12 30,12 40,0 C30,-12 15,-12 0,0 Z" />
+    <circle class="k-dot" cx="0" cy="18" r="1.5" />
+    <circle class="k-dot" cx="18" cy="0" r="1.5" />
+
+    <!-- Top Right -->
+    <path class="k-stroke" d="M80,0 C68,15 68,30 80,40 C92,30 92,15 80,0 Z" />
+    <path class="k-stroke" d="M80,0 C65,12 50,12 40,0 C50,-12 65,-12 80,0 Z" />
+    <circle class="k-dot" cx="80" cy="18" r="1.5" />
+    <circle class="k-dot" cx="62" cy="0" r="1.5" />
+
+    <!-- Bottom Left -->
+    <path class="k-stroke" d="M0,80 C12,65 12,50 0,40 C-12,50 -12,65 0,80 Z" />
+    <path class="k-stroke" d="M0,80 C15,68 30,68 40,80 C30,92 15,92 0,80 Z" />
+    <circle class="k-dot" cx="0" cy="62" r="1.5" />
+    <circle class="k-dot" cx="18" cy="80" r="1.5" />
+
+    <!-- Bottom Right -->
+    <path class="k-stroke" d="M80,80 C68,65 68,50 80,40 C92,50 92,65 80,80 Z" />
+    <path class="k-stroke" d="M80,80 C65,68 50,68 40,80 C50,92 65,92 80,80 Z" />
+    <circle class="k-dot" cx="80" cy="62" r="1.5" />
+    <circle class="k-dot" cx="62" cy="80" r="1.5" />
+
+    <!-- Center Cross & Rhombus Diamonds -->
+    <polygon class="k-accent" points="40,34 46,40 40,46 34,40" />
+    <circle class="k-dot" cx="40" cy="40" r="1.8" />
+    
+    <!-- Corner Cross Diamonds -->
+    <polygon class="k-accent" points="0,-6 6,0 0,6 -6,0" />
+    <polygon class="k-accent" points="80,-6 86,0 80,6 74,0" />
+    <polygon class="k-accent" points="0,74 6,80 0,86 -6,80" />
+    <polygon class="k-accent" points="80,74 86,80 80,86 74,80" />
+  </g>
+</svg>

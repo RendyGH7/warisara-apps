@@ -1,0 +1,455 @@
+/* ==========================================================================
+   WARISARA — HERO & HIGH-TECH CULTURAL MAP STYLES
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO TITLE — "WARISARA" Wordmark & Rotating Nusantara Tagline
+   ========================================================================== */
+
+/* --- Keyframes ----------------------------------------------------------- */
+
+/* Soft letter entrance — no heavy blur, just gentle rise & fade */
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Decorative rule grow-in */
+@keyframes ruleExpand {
+  0%   { opacity: 0; transform: scaleX(0); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+@keyframes diamondFadeIn {
+  0%   { opacity: 0; transform: scale(0) rotate(-45deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Tagline cycling: phrase slides up & fades out */
+@keyframes taglineOut {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+/* New phrase slides in from below */
+@keyframes taglineIn {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Very subtle, slow glow drift on title — barely perceptible */
+@keyframes softGlowDrift {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.30; }
+}
+
+/* --- WARISARA Wordmark --------------------------------------------------- */
+
+/* Each letter span */
+.hero-letter {
+  display: inline-block;
+
+  /*
+   * Muted antique-gold gradient — warm, dark, NOT chrome-bright.
+   * Matches the brass stroke color (#A48253) of the island map.
+   */
+  background: linear-gradient(
+    170deg,
+    #6B4F1A 0%,
+    #A07B3A 20%,
+    #C4A068 40%,
+    #D4B888 52%,
+    #C4A068 64%,
+    #9A7535 82%,
+    #6B4F1A 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* Staggered entrance — 60ms per letter, starts at 100ms */
+  opacity: 0;
+  animation: letterReveal 680ms cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-delay: calc(var(--i) * 60ms + 100ms);
+  transform-origin: bottom center;
+
+  will-change: transform, opacity;
+}
+
+/* Title container */
+#hero-title {
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.14em;
+}
+
+/* Very faint warm underglow — barely visible, not pulsing brightly */
+#hero-title::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 24px;
+  background: radial-gradient(ellipse at center, rgba(164, 130, 83, 0.28) 0%, transparent 70%);
+  filter: blur(12px);
+  animation: softGlowDrift 6s ease-in-out 1.4s infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- Decorative Rule ----------------------------------------------------- */
+
+.hero-title-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.02rem;
+  margin-bottom: 0.1rem;
+}
+
+.hero-title-rule-line {
+  display: block;
+  height: 1px;
+  width: 56px;
+  /* Muted — matches map stroke tone */
+  background: linear-gradient(90deg, transparent, rgba(164, 130, 83, 0.5) 40%, rgba(196, 160, 104, 0.65) 60%, transparent);
+  transform-origin: center;
+  animation: ruleExpand 550ms cubic-bezier(0.25, 1, 0.5, 1) 620ms both;
+  opacity: 0;
+}
+
+.hero-title-rule-diamond {
+  font-size: 0.35rem;
+  color: rgba(164, 130, 83, 0.7);
+  line-height: 1;
+  animation: diamondFadeIn 350ms cubic-bezier(0.34, 1.4, 0.64, 1) 880ms both;
+  opacity: 0;
+}
+
+/* --- Rotating Nusantara Tagline ----------------------------------------- */
+
+.hero-tagline-wrapper {
+  position: relative;
+  height: 1.25em;          /* Fixed height prevents layout reflow on phrase change */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.hero-tagline-phrase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+
+  /* Muted warm tone — clearly legible but not competing with the map */
+  color: rgba(164, 130, 83, 0.60);
+
+  opacity: 0;
+  transform: translateY(12px);
+  transition: none; /* JS handles via class toggling */
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Active phrase: fully visible */
+.hero-tagline-phrase.tagline-active {
+  animation: taglineIn 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Outgoing phrase: fades up and out */
+.hero-tagline-phrase.tagline-exit {
+  animation: taglineOut 500ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+/* Hero Canvas Backdrop & Atmosphere (Clean Center, Ornate Batik & Wayang Borders) */
+.hero-canvas-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--color-hero-bg, #151310);
+}
+
+.hero-canvas-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.72;
+  filter: brightness(0.74) contrast(1.16) saturate(1.02);
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center center;
+  transform: scale(1.01) translate(0px, 0px);
+  /* NOTE: transform is intentionally excluded from transition — JS animates it directly each rAF frame */
+  transition: opacity 600ms ease, filter 600ms ease;
+  will-change: transform;
+}
+
+.hero-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(21, 19, 16, 0.45) 75%, rgba(21, 19, 16, 0.9) 100%);
+  mix-blend-mode: multiply;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+      rgba(21, 19, 16, 0.72) 0%,
+      rgba(21, 19, 16, 0.1) 25%,
+      rgba(21, 19, 16, 0.15) 75%,
+      rgba(21, 19, 16, 0.94) 100%);
+}
+
+#hero-map-wrapper {
+  perspective: 1000px;
+  overflow: visible;
+}
+
+#map-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 982 / 390;
+  /* No max-height — let the SVG breathe so zoomed islands never clip on sides */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+#indonesia-map-svg {
+  width: 100%;
+  height: 100%;
+  /* No max-height — overflow visible so shadow/glow effects & edge islands are never cut off */
+  overflow: visible;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 1))
+          drop-shadow(0 0 20px rgba(0, 0, 0, 1))
+          drop-shadow(0 0 45px rgba(0, 0, 0, 1))
+          drop-shadow(0 18px 36px rgba(0, 0, 0, 1))
+          drop-shadow(0 50px 90px rgba(0, 0, 0, 1));
+  will-change: contents;
+}
+
+/* Individual Province Shapes (Solid Opaque Landmass) */
+.map-province-group {
+  outline: none !important;
+  cursor: pointer;
+}
+
+.map-province-group:focus,
+.map-province-group:focus-visible {
+  outline: none !important;
+}
+
+.map-province-path {
+  fill: #16120E;
+  stroke: #A48253;
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+  cursor: pointer;
+  outline: none !important;
+  opacity: 1;
+  /* Only fill+stroke — both are paint-thread cheap on SVG.
+     filter is intentionally excluded: drop-shadow transition on SVG
+     forces full-layer repaint every frame and causes jank. */
+  transition: fill 160ms ease-out,
+    stroke 160ms ease-out,
+    stroke-width 160ms ease-out;
+  will-change: fill, stroke;
+}
+
+.map-province-path:focus,
+.map-province-path:focus-visible {
+  outline: none !important;
+}
+
+.map-province-group:hover .map-province-path,
+.map-province-group:focus-visible .map-province-path {
+  fill: #A47E3F;
+  stroke: #E6D3A7;
+  stroke-width: 1.55;
+  /* Static drop-shadow (not transitioned) — applied instantly on hover */
+  filter: drop-shadow(0 0 8px rgba(201, 165, 103, 0.55)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.map-province-group.active .map-province-path,
+.map-province-path.active {
+  fill: var(--color-terracotta-500) !important;
+  stroke: #FFFFFF !important;
+  stroke-width: 2 !important;
+  filter: drop-shadow(0 0 12px rgba(192, 106, 66, 0.8)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.85)) !important;
+}
+
+/* Focus Mode: Dimming other regions */
+.map-dimmed .map-province-group:not(.active) .map-province-path,
+.map-dimmed .map-province-path:not(.active) {
+  opacity: 0.25;
+  filter: grayscale(0.85) blur(0.2px);
+}
+
+/* Interactive Coordinate Markers with Subtle Warm Halo Pulse */
+.map-marker {
+  fill: #FFD885;
+  stroke: #120F0C;
+  stroke-width: 1.3;
+  cursor: pointer;
+  outline: none !important;
+  transform-origin: center;
+  transform-box: fill-box;
+  /* transform is GPU-composited on SVG with transform-box:fill-box → zero jank */
+  transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    fill 160ms ease-out,
+    stroke 160ms ease-out;
+  filter: drop-shadow(0 0 3px rgba(255, 216, 133, 0.75)) drop-shadow(0 1px 4px rgba(0, 0, 0, 0.9));
+  will-change: transform;
+}
+
+.map-marker:focus,
+.map-marker:focus-visible {
+  outline: none !important;
+}
+
+.map-province-group:hover .map-marker,
+.map-marker:hover,
+.map-marker.active {
+  fill: var(--color-surface);
+  stroke: var(--color-brass-600);
+  stroke-width: 1.8;
+  transform: scale(1.6);
+  filter: drop-shadow(0 0 6px rgba(201, 165, 103, 0.75)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
+}
+
+/* Tooltip */
+.map-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 40;
+  background: rgba(21, 19, 16, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 165, 103, 0.4);
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -120%) scale(0.96);
+  /* opacity + transform only — both GPU composited */
+  transition: opacity 140ms ease-out, transform 140ms ease-out;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.map-tooltip.visible {
+  opacity: 1;
+  transform: translate(-50%, -135%) scale(1);
+}
+
+/* Province Information Center Modal */
+#province-modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  /* backdrop-filter is NOT transitioned — transitioning blur is extremely expensive.
+     It snaps in at full blur instantly, which actually feels cleaner. */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: opacity 300ms ease-out;
+  will-change: opacity;
+}
+
+#province-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#province-detail-modal {
+  /* NO filter:blur — animating blur on a complex DOM node is the #1 cause of modal jank.
+     Pure transform + opacity: both are GPU-composited and run off the main thread. */
+  transform: scale(0.92) translateY(20px);
+  opacity: 0;
+  transition: transform 380ms cubic-bezier(0.34, 1.2, 0.64, 1),
+    opacity 280ms ease-out;
+  will-change: transform, opacity;
+}
+
+#province-modal-overlay.active #province-detail-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 50px rgba(201, 165, 103, 0.15);
+}
+
+/* Staggered Content Animation — shorter delays, snappier feel */
+#province-modal-overlay.active .modal-anim-stagger-1 {
+  animation: modalFadeUp 320ms 60ms ease-out both;
+}
+
+#province-modal-overlay.active .modal-anim-stagger-2 {
+  animation: modalFadeUp 320ms 110ms ease-out both;
+}
+
+#province-modal-overlay.active .modal-anim-stagger-3 {
+  animation: modalFadeUp 320ms 160ms ease-out both;
+}
+
+#province-modal-overlay.active .modal-anim-stagger-4 {
+  animation: modalFadeUp 320ms 210ms ease-out both;
+}
+
+@keyframes modalFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sleek Cultural Scrollbar */
+.custom-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 165, 103, 0.35) transparent;
+}
+
+.custom-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.3);
+  border-radius: 9999px;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.6);
+}

@@ -1,0 +1,228 @@
+/* ==========================================================================
+   WARISARA — SECTION LEVEL & BATIK PATTERN STYLES
+   Deep Textured Dark Heritage Backgrounds & Faded Royal Gold Motifs
+   ========================================================================== */
+
+.section-container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 5rem);
+  padding-right: clamp(1.25rem, 5vw, 5rem);
+  position: relative;
+  z-index: 10;
+}
+
+.section-spacer {
+  padding-top: clamp(4.5rem, 8vw, 8rem);
+  padding-bottom: clamp(4.5rem, 8vw, 8rem);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-hero-bg, #0E0C0A);
+}
+
+/* Subtle vintage vignette & ambient depth overlay for all sections */
+.section-spacer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(10, 8, 7, 0.45) 80%, rgba(8, 7, 6, 0.85) 100%),
+              radial-gradient(rgba(212, 175, 55, 0.035) 1px, transparent 0);
+  background-size: 100% 100%, 28px 28px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.editorial-divider {
+  width: 4.5rem;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--color-brass-400), transparent);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   BATIK BACKGROUND PATTERNS — DISTINCT SOFT GOLD WATERMARK MOTIFS
+   Pudar, subtle, non-dizzying pure gold lines over deep dark canvas.
+   ========================================================================== */
+
+/* 01. TRUNTUM MOTIF (Filosofi Pusaka) — Stars & Jasmine Buds of Wisdom */
+.section-batik-truntum,
+.section-batik-truntum-dark {
+  position: relative;
+}
+
+.section-batik-truntum::before,
+.section-batik-truntum-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-truntum-dark.svg');
+  background-size: 68px 68px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.052;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 02. CEPLOK MOTIF (Featured Heritage / Karya Pusaka) — Noble Symmetric Rosettes */
+.section-batik-ceplok,
+.section-batik-ceplok-dark {
+  position: relative;
+}
+
+.section-batik-ceplok::before,
+.section-batik-ceplok-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-ceplok-dark.svg');
+  background-size: 100px 100px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.048;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 03. PARANG MOTIF (Meet the Makers / Para Penjaga) — Continuous Wave & Tenacity */
+.section-batik-parang,
+.section-batik-parang-dark {
+  position: relative;
+}
+
+.section-batik-parang::before,
+.section-batik-parang-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-parang-dark.svg');
+  background-size: 110px 110px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.048;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 04. SONGKET MOTIF (From Hands to Home / Ekonomi Kreatif) — Golden Weft Brilliance */
+.section-batik-songket,
+.section-batik-songket-dark {
+  position: relative;
+}
+
+.section-batik-songket::before,
+.section-batik-songket-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-songket-dark.svg');
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.052;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 05. KAWUNG MOTIF (Creative Lab) — Sacred 4-Petal Geometric Roots */
+.section-batik-kawung,
+.section-batik-kawung-dark {
+  position: relative;
+}
+
+.section-batik-kawung::before,
+.section-batik-kawung-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-kawung-dark.svg');
+  background-size: 88px 88px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.052;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 06. MEGAMENDUNG MOTIF (Belajar Dari Akar / Micro Learning) — Serene Clouds of Patience */
+.section-batik-megamendung,
+.section-batik-megamendung-dark {
+  position: relative;
+}
+
+.section-batik-megamendung::before,
+.section-batik-megamendung-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-megamendung-dark.svg');
+  background-size: 130px 86px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 07. UNIFIED / PASS IT ON MOTIF */
+.section-batik-unified,
+.batik-bg-dark,
+.batik-bg-light {
+  position: relative;
+}
+
+.section-batik-unified::before,
+.batik-bg-dark::before,
+.batik-bg-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-unified-dark.svg');
+  background-size: 105px 105px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.048;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Modal and Pop-up Clean Batik Texture */
+.modal-batik-texture {
+  position: relative;
+}
+
+.modal-batik-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-unified-dark.svg');
+  background-size: 90px 90px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Footer Clean Batik Texture */
+.footer-batik-texture {
+  position: relative;
+}
+
+.footer-batik-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/patterns/batik-unified-dark.svg');
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 0.042;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+

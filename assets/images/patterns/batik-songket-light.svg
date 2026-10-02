@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <style>
+      .s-diamond { fill: none; stroke: #8A6832; stroke-width: 1.4; }
+      .s-inner { fill: none; stroke: #A8512F; stroke-width: 0.9; }
+      .s-core { fill: #C9A567; opacity: 0.5; }
+      .s-stitch { fill: none; stroke: #8A6832; stroke-width: 0.8; stroke-dasharray: 2 2; }
+    </style>
+  </defs>
+  <g>
+    <!-- Central Songket Diamond at (40,40) -->
+    <polygon class="s-diamond" points="40,10 70,40 40,70 10,40" />
+    <polygon class="s-inner" points="40,18 62,40 40,62 18,40" />
+    <polygon class="s-stitch" points="40,24 56,40 40,56 24,40" />
+    <polygon class="s-core" points="40,30 50,40 40,50 30,40" />
+    <circle cx="40" cy="40" r="2.5" fill="#8A6832" />
+
+    <!-- 4 Corner Half Diamonds for seamless tiling -->
+    <!-- Top-Left (0,0) -->
+    <polygon class="s-diamond" points="0,-30 30,0 0,30 -30,0" />
+    <polygon class="s-inner" points="0,-22 22,0 0,22 -22,0" />
+    <polygon class="s-core" points="0,-10 10,0 0,10 -10,0" />
+
+    <!-- Top-Right (80,0) -->
+    <polygon class="s-diamond" points="80,-30 110,0 80,30 50,0" />
+    <polygon class="s-inner" points="80,-22 102,0 80,22 58,0" />
+    <polygon class="s-core" points="80,-10 90,0 80,10 70,0" />
+
+    <!-- Bottom-Left (0,80) -->
+    <polygon class="s-diamond" points="0,50 30,80 0,110 -30,80" />
+    <polygon class="s-inner" points="0,58 22,80 0,102 -22,80" />
+    <polygon class="s-core" points="0,70 10,80 0,90 -10,80" />
+
+    <!-- Bottom-Right (80,80) -->
+    <polygon class="s-diamond" points="80,50 110,80 80,110 50,80" />
+    <polygon class="s-inner" points="80,58 102,80 80,102 58,80" />
+    <polygon class="s-core" points="80,70 90,80 80,90 70,80" />
+
+    <!-- Interstitial Stepped Chevrons (Pucuk Rebung accent) -->
+    <path class="s-stitch" d="M36,0 L40,4 L44,0 M36,80 L40,76 L44,80 M0,36 L4,40 L0,44 M80,36 L76,40 L80,44" />
+  </g>
+</svg>

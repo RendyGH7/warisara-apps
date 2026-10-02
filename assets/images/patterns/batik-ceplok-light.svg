@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+  <defs>
+    <style>
+      .c-outer { fill: none; stroke: #8A6832; stroke-width: 1.3; }
+      .c-petal { fill: none; stroke: #A8512F; stroke-width: 1; }
+      .c-dot { fill: #8A6832; }
+      .c-fill { fill: #C9A567; opacity: 0.35; }
+    </style>
+  </defs>
+  <g>
+    <!-- Central Ceplok Rosette at (45,45) -->
+    <circle class="c-outer" cx="45" cy="45" r="22" />
+    <circle class="c-petal" cx="45" cy="45" r="16" stroke-dasharray="3 3" />
+    
+    <!-- 8 Petals radiating from center -->
+    <path class="c-petal" d="M45,23 C40,32 40,38 45,45 C50,38 50,32 45,23 Z" />
+    <path class="c-petal" d="M45,67 C40,58 40,52 45,45 C50,52 50,58 45,67 Z" />
+    <path class="c-petal" d="M23,45 C32,40 38,40 45,45 C38,50 32,50 23,45 Z" />
+    <path class="c-petal" d="M67,45 C58,40 52,40 45,45 C52,50 58,50 67,45 Z" />
+
+    <circle class="c-fill" cx="45" cy="45" r="5" />
+    <circle class="c-dot" cx="45" cy="45" r="2" />
+    
+    <!-- 4 Corner Ceploks for seamless tile -->
+    <!-- (0,0) -->
+    <circle class="c-outer" cx="0" cy="0" r="22" />
+    <circle class="c-fill" cx="0" cy="0" r="5" />
+    <circle class="c-dot" cx="0" cy="0" r="2" />
+
+    <!-- (90,0) -->
+    <circle class="c-outer" cx="90" cy="0" r="22" />
+    <circle class="c-fill" cx="90" cy="0" r="5" />
+    <circle class="c-dot" cx="90" cy="0" r="2" />
+
+    <!-- (0,90) -->
+    <circle class="c-outer" cx="0" cy="90" r="22" />
+    <circle class="c-fill" cx="0" cy="90" r="5" />
+    <circle class="c-dot" cx="0" cy="90" r="2" />
+
+    <!-- (90,90) -->
+    <circle class="c-outer" cx="90" cy="90" r="22" />
+    <circle class="c-fill" cx="90" cy="90" r="5" />
+    <circle class="c-dot" cx="90" cy="90" r="2" />
+
+    <!-- Interstitial Decorative Diamonds -->
+    <polygon class="c-petal" points="45,0 49,4 45,8 41,4" />
+    <polygon class="c-petal" points="45,90 49,86 45,82 41,86" />
+    <polygon class="c-petal" points="0,45 4,49 8,45 4,41" />
+    <polygon class="c-petal" points="90,45 86,49 82,45 86,41" />
+  </g>
+</svg>
