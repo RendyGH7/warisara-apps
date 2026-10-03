@@ -465,6 +465,9 @@
     // Push initial state
     saveHistoryState();
 
+    // Initial print button state check
+    updatePrintButtonState();
+
     // Initial render
     render();
   }
@@ -510,6 +513,16 @@
     syncUiToState();
     render();
     updateUndoRedoButtons();
+    updatePrintButtonState();
+
+    const mockupTabs = document.getElementById("mockup-tabs-container");
+    if (mockupTabs) {
+      if (StudioState.currentMode === "generative") {
+        mockupTabs.classList.remove("hidden");
+      } else {
+        mockupTabs.classList.toggle("hidden", !StudioState.cantingIsPrinted);
+      }
+    }
   }
 
   function updateUndoRedoButtons() {
@@ -623,13 +636,10 @@
       renderWeaveTexture(ctx, w, h);
     }
 
-    // 4. Freehand Canting Tulis Overlay Layer
-    ctx.drawImage(freehandCanvas, 0, 0);
-
-    // 5. Update UI Labels & Info Cards
+    // 4. Update UI Labels & Info Cards
     updateInfoDisplay();
 
-    // 6. Update Active Mockup (if not flat)
+    // 5. Update Active Mockup (if not flat)
     updateMockupView();
   }
 
@@ -683,7 +693,8 @@
   }
 
   function getCanvasBoundingBox(srcCanvas) {
-    const sCtx = srcCanvas.getContext("2d");
+    if (!srcCanvas) return { x: 0, y: 0, w: 0, h: 0, empty: true };
+    const sCtx = srcCanvas.getContext("2d", { willReadFrequently: true });
     const imgData = sCtx.getImageData(0, 0, srcCanvas.width, srcCanvas.height);
     const data = imgData.data;
     const w = srcCanvas.width;
@@ -706,7 +717,7 @@
     }
 
     if (!found) {
-      return { x: 0, y: 0, w: w, h: h };
+      return { x: 0, y: 0, w: 0, h: 0, empty: true };
     }
 
     minX = Math.max(0, minX - 8);
@@ -717,7 +728,30 @@
     const bw = Math.max(20, maxX - minX);
     const bh = Math.max(20, maxY - minY);
 
-    return { x: minX, y: minY, w: bw, h: bh };
+    return { x: minX, y: minY, w: bw, h: bh, empty: false };
+  }
+
+  function hasFreehandDrawing() {
+    if (!freehandCanvas) return false;
+    const bbox = getCanvasBoundingBox(freehandCanvas);
+    return !bbox.empty;
+  }
+
+  function updatePrintButtonState() {
+    const btnPrintBatik = document.getElementById("btn-print-custom-batik");
+    if (!btnPrintBatik) return;
+    const hasDrawing = hasFreehandDrawing();
+
+    btnPrintBatik.disabled = !hasDrawing;
+    if (!hasDrawing) {
+      btnPrintBatik.classList.add("opacity-40", "cursor-not-allowed", "pointer-events-none");
+      btnPrintBatik.classList.remove("hover:scale-[1.02]", "cursor-pointer");
+      btnPrintBatik.title = "Goreskan canting terlebih dahulu pada kanvas putih untuk mencetak";
+    } else {
+      btnPrintBatik.classList.remove("opacity-40", "cursor-not-allowed", "pointer-events-none");
+      btnPrintBatik.classList.add("hover:scale-[1.02]", "cursor-pointer");
+      btnPrintBatik.title = "Cetak motif goresan canting menjadi kain batik berulang";
+    }
   }
 
   // 1. Fabric Background
@@ -1489,6 +1523,7 @@
     if (isDrawing) {
       isDrawing = false;
       saveHistoryState();
+      updatePrintButtonState();
     }
   }
 
@@ -1581,6 +1616,7 @@
   function clearFreehandOverlay() {
     freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
     saveHistoryState();
+    updatePrintButtonState();
     render();
   }
 
@@ -2157,9 +2193,13 @@
     // 1. Studio Mode Tabs (Parametrik vs Canting Tulis)
     document.querySelectorAll(".mode-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
+        const prevMode = StudioState.currentMode;
+        const newMode = btn.dataset.mode;
+        if (prevMode === newMode) return;
+
         document.querySelectorAll(".mode-tab-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        StudioState.currentMode = btn.dataset.mode;
+        StudioState.currentMode = newMode;
 
         const genControls = document.getElementById("panel-generative-controls");
         const cantingControls = document.getElementById("panel-canting-controls");
@@ -2169,19 +2209,47 @@
 
         if (genControls) genControls.classList.toggle("hidden", StudioState.currentMode !== "generative");
         if (cantingControls) cantingControls.classList.toggle("hidden", StudioState.currentMode !== "canting");
-        if (mockupTabs) mockupTabs.classList.toggle("hidden", StudioState.currentMode === "canting");
+        if (mockupTabs) mockupTabs.classList.toggle("hidden", StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted);
         if (btnRandomize) btnRandomize.classList.toggle("hidden", StudioState.currentMode === "canting");
         if (btnReEdit) btnReEdit.classList.toggle("hidden", StudioState.currentMode !== "canting");
 
-        // In canting mode (drawing phase), revert canvas view to flat 2D
-        if (StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted) {
+        // Fresh canvas isolation: When switching to Canting Tulis Bebas from Parametrik
+        if (StudioState.currentMode === "canting") {
+          StudioState.cantingIsPrinted = false;
           StudioState.activeView = "flat";
+          if (mockupTabs) mockupTabs.classList.add("hidden");
+          freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
+          
           const flatView = document.getElementById("view-flat-canvas");
           const mockupView = document.getElementById("view-mockup-wrapper");
           if (flatView) flatView.classList.remove("hidden");
           if (mockupView) mockupView.classList.add("hidden");
+
+          historyStack.length = 0;
+          redoStack.length = 0;
+          saveHistoryState();
         }
 
+        // Fresh canvas isolation: When switching to Studio Parametrik from Canting
+        if (StudioState.currentMode === "generative") {
+          StudioState.activeView = "flat";
+          document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
+            const isFlat = b.dataset.view === "flat";
+            b.classList.toggle("active", isFlat);
+            b.classList.toggle("bg-brass-400/20", isFlat);
+            b.classList.toggle("text-brass-300", isFlat);
+          });
+          const flatView = document.getElementById("view-flat-canvas");
+          const mockupView = document.getElementById("view-mockup-wrapper");
+          if (flatView) flatView.classList.remove("hidden");
+          if (mockupView) mockupView.classList.add("hidden");
+
+          historyStack.length = 0;
+          redoStack.length = 0;
+          saveHistoryState();
+        }
+
+        updatePrintButtonState();
         canvas.style.cursor = StudioState.currentMode === "generative" ? "default" : "crosshair";
         render();
       });
@@ -2201,8 +2269,8 @@
     // 3. Layout Buttons
     document.querySelectorAll(".layout-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".layout-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        document.querySelectorAll(".layout-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.layout = btn.dataset.layout;
         saveHistoryState();
         render();
@@ -2212,8 +2280,8 @@
     // 4. Isen-isen Detail Buttons
     document.querySelectorAll(".isen-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".isen-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        document.querySelectorAll(".isen-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.isen = btn.dataset.isen;
         saveHistoryState();
         render();
@@ -2296,8 +2364,8 @@
     // 10. Canting Tulis Controls & Print Engine
     document.querySelectorAll(".canting-tool-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".canting-tool-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        document.querySelectorAll(".canting-tool-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.cantingTool = btn.dataset.tool;
       });
     });
@@ -2314,8 +2382,8 @@
     // Canting Layout & Tiling Selectors
     document.querySelectorAll(".canting-layout-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".canting-layout-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        document.querySelectorAll(".canting-layout-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.cantingLayout = btn.dataset.cantingLayout;
         if (StudioState.cantingIsPrinted) render();
       });
@@ -2330,17 +2398,26 @@
 
     // Primary Print Custom Motif to Fabric Button
     const btnPrintBatik = document.getElementById("btn-print-custom-batik");
-    const postPrintCard = document.getElementById("post-print-apparel-card");
     if (btnPrintBatik) {
       btnPrintBatik.addEventListener("click", () => {
-        const bbox = getCanvasBoundingBox(freehandCanvas);
-        if (bbox.w <= 20 && bbox.h <= 20) {
-          alert("Silakan goreskan canting pada kanvas putih terlebih dahulu untuk membuat 1 unit motif kreasi Anda.");
+        if (!hasFreehandDrawing()) {
+          alert("Kanvas masih kosong. Silakan goreskan canting pada kanvas putih terlebih dahulu untuk membuat 1 unit motif kreasi Anda.");
           return;
         }
 
         StudioState.cantingIsPrinted = true;
-        if (postPrintCard) postPrintCard.classList.remove("hidden");
+        const mockupTabs = document.getElementById("mockup-tabs-container");
+        if (mockupTabs) mockupTabs.classList.remove("hidden");
+
+        // Set active tab to flat canvas initially
+        StudioState.activeView = "flat";
+        document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
+          const isFlat = b.dataset.view === "flat";
+          b.classList.toggle("active", isFlat);
+          b.classList.toggle("bg-brass-400/20", isFlat);
+          b.classList.toggle("text-brass-300", isFlat);
+        });
+
         render();
 
         // Smooth scroll to canvas viewport
@@ -2356,13 +2433,13 @@
     if (btnReEdit) {
       btnReEdit.addEventListener("click", () => {
         StudioState.cantingIsPrinted = false;
-        if (postPrintCard) postPrintCard.classList.add("hidden");
+        const mockupTabs = document.getElementById("mockup-tabs-container");
+        if (mockupTabs) mockupTabs.classList.add("hidden");
         
         // Reset to flat view
         StudioState.activeView = "flat";
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
           b.classList.toggle("active", b.dataset.view === "flat");
-          b.classList.toggle("border-brass-400", b.dataset.view === "flat");
           b.classList.toggle("bg-brass-400/20", b.dataset.view === "flat");
           b.classList.toggle("text-brass-300", b.dataset.view === "flat");
         });
@@ -2371,6 +2448,7 @@
         if (flatView) flatView.classList.remove("hidden");
         if (mockupView) mockupView.classList.add("hidden");
 
+        updatePrintButtonState();
         render();
       });
     }
@@ -2385,7 +2463,6 @@
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
           const isActive = b.dataset.view === view;
           b.classList.toggle("active", isActive);
-          b.classList.toggle("border-brass-400", isActive);
           b.classList.toggle("bg-brass-400/20", isActive);
           b.classList.toggle("text-brass-300", isActive);
         });
@@ -2408,8 +2485,8 @@
     // 11. Mockup Switcher Tabs (Header)
     document.querySelectorAll(".mockup-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".mockup-tab-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        document.querySelectorAll(".mockup-tab-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.activeView = btn.dataset.view;
 
         const flatView = document.getElementById("view-flat-canvas");
@@ -2563,7 +2640,6 @@
     document.querySelectorAll(".layout-btn").forEach((btn) => {
       const isActive = btn.dataset.layout === StudioState.layout;
       btn.classList.toggle("active", isActive);
-      btn.classList.toggle("border-brass-400", isActive);
       btn.classList.toggle("bg-brass-400/20", isActive);
       btn.classList.toggle("text-brass-300", isActive);
     });
@@ -2571,7 +2647,6 @@
     document.querySelectorAll(".isen-btn").forEach((btn) => {
       const isActive = btn.dataset.isen === StudioState.isen;
       btn.classList.toggle("active", isActive);
-      btn.classList.toggle("border-brass-400", isActive);
       btn.classList.toggle("bg-brass-400/20", isActive);
       btn.classList.toggle("text-brass-300", isActive);
     });
