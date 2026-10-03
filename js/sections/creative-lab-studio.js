@@ -2163,9 +2163,24 @@
 
         const genControls = document.getElementById("panel-generative-controls");
         const cantingControls = document.getElementById("panel-canting-controls");
+        const mockupTabs = document.getElementById("mockup-tabs-container");
+        const btnRandomize = document.getElementById("btn-randomize-pattern");
+        const btnReEdit = document.getElementById("btn-re-edit-motif");
 
         if (genControls) genControls.classList.toggle("hidden", StudioState.currentMode !== "generative");
         if (cantingControls) cantingControls.classList.toggle("hidden", StudioState.currentMode !== "canting");
+        if (mockupTabs) mockupTabs.classList.toggle("hidden", StudioState.currentMode === "canting");
+        if (btnRandomize) btnRandomize.classList.toggle("hidden", StudioState.currentMode === "canting");
+        if (btnReEdit) btnReEdit.classList.toggle("hidden", StudioState.currentMode !== "canting");
+
+        // In canting mode (drawing phase), revert canvas view to flat 2D
+        if (StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted) {
+          StudioState.activeView = "flat";
+          const flatView = document.getElementById("view-flat-canvas");
+          const mockupView = document.getElementById("view-mockup-wrapper");
+          if (flatView) flatView.classList.remove("hidden");
+          if (mockupView) mockupView.classList.add("hidden");
+        }
 
         canvas.style.cursor = StudioState.currentMode === "generative" ? "default" : "crosshair";
         render();

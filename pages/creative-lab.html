@@ -649,10 +649,6 @@
                   <span>Selendang Sutra</span>
                 </button>
               </div>
-              <button id="btn-re-edit-motif" class="w-full py-2 rounded-xl border border-white/15 hover:border-white/30 text-surface/80 hover:text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
-                <span class="material-symbols-outlined text-sm">edit</span>
-                <span>Edit Kembali Gambar Motif</span>
-              </button>
             </div>
 
           </div><!-- END PANEL 2 -->
@@ -665,10 +661,10 @@
              =================================================================== -->
         <div class="lg:col-span-7 flex flex-col items-center space-y-6">
 
-          <!-- View Switcher & Toolbar Header -->
-          <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 studio-glass-panel p-3 px-4">
-            <!-- Mockup Tabs -->
-            <div class="flex items-center gap-1.5 flex-wrap">
+          <!-- View Switcher & Minimalist Toolbar Header -->
+          <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-3 px-1">
+            <!-- Mockup Tabs (Active in Studio Parametrik Mode) -->
+            <div id="mockup-tabs-container" class="flex items-center gap-1.5 flex-wrap">
               <button data-view="flat" class="mockup-tab-btn active px-3 py-1.5 rounded-xl border border-brass-400 bg-brass-400/20 text-brass-300 text-xs font-semibold transition-all flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-sm">crop_free</span>
                 <span>Kanvas 2D</span>
@@ -687,13 +683,16 @@
               </button>
             </div>
 
-            <!-- Undo / Redo / Randomize Tool buttons -->
-            <div class="flex items-center gap-1.5">
+            <!-- Action buttons: Undo / Redo / Re-edit (Mengulang) / Randomize -->
+            <div class="flex items-center gap-1.5 ml-auto">
               <button id="btn-undo" class="p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface disabled:opacity-30 disabled:pointer-events-none transition-colors" title="Undo (Urungkan)">
                 <span class="material-symbols-outlined text-base">undo</span>
               </button>
-              <button id="btn-redo" class="p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface disabled:opacity-30 disabled:pointer-events-none transition-colors" title="Redo">
+              <button id="btn-redo" class="p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface disabled:opacity-30 disabled:pointer-events-none transition-colors" title="Redo (Ulangi Torehan)">
                 <span class="material-symbols-outlined text-base">redo</span>
+              </button>
+              <button id="btn-re-edit-motif" class="p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface transition-colors hidden" title="Edit Kembali / Ulangi Menggambar Motif">
+                <span class="material-symbols-outlined text-base">restart_alt</span>
               </button>
               <button id="btn-randomize-pattern" class="px-3 py-1.5 rounded-xl bg-brass-400/20 hover:bg-brass-400/30 border border-brass-400/40 text-brass-300 text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-sm" title="Acak Kombinasi Pola">
                 <span class="material-symbols-outlined text-sm">shuffle</span>
