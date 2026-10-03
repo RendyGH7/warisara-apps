@@ -426,7 +426,7 @@
               <!-- Checkbox Toggles -->
               <div class="pt-2 border-t border-white/10 grid grid-cols-2 gap-3 text-xs text-surface/80">
                 <label class="flex items-center gap-2 cursor-pointer">
-                  <input id="toggle-crackle" type="checkbox" checked class="accent-brass-400 rounded" />
+                  <input id="toggle-crackle" type="checkbox" class="accent-brass-400 rounded" />
                   <span>Retakan Malam</span>
                 </label>
                 <label class="flex items-center gap-2 cursor-pointer">
@@ -528,50 +528,140 @@
           </div><!-- END PANEL 1 -->
 
 
-          <!-- PANEL 2: MODE CANTING TULIS (MANUAL FREEHAND DRAWING) -->
+          <!-- PANEL 2: MODE CANTING TULIS (MANUAL 1-UNIT MOTIF DESIGN FROM 0) -->
           <div id="panel-canting-controls" class="space-y-5 hidden">
+            
+            <!-- 1. Drawing Toolset & Instructions -->
             <div class="studio-glass-panel p-5 space-y-4">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 block flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">brush</span>
-                <span>Peralatan Canting Tulis Manual</span>
-              </span>
-              <p class="text-xs text-surface/70 leading-relaxed font-light">
-                Goreskan canting malam panas secara langsung di atas kain digital Anda. Anda dapat menggambar pola khas sendiri atau menambah ornamen tanda tangan di atas motif dasar.
+              <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">draw</span>
+                  <span>01 • Rancang 1 Motif Kreasimu dari Nol</span>
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-brass-400/20 text-brass-300 font-mono">1 Unit Motif</span>
+              </div>
+              
+              <p class="text-xs text-surface/75 leading-relaxed font-light">
+                Goreskan canting malam panas pada kanvas putih di samping untuk membuat <strong>1 unit motif orisinil Anda</strong>. Setelah selesai, klik tombol <strong>"Cetak Pola Batik Kreasiku"</strong> untuk menggandakannya menjadi kain batik utuh dan simulasikan pada busana 3D nyata.
               </p>
 
               <!-- Brush / Eraser Tool Toggle -->
               <div class="grid grid-cols-2 gap-2">
-                <button data-tool="brush" class="canting-tool-btn active p-3 rounded-xl border border-brass-400 bg-brass-400/20 text-brass-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                <button data-tool="brush" class="canting-tool-btn active p-2.5 rounded-xl border border-brass-400 bg-brass-400/20 text-brass-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
                   <span class="material-symbols-outlined text-sm">edit</span>
                   <span>Canting Tulis</span>
                 </button>
-                <button data-tool="eraser" class="canting-tool-btn p-3 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                <button data-tool="eraser" class="canting-tool-btn p-2.5 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
                   <span class="material-symbols-outlined text-sm">ink_eraser</span>
                   <span>Hapus Torehan</span>
                 </button>
               </div>
 
-              <!-- Stroke Size -->
+              <!-- Stroke Size Slider & Quick Presets -->
               <div>
                 <div class="flex items-center justify-between text-xs mb-1.5">
                   <span class="text-surface/80">Ukuran Cucuk Canting</span>
                   <span id="val-canting-size" class="font-mono text-brass-300 font-bold">4px</span>
                 </div>
-                <input id="slider-canting-size" type="range" min="1" max="16" value="4" step="1" class="studio-slider" />
+                <input id="slider-canting-size" type="range" min="1" max="20" value="4" step="1" class="studio-slider mb-2" />
+                
+                <div class="grid grid-cols-4 gap-1.5 text-[10px]">
+                  <button type="button" onclick="document.getElementById('slider-canting-size').value=2;document.getElementById('slider-canting-size').dispatchEvent(new Event('input'));" class="p-1 rounded bg-white/5 hover:bg-white/10 text-surface/70 text-center">Halus 2px</button>
+                  <button type="button" onclick="document.getElementById('slider-canting-size').value=5;document.getElementById('slider-canting-size').dispatchEvent(new Event('input'));" class="p-1 rounded bg-white/5 hover:bg-white/10 text-surface/70 text-center">Sedang 5px</button>
+                  <button type="button" onclick="document.getElementById('slider-canting-size').value=10;document.getElementById('slider-canting-size').dispatchEvent(new Event('input'));" class="p-1 rounded bg-white/5 hover:bg-white/10 text-surface/70 text-center">Tebal 10px</button>
+                  <button type="button" onclick="document.getElementById('slider-canting-size').value=18;document.getElementById('slider-canting-size').dispatchEvent(new Event('input'));" class="p-1 rounded bg-white/5 hover:bg-white/10 text-surface/70 text-center">Blok 18px</button>
+                </div>
               </div>
 
-              <!-- Canting Color -->
-              <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                <span class="text-xs text-surface/80">Warna Lilin Malam:</span>
-                <input id="picker-canting-color" type="color" value="#16213A" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0" />
+              <!-- Canting Color Presets & Picker -->
+              <div class="pt-3 border-t border-white/10 space-y-2">
+                <span class="text-[11px] block font-semibold text-surface/80">Pilihan Warna Lilin Malam / Sogan:</span>
+                <div class="flex items-center gap-2">
+                  <button type="button" data-canting-color="#16213A" class="w-7 h-7 rounded-lg bg-[#16213A] border-2 border-white/20 hover:scale-110 transition-transform" title="Hitam Malam"></button>
+                  <button type="button" data-canting-color="#8A5822" class="w-7 h-7 rounded-lg bg-[#8A5822] border-2 border-white/20 hover:scale-110 transition-transform" title="Sogan Keraton"></button>
+                  <button type="button" data-canting-color="#A8512F" class="w-7 h-7 rounded-lg bg-[#A8512F] border-2 border-white/20 hover:scale-110 transition-transform" title="Terracotta"></button>
+                  <button type="button" data-canting-color="#C9A567" class="w-7 h-7 rounded-lg bg-[#C9A567] border-2 border-white/20 hover:scale-110 transition-transform" title="Emas Pusaka"></button>
+                  <button type="button" data-canting-color="#233A5E" class="w-7 h-7 rounded-lg bg-[#233A5E] border-2 border-white/20 hover:scale-110 transition-transform" title="Indigo Biru"></button>
+                  <div class="flex-1 flex items-center justify-end gap-1.5">
+                    <span class="text-[10px] text-surface/50 font-mono">Kustom:</span>
+                    <input id="picker-canting-color" type="color" value="#16213A" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0" />
+                  </div>
+                </div>
               </div>
 
-              <!-- Clear Overlay Button -->
-              <button id="btn-clear-freehand" class="w-full py-2.5 rounded-xl border border-red-400/30 text-red-300 hover:bg-red-400/10 text-xs font-semibold transition-colors flex items-center justify-center gap-2">
+              <!-- Clear Button -->
+              <button id="btn-clear-freehand" class="w-full py-2 rounded-xl border border-red-400/30 text-red-300 hover:bg-red-400/10 text-xs font-semibold transition-colors flex items-center justify-center gap-2">
                 <span class="material-symbols-outlined text-sm">delete_sweep</span>
-                <span>Hapus Seluruh Torehan Tangan</span>
+                <span>Bersihkan Kanvas Putih (Mulai dari Nol)</span>
               </button>
             </div>
+
+            <!-- 2. Tiling & Repeat Fabric Options -->
+            <div class="studio-glass-panel p-5 space-y-4">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 block flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">grid_view</span>
+                <span>02 • Susunan Cetak Pola Kain</span>
+              </span>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button data-canting-layout="grid" class="canting-layout-btn active p-2 rounded-xl border border-brass-400 bg-brass-400/20 text-brass-300 text-xs font-semibold text-left transition-all">
+                  Matriks Tegak
+                </button>
+                <button data-canting-layout="brick" class="canting-layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold text-left transition-all">
+                  Bata Berseling
+                </button>
+                <button data-canting-layout="mirror" class="canting-layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold text-left transition-all">
+                  Simetri Cermin 4 Arah
+                </button>
+                <button data-canting-layout="diagonal" class="canting-layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold text-left transition-all">
+                  Lereng Diagonal 45°
+                </button>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1.5">
+                  <span class="text-surface/80">Kerapatan Cetak Kain</span>
+                  <span id="val-canting-density" class="font-mono text-brass-300 font-bold">4x4</span>
+                </div>
+                <input id="slider-canting-density" type="range" min="2" max="6" value="4" step="1" class="studio-slider" />
+              </div>
+            </div>
+
+            <!-- 3. Primary Execute Print Button -->
+            <button id="btn-print-custom-batik" class="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-brass-600 via-brass-500 to-brass-600 hover:from-brass-500 hover:to-brass-400 text-ink font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-xl hover:scale-[1.02] transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-lg">print</span>
+              <span>Cetak Pola Batik Kreasiku</span>
+            </button>
+
+            <!-- 4. Post-Print Apparel Simulation Banner -->
+            <div id="post-print-apparel-card" class="studio-glass-panel-accent p-4 space-y-3 hidden">
+              <div class="flex items-center gap-2 text-brass-300 text-xs font-bold">
+                <span class="material-symbols-outlined text-base text-brass-400">check_circle</span>
+                <span>Motif Berhasil Dicetak Menjadi Kain!</span>
+              </div>
+              <p class="text-[11px] text-surface/70 leading-relaxed">
+                Pilih simulasi di bawah untuk melihat motif buatan Anda pada produk nyata:
+              </p>
+              <div class="grid grid-cols-3 gap-2">
+                <button data-mockup-trigger="shirt" class="btn-custom-mockup p-2 rounded-xl border border-brass-400/40 hover:border-brass-400 bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 text-xs font-semibold flex flex-col items-center gap-1 transition-all">
+                  <span class="material-symbols-outlined text-lg">checkroom</span>
+                  <span>Baju / Kemeja</span>
+                </button>
+                <button data-mockup-trigger="cushion" class="btn-custom-mockup p-2 rounded-xl border border-brass-400/40 hover:border-brass-400 bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 text-xs font-semibold flex flex-col items-center gap-1 transition-all">
+                  <span class="material-symbols-outlined text-lg">chair</span>
+                  <span>Bantal Interior</span>
+                </button>
+                <button data-mockup-trigger="scarf" class="btn-custom-mockup p-2 rounded-xl border border-brass-400/40 hover:border-brass-400 bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 text-xs font-semibold flex flex-col items-center gap-1 transition-all">
+                  <span class="material-symbols-outlined text-lg">styler</span>
+                  <span>Selendang Sutra</span>
+                </button>
+              </div>
+              <button id="btn-re-edit-motif" class="w-full py-2 rounded-xl border border-white/15 hover:border-white/30 text-surface/80 hover:text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+                <span class="material-symbols-outlined text-sm">edit</span>
+                <span>Edit Kembali Gambar Motif</span>
+              </button>
+            </div>
+
           </div><!-- END PANEL 2 -->
 
         </div><!-- END LEFT COLUMN -->
