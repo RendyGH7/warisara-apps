@@ -1,26 +1,335 @@
 /* ==========================================================================
-   WARISARA — CREATIVE LAB STYLES
+   WARISARA — CREATIVE LAB STUDIO 2.0 (ADVANCED GENERATIVE DESIGN SUITE)
    ========================================================================== */
 
-.canvas-container {
+/* Studio Layout & Containers */
+.studio-glass-panel {
+  background: rgba(21, 19, 16, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 205, 184, 0.12);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.studio-glass-panel-accent {
+  background: linear-gradient(135deg, rgba(30, 26, 22, 0.85) 0%, rgba(20, 17, 14, 0.92) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 165, 103, 0.25);
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(201, 165, 103, 0.1);
+}
+
+/* Control Pills & Mode Switcher */
+.mode-tab-btn {
   position: relative;
-  background-color: rgba(22, 19, 16, 0.85);
-  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  color: rgba(251, 248, 242, 0.65);
+}
+
+.mode-tab-btn.active {
+  background: rgba(201, 165, 103, 0.2);
+  color: #E6D3A7;
+  border-color: rgba(201, 165, 103, 0.6);
+  box-shadow: 0 4px 15px rgba(201, 165, 103, 0.15);
+}
+
+.motif-card-select {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motif-card-select:hover {
+  border-color: rgba(201, 165, 103, 0.4);
+  background: rgba(201, 165, 103, 0.06);
+  transform: translateY(-2px);
+}
+
+.motif-card-select.active {
+  border-color: #C9A567;
+  background: linear-gradient(135deg, rgba(201, 165, 103, 0.18) 0%, rgba(164, 126, 63, 0.08) 100%);
+  color: #FBF8F2;
+  box-shadow: 0 8px 20px -6px rgba(201, 165, 103, 0.25), inset 0 0 12px rgba(201, 165, 103, 0.15);
+}
+
+/* Color Buttons & Pickers */
+.studio-color-pill {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.studio-color-pill:hover {
+  transform: scale(1.15);
+}
+
+.studio-color-pill.active {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 3px #151310, 0 0 0 5px #C9A567, 0 6px 15px rgba(201, 165, 103, 0.4);
+}
+
+/* Custom Sliders */
+.studio-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+.studio-slider:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.studio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #C9A567;
+  border: 2px solid #151310;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(201, 165, 103, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.studio-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  background: #E6D3A7;
+}
+
+.studio-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #C9A567;
+  border: 2px solid #151310;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+/* Interactive Canvas Viewport */
+.canvas-viewport-wrapper {
+  position: relative;
+  background: radial-gradient(circle at center, #1e1b17 0%, #12100d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8), 0 20px 50px rgba(0, 0, 0, 0.6);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+#creative-canvas {
+  touch-action: none;
+  cursor: crosshair;
+  transition: filter 0.3s ease;
+}
+
+/* Canting Drawing Tool Specifics */
+.tool-icon-btn {
+  transition: all 0.2s ease;
+}
+.tool-icon-btn.active {
+  background: #C9A567;
+  color: #1A1612;
+  box-shadow: 0 4px 12px rgba(201, 165, 103, 0.35);
+}
+
+/* Mockup Display Styling */
+.mockup-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #151310;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.mockup-overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.mockup-lighting-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+}
+
+/* Preset Badge and Gallery Cards */
+.preset-chip {
+  transition: all 0.2s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+.preset-chip:hover {
+  border-color: #C9A567;
+  background: rgba(201, 165, 103, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Saved Gallery Card */
+.gallery-saved-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(20, 18, 15, 0.8);
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.gallery-saved-card:hover {
+  border-color: rgba(201, 165, 103, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.7);
 }
 
-.pattern-option-btn {
-  border: 1px solid var(--color-border);
-  background-color: rgba(255, 255, 255, 0.04);
-  color: var(--color-surface);
-  transition: all var(--duration-fast) var(--ease-snappy);
+/* Custom Scrollbar for Studio sidebars */
+.studio-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.studio-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+.studio-scroll::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.3);
+  border-radius: 9999px;
+}
+.studio-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.6);
 }
 
-.pattern-option-btn.active,
-.pattern-option-btn:hover {
-  border-color: var(--color-brass-400);
-  background-color: rgba(201, 165, 103, 0.15);
-  color: var(--color-brass-200);
+/* Certificate Modal View & Pop-up Dialog */
+.certificate-frame {
+  background: #F6F1E7;
+  color: #1A1612;
+  border: 8px double #A47E3F;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.8);
 }
+
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+body.modal-open #main-navbar,
+body.modal-open #mobile-nav-drawer {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate(-50%, -30px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s !important;
+}
+
+.studio-modal-backdrop {
+  z-index: 100;
+  background: rgba(10, 8, 6, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+}
+
+.animate-modal-enter {
+  transform: scale(0.94) translateY(20px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.25, 1), opacity 0.3s ease;
+}
+
+.studio-modal-backdrop.active .animate-modal-enter {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.studio-modal-box {
+  background: linear-gradient(155deg, rgba(28, 24, 19, 0.98) 0%, rgba(18, 15, 12, 0.99) 100%);
+  border: 1.5px solid rgba(201, 165, 103, 0.38);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 50px -10px rgba(201, 165, 103, 0.18);
+}
+
+.studio-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Enhanced Luxury Gold Smooth Scrollbar for Modal Dialog */
+.studio-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #C9A567 rgba(24, 20, 16, 0.7);
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.studio-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.studio-modal-scroll::-webkit-scrollbar-track {
+  background: rgba(22, 18, 14, 0.75);
+  border-radius: 9999px;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.studio-modal-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #E6D3A7 0%, #C9A567 50%, #A47E3F 100%);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 8px rgba(201, 165, 103, 0.4);
+}
+
+.studio-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFF0D0 0%, #E6D3A7 50%, #C9A567 100%);
+  box-shadow: 0 0 12px rgba(230, 211, 167, 0.7);
+}
+
+/* Floating External Close Button (Di Luar Pop Up) */
+.modal-close-external-btn {
+  background: linear-gradient(135deg, #2A241C 0%, #17130F 100%);
+  border: 2px solid #C9A567;
+  color: #FBF8F2;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85), 0 0 18px rgba(201, 165, 103, 0.4);
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close-external-btn:hover {
+  background: #C9A567;
+  color: #120F0D;
+  border-color: #FFF0D0;
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 12px 32px rgba(201, 165, 103, 0.6), 0 0 24px rgba(230, 211, 167, 0.5);
+}
+
+.modal-input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.85rem;
+  padding: 0.68rem 0.95rem;
+  color: #FBF8F2;
+  font-size: 0.825rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.modal-input-field:focus {
+  border-color: #C9A567;
+  background: rgba(201, 165, 103, 0.09);
+  box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.22);
+}
+
+

@@ -1,5 +1,5 @@
 /**
- * WARISARA — Creative Lab (HTML5 Canvas Pattern Generator)
+ * WARISARA — Creative Lab Showcase Widget (Landing Page Edition)
  * Pure Native Canvas API & Vanilla JS
  */
 
@@ -23,8 +23,12 @@ window.WARISARA_CREATIVE_LAB = {
     const motifBtns = document.querySelectorAll(".motif-btn");
     motifBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        motifBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        motifBtns.forEach((b) => {
+          b.classList.remove("active", "border-brass-400", "bg-brass-500/20", "text-brass-300");
+          b.classList.add("border-white/10", "bg-white/5", "text-surface/80");
+        });
+        btn.classList.add("active", "border-brass-400", "bg-brass-500/20", "text-brass-300");
+        btn.classList.remove("border-white/10", "bg-white/5", "text-surface/80");
         this.currentMotif = btn.dataset.motif;
         this.renderPattern();
       });
@@ -44,7 +48,7 @@ window.WARISARA_CREATIVE_LAB = {
     if (downloadBtn && this.canvas) {
       downloadBtn.addEventListener("click", () => {
         const link = document.createElement("a");
-        link.download = `warisara-${this.currentMotif}-pattern.png`;
+        link.download = `WARISARA-${this.currentMotif.toUpperCase()}-Showcase.png`;
         link.href = this.canvas.toDataURL("image/png");
         link.click();
       });
@@ -60,18 +64,27 @@ window.WARISARA_CREATIVE_LAB = {
     this.ctx.fillRect(0, 0, w, h);
 
     this.ctx.strokeStyle = this.currentColor;
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = 2.5;
+    this.ctx.lineCap = "round";
+    this.ctx.lineJoin = "round";
 
     const gridSize = w / this.currentDensity;
 
     for (let x = 0; x < w; x += gridSize) {
       for (let y = 0; y < h; y += gridSize) {
+        const cx = x + gridSize / 2;
+        const cy = y + gridSize / 2;
+
         if (this.currentMotif === "kawung") {
-          this.drawKawung(x + gridSize / 2, y + gridSize / 2, gridSize / 2.2);
+          this.drawKawung(cx, cy, gridSize / 2.2);
         } else if (this.currentMotif === "parang") {
           this.drawParang(x, y, gridSize);
         } else if (this.currentMotif === "songket") {
           this.drawSongket(x, y, gridSize);
+        } else if (this.currentMotif === "truntum") {
+          this.drawTruntum(cx, cy, gridSize / 2.5);
+        } else if (this.currentMotif === "megamendung") {
+          this.drawMegamendung(cx, cy, gridSize);
         }
       }
     }
@@ -101,12 +114,41 @@ window.WARISARA_CREATIVE_LAB = {
   },
 
   drawSongket: function (x, y, size) {
+    const half = size / 2;
     this.ctx.beginPath();
-    this.ctx.moveTo(x + size / 2, y);
-    this.ctx.lineTo(x + size, y + size / 2);
-    this.ctx.lineTo(x + size / 2, y + size);
-    this.ctx.lineTo(x, y + size / 2);
+    this.ctx.moveTo(x + half, y + 4);
+    this.ctx.lineTo(x + size - 4, y + half);
+    this.ctx.lineTo(x + half, y + size - 4);
+    this.ctx.lineTo(x + 4, y + half);
     this.ctx.closePath();
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.arc(x + half, y + half, size / 7, 0, Math.PI * 2);
+    this.ctx.fillStyle = this.currentColor;
+    this.ctx.fill();
+  },
+
+  drawTruntum: function (cx, cy, r) {
+    for (let i = 0; i < 4; i++) {
+      const angle = (i * Math.PI) / 4;
+      this.ctx.beginPath();
+      this.ctx.moveTo(cx - Math.cos(angle) * r, cy - Math.sin(angle) * r);
+      this.ctx.lineTo(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
+      this.ctx.stroke();
+    }
+    this.ctx.beginPath();
+    this.ctx.arc(cx, cy, r / 3.5, 0, Math.PI * 2);
+    this.ctx.fillStyle = this.currentColor;
+    this.ctx.fill();
+  },
+
+  drawMegamendung: function (cx, cy, size) {
+    const half = size / 2;
+    this.ctx.beginPath();
+    this.ctx.moveTo(cx - half * 0.7, cy);
+    this.ctx.bezierCurveTo(cx - half * 0.4, cy - half * 0.8, cx + half * 0.2, cy - half * 0.7, cx + half * 0.7, cy);
+    this.ctx.bezierCurveTo(cx + half * 0.2, cy + half * 0.7, cx - half * 0.4, cy + half * 0.8, cx - half * 0.7, cy);
     this.ctx.stroke();
   }
 };

@@ -533,6 +533,8 @@ window.WARISARA_NAVBAR = {
     setActiveLink(initialPage, false);
 
     const syncInitialPill = () => {
+      const curPage = determineCurrentPage();
+      setActiveLink(curPage, false);
       const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active") ||
                          document.querySelector("#desktop-nav-menu .nav-link");
       if (activeLink) {
@@ -540,10 +542,12 @@ window.WARISARA_NAVBAR = {
       }
     };
 
-    // Recalculate pill position on events that change layout geometry.
-    // fonts.ready = Google Fonts loaded (text reflows, link widths change).
-    // window load = all resources done, final layout stable.
-    // No polling setTimeouts — they cause the 1-second delayed "snap" the user saw.
+    // Staggered layout syncs for instant rendering across all devices & font loads
+    requestAnimationFrame(syncInitialPill);
+    setTimeout(syncInitialPill, 40);
+    setTimeout(syncInitialPill, 120);
+    setTimeout(syncInitialPill, 300);
+
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(syncInitialPill);
     }
@@ -552,3 +556,17 @@ window.WARISARA_NAVBAR = {
     window.addEventListener("pageshow", syncInitialPill);
   }
 };
+
+// Auto-initialize navbar on DOM ready if not initialized
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.WARISARA_NAVBAR && !window.WARISARA_NAVBAR.isInitialized) {
+      window.WARISARA_NAVBAR.init();
+    }
+  });
+} else {
+  if (window.WARISARA_NAVBAR && !window.WARISARA_NAVBAR.isInitialized) {
+    window.WARISARA_NAVBAR.init();
+  }
+}
+
