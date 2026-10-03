@@ -98,6 +98,31 @@
   box-shadow: 0 8px 20px -6px rgba(201, 165, 103, 0.25), inset 0 0 12px rgba(201, 165, 103, 0.15);
 }
 
+.canting-layout-btn {
+  transition: all 0.2s cubic-bezier(0.2, 1, 0.3, 1);
+  cursor: pointer;
+}
+.canting-layout-btn:hover {
+  border-color: rgba(201, 165, 103, 0.45);
+  background: rgba(201, 165, 103, 0.08);
+}
+.canting-layout-btn.active {
+  border-color: #C9A567;
+  background: rgba(201, 165, 103, 0.2);
+  color: #E6D3A7;
+  box-shadow: 0 4px 12px rgba(201, 165, 103, 0.2);
+}
+
+.btn-custom-mockup {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.btn-custom-mockup:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(201, 165, 103, 0.25);
+}
+
+
 /* Color Buttons & Pickers */
 .studio-color-pill {
   position: relative;

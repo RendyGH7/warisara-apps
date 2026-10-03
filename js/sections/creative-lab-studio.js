@@ -9,7 +9,7 @@
 
   // Studio State
   const StudioState = {
-    // Mode: 'generative' | 'canting' | 'stamp'
+    // Mode: 'generative' | 'canting'
     currentMode: "generative",
 
     // Core Motif Selection
@@ -30,7 +30,7 @@
     complexity: 3,       // 1 to 5 (inner detail rings)
 
     // Effects & Textures
-    showCrackle: true,   // Remukan lilin malam (wax crackle)
+    showCrackle: false,  // Remukan lilin malam (mati secara default untuk kanvas bersih)
     showWeave: true,     // Weave texture grain
     alternateFlip: false,// Checkerboard alternating rotation
 
@@ -41,16 +41,14 @@
     bgColor: "#F6F1E7",        // Dasar Kain (Mori / Daluang)
     bgStyle: "solid",          // solid, gradient, vignette
 
-    // Canting Tulis Freehand Tool
+    // Canting Tulis Freehand Tool & Print Engine
     cantingTool: "brush",      // brush, eraser
-    cantingSize: 4,            // 1 to 16
+    cantingSize: 4,            // 1 to 20
     cantingColor: "#16213A",
     cantingWaxBleed: true,
-
-    // Stamp Placer Tool
-    stampMotif: "kawung_star", // kawung_star, gunungan, ceplok_flower, garuda_wing
-    stampScale: 1.0,
-    stampRotation: 0,
+    cantingLayout: "grid",     // grid, brick, mirror, diagonal
+    cantingDensity: 4,         // 2 to 6
+    cantingIsPrinted: false,   // false = drawing 1-unit motif on blank canvas, true = printed repeated fabric
 
     // Active View / Mockup
     activeView: "flat", // flat, shirt, scarf, cushion
@@ -78,7 +76,7 @@
       strokeWidth: 2.8,
       curviness: 1.1,
       complexity: 4,
-      showCrackle: true,
+      showCrackle: false,
       primaryColor: "#2A1E14",
       secondaryColor: "#C9A567",
       highlightColor: "#A8512F",
@@ -95,7 +93,7 @@
       strokeWidth: 3.2,
       curviness: 1.3,
       complexity: 4,
-      showCrackle: true,
+      showCrackle: false,
       primaryColor: "#1F1610",
       secondaryColor: "#9E6438",
       highlightColor: "#E6D3A7",
@@ -549,7 +547,7 @@
   }
 
   // =========================================================================
-  // CORE GENERATIVE RENDERING PIPELINE
+  // CORE GENERATIVE & CANTING RENDERING PIPELINE
   // =========================================================================
   function render() {
     if (!ctx || !canvas) return;
@@ -557,6 +555,60 @@
     const w = canvas.width;
     const h = canvas.height;
 
+    // ── MODE CANTING TULIS: PHASE 1 — BLANK WHITE 1-UNIT MOTIF CANVAS ──
+    if (StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted) {
+      // 1. Pristine clean white fabric (mori)
+      ctx.fillStyle = "#FAF8F5";
+      ctx.fillRect(0, 0, w, h);
+
+      // 2. Center 1-Unit Motif Guide Border (Dashed square box)
+      ctx.save();
+      ctx.strokeStyle = "rgba(164, 126, 63, 0.32)";
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6, 6]);
+      drawRoundRect(ctx, w * 0.08, h * 0.08, w * 0.84, h * 0.84, 14);
+      ctx.stroke();
+
+      // Delicate centering crosshairs
+      ctx.strokeStyle = "rgba(164, 126, 63, 0.18)";
+      ctx.beginPath();
+      ctx.moveTo(w / 2, h * 0.08);
+      ctx.lineTo(w / 2, h * 0.92);
+      ctx.moveTo(w * 0.08, h / 2);
+      ctx.lineTo(w * 0.92, h / 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Top guide text
+      ctx.fillStyle = "rgba(138, 88, 34, 0.55)";
+      ctx.font = "600 11px 'Manrope', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("Kanvas 1 Unit Motif — Goreskan Canting Bebas Buatan Anda Disini", w / 2, h * 0.055);
+      ctx.restore();
+
+      // 3. Render user's drawn freehand strokes on top
+      ctx.drawImage(freehandCanvas, 0, 0);
+
+      // Update info display
+      updateInfoDisplay();
+      if (StudioState.activeView !== "flat") {
+        updateMockupView();
+      }
+      return;
+    }
+
+    // ── MODE CANTING TULIS: PHASE 2 — PRINTED CUSTOM TILED FABRIC ──
+    if (StudioState.currentMode === "canting" && StudioState.cantingIsPrinted) {
+      renderPrintedCustomFabric(ctx, w, h);
+      if (StudioState.showWeave) {
+        renderWeaveTexture(ctx, w, h);
+      }
+      updateInfoDisplay();
+      updateMockupView();
+      return;
+    }
+
+    // ── MODE PARAMETRIK GENERATIF ──
     // 1. Clear & Background Fabric Layer
     renderFabricBackground(ctx, w, h);
 
@@ -571,7 +623,7 @@
       renderWeaveTexture(ctx, w, h);
     }
 
-    // 4. Freehand Canting Tulis / Stamp Overlay Layer
+    // 4. Freehand Canting Tulis Overlay Layer
     ctx.drawImage(freehandCanvas, 0, 0);
 
     // 5. Update UI Labels & Info Cards
@@ -579,6 +631,93 @@
 
     // 6. Update Active Mockup (if not flat)
     updateMockupView();
+  }
+
+  // Render Tiled Fabric From User's Custom Hand-Drawn 1-Unit Motif
+  function renderPrintedCustomFabric(targetCtx, w, h) {
+    targetCtx.fillStyle = StudioState.bgColor || "#FAF8F5";
+    targetCtx.fillRect(0, 0, w, h);
+
+    const density = StudioState.cantingDensity || 4;
+    const cellSize = w / density;
+    const layout = StudioState.cantingLayout || "grid";
+
+    // Detect bounding box of user's drawing
+    const bbox = getCanvasBoundingBox(freehandCanvas);
+    const srcX = bbox.x;
+    const srcY = bbox.y;
+    const srcW = bbox.w;
+    const srcH = bbox.h;
+
+    const pad = cellSize * 0.1;
+    const dw = cellSize - pad * 2;
+    const dh = cellSize - pad * 2;
+
+    for (let r = 0; r < density; r++) {
+      for (let c = 0; c < density; c++) {
+        let x = c * cellSize + pad;
+        let y = r * cellSize + pad;
+
+        if (layout === "brick" && r % 2 === 1) {
+          x += cellSize / 2;
+          if (x >= w) x -= w;
+        }
+
+        targetCtx.save();
+        const cx = x + dw / 2;
+        const cy = y + dh / 2;
+        targetCtx.translate(cx, cy);
+
+        if (layout === "mirror") {
+          const scaleX = c % 2 === 1 ? -1 : 1;
+          const scaleY = r % 2 === 1 ? -1 : 1;
+          targetCtx.scale(scaleX, scaleY);
+        } else if (layout === "diagonal") {
+          targetCtx.rotate(((r + c) * 45 * Math.PI) / 180);
+        }
+
+        targetCtx.drawImage(freehandCanvas, srcX, srcY, srcW, srcH, -dw / 2, -dh / 2, dw, dh);
+        targetCtx.restore();
+      }
+    }
+  }
+
+  function getCanvasBoundingBox(srcCanvas) {
+    const sCtx = srcCanvas.getContext("2d");
+    const imgData = sCtx.getImageData(0, 0, srcCanvas.width, srcCanvas.height);
+    const data = imgData.data;
+    const w = srcCanvas.width;
+    const h = srcCanvas.height;
+
+    let minX = w, minY = h, maxX = 0, maxY = 0;
+    let found = false;
+
+    for (let y = 0; y < h; y += 2) {
+      for (let x = 0; x < w; x += 2) {
+        const idx = (y * w + x) * 4;
+        if (data[idx + 3] > 10) { // Alpha threshold
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+          found = true;
+        }
+      }
+    }
+
+    if (!found) {
+      return { x: 0, y: 0, w: w, h: h };
+    }
+
+    minX = Math.max(0, minX - 8);
+    minY = Math.max(0, minY - 8);
+    maxX = Math.min(w, maxX + 8);
+    maxY = Math.min(h, maxY + 8);
+
+    const bw = Math.max(20, maxX - minX);
+    const bh = Math.max(20, maxY - minY);
+
+    return { x: minX, y: minY, w: bw, h: bh };
   }
 
   // 1. Fabric Background
@@ -2029,6 +2168,7 @@
         if (cantingControls) cantingControls.classList.toggle("hidden", StudioState.currentMode !== "canting");
 
         canvas.style.cursor = StudioState.currentMode === "generative" ? "default" : "crosshair";
+        render();
       });
     });
 
@@ -2138,6 +2278,7 @@
     }
 
     // 10. Canting & Stamp Freehand Controls
+    // 10. Canting Tulis Controls & Print Engine
     document.querySelectorAll(".canting-tool-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".canting-tool-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
@@ -2146,21 +2287,110 @@
       });
     });
 
-    document.querySelectorAll("[data-stamp]").forEach((btn) => {
+    // Preset Canting Colors
+    document.querySelectorAll("[data-canting-color]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("[data-stamp]").forEach((b) => b.classList.remove("border-brass-400", "bg-brass-400/20"));
-        btn.classList.add("border-brass-400", "bg-brass-400/20");
-        StudioState.stampMotif = btn.dataset.stamp;
+        StudioState.cantingColor = btn.dataset.cantingColor;
+        const colorPicker = document.getElementById("picker-canting-color");
+        if (colorPicker) colorPicker.value = btn.dataset.cantingColor;
+      });
+    });
+
+    // Canting Layout & Tiling Selectors
+    document.querySelectorAll(".canting-layout-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".canting-layout-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
+        btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300");
+        StudioState.cantingLayout = btn.dataset.cantingLayout;
+        if (StudioState.cantingIsPrinted) render();
       });
     });
 
     bindSlider("slider-canting-size", "val-canting-size", (val) => { StudioState.cantingSize = parseFloat(val); return `${val}px`; });
+    bindSlider("slider-canting-density", "val-canting-density", (val) => { StudioState.cantingDensity = parseInt(val, 10); if (StudioState.cantingIsPrinted) render(); return `${val}x${val}`; });
     bindColorInput("picker-canting-color", (val) => { StudioState.cantingColor = val; });
 
     const btnClearCanvas = document.getElementById("btn-clear-freehand");
     if (btnClearCanvas) btnClearCanvas.addEventListener("click", clearFreehandOverlay);
 
-    // 11. Mockup Switcher Tabs
+    // Primary Print Custom Motif to Fabric Button
+    const btnPrintBatik = document.getElementById("btn-print-custom-batik");
+    const postPrintCard = document.getElementById("post-print-apparel-card");
+    if (btnPrintBatik) {
+      btnPrintBatik.addEventListener("click", () => {
+        const bbox = getCanvasBoundingBox(freehandCanvas);
+        if (bbox.w <= 20 && bbox.h <= 20) {
+          alert("Silakan goreskan canting pada kanvas putih terlebih dahulu untuk membuat 1 unit motif kreasi Anda.");
+          return;
+        }
+
+        StudioState.cantingIsPrinted = true;
+        if (postPrintCard) postPrintCard.classList.remove("hidden");
+        render();
+
+        // Smooth scroll to canvas viewport
+        const canvasWrapper = document.getElementById("view-flat-canvas");
+        if (canvasWrapper) {
+          canvasWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    }
+
+    // Re-edit Motif Button (Back to Drawing Phase)
+    const btnReEdit = document.getElementById("btn-re-edit-motif");
+    if (btnReEdit) {
+      btnReEdit.addEventListener("click", () => {
+        StudioState.cantingIsPrinted = false;
+        if (postPrintCard) postPrintCard.classList.add("hidden");
+        
+        // Reset to flat view
+        StudioState.activeView = "flat";
+        document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
+          b.classList.toggle("active", b.dataset.view === "flat");
+          b.classList.toggle("border-brass-400", b.dataset.view === "flat");
+          b.classList.toggle("bg-brass-400/20", b.dataset.view === "flat");
+          b.classList.toggle("text-brass-300", b.dataset.view === "flat");
+        });
+        const flatView = document.getElementById("view-flat-canvas");
+        const mockupView = document.getElementById("view-mockup-wrapper");
+        if (flatView) flatView.classList.remove("hidden");
+        if (mockupView) mockupView.classList.add("hidden");
+
+        render();
+      });
+    }
+
+    // Post-Print Custom Mockup Triggers (Baju, Bantal, Selendang)
+    document.querySelectorAll("[data-mockup-trigger]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const view = btn.dataset.mockupTrigger;
+        StudioState.activeView = view;
+
+        // Sync with top toolbar buttons
+        document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
+          const isActive = b.dataset.view === view;
+          b.classList.toggle("active", isActive);
+          b.classList.toggle("border-brass-400", isActive);
+          b.classList.toggle("bg-brass-400/20", isActive);
+          b.classList.toggle("text-brass-300", isActive);
+        });
+
+        const flatView = document.getElementById("view-flat-canvas");
+        const mockupView = document.getElementById("view-mockup-wrapper");
+        if (flatView && mockupView) {
+          if (view === "flat") {
+            flatView.classList.remove("hidden");
+            mockupView.classList.add("hidden");
+          } else {
+            flatView.classList.add("hidden");
+            mockupView.classList.remove("hidden");
+            updateMockupView();
+          }
+        }
+      });
+    });
+
+    // 11. Mockup Switcher Tabs (Header)
     document.querySelectorAll(".mockup-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300"));
@@ -2356,13 +2586,32 @@
   }
 
   function updateInfoDisplay() {
-    const info = MOTIF_INFO[StudioState.motif] || MOTIF_INFO.kawung;
     const titleEl = document.getElementById("motif-info-title");
     const descEl = document.getElementById("motif-info-desc");
     const originEl = document.getElementById("motif-info-origin");
     const labelEl = document.getElementById("canvas-pattern-label");
     const hashEl = document.getElementById("pattern-seed-hash");
 
+    if (StudioState.currentMode === "canting") {
+      if (titleEl) titleEl.textContent = "Filosofi & Nilai Karya Canting Tulis Kreasimu";
+      if (descEl) {
+        descEl.textContent = StudioState.cantingIsPrinted
+          ? "Mahakarya kain batik yang dicetak secara repetisi dari 1 unit motif goresan canting malam orisinil karya Anda. Mencerminkan kebebasan berekspresi dan pelestarian budaya kontemporer."
+          : "Kanvas putih bersih 1 unit motif. Goreskan imajinasi dan ornamen khas Anda dari nol menggunakan canting malam digital sebelum dicetak menjadi kain utuh.";
+      }
+      if (originEl) originEl.textContent = "Karya Orisinil Desainer • Simbolisme: Kreativitas & Pelestarian Budaya";
+      if (labelEl) {
+        labelEl.textContent = StudioState.cantingIsPrinted
+          ? `Karya Mandiri • Susunan: ${StudioState.cantingLayout.toUpperCase()} • Cetak: ${StudioState.cantingDensity}x${StudioState.cantingDensity}`
+          : `Mode: CANTING TULIS • Kanvas 1 Unit Motif (Menggambar dari 0)`;
+      }
+      if (hashEl) {
+        hashEl.textContent = `Hash: #CUST-${StudioState.seed.toString(16).toUpperCase()}`;
+      }
+      return;
+    }
+
+    const info = MOTIF_INFO[StudioState.motif] || MOTIF_INFO.kawung;
     if (titleEl) titleEl.textContent = info.title;
     if (descEl) descEl.textContent = info.desc;
     if (originEl) originEl.textContent = `${info.origin} • Simbolisme: ${info.symbolism}`;
