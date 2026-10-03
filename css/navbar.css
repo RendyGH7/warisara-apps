@@ -54,11 +54,62 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
   }
 }
 
-/* Scrolled state — stays fixed & follows user with deeper luxury glass and gold rim */
+/* ── Scrolled state: Pure Ultra-Translucent Crystal Glass ────────────────── */
 #main-navbar.glass-nav.scrolled {
-  background-color: rgba(8, 7, 5, 0.97);
-  border-color: rgba(181, 123, 58, 0.42);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.88), 0 0 20px rgba(138, 88, 34, 0.2);
+  background-color: rgba(14, 11, 8, 0.18);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+#main-navbar.glass-nav.scrolled .brand-glass-badge {
+  background-color: rgba(138, 88, 34, 0.45);
+  border-color: rgba(181, 123, 58, 0.45);
+  box-shadow: 0 2px 8px rgba(138, 88, 34, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#main-navbar.glass-nav.scrolled .nav-active-pill {
+  background-color: rgba(138, 88, 34, 0.48);
+  border-color: rgba(181, 123, 58, 0.55);
+  box-shadow: 0 3px 10px rgba(138, 88, 34, 0.25);
+}
+
+#main-navbar.glass-nav.scrolled .btn-nav-icon,
+#main-navbar.glass-nav.scrolled .btn-nav-explore {
+  background-color: rgba(138, 88, 34, 0.45);
+  border-color: rgba(181, 123, 58, 0.45);
+  box-shadow: 0 2px 8px rgba(138, 88, 34, 0.2);
+}
+
+/* ── Scrolled HOVER state: Instant Luxurious Solid Glass Wakeup ──────────── */
+#main-navbar.glass-nav.scrolled:hover {
+  background-color: rgba(10, 8, 6, 0.97);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border-color: rgba(181, 123, 58, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92), 0 0 25px rgba(138, 88, 34, 0.25);
+}
+
+#main-navbar.glass-nav.scrolled:hover .brand-glass-badge {
+  background-color: var(--nav-brown-gold);
+  border-color: var(--nav-brown-gold-border);
+  box-shadow: 0 2px 8px var(--nav-brown-gold-glow);
+}
+
+#main-navbar.glass-nav.scrolled:hover .nav-active-pill {
+  background-color: var(--nav-brown-gold);
+  border-color: var(--nav-brown-gold-border);
+  box-shadow: 0 4px 14px var(--nav-brown-gold-glow);
+}
+
+#main-navbar.glass-nav.scrolled:hover .btn-nav-icon,
+#main-navbar.glass-nav.scrolled:hover .btn-nav-explore {
+  background-color: var(--nav-brown-gold);
+  border-color: var(--nav-brown-gold-border);
+  box-shadow: 0 3px 10px var(--nav-brown-gold-glow);
 }
 
 /* ── Brand Badge ─────────────────────────────────────────────────────────── */
@@ -68,7 +119,7 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
   font-weight: 800;
   border: 1px solid var(--nav-brown-gold-border);
   box-shadow: 0 2px 8px var(--nav-brown-gold-glow);
-  transition: background-color 200ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: background-color 280ms ease, border-color 280ms ease, box-shadow 280ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .group:hover .brand-glass-badge {
@@ -108,7 +159,10 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.28s ease;
+              opacity 0.28s ease,
+              background-color 280ms ease,
+              border-color 280ms ease,
+              box-shadow 280ms ease;
   will-change: transform, width;
 }
 
@@ -175,9 +229,10 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
   color: var(--nav-text-on-gold);
   border: 1px solid var(--nav-brown-gold-border);
   box-shadow: 0 3px 10px var(--nav-brown-gold-glow);
-  transition: background-color 200ms ease,
+  transition: background-color 280ms ease,
+              border-color 280ms ease,
               transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 200ms ease;
+              box-shadow 280ms ease;
   flex-shrink: 0;
   text-decoration: none;
   cursor: pointer;
@@ -208,9 +263,10 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #main-navbar.glass-nav {
   border-radius: 9999px;
   border: 1px solid var(--nav-brown-gold-border);
   box-shadow: 0 3px 12px var(--nav-brown-gold-glow);
-  transition: background-color 200ms ease,
+  transition: background-color 280ms ease,
+              border-color 280ms ease,
               transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 200ms ease;
+              box-shadow 280ms ease;
   white-space: nowrap;
   flex-shrink: 0;
 }
