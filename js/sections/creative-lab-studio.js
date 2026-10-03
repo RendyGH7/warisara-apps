@@ -2015,7 +2015,7 @@
   // DOM EVENT BINDING & UI SYNC
   // =========================================================================
   function bindDomEvents() {
-    // 1. Studio Mode Tabs
+    // 1. Studio Mode Tabs (Parametrik vs Canting Tulis)
     document.querySelectorAll(".mode-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".mode-tab-btn").forEach((b) => b.classList.remove("active"));
@@ -2024,11 +2024,9 @@
 
         const genControls = document.getElementById("panel-generative-controls");
         const cantingControls = document.getElementById("panel-canting-controls");
-        const stampControls = document.getElementById("panel-stamp-controls");
 
         if (genControls) genControls.classList.toggle("hidden", StudioState.currentMode !== "generative");
         if (cantingControls) cantingControls.classList.toggle("hidden", StudioState.currentMode !== "canting");
-        if (stampControls) stampControls.classList.toggle("hidden", StudioState.currentMode !== "stamp");
 
         canvas.style.cursor = StudioState.currentMode === "generative" ? "default" : "crosshair";
       });
