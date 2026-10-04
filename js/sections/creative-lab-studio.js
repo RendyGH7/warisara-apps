@@ -2361,14 +2361,27 @@
     }
 
     // 10. Canting & Stamp Freehand Controls
+    function updateCanvasCursor() {
+      if (!canvas) return;
+      if (StudioState.cantingTool === "eraser") {
+        canvas.classList.remove("cursor-canting");
+        canvas.classList.add("cursor-eraser");
+      } else {
+        canvas.classList.remove("cursor-eraser");
+        canvas.classList.add("cursor-canting");
+      }
+    }
+
     // 10. Canting Tulis Controls & Print Engine
     document.querySelectorAll(".canting-tool-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".canting-tool-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
         btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
         StudioState.cantingTool = btn.dataset.tool;
+        updateCanvasCursor();
       });
     });
+    updateCanvasCursor();
 
     // Preset Canting Colors
     document.querySelectorAll("[data-canting-color]").forEach((btn) => {

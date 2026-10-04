@@ -24,6 +24,7 @@ html {
   color: var(--color-surface, #FBF8F2);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('../assets/images/cursor/lantern-default.svg') 4 4, auto;
 }
 
 body {
@@ -33,6 +34,55 @@ body {
   overflow-x: hidden;
   background-color: var(--color-hero-bg, #0E0C0A);
   color: var(--color-surface, #FBF8F2);
+  cursor: url('../assets/images/cursor/lantern-default.svg') 4 4, auto;
+}
+
+/* Radiant Golden Lantern Cursor for Interactive Elements */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+summary,
+.cursor-pointer,
+.province-card,
+.glass-card,
+.card-hover,
+.btn-nav-explore,
+.btn-nav-icon,
+.btn-glass-gold,
+label[for],
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+input[type="color"],
+.motif-btn,
+.canting-tool-btn,
+.tool-icon-btn,
+.tab-btn {
+  cursor: url('../assets/images/cursor/lantern-pointer.svg') 4 4, pointer;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  cursor: text;
+}
+
+/* Custom Batik Drawing / Canting Canvas Cursor */
+#creative-canvas,
+.canting-canvas-draw {
+  cursor: url('../assets/images/cursor/canting-draw.svg') 2 2, crosshair !important;
+}
+
+#creative-canvas.cursor-eraser,
+.canting-canvas-eraser {
+  cursor: url('../assets/images/cursor/canting-eraser.svg') 4 8, crosshair !important;
 }
 
 .font-display {

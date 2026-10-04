@@ -194,8 +194,18 @@
 
 #creative-canvas {
   touch-action: none;
-  cursor: crosshair;
+  cursor: url('../assets/images/cursor/canting-draw.svg') 2 2, crosshair;
   transition: filter 0.3s ease;
+}
+
+#creative-canvas.cursor-canting,
+.canting-canvas-draw {
+  cursor: url('../assets/images/cursor/canting-draw.svg') 2 2, crosshair !important;
+}
+
+#creative-canvas.cursor-eraser,
+.canting-canvas-eraser {
+  cursor: url('../assets/images/cursor/canting-eraser.svg') 4 8, crosshair !important;
 }
 
 /* Canting Drawing Tool Specifics */

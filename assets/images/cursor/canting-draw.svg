@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <filter id="canting-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#E5A93C" flood-opacity="0.6"/>
+    </filter>
+    <linearGradient id="copper-spout" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="40%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+    <linearGradient id="nyamplung-bowl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="35%" stop-color="#D97706"/>
+      <stop offset="85%" stop-color="#92400E"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+    <linearGradient id="wood-handle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A16207"/>
+      <stop offset="40%" stop-color="#713F12"/>
+      <stop offset="80%" stop-color="#451A03"/>
+      <stop offset="100%" stop-color="#271102"/>
+    </linearGradient>
+    <radialGradient id="wax-drop" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#canting-shadow)">
+    <!-- Wooden / Bamboo Handle (Gagang Canting) -->
+    <path d="M16 16L28.5 28.5C29.2 29.2 29.2 30.2 28.5 30.8C27.8 31.5 26.8 31.5 26.2 30.8L13.5 18.2L16 16Z" fill="url(#wood-handle)" stroke="#181109" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- Handle Reed / Bamboo Joints -->
+    <line x1="18.5" y1="18.5" x2="20.5" y2="20.5" stroke="#CA8A04" stroke-width="1.2"/>
+    <line x1="22.5" y1="22.5" x2="24.5" y2="24.5" stroke="#CA8A04" stroke-width="1.2"/>
+
+    <!-- Brass Ferrule / Joint -->
+    <path d="M13.5 13.5L16.5 16.5L14.8 18.2L11.8 15.2L13.5 13.5Z" fill="url(#copper-spout)" stroke="#181109" stroke-width="1"/>
+
+    <!-- Copper Wax Bowl Reservoir (Nyamplung) -->
+    <ellipse cx="11.5" cy="11.5" rx="4.8" ry="3.8" transform="rotate(-45 11.5 11.5)" fill="url(#nyamplung-bowl)" stroke="#181109" stroke-width="1.2"/>
+    <!-- Hot Melted Malam Wax Surface inside Bowl -->
+    <ellipse cx="11" cy="11" rx="3" ry="2" transform="rotate(-45 11 11)" fill="#F59E0B" opacity="0.9"/>
+    <ellipse cx="10.5" cy="10.5" rx="1.5" ry="0.8" transform="rotate(-45 10.5 10.5)" fill="#FEF08A"/>
+
+    <!-- Cucuk Canting (Curved Metal Wax Spout tapering to (2, 2)) -->
+    <path d="M8.5 8.5C6.5 6.5 4.5 4 2.5 2.5C2.2 2.2 2 2 2 2C2 2 2.2 2.2 2.5 2.5C4 4.5 6.5 6.5 8.5 8.5" stroke="#181109" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M8.5 8.5C6.5 6.5 4.5 4 2 2C4 4.5 6.5 6.5 8.5 8.5" stroke="url(#copper-spout)" stroke-width="1.6" stroke-linecap="round"/>
+
+    <!-- Golden Wax Drop at the Spout Tip (Hotspot: 2, 2) -->
+    <circle cx="2.5" cy="2.5" r="2.2" fill="url(#wax-drop)" stroke="#181109" stroke-width="0.8"/>
+    <circle cx="2" cy="2" r="0.8" fill="#FFFFFF"/>
+    
+    <!-- Precision Target Cross-Dot at 2,2 for high drawing comfort -->
+    <path d="M2.5 0.5V1M2.5 4V4.5M0.5 2.5H1M4 2.5H4.5" stroke="#FFFFFF" stroke-width="0.7" opacity="0.9"/>
+  </g>
+</svg>

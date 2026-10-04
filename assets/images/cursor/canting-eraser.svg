@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <filter id="eraser-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#F43F5E" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="eraser-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF"/>
+      <stop offset="60%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#BE123C"/>
+    </linearGradient>
+    <linearGradient id="eraser-band" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="60%" stop-color="#94A3B8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#eraser-shadow)">
+    <!-- Eraser Body angled (Hotspot at 4, 4) -->
+    <path d="M4 8L16 4L28 16L16 20L4 8Z" fill="url(#eraser-pink)" stroke="#181109" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M4 8L16 20L16 26L4 14L4 8Z" fill="#BE123C" stroke="#181109" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M16 20L28 16L28 22L16 26L16 20Z" fill="#881337" stroke="#181109" stroke-width="1.2" stroke-linejoin="round"/>
+    
+    <!-- Metal Sleeve / Paper Wrapper -->
+    <path d="M10 6L18 4L24 10L16 12L10 6Z" fill="url(#eraser-band)" stroke="#181109" stroke-width="0.8"/>
+    
+    <!-- Precision Point Target at 4, 8 -->
+    <circle cx="4" cy="8" r="1.5" fill="#FFFFFF" stroke="#181109" stroke-width="0.6"/>
+  </g>
+</svg>
