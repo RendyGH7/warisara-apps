@@ -1,90 +1,151 @@
 /* ==========================================================================
-   WARISARA — INTERACTIVE 3D STORYBOOK & HERITAGE BOOKSHELF STYLES
+   WARISARA — ULTRA-REALISTIC 3D HERITAGE STORYBOOK & BOOKSHELF STYLES
    ========================================================================== */
 
-/* ── 1. Virtual Bookshelf & 3D Book Cover Cards ── */
+/* ── 1. Virtual Bookshelf & 3D Book Cover Volume ── */
 .bookshelf-stage {
   position: relative;
-  background: radial-gradient(circle at 50% 20%, rgba(201, 165, 103, 0.08) 0%, rgba(21, 19, 16, 0.98) 70%);
+  background: radial-gradient(ellipse at 50% 10%, rgba(201, 165, 103, 0.12) 0%, rgba(25, 20, 16, 0.98) 60%, #0E0C0A 100%);
   border-radius: 2rem;
-  border: 1px solid rgba(201, 165, 103, 0.2);
-  box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.8), 0 25px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(201, 165, 103, 0.25);
+  box-shadow: inset 0 2px 25px rgba(0, 0, 0, 0.9), 0 30px 70px rgba(0, 0, 0, 0.8);
 }
 
 .book-shelf-ledge {
   position: relative;
-  height: 18px;
-  background: linear-gradient(180deg, #3A2E20 0%, #201912 60%, #120E0A 100%);
+  height: 24px;
+  background: linear-gradient(180deg, 
+    #4A3B2A 0%, 
+    #322518 30%, 
+    #1F160E 70%, 
+    #120D08 100%
+  );
   border-top: 2px solid #C9A567;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  box-shadow: 
+    0 16px 30px rgba(0, 0, 0, 0.95), 
+    inset 0 1px 3px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
 }
 
+/* 3D Standing Book Item on Shelf */
 .book-3d-wrapper {
-  perspective: 1200px;
+  perspective: 1400px;
   cursor: pointer;
 }
 
 .book-3d-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.45;
-  border-radius: 8px 16px 16px 8px;
+  aspect-ratio: 1 / 1.48;
+  border-radius: 4px 14px 14px 4px;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
-  transform: rotateY(-12deg) rotateX(4deg);
-  box-shadow: -8px 12px 28px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(201, 165, 103, 0.15);
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.45s ease;
+  transform: rotateY(-14deg) rotateX(3deg);
+  box-shadow: 
+    -12px 16px 30px rgba(0, 0, 0, 0.85), 
+    -2px 2px 6px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(201, 165, 103, 0.1);
 }
 
 .book-3d-wrapper:hover .book-3d-card {
-  transform: rotateY(-2deg) rotateX(0deg) translateY(-14px) scale(1.03);
-  box-shadow: -15px 25px 45px rgba(0, 0, 0, 0.85), 0 0 35px rgba(201, 165, 103, 0.35);
+  transform: rotateY(-2deg) rotateX(0deg) translateY(-16px) scale(1.04);
+  box-shadow: 
+    -20px 30px 50px rgba(0, 0, 0, 0.9), 
+    0 0 35px rgba(201, 165, 103, 0.4),
+    0 0 10px rgba(255, 215, 0, 0.2);
 }
 
-/* Book Spine Visual Relief */
+/* Realistic Leather Texture & Embossed Border for Card */
+.book-cover-leather {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px 14px 14px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.book-cover-leather::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(201, 165, 103, 0.4);
+  border-radius: 2px 10px 10px 2px;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* 3D Book Thickness Edge (Paper Stack on the right) */
+.book-card-thickness {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  right: -10px;
+  width: 10px;
+  background: repeating-linear-gradient(
+    180deg,
+    #F4EDE1 0px,
+    #E8DCBE 2px,
+    #D0C09E 3px,
+    #F4EDE1 4px
+  );
+  border-radius: 0 4px 4px 0;
+  box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.4), 3px 2px 8px rgba(0, 0, 0, 0.6);
+  transform: rotateY(70deg);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Spine Visual Texture */
 .book-spine-strip {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 24px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0.12) 30%, rgba(0, 0, 0, 0.4) 100%);
+  width: 22px;
+  background: linear-gradient(90deg, 
+    rgba(0, 0, 0, 0.7) 0%, 
+    rgba(255, 255, 255, 0.18) 25%, 
+    rgba(0, 0, 0, 0.2) 60%, 
+    rgba(0, 0, 0, 0.6) 100%
+  );
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px 0 0 8px;
-  z-index: 5;
-}
-
-/* Hanging Bookmark Ribbon */
-.book-ribbon {
-  position: absolute;
-  bottom: -18px;
-  right: 28px;
-  width: 18px;
-  height: 38px;
-  background: linear-gradient(180deg, #A8512F 0%, #C9A567 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  border-radius: 4px 0 0 4px;
   z-index: 10;
 }
 
-.book-3d-wrapper:hover .book-ribbon {
-  transform: translateY(4px);
+/* Ribbon Bookmark */
+.book-ribbon {
+  position: absolute;
+  bottom: -22px;
+  right: 24px;
+  width: 18px;
+  height: 42px;
+  background: linear-gradient(180deg, #A8512F 0%, #D97706 60%, #C9A567 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s ease;
+  z-index: 15;
 }
 
-/* ── 2. Full-Screen Interactive 3D Book Modal ── */
+.book-3d-wrapper:hover .book-ribbon {
+  transform: translateY(6px);
+}
+
+/* ── 2. Fullscreen Realistic Interactive 3D Tome Reader Modal ── */
 #interactive-book-modal {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: rgba(10, 8, 6, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: radial-gradient(circle at center, rgba(20, 16, 12, 0.96) 0%, rgba(8, 6, 5, 0.99) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   overflow-y: auto;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.25rem;
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -94,46 +155,169 @@
   opacity: 1 !important;
 }
 
-/* Book Realistic 3D Stage */
 .book-stage-container {
   position: relative;
   width: 100%;
-  max-width: 1120px;
-  perspective: 2500px;
+  max-width: 1160px;
+  perspective: 2800px;
   margin: auto;
 }
 
-/* The Book Outer Shell */
+/* Realistic 3D Tome Hardcover Base (Extends beyond pages) */
+.heritage-tome-casing {
+  position: relative;
+  width: 100%;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #1C1713 0%, #120E0B 50%, #0A0806 100%);
+  border-radius: 1.5rem;
+  border: 2px solid #C9A567;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.98),
+    0 0 60px rgba(201, 165, 103, 0.2),
+    inset 0 2px 10px rgba(255, 255, 255, 0.15),
+    inset 0 -3px 15px rgba(0, 0, 0, 0.9);
+}
+
+/* Brass Metallic Corner Protectors (4 Corners of Hardcover) */
+.corner-brass-tl,
+.corner-brass-tr,
+.corner-brass-bl,
+.corner-brass-br {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  z-index: 35;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.corner-brass-tl {
+  top: 4px;
+  left: 4px;
+  border-top: 3px solid #E5A93C;
+  border-left: 3px solid #E5A93C;
+  border-radius: 1.2rem 0 0 0;
+  box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(255, 235, 150, 0.4);
+}
+
+.corner-brass-tr {
+  top: 4px;
+  right: 4px;
+  border-top: 3px solid #E5A93C;
+  border-right: 3px solid #E5A93C;
+  border-radius: 0 1.2rem 0 0;
+  box-shadow: 2px -2px 6px rgba(0, 0, 0, 0.5), inset -2px 2px 4px rgba(255, 235, 150, 0.4);
+}
+
+.corner-brass-bl {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 3px solid #E5A93C;
+  border-left: 3px solid #E5A93C;
+  border-radius: 0 0 0 1.2rem;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.5), inset 2px -2px 4px rgba(255, 235, 150, 0.4);
+}
+
+.corner-brass-br {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 3px solid #E5A93C;
+  border-right: 3px solid #E5A93C;
+  border-radius: 0 0 1.2rem 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 235, 150, 0.4);
+}
+
+/* Interior Tome Main Spread Container */
 .heritage-tome {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  min-height: 590px;
   display: flex;
-  background: #14110E;
-  border-radius: 1.25rem;
-  border: 2px solid rgba(201, 165, 103, 0.4);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(201, 165, 103, 0.15);
+  background: #110E0B;
+  border-radius: 0.85rem;
   overflow: hidden;
-  transition: all 0.3s ease;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(0, 0, 0, 0.9);
 }
 
-/* Book Spine Center Crease */
+/* 3D Stacked Page Trim Edges on Left & Right Flanks */
+.heritage-tome::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    #E8DCBE 0px,
+    #D0C09E 2px,
+    #F5EDE0 3px,
+    #BBA77E 4px
+  );
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.6);
+  z-index: 15;
+  pointer-events: none;
+}
+
+.heritage-tome::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 0;
+  width: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    #BBA77E 0px,
+    #F5EDE0 1px,
+    #D0C09E 2px,
+    #E8DCBE 4px
+  );
+  box-shadow: inset 2px 0 5px rgba(0, 0, 0, 0.6);
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* Center Binding Gutter Valley (The Deep Crease of a Real Book) */
 .heritage-tome-spine {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 36px;
+  width: 48px;
   transform: translateX(-50%);
   background: linear-gradient(90deg, 
-    rgba(0, 0, 0, 0.45) 0%, 
-    rgba(0, 0, 0, 0.15) 30%, 
-    rgba(255, 255, 255, 0.08) 50%, 
-    rgba(0, 0, 0, 0.15) 70%, 
-    rgba(0, 0, 0, 0.45) 100%
+    rgba(0, 0, 0, 0.65) 0%, 
+    rgba(0, 0, 0, 0.25) 30%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(0, 0, 0, 0.25) 70%, 
+    rgba(0, 0, 0, 0.65) 100%
   );
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 
+    inset 0 0 12px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(0, 0, 0, 0.7);
   z-index: 30;
+  pointer-events: none;
+}
+
+/* Physical Silk Bookmark Ribbon draped in center */
+.spine-silk-ribbon {
+  position: absolute;
+  top: -10px;
+  bottom: -25px;
+  left: 50%;
+  width: 12px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #A8512F 0%, #B83A14 50%, #C9A567 100%);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 
+    3px 4px 10px rgba(0, 0, 0, 0.65),
+    -2px 2px 6px rgba(0, 0, 0, 0.4);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 92%, 0 100%);
+  z-index: 32;
   pointer-events: none;
 }
 
@@ -141,55 +325,114 @@
 .tome-spread {
   display: flex;
   width: 100%;
-  min-height: 600px;
+  min-height: 590px;
 }
 
-/* Left Page (Illustration & Atmospheric Quote) */
+/* ── 3. Realistic Page Curvature & Parchment Shading ── */
+/* Left Page: Natural curve arching from spine with antique dark theme */
 .tome-page-left {
   flex: 1;
-  background: linear-gradient(135deg, #181512 0%, #100E0C 100%);
-  padding: 2.5rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  flex-col: column;
-  justify-content: space-between;
-  position: relative;
-  box-shadow: inset -15px 0 25px rgba(0, 0, 0, 0.5);
-}
-
-/* Right Page (Parchment Story & Typography) */
-.tome-page-right {
-  flex: 1;
-  background: linear-gradient(135deg, #FBF8F2 0%, #F5EDE0 100%);
-  color: #1A1612;
-  padding: 2.5rem;
+  background: 
+    radial-gradient(ellipse at 95% 50%, rgba(0, 0, 0, 0.55) 0%, transparent 60%),
+    linear-gradient(90deg, #120F0D 0%, #1A1612 12%, #14110E 88%, #0C0A08 100%);
+  padding: 2.75rem 2.5rem 2.5rem 2.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  box-shadow: inset 15px 0 25px rgba(0, 0, 0, 0.15);
+  box-shadow: inset -25px 0 35px rgba(0, 0, 0, 0.65);
 }
 
-/* Illuminated Initial Drop Cap */
+/* Right Page: Authentic Aged Parchment Paper with natural light gradient */
+.tome-page-right {
+  flex: 1;
+  background: 
+    radial-gradient(ellipse at 5% 50%, rgba(0, 0, 0, 0.25) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 70%),
+    linear-gradient(90deg, #E6DAC4 0%, #F5EDE0 12%, #FBF8F2 70%, #ECE3D2 100%);
+  color: #1A1612;
+  padding: 2.75rem 2.75rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 
+    inset 25px 0 35px rgba(0, 0, 0, 0.18),
+    inset -5px 0 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Subtle Deckled Paper Margin Guideline */
+.tome-page-right::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  border: 1px solid rgba(138, 88, 34, 0.15);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ── 4. Interactive Page Corner Curl on Hover ── */
+.page-corner-curl-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.3s ease;
+}
+
+.page-corner-curl-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 32px 32px;
+  border-color: transparent transparent #C9A567 transparent;
+  box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.tome-page-right:hover .page-corner-curl-btn::before {
+  border-width: 0 0 45px 45px;
+  border-color: transparent transparent #E5A93C transparent;
+  opacity: 1;
+}
+
+/* ── 5. Illuminated Initial Drop Cap ── */
 .drop-cap {
   float: left;
   font-family: 'Fraunces', serif;
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   line-height: 0.8;
   font-weight: 700;
-  margin-right: 0.75rem;
+  margin-right: 0.85rem;
   margin-top: 0.2rem;
   color: #8B5710;
-  text-shadow: 1px 1px 0px rgba(201, 165, 103, 0.4);
+  background: linear-gradient(135deg, #A47E3F 0%, #633C08 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 1px rgba(201, 165, 103, 0.5));
 }
 
 /* Decorative Antique Borders */
 .antique-frame {
   position: relative;
   padding: 6px;
-  background: linear-gradient(135deg, #C9A567 0%, #8B5710 100%);
+  background: linear-gradient(135deg, #E5A93C 0%, #8B5710 50%, #452402 100%);
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.75),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .antique-frame-inner {
@@ -198,7 +441,7 @@
   background: #0E0C0A;
 }
 
-/* ── 3. Smooth Page Turn Animation ── */
+/* ── 6. Smooth 3D Page Turn Animation ── */
 .page-flip-anim-forward {
   animation: pageTurnForward 0.65s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
 }
@@ -213,8 +456,8 @@
     transform: rotateY(0deg);
     filter: brightness(1);
   }
-  50% {
-    filter: brightness(0.75);
+  40% {
+    filter: brightness(0.68) contrast(1.1);
   }
   100% {
     transform-origin: left center;
@@ -227,9 +470,9 @@
   0% {
     transform-origin: right center;
     transform: rotateY(-180deg);
-    filter: brightness(0.75);
+    filter: brightness(0.68) contrast(1.1);
   }
-  50% {
+  60% {
     filter: brightness(0.85);
   }
   100% {
@@ -239,7 +482,7 @@
   }
 }
 
-/* ── 4. Sound & Narrator Waveform Micro-Animation ── */
+/* ── 7. Sound & Narrator Waveform Animation ── */
 .audio-bar {
   display: inline-block;
   width: 3px;
@@ -255,25 +498,40 @@
 .audio-bar:nth-child(4) { animation-delay: 0.6s; }
 
 @keyframes audioWave {
-  0%, 100% { height: 6px; }
+  0%, 100% { height: 5px; }
   50% { height: 18px; }
 }
 
-/* ── 5. Responsive Mobile Adjustment ── */
+/* ── 8. Responsive Mobile Adjustment ── */
 @media (max-width: 860px) {
+  .heritage-tome-casing {
+    padding: 6px 8px;
+  }
   .tome-spread {
     flex-direction: column;
     min-height: auto;
   }
-  .heritage-tome-spine {
+  .heritage-tome-spine,
+  .spine-silk-ribbon,
+  .heritage-tome::before,
+  .heritage-tome::after {
     display: none;
   }
   .tome-page-left {
     border-right: none;
     border-bottom: 2px solid #C9A567;
     padding: 1.5rem;
+    box-shadow: none;
   }
   .tome-page-right {
     padding: 1.5rem;
+    box-shadow: none;
+  }
+  .corner-brass-tl,
+  .corner-brass-tr,
+  .corner-brass-bl,
+  .corner-brass-br {
+    width: 24px;
+    height: 24px;
   }
 }

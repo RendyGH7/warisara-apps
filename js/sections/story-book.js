@@ -163,6 +163,9 @@
               <!-- Spine Binding Relief -->
               <div class="book-spine-strip"></div>
 
+              <!-- 3D Paper Stack Thickness Edge on Right -->
+              <div class="book-card-thickness"></div>
+
               <!-- Top Cover Ornament & Tag -->
               <div class="p-4 pl-7 relative z-10 flex items-start justify-between">
                 <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">
@@ -483,9 +486,17 @@
               </div>
               <span class="font-mono">Hlm. ${pageData.pageNumber * 2}</span>
             </div>
+
+            <!-- Interactive Corner Page Curl Button -->
+            <div class="page-corner-curl-btn" id="btn-corner-turn" title="Klik untuk membalik halaman"></div>
           </div>
         </div>
       `;
+
+      const btnCorner = document.getElementById('btn-corner-turn');
+      if (btnCorner) {
+        btnCorner.addEventListener('click', () => this.turnPage(1));
+      }
 
       const btnReadPage = document.getElementById('btn-read-page-aloud');
       if (btnReadPage) {
