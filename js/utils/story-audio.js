@@ -224,7 +224,9 @@
       const now = this.ctx ? this.ctx.currentTime : 0;
 
       if (this.ambienceMasterGain && this.ctx) {
-        this.ambienceMasterGain.gain.linearRampToValueAtTime(0.001, now + 1.2);
+        this.ambienceMasterGain.gain.cancelScheduledValues(now);
+        this.ambienceMasterGain.gain.setValueAtTime(this.ambienceMasterGain.gain.value, now);
+        this.ambienceMasterGain.gain.linearRampToValueAtTime(0.0001, now + 0.2);
         setTimeout(() => {
           this.ambienceNodes.forEach((node) => {
             try {
@@ -234,8 +236,15 @@
           });
           this.ambienceNodes = [];
           this.isAmbiencePlaying = false;
-        }, 1300);
+        }, 220);
       } else {
+        this.ambienceNodes.forEach((node) => {
+          try {
+            if (node.stop) node.stop();
+            if (node.disconnect) node.disconnect();
+          } catch (e) {}
+        });
+        this.ambienceNodes = [];
         this.isAmbiencePlaying = false;
       }
     }

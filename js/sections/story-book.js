@@ -219,8 +219,28 @@
       const story = this.stories.find((s) => s.id === storyId);
       if (!story) return;
 
+      // Stop previous audio/speech completely
+      if (window.WARISARA_STORY_AUDIO) {
+        window.WARISARA_STORY_AUDIO.stopSpeaking();
+        window.WARISARA_STORY_AUDIO.stopAmbience();
+      }
+
+      // Reset controls UI
+      if (this.btnNarrate) {
+        this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
+        this.btnNarrate.classList.add('bg-white/10', 'text-surface');
+      }
+      if (this.btnAmbience) {
+        this.btnAmbience.classList.remove('bg-brass-400', 'text-ink');
+        this.btnAmbience.classList.add('bg-white/10', 'text-surface');
+        this.btnAmbience.innerHTML = `
+          <span class="material-symbols-outlined text-sm">music_note</span>
+          <span class="text-xs font-semibold ml-1">Gamelan Sunyi</span>
+        `;
+      }
+
       this.activeStory = story;
-      this.currentPageIdx = 0; // Start at Cover
+      this.currentPageIdx = 0; // Always start from the beginning (Cover)
 
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.playBookOpen();
@@ -235,15 +255,33 @@
     }
 
     closeBookModal() {
+      // Stop all sounds & speech when book is closed
       if (window.WARISARA_STORY_AUDIO) {
-        window.WARISARA_STORY_AUDIO.playBookClose();
         window.WARISARA_STORY_AUDIO.stopSpeaking();
+        window.WARISARA_STORY_AUDIO.stopAmbience();
+        window.WARISARA_STORY_AUDIO.playBookClose();
       }
+
+      // Reset UI state
+      if (this.btnNarrate) {
+        this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
+        this.btnNarrate.classList.add('bg-white/10', 'text-surface');
+      }
+      if (this.btnAmbience) {
+        this.btnAmbience.classList.remove('bg-brass-400', 'text-ink');
+        this.btnAmbience.classList.add('bg-white/10', 'text-surface');
+        this.btnAmbience.innerHTML = `
+          <span class="material-symbols-outlined text-sm">music_note</span>
+          <span class="text-xs font-semibold ml-1">Gamelan Sunyi</span>
+        `;
+      }
+
       if (this.bookModal) {
         this.bookModal.classList.remove('active');
         document.body.style.overflow = '';
       }
       this.activeStory = null;
+      this.currentPageIdx = 0;
     }
 
     turnPage(delta) {
