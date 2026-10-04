@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cerita yang Diwariskan — WARISARA</title>
+  <title>Cerita yang Diwariskan — Lembaran Pusaka Lisan Nusantara | WARISARA</title>
   <meta name="description"
-    content="Tradisi lisan, mitologi Nusantara, legenda rakyat, dan petuah leluhur yang dituturkan turun-temurun menjaga keselarasan kosmos peradaban Indonesia." />
+    content="Jelajahi kisah lisan adiluhung, asal-usul kain pusaka, dan falsafah hidup nenek moyang Nusantara dalam format buku cerita 3D interaktif bersuara." />
 
   <!-- Google Fonts: Fraunces & Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
   <!-- Google Material Symbols -->
@@ -52,7 +52,9 @@
             },
             brass: {
               600: '#A47E3F',
+              500: '#B8924F',
               400: '#C9A567',
+              300: '#D8BC88',
               200: '#E6D3A7'
             },
             border: '#D9CDB8',
@@ -73,11 +75,12 @@
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/story-book.css" />
   <link rel="stylesheet" href="../css/transitions.css" />
   <link rel="stylesheet" href="../css/responsive.css" />
 </head>
 
-<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="cerita">
+<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body overflow-x-hidden" data-page="cerita">
 
   <!-- =========================================================================
        01. MAIN NAVIGATION
@@ -185,238 +188,226 @@
   </div>
 
   <!-- =========================================================================
-       PAGE CONTENT MODULE
+       PAGE HERO & ATMOSPHERIC BANNER
        ========================================================================= -->
   <main id="page-content" class="page-module-main">
-  <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
-      <div class="absolute -top-32 -left-32 w-96 h-96 bg-terracotta-900/30 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <span class="glass-pill mb-4 inline-block">Halaman 09 • Tradisi Lisan Nusantara</span>
-      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
-        Cerita yang Diwariskan
-      </h1>
-      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light">
-        Jauh sebelum aksara dituliskan di atas lontar, kearifan bangsa ini mengalir lewat tutur lisan para tetua di pelataran rumah panggung dan balai adat.
-      </p>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       STORIES DIRECTORY GRID
-       ========================================================================= -->
-  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
-    <div class="max-w-6xl mx-auto">
-      <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered dynamically from window.STORIES_DATA -->
+    <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-24 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+      <!-- Ambient Glows -->
+      <div class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+        <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-terracotta-900/40 rounded-full blur-[100px]"></div>
+        <div class="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-brass-900/40 rounded-full blur-[100px]"></div>
       </div>
-    </div>
-  </section>
 
-  <!-- =========================================================================
-       STORY READING & NARRATOR MODAL
-       ========================================================================= -->
-  <div id="story-modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div id="story-detail-modal" class="modal-container max-w-2xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
-        <div>
-          <span id="modal-story-cat" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30 mb-2">KATEGORI</span>
-          <h2 id="modal-story-title" class="font-display text-2xl sm:text-3xl font-light text-surface">Judul Cerita</h2>
-          <p id="modal-story-origin" class="text-xs text-surface/60 mt-1">Asal Daerah</p>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <!-- Floating Heritage Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm">
+          <span class="material-symbols-outlined text-base">menu_book</span>
+          <span>Halaman 09 • Perpustakaan Tutur Lisan & Wastra 3D</span>
         </div>
-        <button id="modal-story-close" class="p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
-          <span class="material-symbols-outlined text-xl">close</span>
-        </button>
-      </div>
 
-      <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/80">
-        <!-- Spoken Wisdom Audio Player UI -->
-        <div class="p-4 rounded-2xl bg-brass-400/10 border border-brass-400/25 flex items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <button id="btn-play-story-audio" class="w-10 h-10 rounded-full bg-brass-500 hover:bg-brass-400 text-ink flex items-center justify-center transition-transform hover:scale-105">
-              <span id="story-audio-icon" class="material-symbols-outlined text-lg">volume_up</span>
-            </button>
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-surface tracking-tight leading-tight mb-6">
+          Cerita yang Diwariskan
+        </h1>
+        
+        <p class="text-base sm:text-lg lg:text-xl text-surface/80 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+          Buka lembaran pusaka buku cerita 3D interaktif. Dengarkan tutur lisan para tetua, hayati kelahiran kain suci, dan petik butiran falsafah hidup bangsa Indonesia.
+        </p>
+
+        <!-- Stats Counter Pill Bar -->
+        <div class="grid grid-cols-3 max-w-lg mx-auto p-3 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md text-center">
+          <div class="px-2 border-r border-white/10">
+            <span class="font-display text-xl sm:text-2xl font-bold text-brass-300 block">10 Kisah</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Pusaka Nusantara</span>
+          </div>
+          <div class="px-2 border-r border-white/10">
+            <span class="font-display text-xl sm:text-2xl font-bold text-terracotta-300 block">3D Tome</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Flip Realistis</span>
+          </div>
+          <div class="px-2">
+            <span class="font-display text-xl sm:text-2xl font-bold text-forest-300 block">Audio TTS</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Suara & Ambience</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         02. VIRTUAL HERITAGE BOOKSHELF (RAK BUKU NUSANTARA)
+         ========================================================================= -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 bg-[#161310] min-h-[75vh]">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Shelf Header & Interactive Filter Bar -->
+        <div class="bookshelf-stage p-6 sm:p-8 mb-10">
+          <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-white/10">
             <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400 block">Dengarkan Tutur Lisan</span>
-              <span id="story-quote-preview" class="text-xs text-surface/80 italic">"Kutipan petuah dari cerita ini"</span>
+              <span class="text-xs font-bold uppercase tracking-widest text-brass-400 block mb-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">library_books</span>
+                <span>Koleksi Lembaran Pusaka</span>
+              </span>
+              <h2 class="font-display text-2xl sm:text-3xl font-light text-surface">
+                Pilih Kitab Kisah untuk Dibuka
+              </h2>
+            </div>
+
+            <!-- Live Search & Bookmark Pill -->
+            <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+              <div class="relative flex-1 sm:w-72">
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/40 text-sm">search</span>
+                <input id="story-search-input" type="text" placeholder="Cari judul, daerah, mitos..."
+                       class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/15 text-xs text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+              </div>
+
+              <div id="badge-saved-stories-count" class="px-3.5 py-2.5 rounded-xl bg-brass-400/15 border border-brass-400/30 text-brass-300 text-xs font-semibold flex items-center gap-1.5 flex-shrink-0">
+                <span class="material-symbols-outlined text-sm">bookmarks</span>
+                <span>0 Disimpan</span>
+              </div>
             </div>
           </div>
-          <span id="story-audio-status" class="text-[11px] text-surface/40">Siap putar</span>
+
+          <!-- Category Theme Filters -->
+          <div class="flex items-center gap-2 overflow-x-auto pt-5 pb-2 studio-scroll">
+            <button data-theme="all" class="story-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brass-400 text-ink whitespace-nowrap transition-all shadow-sm">
+              Semua Kisah (10)
+            </button>
+            <button data-theme="batik" class="story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-surface/80 whitespace-nowrap transition-all">
+              Filosofi Batik & Keraton
+            </button>
+            <button data-theme="maritim" class="story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-surface/80 whitespace-nowrap transition-all">
+              Mitologi Maritim
+            </button>
+            <button data-theme="songket" class="story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-surface/80 whitespace-nowrap transition-all">
+              Tenun Songket Emas
+            </button>
+            <button data-theme="tenun" class="story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-surface/80 whitespace-nowrap transition-all">
+              Tenun Ikat Sakral
+            </button>
+            <button data-theme="alam" class="story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-surface/80 whitespace-nowrap transition-all">
+              Falsafah Hidup & Alam
+            </button>
+          </div>
         </div>
 
-        <div>
-          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-2">Narasi Tradisi</h4>
-          <p id="modal-story-narrative" class="font-light leading-relaxed text-surface/90 text-sm sm:text-base"></p>
+        <!-- 3D Book Cards Grid -->
+        <div id="stories-bookshelf-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Rendered dynamically by story-book.js -->
         </div>
 
-        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Pesan Moral & Kearifan Hidup</span>
-          <p id="modal-story-moral" class="font-display italic text-base text-surface font-light leading-relaxed"></p>
-        </div>
+        <!-- Wooden Shelf Bottom Base Ledge -->
+        <div class="book-shelf-ledge w-full mb-12"></div>
+
       </div>
+    </section>
 
-      <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
-        <a href="pass-it-on.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
-          <span>Teruskan Estafet Warisan</span>
-          <span class="material-symbols-outlined text-sm">north_east</span>
-        </a>
-        <button id="modal-story-dismiss" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
+    <!-- =========================================================================
+         03. INTERACTIVE 3D STORYBOOK MODAL READER
+         ========================================================================= -->
+    <div id="interactive-book-modal" class="modal-overlay" role="dialog" aria-modal="true">
+      
+      <div class="book-stage-container">
+        
+        <!-- Floating Reader Top Bar Controls -->
+        <div class="flex items-center justify-between gap-3 p-3 px-4 rounded-2xl bg-[#1A1612]/90 border border-brass-400/30 backdrop-blur-md mb-4 shadow-2xl">
+          
+          <!-- Left Status & Page Index -->
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brass-400"></span>
+            <span id="tome-page-indicator" class="text-xs font-semibold text-brass-300">Sampul Depan</span>
+          </div>
+
+          <!-- Center Audio / Ambience / Font Controls -->
+          <div class="flex items-center gap-2">
+            
+            <!-- Voice Narrator TTS -->
+            <button id="btn-tome-narrate" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-brass-400 hover:text-ink text-surface text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Dengarkan Suara Narator">
+              <span class="material-symbols-outlined text-sm">volume_up</span>
+              <span class="hidden sm:inline">Narator Suara</span>
+            </button>
+
+            <!-- Meditative Ambient Gamelan Synthesizer -->
+            <button id="btn-tome-ambience" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Putar Musik Gamelan Meditasi">
+              <span class="material-symbols-outlined text-sm">music_note</span>
+              <span class="hidden sm:inline">Gamelan Sunyi</span>
+            </button>
+
+            <!-- Bookmark / Save -->
+            <button id="btn-tome-bookmark" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold flex items-center gap-1 transition-colors" title="Simpan ke Penanda Baca">
+              <span class="material-symbols-outlined text-sm">bookmark_border</span>
+              <span class="hidden sm:inline">Simpan</span>
+            </button>
+
+            <!-- Font Adjusters -->
+            <div class="hidden sm:flex items-center gap-1 pl-2 border-l border-white/10">
+              <button id="btn-font-minus" class="p-1 rounded bg-white/5 hover:bg-white/15 text-xs text-surface" title="Kecilkan Teks">A-</button>
+              <button id="btn-font-plus" class="p-1 rounded bg-white/5 hover:bg-white/15 text-xs text-surface" title="Besarkan Teks">A+</button>
+            </div>
+
+            <!-- Fullscreen -->
+            <button id="btn-toggle-fullscreen" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-surface text-xs" title="Layar Penuh">
+              <span class="material-symbols-outlined text-sm">fullscreen</span>
+            </button>
+          </div>
+
+          <!-- Close Button -->
+          <button id="btn-close-book-modal" class="w-8 h-8 rounded-full bg-white/10 hover:bg-red-500/20 text-surface hover:text-red-300 flex items-center justify-center transition-colors" aria-label="Tutup Buku">
+            <span class="material-symbols-outlined text-base">close</span>
+          </button>
+        </div>
+
+        <!-- 3D Book Dual-Spread Container -->
+        <div id="heritage-tome-container" class="heritage-tome shadow-2xl">
+          <div class="heritage-tome-spine"></div>
+          <!-- Filled dynamically by story-book.js -->
+        </div>
+
+        <!-- Floating Bottom Page Navigation Controls -->
+        <div class="flex items-center justify-between mt-4 px-2">
+          <button id="btn-tome-prev" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-brass-400 hover:text-ink text-surface text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all disabled:opacity-30 disabled:pointer-events-none">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Halaman Sebelumnya</span>
+          </button>
+
+          <span class="text-xs text-surface/50 font-mono hidden sm:inline">Gunakan Tombol Panah Kiri / Kanan Keyboard</span>
+
+          <button id="btn-tome-next" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brass-600 via-brass-500 to-brass-600 text-ink text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg hover:scale-105 disabled:opacity-30 disabled:pointer-events-none">
+            <span>Halaman Berikutnya</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
       </div>
     </div>
-  </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
-      <div class="flex items-center gap-6">
-        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
-        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="py-10 bg-[#110F0D] text-surface/60 text-xs border-t border-border-dark px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold text-brass-300">W</span>
+        <div>
+          <div class="font-bold text-surface">WARISARA — Cerita yang Diwariskan</div>
+          <div class="text-[11px] text-surface/40">Menjaga Tutur Lisan & Falsafah Wastra Nusantara</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 text-xs">
+        <a href="../index.html" class="hover:text-brass-300 transition-colors">Peta Beranda</a>
+        <a href="creative-lab.html" class="hover:text-brass-300 transition-colors">Creative Lab</a>
+        <a href="pass-it-on.html" class="hover:text-brass-300 transition-colors">Pass It On</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Core Scripts -->
   <script src="../data/stories.js"></script>
   <script src="../js/utils/helpers.js"></script>
+  <script src="../js/utils/story-audio.js"></script>
+  <script src="../js/sections/story-book.js"></script>
   <script src="../js/utils/page-transition.js"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
   <script src="../js/components/navbar.js"></script>
-  <script>
-    function initCeritaPage() {
-      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
-
-      const gridEl = document.getElementById("stories-grid");
-      const modalOverlay = document.getElementById("story-modal-overlay");
-      const modalClose = document.getElementById("modal-story-close");
-      const modalDismiss = document.getElementById("modal-story-dismiss");
-      const playBtn = document.getElementById("btn-play-story-audio");
-      const audioStatus = document.getElementById("story-audio-status");
-      const audioIcon = document.getElementById("story-audio-icon");
-
-      let currentStoryQuote = "";
-
-      const stories = window.STORIES_DATA || [];
-
-      function renderStories() {
-        gridEl.innerHTML = stories.map((s) => `
-          <div class="glass-card p-6 flex flex-col justify-between group hover:border-terracotta-400/50 transition-all cursor-pointer hover:-translate-y-1 duration-300"
-               data-story-id="${s.id}">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/15 text-terracotta-300 border border-terracotta-500/25">
-                  ${s.category}
-                </span>
-                <span class="text-[11px] text-surface/50 font-mono">${s.origin}</span>
-              </div>
-              <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-terracotta-300 transition-colors mb-2">
-                ${s.title}
-              </h3>
-              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 line-clamp-3">
-                ${s.summary}
-              </p>
-            </div>
-            
-            <div>
-              <div class="pt-3 border-t border-white/10 mb-4">
-                <span class="text-[10px] uppercase tracking-wider text-surface/50 block mb-1">Petuah Nilai</span>
-                <p class="text-xs text-surface/90 italic line-clamp-1">"${s.moral}"</p>
-              </div>
-              <div class="flex items-center justify-between text-xs text-terracotta-300 font-semibold uppercase tracking-wider">
-                <span>Baca Tutur Lisan</span>
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </div>
-        `).join("");
-
-        gridEl.querySelectorAll("[data-story-id]").forEach((card) => {
-          card.addEventListener("click", () => {
-            const id = card.dataset.storyId;
-            const item = stories.find((s) => s.id === id);
-            if (item) openModal(item);
-          });
-        });
-      }
-
-      function openModal(s) {
-        document.getElementById("modal-story-title").textContent = s.title;
-        document.getElementById("modal-story-cat").textContent = s.category;
-        document.getElementById("modal-story-origin").textContent = s.origin;
-        document.getElementById("modal-story-narrative").textContent = s.narrative;
-        document.getElementById("modal-story-moral").textContent = `"${s.moral}"`;
-
-        currentStoryQuote = s.audioQuote || s.moral;
-        document.getElementById("story-quote-preview").textContent = `"${currentStoryQuote}"`;
-        audioStatus.textContent = "Siap putar";
-        audioIcon.textContent = "volume_up";
-
-        modalOverlay.classList.remove("hidden");
-        modalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-        modalOverlay.classList.remove("active");
-        modalOverlay.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-
-      if (modalClose) modalClose.addEventListener("click", closeModal);
-      if (modalDismiss) modalDismiss.addEventListener("click", closeModal);
-      if (modalOverlay) {
-        modalOverlay.addEventListener("click", (e) => {
-          if (e.target === modalOverlay) closeModal();
-        });
-      }
-
-      if (playBtn) {
-        playBtn.addEventListener("click", () => {
-          if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(currentStoryQuote);
-            utterance.lang = "id-ID";
-            utterance.rate = 0.92;
-            utterance.pitch = 0.95;
-
-            utterance.onstart = () => {
-              audioStatus.textContent = "Memutar tutur lisan...";
-              audioIcon.textContent = "graphic_eq";
-            };
-
-            utterance.onend = () => {
-              audioStatus.textContent = "Selesai";
-              audioIcon.textContent = "volume_up";
-            };
-
-            utterance.onerror = () => {
-              audioStatus.textContent = "Audio selesai";
-              audioIcon.textContent = "volume_up";
-            };
-
-            window.speechSynthesis.speak(utterance);
-          } else {
-            audioStatus.textContent = "Audio aktif";
-          }
-        });
-      }
-
-      renderStories();
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initCeritaPage);
-    } else {
-      initCeritaPage();
-    }
-    window.initCeritaPage = initCeritaPage;
-  </script>
 </body>
 
 </html>
