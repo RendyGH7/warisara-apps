@@ -438,53 +438,65 @@
 
       this.bookContainer.innerHTML = `
         <div class="tome-spread">
-          <!-- Left Page: Illustration & Subtitle -->
+          <!-- Left Page: Dedicated Scene Illustration & Subtitle -->
           <div class="tome-page-left flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400">${story.title}</span>
-                <span class="text-[10px] text-surface/50 font-mono">Babak ${pageData.pageNumber} / ${story.pages.length}</span>
+              <div class="page-running-header">
+                <span>${story.title}</span>
+                <span>${story.category}</span>
               </div>
 
-              <!-- Illustration -->
-              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden antique-frame mb-3 shadow-xl">
+              <!-- Dedicated Scene-Specific Illustration -->
+              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden antique-frame my-2 shadow-xl">
                 <div class="antique-frame-inner w-full h-full">
                   <img src="${pageData.image || story.coverImage}" alt="${pageData.sectionTitle}" class="w-full h-full object-cover" />
                 </div>
               </div>
 
-              <p class="text-[11px] text-surface/60 italic leading-relaxed text-center px-2">
+              <p class="text-xs text-[#5C4A3A] italic leading-relaxed text-center px-2 mt-2 font-light">
                 ${pageData.imageCaption || ''}
               </p>
             </div>
 
-            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-surface/50">
-              <span>WARISARA Pusaka Digital</span>
-              <span>Hlm. ${pageData.pageNumber * 2 - 1}</span>
+            <!-- Left Page Classic Book Folio -->
+            <div class="page-classic-folio">
+              — ${pageData.pageNumber * 2 - 1} —
             </div>
           </div>
 
           <!-- Right Page: Parchment Narrative Text -->
           <div class="tome-page-right flex flex-col justify-between">
-            <div id="story-narrative-text-box" style="font-size: ${this.fontSize}px; line-height: 1.75;">
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-[#2C2117] mb-4 pb-2 border-b border-[#D9CDB8]">
-                ${pageData.sectionTitle}
-              </h3>
+            <div>
+              <div class="page-running-header">
+                <span>Babak ${pageData.pageNumber} dari ${story.pages.length}</span>
+                <span>Pusaka Lisan</span>
+              </div>
 
-              <div class="text-[#2C241E] font-light text-justify leading-relaxed">
-                <span class="drop-cap">${firstLetter}</span>${textRemaining}
+              <div id="story-narrative-text-box" style="font-size: ${this.fontSize}px; line-height: 1.75;">
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-[#2A1F17] mb-3 pb-2 border-b border-[#D6C4AD] tracking-tight">
+                  ${pageData.sectionTitle}
+                </h3>
+
+                <div class="text-[#2C241E] font-normal text-justify leading-relaxed">
+                  <span class="drop-cap">${firstLetter}</span>${textRemaining}
+                </div>
               </div>
             </div>
 
-            <!-- Page Bottom Folio & Actions -->
-            <div class="pt-4 border-t border-[#D9CDB8] flex items-center justify-between text-xs text-[#6B5A4B]">
-              <div class="flex items-center gap-2">
+            <!-- Page Bottom Actions & Folio -->
+            <div>
+              <div class="pt-3 pb-2 flex items-center justify-between text-xs text-[#6B5A4B]">
                 <button id="btn-read-page-aloud" class="px-3 py-1.5 rounded-lg bg-[#2C2117]/10 hover:bg-[#2C2117]/20 text-[#2C2117] font-semibold text-xs flex items-center gap-1.5 transition-colors">
                   <span class="material-symbols-outlined text-sm">record_voice_over</span>
                   <span>Dengarkan Halaman Ini</span>
                 </button>
+                <span class="text-[11px] text-[#6B5A4B] font-mono">WARISARA © 2026</span>
               </div>
-              <span class="font-mono">Hlm. ${pageData.pageNumber * 2}</span>
+
+              <!-- Right Page Classic Book Folio -->
+              <div class="page-classic-folio">
+                — ${pageData.pageNumber * 2} —
+              </div>
             </div>
 
             <!-- Interactive Corner Page Curl Button -->

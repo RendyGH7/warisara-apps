@@ -1,30 +1,26 @@
 /* ==========================================================================
-   WARISARA — ULTRA-REALISTIC 3D HERITAGE STORYBOOK & BOOKSHELF STYLES
+   WARISARA — PHYSICAL OPEN 3D BOOK & HERITAGE BOOKSHELF STYLES
+   (Engineered to match authentic physical hardcover open book anatomy)
    ========================================================================== */
 
-/* ── 1. Virtual Bookshelf & 3D Book Cover Volume ── */
+/* ── 1. Virtual Bookshelf & 3D Standing Volume ── */
 .bookshelf-stage {
   position: relative;
-  background: radial-gradient(ellipse at 50% 10%, rgba(201, 165, 103, 0.12) 0%, rgba(25, 20, 16, 0.98) 60%, #0E0C0A 100%);
+  background: radial-gradient(ellipse at 50% 15%, rgba(201, 165, 103, 0.12) 0%, rgba(22, 18, 14, 0.98) 65%, #0B0907 100%);
   border-radius: 2rem;
   border: 1px solid rgba(201, 165, 103, 0.25);
-  box-shadow: inset 0 2px 25px rgba(0, 0, 0, 0.9), 0 30px 70px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 25px rgba(0, 0, 0, 0.9), 0 30px 70px rgba(0, 0, 0, 0.85);
 }
 
 .book-shelf-ledge {
   position: relative;
   height: 24px;
-  background: linear-gradient(180deg, 
-    #4A3B2A 0%, 
-    #322518 30%, 
-    #1F160E 70%, 
-    #120D08 100%
-  );
+  background: linear-gradient(180deg, #4A3B2A 0%, #302316 35%, #1C140D 75%, #100B07 100%);
   border-top: 2px solid #C9A567;
   box-shadow: 
-    0 16px 30px rgba(0, 0, 0, 0.95), 
-    inset 0 1px 3px rgba(255, 255, 255, 0.25),
-    inset 0 -2px 5px rgba(0, 0, 0, 0.8);
+    0 18px 35px rgba(0, 0, 0, 0.95), 
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.85);
   border-radius: 6px;
 }
 
@@ -43,40 +39,19 @@
   transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.45s ease;
   transform: rotateY(-14deg) rotateX(3deg);
   box-shadow: 
-    -12px 16px 30px rgba(0, 0, 0, 0.85), 
+    -12px 18px 32px rgba(0, 0, 0, 0.9), 
     -2px 2px 6px rgba(0, 0, 0, 0.6),
-    0 0 15px rgba(201, 165, 103, 0.1);
+    0 0 15px rgba(201, 165, 103, 0.12);
 }
 
 .book-3d-wrapper:hover .book-3d-card {
   transform: rotateY(-2deg) rotateX(0deg) translateY(-16px) scale(1.04);
   box-shadow: 
-    -20px 30px 50px rgba(0, 0, 0, 0.9), 
-    0 0 35px rgba(201, 165, 103, 0.4),
-    0 0 10px rgba(255, 215, 0, 0.2);
+    -22px 32px 55px rgba(0, 0, 0, 0.95), 
+    0 0 35px rgba(201, 165, 103, 0.45),
+    0 0 12px rgba(255, 215, 0, 0.25);
 }
 
-/* Realistic Leather Texture & Embossed Border for Card */
-.book-cover-leather {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px 14px 14px 4px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-}
-
-.book-cover-leather::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px dashed rgba(201, 165, 103, 0.4);
-  border-radius: 2px 10px 10px 2px;
-  pointer-events: none;
-  z-index: 8;
-}
-
-/* 3D Book Thickness Edge (Paper Stack on the right) */
 .book-card-thickness {
   position: absolute;
   top: 4px;
@@ -85,10 +60,10 @@
   width: 10px;
   background: repeating-linear-gradient(
     180deg,
-    #F4EDE1 0px,
+    #FAF7F0 0px,
     #E8DCBE 2px,
     #D0C09E 3px,
-    #F4EDE1 4px
+    #FAF7F0 4px
   );
   border-radius: 0 4px 4px 0;
   box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.4), 3px 2px 8px rgba(0, 0, 0, 0.6);
@@ -97,7 +72,6 @@
   pointer-events: none;
 }
 
-/* Spine Visual Texture */
 .book-spine-strip {
   position: absolute;
   top: 0;
@@ -106,16 +80,15 @@
   width: 22px;
   background: linear-gradient(90deg, 
     rgba(0, 0, 0, 0.7) 0%, 
-    rgba(255, 255, 255, 0.18) 25%, 
+    rgba(255, 255, 255, 0.2) 25%, 
     rgba(0, 0, 0, 0.2) 60%, 
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 0.65) 100%
   );
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 4px 0 0 4px;
   z-index: 10;
 }
 
-/* Ribbon Bookmark */
 .book-ribbon {
   position: absolute;
   bottom: -22px;
@@ -133,13 +106,13 @@
   transform: translateY(6px);
 }
 
-/* ── 2. Fullscreen Realistic Interactive 3D Tome Reader Modal ── */
+/* ── 2. Fullscreen Physical Open Book 3D Modal ── */
 #interactive-book-modal {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: radial-gradient(circle at center, rgba(20, 16, 12, 0.96) 0%, rgba(8, 6, 5, 0.99) 100%);
+  background: radial-gradient(circle at center, rgba(16, 13, 10, 0.97) 0%, rgba(6, 5, 4, 0.99) 100%);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   overflow-y: auto;
@@ -155,169 +128,173 @@
   opacity: 1 !important;
 }
 
+/* Tabletop Presentation Stage */
 .book-stage-container {
   position: relative;
   width: 100%;
-  max-width: 1160px;
-  perspective: 2800px;
+  max-width: 1180px;
+  perspective: 3200px;
   margin: auto;
 }
 
-/* Realistic 3D Tome Hardcover Base (Extends beyond pages) */
-.heritage-tome-casing {
+/* ── 3. AUTHENTIC PHYSICAL HARDCOVER OPEN BOOK CASING (Persis Foto Fisik) ── */
+.open-physical-book-casing {
   position: relative;
   width: 100%;
-  padding: 12px 14px;
-  background: linear-gradient(135deg, #1C1713 0%, #120E0B 50%, #0A0806 100%);
-  border-radius: 1.5rem;
-  border: 2px solid #C9A567;
+  padding: 14px 22px 24px 22px;
+  background: linear-gradient(180deg, #18130F 0%, #0E0B08 60%, #050403 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(201, 165, 103, 0.35);
   box-shadow: 
-    0 40px 100px rgba(0, 0, 0, 0.98),
-    0 0 60px rgba(201, 165, 103, 0.2),
-    inset 0 2px 10px rgba(255, 255, 255, 0.15),
-    inset 0 -3px 15px rgba(0, 0, 0, 0.9);
+    0 50px 120px rgba(0, 0, 0, 0.98),
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    0 0 70px rgba(201, 165, 103, 0.15);
+  transform: rotateX(5deg);
+  transform-origin: center bottom;
 }
 
-/* Brass Metallic Corner Protectors (4 Corners of Hardcover) */
-.corner-brass-tl,
-.corner-brass-tr,
-.corner-brass-bl,
-.corner-brass-br {
+/* Red Cloth Headband Visible at Top and Bottom Spine */
+.book-spine-headband-top {
   position: absolute;
-  width: 38px;
-  height: 38px;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #991B1B 0px, #DC2626 2px, #FEF2F2 3px, #991B1B 4px);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  z-index: 25;
+}
+
+.book-spine-headband-bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #991B1B 0px, #DC2626 2px, #FEF2F2 3px, #991B1B 4px);
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.7);
+  z-index: 25;
+}
+
+/* Hanging Red Satin Bookmark Ribbon */
+.book-satin-ribbon {
+  position: absolute;
+  top: 8px;
+  bottom: -28px;
+  left: 50%;
+  width: 14px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #991B1B 0%, #B91C1C 40%, #7F1D1D 80%, #C9A567 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
+  box-shadow: 
+    4px 6px 14px rgba(0, 0, 0, 0.75),
+    -2px 3px 8px rgba(0, 0, 0, 0.5);
+  z-index: 38;
   pointer-events: none;
-  z-index: 35;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
-.corner-brass-tl {
-  top: 4px;
-  left: 4px;
-  border-top: 3px solid #E5A93C;
-  border-left: 3px solid #E5A93C;
-  border-radius: 1.2rem 0 0 0;
-  box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(255, 235, 150, 0.4);
+/* ── 4. THICK STACKED PAPER BLOCK EDGES (Sisi Tumpukan Ratusan Lembar Kertas) ── */
+/* Left Page Ream Block (Tebal Kertas Kiri) */
+.page-block-edge-left {
+  position: absolute;
+  top: 10px;
+  bottom: 12px;
+  left: -14px;
+  width: 14px;
+  background: repeating-linear-gradient(
+    90deg,
+    #D0C09E 0px,
+    #F5EDE0 1px,
+    #E8DCBE 2px,
+    #BBA77E 3px
+  );
+  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.5), -4px 6px 12px rgba(0, 0, 0, 0.7);
+  border-radius: 6px 0 0 6px;
+  transform: rotateY(-35deg);
+  transform-origin: right center;
+  pointer-events: none;
+  z-index: 12;
 }
 
-.corner-brass-tr {
-  top: 4px;
-  right: 4px;
-  border-top: 3px solid #E5A93C;
-  border-right: 3px solid #E5A93C;
-  border-radius: 0 1.2rem 0 0;
-  box-shadow: 2px -2px 6px rgba(0, 0, 0, 0.5), inset -2px 2px 4px rgba(255, 235, 150, 0.4);
+/* Right Page Ream Block (Tebal Kertas Kanan) */
+.page-block-edge-right {
+  position: absolute;
+  top: 10px;
+  bottom: 12px;
+  right: -14px;
+  width: 14px;
+  background: repeating-linear-gradient(
+    90deg,
+    #BBA77E 0px,
+    #E8DCBE 1px,
+    #F5EDE0 2px,
+    #D0C09E 3px
+  );
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.5), 4px 6px 12px rgba(0, 0, 0, 0.7);
+  border-radius: 0 6px 6px 0;
+  transform: rotateY(35deg);
+  transform-origin: left center;
+  pointer-events: none;
+  z-index: 12;
 }
 
-.corner-brass-bl {
-  bottom: 4px;
-  left: 4px;
-  border-bottom: 3px solid #E5A93C;
-  border-left: 3px solid #E5A93C;
-  border-radius: 0 0 0 1.2rem;
-  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.5), inset 2px -2px 4px rgba(255, 235, 150, 0.4);
+/* Bottom Stack Edge */
+.page-block-edge-bottom {
+  position: absolute;
+  bottom: -8px;
+  left: 10px;
+  right: 10px;
+  height: 8px;
+  background: repeating-linear-gradient(
+    180deg,
+    #E8DCBE 0px,
+    #FAF7F0 1px,
+    #D0C09E 2px,
+    #BBA77E 3px
+  );
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.75);
+  border-radius: 0 0 6px 6px;
+  pointer-events: none;
+  z-index: 10;
 }
 
-.corner-brass-br {
-  bottom: 4px;
-  right: 4px;
-  border-bottom: 3px solid #E5A93C;
-  border-right: 3px solid #E5A93C;
-  border-radius: 0 0 1.2rem 0;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 235, 150, 0.4);
-}
-
-/* Interior Tome Main Spread Container */
+/* ── 5. REALISTIC OPEN BOOK BODY & PARCHMENT SHADING ── */
 .heritage-tome {
   position: relative;
   width: 100%;
   min-height: 590px;
   display: flex;
-  background: #110E0B;
-  border-radius: 0.85rem;
+  background: #F6F1E6;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 
-    0 15px 40px rgba(0, 0, 0, 0.8),
-    inset 0 0 20px rgba(0, 0, 0, 0.9);
+    0 20px 45px rgba(0, 0, 0, 0.85),
+    inset 0 0 30px rgba(184, 150, 100, 0.15);
 }
 
-/* 3D Stacked Page Trim Edges on Left & Right Flanks */
-.heritage-tome::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 0;
-  width: 12px;
-  background: repeating-linear-gradient(
-    90deg,
-    #E8DCBE 0px,
-    #D0C09E 2px,
-    #F5EDE0 3px,
-    #BBA77E 4px
-  );
-  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.6);
-  z-index: 15;
-  pointer-events: none;
-}
-
-.heritage-tome::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  right: 0;
-  width: 12px;
-  background: repeating-linear-gradient(
-    90deg,
-    #BBA77E 0px,
-    #F5EDE0 1px,
-    #D0C09E 2px,
-    #E8DCBE 4px
-  );
-  box-shadow: inset 2px 0 5px rgba(0, 0, 0, 0.6);
-  z-index: 15;
-  pointer-events: none;
-}
-
-/* Center Binding Gutter Valley (The Deep Crease of a Real Book) */
+/* Deep Center Spine Crease Valley */
 .heritage-tome-spine {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 48px;
+  width: 52px;
   transform: translateX(-50%);
   background: linear-gradient(90deg, 
-    rgba(0, 0, 0, 0.65) 0%, 
-    rgba(0, 0, 0, 0.25) 30%, 
-    rgba(255, 255, 255, 0.05) 50%, 
-    rgba(0, 0, 0, 0.25) 70%, 
-    rgba(0, 0, 0, 0.65) 100%
+    rgba(0, 0, 0, 0.55) 0%, 
+    rgba(0, 0, 0, 0.22) 30%, 
+    rgba(255, 255, 255, 0.15) 50%, 
+    rgba(0, 0, 0, 0.22) 70%, 
+    rgba(0, 0, 0, 0.55) 100%
   );
   box-shadow: 
-    inset 0 0 12px rgba(0, 0, 0, 0.9),
-    0 0 25px rgba(0, 0, 0, 0.7);
+    inset 0 0 15px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(0, 0, 0, 0.6);
   z-index: 30;
-  pointer-events: none;
-}
-
-/* Physical Silk Bookmark Ribbon draped in center */
-.spine-silk-ribbon {
-  position: absolute;
-  top: -10px;
-  bottom: -25px;
-  left: 50%;
-  width: 12px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #A8512F 0%, #B83A14 50%, #C9A567 100%);
-  border-radius: 2px 2px 0 0;
-  box-shadow: 
-    3px 4px 10px rgba(0, 0, 0, 0.65),
-    -2px 2px 6px rgba(0, 0, 0, 0.4);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 92%, 0 100%);
-  z-index: 32;
   pointer-events: none;
 }
 
@@ -328,60 +305,77 @@
   min-height: 590px;
 }
 
-/* ── 3. Realistic Page Curvature & Parchment Shading ── */
-/* Left Page: Natural curve arching from spine with antique dark theme */
+/* Left Page (Curving out from spine, Cream/Ivory Antique Paper) */
 .tome-page-left {
   flex: 1;
   background: 
-    radial-gradient(ellipse at 95% 50%, rgba(0, 0, 0, 0.55) 0%, transparent 60%),
-    linear-gradient(90deg, #120F0D 0%, #1A1612 12%, #14110E 88%, #0C0A08 100%);
-  padding: 2.75rem 2.5rem 2.5rem 2.75rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  box-shadow: inset -25px 0 35px rgba(0, 0, 0, 0.65);
-}
-
-/* Right Page: Authentic Aged Parchment Paper with natural light gradient */
-.tome-page-right {
-  flex: 1;
-  background: 
-    radial-gradient(ellipse at 5% 50%, rgba(0, 0, 0, 0.25) 0%, transparent 55%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 70%),
-    linear-gradient(90deg, #E6DAC4 0%, #F5EDE0 12%, #FBF8F2 70%, #ECE3D2 100%);
+    radial-gradient(ellipse at 95% 50%, rgba(0, 0, 0, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 65%),
+    linear-gradient(90deg, #ECE2D0 0%, #F8F4EA 18%, #FAF7F0 75%, #EFE5D4 100%);
   color: #1A1612;
-  padding: 2.75rem 2.75rem 2.5rem 2.5rem;
+  padding: 2.75rem 2.5rem 2.25rem 2.75rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   box-shadow: 
-    inset 25px 0 35px rgba(0, 0, 0, 0.18),
-    inset -5px 0 15px rgba(0, 0, 0, 0.06);
+    inset -25px 0 35px rgba(0, 0, 0, 0.15),
+    inset 8px 0 15px rgba(255, 255, 255, 0.4);
 }
 
-/* Subtle Deckled Paper Margin Guideline */
-.tome-page-right::before {
-  content: '';
-  position: absolute;
-  top: 2rem;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
-  border: 1px solid rgba(138, 88, 34, 0.15);
-  border-radius: 4px;
-  pointer-events: none;
+/* Right Page (Curving out from spine, Cream/Ivory Antique Paper) */
+.tome-page-right {
+  flex: 1;
+  background: 
+    radial-gradient(ellipse at 5% 50%, rgba(0, 0, 0, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 65%),
+    linear-gradient(90deg, #EFE5D4 0%, #FAF7F0 25%, #F8F4EA 82%, #ECE2D0 100%);
+  color: #1A1612;
+  padding: 2.75rem 2.75rem 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 
+    inset 25px 0 35px rgba(0, 0, 0, 0.15),
+    inset -8px 0 15px rgba(255, 255, 255, 0.4);
 }
 
-/* ── 4. Interactive Page Corner Curl on Hover ── */
+/* Top Running Header Guideline in Physical Book */
+.page-running-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(138, 88, 34, 0.2);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #8B5710;
+}
+
+/* Classic Book Centered Folio (Page Number Format e.g. — 324 —) */
+.page-classic-folio {
+  text-align: center;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6B523A;
+  letter-spacing: 0.1em;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(138, 88, 34, 0.18);
+}
+
+/* ── 6. Interactive Page Corner Curl ── */
 .page-corner-curl-btn {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   z-index: 25;
   transition: all 0.3s ease;
@@ -399,16 +393,16 @@
   border-color: transparent transparent #C9A567 transparent;
   box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .tome-page-right:hover .page-corner-curl-btn::before {
-  border-width: 0 0 45px 45px;
+  border-width: 0 0 46px 46px;
   border-color: transparent transparent #E5A93C transparent;
   opacity: 1;
 }
 
-/* ── 5. Illuminated Initial Drop Cap ── */
+/* ── 7. Illuminated Drop Cap & Antique Illustration Framing ── */
 .drop-cap {
   float: left;
   font-family: 'Fraunces', serif;
@@ -416,7 +410,7 @@
   line-height: 0.8;
   font-weight: 700;
   margin-right: 0.85rem;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
   color: #8B5710;
   background: linear-gradient(135deg, #A47E3F 0%, #633C08 100%);
   -webkit-background-clip: text;
@@ -424,24 +418,23 @@
   filter: drop-shadow(1px 1px 1px rgba(201, 165, 103, 0.5));
 }
 
-/* Decorative Antique Borders */
 .antique-frame {
   position: relative;
-  padding: 6px;
-  background: linear-gradient(135deg, #E5A93C 0%, #8B5710 50%, #452402 100%);
-  border-radius: 1rem;
+  padding: 5px;
+  background: linear-gradient(135deg, #C9A567 0%, #8B5710 60%, #452402 100%);
+  border-radius: 0.85rem;
   box-shadow: 
-    0 12px 30px rgba(0, 0, 0, 0.75),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    0 10px 25px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .antique-frame-inner {
-  border-radius: 0.75rem;
+  border-radius: 0.65rem;
   overflow: hidden;
   background: #0E0C0A;
 }
 
-/* ── 6. Smooth 3D Page Turn Animation ── */
+/* ── 8. Smooth Page Turn Animation ── */
 .page-flip-anim-forward {
   animation: pageTurnForward 0.65s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
 }
@@ -457,7 +450,7 @@
     filter: brightness(1);
   }
   40% {
-    filter: brightness(0.68) contrast(1.1);
+    filter: brightness(0.72) contrast(1.1);
   }
   100% {
     transform-origin: left center;
@@ -470,7 +463,7 @@
   0% {
     transform-origin: right center;
     transform: rotateY(-180deg);
-    filter: brightness(0.68) contrast(1.1);
+    filter: brightness(0.72) contrast(1.1);
   }
   60% {
     filter: brightness(0.85);
@@ -482,7 +475,7 @@
   }
 }
 
-/* ── 7. Sound & Narrator Waveform Animation ── */
+/* Sound Wave Animation */
 .audio-bar {
   display: inline-block;
   width: 3px;
@@ -502,19 +495,23 @@
   50% { height: 18px; }
 }
 
-/* ── 8. Responsive Mobile Adjustment ── */
+/* Responsive Mobile Adjustment */
 @media (max-width: 860px) {
-  .heritage-tome-casing {
-    padding: 6px 8px;
+  .open-physical-book-casing {
+    padding: 8px 10px 14px 10px;
+    transform: none;
   }
   .tome-spread {
     flex-direction: column;
     min-height: auto;
   }
   .heritage-tome-spine,
-  .spine-silk-ribbon,
-  .heritage-tome::before,
-  .heritage-tome::after {
+  .book-satin-ribbon,
+  .book-spine-headband-top,
+  .book-spine-headband-bottom,
+  .page-block-edge-left,
+  .page-block-edge-right,
+  .page-block-edge-bottom {
     display: none;
   }
   .tome-page-left {
@@ -526,12 +523,5 @@
   .tome-page-right {
     padding: 1.5rem;
     box-shadow: none;
-  }
-  .corner-brass-tl,
-  .corner-brass-tr,
-  .corner-brass-bl,
-  .corner-brass-br {
-    width: 24px;
-    height: 24px;
   }
 }
