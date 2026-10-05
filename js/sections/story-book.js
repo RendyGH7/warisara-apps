@@ -426,34 +426,34 @@
       if (!this.activeStory) return '';
       const story = this.activeStory;
 
-      // 1. Front Cover Presentation Right Page
+      // 1. Front Cover Presentation Right Page (Harmonious Antique Manuscript Theme)
       if (pageIdx === 0) {
         return `
-          <div class="tome-page-right flex flex-col justify-between"
-               style="background: linear-gradient(145deg, #181410 0%, ${story.coverColor || '#231D18'} 60%, #0E0C0A 100%); color: #FBF8F2;">
-            
+          <div class="tome-page-right flex flex-col justify-between">
             <div class="text-center pt-2">
-              <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-brass-400 block mb-2">SERI TUTUR LISAN NUSANTARA</span>
-              <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-surface mb-2 leading-tight">
+              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] bg-[#8F6A18]/15 text-[#8F6A18] border border-[#8F6A18]/30 mb-2 font-semibold">
+                SERI TUTUR LISAN NUSANTARA
+              </span>
+              <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2A1F17] mb-1.5 leading-tight tracking-tight">
                 ${story.title}
               </h2>
-              <p class="text-xs text-brass-200/80 font-light italic mb-4">${story.subtitle || ''}</p>
+              <p class="text-xs text-[#6B5A4B] font-light italic mb-3">${story.subtitle || ''}</p>
             </div>
 
-            <!-- Central Artwork Box -->
-            <div class="w-full max-w-[380px] mx-auto aspect-[4/3] rounded-2xl overflow-hidden antique-frame my-2 shadow-2xl">
+            <!-- Central Artwork Box with Luxury Antique Gold Frame -->
+            <div class="w-full max-w-[380px] mx-auto aspect-[4/3] rounded-2xl overflow-hidden antique-frame my-1 shadow-xl">
               <div class="antique-frame-inner w-full h-full">
                 <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
               </div>
             </div>
 
             <!-- Open Tome Prompt -->
-            <div class="pt-4 border-t border-white/15 flex items-center justify-between">
+            <div class="pt-3 border-t border-[#8F6A18]/25 flex items-center justify-between text-xs">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-brass-400 animate-pulse"></span>
-                <span class="text-xs text-surface/70">Siap Dituturkan</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C59828] animate-pulse"></span>
+                <span class="text-xs text-[#5C4530] font-medium">Siap Dituturkan</span>
               </div>
-              <button id="btn-open-from-cover" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brass-600 via-brass-500 to-brass-600 text-ink font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
+              <button id="btn-open-from-cover" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:scale-105 transition-all">
                 <span>Buka Lembaran</span>
                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </button>
@@ -462,34 +462,32 @@
         `;
       }
 
-      // 2. Back Cover Epilogue Right Page
+      // 2. Back Cover Epilogue Right Page (Harmonious Antique Manuscript Theme)
       if (pageIdx > story.pages.length) {
         return `
-          <div class="tome-page-right flex flex-col justify-between"
-               style="background: linear-gradient(145deg, #181410 0%, ${story.coverColor || '#231D18'} 60%, #0E0C0A 100%); color: #FBF8F2;">
-            
-            <div class="text-center pt-8">
-              <div class="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-brass-400/50 flex items-center justify-center bg-brass-400/10 shadow-lg">
-                <span class="font-display text-2xl font-bold text-brass-300">W</span>
+          <div class="tome-page-right flex flex-col justify-between">
+            <div class="text-center pt-6">
+              <div class="w-16 h-16 rounded-full mx-auto mb-3 border-2 border-[#8F6A18]/40 flex items-center justify-center bg-[#8F6A18]/10 shadow-md">
+                <span class="font-display text-2xl font-bold text-[#8F6A18]">W</span>
               </div>
-              <h3 class="font-display text-2xl font-light text-surface mb-2">Estafet Telah Sampai di Tangan Anda</h3>
-              <p class="text-xs text-surface/70 max-w-sm mx-auto leading-relaxed">
+              <h3 class="font-display text-2xl font-bold text-[#2A1F17] mb-2">Estafet Telah Sampai di Tangan Anda</h3>
+              <p class="text-xs text-[#5C4530] max-w-sm mx-auto leading-relaxed">
                 Kisah ${story.title} kini menjadi bagian dari ingatan batin Anda. Bagikan dan lestarikan warisan peradaban bangsa.
               </p>
             </div>
 
-            <div class="space-y-3 max-w-xs mx-auto w-full">
-              <a href="pass-it-on.html" class="w-full py-3 px-4 rounded-xl bg-brass-500 hover:bg-brass-400 text-ink font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl transition-all">
+            <div class="space-y-2.5 max-w-xs mx-auto w-full">
+              <a href="pass-it-on.html" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all">
                 <span class="material-symbols-outlined text-sm">favorite</span>
                 <span>Tuliskan Pesan di Pass It On</span>
               </a>
-              <button id="btn-restart-book" class="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+              <button id="btn-restart-book" class="w-full py-2.5 px-4 rounded-xl bg-[#2A1F17]/10 hover:bg-[#2A1F17]/15 text-[#2A1F17] text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-sm">restart_alt</span>
                 <span>Baca Ulang dari Awal</span>
               </button>
             </div>
 
-            <div class="text-center pt-4 border-t border-white/15 text-[11px] text-surface/50">
+            <div class="text-center pt-3 border-t border-[#8F6A18]/25 text-[11px] text-[#6B5A4B]">
               © 2026 WARISARA — Menjaga Tutur Lisan Nusantara
             </div>
           </div>
@@ -731,7 +729,7 @@
         `;
       }
 
-      // Coordinate completion at 820ms (matches CSS keyframe duration)
+      // Coordinate completion at 820ms (matches cinematic GPU page-turn animation)
       setTimeout(() => {
         this.currentPageIdx = nextIdx;
         this.renderBookSpread();
@@ -740,7 +738,7 @@
         const casingEl = document.querySelector('.open-physical-book-casing');
         if (casingEl) {
           casingEl.classList.add('book-settle');
-          setTimeout(() => casingEl.classList.remove('book-settle'), 580);
+          setTimeout(() => casingEl.classList.remove('book-settle'), 550);
         }
 
         // Unlock controls
