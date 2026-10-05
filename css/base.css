@@ -169,11 +169,12 @@ textarea {
   visibility: visible;
 }
 
-/* Outer Ambient Lantern Glow / Halo (Feathered broad natural illumination) */
+/* Outer Ambient Lantern Glow / Halo (Feathered broad natural illumination)
+   Offset: top 15px, left 8px perfectly centers the illumination with the lantern flame */
 .warisara-lantern-halo {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 8px;
   width: 320px;
   height: 320px;
   transform: translate(-50%, -50%);
@@ -193,11 +194,11 @@ textarea {
   will-change: transform, width, height;
 }
 
-/* Inner Soft Core Glow (Smooth radiant light radiating from the cursor point) */
+/* Inner Soft Core Glow (Radiates directly from inside the lantern chamber) */
 .warisara-lantern-glow {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 8px;
   width: 110px;
   height: 110px;
   transform: translate(-50%, -50%);
