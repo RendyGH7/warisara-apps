@@ -432,65 +432,95 @@ html.book-modal-open {
    5. BOOK ANATOMY DETAILS
    ═══════════════════════════════════════════════════════════ */
 
-/* Headbands (Kapitalband — authentic antique leather/bronze cord nestled in spine notches) */
+/* Authentic Bookbinder Headbands (Kapitalband / Woven Silk Endbands)
+   Nestled neatly at spine notch — perfectly centered, slim, and elegant */
 .book-spine-headband-top {
   position: absolute;
-  top: 8px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 44px;
-  height: 10px;
-  background: radial-gradient(ellipse at 50% 100%, #4A2810 0%, #201005 85%);
-  border-radius: 5px 5px 0 0;
-  border: 1px solid rgba(201, 165, 103, 0.35);
+  width: 22px;
+  height: 8px;
+  border-radius: 4px 4px 1px 1px;
+
+  /* Authentic woven silk cord: alternating regal burgundy silk and antique gold thread */
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #6B121C 0px, #6B121C 2px,
+      #C9A567 2px, #C9A567 3.5px,
+      #2A060A 3.5px, #2A060A 4.5px
+    ),
+    linear-gradient(180deg, #501016 0%, #1A0406 100%);
+
+  /* Soft cylindrical luster and ambient depth without harsh cardboard borders */
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.75),
+    0 -2px 6px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(201, 165, 103, 0.25);
   border-bottom: none;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.85);
-  z-index: 25;
+  z-index: 20;
+  pointer-events: none;
 }
 
 .book-spine-headband-bottom {
   position: absolute;
-  bottom: 8px;
+  bottom: 13px;
   left: 50%;
   transform: translateX(-50%);
-  width: 44px;
-  height: 10px;
-  background: radial-gradient(ellipse at 50% 0%, #4A2810 0%, #201005 85%);
-  border-radius: 0 0 5px 5px;
-  border: 1px solid rgba(201, 165, 103, 0.35);
+  width: 22px;
+  height: 8px;
+  border-radius: 1px 1px 4px 4px;
+
+  /* Matching woven silk cord: alternating regal burgundy silk and antique gold thread */
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #6B121C 0px, #6B121C 2px,
+      #C9A567 2px, #C9A567 3.5px,
+      #2A060A 3.5px, #2A060A 4.5px
+    ),
+    linear-gradient(180deg, #1A0406 0%, #501016 100%);
+
+  box-shadow:
+    inset 0 -1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 1px 2px rgba(0, 0, 0, 0.75),
+    0 2px 6px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(201, 165, 103, 0.25);
   border-top: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
-  z-index: 25;
+  z-index: 20;
+  pointer-events: none;
 }
 
-/* Satin ribbon bookmark — Luxury silk ribbon hanging elegantly below the book bottom (never covers reading content) */
+/* Satin ribbon bookmark — Luxury silk ribbon hanging symmetrically from center spine */
 .book-satin-ribbon {
   position: absolute;
-  bottom: -46px;
-  left: calc(50% + 14px);
-  width: 22px;
-  height: 54px;
-  transform: rotate(2.5deg);
+  bottom: -48px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2.2deg);
   transform-origin: top center;
+  width: 20px;
+  height: 58px;
 
   /* Double-faced heavy satin with micro-weave ribs and center cylindrical luster sheen */
   background:
     repeating-linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.06) 0px,
-      rgba(0, 0, 0, 0.06) 1.5px,
+      rgba(0, 0, 0, 0.05) 0px,
+      rgba(0, 0, 0, 0.05) 1.5px,
       rgba(255, 255, 255, 0.06) 1.5px,
       rgba(255, 255, 255, 0.06) 3px
     ),
     linear-gradient(90deg,
       #35060A 0%,
-      #650E16 10%,
-      #951622 22%,
-      #C82231 38%,
+      #650E16 12%,
+      #951622 24%,
+      #C82231 40%,
       #F4586A 50%, /* Silk specular crest */
-      #C82231 62%,
-      #951622 78%,
-      #550C13 92%,
+      #C82231 60%,
+      #951622 76%,
+      #550C13 88%,
       #300508 100%
     );
 
@@ -503,13 +533,12 @@ html.book-modal-open {
 
   /* Contact and elevation shadow cast below page block */
   box-shadow:
-    2px 6px 14px rgba(0, 0, 0, 0.8),
-    -1.5px 3px 8px rgba(0, 0, 0, 0.45),
+    0 8px 18px rgba(0, 0, 0, 0.85),
     inset 2px 0 4px rgba(255, 255, 255, 0.25),
     inset -2px 0 4px rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(2px 8px 14px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
 
-  z-index: 35;
+  z-index: 18;
   pointer-events: none;
 }
 
