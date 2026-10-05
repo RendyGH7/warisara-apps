@@ -286,7 +286,7 @@
 
     turnPage(delta) {
       if (!this.activeStory) return;
-      const totalPages = this.activeStory.pages.length + 1; // 0: Cover, 1..N: Pages, totalPages: Back Cover
+      const totalPages = this.activeStory.pages.length + 1;
       const nextIdx = this.currentPageIdx + delta;
 
       if (nextIdx < 0 || nextIdx > totalPages) return;
@@ -296,20 +296,48 @@
         window.WARISARA_STORY_AUDIO.stopSpeaking();
       }
 
-      // Add flip animation
-      if (this.bookContainer) {
-        const animClass = delta > 0 ? 'page-flip-anim-forward' : 'page-flip-anim-backward';
-        this.bookContainer.classList.add(animClass);
-        setTimeout(() => {
-          this.currentPageIdx = nextIdx;
-          this.renderBookSpread();
-          this.bookContainer.classList.remove(animClass);
-        }, 320);
-      } else {
+      const FLIP_DURATION = 780; // ms — matches CSS animation duration
+      const tomeEl = this.bookContainer; // .heritage-tome
+      const casingEl = document.querySelector('.open-physical-book-casing');
+      const direction = delta > 0 ? 'forward' : 'backward';
+
+      // Inject the animated page leaf overlay
+      const leaf = document.createElement('div');
+      leaf.className = `page-flip-leaf ${direction}`;
+
+      // Inject the shadow sweep overlay
+      const shadow = document.createElement('div');
+      shadow.className = `page-flip-shadow ${direction}`;
+
+      if (tomeEl) {
+        tomeEl.appendChild(leaf);
+        tomeEl.appendChild(shadow);
+      }
+
+      // Add physical book wobble
+      if (casingEl) {
+        casingEl.classList.add('page-land');
+        setTimeout(() => casingEl.classList.remove('page-land'), 550);
+      }
+
+      // After animation completes, render new content
+      setTimeout(() => {
+        // Remove leaf & shadow
+        leaf.remove();
+        shadow.remove();
+
         this.currentPageIdx = nextIdx;
         this.renderBookSpread();
-      }
+
+        // Trigger page-appear animation on the new spread
+        const spread = tomeEl ? tomeEl.querySelector('.tome-spread') : null;
+        if (spread) {
+          spread.classList.add('page-appear');
+          setTimeout(() => spread.classList.remove('page-appear'), 450);
+        }
+      }, FLIP_DURATION);
     }
+
 
     renderBookSpread() {
       if (!this.activeStory || !this.bookContainer) return;
