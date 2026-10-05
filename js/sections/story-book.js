@@ -113,6 +113,29 @@
         });
       }
 
+      // Lock scroll & wheel when modal is open
+      if (this.bookModal) {
+        this.bookModal.addEventListener(
+          'wheel',
+          (e) => {
+            if (this.bookModal.classList.contains('active')) {
+              e.preventDefault();
+            }
+          },
+          { passive: false }
+        );
+
+        this.bookModal.addEventListener(
+          'touchmove',
+          (e) => {
+            if (this.bookModal.classList.contains('active') && window.innerWidth > 860) {
+              e.preventDefault();
+            }
+          },
+          { passive: false }
+        );
+      }
+
       // Keyboard Shortcuts (Arrow Left/Right, Escape)
       document.addEventListener('keydown', (e) => {
         if (!this.bookModal || !this.bookModal.classList.contains('active')) return;
@@ -249,7 +272,10 @@
       this.renderBookSpread();
       if (this.bookModal) {
         this.bookModal.classList.add('active');
+        document.documentElement.classList.add('book-modal-open');
+        document.body.classList.add('book-modal-open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
       }
       this.updateBookmarkButtonState();
     }
@@ -278,7 +304,10 @@
 
       if (this.bookModal) {
         this.bookModal.classList.remove('active');
+        document.documentElement.classList.remove('book-modal-open');
+        document.body.classList.remove('book-modal-open');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
       }
       this.activeStory = null;
       this.currentPageIdx = 0;
