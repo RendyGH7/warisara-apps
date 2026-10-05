@@ -24,6 +24,9 @@
       this.searchField = document.getElementById('story-search-input');
       this.themeFilterBtns = document.querySelectorAll('.story-filter-btn');
       this.bookModal = document.getElementById('interactive-book-modal');
+      this.openingStage = document.getElementById('book-opening-stage');
+      this.bookCasing = document.querySelector('.open-physical-book-casing');
+      this.sideDock = document.querySelector('.book-side-dock');
       this.bookContainer = document.getElementById('heritage-tome-container');
       this.btnModalClose = document.getElementById('btn-close-book-modal');
       this.btnPrevPage = document.getElementById('btn-tome-prev');
@@ -103,6 +106,12 @@
       }
 
       if (this.bookModal) {
+        this.bookModal.addEventListener('click', (e) => {
+          if (e.target === this.bookModal) {
+            this.closeBookModal();
+          }
+        });
+
         this.bookModal.addEventListener(
           'wheel',
           (e) => {
@@ -219,12 +228,12 @@
       this.bookshelfGrid.querySelectorAll('[data-story-id]').forEach((card) => {
         card.addEventListener('click', () => {
           const id = card.dataset.storyId;
-          this.openBook(id);
+          this.openBook(id, card);
         });
       });
     }
 
-    openBook(storyId) {
+    openBook(storyId, cardElement = null) {
       const story = this.stories.find((s) => s.id === storyId);
       if (!story) return;
 
@@ -232,6 +241,9 @@
         window.WARISARA_STORY_AUDIO.stopSpeaking();
         window.WARISARA_STORY_AUDIO.stopAmbience();
       }
+
+      this.activeCardElement = cardElement || document.querySelector(`[data-story-id="${storyId}"]`);
+      this.savedScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
       if (this.btnNarrate) {
         this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
@@ -251,29 +263,206 @@
       }
 
       this.activeStory = story;
-      this.currentPageIdx = 0; 
-
-      if (window.WARISARA_STORY_AUDIO) {
-        window.WARISARA_STORY_AUDIO.playBookOpen();
-      }
+      this.currentPageIdx = 0;
 
       this.renderBookSpread();
-      if (this.bookModal) {
-        this.bookModal.classList.add('active');
-        document.documentElement.classList.add('book-modal-open');
-        document.body.classList.add('book-modal-open');
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-      }
       this.updateBookmarkButtonState();
+
+      this.playOpeningAnimation(story);
+    }
+
+    getFrontCoverHTML(story) {
+      return `
+        <div class="flex flex-col justify-between h-full p-4 sm:p-5 relative z-10"
+             style="background: linear-gradient(135deg, ${story.coverColor || '#1E1A16'} 0%, #0E0C0A 100%);">
+          <div class="book-spine-strip"></div>
+          <div class="opening-edge-thickness-right"></div>
+
+          <div class="pl-5 relative z-10 flex items-start justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">
+              ${story.category}
+            </span>
+            <span class="text-[10px] text-surface/60 font-mono flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs text-brass-400">menu_book</span>
+              <span>${story.pages.length + 2} Hlm</span>
+            </span>
+          </div>
+
+          <div class="mx-3 sm:mx-5 my-1 aspect-[4/3] rounded-xl overflow-hidden antique-frame relative z-10 shadow-lg">
+            <div class="antique-frame-inner w-full h-full">
+              <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          <div class="pl-5 relative z-10 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-2">
+            <h3 class="font-display text-base sm:text-lg font-normal text-surface leading-snug line-clamp-2 min-h-[2.85rem] mb-1">
+              ${story.title}
+            </h3>
+            <p class="text-[11px] text-surface/60 font-light truncate mb-2.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px] text-brass-400/70">location_on</span>
+              <span>${story.origin}</span>
+            </p>
+            <div class="pt-2 border-t border-white/10 text-[11px] text-brass-400/90 font-serif italic">
+              Seri Pusaka Tutur Nusantara
+            </div>
+          </div>
+
+          <div class="book-ribbon"></div>
+        </div>
+      `;
+    }
+
+    renderOpeningStageMarkup(story, pageIdx = 0) {
+      const leftPageHtml = this.getPageLeftHTML(pageIdx);
+      const rightPageHtml = this.getPageRightHTML(pageIdx);
+      const frontCoverHtml = this.getFrontCoverHTML(story);
+
+      return `
+        <div class="opening-flight-wrapper">
+          <div class="opening-stage-casing is-closed">
+            <div class="opening-ground-shadow"></div>
+
+            <div class="opening-book-spread">
+              <div class="opening-right-board">
+                <div class="opening-right-sheet">
+                  ${rightPageHtml}
+                  <div class="opening-right-cast-shadow"></div>
+                </div>
+              </div>
+
+              <div class="opening-left-board">
+                <div class="opening-board-face-inside">
+                  <div class="opening-left-sheet">
+                    ${leftPageHtml}
+                  </div>
+                </div>
+
+                <div class="opening-board-face-outside">
+                  ${frontCoverHtml}
+                </div>
+              </div>
+
+              <div class="opening-spine-bar"></div>
+              <div class="book-spine-headband-top"></div>
+              <div class="book-spine-headband-bottom"></div>
+              <div class="book-satin-ribbon"></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    playOpeningAnimation(story) {
+      if (!this.openingStage || !this.bookModal) {
+        if (this.bookModal) {
+          this.bookModal.classList.add('active');
+          document.body.classList.add('book-modal-open');
+        }
+        return;
+      }
+
+      if (this.bookCasing) this.bookCasing.classList.add('is-hidden');
+      if (this.sideDock) this.sideDock.classList.add('is-hidden');
+      if (this.btnModalClose) this.btnModalClose.classList.add('is-hidden');
+
+      this.openingStage.innerHTML = this.renderOpeningStageMarkup(story, 0);
+      this.openingStage.classList.add('active');
+      this.bookModal.classList.remove('modal-closing-backdrop');
+      this.bookModal.classList.add('active');
+      document.body.classList.add('book-modal-open');
+
+      const flightWrapper = this.openingStage.querySelector('.opening-flight-wrapper');
+      const casingEl = this.openingStage.querySelector('.opening-stage-casing');
+
+      if (this.activeCardElement && flightWrapper && casingEl) {
+        const cardBox = this.activeCardElement.querySelector('.book-3d-card') || this.activeCardElement;
+        const startRect = cardBox.getBoundingClientRect();
+        const stageRect = this.openingStage.getBoundingClientRect();
+
+        const stageCenterX = stageRect.left + stageRect.width / 2;
+        const stageCenterY = stageRect.top + stageRect.height / 2;
+
+        const cardCenterX = startRect.left + startRect.width / 2;
+        const cardCenterY = startRect.top + startRect.height / 2;
+
+        const closedBookSpreadWidth = Math.min(1050, stageRect.width || 1050);
+        const closedBookWidth = closedBookSpreadWidth * 0.5;
+
+        const deltaX = cardCenterX - stageCenterX;
+        const deltaY = cardCenterY - stageCenterY;
+        const scale = Math.max(0.2, Math.min(1, startRect.width / closedBookWidth));
+
+        this.activeCardElement.classList.add('book-launching');
+
+        flightWrapper.style.transition = 'none';
+        flightWrapper.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0px) scale(${scale}) rotateY(-8deg) rotateX(1.5deg)`;
+        casingEl.classList.add('is-closed');
+        casingEl.classList.remove('is-open');
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            flightWrapper.style.transition = 'transform 0.62s cubic-bezier(0.16, 1, 0.3, 1)';
+            flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
+
+            setTimeout(() => {
+              if (window.WARISARA_STORY_AUDIO) {
+                window.WARISARA_STORY_AUDIO.playBookOpen();
+              }
+              if (casingEl) {
+                casingEl.classList.remove('is-closed');
+                casingEl.classList.add('is-open');
+              }
+            }, 300);
+
+            setTimeout(() => {
+              if (this.bookCasing) {
+                this.bookCasing.classList.remove('is-hidden');
+                this.bookCasing.classList.add('book-settle');
+                setTimeout(() => this.bookCasing.classList.remove('book-settle'), 500);
+              }
+              if (this.openingStage) {
+                this.openingStage.classList.remove('active');
+                this.openingStage.innerHTML = '';
+              }
+              if (this.sideDock) this.sideDock.classList.remove('is-hidden');
+              if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
+            }, 1250);
+          });
+        });
+      } else {
+        setTimeout(() => {
+          if (window.WARISARA_STORY_AUDIO) {
+            window.WARISARA_STORY_AUDIO.playBookOpen();
+          }
+          if (casingEl) {
+            casingEl.classList.remove('is-closed');
+            casingEl.classList.add('is-open');
+          }
+        }, 70);
+
+        setTimeout(() => {
+          if (this.bookCasing) {
+            this.bookCasing.classList.remove('is-hidden');
+            this.bookCasing.classList.add('book-settle');
+            setTimeout(() => this.bookCasing.classList.remove('book-settle'), 500);
+          }
+          if (this.openingStage) {
+            this.openingStage.classList.remove('active');
+            this.openingStage.innerHTML = '';
+          }
+          if (this.sideDock) this.sideDock.classList.remove('is-hidden');
+          if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
+        }, 1120);
+      }
     }
 
     closeBookModal() {
-      
+      if (this._isClosing) return;
+      this._isClosing = true;
+
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.stopSpeaking();
         window.WARISARA_STORY_AUDIO.stopAmbience();
-        window.WARISARA_STORY_AUDIO.playBookClose();
       }
 
       if (this.btnNarrate) {
@@ -293,16 +482,110 @@
         `;
       }
 
-      if (this.bookModal) {
-        this.bookModal.classList.remove('active');
-        document.documentElement.classList.remove('book-modal-open');
-        document.body.classList.remove('book-modal-open');
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
+      if (this.sideDock) this.sideDock.classList.add('is-hidden');
+      if (this.btnModalClose) this.btnModalClose.classList.add('is-hidden');
+
+      if (this.openingStage && this.activeStory) {
+        const pageToClose = this.currentPageIdx;
+        this.openingStage.innerHTML = this.renderOpeningStageMarkup(this.activeStory, pageToClose);
+        const flightWrapper = this.openingStage.querySelector('.opening-flight-wrapper');
+        const casingEl = this.openingStage.querySelector('.opening-stage-casing');
+
+        if (flightWrapper) {
+          flightWrapper.style.transition = 'none';
+          flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
+        }
+
+        if (casingEl) {
+          casingEl.classList.remove('is-closed');
+          casingEl.classList.add('is-open');
+        }
+
+        this.openingStage.classList.add('active');
+        if (this.bookCasing) this.bookCasing.classList.add('is-hidden');
+
+        setTimeout(() => {
+          if (window.WARISARA_STORY_AUDIO) {
+            window.WARISARA_STORY_AUDIO.playBookClose();
+          }
+          if (casingEl) {
+            casingEl.classList.remove('is-open');
+            casingEl.classList.add('is-closed');
+          }
+        }, 40);
+
+        setTimeout(() => {
+          if (this.activeCardElement && flightWrapper) {
+            const cardBox = this.activeCardElement.querySelector('.book-3d-card') || this.activeCardElement;
+            const returnRect = cardBox.getBoundingClientRect();
+            const stageRect = this.openingStage.getBoundingClientRect();
+
+            const stageCenterX = stageRect.left + stageRect.width / 2;
+            const stageCenterY = stageRect.top + stageRect.height / 2;
+
+            const cardCenterX = returnRect.left + returnRect.width / 2;
+            const cardCenterY = returnRect.top + returnRect.height / 2;
+
+            const closedBookSpreadWidth = Math.min(1050, stageRect.width || 1050);
+            const closedBookWidth = closedBookSpreadWidth * 0.5;
+
+            const returnDx = cardCenterX - stageCenterX;
+            const returnDy = cardCenterY - stageCenterY;
+            const returnScale = Math.max(0.2, Math.min(1, returnRect.width / closedBookWidth));
+
+            flightWrapper.style.transition = 'transform 0.62s cubic-bezier(0.25, 1, 0.35, 1)';
+            flightWrapper.style.transform = `translate3d(${returnDx}px, ${returnDy}px, 0px) scale(${returnScale}) rotateY(-8deg) rotateX(1.5deg)`;
+            this.bookModal.classList.add('modal-closing-backdrop');
+          }
+        }, 620);
+
+        setTimeout(() => {
+          if (this.activeCardElement) {
+            this.activeCardElement.classList.remove('book-launching');
+            try {
+              this.activeCardElement.focus({ preventScroll: true });
+            } catch (e) {}
+          }
+
+          if (this.bookModal) {
+            this.bookModal.classList.remove('active', 'modal-closing-backdrop');
+            document.documentElement.classList.remove('book-modal-open');
+            document.body.classList.remove('book-modal-open');
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+          }
+
+          if (typeof this.savedScrollY === 'number') {
+            window.scrollTo({ top: this.savedScrollY, behavior: 'instant' });
+          }
+
+          if (this.openingStage) {
+            this.openingStage.classList.remove('active');
+            this.openingStage.innerHTML = '';
+          }
+          if (this.bookCasing) this.bookCasing.classList.remove('is-hidden');
+
+          this.activeStory = null;
+          this.activeCardElement = null;
+          this._isFlipping = false;
+          this._isClosing = false;
+        }, 1280);
+      } else {
+        if (this.bookModal) {
+          this.bookModal.classList.remove('active', 'modal-closing-backdrop');
+          document.documentElement.classList.remove('book-modal-open');
+          document.body.classList.remove('book-modal-open');
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+        }
+        if (typeof this.savedScrollY === 'number') {
+          window.scrollTo({ top: this.savedScrollY, behavior: 'instant' });
+        }
+        this.activeStory = null;
+        this.activeCardElement = null;
+        this._isFlipping = false;
+        this._isClosing = false;
       }
-      this.activeStory = null;
-      this.currentPageIdx = 0;
-      this._isFlipping = false;
     }
 
     getPageLeftHTML(pageIdx) {

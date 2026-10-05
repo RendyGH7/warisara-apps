@@ -160,15 +160,20 @@
   opacity: 1 !important;
 }
 
+#interactive-book-modal.modal-closing-backdrop {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease !important;
+}
+
 body.book-modal-open,
 html.book-modal-open {
   overflow: hidden !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-  position: fixed !important;
-  width: 100% !important;
-  overscroll-behavior: none !important;
-  touch-action: none !important;
+}
+
+.book-3d-wrapper.book-launching .book-3d-card {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .book-reader-layout {
@@ -374,6 +379,243 @@ html.book-modal-open {
   justify-content: center;
 }
 
+.book-opening-stage {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-opening-stage.active {
+  display: flex;
+  opacity: 1;
+}
+
+.opening-flight-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  height: min(84vh, 630px);
+  max-height: min(84vh, 630px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.opening-stage-casing {
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  height: min(84vh, 630px);
+  max-height: min(84vh, 630px);
+  perspective: 3000px;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.opening-stage-casing.is-closed {
+  transform: translateX(-25%) rotateX(5deg) scale(0.94);
+}
+
+.opening-stage-casing.is-open {
+  transform: translateX(0) rotateX(2.5deg) scale(1);
+}
+
+.opening-ground-shadow {
+  position: absolute;
+  bottom: -28px;
+  height: 48px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.85) 0%, transparent 72%);
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.opening-stage-casing.is-closed .opening-ground-shadow {
+  left: 50%;
+  width: 50%;
+  transform: translateX(-50%) scaleX(0.88);
+  opacity: 0.85;
+}
+
+.opening-stage-casing.is-open .opening-ground-shadow {
+  left: 50%;
+  width: 96%;
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.95;
+}
+
+.opening-book-spread {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.opening-right-board {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 16px 20px 20px 0;
+  background:
+    radial-gradient(ellipse at 70% 90%, rgba(30,15,5,0.8) 0%, transparent 55%),
+    linear-gradient(175deg, #2C1F0F 0%, #1A1008 40%, #0E0906 70%, #050302 100%);
+  border-radius: 0 16px 14px 0;
+  border: 1px solid rgba(201,165,103,0.45);
+  border-left: none;
+  box-shadow:
+    15px 40px 80px rgba(0,0,0,0.92),
+    0 0 60px rgba(150,110,50,0.15);
+  transform-style: preserve-3d;
+}
+
+.opening-right-sheet {
+  position: absolute;
+  inset: 16px 20px 20px 0;
+  border-radius: 2px 10px 8px 2px;
+  background: #F4EEDF;
+  overflow: hidden;
+  box-shadow: inset 15px 0 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.opening-right-sheet > * {
+  width: 100%;
+  height: 100%;
+}
+
+.opening-right-cast-shadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.22) 30%, transparent 70%);
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.85s ease;
+}
+
+.opening-stage-casing.is-closed .opening-right-cast-shadow {
+  opacity: 1;
+}
+
+.opening-stage-casing.is-open .opening-right-cast-shadow {
+  opacity: 0;
+}
+
+.opening-left-board {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 40;
+}
+
+.opening-stage-casing.is-closed .opening-left-board {
+  transform: rotateY(180deg);
+}
+
+.opening-stage-casing.is-open .opening-left-board {
+  transform: rotateY(0deg);
+}
+
+.opening-board-face-inside {
+  position: absolute;
+  inset: 0;
+  padding: 16px 0 20px 20px;
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(80,50,20,0.6) 0%, transparent 55%),
+    linear-gradient(175deg, #2C1F0F 0%, #1A1008 40%, #0E0906 70%, #050302 100%);
+  border-radius: 16px 0 0 14px;
+  border: 1px solid rgba(201,165,103,0.45);
+  border-right: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg);
+  overflow: hidden;
+}
+
+.opening-left-sheet {
+  position: absolute;
+  inset: 16px 0 20px 20px;
+  border-radius: 10px 2px 2px 8px;
+  background: #F4EEDF;
+  overflow: hidden;
+  box-shadow: inset -15px 0 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.opening-left-sheet > * {
+  width: 100%;
+  height: 100%;
+}
+
+.opening-board-face-outside {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 16px 14px 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg);
+  overflow: hidden;
+  box-shadow: -15px 25px 60px rgba(0,0,0,0.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.opening-edge-thickness-right {
+  position: absolute;
+  top: 18px;
+  bottom: 22px;
+  right: -13px;
+  width: 13px;
+  background: repeating-linear-gradient(
+    180deg,
+    #FAF7F0 0px, #EAE0C6 1px,
+    #D8C8A8 2px, #F0E6D0 3.5px,
+    #FAF7F0 5px
+  );
+  border-radius: 0 4px 4px 0;
+  box-shadow: inset 2px 0 5px rgba(0,0,0,0.5), 3px 2px 8px rgba(0,0,0,0.65);
+  transform: rotateY(78deg);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.opening-spine-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 20px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.85) 0%,
+    rgba(255,255,255,0.2) 30%,
+    rgba(0,0,0,0.15) 65%,
+    rgba(0,0,0,0.75) 100%
+  );
+  border-radius: 3px;
+  z-index: 50;
+  pointer-events: none;
+}
+
 .open-physical-book-casing {
   position: relative;
   width: 100%;
@@ -401,7 +643,30 @@ html.book-modal-open {
   transform: rotateX(3.5deg);
   transform-origin: center bottom;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.open-physical-book-casing.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.book-side-dock.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) translateX(-24px) !important;
+}
+
+.book-top-close-btn.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: scale(0.6) !important;
+}
+
+@media (max-width: 860px) {
+  .opening-stage-casing.is-closed {
+    transform: rotateX(6deg) scale(0.9);
+  }
 }
 
 .open-physical-book-casing::before {
