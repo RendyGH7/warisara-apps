@@ -1,8 +1,3 @@
-/**
- * WARISARA — Creative Lab Showcase Widget (Landing Page Edition)
- * Pure Native Canvas API & Vanilla JS
- */
-
 window.WARISARA_CREATIVE_LAB = {
   canvas: null,
   ctx: null,

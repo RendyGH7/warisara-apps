@@ -1,7 +1,3 @@
-/**
- * WARISARA — Meet the Makers Section Controller
- */
-
 window.WARISARA_MAKERS = {
   init: function () {
     const container = document.getElementById("makers-grid");

@@ -1,10 +1,3 @@
-/**
- * WARISARA — Dynamic Page Connector
- * Asynchronously loads modular pages from /pages/ into index.html
- * to provide a seamless single-landing-page experience while preserving
- * clean, separate file architecture on disk.
- */
-
 window.WARISARA_PAGE_CONNECTOR = {
   isLoaded: false,
 
@@ -17,17 +10,14 @@ window.WARISARA_PAGE_CONNECTOR = {
       await Promise.all(loadPromises);
       this.isLoaded = true;
 
-      // 1. Re-initialize scroll animations across newly injected sections
       if (window.WARISARA_SCROLL && typeof window.WARISARA_SCROLL.initObservers === "function") {
         window.WARISARA_SCROLL.initObservers();
       }
 
-      // 2. Refresh navbar geometry, scroll-spy targets, and active pill
       if (window.WARISARA_NAVBAR && typeof window.WARISARA_NAVBAR.refresh === "function") {
         window.WARISARA_NAVBAR.refresh();
       }
 
-      // 3. Ensure landing page always starts cleanly at Hero Section (Top)
       const isIndex = document.body.dataset.page === "index" || !document.body.dataset.page;
       if (isIndex) {
         if (window.location.hash) {
@@ -61,32 +51,26 @@ window.WARISARA_PAGE_CONNECTOR = {
 
       if (!contentEl) throw new Error(`Could not find main content in ${src}`);
 
-      // Fix relative paths for assets & in-page anchors
       this.normalizeUrls(contentEl);
 
-      // Extract and mount modal overlays directly onto document.body to prevent layout distortion
       const modals = contentEl.querySelectorAll(".modal-overlay, [id$='-modal-overlay']");
       modals.forEach((modal) => {
         const modalId = modal.id;
         if (modalId) {
           const existing = document.getElementById(modalId);
-          // If a modal with this ID already exists in the DOM (e.g. declared directly in
-          // index.html), preserve it — replacing it would detach any cached JS references
-          // (e.g. WARISARA_PROVINCE_PANEL.modalOverlay) and silently break the popup.
+
           if (existing) {
             modal.remove();
             return;
           }
         }
-        // Clone/move modal to body
+        
         document.body.appendChild(modal.cloneNode(true));
-        modal.remove(); // remove from section content so it doesn't take space
+        modal.remove(); 
       });
 
-      // Inject clean content into the module mount
       moduleEl.innerHTML = contentEl.innerHTML;
 
-      // Execute scripts from the subpage to activate interactive UI
       this.executeModuleScripts(doc, pageId);
     } catch (err) {
       console.warn(`Failed to connect module ${src}:`, err);
@@ -103,16 +87,15 @@ window.WARISARA_PAGE_CONNECTOR = {
   },
 
   normalizeUrls: function (container) {
-    // 1. Rewrite relative image, audio, video sources
+    
     const mediaElements = container.querySelectorAll("img, source, audio, video");
     mediaElements.forEach((el) => {
       const src = el.getAttribute("src");
       if (src && src.startsWith("../")) {
-        el.setAttribute("src", src.replace(/^\.\.\//, ""));
+        el.setAttribute("src", src.replace(/^\.\.\
       }
     });
 
-    // 2. Rewrite internal navigation links to in-page section anchors
     const anchorElements = container.querySelectorAll("a[href]");
     const pageAnchorMap = {
       "../index.html": "#hero",
@@ -135,13 +118,13 @@ window.WARISARA_PAGE_CONNECTOR = {
         a.setAttribute("href", pageAnchorMap[href]);
         a.classList.add("dynamic-page-anchor");
       } else if (href.startsWith("../")) {
-        a.setAttribute("href", href.replace(/^\.\.\//, ""));
+        a.setAttribute("href", href.replace(/^\.\.\
       }
     });
   },
 
   executeModuleScripts: function (doc, pageId) {
-    // 1. Trigger named init function if already registered
+    
     const pageFunctionMap = {
       jelajahi: "initJelajahiPage",
       warisan: "initWarisanPage",
@@ -164,7 +147,6 @@ window.WARISARA_PAGE_CONNECTOR = {
       }
     }
 
-    // 2. Otherwise extract and append inline scripts from the fetched document
     const inlineScripts = doc.querySelectorAll("script:not([src])");
     inlineScripts.forEach((script) => {
       try {

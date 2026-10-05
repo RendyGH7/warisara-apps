@@ -1,7 +1,3 @@
-/**
- * WARISARA — Pass It On (Closing Narrative & Web Share API)
- */
-
 window.WARISARA_PASS_IT_ON = {
   init: function () {
     const shareBtn = document.getElementById("pass-it-on-share-btn");

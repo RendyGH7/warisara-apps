@@ -1,7 +1,3 @@
-/**
- * WARISARA — Belajar dari Akar (Micro-learning) Section Controller
- */
-
 window.WARISARA_LEARNING = {
   init: function () {
     const quizOptions = document.querySelectorAll(".quiz-option-btn");

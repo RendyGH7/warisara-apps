@@ -1,10 +1,5 @@
-/**
- * WARISARA — Cerita yang Diwariskan (10 Kisah Lengkap & Mendalam Nusantara)
- * 10 Comprehensive Storybooks with Rich Multi-Chapter Spreads, Scene Illustrations, and Deep Moral Lessons.
- */
-
 window.STORIES_DATA = [
-  // 1. PINISI
+  
   {
     id: "legenda-pinisi",
     title: "Pelayaran Sawerigading & Lahirnya Perahu Pinisi",
@@ -70,7 +65,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 2. PARANG RUSAK
   {
     id: "makna-parang-rusak",
     title: "Pertapaan Sultan Agung & Lahirnya Batik Parang Rusak",
@@ -136,7 +130,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 3. MEGAMENDUNG
   {
     id: "legenda-megamendung",
     title: "Legenda Megamendung: Cinta Putri Ong Tien & Awan Cirebon",
@@ -202,7 +195,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 4. TRUNTUM
   {
     id: "kisah-batik-truntum",
     title: "Kisah Batik Truntum: Cinta Ratu Kencana & Bintang Melati",
@@ -267,7 +259,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 5. SONGKET
   {
     id: "benang-emas-sriwijaya",
     title: "Benang Emas Sriwijaya: Legenda Putri Kemarau & Songket Melayu",
@@ -332,7 +323,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 6. GRINGSING
   {
     id: "filosofi-kain-gringsing",
     title: "Tenun Ikat Gringsing: Penangkal Kegelapan Tenganan",
@@ -398,7 +388,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 7. NOKEN
   {
     id: "rahim-noken-papua",
     title: "Noken: Rahim Kehidupan & Perdamaian Lembah Pegunungan",
@@ -464,7 +453,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 8. TORAJA
   {
     id: "tenun-tedong-bonga",
     title: "Tenun Ikat Tedong Bonga & Jiwa Leluhur Toraja",
@@ -529,7 +517,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 9. MINANG
   {
     id: "alam-takambang-guru",
     title: "Alam Takambang Jadi Guru: Falsafah Luhur Minangkabau",
@@ -594,7 +581,6 @@ window.STORIES_DATA = [
     ]
   },
 
-  // 10. DAYAK
   {
     id: "falsafah-huma-betang",
     title: "Huma Betang: Kerukunan di Bawah Satu Atap Rimba",

@@ -1,9 +1,3 @@
-/**
- * WARISARA — Story Audio & Soundscape Engine
- * Pure Web Audio API Synthesizer & Speech Synthesis for Interactive Storybook
- * Zero external audio file dependencies, 100% instant & offline-capable.
- */
-
 (function () {
   'use strict';
 
@@ -29,7 +23,6 @@
       }
     }
 
-    // 1. Realistic Book Page Flip / Paper Rustle Sound
     playPageFlip() {
       if (this.isMuted) return;
       this.initContext();
@@ -37,7 +30,6 @@
 
       const now = this.ctx.currentTime;
 
-      // 1A. Noise Buffer for realistic paper texture friction
       const bufferSize = this.ctx.sampleRate * 0.18;
       const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const output = noiseBuffer.getChannelData(0);
@@ -48,7 +40,6 @@
       const whiteNoise = this.ctx.createBufferSource();
       whiteNoise.buffer = noiseBuffer;
 
-      // Bandpass filter for crisp paper flutter
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'bandpass';
       filter.frequency.setValueAtTime(1400, now);
@@ -61,7 +52,6 @@
       gain.gain.linearRampToValueAtTime(0.28, now + 0.04);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
 
-      // 1B. Low-frequency whoosh air puff
       const osc = this.ctx.createOscillator();
       const oscGain = this.ctx.createGain();
       osc.type = 'sine';
@@ -84,7 +74,6 @@
       osc.stop(now + 0.15);
     }
 
-    // 2. Book Open Sound (Thump & Creak)
     playBookOpen() {
       if (this.isMuted) return;
       this.initContext();
@@ -92,7 +81,6 @@
 
       const now = this.ctx.currentTime;
 
-      // Leather Thump
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'triangle';
@@ -108,11 +96,9 @@
       osc.start(now);
       osc.stop(now + 0.26);
 
-      // Followed by slight page flutter
       setTimeout(() => this.playPageFlip(), 80);
     }
 
-    // 3. Book Close Sound (Satisfying Soft Slap)
     playBookClose() {
       if (this.isMuted) return;
       this.initContext();
@@ -135,14 +121,13 @@
       osc.stop(now + 0.24);
     }
 
-    // 4. Bookmark / Gold Seal Shimmer Chime
     playChime() {
       if (this.isMuted) return;
       this.initContext();
       if (!this.ctx) return;
 
       const now = this.ctx.currentTime;
-      const frequencies = [587.33, 880, 1174.66, 1760]; // D5, A5, D6, A6 Pentatonic Gold Chime
+      const frequencies = [587.33, 880, 1174.66, 1760]; 
 
       frequencies.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
@@ -161,7 +146,6 @@
       });
     }
 
-    // 5. Traditional Nusantara Ambient Meditation Drone (Slendro & Siter Harmony)
     toggleAmbience(forceState) {
       this.initContext();
       if (!this.ctx) return false;
@@ -183,11 +167,11 @@
       if (!this.ctx) return;
 
       const now = this.ctx.currentTime;
-      const baseFreqs = [146.83, 220.0, 293.66, 369.99, 440.0]; // D3, A3, D4, F#4, A4 (Warm Heritage Drone)
+      const baseFreqs = [146.83, 220.0, 293.66, 369.99, 440.0]; 
 
       this.ambienceMasterGain = this.ctx.createGain();
       this.ambienceMasterGain.gain.setValueAtTime(0.01, now);
-      this.ambienceMasterGain.gain.linearRampToValueAtTime(0.12, now + 2.0); // Gentle fade-in
+      this.ambienceMasterGain.gain.linearRampToValueAtTime(0.12, now + 2.0); 
       this.ambienceMasterGain.connect(this.ctx.destination);
 
       baseFreqs.forEach((freq, i) => {
@@ -199,7 +183,6 @@
         osc.type = i % 2 === 0 ? 'sine' : 'triangle';
         osc.frequency.setValueAtTime(freq, now);
 
-        // Gentle breathing pulsation (LFO)
         lfo.type = 'sine';
         lfo.frequency.setValueAtTime(0.15 + i * 0.05, now);
         lfoGain.gain.setValueAtTime(0.02, now);
@@ -249,7 +232,6 @@
       }
     }
 
-    // 6. Natural Indonesian Text-to-Speech (TTS) Story Narrator
     speakStory(text, onStart, onEnd, onBoundary) {
       if (!('speechSynthesis' in window)) {
         alert('Fitur narator suara tidak didukung di browser ini.');
@@ -258,15 +240,13 @@
 
       window.speechSynthesis.cancel();
 
-      // Clean HTML tags from content
       const cleanText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
       const utterance = new SpeechSynthesisUtterance(cleanText);
       utterance.lang = 'id-ID';
-      utterance.rate = 0.92; // Calm, respectful storytelling cadence
+      utterance.rate = 0.92; 
       utterance.pitch = 1.0;
 
-      // Prefer Indonesian natural voice if available
       const voices = window.speechSynthesis.getVoices();
       const idVoice = voices.find((v) => v.lang.startsWith('id') || v.lang.includes('ID') || v.name.includes('Indonesian'));
       if (idVoice) {

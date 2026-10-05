@@ -1,8 +1,3 @@
-/**
- * WARISARA — Interactive 3D Storybook Controller
- * Handles 3D page turns, bookshelf rendering, audio soundscape, and voice narrator.
- */
-
 (function () {
   'use strict';
 
@@ -10,10 +5,10 @@
     constructor() {
       this.stories = window.STORIES_DATA || [];
       this.activeStory = null;
-      this.currentPageIdx = 0; // 0: Cover, 1..N: Pages, N+1: Back Cover
+      this.currentPageIdx = 0; 
       this.filterTheme = 'all';
       this.searchQuery = '';
-      this.fontSize = 15; // default px
+      this.fontSize = 15; 
       this.savedBookmarks = JSON.parse(localStorage.getItem('warisara_story_bookmarks') || '[]');
     }
 
@@ -43,7 +38,7 @@
     }
 
     bindEvents() {
-      // Search
+      
       if (this.searchField) {
         this.searchField.addEventListener('input', (e) => {
           this.searchQuery = e.target.value.toLowerCase().trim();
@@ -51,7 +46,6 @@
         });
       }
 
-      // Filter Themes
       if (this.themeFilterBtns) {
         this.themeFilterBtns.forEach((btn) => {
           btn.addEventListener('click', () => {
@@ -64,12 +58,10 @@
         });
       }
 
-      // Modal Close
       if (this.btnModalClose) {
         this.btnModalClose.addEventListener('click', () => this.closeBookModal());
       }
 
-      // Page Turns
       if (this.btnPrevPage) {
         this.btnPrevPage.addEventListener('click', () => this.turnPage(-1));
       }
@@ -77,7 +69,6 @@
         this.btnNextPage.addEventListener('click', () => this.turnPage(1));
       }
 
-      // Audio & Narrator
       if (this.btnNarrate) {
         this.btnNarrate.addEventListener('click', () => this.toggleNarrator());
       }
@@ -88,7 +79,6 @@
         this.btnBookmark.addEventListener('click', () => this.toggleBookmarkCurrent());
       }
 
-      // Typography Sizing
       if (this.btnFontPlus) {
         this.btnFontPlus.addEventListener('click', () => {
           this.fontSize = Math.min(22, this.fontSize + 1.5);
@@ -102,7 +92,6 @@
         });
       }
 
-      // Fullscreen
       if (this.btnFullscreen) {
         this.btnFullscreen.addEventListener('click', () => {
           if (!document.fullscreenElement) {
@@ -113,7 +102,6 @@
         });
       }
 
-      // Lock scroll & wheel when modal is open
       if (this.bookModal) {
         this.bookModal.addEventListener(
           'wheel',
@@ -136,7 +124,6 @@
         );
       }
 
-      // Keyboard Shortcuts (Arrow Left/Right, Escape)
       document.addEventListener('keydown', (e) => {
         if (!this.bookModal || !this.bookModal.classList.contains('active')) return;
         if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -182,15 +169,12 @@
           <div class="book-3d-wrapper group" data-story-id="${s.id}" data-aos="fade-up" data-aos-delay="${index * 60}">
             <div class="book-3d-card flex flex-col justify-between overflow-hidden relative border border-white/15"
                  style="background: linear-gradient(135deg, ${s.coverColor || '#1E1A16'} 0%, #0E0C0A 100%);">
-              
-              <!-- Spine Binding Relief -->
+
               <div class="book-spine-strip"></div>
 
-              <!-- 3D Paper Stack Thickness Edge on Right -->
               <div class="book-card-thickness"></div>
 
-              <!-- Top Cover Ornament & Tag -->
-              <div class="p-4 pl-7 relative z-10 flex items-start justify-between">
+              <div class="p-3.5 pl-7 relative z-10 flex items-start justify-between">
                 <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">
                   ${s.category}
                 </span>
@@ -200,31 +184,33 @@
                 </span>
               </div>
 
-              <!-- Cover Visual Artwork Window -->
-              <div class="mx-5 my-2 aspect-[4/3] rounded-xl overflow-hidden antique-frame relative z-10 shadow-lg group-hover:scale-[1.02] transition-transform">
+              <div class="mx-4 my-1 aspect-[4/3] rounded-xl overflow-hidden antique-frame relative z-10 shadow-lg group-hover:scale-[1.015] transition-transform">
                 <div class="antique-frame-inner w-full h-full">
                   <img src="${s.coverImage}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
               </div>
 
-              <!-- Cover Typography -->
-              <div class="p-4 pl-7 relative z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                <h3 class="font-display text-lg sm:text-xl font-normal text-surface group-hover:text-brass-300 transition-colors leading-snug line-clamp-2 mb-1">
+              <div class="p-3.5 pl-7 relative z-10 bg-gradient-to-t from-black/85 via-black/50 to-transparent">
+                <h3 class="font-display text-base sm:text-[17px] font-normal text-surface group-hover:text-brass-300 transition-colors leading-snug line-clamp-2 min-h-[2.85rem] mb-1">
                   ${s.title}
                 </h3>
-                <p class="text-[11px] text-surface/60 font-light truncate mb-2">${s.origin}</p>
+                <p class="text-[11px] text-surface/60 font-light truncate mb-2.5 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px] text-brass-400/70">location_on</span>
+                  <span>${s.origin}</span>
+                </p>
                 <div class="flex items-center justify-between pt-2 border-t border-white/10 text-xs text-brass-400 font-semibold">
-                  <span class="flex items-center gap-1">
+                  <span class="flex items-center gap-1 group-hover:text-brass-300">
                     <span>Buka Lembaran</span>
-                    <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <span class="material-symbols-outlined text-xs group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
                   </span>
-                  ${isSaved ? '<span class="material-symbols-outlined text-sm text-brass-300">bookmark</span>' : ''}
+                  ${isSaved ? '<span class="material-symbols-outlined text-sm text-brass-300" title="Disimpan">bookmark</span>' : ''}
                 </div>
               </div>
 
-              <!-- Hanging Bookmark Ribbon -->
               <div class="book-ribbon"></div>
             </div>
+
+            <div class="book-shelf-shadow"></div>
           </div>
         `;
         })
@@ -242,13 +228,11 @@
       const story = this.stories.find((s) => s.id === storyId);
       if (!story) return;
 
-      // Stop previous audio/speech completely
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.stopSpeaking();
         window.WARISARA_STORY_AUDIO.stopAmbience();
       }
 
-      // Reset controls UI
       if (this.btnNarrate) {
         this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
         this.btnNarrate.classList.add('bg-white/10', 'text-surface');
@@ -267,7 +251,7 @@
       }
 
       this.activeStory = story;
-      this.currentPageIdx = 0; // Always start from the beginning (Cover)
+      this.currentPageIdx = 0; 
 
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.playBookOpen();
@@ -285,14 +269,13 @@
     }
 
     closeBookModal() {
-      // Stop all sounds & speech when book is closed
+      
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.stopSpeaking();
         window.WARISARA_STORY_AUDIO.stopAmbience();
         window.WARISARA_STORY_AUDIO.playBookClose();
       }
 
-      // Reset UI state
       if (this.btnNarrate) {
         this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
         this.btnNarrate.classList.add('bg-white/10', 'text-surface');
@@ -322,15 +305,10 @@
       this._isFlipping = false;
     }
 
-    /* ───────────────────────────────────────────────────────────────
-       PAGE CONTENT GENERATORS (Left & Right Standalone Facings)
-       ─────────────────────────────────────────────────────────────── */
-
     getPageLeftHTML(pageIdx) {
       if (!this.activeStory) return '';
       const story = this.activeStory;
 
-      // 1. Front Cover Inside Flap
       if (pageIdx === 0) {
         return `
           <div class="tome-page-left flex flex-col justify-between">
@@ -353,7 +331,6 @@
         `;
       }
 
-      // 2. Back Cover Moral / Wisdom
       if (pageIdx > story.pages.length) {
         return `
           <div class="tome-page-left flex flex-col justify-between">
@@ -381,13 +358,11 @@
               <span class="text-[#8F6A18] font-mono font-bold">#WARISARA-STORY</span>
             </div>
 
-            <!-- Interactive Corner Page Curl Button (Previous Page) -->
             <div class="page-corner-curl-btn-prev" id="btn-corner-turn-prev" title="Klik untuk kembali ke halaman sebelumnya"></div>
           </div>
         `;
       }
 
-      // 3. Regular Chapter Illustration Left Page
       const pageData = story.pages[pageIdx - 1];
       if (!pageData) return '';
 
@@ -399,7 +374,6 @@
               <span>${story.category}</span>
             </div>
 
-            <!-- Scene-Specific Artwork Frame -->
             <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden antique-frame my-2 shadow-xl">
               <div class="antique-frame-inner w-full h-full">
                 <img src="${pageData.image || story.coverImage}" alt="${pageData.sectionTitle}" class="w-full h-full object-cover" />
@@ -411,12 +385,10 @@
             </p>
           </div>
 
-          <!-- Left Page Classic Book Folio -->
           <div class="page-classic-folio">
             — ${pageData.pageNumber * 2 - 1} —
           </div>
 
-          <!-- Interactive Corner Page Curl Button (Previous Page) -->
           <div class="page-corner-curl-btn-prev" id="btn-corner-turn-prev" title="Klik untuk kembali ke halaman sebelumnya"></div>
         </div>
       `;
@@ -426,7 +398,6 @@
       if (!this.activeStory) return '';
       const story = this.activeStory;
 
-      // 1. Front Cover Presentation Right Page (Harmonious Antique Manuscript Theme)
       if (pageIdx === 0) {
         return `
           <div class="tome-page-right flex flex-col justify-between">
@@ -440,14 +411,12 @@
               <p class="text-xs text-[#6B5A4B] font-light italic mb-3">${story.subtitle || ''}</p>
             </div>
 
-            <!-- Central Artwork Box with Luxury Antique Gold Frame -->
             <div class="w-full max-w-[380px] mx-auto aspect-[4/3] rounded-2xl overflow-hidden antique-frame my-1 shadow-xl">
               <div class="antique-frame-inner w-full h-full">
                 <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
               </div>
             </div>
 
-            <!-- Open Tome Prompt -->
             <div class="pt-3 border-t border-[#8F6A18]/25 flex items-center justify-between text-xs">
               <div class="flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#C59828] animate-pulse"></span>
@@ -462,7 +431,6 @@
         `;
       }
 
-      // 2. Back Cover Epilogue Right Page (Harmonious Antique Manuscript Theme)
       if (pageIdx > story.pages.length) {
         return `
           <div class="tome-page-right flex flex-col justify-between">
@@ -494,11 +462,9 @@
         `;
       }
 
-      // 3. Regular Chapter Narrative Right Page
       const pageData = story.pages[pageIdx - 1];
       if (!pageData) return '';
 
-      // Extract first letter for Drop Cap
       const rawText = pageData.content;
       const firstLetterMatch = rawText.match(/^([A-Za-z])/);
       const firstLetter = firstLetterMatch ? firstLetterMatch[1] : '';
@@ -523,7 +489,6 @@
             </div>
           </div>
 
-          <!-- Page Bottom Actions & Folio -->
           <div>
             <div class="pt-3 pb-2 flex items-center justify-between text-xs text-[#6B5A4B]">
               <button id="btn-read-page-aloud" class="px-3 py-1.5 rounded-lg bg-[#2C2117]/10 hover:bg-[#2C2117]/20 text-[#2C2117] font-semibold text-xs flex items-center gap-1.5 transition-colors">
@@ -533,29 +498,22 @@
               <span class="text-[11px] text-[#6B5A4B] font-mono">WARISARA © 2026</span>
             </div>
 
-            <!-- Right Page Classic Book Folio -->
             <div class="page-classic-folio">
               — ${pageData.pageNumber * 2} —
             </div>
           </div>
 
-          <!-- Interactive Corner Page Curl Button -->
           <div class="page-corner-curl-btn" id="btn-corner-turn" title="Klik untuk membalik halaman"></div>
         </div>
       `;
     }
 
-    /* ───────────────────────────────────────────────────────────────
-       renderBookSpread — Renders the static book spread
-       Keeps center spine gutter intact and binds all controls
-       ─────────────────────────────────────────────────────────────── */
     renderBookSpread() {
       if (!this.activeStory || !this.bookContainer) return;
 
       const story = this.activeStory;
       const totalPages = story.pages.length + 1;
 
-      // Update Navigation Buttons & Page Indicator
       if (this.btnPrevPage) this.btnPrevPage.disabled = this.currentPageIdx === 0;
       if (this.btnNextPage) this.btnNextPage.disabled = this.currentPageIdx === totalPages;
 
@@ -569,7 +527,6 @@
         }
       }
 
-      // Render Spread with persistent spine in center
       this.bookContainer.innerHTML = `
         <div class="heritage-tome-spine"></div>
         <div class="tome-spread">
@@ -581,29 +538,23 @@
       this.bindSpreadEventListeners();
     }
 
-    /* ───────────────────────────────────────────────────────────────
-       bindSpreadEventListeners — Re-attaches interactive controls
-       ─────────────────────────────────────────────────────────────── */
     bindSpreadEventListeners() {
-      // 1. Cover "Buka Lembaran" button
+      
       const btnOpen = document.getElementById('btn-open-from-cover');
       if (btnOpen) {
         btnOpen.addEventListener('click', () => this.turnPage(1));
       }
 
-      // 2. Corner page curl click (Next page)
       const btnCorner = document.getElementById('btn-corner-turn');
       if (btnCorner) {
         btnCorner.addEventListener('click', () => this.turnPage(1));
       }
 
-      // 2b. Corner page curl click (Previous page)
       const btnCornerPrev = document.getElementById('btn-corner-turn-prev');
       if (btnCornerPrev) {
         btnCornerPrev.addEventListener('click', () => this.turnPage(-1));
       }
 
-      // 3. Back Cover restart button
       const btnRestart = document.getElementById('btn-restart-book');
       if (btnRestart) {
         btnRestart.addEventListener('click', () => {
@@ -612,7 +563,6 @@
         });
       }
 
-      // 4. "Dengarkan Halaman Ini" TTS Audio button
       const btnReadPage = document.getElementById('btn-read-page-aloud');
       if (btnReadPage && this.activeStory && this.currentPageIdx >= 1 && this.currentPageIdx <= this.activeStory.pages.length) {
         const pageData = this.activeStory.pages[this.currentPageIdx - 1];
@@ -628,13 +578,6 @@
       }
     }
 
-    /* ───────────────────────────────────────────────────────────────
-       turnPage — Cinematic True-Content 3D Dual-Face Page Flip
-       - Real Content Cloned onto Front & Back Faces
-       - Dynamic Paper Curvature, Specular Sheen, Ambient Lighting
-       - Dynamic Cast Shadow on Opposite Page
-       - Tactile Book Casing Settle Bounce on Landing
-       ─────────────────────────────────────────────────────────────── */
     turnPage(delta) {
       if (!this.activeStory) return;
       if (this._isFlipping) return;
@@ -645,13 +588,11 @@
 
       if (nextIdx < 0 || nextIdx > totalPages) return;
 
-      // Play authentic tactile audio
       if (window.WARISARA_STORY_AUDIO) {
         window.WARISARA_STORY_AUDIO.playPageFlip();
         window.WARISARA_STORY_AUDIO.stopSpeaking();
       }
 
-      // Mobile: instant clean flip without 3D overflow
       if (window.innerWidth <= 860) {
         this.currentPageIdx = nextIdx;
         this.renderBookSpread();
@@ -666,18 +607,17 @@
       const tomeEl = this.bookContainer;
 
       if (isForward) {
-        // FORWARD FLIP: Turning right page over to the left
-        // Underneath: Left stays current, Right already displays nextIdx!
+
         tomeEl.innerHTML = `
           <div class="heritage-tome-spine"></div>
           <div class="tome-spread">
             ${this.getPageLeftHTML(currentIdx)}
             ${this.getPageRightHTML(nextIdx)}
           </div>
-          <!-- Real 3D Turning Leaf -->
+          
           <div class="real-page-turn-leaf turn-forward">
             <div class="leaf-3d-flipper">
-              <!-- Front Face: The page being peeled away (Current Right) -->
+              
               <div class="leaf-face leaf-face-front">
                 <div class="leaf-face-inner leaf-face-inner-right">
                   ${this.getPageRightHTML(currentIdx)}
@@ -685,7 +625,7 @@
                   <div class="leaf-sheen"></div>
                 </div>
               </div>
-              <!-- Back Face: The new page descending onto the left (Next Left) -->
+              
               <div class="leaf-face leaf-face-back">
                 <div class="leaf-face-inner leaf-face-inner-left">
                   ${this.getPageLeftHTML(nextIdx)}
@@ -695,24 +635,23 @@
               </div>
             </div>
           </div>
-          <!-- Contact Cast Shadow onto Left Page -->
+          
           <div class="turn-cast-shadow shadow-left"></div>
-          <!-- Soft Shadow on Right Page as Leaf Departs -->
+          
           <div class="turn-underneath-shadow on-right"></div>
         `;
       } else {
-        // BACKWARD FLIP: Turning left page over to the right
-        // Underneath: Left already displays nextIdx, Right stays current!
+
         tomeEl.innerHTML = `
           <div class="heritage-tome-spine"></div>
           <div class="tome-spread">
             ${this.getPageLeftHTML(nextIdx)}
             ${this.getPageRightHTML(currentIdx)}
           </div>
-          <!-- Real 3D Turning Leaf -->
+          
           <div class="real-page-turn-leaf turn-backward">
             <div class="leaf-3d-flipper">
-              <!-- Front Face: The page being lifted (Current Left) -->
+              
               <div class="leaf-face leaf-face-front">
                 <div class="leaf-face-inner leaf-face-inner-left">
                   ${this.getPageLeftHTML(currentIdx)}
@@ -720,7 +659,7 @@
                   <div class="leaf-sheen"></div>
                 </div>
               </div>
-              <!-- Back Face: The new page descending onto the right (Next Right) -->
+              
               <div class="leaf-face leaf-face-back">
                 <div class="leaf-face-inner leaf-face-inner-right">
                   ${this.getPageRightHTML(nextIdx)}
@@ -730,30 +669,27 @@
               </div>
             </div>
           </div>
-          <!-- Contact Cast Shadow onto Right Page -->
+          
           <div class="turn-cast-shadow shadow-right"></div>
-          <!-- Soft Shadow on Left Page as Leaf Departs -->
+          
           <div class="turn-underneath-shadow on-left"></div>
         `;
       }
 
-      // Coordinate completion at 1100ms (matches cinematic paper-physics animation)
       setTimeout(() => {
         this.currentPageIdx = nextIdx;
         this.renderBookSpread();
 
-        // Physical book casing micro-wobble upon page touchdown
         const casingEl = document.querySelector('.open-physical-book-casing');
         if (casingEl) {
           casingEl.classList.add('book-settle');
           setTimeout(() => casingEl.classList.remove('book-settle'), 600);
         }
 
-        // Unlock controls
         this._isFlipping = false;
         if (this.btnPrevPage) this.btnPrevPage.style.pointerEvents = '';
         if (this.btnNextPage) this.btnNextPage.style.pointerEvents = '';
-      }, 1100);
+      }, 1050);
     }
 
     updateStoryFontSize() {

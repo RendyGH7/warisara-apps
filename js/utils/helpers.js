@@ -1,7 +1,3 @@
-/**
- * WARISARA — Helper Utilities
- */
-
 window.WARISARA_UTILS = {
   escapeHtml: function (str) {
     if (!str) return "";

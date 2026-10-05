@@ -1,8 +1,3 @@
-/**
- * WARISARA — Data Kuis & Edukasi Budaya Nusantara
- * Modul kuis interaktif untuk menguji pemahaman filosofi, karya, dan tradisi lokal.
- */
-
 window.QUIZ_DATA = [
   {
     id: "quiz-01",

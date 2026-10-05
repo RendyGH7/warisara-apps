@@ -1,8 +1,3 @@
-/**
- * WARISARA — Curated Featured Heritage Dataset
- * Level 2 & 3 deep cultural highlights
- */
-
 window.HERITAGE_DATA = [
   {
     id: "batik-tulis",

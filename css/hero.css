@@ -1,14 +1,3 @@
-/* ==========================================================================
-   WARISARA — HERO & HIGH-TECH CULTURAL MAP STYLES
-   ========================================================================== */
-
-/* ==========================================================================
-   HERO TITLE — "WARISARA" Wordmark & Rotating Nusantara Tagline
-   ========================================================================== */
-
-/* --- Keyframes for Cinematic Hero Entrance Sequence ----------------------- */
-
-/* Staggered Golden Letter Reveal with Soft Warm Bloom */
 @keyframes letterRevealCinematic {
   0% {
     opacity: 0;
@@ -29,7 +18,6 @@
   }
 }
 
-/* Hero Intro Block (Title + Tagline Block) — Glides up smoothly */
 @keyframes heroIntroSlowGlide {
   0% {
     opacity: 0;
@@ -41,7 +29,6 @@
   }
 }
 
-/* High-Tech 38-Province Island Map — Majestic Scale & Rise */
 @keyframes heroMapCinematicEnter {
   0% {
     opacity: 0;
@@ -59,7 +46,6 @@
   }
 }
 
-/* Decorative Gold Rule Grow-In */
 @keyframes ruleExpandSlow {
   0% {
     opacity: 0;
@@ -82,7 +68,6 @@
   }
 }
 
-/* Tagline Wrapper Entrance */
 @keyframes taglineWrapperEnterSlow {
   0% {
     opacity: 0;
@@ -94,7 +79,6 @@
   }
 }
 
-/* Hero Map Prompt Hint */
 @keyframes heroPromptEnterSlow {
   0% {
     opacity: 0;
@@ -106,33 +90,24 @@
   }
 }
 
-/* Tagline cycling: phrase slides up & fades out */
 @keyframes taglineOut {
   0%   { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-10px); }
 }
-/* New phrase slides in from below */
+
 @keyframes taglineIn {
   0%   { opacity: 0; transform: translateY(12px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Very subtle, slow glow drift on title */
 @keyframes softGlowDrift {
   0%, 100% { opacity: 0.18; }
   50%       { opacity: 0.32; }
 }
 
-/* --- WARISARA Wordmark --------------------------------------------------- */
-
-/* Each letter span — initial resting state while preloader runs */
 .hero-letter {
   display: inline-block;
 
-  /*
-   * Muted antique-gold gradient — warm, dark, NOT chrome-bright.
-   * Matches the brass stroke color (#A48253) of the island map.
-   */
   background: linear-gradient(
     170deg,
     #6B4F1A 0%,
@@ -148,7 +123,6 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 
-  /* Hidden initially while loading screen is active */
   opacity: 0;
   transform: translateY(30px) scale(0.92);
   filter: blur(8px);
@@ -157,20 +131,17 @@
   will-change: transform, opacity, filter;
 }
 
-/* Staggered Cinematic Reveal after Preloader Completion */
 body.hero-animated .hero-letter {
   animation: letterRevealCinematic 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(var(--i) * 120ms + 300ms);
 }
 
-/* Title container */
 #hero-title {
   position: relative;
   display: inline-block;
   letter-spacing: 0.14em;
 }
 
-/* Hero intro block — hidden initially while preloader runs */
 #hero-intro-block {
   opacity: 0;
   transform: translateY(28px);
@@ -181,7 +152,6 @@ body.hero-animated #hero-intro-block {
   animation: heroIntroSlowGlide 1.4s cubic-bezier(0.16, 1, 0.3, 1) 150ms both;
 }
 
-/* Hero map prompt hint */
 .hero-map-prompt-anim {
   opacity: 0;
 }
@@ -190,7 +160,6 @@ body.hero-animated .hero-map-prompt-anim {
   animation: heroPromptEnterSlow 1.2s ease-out 2100ms both;
 }
 
-/* Very faint warm underglow — barely visible, not pulsing brightly */
 #hero-title::before {
   content: '';
   position: absolute;
@@ -206,8 +175,6 @@ body.hero-animated .hero-map-prompt-anim {
   z-index: -1;
 }
 
-/* --- Decorative Rule ----------------------------------------------------- */
-
 .hero-title-rule {
   display: flex;
   align-items: center;
@@ -221,7 +188,7 @@ body.hero-animated .hero-map-prompt-anim {
   display: block;
   height: 1px;
   width: 56px;
-  /* Muted — matches map stroke tone */
+  
   background: linear-gradient(90deg, transparent, rgba(164, 130, 83, 0.5) 40%, rgba(196, 160, 104, 0.65) 60%, transparent);
   transform-origin: center;
   opacity: 0;
@@ -246,11 +213,9 @@ body.hero-animated .hero-title-rule-diamond {
   animation: diamondFadeInSlow 0.85s cubic-bezier(0.34, 1.4, 0.64, 1) 1450ms both;
 }
 
-/* --- Rotating Nusantara Tagline ----------------------------------------- */
-
 .hero-tagline-wrapper {
   position: relative;
-  height: 1.25em;          /* Fixed height prevents layout reflow on phrase change */
+  height: 1.25em;          
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -278,27 +243,23 @@ body.hero-animated .hero-tagline-wrapper {
   letter-spacing: 0.30em;
   text-transform: uppercase;
 
-  /* Muted warm tone — clearly legible but not competing with the map */
   color: rgba(164, 130, 83, 0.60);
 
   opacity: 0;
   transform: translateY(12px);
-  transition: none; /* JS handles via class toggling */
+  transition: none; 
   pointer-events: none;
   white-space: nowrap;
 }
 
-/* Active phrase: fully visible */
 .hero-tagline-phrase.tagline-active {
   animation: taglineIn 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Outgoing phrase: fades up and out */
 .hero-tagline-phrase.tagline-exit {
   animation: taglineOut 500ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
-/* Hero Canvas Backdrop & Atmosphere (Clean Center, Ornate Batik & Wayang Borders) */
 .hero-canvas-bg {
   position: absolute;
   inset: 0;
@@ -367,7 +328,7 @@ body.hero-animated #hero-map-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 982 / 390;
-  /* No max-height — let the SVG breathe so zoomed islands never clip on sides */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -377,7 +338,7 @@ body.hero-animated #hero-map-wrapper {
 #indonesia-map-svg {
   width: 100%;
   height: 100%;
-  /* No max-height — overflow visible so shadow/glow effects & edge islands are never cut off */
+  
   overflow: visible;
   transform-origin: center center;
   filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.85))
@@ -385,7 +346,6 @@ body.hero-animated #hero-map-wrapper {
           drop-shadow(0 22px 45px rgba(0, 0, 0, 0.60));
 }
 
-/* Individual Province Shapes (Solid Opaque Landmass) */
 .map-province-group {
   outline: none !important;
   cursor: pointer;
@@ -404,9 +364,7 @@ body.hero-animated #hero-map-wrapper {
   cursor: pointer;
   outline: none !important;
   opacity: 1;
-  /* Only fill+stroke — both are paint-thread cheap on SVG.
-     filter is intentionally excluded: drop-shadow transition on SVG
-     forces full-layer repaint every frame and causes jank. */
+  
   transition: fill 160ms ease-out,
     stroke 160ms ease-out,
     stroke-width 160ms ease-out;
@@ -423,7 +381,7 @@ body.hero-animated #hero-map-wrapper {
   fill: #A47E3F;
   stroke: #E6D3A7;
   stroke-width: 1.55;
-  /* Static drop-shadow (not transitioned) — applied instantly on hover */
+  
   filter: drop-shadow(0 0 8px rgba(201, 165, 103, 0.55)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85));
 }
 
@@ -435,13 +393,11 @@ body.hero-animated #hero-map-wrapper {
   filter: drop-shadow(0 2px 8px rgba(192, 106, 66, 0.85)) !important;
 }
 
-/* Focus Mode: Dimming other regions cleanly without expensive SVG filter recalculation */
 .map-dimmed .map-province-group:not(.active) .map-province-path,
 .map-dimmed .map-province-path:not(.active) {
   opacity: 0.22;
 }
 
-/* Interactive Coordinate Markers with Subtle Warm Halo Pulse */
 .map-marker {
   fill: #FFD885;
   stroke: #120F0C;
@@ -450,7 +406,7 @@ body.hero-animated #hero-map-wrapper {
   outline: none !important;
   transform-origin: center;
   transform-box: fill-box;
-  /* transform is GPU-composited on SVG with transform-box:fill-box → zero jank */
+  
   transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
     fill 160ms ease-out,
     stroke 160ms ease-out;
@@ -473,7 +429,6 @@ body.hero-animated #hero-map-wrapper {
   filter: drop-shadow(0 0 6px rgba(201, 165, 103, 0.75)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
 }
 
-/* Tooltip */
 .map-tooltip {
   position: absolute;
   pointer-events: none;
@@ -486,7 +441,7 @@ body.hero-animated #hero-map-wrapper {
   border-radius: 8px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   transform: translate(-50%, -120%) scale(0.96);
-  /* opacity + transform only — both GPU composited */
+  
   transition: opacity 140ms ease-out, transform 140ms ease-out;
   opacity: 0;
   will-change: transform, opacity;
@@ -497,7 +452,6 @@ body.hero-animated #hero-map-wrapper {
   transform: translate(-50%, -135%) scale(1);
 }
 
-/* Province Information Center Modal */
 #province-modal-overlay {
   opacity: 0;
   pointer-events: none;
@@ -526,7 +480,6 @@ body.hero-animated #hero-map-wrapper {
   box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(201, 165, 103, 0.12);
 }
 
-/* Staggered Content Animation — shorter delays, snappier feel */
 #province-modal-overlay.active .modal-anim-stagger-1 {
   animation: modalFadeUp 320ms 60ms ease-out both;
 }
@@ -555,7 +508,6 @@ body.hero-animated #hero-map-wrapper {
   }
 }
 
-/* Sleek Cultural Scrollbar */
 .custom-modal-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(201, 165, 103, 0.35) transparent;

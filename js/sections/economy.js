@@ -1,7 +1,3 @@
-/**
- * WARISARA — From Hands to Home (Creative Economy) Section Controller
- */
-
 window.WARISARA_ECONOMY = {
   init: function () {
     const container = document.getElementById("products-grid");

@@ -1,59 +1,43 @@
-/**
- * WARISARA — Creative Lab Studio 2.0
- * Advanced Generative & Interactive Batik / Wastra Design Suite
- * Pure Native HTML5 Canvas API + Vanilla JS
- */
-
 (function () {
   "use strict";
 
-  // Studio State
   const StudioState = {
-    // Mode: 'generative' | 'canting'
+    
     currentMode: "generative",
 
-    // Core Motif Selection
-    motif: "kawung", // kawung, parang, megamendung, truntum, sekarjagad, ceplok, songket, ikat_toraja, pesisir_flora, garuda_lereng
+    motif: "kawung", 
 
-    // Layout & Symmetry
-    layout: "grid", // grid, brick, diagonal, radial, organic
+    layout: "grid", 
 
-    // Internal Detail (Isen-isen)
-    isen: "cecek", // none, cecek, sisik, gringsing, sawut, ukel
+    isen: "cecek", 
 
-    // Sliders & Numerical Parameters
-    density: 4,          // 2 to 10
-    strokeWidth: 2.5,    // 1 to 7
-    scale: 1.0,          // 0.6 to 1.8
-    rotation: 0,         // 0 to 360 deg
-    curviness: 1.0,      // 0.5 to 1.8 (petal/wave curvature)
-    complexity: 3,       // 1 to 5 (inner detail rings)
+    density: 4,          
+    strokeWidth: 2.5,    
+    scale: 1.0,          
+    rotation: 0,         
+    curviness: 1.0,      
+    complexity: 3,       
 
-    // Effects & Textures
-    showCrackle: false,  // Remukan lilin malam (mati secara default untuk kanvas bersih)
-    showWeave: true,     // Weave texture grain
-    alternateFlip: false,// Checkerboard alternating rotation
+    showCrackle: false,  
+    showWeave: true,     
+    alternateFlip: false,
 
-    // Colors
-    primaryColor: "#16213A",   // Garis Utama (Indigo)
-    secondaryColor: "#C9A567", // Isen-isen / Aksen (Gold/Soga)
-    highlightColor: "#A8512F", // Inti Bintang (Terracotta)
-    bgColor: "#F6F1E7",        // Dasar Kain (Mori / Daluang)
-    bgStyle: "solid",          // solid, gradient, vignette
+    primaryColor: "#16213A",   
+    secondaryColor: "#C9A567", 
+    highlightColor: "#A8512F", 
+    bgColor: "#F6F1E7",        
+    bgStyle: "solid",          
 
-    // Canting Tulis Freehand Tool & Print Engine
-    cantingTool: "brush",      // brush, eraser
-    cantingSize: 4,            // 1 to 20
+    cantingTool: "brush",      
+    cantingSize: 4,            
     cantingColor: "#16213A",
     cantingWaxBleed: true,
-    cantingLayout: "grid",     // grid, brick, mirror, diagonal
-    cantingDensity: 4,         // 2 to 6
-    cantingIsPrinted: false,   // false = drawing 1-unit motif on blank canvas, true = printed repeated fabric
+    cantingLayout: "grid",     
+    cantingDensity: 4,         
+    cantingIsPrinted: false,   
 
-    // Active View / Mockup
-    activeView: "flat", // flat, shirt, scarf, cushion
+    activeView: "flat", 
 
-    // History & Seed & Certificate Data
     seed: Math.floor(Math.random() * 1000000),
     authorName: "Rendy & Tim Warisara",
     artworkTitle: "Mahakarya Batik Nusantara",
@@ -63,7 +47,6 @@
     message: "Dipersembahkan untuk menjaga keluhuran dan keagungan wastra pusaka Nusantara."
   };
 
-  // Preset Collections (12 Iconic Masterpieces)
   const PRESETS = [
     {
       id: "kawung-kencana",
@@ -271,7 +254,6 @@
     }
   ];
 
-  // Palette Presets
   const PALETTES = [
     {
       name: "Keraton Sogan & Nila",
@@ -331,7 +313,6 @@
     }
   ];
 
-  // Motif Philosophical Metadata
   const MOTIF_INFO = {
     kawung: {
       title: "Makna Filosofi Batik Kawung",
@@ -395,26 +376,21 @@
     }
   };
 
-  // Main Canvas & Freehand Layer
   let canvas = null;
   let ctx = null;
   let freehandCanvas = null;
   let freehandCtx = null;
 
-  // History Undo/Redo Stacks
   const historyStack = [];
   const redoStack = [];
   const MAX_HISTORY = 20;
 
-  // Drawing state
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
 
-  // Cached Crackle Noise Array
   let cachedCrackleLines = null;
 
-  // Helper for drawing rounded rectangle with fallback
   function drawRoundRect(c, x, y, width, height, radius) {
     if (typeof c.roundRect === "function") {
       c.roundRect(x, y, width, height, radius);
@@ -434,7 +410,6 @@
     }
   }
 
-  // Initialize Creative Lab Suite
   function init() {
     if (window.WARISARA_NAVBAR && typeof window.WARISARA_NAVBAR.init === "function") {
       window.WARISARA_NAVBAR.init();
@@ -447,32 +422,24 @@
     if (!canvas) return;
     ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-    // Setup off-screen / overlay canvas for freehand canting
     freehandCanvas = document.createElement("canvas");
     freehandCanvas.width = canvas.width;
     freehandCanvas.height = canvas.height;
     freehandCtx = freehandCanvas.getContext("2d");
 
-    // Generate initial crackle cache
     generateCrackleNoise();
 
-    // Bind all UI Controls
     bindDomEvents();
 
-    // Load saved gallery from localStorage
     renderSavedGallery();
 
-    // Push initial state
     saveHistoryState();
 
-    // Initial print button state check
     updatePrintButtonState();
 
-    // Initial render
     render();
   }
 
-  // Push state to history
   function saveHistoryState() {
     if (historyStack.length >= MAX_HISTORY) {
       historyStack.shift();
@@ -532,7 +499,6 @@
     if (btnRedo) btnRedo.disabled = redoStack.length === 0;
   }
 
-  // Crackle / Remukan Malam Generator
   function generateCrackleNoise() {
     const lines = [];
     const numBranches = 35;
@@ -559,22 +525,17 @@
     cachedCrackleLines = lines;
   }
 
-  // =========================================================================
-  // CORE GENERATIVE & CANTING RENDERING PIPELINE
-  // =========================================================================
   function render() {
     if (!ctx || !canvas) return;
 
     const w = canvas.width;
     const h = canvas.height;
 
-    // ── MODE CANTING TULIS: PHASE 1 — BLANK WHITE 1-UNIT MOTIF CANVAS ──
     if (StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted) {
-      // 1. Pristine clean white fabric (mori)
+      
       ctx.fillStyle = "#FAF8F5";
       ctx.fillRect(0, 0, w, h);
 
-      // 2. Center 1-Unit Motif Guide Border (Dashed square box)
       ctx.save();
       ctx.strokeStyle = "rgba(164, 126, 63, 0.32)";
       ctx.lineWidth = 1.5;
@@ -582,7 +543,6 @@
       drawRoundRect(ctx, w * 0.08, h * 0.08, w * 0.84, h * 0.84, 14);
       ctx.stroke();
 
-      // Delicate centering crosshairs
       ctx.strokeStyle = "rgba(164, 126, 63, 0.18)";
       ctx.beginPath();
       ctx.moveTo(w / 2, h * 0.08);
@@ -592,17 +552,14 @@
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Top guide text
       ctx.fillStyle = "rgba(138, 88, 34, 0.55)";
       ctx.font = "600 11px 'Manrope', sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("Kanvas 1 Unit Motif — Goreskan Canting Bebas Buatan Anda Disini", w / 2, h * 0.055);
       ctx.restore();
 
-      // 3. Render user's drawn freehand strokes on top
       ctx.drawImage(freehandCanvas, 0, 0);
 
-      // Update info display
       updateInfoDisplay();
       if (StudioState.activeView !== "flat") {
         updateMockupView();
@@ -610,7 +567,6 @@
       return;
     }
 
-    // ── MODE CANTING TULIS: PHASE 2 — PRINTED CUSTOM TILED FABRIC ──
     if (StudioState.currentMode === "canting" && StudioState.cantingIsPrinted) {
       renderPrintedCustomFabric(ctx, w, h);
       if (StudioState.showWeave) {
@@ -621,14 +577,10 @@
       return;
     }
 
-    // ── MODE PARAMETRIK GENERATIF ──
-    // 1. Clear & Background Fabric Layer
     renderFabricBackground(ctx, w, h);
 
-    // 2. Base Generative Motif Grid & Isen-isen
     renderGenerativePattern(ctx, w, h);
 
-    // 3. Batik Wax Crackle & Weave Texture Effects
     if (StudioState.showCrackle && cachedCrackleLines) {
       renderCrackleEffect(ctx, w, h);
     }
@@ -636,14 +588,11 @@
       renderWeaveTexture(ctx, w, h);
     }
 
-    // 4. Update UI Labels & Info Cards
     updateInfoDisplay();
 
-    // 5. Update Active Mockup (if not flat)
     updateMockupView();
   }
 
-  // Render Tiled Fabric From User's Custom Hand-Drawn 1-Unit Motif
   function renderPrintedCustomFabric(targetCtx, w, h) {
     targetCtx.fillStyle = StudioState.bgColor || "#FAF8F5";
     targetCtx.fillRect(0, 0, w, h);
@@ -652,7 +601,6 @@
     const cellSize = w / density;
     const layout = StudioState.cantingLayout || "grid";
 
-    // Detect bounding box of user's drawing
     const bbox = getCanvasBoundingBox(freehandCanvas);
     const srcX = bbox.x;
     const srcY = bbox.y;
@@ -706,7 +654,7 @@
     for (let y = 0; y < h; y += 2) {
       for (let x = 0; x < w; x += 2) {
         const idx = (y * w + x) * 4;
-        if (data[idx + 3] > 10) { // Alpha threshold
+        if (data[idx + 3] > 10) { 
           if (x < minX) minX = x;
           if (x > maxX) maxX = x;
           if (y < minY) minY = y;
@@ -754,7 +702,6 @@
     }
   }
 
-  // 1. Fabric Background
   function renderFabricBackground(targetCtx, w, h) {
     if (StudioState.bgStyle === "gradient") {
       const grad = targetCtx.createLinearGradient(0, 0, w, h);
@@ -772,7 +719,6 @@
     targetCtx.fillRect(0, 0, w, h);
   }
 
-  // 2. Generative Motif Engine
   function renderGenerativePattern(targetCtx, w, h) {
     targetCtx.save();
 
@@ -796,7 +742,7 @@
     targetCtx.lineJoin = "round";
 
     if (layout === "radial") {
-      // Mandala / Radial Symmetry
+      
       const cx = w / 2;
       const cy = h / 2;
       const maxR = w * 0.48;
@@ -819,7 +765,6 @@
         }
       }
 
-      // Center Mandala Core
       targetCtx.save();
       targetCtx.translate(cx, cy);
       targetCtx.rotate(globalRotation);
@@ -827,7 +772,7 @@
       targetCtx.restore();
 
     } else if (layout === "diagonal") {
-      // Diagonal Lereng 45 deg Flow
+      
       const spacing = cellSize * 0.85;
       const diagSteps = Math.ceil((w + h) / spacing) + 2;
 
@@ -847,7 +792,7 @@
       }
 
     } else if (layout === "brick") {
-      // Staggered Brick Half-drop
+      
       let rowIdx = 0;
       for (let y = -cellSize / 2; y <= h + cellSize; y += cellSize * 0.86) {
         const xOffset = (rowIdx % 2 === 1) ? cellSize / 2 : 0;
@@ -865,7 +810,7 @@
       }
 
     } else if (layout === "organic") {
-      // Jittered Organic Scatter
+      
       let count = 0;
       for (let y = 0; y < h; y += cellSize * 0.9) {
         for (let x = 0; x < w; x += cellSize * 0.9) {
@@ -883,7 +828,7 @@
       }
 
     } else {
-      // Standard Orthogonal Grid
+      
       let row = 0;
       for (let y = 0; y < h; y += cellSize) {
         let col = 0;
@@ -903,9 +848,6 @@
     targetCtx.restore();
   }
 
-  // =========================================================================
-  // INDIVIDUAL MOTIF DRAWING ROUTINES (10 HERITAGE CLASSES)
-  // =========================================================================
   function drawSingleMotif(c, cx, cy, size, motif, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     const r = half * 0.85;
@@ -946,7 +888,6 @@
     }
   }
 
-  // 1. Kawung Klasik
   function drawKawungMotif(c, cx, cy, r, isen, primary, secondary, highlight, curviness, complexity) {
     const rx = r * 0.95 * curviness;
     const ry = r * 0.42;
@@ -1008,7 +949,6 @@
     }
   }
 
-  // 2. Parang Rusak & Barong
   function drawParangMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
 
@@ -1072,7 +1012,6 @@
     c.restore();
   }
 
-  // 3. Megamendung Cirebon
   function drawMegamendungMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     const layers = Math.min(5, complexity + 1);
@@ -1104,7 +1043,6 @@
     c.restore();
   }
 
-  // 4. Batik Truntum
   function drawTruntumMotif(c, cx, cy, r, isen, primary, secondary, highlight, curviness, complexity) {
     const petals = 8;
     const outerR = r * 0.9;
@@ -1159,7 +1097,6 @@
     c.restore();
   }
 
-  // 5. Sekar Jagad (Patchwork Map Islands)
   function drawSekarJagadMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     c.save();
@@ -1211,7 +1148,6 @@
     c.restore();
   }
 
-  // 6. Ceplok Kesatrian Mandala
   function drawCeplokMotif(c, cx, cy, r, isen, primary, secondary, highlight, curviness, complexity) {
     c.save();
     c.translate(cx, cy);
@@ -1256,7 +1192,6 @@
     c.restore();
   }
 
-  // 7. Songket Minangkabau
   function drawSongketMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     c.save();
@@ -1309,7 +1244,6 @@
     c.restore();
   }
 
-  // 8. Ikat & Pa'teddong Toraja
   function drawTorajaMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     c.save();
@@ -1346,7 +1280,6 @@
     c.restore();
   }
 
-  // 9. Pesisir Buketan Flora
   function drawPesisirFloraMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     c.save();
@@ -1391,7 +1324,6 @@
     c.restore();
   }
 
-  // 10. Lereng Garuda / Gurdo
   function drawGarudaLerengMotif(c, cx, cy, size, isen, primary, secondary, highlight, curviness, complexity) {
     const half = size / 2;
     c.save();
@@ -1436,9 +1368,6 @@
     c.restore();
   }
 
-  // =========================================================================
-  // TEXTURE & BATIK MALAM EFFECTS
-  // =========================================================================
   function renderCrackleEffect(targetCtx, w, h) {
     targetCtx.save();
     targetCtx.strokeStyle = StudioState.primaryColor;
@@ -1478,9 +1407,6 @@
     targetCtx.restore();
   }
 
-  // =========================================================================
-  // FREEHAND CANTING TULIS & STAMP PLACER
-  // =========================================================================
   function handleCanvasMouseDown(e) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -1620,9 +1546,6 @@
     render();
   }
 
-  // =========================================================================
-  // MOCKUP SIMULATION VIEWER (Shirt, Scarf, Cushion)
-  // =========================================================================
   function updateMockupView() {
     const mockupCanvas = document.getElementById("mockup-preview-canvas");
     if (!mockupCanvas || StudioState.activeView === "flat") return;
@@ -1777,9 +1700,6 @@
     mCtx.restore();
   }
 
-  // =========================================================================
-  // CERTIFICATE POP-UP MODAL & GENERATOR PIPELINE
-  // =========================================================================
   function openCertificateModal() {
     const backdrop = document.getElementById("cert-modal-backdrop");
     const previewImg = document.getElementById("cert-preview-img");
@@ -1874,7 +1794,6 @@
     certCanvas.height = 950;
     const cCtx = certCanvas.getContext("2d");
 
-    // Background Parchment & Grain
     cCtx.fillStyle = "#FAF6EE";
     cCtx.fillRect(0, 0, 1400, 950);
 
@@ -2075,8 +1994,8 @@
     const h = 600;
     let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">\n`;
     svg += `  <rect width="100%" height="100%" fill="${StudioState.bgColor}"/>\n`;
-    svg += `  <!-- Generated with WARISARA Creative Lab Studio 2.0 -->\n`;
-    svg += `  <!-- Motif: ${StudioState.motif}, Layout: ${StudioState.layout} -->\n`;
+    svg += `  \n`;
+    svg += `  \n`;
     svg += `  <g stroke="${StudioState.primaryColor}" stroke-width="${StudioState.strokeWidth}" fill="none">\n`;
 
     const cellSize = w / StudioState.density;
@@ -2101,9 +2020,6 @@
     URL.revokeObjectURL(url);
   }
 
-  // =========================================================================
-  // LOCALSTORAGE SAVED GALLERY
-  // =========================================================================
   function saveToGallery() {
     try {
       const saved = JSON.parse(localStorage.getItem("warisara_creative_gallery") || "[]");
@@ -2186,11 +2102,8 @@
     });
   }
 
-  // =========================================================================
-  // DOM EVENT BINDING & UI SYNC
-  // =========================================================================
   function bindDomEvents() {
-    // 1. Studio Mode Tabs (Parametrik vs Canting Tulis)
+    
     document.querySelectorAll(".mode-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const prevMode = StudioState.currentMode;
@@ -2213,7 +2126,6 @@
         if (btnRandomize) btnRandomize.classList.toggle("hidden", StudioState.currentMode === "canting");
         if (btnReEdit) btnReEdit.classList.toggle("hidden", StudioState.currentMode !== "canting");
 
-        // Fresh canvas isolation: When switching to Canting Tulis Bebas from Parametrik
         if (StudioState.currentMode === "canting") {
           StudioState.cantingIsPrinted = false;
           StudioState.activeView = "flat";
@@ -2230,7 +2142,6 @@
           saveHistoryState();
         }
 
-        // Fresh canvas isolation: When switching to Studio Parametrik from Canting
         if (StudioState.currentMode === "generative") {
           StudioState.activeView = "flat";
           document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
@@ -2255,7 +2166,6 @@
       });
     });
 
-    // 2. Motif Selector Cards
     document.querySelectorAll(".motif-card-select").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".motif-card-select").forEach((b) => b.classList.remove("active"));
@@ -2266,7 +2176,6 @@
       });
     });
 
-    // 3. Layout Buttons
     document.querySelectorAll(".layout-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".layout-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
@@ -2277,7 +2186,6 @@
       });
     });
 
-    // 4. Isen-isen Detail Buttons
     document.querySelectorAll(".isen-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".isen-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
@@ -2288,7 +2196,6 @@
       });
     });
 
-    // 5. Preset Chips
     document.querySelectorAll(".preset-chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         const presetId = chip.dataset.presetId;
@@ -2302,7 +2209,6 @@
       });
     });
 
-    // 6. Color Palette Presets
     document.querySelectorAll(".palette-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const pIdx = parseInt(btn.dataset.paletteIdx, 10);
@@ -2319,20 +2225,17 @@
       });
     });
 
-    // 7. Direct Color Pickers (Inputs)
     bindColorInput("picker-primary", (val) => { StudioState.primaryColor = val; });
     bindColorInput("picker-secondary", (val) => { StudioState.secondaryColor = val; });
     bindColorInput("picker-highlight", (val) => { StudioState.highlightColor = val; });
     bindColorInput("picker-bg", (val) => { StudioState.bgColor = val; });
 
-    // 8. Sliders
     bindSlider("slider-density", "val-density", (val) => { StudioState.density = parseInt(val, 10); return `${val}x${val}`; });
     bindSlider("slider-thickness", "val-thickness", (val) => { StudioState.strokeWidth = parseFloat(val); return `${val}px`; });
     bindSlider("slider-curviness", "val-curviness", (val) => { StudioState.curviness = parseFloat(val); return `${val}x`; });
     bindSlider("slider-rotation", "val-rotation", (val) => { StudioState.rotation = parseInt(val, 10); return `${val}°`; });
     bindSlider("slider-complexity", "val-complexity", (val) => { StudioState.complexity = parseInt(val, 10); return `Lvl ${val}`; });
 
-    // 9. Checkbox Toggles (Crackle, Weave, Flip)
     const toggleCrackle = document.getElementById("toggle-crackle");
     if (toggleCrackle) {
       toggleCrackle.addEventListener("change", (e) => {
@@ -2360,7 +2263,6 @@
       });
     }
 
-    // 10. Canting & Stamp Freehand Controls
     function updateCanvasCursor() {
       if (!canvas) return;
       if (StudioState.cantingTool === "eraser") {
@@ -2372,7 +2274,6 @@
       }
     }
 
-    // 10. Canting Tulis Controls & Print Engine
     document.querySelectorAll(".canting-tool-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".canting-tool-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
@@ -2383,7 +2284,6 @@
     });
     updateCanvasCursor();
 
-    // Preset Canting Colors
     document.querySelectorAll("[data-canting-color]").forEach((btn) => {
       btn.addEventListener("click", () => {
         StudioState.cantingColor = btn.dataset.cantingColor;
@@ -2392,7 +2292,6 @@
       });
     });
 
-    // Canting Layout & Tiling Selectors
     document.querySelectorAll(".canting-layout-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".canting-layout-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
@@ -2409,7 +2308,6 @@
     const btnClearCanvas = document.getElementById("btn-clear-freehand");
     if (btnClearCanvas) btnClearCanvas.addEventListener("click", clearFreehandOverlay);
 
-    // Primary Print Custom Motif to Fabric Button
     const btnPrintBatik = document.getElementById("btn-print-custom-batik");
     if (btnPrintBatik) {
       btnPrintBatik.addEventListener("click", () => {
@@ -2422,7 +2320,6 @@
         const mockupTabs = document.getElementById("mockup-tabs-container");
         if (mockupTabs) mockupTabs.classList.remove("hidden");
 
-        // Set active tab to flat canvas initially
         StudioState.activeView = "flat";
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
           const isFlat = b.dataset.view === "flat";
@@ -2433,7 +2330,6 @@
 
         render();
 
-        // Smooth scroll to canvas viewport
         const canvasWrapper = document.getElementById("view-flat-canvas");
         if (canvasWrapper) {
           canvasWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -2441,15 +2337,13 @@
       });
     }
 
-    // Re-edit Motif Button (Back to Drawing Phase)
     const btnReEdit = document.getElementById("btn-re-edit-motif");
     if (btnReEdit) {
       btnReEdit.addEventListener("click", () => {
         StudioState.cantingIsPrinted = false;
         const mockupTabs = document.getElementById("mockup-tabs-container");
         if (mockupTabs) mockupTabs.classList.add("hidden");
-        
-        // Reset to flat view
+
         StudioState.activeView = "flat";
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
           b.classList.toggle("active", b.dataset.view === "flat");
@@ -2466,13 +2360,11 @@
       });
     }
 
-    // Post-Print Custom Mockup Triggers (Baju, Bantal, Selendang)
     document.querySelectorAll("[data-mockup-trigger]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const view = btn.dataset.mockupTrigger;
         StudioState.activeView = view;
 
-        // Sync with top toolbar buttons
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => {
           const isActive = b.dataset.view === view;
           b.classList.toggle("active", isActive);
@@ -2495,7 +2387,6 @@
       });
     });
 
-    // 11. Mockup Switcher Tabs (Header)
     document.querySelectorAll(".mockup-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".mockup-tab-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
@@ -2518,19 +2409,16 @@
       });
     });
 
-    // 12. Smart AI / Procedural Randomizer Button
     const btnRandomize = document.getElementById("btn-randomize-pattern");
     if (btnRandomize) {
       btnRandomize.addEventListener("click", randomizeIntelligently);
     }
 
-    // 13. Undo / Redo Buttons
     const btnUndo = document.getElementById("btn-undo");
     const btnRedo = document.getElementById("btn-redo");
     if (btnUndo) btnUndo.addEventListener("click", undo);
     if (btnRedo) btnRedo.addEventListener("click", redo);
 
-    // 14. Action Buttons (Downloads & Save)
     const btnDownloadHd = document.getElementById("btn-download-hd");
     if (btnDownloadHd) {
       btnDownloadHd.addEventListener("click", () => {
@@ -2549,7 +2437,6 @@
       btnDownloadCert.addEventListener("click", openCertificateModal);
     }
 
-    // Certificate Modal Controls
     const certModalClose = document.getElementById("cert-modal-close-btn");
     const certModalCancel = document.getElementById("cert-modal-cancel-btn");
     const certModalSubmit = document.getElementById("cert-modal-submit-btn");
@@ -2576,7 +2463,6 @@
     const btnSaveGallery = document.getElementById("btn-save-gallery");
     if (btnSaveGallery) btnSaveGallery.addEventListener("click", saveToGallery);
 
-    // 15. Canvas Interactive Mouse / Touch Events
     canvas.addEventListener("mousedown", handleCanvasMouseDown);
     window.addEventListener("mousemove", handleCanvasMouseMove);
     window.addEventListener("mouseup", handleCanvasMouseUp);
@@ -2617,7 +2503,6 @@
     slider.addEventListener("change", () => saveHistoryState());
   }
 
-  // Smart Procedural Combination Randomizer (10,000+ Combinations)
   function randomizeIntelligently() {
     const motifs = ["kawung", "parang", "megamendung", "truntum", "sekarjagad", "ceplok", "songket", "ikat_toraja", "pesisir_flora", "garuda_lereng"];
     const layouts = ["grid", "brick", "diagonal", "radial", "organic"];
@@ -2735,7 +2620,6 @@
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
   }
 
-  // Export to Global window object
   window.WARISARA_STUDIO = {
     init: init,
     render: render,
@@ -2746,7 +2630,6 @@
   };
   window.initCreativeLabPage = init;
 
-  // Auto Init on DOM Ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

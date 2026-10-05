@@ -1,7 +1,3 @@
-/**
- * WARISARA — Featured Heritage Section Controller
- */
-
 window.WARISARA_FEATURED_HERITAGE = {
   init: function () {
     const container = document.getElementById("featured-heritage-grid");

@@ -1,8 +1,3 @@
-/**
- * WARISARA — Audio Player Component (Suara Mereka)
- * Compliant: No Autoplay, Native HTML5 Audio
- */
-
 window.WARISARA_AUDIO = {
   currentAudio: null,
   isPlaying: false,

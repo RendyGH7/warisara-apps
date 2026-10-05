@@ -1,7 +1,3 @@
-/**
- * WARISARA — Animation Utilities
- */
-
 window.WARISARA_ANIM = {
   fadeIn: function (element, duration = 300) {
     if (!element) return;

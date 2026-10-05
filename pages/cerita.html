@@ -8,18 +8,15 @@
   <meta name="description"
     content="Jelajahi kisah lisan adiluhung, asal-usul kain pusaka, dan falsafah hidup nenek moyang Nusantara dalam format buku cerita 3D interaktif bersuara." />
 
-  <!-- Google Fonts: Fraunces & Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <!-- Google Material Symbols -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
-  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -69,7 +66,6 @@
     };
   </script>
 
-  <!-- Modular CSS Stylesheets -->
   <link rel="stylesheet" href="../css/variables.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
@@ -82,18 +78,14 @@
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body overflow-x-hidden" data-page="cerita">
 
-  <!-- =========================================================================
-       01. MAIN NAVIGATION
-       ========================================================================= -->
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
-    <!-- Brand Logo -->
+    
     <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <span
         class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
     </a>
 
-    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
     <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
@@ -109,13 +101,11 @@
       <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <!-- Header Action Button & Mobile Hamburger -->
     <div class="flex items-center gap-2.5 flex-shrink-0">
       <a href="pass-it-on.html" class="btn-nav-icon" aria-label="Pass It On" title="Pass It On">
         <span class="material-symbols-outlined text-base">favorite</span>
       </a>
 
-      <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
         aria-label="Buka Menu Navigasi">
@@ -124,7 +114,6 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
   <div id="mobile-nav-drawer"
     class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -187,12 +176,9 @@
     </a>
   </div>
 
-  <!-- =========================================================================
-       PAGE HERO & ATMOSPHERIC BANNER
-       ========================================================================= -->
   <main id="page-content" class="page-module-main">
     <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-24 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-      <!-- Ambient Glows -->
+      
       <div class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
         <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
         <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-terracotta-900/40 rounded-full blur-[100px]"></div>
@@ -200,7 +186,7 @@
       </div>
 
       <div class="max-w-4xl mx-auto text-center relative z-10">
-        <!-- Floating Heritage Badge -->
+        
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm">
           <span class="material-symbols-outlined text-base">menu_book</span>
           <span>Halaman 09 • Perpustakaan Tutur Lisan & Wastra 3D</span>
@@ -214,7 +200,6 @@
           Buka lembaran pusaka buku cerita 3D interaktif. Dengarkan tutur lisan para tetua, hayati kelahiran kain suci, dan petik butiran falsafah hidup bangsa Indonesia.
         </p>
 
-        <!-- Stats Counter Pill Bar -->
         <div class="grid grid-cols-3 max-w-lg mx-auto p-3 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md text-center">
           <div class="px-2 border-r border-white/10">
             <span class="font-display text-xl sm:text-2xl font-bold text-brass-300 block">10 Kisah</span>
@@ -232,13 +217,9 @@
       </div>
     </section>
 
-    <!-- =========================================================================
-         02. VIRTUAL HERITAGE BOOKSHELF (RAK BUKU NUSANTARA)
-         ========================================================================= -->
     <section class="py-12 sm:py-16 px-4 sm:px-6 bg-[#161310] min-h-[75vh]">
       <div class="max-w-7xl mx-auto">
-        
-        <!-- Shelf Header & Interactive Filter Bar -->
+
         <div class="bookshelf-stage p-6 sm:p-8 mb-10">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-white/10">
             <div>
@@ -251,7 +232,6 @@
               </h2>
             </div>
 
-            <!-- Live Search & Bookmark Pill -->
             <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
               <div class="relative flex-1 sm:w-72">
                 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/40 text-sm">search</span>
@@ -266,7 +246,6 @@
             </div>
           </div>
 
-          <!-- Category Theme Filters -->
           <div class="flex items-center gap-2 overflow-x-auto pt-5 pb-2 studio-scroll">
             <button data-theme="all" class="story-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brass-400 text-ink whitespace-nowrap transition-all shadow-sm">
               Semua Kisah (10)
@@ -289,47 +268,38 @@
           </div>
         </div>
 
-        <!-- 3D Book Cards Grid -->
-        <div id="stories-bookshelf-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
-          <!-- Rendered dynamically by story-book.js -->
+        <div id="stories-bookshelf-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 sm:gap-x-8 gap-y-14 sm:gap-y-16 mb-16">
+          
         </div>
 
-        <!-- Wooden Shelf Bottom Base Ledge -->
         <div class="book-shelf-ledge w-full mb-12"></div>
 
       </div>
     </section>
 
-    <!-- =========================================================================
-         03. INTERACTIVE 3D STORYBOOK MODAL READER (FIXED & ZERO SCROLL)
-         ========================================================================= -->
     <div id="interactive-book-modal" class="modal-overlay" role="dialog" aria-modal="true">
       
       <div class="book-reader-layout">
-        
-        <!-- Sisi Kiri: Panel Kontrol Membaca & Audio Cerita -->
+
         <aside class="book-side-dock book-side-dock-left" aria-label="Kontrol Membaca & Audio Cerita">
-          <!-- Action Buttons -->
+          
           <div class="book-dock-actions">
-            <!-- Voice Narrator TTS -->
+            
             <button id="btn-tome-narrate" class="book-dock-btn" title="Dengarkan Suara Narator">
               <span class="material-symbols-outlined text-base">volume_up</span>
               <span class="dock-btn-label">Narator Suara</span>
             </button>
 
-            <!-- Meditative Ambient Gamelan Synthesizer -->
             <button id="btn-tome-ambience" class="book-dock-btn" title="Putar Musik Gamelan Meditasi">
               <span class="material-symbols-outlined text-base">music_note</span>
               <span class="dock-btn-label">Gamelan Sunyi</span>
             </button>
 
-            <!-- Bookmark / Save -->
             <button id="btn-tome-bookmark" class="book-dock-btn" title="Simpan ke Penanda Baca">
               <span class="material-symbols-outlined text-base">bookmark_border</span>
               <span class="dock-btn-label">Simpan</span>
             </button>
 
-            <!-- Fullscreen -->
             <button id="btn-toggle-fullscreen" class="book-dock-btn" title="Layar Penuh">
               <span class="material-symbols-outlined text-base">fullscreen</span>
               <span class="dock-btn-label">Layar Penuh</span>
@@ -337,27 +307,22 @@
           </div>
         </aside>
 
-        <!-- Bagian Tengah: Buku 3D Fisik Bebas Scroll -->
         <div class="book-stage-container relative">
-          <!-- Tombol Tutup Langsung di Sudut Kanan Atas Buku -->
+          
           <button id="btn-close-book-modal" class="book-top-close-btn" aria-label="Tutup Buku" title="Tutup Buku (Esc)">
             <span class="material-symbols-outlined text-base">close</span>
           </button>
 
-          <!-- Authentic Physical Hardcover Open Book Casing -->
           <div class="open-physical-book-casing relative">
-            <!-- Top & Bottom Spine Headbands (Red Fabric Visible at Spine Ends) -->
+            
             <div class="book-spine-headband-top"></div>
             <div class="book-spine-headband-bottom"></div>
 
-
-            <!-- Satin Bookmark Ribbon -->
             <div class="book-satin-ribbon"></div>
 
-            <!-- Interior Dual-Page Open Spread Container -->
             <div id="heritage-tome-container" class="heritage-tome relative">
               <div class="heritage-tome-spine"></div>
-              <!-- Filled dynamically by story-book.js -->
+              
             </div>
           </div>
         </div>
@@ -366,9 +331,6 @@
     </div>
   </main>
 
-  <!-- =========================================================================
-       FOOTER
-       ========================================================================= -->
   <footer class="py-10 bg-[#110F0D] text-surface/60 text-xs border-t border-border-dark px-6">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
@@ -386,7 +348,6 @@
     </div>
   </footer>
 
-  <!-- Core Scripts -->
   <script src="../data/stories.js"></script>
   <script src="../js/utils/helpers.js"></script>
   <script src="../js/utils/story-audio.js"></script>

@@ -8,18 +8,15 @@
   <meta name="description"
     content="Manifesto dan ikrar penjaga kebudayaan: warisan tidak berhenti pada kita, kita yang meneruskan api peradaban Nusantara ke generasi masa depan." />
 
-  <!-- Google Fonts: Fraunces & Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <!-- Google Material Symbols -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
-  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -67,7 +64,6 @@
     };
   </script>
 
-  <!-- Modular CSS Stylesheets -->
   <link rel="stylesheet" href="../css/variables.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
@@ -79,18 +75,14 @@
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="pass-it-on">
 
-  <!-- =========================================================================
-       01. MAIN NAVIGATION
-       ========================================================================= -->
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
-    <!-- Brand Logo -->
+    
     <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <span
         class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
     </a>
 
-    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
     <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
@@ -106,13 +98,11 @@
       <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <!-- Header Action Button & Mobile Hamburger -->
     <div class="flex items-center gap-2.5 flex-shrink-0">
       <a href="../index.html" class="btn-nav-icon" aria-label="Beranda Peta" title="Beranda Peta">
         <span class="material-symbols-outlined text-base">home</span>
       </a>
 
-      <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
         aria-label="Buka Menu Navigasi">
@@ -121,7 +111,6 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
   <div id="mobile-nav-drawer"
     class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -184,9 +173,6 @@
     </a>
   </div>
 
-  <!-- =========================================================================
-       PAGE CONTENT MODULE
-       ========================================================================= -->
   <main id="page-content" class="page-module-main">
   <section class="relative pt-36 sm:pt-44 pb-20 sm:pb-28 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
     <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
@@ -209,9 +195,6 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       4 PILARS OF PRESERVATION
-       ========================================================================= -->
   <section class="py-12 px-4 sm:px-6 bg-[#181512] border-t border-border-dark">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
@@ -259,9 +242,6 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       PLEDGE GENERATOR (IKRAR DIGITAL PENJAGA BUDAYA)
-       ========================================================================= -->
   <section class="py-16 px-4 sm:px-6 bg-[#151310] relative">
     <div class="max-w-3xl mx-auto glass-panel p-8 sm:p-12 relative z-10">
       <div class="text-center mb-8">
@@ -270,7 +250,6 @@
         <p class="text-xs sm:text-sm text-surface/70 mt-2">Buat komitmen pribadi Anda dan dapatkan Kartu Ikrar Digital untuk dibagikan.</p>
       </div>
 
-      <!-- Generator Form -->
       <div class="space-y-4 mb-8">
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-surface/60 mb-1.5">Nama Anda</label>
@@ -295,7 +274,6 @@
         </button>
       </div>
 
-      <!-- Preview Pledge Card -->
       <div id="pledge-card-preview" class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-white/[0.06] to-transparent border border-brass-400/40 shadow-2xl relative overflow-hidden text-center">
         <div class="flex items-center justify-between pb-4 border-b border-white/10 text-[10px] uppercase tracking-widest text-brass-400">
           <span>WARISARA • KARTU IKRAR BUDAYA</span>
@@ -316,7 +294,6 @@
         </div>
       </div>
 
-      <!-- Share Action -->
       <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
         <button id="btn-share-pledge" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
           <span class="material-symbols-outlined text-sm">share</span>
@@ -331,7 +308,6 @@
   </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
@@ -343,7 +319,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="../js/utils/helpers.js"></script>
   <script src="../js/utils/page-transition.js"></script>
   <script src="../js/utils/lantern-cursor.js"></script>

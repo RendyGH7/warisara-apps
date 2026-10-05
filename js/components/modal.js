@@ -1,7 +1,3 @@
-/**
- * WARISARA — Global Modal Component
- */
-
 window.WARISARA_MODAL = {
   open: function (contentHtml) {
     let modal = document.getElementById("global-modal");

@@ -1,7 +1,3 @@
-/* ==========================================================================
-   WARISARA — BASE & TYPOGRAPHY STYLES
-   ========================================================================== */
-
 *,
 *::before,
 *::after {
@@ -37,7 +33,6 @@ body {
   cursor: url('../assets/images/cursor/lantern-default.svg') 4 4, auto;
 }
 
-/* Radiant Golden Lantern Cursor for Interactive Elements */
 a,
 button,
 [role="button"],
@@ -74,7 +69,6 @@ textarea {
   cursor: text;
 }
 
-/* Custom Batik Drawing / Canting Canvas Cursor */
 #creative-canvas,
 .canting-canvas-draw {
   cursor: url('../assets/images/cursor/canting-draw.svg') 2 2, crosshair !important;
@@ -100,7 +94,6 @@ textarea {
   line-height: 1;
 }
 
-/* Subtle background textures — Antique Canvas & Stardust Gold */
 .bg-texture {
   background-color: #0E0C0A;
   background-image:
@@ -116,7 +109,6 @@ textarea {
   background-size: 100% 100%, 28px 28px;
 }
 
-/* Modal Overlay Base Rules */
 .modal-overlay {
   display: none !important;
   position: fixed !important;
@@ -147,9 +139,6 @@ textarea {
   visibility: visible !important;
 }
 
-/* ==========================================================================
-   WARISARA — AMBIENT LANTERN CURSOR EFFECT (SUBTLE, WARM & ZERO-DELAY)
-   ========================================================================== */
 .warisara-lantern-cursor {
   position: fixed !important;
   top: 0 !important;
@@ -169,8 +158,6 @@ textarea {
   visibility: visible;
 }
 
-/* Outer Ambient Lantern Glow / Halo (Feathered broad natural illumination)
-   Offset: top 15px, left 8px perfectly centers the illumination with the lantern flame */
 .warisara-lantern-halo {
   position: absolute;
   top: 15px;
@@ -194,7 +181,6 @@ textarea {
   will-change: transform, width, height;
 }
 
-/* Inner Soft Core Glow (Radiates directly from inside the lantern chamber) */
 .warisara-lantern-glow {
   position: absolute;
   top: 15px;
@@ -215,7 +201,6 @@ textarea {
   transition: transform 0.25s ease;
 }
 
-/* Interactive Elements Hover State (Soft, gentle radiance that never obscures text) */
 .warisara-lantern-cursor.is-hovering .warisara-lantern-halo {
   width: 380px;
   height: 380px;
@@ -242,9 +227,8 @@ textarea {
   -webkit-filter: blur(16px);
 }
 
-/* Hide on touch devices */
 @media (hover: none) and (pointer: coarse) {
   .warisara-lantern-cursor {
     display: none !important;
   }
-}
+}

@@ -8,18 +8,15 @@
   <meta name="description"
     content="Eksplorasi warisan budaya dan kriya adiluhung dari 38 provinsi di seluruh Nusantara dalam satu wadah digital terpadu." />
 
-  <!-- Google Fonts: Fraunces (Editorial Serif) & Manrope (Modern Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <!-- Google Material Symbols -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
-  <!-- Tailwind CSS via CDN with WARISARA Design Tokens -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -67,7 +64,6 @@
     };
   </script>
 
-  <!-- Modular CSS Stylesheets -->
   <link rel="stylesheet" href="../css/variables.css?v=10" />
   <link rel="stylesheet" href="../css/base.css?v=10" />
   <link rel="stylesheet" href="../css/navbar.css?v=10" />
@@ -79,18 +75,14 @@
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="jelajahi">
 
-  <!-- =========================================================================
-       01. MAIN NAVIGATION
-       ========================================================================= -->
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
-    <!-- Brand Logo -->
+    
     <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <span
         class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
     </a>
 
-    <!-- Desktop Navigation Links (All 10 Interconnected Modules + Sliding Pill) -->
     <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
@@ -106,13 +98,11 @@
       <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <!-- Header Action Button & Mobile Hamburger -->
     <div class="flex items-center gap-2.5 flex-shrink-0">
       <a href="../index.html" class="btn-nav-icon" aria-label="Peta Interaktif" title="Peta Interaktif">
         <span class="material-symbols-outlined text-base">map</span>
       </a>
 
-      <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
         aria-label="Buka Menu Navigasi">
@@ -121,7 +111,6 @@
     </div>
   </header>
 
-  <!-- Mobile Floating Glass Drawer Menu -->
   <div id="mobile-nav-drawer"
     class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -184,11 +173,8 @@
     </a>
   </div>
 
-  <!-- =========================================================================
-       PAGE CONTENT MODULE
-       ========================================================================= -->
   <main id="page-content" class="page-module-main">
-    <!-- PAGE HEADER HERO -->
+    
     <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
     <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
       <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
@@ -205,7 +191,6 @@
         Jelajahi keragaman kriya adiluhung, filosofi tradisi, dan pelestari lokal dari Sabang sampai Merauke dalam satu sistem data terpadu.
       </p>
 
-      <!-- Stats Bar -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-6 border-t border-white/10 text-center">
         <div>
           <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
@@ -227,19 +212,15 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       FILTER & SEARCH TOOLBAR
-       ========================================================================= -->
   <section class="sticky top-20 sm:top-24 z-30 py-4 px-4 bg-[#181512]/90 backdrop-blur-md border-y border-border-dark">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-      <!-- Search Input -->
+      
       <div class="relative w-full md:w-80">
         <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
         <input id="province-search-input" type="text" placeholder="Cari provinsi, ibu kota, kriya..."
           class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
       </div>
 
-      <!-- Island Filter Pills -->
       <div id="island-filters" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs no-scrollbar">
         <button data-island="all" class="island-btn active px-3.5 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua (38)</button>
         <button data-island="Sumatera" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sumatera</button>
@@ -252,9 +233,6 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       PROVINCES GRID SECTION
-       ========================================================================= -->
   <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
     <div class="max-w-6xl mx-auto">
       <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between">
@@ -262,12 +240,10 @@
         <span class="text-[11px]">Klik kartu untuk membaca rincian pusaka</span>
       </div>
 
-      <!-- Grid Container -->
       <div id="provinces-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamically rendered via JavaScript from window.PROVINCES_DATA -->
+        
       </div>
 
-      <!-- Empty State -->
       <div id="provinces-empty-state" class="hidden text-center py-16 text-surface/60">
         <span class="material-symbols-outlined text-4xl mb-2 text-surface/30">search_off</span>
         <h3 class="font-display text-xl font-light text-surface">Provinsi Tidak Ditemukan</h3>
@@ -276,12 +252,9 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       PROVINCE DETAIL MODAL (FULL EXPERIENCE)
-       ========================================================================= -->
   <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
     <div id="province-detail-modal" class="modal-container max-w-2xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      <!-- Modal Header -->
+      
       <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
         <div>
           <span id="modal-province-island" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-2">PULAU</span>
@@ -293,34 +266,29 @@
         </button>
       </div>
 
-      <!-- Modal Body (Scrollable) -->
       <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/80">
-        <!-- Statement -->
+        
         <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1 leading-relaxed">
           "Pernyataan filosofis kebudayaan provinsi."
         </blockquote>
 
-        <!-- Description -->
         <div>
           <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-1">Sekilas Budaya</h4>
           <p id="modal-province-desc" class="font-light leading-relaxed">Deskripsi singkat latar belakang tradisi.</p>
         </div>
 
-        <!-- Craft Highlight -->
         <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
           <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-400 block mb-1">Kriya & Keahlian Utama</span>
           <p id="modal-craft-highlight" class="font-display text-base text-surface font-light">Tenun Ikat, Ukiran Kayu, Seni Logam</p>
         </div>
 
-        <!-- Heritage List -->
         <div>
           <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-3">Warisan Budaya Unggulan (WBTb)</h4>
           <div id="modal-heritage-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Dynamically populated -->
+            
           </div>
         </div>
 
-        <!-- Maker Voice -->
         <div class="p-4 rounded-2xl bg-forest-900/20 border border-forest-500/20">
           <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Suara Pelestari Tradisi</span>
           <p id="modal-maker-quote" class="italic text-surface/90 mb-2 leading-relaxed">"Kutipan dari pengrajin atau pemangku adat."</p>
@@ -331,7 +299,6 @@
         </div>
       </div>
 
-      <!-- Modal Footer -->
       <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
         <a href="warisan.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
           <span>Katalog Pusaka Lengkap</span>
@@ -343,9 +310,6 @@
   </div>
   </main>
 
-  <!-- =========================================================================
-       FOOTER
-       ========================================================================= -->
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
@@ -357,7 +321,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="../data/provinces.js?v=10"></script>
   <script src="../js/utils/helpers.js?v=10"></script>
   <script src="../js/utils/page-transition.js?v=10"></script>

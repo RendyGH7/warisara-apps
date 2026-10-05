@@ -1,7 +1,3 @@
-/**
- * WARISARA — Heritage × Modern Comparison Section Controller
- */
-
 window.WARISARA_MODERN = {
   init: function () {
     const slider = document.getElementById("modern-comparison-slider");

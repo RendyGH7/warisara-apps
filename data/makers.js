@@ -1,8 +1,3 @@
-/**
- * WARISARA — Meet the Makers Dataset
- * Human-first storytelling: Guardians of ancestral knowledge
- */
-
 window.MAKERS_DATA = [
   {
     id: "mbah-cipto",

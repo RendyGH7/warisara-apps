@@ -1,9 +1,3 @@
-/**
- * WARISARA — Hero Section & Interactive Indonesia SVG Map Controller
- * Manages 38-province SVG rendering, hover glow, coordinate markers,
- * smooth 60fps camera pan-zoom interpolation, and center pop-up triggers.
- */
-
 window.WARISARA_HERO_MAP = {
   svgMap: null,
   mapContainer: null,
@@ -28,15 +22,10 @@ window.WARISARA_HERO_MAP = {
 
     this.populateMobileDropdown();
     this.bindMapEvents();
-    // NOTE: entrance animation is handled by CSS @keyframes in hero.css —
-    // no JS class toggling needed here.
+
     this.startTaglineCycle();
   },
 
-  /**
-   * Rotating Nusantara tagline — cycles through phrases every 3.8 s.
-   * Starts only after loading screen is dismissed and title letters enter.
-   */
   startTaglineCycle: function () {
     const wrapper = document.getElementById("hero-tagline-wrapper");
     if (!wrapper) return;
@@ -63,7 +52,7 @@ window.WARISARA_HERO_MAP = {
     };
 
     const runSequence = () => {
-      // First phrase appears after letter entrance completes (~1600ms)
+      
       setTimeout(() => {
         showPhrase(0);
         if (this._taglineTimer) clearInterval(this._taglineTimer);
@@ -176,7 +165,6 @@ window.WARISARA_HERO_MAP = {
   animateViewBox: function (targetX, targetY, targetW, targetH, duration = 500, callback = null) {
     if (!this.svgMap) return;
 
-    // Cancel any in-flight animation immediately
     if (this._animFrameId) {
       cancelAnimationFrame(this._animFrameId);
       this._animFrameId = null;
@@ -188,17 +176,12 @@ window.WARISARA_HERO_MAP = {
     const startW = isFinite(currentVB[2]) ? currentVB[2] : 982;
     const startH = isFinite(currentVB[3]) ? currentVB[3] : 390;
 
-    // Prime the GPU layer before animation begins
     if (this.bgImage) {
       this.bgImage.style.willChange = "transform";
     }
 
     const startTime = performance.now();
 
-    /**
-     * easeOutExpo: explosive start, ultra-smooth deceleration.
-     * Gives a cinematic "camera glide" feel — much smoother than smootherstep.
-     */
     const easeOutExpo = (t) => t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
 
     const step = (now) => {
@@ -213,10 +196,9 @@ window.WARISARA_HERO_MAP = {
 
       this.svgMap.setAttribute("viewBox", `${curX.toFixed(3)} ${curY.toFixed(3)} ${curW.toFixed(3)} ${curH.toFixed(3)}`);
 
-      // ── Synchronized Background Parallax ──────────────────────────────────
       if (this.bgImage) {
-        const baseW = 982;   // SVG natural width
-        const baseH = 390;   // SVG natural height
+        const baseW = 982;   
+        const baseH = 390;   
         const zoomRatio = baseW / Math.max(1, curW);
 
         const normX = ((curX + curW * 0.5) - baseW * 0.5) / (baseW * 0.5);
@@ -228,13 +210,12 @@ window.WARISARA_HERO_MAP = {
 
         this.bgImage.style.transform = `scale(${bgScale.toFixed(5)}) translate(${bgPanX.toFixed(3)}px, ${bgPanY.toFixed(3)}px)`;
       }
-      // ──────────────────────────────────────────────────────────────────────
 
       if (rawProgress < 1) {
         this._animFrameId = requestAnimationFrame(step);
       } else {
         this._animFrameId = null;
-        // Release the GPU layer hint to free memory
+        
         if (this.bgImage) this.bgImage.style.willChange = "auto";
         if (callback) callback();
       }
@@ -252,7 +233,7 @@ window.WARISARA_HERO_MAP = {
 
     if (this.svgMap) {
       this.svgMap.classList.add("map-dimmed");
-      // Fast selective removal instead of querying all nodes
+      
       this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
 
       const targetGroup = this.svgMap.querySelector(`.map-province-group[data-province="${provId}"]`);
@@ -270,10 +251,8 @@ window.WARISARA_HERO_MAP = {
       this.provinceSelectDropdown.value = provId;
     }
 
-    // 1. Smoothly glide camera into the selected province (snappy 500ms)
     this.focusMapOnProvince(data.svgCenter);
 
-    // 2. Open panel as camera settles into place
     if (shouldOpenPanel && window.WARISARA_PROVINCE_PANEL) {
       if (this._modalTimer) clearTimeout(this._modalTimer);
       this._modalTimer = setTimeout(() => {
@@ -295,7 +274,6 @@ window.WARISARA_HERO_MAP = {
     const newMinX = center.x - newWidth  / 2;
     const newMinY = center.y - newHeight / 2;
 
-    // Snappy, silky-smooth 500ms camera glide into the province
     this.animateViewBox(newMinX, newMinY, newWidth, newHeight, 500, callback);
     this.isZoomed = true;
   },
@@ -305,7 +283,6 @@ window.WARISARA_HERO_MAP = {
 
     if (this._modalTimer) clearTimeout(this._modalTimer);
 
-    // Fast 480ms smooth zoom-out back to full Indonesia view
     this.animateViewBox(0, 18, 982, 390, 480, () => {
       this.svgMap.classList.remove("map-dimmed");
       this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));

@@ -1,11 +1,3 @@
-/* ==========================================================================
-   WARISARA — PHYSICAL OPEN 3D BOOK & HERITAGE BOOKSHELF STYLES v3.0
-   Ultra-Realistic Premium Book Design with Cinematic Page Animations
-   ========================================================================== */
-
-/* ═══════════════════════════════════════════════════════════
-   1. BOOKSHELF STAGE
-   ═══════════════════════════════════════════════════════════ */
 .bookshelf-stage {
   position: relative;
   background: radial-gradient(ellipse at 50% 15%, rgba(201, 165, 103, 0.12) 0%, rgba(22, 18, 14, 0.98) 65%, #0B0907 100%);
@@ -26,63 +18,69 @@
   border-radius: 6px;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   2. 3D STANDING BOOK CARD (SHELF VIEW)
-   ═══════════════════════════════════════════════════════════ */
 .book-3d-wrapper {
+  position: relative;
+  z-index: 1;
   perspective: 1600px;
   cursor: pointer;
+  
+  transition: z-index 0s linear 0.35s;
+}
+
+.book-3d-wrapper:hover,
+.book-3d-wrapper:focus-within {
+  z-index: 50 !important;
+  transition: z-index 0s linear 0s;
 }
 
 .book-3d-card {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1.48;
-  border-radius: 3px 16px 16px 3px;
+  border-radius: 4px 14px 14px 4px;
   transform-style: preserve-3d;
-  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.1),
-              box-shadow 0.55s ease;
-  transform: rotateY(-22deg) rotateX(5deg) translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+  
+  transform: rotateY(-8deg) rotateX(1.5deg) translateZ(0);
   box-shadow:
-    -18px 28px 50px rgba(0,0,0,0.95),
-    -4px 4px 10px rgba(0,0,0,0.7),
-    0 0 25px rgba(201,165,103,0.1),
-    inset 0 0 40px rgba(0,0,0,0.3);
+    -6px 12px 28px rgba(0,0,0,0.85),
+    -2px 3px 8px rgba(0,0,0,0.6),
+    0 0 15px rgba(201,165,103,0.06),
+    inset 0 0 30px rgba(0,0,0,0.35);
   will-change: transform;
 }
 
 .book-3d-wrapper:hover .book-3d-card {
-  transform: rotateY(-1deg) rotateX(0deg) translateY(-22px) translateZ(20px) scale(1.06);
+  transform: rotateY(0deg) rotateX(0deg) translateY(-10px) scale(1.025);
   box-shadow:
-    -30px 45px 75px rgba(0,0,0,0.98),
-    0 0 55px rgba(201,165,103,0.55),
-    0 0 22px rgba(255,220,80,0.28);
+    0 22px 45px rgba(0,0,0,0.92),
+    0 0 30px rgba(201,165,103,0.3),
+    0 0 0 1px rgba(201,165,103,0.45);
 }
 
-/* Paper thickness right edge */
 .book-card-thickness {
   position: absolute;
-  top: 5px;
-  bottom: 5px;
-  right: -16px;
-  width: 16px;
+  top: 4px;
+  bottom: 4px;
+  right: -13px;
+  width: 13px;
   background: repeating-linear-gradient(
     180deg,
     #FAF7F0 0px, #EAE0C6 1px,
     #D8C8A8 2px, #F0E6D0 3.5px,
     #FAF7F0 5px
   );
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 4px 4px 0;
   box-shadow:
-    inset 3px 0 6px rgba(0,0,0,0.5),
-    4px 4px 12px rgba(0,0,0,0.7),
-    inset -1px 0 3px rgba(255,255,255,0.3);
-  transform: rotateY(75deg);
+    inset 2px 0 5px rgba(0,0,0,0.5),
+    3px 2px 8px rgba(0,0,0,0.65),
+    inset -1px 0 2px rgba(255,255,255,0.25);
+  transform: rotateY(78deg);
   transform-origin: left center;
   pointer-events: none;
 }
 
-/* Spine binding strip */
 .book-spine-strip {
   position: absolute;
   top: 0; left: 0; bottom: 0;
@@ -98,25 +96,43 @@
   z-index: 10;
 }
 
-/* Ribbon bookmark */
 .book-ribbon {
   position: absolute;
-  bottom: -24px;
+  bottom: -20px;
   right: 22px;
-  width: 16px;
-  height: 44px;
+  width: 14px;
+  height: 38px;
   background: linear-gradient(180deg, #9B1C1C 0%, #DC2626 30%, #B45309 65%, #C9A567 100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.75);
-  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.75);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 15;
 }
 
-.book-3d-wrapper:hover .book-ribbon { transform: translateY(8px); }
+.book-3d-wrapper:hover .book-ribbon {
+  transform: translateY(5px);
+}
 
-/* ═══════════════════════════════════════════════════════════
-   3. FULLSCREEN BOOK MODAL (STRICT FIXED & ZERO SCROLL)
-   ═══════════════════════════════════════════════════════════ */
+.book-shelf-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 6%;
+  right: 6%;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.75) 0%, transparent 72%);
+  filter: blur(4px);
+  transform: scaleY(0.45);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.book-3d-wrapper:hover .book-shelf-shadow {
+  transform: scaleY(0.65) scaleX(1.05) translateY(4px);
+  opacity: 0.85;
+  filter: blur(6px);
+}
+
 #interactive-book-modal {
   display: none;
   position: fixed !important;
@@ -144,7 +160,6 @@
   opacity: 1 !important;
 }
 
-/* Page body/html scroll lock when book reader is open */
 body.book-modal-open,
 html.book-modal-open {
   overflow: hidden !important;
@@ -156,7 +171,6 @@ html.book-modal-open {
   touch-action: none !important;
 }
 
-/* Master Reader Layout (Book Centered Perfectly in Viewport) */
 .book-reader-layout {
   display: flex;
   align-items: center;
@@ -169,7 +183,6 @@ html.book-modal-open {
   position: relative;
 }
 
-/* Floating Side Control Dock (Positioned on Left Flank with guaranteed gap) */
 .book-side-dock {
   position: absolute;
   left: auto;
@@ -199,7 +212,6 @@ html.book-modal-open {
   align-self: center;
 }
 
-/* Central 3D Book Stage (100% True-Centered on Screen) */
 .book-stage-container {
   position: relative;
   width: 100%;
@@ -264,7 +276,6 @@ html.book-modal-open {
   box-shadow: 0 0 15px rgba(201, 165, 103, 0.4);
 }
 
-/* Close Button floating clearly above the top-right corner of the book */
 .book-top-close-btn {
   position: absolute;
   top: -46px;
@@ -363,16 +374,12 @@ html.book-modal-open {
   justify-content: center;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   4. PHYSICAL OPEN BOOK OUTER CASING
-   ═══════════════════════════════════════════════════════════ */
 .open-physical-book-casing {
   position: relative;
   width: 100%;
   padding: 16px 20px 20px 20px;
   max-height: min(84vh, 630px);
 
-  /* Rich dark leather look */
   background:
     radial-gradient(ellipse at 30% 10%, rgba(80,50,20,0.6) 0%, transparent 55%),
     radial-gradient(ellipse at 70% 90%, rgba(30,15,5,0.8) 0%, transparent 55%),
@@ -397,7 +404,6 @@ html.book-modal-open {
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Cloth weave texture */
 .open-physical-book-casing::before {
   content: '';
   position: absolute;
@@ -416,7 +422,6 @@ html.book-modal-open {
   z-index: 0;
 }
 
-/* Gold embossed inner frame */
 .open-physical-book-casing::after {
   content: '';
   position: absolute;
@@ -428,82 +433,105 @@ html.book-modal-open {
   z-index: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   5. BOOK ANATOMY DETAILS
-   ═══════════════════════════════════════════════════════════ */
-
-/* Authentic Bookbinder Headbands (Kapitalband / Woven Silk Endbands)
-   Nestled neatly at spine notch — perfectly centered, slim, and elegant */
 .book-spine-headband-top {
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 22px;
-  height: 8px;
-  border-radius: 4px 4px 1px 1px;
+  width: 26px;
+  height: 10px;
+  border-radius: 5px 5px 2px 2px;
 
-  /* Authentic woven silk cord: alternating regal burgundy silk and antique gold thread */
   background:
     repeating-linear-gradient(
-      90deg,
-      #6B121C 0px, #6B121C 2px,
-      #C9A567 2px, #C9A567 3.5px,
-      #2A060A 3.5px, #2A060A 4.5px
+      135deg,
+      #7B111A 0px, #7B111A 2.5px,
+      #CFA851 2.5px, #CFA851 4px,
+      #3D060C 4px, #3D060C 5.5px,
+      #F5DE88 5.5px, #F5DE88 6.5px
     ),
-    linear-gradient(180deg, #501016 0%, #1A0406 100%);
+    linear-gradient(180deg, #7B111A 0%, #220306 100%);
 
-  /* Soft cylindrical luster and ambient depth without harsh cardboard borders */
+  border: 1px solid rgba(207, 168, 81, 0.65);
+  border-top: 2px solid #E6BF55;
+  border-bottom: 1px solid rgba(25, 4, 7, 0.9);
+
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.35),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.75),
-    0 -2px 6px rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(201, 165, 103, 0.25);
-  border-bottom: none;
-  z-index: 20;
+    inset 0 2px 3px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.85),
+    0 3px 6px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(212, 175, 55, 0.25);
+  z-index: 22;
   pointer-events: none;
+}
+
+.book-spine-headband-top::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3.5px;
+  height: 3.5px;
+  background: radial-gradient(circle, #FFF4B8 20%, #D4AF37 60%, #7A530F 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(212, 175, 55, 0.9), 0 1px 2px rgba(0, 0, 0, 0.85);
 }
 
 .book-spine-headband-bottom {
   position: absolute;
-  bottom: 13px;
+  bottom: 9px;
   left: 50%;
   transform: translateX(-50%);
-  width: 22px;
-  height: 8px;
-  border-radius: 1px 1px 4px 4px;
+  width: 26px;
+  height: 10px;
+  border-radius: 2px 2px 5px 5px;
 
-  /* Matching woven silk cord: alternating regal burgundy silk and antique gold thread */
   background:
     repeating-linear-gradient(
-      90deg,
-      #6B121C 0px, #6B121C 2px,
-      #C9A567 2px, #C9A567 3.5px,
-      #2A060A 3.5px, #2A060A 4.5px
+      45deg,
+      #7B111A 0px, #7B111A 2.5px,
+      #CFA851 2.5px, #CFA851 4px,
+      #3D060C 4px, #3D060C 5.5px,
+      #F5DE88 5.5px, #F5DE88 6.5px
     ),
-    linear-gradient(180deg, #1A0406 0%, #501016 100%);
+    linear-gradient(180deg, #220306 0%, #7B111A 100%);
+
+  border: 1px solid rgba(207, 168, 81, 0.65);
+  border-bottom: 2px solid #E6BF55;
+  border-top: 1px solid rgba(25, 4, 7, 0.9);
 
   box-shadow:
-    inset 0 -1px 1px rgba(255, 255, 255, 0.35),
-    inset 0 1px 2px rgba(0, 0, 0, 0.75),
-    0 2px 6px rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(201, 165, 103, 0.25);
-  border-top: none;
-  z-index: 20;
+    inset 0 -2px 3px rgba(255, 255, 255, 0.45),
+    inset 0 2px 3px rgba(0, 0, 0, 0.85),
+    0 -2px 5px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(212, 175, 55, 0.25);
+  z-index: 22;
   pointer-events: none;
 }
 
-/* Satin ribbon bookmark — Luxury silk ribbon hanging symmetrically from center spine */
+.book-spine-headband-bottom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3.5px;
+  height: 3.5px;
+  background: radial-gradient(circle, #FFF4B8 20%, #D4AF37 60%, #7A530F 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(212, 175, 55, 0.9), 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
 .book-satin-ribbon {
   position: absolute;
-  bottom: -48px;
+  bottom: -46px;
   left: 50%;
-  transform: translateX(-50%) rotate(2.2deg);
+  transform: translateX(-50%) rotate(2deg);
   transform-origin: top center;
   width: 20px;
-  height: 58px;
+  height: 56px;
 
-  /* Double-faced heavy satin with micro-weave ribs and center cylindrical luster sheen */
   background:
     repeating-linear-gradient(
       180deg,
@@ -517,32 +545,28 @@ html.book-modal-open {
       #650E16 12%,
       #951622 24%,
       #C82231 40%,
-      #F4586A 50%, /* Silk specular crest */
+      #F4586A 50%, 
       #C82231 60%,
       #951622 76%,
       #550C13 88%,
       #300508 100%
     );
 
-  /* Gold embroidered selvedge borders */
   border-left: 1.5px solid rgba(220, 185, 95, 0.85);
   border-right: 1.5px solid rgba(220, 185, 95, 0.85);
 
-  /* Classic fishtail / swallowtail chevron tail cut */
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 14px), 0% 100%);
 
-  /* Contact and elevation shadow cast below page block */
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.85),
     inset 2px 0 4px rgba(255, 255, 255, 0.25),
     inset -2px 0 4px rgba(0, 0, 0, 0.4);
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
 
-  z-index: 18;
+  z-index: 20;
   pointer-events: none;
 }
 
-/* Gold embroidered metallic accent line along the bottom chevron cut */
 .book-satin-ribbon::after {
   content: '';
   position: absolute;
@@ -555,18 +579,12 @@ html.book-modal-open {
   pointer-events: none;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   6. STACKED PAGE BLOCK EDGES
-   ═══════════════════════════════════════════════════════════ */
 .page-block-edge-left,
 .page-block-edge-right,
 .page-block-edge-bottom {
   display: none !important;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   7. OPEN BOOK BODY — PARCHMENT PAGES & 3D SPATIAL CURVATURE
-   ═══════════════════════════════════════════════════════════ */
 .heritage-tome {
   position: relative;
   width: 100%;
@@ -575,7 +593,7 @@ html.book-modal-open {
   display: flex;
   background: #F4EEDF;
   border-radius: 12px 12px 10px 10px;
-  /* CRITICAL: must be visible so the 3D rotating leaf is NOT clipped */
+  
   overflow: visible;
   box-shadow:
     0 40px 90px rgba(0, 0, 0, 0.96),
@@ -583,9 +601,9 @@ html.book-modal-open {
     inset 0 0 50px rgba(180, 145, 95, 0.12);
   transform-style: preserve-3d;
   isolation: isolate;
+  z-index: 2;
 }
 
-/* Realistic clean 3D paper crease (Lekukan Halus Alami — Tidak Menutupi Teks) */
 .heritage-tome-spine {
   position: absolute;
   top: 0; bottom: 0;
@@ -603,7 +621,6 @@ html.book-modal-open {
   pointer-events: none;
 }
 
-/* Subtle gold linen binding thread down center crease */
 .heritage-tome-spine::before {
   content: '';
   position: absolute;
@@ -619,7 +636,6 @@ html.book-modal-open {
   opacity: 0.7;
 }
 
-/* Page spread container — clips the STATIC content (not the 3D leaf) */
 .tome-spread {
   display: flex;
   width: 100%;
@@ -627,15 +643,14 @@ html.book-modal-open {
   max-height: 74vh;
   perspective: 2400px;
   transform-style: preserve-3d;
-  /* Static pages are clipped here; the leaf sits ABOVE this in z-order */
+  
   overflow: hidden;
   border-radius: 12px 12px 10px 10px;
-  /* Establish a containing block so the leaf's absolute-pos works correctly */
+  
   position: relative;
   z-index: 1;
 }
 
-/* ── Left Page: Warm illuminated antique vellum with gentle 3D curve ── */
 .tome-page-left {
   flex: 1;
   position: relative;
@@ -646,12 +661,9 @@ html.book-modal-open {
   color: #1A1510;
   overflow: hidden;
 
-  /* 3D Page tilt angled inwards toward spine crease */
-  transform: rotateY(1.4deg);
-  transform-origin: right center;
+  transform: none;
   border-radius: 10px 2px 2px 8px;
 
-  /* Cylindrical paper lighting: soft ambient lantern glow + gentle paper crease dip */
   background:
     radial-gradient(ellipse at 70% 35%, rgba(255, 255, 255, 0.55) 0%, transparent 60%),
     radial-gradient(ellipse at 100% 50%, rgba(20, 12, 6, 0.14) 0%, transparent 28%),
@@ -663,7 +675,7 @@ html.book-modal-open {
       #DFD3B7 100%
     );
 
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: none;
   box-shadow:
     inset -15px 0 25px rgba(0, 0, 0, 0.1),
     inset 12px 0 22px rgba(255, 255, 255, 0.5),
@@ -671,7 +683,6 @@ html.book-modal-open {
     inset 0 -25px 35px rgba(180, 150, 100, 0.1);
 }
 
-/* ── Realistic subtle paper curvature on left page gutter ── */
 .tome-page-left::after {
   content: '';
   position: absolute;
@@ -683,7 +694,6 @@ html.book-modal-open {
   z-index: 2;
 }
 
-/* ── Right Page: Matching illuminated antique vellum with gentle 3D curve ── */
 .tome-page-right {
   flex: 1;
   position: relative;
@@ -694,12 +704,9 @@ html.book-modal-open {
   color: #1A1510;
   overflow: hidden;
 
-  /* 3D Page tilt angled inwards toward spine crease */
-  transform: rotateY(-1.4deg);
-  transform-origin: left center;
+  transform: none;
   border-radius: 2px 10px 8px 2px;
 
-  /* Cylindrical paper lighting: soft ambient lantern glow + gentle paper crease dip */
   background:
     radial-gradient(ellipse at 30% 35%, rgba(255, 255, 255, 0.55) 0%, transparent 60%),
     radial-gradient(ellipse at 0% 50%, rgba(20, 12, 6, 0.14) 0%, transparent 28%),
@@ -718,7 +725,6 @@ html.book-modal-open {
     inset 0 -25px 35px rgba(180, 150, 100, 0.1);
 }
 
-/* ── Realistic subtle paper curvature on right page gutter ── */
 .tome-page-right::before {
   content: '';
   position: absolute;
@@ -730,14 +736,12 @@ html.book-modal-open {
   z-index: 2;
 }
 
-/* ── Page content must sit above curvature overlays ── */
 .tome-page-left > *,
 .tome-page-right > * {
   position: relative;
   z-index: 3;
 }
 
-/* Running header */
 .page-running-header {
   display: flex;
   align-items: center;
@@ -752,7 +756,6 @@ html.book-modal-open {
   color: #7B4E1A;
 }
 
-/* Folio page number */
 .page-classic-folio {
   text-align: center;
   font-family: 'Fraunces', Georgia, serif;
@@ -764,18 +767,6 @@ html.book-modal-open {
   border-top: 1px solid rgba(120,78,28,0.18);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   8. CINEMATIC REALISTIC PAGE FLIP ANIMATION
-   ═══════════════════════════════════════════════════════════
-
-   Technique: A "flip leaf" div is absolutely positioned over
-   the turning page half. It uses perspective + rotateY with
-   dynamic skewX to simulate paper bending/flexing mid-turn.
-   A separate highlight gradient simulates light catching the
-   paper as it rotates. A shadow sweeps across the other page.
-*/
-
-/* The leaf that flips */
 .page-flip-leaf {
   position: absolute;
   top: 0; bottom: 0;
@@ -787,7 +778,6 @@ html.book-modal-open {
   will-change: transform, filter, opacity;
 }
 
-/* Forward: right leaf pivots from left edge toward left */
 .page-flip-leaf.forward {
   right: 0;
   transform-origin: left center;
@@ -801,7 +791,6 @@ html.book-modal-open {
   animation: flipForward 0.85s cubic-bezier(0.37, 0, 0.63, 1) forwards;
 }
 
-/* Backward: left leaf pivots from right edge toward right */
 .page-flip-leaf.backward {
   left: 0;
   transform-origin: right center;
@@ -815,7 +804,6 @@ html.book-modal-open {
   animation: flipBackward 0.85s cubic-bezier(0.37, 0, 0.63, 1) forwards;
 }
 
-/* Specular highlight strip that sweeps across during flip */
 .page-flip-leaf::after {
   content: '';
   position: absolute;
@@ -836,38 +824,37 @@ html.book-modal-open {
   100% { opacity: 0;    transform: translateX(150%); }
 }
 
-/* ── Forward keyframes: paper bends, darkens, then fades ── */
 @keyframes flipForward {
   0% {
     transform: perspective(2400px) rotateY(0deg) skewX(0deg);
     filter: brightness(1) drop-shadow(0 0 0 transparent);
     opacity: 1;
   }
-  /* Page lifts and starts curling */
+  
   12% {
     transform: perspective(2400px) rotateY(-18deg) skewX(2deg);
     filter: brightness(0.92) drop-shadow(-6px 6px 14px rgba(0,0,0,0.35));
     opacity: 1;
   }
-  /* Mid-bend — paper flexes at spine; max skew */
+  
   35% {
     transform: perspective(2400px) rotateY(-72deg) skewX(6deg);
     filter: brightness(0.7) drop-shadow(-14px 10px 28px rgba(0,0,0,0.65));
     opacity: 1;
   }
-  /* Page is nearly perpendicular — darkest point */
+  
   50% {
     transform: perspective(2400px) rotateY(-92deg) skewX(0deg);
     filter: brightness(0.45) drop-shadow(-20px 14px 35px rgba(0,0,0,0.85));
     opacity: 0.95;
   }
-  /* Page now on far side, uncurling */
+  
   72% {
     transform: perspective(2400px) rotateY(-140deg) skewX(-4deg);
     filter: brightness(0.72) drop-shadow(-10px 8px 22px rgba(0,0,0,0.55));
     opacity: 0.75;
   }
-  /* Landing */
+  
   90% {
     transform: perspective(2400px) rotateY(-172deg) skewX(-1deg);
     filter: brightness(0.9) drop-shadow(-3px 3px 8px rgba(0,0,0,0.25));
@@ -880,7 +867,6 @@ html.book-modal-open {
   }
 }
 
-/* ── Backward keyframes ── */
 @keyframes flipBackward {
   0% {
     transform: perspective(2400px) rotateY(0deg) skewX(0deg);
@@ -919,7 +905,6 @@ html.book-modal-open {
   }
 }
 
-/* ── Traveling shadow that sweeps opposite page ── */
 .page-flip-shadow {
   position: absolute;
   top: 0; bottom: 0;
@@ -969,7 +954,6 @@ html.book-modal-open {
   100% { opacity: 0;   transform: scaleX(0);    transform-origin: right center; }
 }
 
-/* New content fade-in with slight depth */
 .tome-spread.page-appear {
   animation: pageAppear 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -980,7 +964,6 @@ html.book-modal-open {
   100% { opacity: 1; filter: brightness(1); transform: scale(1); }
 }
 
-/* Physical book wobble when page settles */
 .open-physical-book-casing.page-land {
   animation: bookSettle 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
@@ -993,11 +976,6 @@ html.book-modal-open {
   100% { transform: rotateX(3.5deg); }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   9. INTERACTIVE CORNER CURL (NEXT & PREVIOUS PAGE)
-   ═══════════════════════════════════════════════════════════ */
-
-/* Right page corner curl (Next Page) */
 .page-corner-curl-btn {
   position: absolute;
   bottom: 0; right: 0;
@@ -1044,7 +1022,6 @@ html.book-modal-open {
   border-width: 0 0 40px 40px;
 }
 
-/* Left page corner curl (Previous Page) */
 .page-corner-curl-btn-prev {
   position: absolute;
   bottom: 0; left: 0;
@@ -1091,9 +1068,6 @@ html.book-modal-open {
   border-width: 0 40px 40px 0;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   10. ILLUMINATED DROP CAP & ANTIQUE IMAGE FRAME
-   ═══════════════════════════════════════════════════════════ */
 .drop-cap {
   float: left;
   font-family: 'Fraunces', serif;
@@ -1109,7 +1083,6 @@ html.book-modal-open {
   filter: drop-shadow(1px 2px 3px rgba(90,50,5,0.45));
 }
 
-/* Antique ornamental photo frame */
 .antique-frame {
   position: relative;
   padding: 7px;
@@ -1144,9 +1117,6 @@ html.book-modal-open {
   background: #0E0C0A;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   11. AUDIO VISUALIZER BARS
-   ═══════════════════════════════════════════════════════════ */
 .audio-bar {
   display: inline-block;
   width: 3px;
@@ -1166,9 +1136,6 @@ html.book-modal-open {
   50%       { height: 18px; }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   12. RESPONSIVE MOBILE & TABLET
-   ═══════════════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .book-reader-layout {
     flex-direction: column;
@@ -1254,18 +1221,6 @@ html.book-modal-open {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   13. WARISARA CINEMATIC REAL-CONTENT 3D PAGE FLIP ENGINE (v5.0)
-   Features:
-   - True 3D Dual-Face Content Cloning (Real Images, Text, Drop Caps & Folios)
-   - Dynamic 3D Paper Curling & Peeling Physics (skewY + rotateZ + rotateX)
-   - Specular Sunlight Sheen Sweeping Across the Turning Paper
-   - Dynamic Multi-Stage Ambient Occlusion & Self-Shading
-   - Soft Dynamic Contact Shadow on Receiving Opposite Page
-   - Tactile Micro-Bounce on Book Casing upon Page Touchdown
-   ═══════════════════════════════════════════════════════════════════ */
-
-/* ─── Leaf Container — Wide realistic perspective so paper maintains pristine bounds ─── */
 .real-page-turn-leaf {
   position: absolute;
   top: 0;
@@ -1273,7 +1228,7 @@ html.book-modal-open {
   width: 50%;
   z-index: 60;
   pointer-events: none;
-  /* 2800px perspective matches natural viewing distance — prevents fisheye oversizing */
+  
   perspective: 2800px;
   perspective-origin: center center;
   overflow: visible;
@@ -1281,17 +1236,14 @@ html.book-modal-open {
   transform-style: preserve-3d;
 }
 
-/* Forward flip: right page flips to left, anchored at book spine */
 .real-page-turn-leaf.turn-forward {
   left: 50%;
 }
 
-/* Backward flip: left page flips to right, anchored at book spine */
 .real-page-turn-leaf.turn-backward {
   left: 0;
 }
 
-/* ─── The 3D rotating leaf plate — transform-style preserve-3d is critical ─── */
 .leaf-3d-flipper {
   position: absolute;
   inset: 0;
@@ -1301,48 +1253,41 @@ html.book-modal-open {
 
 .real-page-turn-leaf.turn-forward .leaf-3d-flipper {
   transform-origin: left center;
-  /* Cinematic paper-turn curve: smooth inertia release, graceful arc, soft landing */
-  animation: flipForwardArc 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  
+  animation: flipForwardArc 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .real-page-turn-leaf.turn-backward .leaf-3d-flipper {
   transform-origin: right center;
-  animation: flipBackwardArc 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: flipBackwardArc 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* ─── Both faces of the turning page leaf (Pure 3D planes without overflow clipping) ─── */
 .leaf-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
-  /* 100% Solid parchment paper — NEVER transparent */
+  
   background: #F4EEDF !important;
 }
 
-/* Front Face: begins facing the viewer (0deg) with micro Z-offset for clean 3D depth */
 .leaf-face-front {
   transform: rotateY(0deg) translateZ(1px);
 }
 
-/* Back Face: rotated 180deg with micro Z-offset facing the opposite direction */
 .leaf-face-back {
   transform: rotateY(180deg) translateZ(1px);
 }
 
-/* ─── Fail-Safe Face Visibility Switch ───
-   Guarantees 100% zero leakage of reverse text across all browser GPU pipelines:
-   - Front face stays fully opaque from 0% to 49.9%, then hides at 50% (vertical edge).
-   - Back face appears at 50% (vertical edge) and glides smoothly into place at 100%. */
 .turn-forward .leaf-face-front,
 .turn-backward .leaf-face-front {
-  animation: faceFrontSwitch 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: faceFrontSwitch 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-forward .leaf-face-back,
 .turn-backward .leaf-face-back {
-  animation: faceBackSwitch 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: faceBackSwitch 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 @keyframes faceFrontSwitch {
@@ -1355,7 +1300,6 @@ html.book-modal-open {
   50%, 100% { opacity: 1; visibility: visible; }
 }
 
-/* ─── Inner Content Container (Clips page content neatly to book curve) ─── */
 .leaf-face-inner {
   position: absolute;
   inset: 0;
@@ -1374,7 +1318,6 @@ html.book-modal-open {
   border-radius: 2px 10px 8px 2px;
 }
 
-/* ─── Page content inside leaf inner container must fill completely and be 100% opaque ─── */
 .leaf-face-inner .tome-page-left,
 .leaf-face-inner .tome-page-right {
   position: absolute !important;
@@ -1389,8 +1332,6 @@ html.book-modal-open {
   background-color: #FAF4E6 !important;
 }
 
-/* ─── Gentle Paper Curvature Lighting Overlay ───
-   Soft ambient paper lighting that follows the curve naturally without darkening text */
 .leaf-lighting-overlay {
   position: absolute;
   inset: 0;
@@ -1399,33 +1340,32 @@ html.book-modal-open {
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    rgba(25, 16, 8, 0.12) 0%,
-    rgba(0, 0, 0, 0.0) 28%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(0, 0, 0, 0.0) 72%,
-    rgba(25, 16, 8, 0.14) 100%
+    rgba(25, 14, 6, 0.14) 0%,
+    rgba(0, 0, 0, 0.0) 25%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(0, 0, 0, 0.0) 75%,
+    rgba(25, 14, 6, 0.12) 100%
   );
   opacity: 0;
   will-change: opacity;
 }
 
 .turn-forward .leaf-face-front .leaf-lighting-overlay {
-  animation: lightShadeFrontForward 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: lightShadeFrontForward 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-forward .leaf-face-back .leaf-lighting-overlay {
-  animation: lightShadeBackForward 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: lightShadeBackForward 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-backward .leaf-face-front .leaf-lighting-overlay {
-  animation: lightShadeFrontBackward 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: lightShadeFrontBackward 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-backward .leaf-face-back .leaf-lighting-overlay {
-  animation: lightShadeBackBackward 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: lightShadeBackBackward 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* ─── Specular Silk Sheen — subtle satin luster catching overhead ambient light ─── */
 .leaf-sheen {
   position: absolute;
   inset: 0;
@@ -1446,14 +1386,13 @@ html.book-modal-open {
 }
 
 .turn-forward .leaf-face-front .leaf-sheen {
-  animation: sheenSweepFront 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: sheenSweepFront 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-forward .leaf-face-back .leaf-sheen {
-  animation: sheenSweepBack 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: sheenSweepBack 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* ─── Cast Shadow — sweeps onto the opposite static page as leaf arcs over ─── */
 .turn-cast-shadow {
   position: absolute;
   top: 0;
@@ -1467,32 +1406,29 @@ html.book-modal-open {
 .turn-cast-shadow.shadow-left {
   left: 0;
   transform-origin: right center;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.0) 0%,
-    rgba(0, 0, 0, 0.03) 15%,
-    rgba(0, 0, 0, 0.14) 50%,
-    rgba(0, 0, 0, 0.32) 88%,
-    rgba(0, 0, 0, 0.14) 100%
+  background: radial-gradient(
+    ellipse 90% 100% at 90% 50%,
+    rgba(15, 10, 5, 0.28) 0%,
+    rgba(15, 10, 5, 0.12) 45%,
+    rgba(0, 0, 0, 0.02) 75%,
+    transparent 100%
   );
-  animation: castShadowLeftAnim 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: castShadowLeftAnim 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-cast-shadow.shadow-right {
   right: 0;
   transform-origin: left center;
-  background: linear-gradient(
-    270deg,
-    rgba(0, 0, 0, 0.0) 0%,
-    rgba(0, 0, 0, 0.03) 15%,
-    rgba(0, 0, 0, 0.14) 50%,
-    rgba(0, 0, 0, 0.32) 88%,
-    rgba(0, 0, 0, 0.14) 100%
+  background: radial-gradient(
+    ellipse 90% 100% at 10% 50%,
+    rgba(15, 10, 5, 0.28) 0%,
+    rgba(15, 10, 5, 0.12) 45%,
+    rgba(0, 0, 0, 0.02) 75%,
+    transparent 100%
   );
-  animation: castShadowRightAnim 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: castShadowRightAnim 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* ─── Underneath Shadow — soft release shadow visible as page lifts off ─── */
 .turn-underneath-shadow {
   position: absolute;
   top: 0;
@@ -1507,67 +1443,48 @@ html.book-modal-open {
   right: 0;
   background: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.28) 0%,
-    rgba(0, 0, 0, 0.12) 35%,
-    rgba(0, 0, 0, 0.03) 70%,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.08) 35%,
     transparent 100%
   );
-  animation: underneathFadeOut 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: underneathFadeOut 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .turn-underneath-shadow.on-left {
   left: 0;
   background: linear-gradient(
     270deg,
-    rgba(0, 0, 0, 0.28) 0%,
-    rgba(0, 0, 0, 0.12) 35%,
-    rgba(0, 0, 0, 0.03) 70%,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.08) 35%,
     transparent 100%
   );
-  animation: underneathFadeOut 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: underneathFadeOut 1050ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   KEYFRAME ANIMATIONS — BUTTER-SMOOTH, REALISTIC, AND NEATLY CONTAINED
-   Features:
-   - Subtle paper foreshortening scale(0.972) at 90° prevents oversizing
-   - ZERO opacity fading: paper remains 100% solid & opaque throughout
-   ═══════════════════════════════════════════════════════════════════ */
-
-/* ─── FORWARD FLIP: Right page smoothly arcs over spine to left page ─── */
 @keyframes flipForwardArc {
-  /* Rest position on right page */
-  0%   { transform: rotateY(0deg)    scale(1.000); }
-  /* Gentle peel-off */
-  8%   { transform: rotateY(-14deg)  scale(0.998); }
-  /* Gaining angular momentum */
-  20%  { transform: rotateY(-38deg)  scale(0.992); }
-  35%  { transform: rotateY(-68deg)  scale(0.982); }
-  /* Peak vertical position: foreshortening keeps sheet perfectly inside book bounds */
-  50%  { transform: rotateY(-90deg)  scale(0.972); }
-  /* Crossing to left page: uncurling gently */
-  65%  { transform: rotateY(-112deg) scale(0.982); }
-  80%  { transform: rotateY(-142deg) scale(0.992); }
-  /* Gentle approach to left page */
-  92%  { transform: rotateY(-166deg) scale(0.998); }
-  /* Perfect flush landing */
-  100% { transform: rotateY(-180deg) scale(1.000); }
+  0%   { transform: rotateY(0deg)    scaleX(1.000) scaleY(1.000); }
+  12%  { transform: rotateY(-20deg)  scaleX(0.995) scaleY(0.999); }
+  28%  { transform: rotateY(-50deg)  scaleX(0.978) scaleY(0.995); }
+  45%  { transform: rotateY(-80deg)  scaleX(0.960) scaleY(0.990); }
+  50%  { transform: rotateY(-90deg)  scaleX(0.955) scaleY(0.988); }
+  55%  { transform: rotateY(-100deg) scaleX(0.960) scaleY(0.990); }
+  72%  { transform: rotateY(-130deg) scaleX(0.978) scaleY(0.995); }
+  88%  { transform: rotateY(-160deg) scaleX(0.995) scaleY(0.999); }
+  100% { transform: rotateY(-180deg) scaleX(1.000) scaleY(1.000); }
 }
 
-/* ─── BACKWARD FLIP: Left page smoothly arcs over spine to right page ─── */
 @keyframes flipBackwardArc {
-  0%   { transform: rotateY(0deg)   scale(1.000); }
-  8%   { transform: rotateY(14deg)  scale(0.998); }
-  20%  { transform: rotateY(38deg)  scale(0.992); }
-  35%  { transform: rotateY(68deg)  scale(0.982); }
-  50%  { transform: rotateY(90deg)  scale(0.972); }
-  65%  { transform: rotateY(112deg) scale(0.982); }
-  80%  { transform: rotateY(142deg) scale(0.992); }
-  92%  { transform: rotateY(166deg) scale(0.998); }
-  100% { transform: rotateY(180deg) scale(1.000); }
+  0%   { transform: rotateY(0deg)   scaleX(1.000) scaleY(1.000); }
+  12%  { transform: rotateY(20deg)  scaleX(0.995) scaleY(0.999); }
+  28%  { transform: rotateY(50deg)  scaleX(0.978) scaleY(0.995); }
+  45%  { transform: rotateY(80deg)  scaleX(0.960) scaleY(0.990); }
+  50%  { transform: rotateY(90deg)  scaleX(0.955) scaleY(0.988); }
+  55%  { transform: rotateY(100deg) scaleX(0.960) scaleY(0.990); }
+  72%  { transform: rotateY(130deg) scaleX(0.978) scaleY(0.995); }
+  88%  { transform: rotateY(160deg) scaleX(0.995) scaleY(0.999); }
+  100% { transform: rotateY(180deg) scaleX(1.000) scaleY(1.000); }
 }
 
-/* ─── Paper Self-Shadow Dynamics — subtle warm parchment shading ─── */
 @keyframes lightShadeFrontForward {
   0%   { opacity: 0; }
   12%  { opacity: 0.05; }
@@ -1604,7 +1521,6 @@ html.book-modal-open {
   100% { opacity: 0; }
 }
 
-/* ─── Specular Sheen Sweeps ─── */
 @keyframes sheenSweepFront {
   0%   { transform: translateX(-120%); opacity: 0; }
   10%  { transform: translateX(-90%);  opacity: 0.0; }
@@ -1624,7 +1540,6 @@ html.book-modal-open {
   100%     { transform: translateX(120%);  opacity: 0; }
 }
 
-/* ─── Opposing Cast Shadow Dynamics ─── */
 @keyframes castShadowLeftAnim {
   0%   { opacity: 0;    transform: scaleX(0.0); }
   15%  { opacity: 0.10; transform: scaleX(0.28); }
@@ -1645,7 +1560,6 @@ html.book-modal-open {
   100% { opacity: 0;    transform: scaleX(1.0); }
 }
 
-/* ─── Underneath Lift-Off Shadow Dynamics ─── */
 @keyframes underneathFadeOut {
   0%   { opacity: 0.95; }
   20%  { opacity: 0.60; }
@@ -1654,22 +1568,20 @@ html.book-modal-open {
   100% { opacity: 0; }
 }
 
-/* ─── Book Physical Settle — subtle tactile bounce on page landing ─── */
 .open-physical-book-casing.book-settle {
   animation: bookSettle 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes bookSettle {
   0%   { transform: rotateX(3.5deg) translateY(0px); }
-  15%  { transform: rotateX(4.8deg) translateY(2.2px); }  /* Soft paper thud */
-  32%  { transform: rotateX(3.0deg) translateY(-0.8px); } /* Subtle rebound */
+  15%  { transform: rotateX(4.8deg) translateY(2.2px); }  
+  32%  { transform: rotateX(3.0deg) translateY(-0.8px); } 
   52%  { transform: rotateX(3.8deg) translateY(0.4px); }
   70%  { transform: rotateX(3.4deg) translateY(-0.1px); }
   86%  { transform: rotateX(3.55deg) translateY(0.05px); }
-  100% { transform: rotateX(3.5deg) translateY(0px); }    /* Rest */
+  100% { transform: rotateX(3.5deg) translateY(0px); }    
 }
 
-/* ─── Globally ensure modal casing overflow is visible for 3D leaf ─── */
 #interactive-book-modal.active .open-physical-book-casing {
   overflow: visible;
 }

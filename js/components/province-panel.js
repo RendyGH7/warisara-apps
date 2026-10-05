@@ -1,8 +1,3 @@
-/**
- * WARISARA — Province Detail Center Modal Component
- * Orchestrates modal content rendering and smooth transitions.
- */
-
 window.WARISARA_PROVINCE_PANEL = {
   modalOverlay: null,
   modalElement: null,
@@ -28,13 +23,13 @@ window.WARISARA_PROVINCE_PANEL = {
 
     if (this.exploreBtn) {
       this.exploreBtn.addEventListener("click", () => {
-        this.closePanel(false); // Close modal without resetting map immediately if scrolling to section
+        this.closePanel(false); 
       });
     }
 
     if (this.modalOverlay) {
       this.modalOverlay.addEventListener("click", (e) => {
-        // If clicked on backdrop outside modal container
+        
         if (e.target === this.modalOverlay) {
           this.closePanel();
         }
@@ -98,7 +93,7 @@ window.WARISARA_PROVINCE_PANEL = {
 
     this.isOpen = true;
     this.modalOverlay.classList.add("active");
-    document.body.style.overflow = "hidden"; // prevent background scroll while modal is active
+    document.body.style.overflow = "hidden"; 
   },
 
   closePanel: function (resetMap = true) {
@@ -109,7 +104,7 @@ window.WARISARA_PROVINCE_PANEL = {
     document.body.style.overflow = "";
 
     if (resetMap && window.WARISARA_HERO_MAP) {
-      // Allow slight delay so the modal starts fading, then smoothly animate map back
+      
       setTimeout(() => {
         window.WARISARA_HERO_MAP.resetView();
       }, 100);

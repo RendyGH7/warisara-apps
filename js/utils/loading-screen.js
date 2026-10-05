@@ -1,13 +1,3 @@
-/**
- * WARISARA — Grand Cinematic Film Preloader & Title Sequence Engine
- * Features:
- * 1. 4K Golden Batik Parang Backdrop + Vector Gunungan Wayang Aura
- * 2. Uncropped, responsive movie-level atmospheric lighting
- * 3. Real-time floating gold dust particles (Canvas physics)
- * 4. 5.5s Extended film pacing with poetic Nusantara wisdom stanzas
- * 5. Interactive 'Lewati Intro' button & safe failover
- */
-
 window.WARISARA_PRELOADER = {
   container: null,
   progressBar: null,
@@ -28,14 +18,13 @@ window.WARISARA_PRELOADER = {
   ],
 
   init: function () {
-    // 1. Only run the Grand Cinematic Loading Screen on the main entry (index.html)
+    
     if (window.location.pathname.includes("/pages/")) {
       document.body.classList.remove("preloader-active");
       document.body.classList.add("page-fade-in");
       return;
     }
 
-    // 2. Check if this is a page refresh (reload) or first-time visit vs internal navigation
     let isReload = false;
     try {
       const navEntries = performance.getEntriesByType("navigation");
@@ -48,7 +37,6 @@ window.WARISARA_PRELOADER = {
 
     const hasPlayedBefore = sessionStorage.getItem("warisara_intro_played") === "true";
 
-    // If navigating back to home page from subpage in the same session (and not a refresh), skip preloader
     if (!isReload && hasPlayedBefore) {
       document.body.classList.remove("preloader-active");
       document.body.classList.add("hero-animated");
@@ -57,7 +45,6 @@ window.WARISARA_PRELOADER = {
       return;
     }
 
-    // Mark that intro has been played for this browser session
     try {
       sessionStorage.setItem("warisara_intro_played", "true");
     } catch (e) {}
@@ -72,7 +59,7 @@ window.WARISARA_PRELOADER = {
     if (document.getElementById("warisara-preloader")) {
       this.container = document.getElementById("warisara-preloader");
     } else {
-      // Determine relative path based on whether in root or pages/
+      
       const isSubpage = window.location.pathname.includes("/pages/");
       const assetPrefix = isSubpage ? "../" : "";
 
@@ -80,7 +67,7 @@ window.WARISARA_PRELOADER = {
       preloader.id = "warisara-preloader";
       preloader.setAttribute("aria-hidden", "true");
       preloader.innerHTML = `
-        <!-- Ultra-Sharp Golden Batik & Wayang Backdrop Layer -->
+        
         <div class="preloader-backdrop-canvas">
           <img src="${assetPrefix}assets/images/loading-screen/bg-loading-batik-wayang.jpg" 
                class="preloader-backdrop-image" 
@@ -88,24 +75,20 @@ window.WARISARA_PRELOADER = {
           <div class="preloader-backdrop-vignette"></div>
         </div>
 
-        <!-- Floating Particles Canvas -->
         <canvas id="preloader-particles-canvas"></canvas>
 
-        <!-- Ambient Lighting Glow Orbs -->
         <div class="preloader-glow-orb preloader-glow-orb-1"></div>
         <div class="preloader-glow-orb preloader-glow-orb-2"></div>
 
-        <!-- Skip Intro Button -->
         <button id="preloader-skip-btn" class="preloader-skip-btn" type="button" aria-label="Lewati Intro">
           <span>Lewati Intro</span>
           <span class="material-symbols-outlined" style="font-size:13px;">east</span>
         </button>
 
-        <!-- Main Stage -->
         <div class="preloader-stage">
-          <!-- Gunungan Wayang & Royal Astrolabe Seal -->
+          
           <div class="preloader-seal-theater">
-            <!-- Vector Gunungan Wayang Silhouette Aura (Crisp 100% Vector) -->
+            
             <svg class="preloader-wayang-silhouette" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M80 8C80 8 135 70 145 125C155 180 120 195 80 215C40 195 5 180 15 125C25 70 80 8 80 8Z" stroke="#C9A567" stroke-width="1.8" stroke-dasharray="3 2" fill="url(#gununganGoldGrad)" />
               <path d="M80 25V195M55 110C65 118 75 120 80 120C85 120 95 118 105 110M50 145C65 155 95 155 110 145M60 80C70 88 90 88 100 80" stroke="#E6D3A7" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
@@ -125,7 +108,6 @@ window.WARISARA_PRELOADER = {
             </div>
           </div>
 
-          <!-- Letter-by-Letter Title Reveal -->
           <div class="preloader-title-container" aria-label="WARISARA">
             <span class="preloader-char" style="--char-index:0;">W</span>
             <span class="preloader-char" style="--char-index:1;">A</span>
@@ -137,21 +119,18 @@ window.WARISARA_PRELOADER = {
             <span class="preloader-char" style="--char-index:7;">A</span>
           </div>
 
-          <!-- Divider Ribbon -->
           <div class="preloader-divider-ribbon">
             <span class="preloader-ribbon-line"></span>
             <span class="preloader-ribbon-diamond">◆</span>
             <span class="preloader-ribbon-line"></span>
           </div>
 
-          <!-- Rotating Poetic Stanzas -->
           <div class="preloader-wisdom-stage">
             <p id="preloader-wisdom-text" class="preloader-wisdom-line">
               Di antara samudera khatulistiwa, terhampar 38 bentang alam pusaka...
             </p>
           </div>
 
-          <!-- Progress System -->
           <div class="preloader-gauge-system">
             <div class="preloader-rail">
               <div id="preloader-laser-fill" class="preloader-laser-fill"></div>
@@ -190,7 +169,6 @@ window.WARISARA_PRELOADER = {
     resize();
     window.addEventListener("resize", resize);
 
-    // Generate gold dust ember particles
     const particleCount = Math.min(60, Math.floor(window.innerWidth / 24));
     this.particles = [];
     for (let i = 0; i < particleCount; i++) {
@@ -241,7 +219,7 @@ window.WARISARA_PRELOADER = {
     let progress = 0;
     let stanzaIndex = 0;
     const startTime = performance.now();
-    const sequenceDuration = 6200; // 6.2 seconds for a calm, luxurious movie intro pacing
+    const sequenceDuration = 6200; 
 
     const tick = () => {
       if (this.isFinished) return;
@@ -256,7 +234,6 @@ window.WARISARA_PRELOADER = {
         if (this.progressBar) this.progressBar.style.width = `${progress}%`;
         if (this.counterEl) this.counterEl.textContent = `${progress}%`;
 
-        // Switch narrative stanzas smoothly as time progresses
         const nextStanzaIndex = Math.min(
           this.stanzas.length - 1,
           Math.floor((progress / 100) * this.stanzas.length)
@@ -285,7 +262,6 @@ window.WARISARA_PRELOADER = {
 
     requestAnimationFrame(tick);
 
-    // Failover safeguard: never block user beyond 8.2s
     setTimeout(() => {
       if (!this.isFinished) this.finish();
     }, 8200);
@@ -306,7 +282,6 @@ window.WARISARA_PRELOADER = {
       sessionStorage.setItem("warisara_intro_played", "true");
     } catch (e) {}
 
-    // Cinematic Grand Reveal — Preloader dissolves while Hero rises with majestic choreography
     setTimeout(() => {
       if (this.container) {
         this.container.classList.add("preloader-hidden");
@@ -317,7 +292,6 @@ window.WARISARA_PRELOADER = {
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));
     }, 320);
 
-    // Clean up DOM after completion
     setTimeout(() => {
       if (this.container && this.container.parentNode) {
         this.container.remove();
@@ -326,7 +300,6 @@ window.WARISARA_PRELOADER = {
   }
 };
 
-// Mount preloader instantly on script execution
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => window.WARISARA_PRELOADER.init());
 } else {

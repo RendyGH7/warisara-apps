@@ -1,8 +1,3 @@
-/**
- * WARISARA — From Hands to Home (Creative Economy Dataset)
- * Story-first commerce highlights connecting makers to modern life
- */
-
 window.PRODUCTS_DATA = [
   {
     id: "syal-tenun-sumba",

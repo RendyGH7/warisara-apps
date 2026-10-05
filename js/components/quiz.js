@@ -1,8 +1,3 @@
-/**
- * WARISARA — Micro-Learning Quiz Component
- * Compliant: Client-side LocalStorage only, no backend database
- */
-
 window.WARISARA_QUIZ = {
   scoreKey: "warisara_quiz_progress",
 

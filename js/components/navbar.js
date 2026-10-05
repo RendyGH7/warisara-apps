@@ -1,11 +1,3 @@
-/**
- * WARISARA — Floating Glassmorphism Navbar Component
- * Features:
- * 1. Animated Sliding Pill Indicator (Glides between links with spring/cubic-bezier physics)
- * 2. Ultra-Smooth Cinematic Scroll Engine (Custom cubic-bezier easeInOut curve)
- * 3. Throttled RAF Scroll-Spy with Mobile Drawer Synchronization
- */
-
 window.WARISARA_NAVBAR = {
   isInitialized: false,
 
@@ -29,7 +21,6 @@ window.WARISARA_NAVBAR = {
     }
     this.isInitialized = true;
 
-    // Ensure sliding pill exists in desktop nav container
     if (!pill) {
       pill = document.createElement("span");
       pill.id = "nav-active-pill";
@@ -42,16 +33,12 @@ window.WARISARA_NAVBAR = {
     let scrollAnimFrame = null;
     let currentActiveTarget = "hero";
 
-    // =========================================================================
-    // 1. SLIDING PILL ENGINE
-    // =========================================================================
     function movePillTo(link, smooth = true) {
       if (!link || !pill || !navContainer) return;
 
       const linkRect = link.getBoundingClientRect();
       const navRect = navContainer.getBoundingClientRect();
 
-      // If navbar is hidden (e.g. mobile display), don't calculate
       if (navRect.width === 0 || linkRect.width === 0) return;
 
       const left = linkRect.left - navRect.left;
@@ -60,7 +47,7 @@ window.WARISARA_NAVBAR = {
       const height = linkRect.height;
 
       if (!smooth) {
-        // Suppress ALL transitions for instant snap — critical on first load
+        
         pill.style.transition = "none";
       } else {
         pill.style.transition =
@@ -71,7 +58,7 @@ window.WARISARA_NAVBAR = {
       pill.style.width = `${width}px`;
       pill.style.height = `${height}px`;
       pill.style.opacity = "1";
-      // Reveal pill only after its position is set — no more top-left flash
+      
       pill.style.visibility = "visible";
     }
 
@@ -142,9 +129,6 @@ window.WARISARA_NAVBAR = {
       }
     }
 
-    // =========================================================================
-    // 2. ULTRA-SMOOTH SYNCHRONIZED SCROLL & PILL ENGINE
-    // =========================================================================
     function easeInOutCubic(t) {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
@@ -157,7 +141,6 @@ window.WARISARA_NAVBAR = {
         scrollAnimFrame = null;
       }
 
-      // 1. Identify start and target navigation items
       const startLink =
         document.querySelector("#desktop-nav-menu .nav-link.active") ||
         document.querySelector("#desktop-nav-menu .nav-link");
@@ -171,7 +154,6 @@ window.WARISARA_NAVBAR = {
         }
       });
 
-      // Synchronize mobile links immediately
       mobileNavLinks.forEach((link) => {
         const href = link.getAttribute("href") || "";
         const dataPage = link.getAttribute("data-page");
@@ -182,7 +164,6 @@ window.WARISARA_NAVBAR = {
         }
       });
 
-      // 2. Calculate scroll boundaries with navbar clearance
       const navOffset = navbar ? navbar.offsetHeight + 24 : 80;
       const startY = window.pageYOffset || document.documentElement.scrollTop;
       const elemRect = targetElement.getBoundingClientRect();
@@ -191,7 +172,6 @@ window.WARISARA_NAVBAR = {
       const targetY = Math.max(0, Math.min(rawTargetY, maxScrollY));
       const distance = targetY - startY;
 
-      // 3. Calculate desktop pill geometry
       const isDesktopPillActive = Boolean(
         pill &&
         navContainer &&
@@ -218,24 +198,20 @@ window.WARISARA_NAVBAR = {
         targetWidth = tRect.width;
         targetHeight = tRect.height;
 
-        // Take over pill motion via RAF for 100% mathematical synchronization
         pill.style.transition = "none";
       }
 
-      // Check if already at destination
       if (Math.abs(distance) < 4 && (!isDesktopPillActive || Math.abs(targetLeft - startLeft) < 4)) {
         window.scrollTo(0, targetY);
         setActiveLink(targetId, true);
         return;
       }
 
-      // Perfectly scaled duration: 720ms for adjacent sections, up to 920ms for long jumps
       const duration = customDuration || Math.min(920, Math.max(720, 680 + Math.abs(distance) * 0.1));
       const startTime = performance.now();
       isProgrammaticScrolling = true;
       currentActiveTarget = targetId;
 
-      // Disable CSS smooth scroll to prevent jitter
       const prevScrollBehavior = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = "auto";
 
@@ -243,7 +219,6 @@ window.WARISARA_NAVBAR = {
         document.documentElement.style.scrollBehavior = prevScrollBehavior || "";
         isProgrammaticScrolling = false;
 
-        // Restore CSS transition for subsequent manual interactions
         if (isDesktopPillActive && targetLink) {
           pill.style.transition =
             "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease";
@@ -252,7 +227,6 @@ window.WARISARA_NAVBAR = {
           pill.style.height = `${targetHeight}px`;
         }
 
-        // Finalize active classes
         desktopNavLinks.forEach((link) => {
           const href = link.getAttribute("href") || "";
           const dataPage = link.getAttribute("data-page");
@@ -271,10 +245,8 @@ window.WARISARA_NAVBAR = {
         const progress = Math.min(elapsed / duration, 1);
         const ease = easeInOutCubic(progress);
 
-        // A. Simultaneous Scroll Motion
         window.scrollTo(0, startY + distance * ease);
 
-        // B. Simultaneous Pill Motion (Exactly synchronized on the same frame)
         if (isDesktopPillActive) {
           const curLeft = startLeft + (targetLeft - startLeft) * ease;
           const curTop = startTop + (targetTop - startTop) * ease;
@@ -286,7 +258,6 @@ window.WARISARA_NAVBAR = {
           pill.style.height = `${curHeight}px`;
           pill.style.opacity = "1";
 
-          // Cross-fade link active label as the pill glides halfway
           if (progress >= 0.45) {
             desktopNavLinks.forEach((link) => {
               const href = link.getAttribute("href") || "";
@@ -312,7 +283,6 @@ window.WARISARA_NAVBAR = {
       scrollAnimFrame = requestAnimationFrame(step);
     }
 
-    // Cancel programmatic scroll if user manually touches or scrolls wheel
     const interruptScroll = () => {
       if (isProgrammaticScrolling) {
         if (scrollAnimFrame) {
@@ -331,9 +301,6 @@ window.WARISARA_NAVBAR = {
     window.addEventListener("wheel", interruptScroll, { passive: true });
     window.addEventListener("touchmove", interruptScroll, { passive: true });
 
-    // =========================================================================
-    // 3. CLICK HANDLERS (Synchronized Navigation)
-    // =========================================================================
     desktopNavLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
@@ -348,7 +315,6 @@ window.WARISARA_NAVBAR = {
       });
     });
 
-    // Mobile nav link clicks
     mobileNavLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
@@ -366,7 +332,6 @@ window.WARISARA_NAVBAR = {
       });
     });
 
-    // Explore action buttons
     exploreBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const href = btn.getAttribute("href");
@@ -382,7 +347,6 @@ window.WARISARA_NAVBAR = {
       });
     });
 
-    // Brand Logo click (Smooth scroll to top and reset to Peta Jelajah)
     if (brandLogo) {
       brandLogo.addEventListener("click", (e) => {
         e.preventDefault();
@@ -393,9 +357,6 @@ window.WARISARA_NAVBAR = {
       });
     }
 
-    // =========================================================================
-    // 4. NAVBAR SCROLLED STATE HANDLER
-    // =========================================================================
     if (navbar) {
       const handleNavbarBackground = () => {
         if (window.scrollY > 25) {
@@ -409,9 +370,6 @@ window.WARISARA_NAVBAR = {
       handleNavbarBackground();
     }
 
-    // =========================================================================
-    // 5. MOBILE DRAWER CONTROLS
-    // =========================================================================
     if (mobileMenuBtn && mobileNavDrawer) {
       mobileMenuBtn.addEventListener("click", () => {
         mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
@@ -436,9 +394,6 @@ window.WARISARA_NAVBAR = {
       }
     });
 
-    // =========================================================================
-    // 6. SCROLL-SPY WITH RAF THROTTLING & PIXEL-PERFECT VIEWPORT INTERSECTION
-    // =========================================================================
     const core10Sections = [
       { id: "hero", target: "hero" },
       { id: "module-jelajahi", target: "jelajahi" },
@@ -466,7 +421,6 @@ window.WARISARA_NAVBAR = {
       const currentPage = determineCurrentPage();
       if (currentPage !== "index" && currentPage !== "hero") return;
 
-      // 1. Near the top of the landing page: lock to hero (Peta Jelajah)
       if (window.scrollY <= 140) {
         if (currentActiveTarget !== "hero" && currentActiveTarget !== "index") {
           setActiveLink("hero", true);
@@ -474,7 +428,6 @@ window.WARISARA_NAVBAR = {
         return;
       }
 
-      // 2. Near bottom of page: lock to pass-it-on
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollBottom = window.innerHeight + window.scrollY;
       if (scrollHeight - scrollBottom <= 120) {
@@ -484,7 +437,6 @@ window.WARISARA_NAVBAR = {
         return;
       }
 
-      // 3. Viewport intersection: test which section intersects the upper-middle viewport trigger (35% from top)
       const triggerY = window.innerHeight * 0.35;
       let activeTarget = "hero";
 
@@ -519,7 +471,6 @@ window.WARISARA_NAVBAR = {
 
     window.addEventListener("scroll", onScrollThrottled, { passive: true });
 
-    // Handle Resize (Keep pill perfectly aligned without transition lag)
     window.addEventListener("resize", () => {
       const activeLink = document.querySelector("#desktop-nav-menu .nav-link.active") ||
                          document.querySelector("#desktop-nav-menu .nav-link");
@@ -528,7 +479,6 @@ window.WARISARA_NAVBAR = {
       }
     }, { passive: true });
 
-    // Initialize pill position immediately on load
     const initialPage = determineCurrentPage();
     setActiveLink(initialPage, false);
 
@@ -542,7 +492,6 @@ window.WARISARA_NAVBAR = {
       }
     };
 
-    // Staggered layout syncs for instant rendering across all devices & font loads
     requestAnimationFrame(syncInitialPill);
     setTimeout(syncInitialPill, 40);
     setTimeout(syncInitialPill, 120);
@@ -557,7 +506,6 @@ window.WARISARA_NAVBAR = {
   }
 };
 
-// Auto-initialize navbar on DOM ready if not initialized
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     if (window.WARISARA_NAVBAR && !window.WARISARA_NAVBAR.isInitialized) {
@@ -569,4 +517,3 @@ if (document.readyState === "loading") {
     window.WARISARA_NAVBAR.init();
   }
 }
-

@@ -1,9 +1,3 @@
-/**
- * WARISARA — Cinematic Page Transition Engine
- * Provides smooth, zero-flicker transitions between pages while preserving
- * fast in-page anchor scrolling on the single/hybrid landing page.
- */
-
 window.WARISARA_TRANSITION = {
   isTransitioning: false,
   veilEl: null,
@@ -49,7 +43,6 @@ window.WARISARA_TRANSITION = {
     document.body.appendChild(veil);
     this.veilEl = veil;
 
-    // Smoothly dissolve veil on page open
     requestAnimationFrame(() => {
       document.body.classList.add("page-fade-in");
       if (wasTransitioning) {
@@ -70,10 +63,8 @@ window.WARISARA_TRANSITION = {
       sessionStorage.setItem("warisara_page_transition", "true");
     } catch (e) {}
 
-    // Show the veil
     this.veilEl.classList.add("active");
 
-    // Wait for veil animation, then navigate
     setTimeout(() => {
       window.location.href = url;
     }, 340);
@@ -87,12 +78,10 @@ window.WARISARA_TRANSITION = {
       const href = anchor.getAttribute("href");
       const target = anchor.getAttribute("target");
 
-      // Skip non-page links, external protocols, downloads, or target="_blank"
       if (!href || href.startsWith("#") || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:") || target === "_blank") {
         return;
       }
 
-      // Check if it is an external link (http/https not matching current origin)
       if (href.startsWith("http://") || href.startsWith("https://")) {
         try {
           const urlObj = new URL(href);
@@ -102,14 +91,13 @@ window.WARISARA_TRANSITION = {
         }
       }
 
-      // Intercept local HTML page navigation
       e.preventDefault();
       this.navigateTo(href);
     });
   },
 
   handlePageShow: function () {
-    // Dismiss veil immediately on bfcache (Back/Forward Cache) restoration
+    
     window.addEventListener("pageshow", (event) => {
       this.isTransitioning = false;
       if (this.veilEl) {
@@ -141,7 +129,6 @@ window.WARISARA_TRANSITION = {
   }
 };
 
-// Auto-initialize when DOM is ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => window.WARISARA_TRANSITION.init());
 } else {

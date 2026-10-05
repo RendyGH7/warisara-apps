@@ -1,8 +1,3 @@
-/**
- * WARISARA — 38 Provinces Cultural Dataset
- * Single source of truth for Indonesian cultural heritage mapping.
- */
-
 const PROVINCES_DATA = {
   "aceh": {
     id: "aceh",
@@ -766,7 +761,6 @@ const PROVINCES_DATA = {
   }
 };
 
-// Export to global scope
 if (typeof window !== "undefined") {
   window.PROVINCES_DATA = PROVINCES_DATA;
 }
