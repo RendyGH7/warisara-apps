@@ -679,15 +679,19 @@
             <div class="leaf-3d-flipper">
               <!-- Front Face: The page being peeled away (Current Right) -->
               <div class="leaf-face leaf-face-front">
-                ${this.getPageRightHTML(currentIdx)}
-                <div class="leaf-lighting-overlay"></div>
-                <div class="leaf-sheen"></div>
+                <div class="leaf-face-inner leaf-face-inner-right">
+                  ${this.getPageRightHTML(currentIdx)}
+                  <div class="leaf-lighting-overlay"></div>
+                  <div class="leaf-sheen"></div>
+                </div>
               </div>
               <!-- Back Face: The new page descending onto the left (Next Left) -->
               <div class="leaf-face leaf-face-back">
-                ${this.getPageLeftHTML(nextIdx)}
-                <div class="leaf-lighting-overlay"></div>
-                <div class="leaf-sheen"></div>
+                <div class="leaf-face-inner leaf-face-inner-left">
+                  ${this.getPageLeftHTML(nextIdx)}
+                  <div class="leaf-lighting-overlay"></div>
+                  <div class="leaf-sheen"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -710,15 +714,19 @@
             <div class="leaf-3d-flipper">
               <!-- Front Face: The page being lifted (Current Left) -->
               <div class="leaf-face leaf-face-front">
-                ${this.getPageLeftHTML(currentIdx)}
-                <div class="leaf-lighting-overlay"></div>
-                <div class="leaf-sheen"></div>
+                <div class="leaf-face-inner leaf-face-inner-left">
+                  ${this.getPageLeftHTML(currentIdx)}
+                  <div class="leaf-lighting-overlay"></div>
+                  <div class="leaf-sheen"></div>
+                </div>
               </div>
               <!-- Back Face: The new page descending onto the right (Next Right) -->
               <div class="leaf-face leaf-face-back">
-                ${this.getPageRightHTML(nextIdx)}
-                <div class="leaf-lighting-overlay"></div>
-                <div class="leaf-sheen"></div>
+                <div class="leaf-face-inner leaf-face-inner-right">
+                  ${this.getPageRightHTML(nextIdx)}
+                  <div class="leaf-lighting-overlay"></div>
+                  <div class="leaf-sheen"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -729,7 +737,7 @@
         `;
       }
 
-      // Coordinate completion at 820ms (matches cinematic GPU page-turn animation)
+      // Coordinate completion at 1100ms (matches cinematic paper-physics animation)
       setTimeout(() => {
         this.currentPageIdx = nextIdx;
         this.renderBookSpread();
@@ -738,14 +746,14 @@
         const casingEl = document.querySelector('.open-physical-book-casing');
         if (casingEl) {
           casingEl.classList.add('book-settle');
-          setTimeout(() => casingEl.classList.remove('book-settle'), 550);
+          setTimeout(() => casingEl.classList.remove('book-settle'), 600);
         }
 
         // Unlock controls
         this._isFlipping = false;
         if (this.btnPrevPage) this.btnPrevPage.style.pointerEvents = '';
         if (this.btnNextPage) this.btnNextPage.style.pointerEvents = '';
-      }, 820);
+      }, 1100);
     }
 
     updateStoryFontSize() {
