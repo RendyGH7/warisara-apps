@@ -156,27 +156,31 @@ html.book-modal-open {
   touch-action: none !important;
 }
 
-/* Master 3-Column Reader Layout (Left Dock | Center 3D Book | Right Dock) */
+/* Master Reader Layout (Book Centered Perfectly in Viewport) */
 .book-reader-layout {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
   width: 100%;
-  max-width: 1420px;
+  max-width: 100vw;
   height: 100%;
   max-height: 96vh;
   margin: auto;
   position: relative;
 }
 
-/* Side Control Docks (Floating on Left & Right of Book) */
+/* Floating Side Control Dock (Positioned on Left Flank with guaranteed gap) */
 .book-side-dock {
+  position: absolute;
+  left: auto;
+  right: calc(50% + min(525px, 44vw) + 48px);
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.85rem;
-  background: rgba(22, 18, 14, 0.92);
+  gap: 0.65rem;
+  padding: 0.75rem;
+  background: rgba(22, 18, 14, 0.94);
   border: 1px solid rgba(201, 165, 103, 0.32);
   border-radius: 1.25rem;
   backdrop-filter: blur(24px);
@@ -186,7 +190,7 @@ html.book-modal-open {
     0 0 30px rgba(201, 165, 103, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   z-index: 100;
-  width: 165px;
+  width: 155px;
   flex-shrink: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -195,8 +199,16 @@ html.book-modal-open {
   align-self: center;
 }
 
-.book-side-dock-right {
-  align-self: center;
+/* Central 3D Book Stage (100% True-Centered on Screen) */
+.book-stage-container {
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  perspective: 3000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .book-dock-status {
@@ -256,7 +268,7 @@ html.book-modal-open {
 .book-top-close-btn {
   position: absolute;
   top: -46px;
-  right: -84px;
+  right: -80px;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -420,64 +432,163 @@ html.book-modal-open {
    5. BOOK ANATOMY DETAILS
    ═══════════════════════════════════════════════════════════ */
 
-/* Headbands (red+white cloth at spine top/bottom) */
+/* Headbands (Kapitalband — authentic woven silk cord at spine head and tail) */
 .book-spine-headband-top {
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 42px;
-  height: 12px;
-  background: repeating-linear-gradient(
-    90deg,
-    #7F1D1D 0px, #B91C1C 1.5px,
-    #991B1B 3px, #FECACA 3.5px,
-    #7F1D1D 5px, #DC2626 6px
-  );
-  border-radius: 5px 5px 0 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.85), 0 0 12px rgba(185,28,28,0.35);
-  z-index: 25;
+  width: 58px;
+  height: 16px;
+  /* Authentic two-tone herringbone silk weave in royal crimson, antique gold & cream */
+  background:
+    repeating-linear-gradient(
+      115deg,
+      #80141E 0px, #80141E 3px,
+      #D4AF37 3px, #D4AF37 4.5px,
+      #FAF5EB 4.5px, #FAF5EB 6px,
+      #A91D2A 6px, #A91D2A 9px
+    );
+  border-radius: 8px 8px 2px 2px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.9),
+    inset 0 2px 3px rgba(255, 255, 255, 0.45),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(185, 28, 28, 0.35);
+  z-index: 26;
+}
+
+/* Spine hollow leather arch backing behind top headband */
+.book-spine-headband-top::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 10px;
+  background: radial-gradient(ellipse at 50% 100%, #3B2614 0%, #170E08 85%);
+  border-radius: 8px 8px 0 0;
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  border-bottom: none;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.8);
+  z-index: -1;
 }
 
 .book-spine-headband-bottom {
   position: absolute;
-  bottom: 12px;
+  bottom: 7px;
   left: 50%;
   transform: translateX(-50%);
-  width: 42px;
-  height: 12px;
-  background: repeating-linear-gradient(
-    90deg,
-    #7F1D1D 0px, #B91C1C 1.5px,
-    #991B1B 3px, #FECACA 3.5px,
-    #7F1D1D 5px, #DC2626 6px
-  );
-  border-radius: 0 0 5px 5px;
-  box-shadow: 0 -4px 8px rgba(0,0,0,0.85), 0 0 12px rgba(185,28,28,0.35);
-  z-index: 25;
+  width: 58px;
+  height: 16px;
+  background:
+    repeating-linear-gradient(
+      65deg,
+      #80141E 0px, #80141E 3px,
+      #D4AF37 3px, #D4AF37 4.5px,
+      #FAF5EB 4.5px, #FAF5EB 6px,
+      #A91D2A 6px, #A91D2A 9px
+    );
+  border-radius: 2px 2px 8px 8px;
+  box-shadow:
+    0 -4px 10px rgba(0, 0, 0, 0.9),
+    inset 0 -2px 3px rgba(255, 255, 255, 0.45),
+    inset 0 3px 5px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(185, 28, 28, 0.35);
+  z-index: 26;
 }
 
-/* Satin ribbon bookmark */
+/* Spine hollow leather arch backing behind bottom headband */
+.book-spine-headband-bottom::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 10px;
+  background: radial-gradient(ellipse at 50% 0%, #3B2614 0%, #170E08 85%);
+  border-radius: 0 0 8px 8px;
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  border-top: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  z-index: -1;
+}
+
+/* Satin ribbon bookmark — Luxury woven crimson silk with gold edge stitch & natural drape */
 .book-satin-ribbon {
   position: absolute;
-  top: 12px;
-  bottom: -36px;
+  top: 4px;
+  bottom: -46px;
   left: 50%;
-  width: 18px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg,
-    #7F1D1D 0%, #B91C1C 15%,
-    #EF4444 30%, #F87171 50%,
-    #DC2626 65%, #991B1B 80%,
-    #7F1D1D 90%, #D97706 100%
-  );
-  clip-path: polygon(12% 0, 88% 0, 100% 100%, 50% 87%, 0 100%);
+  width: 24px;
+  transform: translateX(-50%) rotate(0.4deg);
+  transform-origin: top center;
+
+  /* Double-faced heavy satin with micro-weave ribs and center cylindrical luster sheen */
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0px,
+      rgba(0, 0, 0, 0.08) 1.5px,
+      rgba(255, 255, 255, 0.08) 1.5px,
+      rgba(255, 255, 255, 0.08) 3px
+    ),
+    linear-gradient(90deg,
+      #3B070B 0%,
+      #6A0F17 10%,
+      #9A1824 22%,
+      #CF2635 38%,
+      #FA6274 50%, /* Silk sheen highlight */
+      #CF2635 62%,
+      #9A1824 78%,
+      #5C0E15 92%,
+      #35060A 100%
+    );
+
+  /* Gold embroidered selvedge borders */
+  border-left: 1.5px solid rgba(220, 185, 95, 0.8);
+  border-right: 1.5px solid rgba(220, 185, 95, 0.8);
+
+  /* Classic fishtail / swallowtail chevron tail cut */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 15px), 0% 100%);
+
+  /* Multi-stage contact and elevation shadow cast on page gutter */
   box-shadow:
-    5px 10px 22px rgba(0,0,0,0.85),
-    -3px 5px 12px rgba(0,0,0,0.6),
-    inset 3px 0 6px rgba(255,255,255,0.18),
-    inset -3px 0 6px rgba(0,0,0,0.3);
-  z-index: 38;
+    3px 6px 16px rgba(0, 0, 0, 0.8),
+    -2px 4px 10px rgba(0, 0, 0, 0.5),
+    inset 2px 0 5px rgba(255, 255, 255, 0.28),
+    inset -2px 0 5px rgba(0, 0, 0, 0.45);
+  filter: drop-shadow(4px 12px 20px rgba(0, 0, 0, 0.65)) drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.8));
+
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Rounded 3D top fold arch where ribbon emerges over headband */
+.book-satin-ribbon::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -1.5px;
+  right: -1.5px;
+  height: 14px;
+  background: linear-gradient(180deg, #A81E2C 0%, #D42B3C 45%, #6A101A 100%);
+  border-radius: 7px 7px 0 0;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Gold embroidered metallic accent line along the bottom chevron cut */
+.book-satin-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(180deg, transparent 0%, rgba(220, 185, 95, 0.95) 100%);
+  clip-path: polygon(0% calc(100% - 4px), 50% calc(100% - 18px), 100% calc(100% - 4px), 100% 100%, 50% calc(100% - 14px), 0% 100%);
   pointer-events: none;
 }
 
@@ -486,23 +597,23 @@ html.book-modal-open {
    ═══════════════════════════════════════════════════════════ */
 .page-block-edge-left {
   position: absolute;
-  top: 14px; bottom: 16px;
-  left: -22px;
-  width: 22px;
+  top: 12px; bottom: 14px;
+  left: -24px;
+  width: 24px;
   background:
-    linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.55) 0%, transparent 100%),
     repeating-linear-gradient(
       90deg,
-      #C4AA82 0px, #EDE0C8 0.8px,
-      #F8F2E8 1.6px, #EAD9BE 2.4px,
-      #D8C49A 3.2px, #F2E8D6 4px
+      #BCA075 0px, #E8D8BC 0.8px,
+      #FAF4E8 1.6px, #E4D2B4 2.4px,
+      #CFB88E 3.2px, #EFE4D0 4px
     );
   border-radius: 10px 0 0 10px;
   box-shadow:
-    inset 5px 0 10px rgba(0,0,0,0.65),
-    -6px 10px 20px rgba(0,0,0,0.8),
-    inset 0 0 6px rgba(255,255,255,0.2);
-  transform: rotateY(-42deg) skewY(0.3deg);
+    inset 6px 0 12px rgba(0,0,0,0.7),
+    -8px 12px 25px rgba(0,0,0,0.85),
+    inset 0 0 8px rgba(255,255,255,0.25);
+  transform: rotateY(-38deg) skewY(0.4deg);
   transform-origin: right center;
   pointer-events: none;
   z-index: 12;
@@ -510,23 +621,23 @@ html.book-modal-open {
 
 .page-block-edge-right {
   position: absolute;
-  top: 14px; bottom: 16px;
-  right: -22px;
-  width: 22px;
+  top: 12px; bottom: 14px;
+  right: -24px;
+  width: 24px;
   background:
-    linear-gradient(270deg, rgba(0,0,0,0.4) 0%, transparent 100%),
+    linear-gradient(270deg, rgba(0,0,0,0.55) 0%, transparent 100%),
     repeating-linear-gradient(
       90deg,
-      #C4AA82 0px, #D8C49A 0.8px,
-      #EAD9BE 1.6px, #F8F2E8 2.4px,
-      #EDE0C8 3.2px, #C4AA82 4px
+      #BCA075 0px, #CFB88E 0.8px,
+      #E4D2B4 1.6px, #FAF4E8 2.4px,
+      #E8D8BC 3.2px, #BCA075 4px
     );
   border-radius: 0 10px 10px 0;
   box-shadow:
-    inset -5px 0 10px rgba(0,0,0,0.65),
-    6px 10px 20px rgba(0,0,0,0.8),
-    inset 0 0 6px rgba(255,255,255,0.2);
-  transform: rotateY(42deg) skewY(-0.3deg);
+    inset -6px 0 12px rgba(0,0,0,0.7),
+    8px 12px 25px rgba(0,0,0,0.85),
+    inset 0 0 8px rgba(255,255,255,0.25);
+  transform: rotateY(38deg) skewY(-0.4deg);
   transform-origin: left center;
   pointer-events: none;
   z-index: 12;
@@ -534,22 +645,22 @@ html.book-modal-open {
 
 .page-block-edge-bottom {
   position: absolute;
-  bottom: -12px;
-  left: 14px; right: 14px;
-  height: 12px;
+  bottom: -14px;
+  left: 12px; right: 12px;
+  height: 14px;
   background: repeating-linear-gradient(
     180deg,
-    #EAD9BE 0px, #FAF6EE 1.5px,
-    #D8C49A 3px, #C4AA82 4.5px
+    #E4D2B4 0px, #FAF6EE 1.5px,
+    #D0B98F 3px, #BC9F74 4.5px
   );
-  box-shadow: 0 10px 18px rgba(0,0,0,0.85), inset 0 -2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.9), inset 0 -3px 5px rgba(0,0,0,0.5);
   border-radius: 0 0 10px 10px;
   pointer-events: none;
   z-index: 10;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   7. OPEN BOOK BODY — PARCHMENT PAGES
+   7. OPEN BOOK BODY — PARCHMENT PAGES & 3D SPATIAL CURVATURE
    ═══════════════════════════════════════════════════════════ */
 .heritage-tome {
   position: relative;
@@ -557,63 +668,70 @@ html.book-modal-open {
   min-height: min(560px, 72vh);
   max-height: 74vh;
   display: flex;
-  background: #F0E8D5;
-  border-radius: 4px 4px 3px 3px;
+  background: #EFE7D3;
+  border-radius: 8px 8px 6px 6px;
   overflow: hidden;
   box-shadow:
-    0 30px 60px rgba(0,0,0,0.92),
-    inset 0 0 50px rgba(180,145,95,0.1);
+    0 35px 70px rgba(0, 0, 0, 0.95),
+    inset 0 0 60px rgba(180, 145, 95, 0.15);
   transform-style: preserve-3d;
   isolation: isolate;
 }
 
-/* Deep curved center spine */
+/* Deep realistic 3D gutter trough indentation (Lekukan Tulang Belakang Buku) */
 .heritage-tome-spine {
   position: absolute;
   top: 0; bottom: 0;
   left: 50%;
-  width: 60px;
+  width: 76px;
   transform: translateX(-50%);
   background: linear-gradient(90deg,
-    rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.38) 22%,
-    rgba(255,255,255,0.06) 50%,
-    rgba(0,0,0,0.38) 78%,
-    rgba(0,0,0,0.75) 100%
+    rgba(6, 4, 2, 0.95) 0%,
+    rgba(18, 12, 6, 0.75) 16%,
+    rgba(32, 20, 10, 0.38) 34%,
+    rgba(5, 3, 1, 0.92) 48.5%,
+    rgba(0, 0, 0, 1.0) 50%,
+    rgba(5, 3, 1, 0.92) 51.5%,
+    rgba(32, 20, 10, 0.38) 66%,
+    rgba(18, 12, 6, 0.75) 84%,
+    rgba(6, 4, 2, 0.95) 100%
   );
   box-shadow:
-    inset 0 0 25px rgba(0,0,0,0.95),
-    0 0 35px rgba(0,0,0,0.8);
+    inset 0 0 35px rgba(0, 0, 0, 0.98),
+    0 0 32px rgba(0, 0, 0, 0.85);
   z-index: 28;
   pointer-events: none;
 }
 
-/* Authentic bookbinding stitch lines */
+/* Authentic bookbinding needle-stitched linen cord thread down the crease */
 .heritage-tome-spine::before {
   content: '';
   position: absolute;
-  top: 18px; bottom: 18px;
+  top: 14px; bottom: 14px;
   left: 50%;
   width: 2px;
   transform: translateX(-50%);
   background-image: repeating-linear-gradient(
     180deg,
-    #D4AF37 0px, #D4AF37 5px,
-    transparent 5px, transparent 16px
+    #D4AF37 0px, #F0D57A 3.5px,
+    #8F6A18 4.5px, transparent 4.5px,
+    transparent 22px
   );
-  opacity: 0.65;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.85));
+  opacity: 0.75;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.95));
 }
 
-/* Page spread */
+/* Page spread container with 3D perspective depth */
 .tome-spread {
   display: flex;
   width: 100%;
   min-height: min(560px, 72vh);
   max-height: 74vh;
+  perspective: 2200px;
+  transform-style: preserve-3d;
 }
 
-/* ── Left page: warm antique parchment with curved light near spine ── */
+/* ── Left Page: Arched parchment wing dipping down into the center spine ── */
 .tome-page-left {
   flex: 1;
   position: relative;
@@ -624,44 +742,56 @@ html.book-modal-open {
   color: #1A1510;
   overflow: hidden;
 
-  /* Curved page light: brighter at outer edge, darker at spine */
+  /* 3D Page tilt angled inwards toward spine trough */
+  transform: rotateY(2deg);
+  transform-origin: right center;
+  border-radius: 10px 2px 2px 8px;
+
+  /* Cylindrical paper lighting: Arch crest specular highlight at ~73% + gutter dip shadow at right */
   background:
-    radial-gradient(ellipse at 100% 50%, rgba(0,0,0,0.32) 0%, transparent 45%),
-    radial-gradient(ellipse at 100% 0%, rgba(0,0,0,0.18) 0%, transparent 35%),
-    radial-gradient(circle at 12% 12%, rgba(255,255,255,0.72) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(190,160,110,0.25) 0%, transparent 50%),
-    linear-gradient(105deg,
-      #DDD0B4 0%, #EDE0C5 8%,
-      #F5EDD8 22%, #FAF7EE 60%,
-      #F2E8D5 85%, #E8DCBF 100%
+    /* Deep gutter dip shadow */
+    radial-gradient(ellipse at 100% 50%, rgba(8, 5, 2, 0.5) 0%, transparent 48%),
+    /* Page Arch Crest Highlight: simulating light bouncing off the highest ridge of the curved page */
+    radial-gradient(ellipse at 73% 50%, rgba(255, 255, 255, 0.52) 0%, transparent 42%),
+    /* Ambient outer-edge natural lift */
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 100%, rgba(190, 160, 110, 0.2) 0%, transparent 55%),
+    /* Master warm antique parchment tone */
+    linear-gradient(100deg,
+      #D9CCA8 0%, #E8DCBE 6%,
+      #F2E7D0 18%, #FAF6EE 55%,
+      #F5EDDA 75%, #EADDC2 90%,
+      #D9CCA8 100%
     );
 
-  border-right: 1px solid rgba(0,0,0,0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow:
-    inset -35px 0 50px rgba(0,0,0,0.22),
-    inset 12px 0 25px rgba(255,255,255,0.5),
-    inset 0 40px 60px rgba(255,250,240,0.15),
-    inset 0 -40px 60px rgba(180,150,100,0.1);
+    inset -45px 0 65px rgba(0, 0, 0, 0.34),
+    inset 16px 0 28px rgba(255, 255, 255, 0.6),
+    inset 0 30px 45px rgba(255, 250, 240, 0.2),
+    inset 0 -30px 45px rgba(180, 150, 100, 0.15);
 }
 
-/* ── Page curvature at spine — left page curves away right ── */
+/* ── Realistic gutter slope shadow on left page ── */
 .tome-page-left::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
   right: 0;
-  width: 80px;
+  width: 115px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(0,0,0,0.04) 30%,
-    rgba(0,0,0,0.16) 65%,
-    rgba(0,0,0,0.28) 100%
+    rgba(12, 8, 4, 0.02) 20%,
+    rgba(12, 8, 4, 0.12) 48%,
+    rgba(10, 6, 3, 0.35) 75%,
+    rgba(6, 4, 2, 0.68) 92%,
+    rgba(2, 1, 1, 0.88) 100%
   );
   pointer-events: none;
   z-index: 2;
 }
 
-/* ── Right page ── */
+/* ── Right Page: Arched parchment wing dipping down into the center spine ── */
 .tome-page-right {
   flex: 1;
   position: relative;
@@ -672,36 +802,49 @@ html.book-modal-open {
   color: #1A1510;
   overflow: hidden;
 
+  /* 3D Page tilt angled inwards toward spine trough */
+  transform: rotateY(-2deg);
+  transform-origin: left center;
+  border-radius: 2px 10px 8px 2px;
+
+  /* Cylindrical paper lighting: Arch crest specular highlight at ~27% + gutter dip shadow at left */
   background:
-    radial-gradient(ellipse at 0% 50%, rgba(0,0,0,0.32) 0%, transparent 45%),
-    radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.18) 0%, transparent 35%),
-    radial-gradient(circle at 88% 12%, rgba(255,255,255,0.72) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(190,160,110,0.25) 0%, transparent 50%),
-    linear-gradient(75deg,
-      #E8DCBF 0%, #F2E8D5 15%,
-      #FAF7EE 40%, #F5EDD8 78%,
-      #EDE0C5 92%, #DDD0B4 100%
+    /* Deep gutter dip shadow */
+    radial-gradient(ellipse at 0% 50%, rgba(8, 5, 2, 0.5) 0%, transparent 48%),
+    /* Page Arch Crest Highlight */
+    radial-gradient(ellipse at 27% 50%, rgba(255, 255, 255, 0.52) 0%, transparent 42%),
+    /* Ambient outer-edge natural lift */
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 100%, rgba(190, 160, 110, 0.2) 0%, transparent 55%),
+    /* Master warm antique parchment tone */
+    linear-gradient(80deg,
+      #D9CCA8 0%, #EADDC2 10%,
+      #F5EDDA 25%, #FAF6EE 45%,
+      #F2E7D0 82%, #E8DCBE 94%,
+      #D9CCA8 100%
     );
 
   box-shadow:
-    inset 35px 0 50px rgba(0,0,0,0.22),
-    inset -12px 0 25px rgba(255,255,255,0.5),
-    inset 0 40px 60px rgba(255,250,240,0.15),
-    inset 0 -40px 60px rgba(180,150,100,0.1);
+    inset 45px 0 65px rgba(0, 0, 0, 0.34),
+    inset -16px 0 28px rgba(255, 255, 255, 0.6),
+    inset 0 30px 45px rgba(255, 250, 240, 0.2),
+    inset 0 -30px 45px rgba(180, 150, 100, 0.15);
 }
 
-/* ── Page curvature at spine — right page curves away left ── */
+/* ── Realistic gutter slope shadow on right page ── */
 .tome-page-right::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
   left: 0;
-  width: 80px;
+  width: 115px;
   background: linear-gradient(270deg,
     transparent 0%,
-    rgba(0,0,0,0.04) 30%,
-    rgba(0,0,0,0.16) 65%,
-    rgba(0,0,0,0.28) 100%
+    rgba(12, 8, 4, 0.02) 20%,
+    rgba(12, 8, 4, 0.12) 48%,
+    rgba(10, 6, 3, 0.35) 75%,
+    rgba(6, 4, 2, 0.68) 92%,
+    rgba(2, 1, 1, 0.88) 100%
   );
   pointer-events: none;
   z-index: 2;
@@ -1154,11 +1297,14 @@ html.book-modal-open {
     padding: 0.25rem 0.5rem;
   }
   .book-side-dock {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1080px;
+    justify-content: center;
+    width: auto;
     padding: 0.5rem 0.85rem;
     gap: 0.5rem;
   }

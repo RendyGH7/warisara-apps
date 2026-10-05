@@ -252,13 +252,17 @@
       if (this.btnNarrate) {
         this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
         this.btnNarrate.classList.add('bg-white/10', 'text-surface');
+        this.btnNarrate.innerHTML = `
+          <span class="material-symbols-outlined text-base">volume_up</span>
+          <span class="dock-btn-label">Narator Suara</span>
+        `;
       }
       if (this.btnAmbience) {
         this.btnAmbience.classList.remove('bg-brass-400', 'text-ink');
         this.btnAmbience.classList.add('bg-white/10', 'text-surface');
         this.btnAmbience.innerHTML = `
-          <span class="material-symbols-outlined text-sm">music_note</span>
-          <span class="text-xs font-semibold ml-1">Gamelan Sunyi</span>
+          <span class="material-symbols-outlined text-base">music_note</span>
+          <span class="dock-btn-label">Gamelan Sunyi</span>
         `;
       }
 
@@ -292,13 +296,17 @@
       if (this.btnNarrate) {
         this.btnNarrate.classList.remove('bg-brass-400', 'text-ink');
         this.btnNarrate.classList.add('bg-white/10', 'text-surface');
+        this.btnNarrate.innerHTML = `
+          <span class="material-symbols-outlined text-base">volume_up</span>
+          <span class="dock-btn-label">Narator Suara</span>
+        `;
       }
       if (this.btnAmbience) {
         this.btnAmbience.classList.remove('bg-brass-400', 'text-ink');
         this.btnAmbience.classList.add('bg-white/10', 'text-surface');
         this.btnAmbience.innerHTML = `
-          <span class="material-symbols-outlined text-sm">music_note</span>
-          <span class="text-xs font-semibold ml-1">Gamelan Sunyi</span>
+          <span class="material-symbols-outlined text-base">music_note</span>
+          <span class="dock-btn-label">Gamelan Sunyi</span>
         `;
       }
 
@@ -327,19 +335,19 @@
         return `
           <div class="tome-page-left flex flex-col justify-between">
             <div>
-              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-3">
+              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#8F6A18]/15 text-[#8F6A18] border border-[#8F6A18]/30 mb-3 font-semibold">
                 WADAH KISAH ADILUHUNG
               </span>
-              <h4 class="font-display text-2xl font-light text-surface mb-2">${story.category}</h4>
-              <p class="text-xs text-surface/60 font-mono mb-4">Wilayah: ${story.origin}</p>
-              <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-surface/80 leading-relaxed italic">
+              <h4 class="font-display text-2xl font-bold text-[#2A1F17] mb-2 tracking-tight">${story.category}</h4>
+              <p class="text-xs text-[#6B5A4B] font-mono mb-4">Wilayah: ${story.origin}</p>
+              <div class="p-4 rounded-xl bg-[#2A1F17]/5 border border-[#2A1F17]/15 text-xs text-[#3A2D22] leading-relaxed italic shadow-inner">
                 "${story.summary}"
               </div>
             </div>
 
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-surface/60">
-              <span>WARISARA Heritage Book Engine</span>
-              <span class="text-brass-300">Nusantara Edition</span>
+            <div class="pt-4 border-t border-[#8F6A18]/25 flex items-center justify-between text-xs text-[#6B5A4B]">
+              <span class="font-medium">WARISARA Heritage Book Engine</span>
+              <span class="text-[#8F6A18] font-bold">Nusantara Edition</span>
             </div>
           </div>
         `;
@@ -350,27 +358,27 @@
         return `
           <div class="tome-page-left flex flex-col justify-between">
             <div>
-              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-forest-500/20 text-forest-300 border border-forest-500/30 mb-3">
+              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-forest-600/20 text-forest-700 border border-forest-600/30 mb-3 font-semibold">
                 INTISARI KEARIFAN
               </span>
-              <h3 class="font-display text-2xl font-light text-surface mb-4">Petuah Luhur Nenek Moyang</h3>
+              <h3 class="font-display text-2xl font-bold text-[#2A1F17] mb-4">Petuah Luhur Nenek Moyang</h3>
               
-              <div class="p-5 rounded-2xl bg-brass-400/10 border border-brass-400/30 mb-5">
-                <span class="text-[10px] uppercase font-bold text-brass-400 block mb-1">Mutiara Nilai Hidup:</span>
-                <p class="font-display italic text-base sm:text-lg text-surface font-light leading-relaxed">
+              <div class="p-5 rounded-2xl bg-[#8F6A18]/10 border border-[#8F6A18]/30 mb-5 shadow-sm">
+                <span class="text-[10px] uppercase font-bold text-[#8F6A18] block mb-1">Mutiara Nilai Hidup:</span>
+                <p class="font-display italic text-base sm:text-lg text-[#2A1F17] font-medium leading-relaxed">
                   "${story.moral}"
                 </p>
               </div>
 
-              <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-surface/80 leading-relaxed">
-                <strong class="text-brass-300 block mb-1">Dengarkan Tutur Suara:</strong>
-                <p class="italic text-surface/70">"${story.audioQuote}"</p>
+              <div class="p-4 rounded-xl bg-[#2A1F17]/5 border border-[#2A1F17]/15 text-xs text-[#3A2D22] leading-relaxed">
+                <strong class="text-[#8F6A18] block mb-1">Dengarkan Tutur Suara:</strong>
+                <p class="italic text-[#5C4A3A]">"${story.audioQuote}"</p>
               </div>
             </div>
 
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-surface/60">
+            <div class="pt-4 border-t border-[#8F6A18]/25 flex items-center justify-between text-xs text-[#6B5A4B]">
               <span>Halaman Penutup</span>
-              <span class="text-brass-300 font-mono">#WARISARA-STORY</span>
+              <span class="text-[#8F6A18] font-mono font-bold">#WARISARA-STORY</span>
             </div>
 
             <!-- Interactive Corner Page Curl Button (Previous Page) -->
@@ -796,15 +804,15 @@
           this.btnAmbience.classList.add('bg-brass-400', 'text-ink');
           this.btnAmbience.classList.remove('bg-white/10', 'text-surface');
           this.btnAmbience.innerHTML = `
-            <span class="audio-bar"></span><span class="audio-bar"></span><span class="audio-bar"></span>
-            <span class="text-xs font-semibold ml-1">Musik Aktif</span>
+            <span class="material-symbols-outlined text-base animate-pulse">music_note</span>
+            <span class="dock-btn-label font-bold">Gamelan Sunyi</span>
           `;
         } else {
           this.btnAmbience.classList.remove('bg-brass-400', 'text-ink');
           this.btnAmbience.classList.add('bg-white/10', 'text-surface');
           this.btnAmbience.innerHTML = `
-            <span class="material-symbols-outlined text-sm">music_note</span>
-            <span class="text-xs font-semibold ml-1">Gamelan Sunyi</span>
+            <span class="material-symbols-outlined text-base">music_note</span>
+            <span class="dock-btn-label">Gamelan Sunyi</span>
           `;
         }
       }

@@ -307,9 +307,9 @@
       
       <div class="book-reader-layout">
         
-        <!-- Sisi Kiri: Kontrol Audio Cerita -->
-        <aside class="book-side-dock book-side-dock-left" aria-label="Kontrol Audio Cerita">
-          <!-- Audio Action Buttons -->
+        <!-- Sisi Kiri: Panel Kontrol Membaca & Audio Cerita -->
+        <aside class="book-side-dock book-side-dock-left" aria-label="Kontrol Membaca & Audio Cerita">
+          <!-- Action Buttons -->
           <div class="book-dock-actions">
             <!-- Voice Narrator TTS -->
             <button id="btn-tome-narrate" class="book-dock-btn" title="Dengarkan Suara Narator">
@@ -321,6 +321,18 @@
             <button id="btn-tome-ambience" class="book-dock-btn" title="Putar Musik Gamelan Meditasi">
               <span class="material-symbols-outlined text-base">music_note</span>
               <span class="dock-btn-label">Gamelan Sunyi</span>
+            </button>
+
+            <!-- Bookmark / Save -->
+            <button id="btn-tome-bookmark" class="book-dock-btn" title="Simpan ke Penanda Baca">
+              <span class="material-symbols-outlined text-base">bookmark_border</span>
+              <span class="dock-btn-label">Simpan</span>
+            </button>
+
+            <!-- Fullscreen -->
+            <button id="btn-toggle-fullscreen" class="book-dock-btn" title="Layar Penuh">
+              <span class="material-symbols-outlined text-base">fullscreen</span>
+              <span class="dock-btn-label">Layar Penuh</span>
             </button>
           </div>
         </aside>
@@ -353,30 +365,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Sisi Kanan: Kontrol Membaca Pusaka -->
-        <aside class="book-side-dock book-side-dock-right" aria-label="Kontrol Membaca">
-          <div class="book-dock-actions">
-            <!-- Bookmark / Save -->
-            <button id="btn-tome-bookmark" class="book-dock-btn" title="Simpan ke Penanda Baca">
-              <span class="material-symbols-outlined text-base">bookmark_border</span>
-              <span class="dock-btn-label">Simpan</span>
-            </button>
-
-            <!-- Font Adjusters -->
-            <div class="book-font-adjuster" title="Sesuaikan Ukuran Teks">
-              <button id="btn-font-minus" class="book-font-btn" title="Kecilkan Teks">A-</button>
-              <span class="text-[10px] text-surface/50 font-mono">Teks</span>
-              <button id="btn-font-plus" class="book-font-btn" title="Besarkan Teks">A+</button>
-            </div>
-
-            <!-- Fullscreen -->
-            <button id="btn-toggle-fullscreen" class="book-dock-btn" title="Layar Penuh">
-              <span class="material-symbols-outlined text-base">fullscreen</span>
-              <span class="dock-btn-label">Layar Penuh</span>
-            </button>
-          </div>
-        </aside>
 
       </div>
     </div>
