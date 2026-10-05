@@ -372,6 +372,9 @@
               <span>Halaman Penutup</span>
               <span class="text-brass-300 font-mono">#WARISARA-STORY</span>
             </div>
+
+            <!-- Interactive Corner Page Curl Button (Previous Page) -->
+            <div class="page-corner-curl-btn-prev" id="btn-corner-turn-prev" title="Klik untuk kembali ke halaman sebelumnya"></div>
           </div>
         `;
       }
@@ -404,6 +407,9 @@
           <div class="page-classic-folio">
             — ${pageData.pageNumber * 2 - 1} —
           </div>
+
+          <!-- Interactive Corner Page Curl Button (Previous Page) -->
+          <div class="page-corner-curl-btn-prev" id="btn-corner-turn-prev" title="Klik untuk kembali ke halaman sebelumnya"></div>
         </div>
       `;
     }
@@ -579,10 +585,16 @@
         btnOpen.addEventListener('click', () => this.turnPage(1));
       }
 
-      // 2. Corner page curl click
+      // 2. Corner page curl click (Next page)
       const btnCorner = document.getElementById('btn-corner-turn');
       if (btnCorner) {
         btnCorner.addEventListener('click', () => this.turnPage(1));
+      }
+
+      // 2b. Corner page curl click (Previous page)
+      const btnCornerPrev = document.getElementById('btn-corner-turn-prev');
+      if (btnCornerPrev) {
+        btnCornerPrev.addEventListener('click', () => this.turnPage(-1));
       }
 
       // 3. Back Cover restart button

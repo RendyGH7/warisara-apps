@@ -252,17 +252,17 @@ html.book-modal-open {
   box-shadow: 0 0 15px rgba(201, 165, 103, 0.4);
 }
 
-/* Close Button right above the top-right corner of the book */
+/* Close Button floating clearly above the top-right corner of the book */
 .book-top-close-btn {
   position: absolute;
-  top: -18px;
-  right: -14px;
+  top: -46px;
+  right: -84px;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(22, 18, 14, 0.95);
   border: 1px solid rgba(201, 165, 103, 0.45);
@@ -971,8 +971,10 @@ html.book-modal-open {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   9. INTERACTIVE CORNER CURL
+   9. INTERACTIVE CORNER CURL (NEXT & PREVIOUS PAGE)
    ═══════════════════════════════════════════════════════════ */
+
+/* Right page corner curl (Next Page) */
 .page-corner-curl-btn {
   position: absolute;
   bottom: 0; right: 0;
@@ -1006,15 +1008,64 @@ html.book-modal-open {
   transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tome-page-right:hover .page-corner-curl-btn::before {
+.tome-page-right:hover .page-corner-curl-btn::before,
+.page-corner-curl-btn:hover::before {
   border-width: 0 0 56px 56px;
   border-color: transparent transparent #E5A820 transparent;
   opacity: 1;
   box-shadow: -8px -8px 20px rgba(0,0,0,0.4);
 }
 
-.tome-page-right:hover .page-corner-curl-btn::after {
+.tome-page-right:hover .page-corner-curl-btn::after,
+.page-corner-curl-btn:hover::after {
   border-width: 0 0 40px 40px;
+}
+
+/* Left page corner curl (Previous Page) */
+.page-corner-curl-btn-prev {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 60px; height: 60px;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-corner-curl-btn-prev::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 38px 38px 0;
+  border-color: transparent transparent #B8942A transparent;
+  box-shadow: 5px -5px 12px rgba(0,0,0,0.28);
+  transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.72;
+}
+
+.page-corner-curl-btn-prev::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 2px;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 28px 28px 0;
+  border-color: transparent transparent rgba(255,255,255,0.28) transparent;
+  transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tome-page-left:hover .page-corner-curl-btn-prev::before,
+.page-corner-curl-btn-prev:hover::before {
+  border-width: 0 56px 56px 0;
+  border-color: transparent transparent #E5A820 transparent;
+  opacity: 1;
+  box-shadow: 8px -8px 20px rgba(0,0,0,0.4);
+}
+
+.tome-page-left:hover .page-corner-curl-btn-prev::after,
+.page-corner-curl-btn-prev:hover::after {
+  border-width: 0 40px 40px 0;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1126,6 +1177,12 @@ html.book-modal-open {
 }
 
 @media (max-width: 860px) {
+  .book-top-close-btn {
+    top: -38px;
+    right: 4px;
+    width: 36px;
+    height: 36px;
+  }
   .open-physical-book-casing {
     padding: 8px 10px 14px 10px;
     transform: none;
