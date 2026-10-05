@@ -1,9 +1,10 @@
 /**
- * WARISARA — Cerita yang Diwariskan (Distinct Multi-Slide Scene Illustrations Dataset)
- * Authentic Indonesian folklore with unique per-slide scene artwork and classical typography.
+ * WARISARA — Cerita yang Diwariskan (10 Kisah Lengkap & Mendalam Nusantara)
+ * 10 Comprehensive Storybooks with Rich Multi-Chapter Spreads, Scene Illustrations, and Deep Moral Lessons.
  */
 
 window.STORIES_DATA = [
+  // 1. PINISI
   {
     id: "legenda-pinisi",
     title: "Pelayaran Sawerigading & Lahirnya Perahu Pinisi",
@@ -24,10 +25,18 @@ window.STORIES_DATA = [
         image: "../assets/images/stories/pinisi_tree.jpg",
         imageCaption: "Pangeran Sawerigading memimpin penebangan pohon raksasa Welenrengnge di belantara Luwu.",
         content: `Dalam wiracarita agung <em>I La Galigo</em>, alkisah Pangeran Sawerigading hendak berlayar menuju Negeri Tiongkok untuk meminang Putri We Cudai. Demi membangun bahtera tangguh yang mampu menyeberangi samudra raya, ditebanglah pohon raksasa keramat <strong>Welenrengnge</strong> yang dahannya menjulang menembus awan.<br><br>
-        Setelah berbulan-bulan dikerjakan dengan ketelitian tingkat tinggi, lahirlah sebuah kapal megah bertiang kokoh. Bahtera itu meluncur ke laut luas dengan penuh kemegahan, membawa harapan dan kehormatan seluruh rakyat Luwu.`
+        Setelah berbulan-bulan dikerjakan dengan ketelitian tingkat tinggi oleh para empu perkayuan Luwu, lahirlah sebuah kapal megah bertiang kokoh. Bahtera itu meluncur ke laut luas dengan penuh kemegahan, membawa harapan dan kehormatan seluruh rakyat Luwu.`
       },
       {
         pageNumber: 2,
+        sectionTitle: "Pelayaran Mengarungi Samudra Luas",
+        image: "../assets/images/stories/story_pinisi.jpg",
+        imageCaption: "Bahtera megah Sawerigading membelah ombak samudra dengan kibaran tujuh helai layar.",
+        content: `Pelayaran Sawerigading menempuh ribuan mil laut, mengarungi laut Jawa, selat Makassar, hingga laut Tiongkok Selatan. Tujuh helai layar berkibar gagah melambangkan tekad bulat seorang ksatria yang pantang surut sebelum cita-citanya tercapai.<br><br>
+        Di atas geladak kapal, para pelaut Bugis-Makassar membaca arah angin dan bintang pari, meneguhkan prinsip bahwa laut bukanlah pemisah pulau, melainkan jalan raya persatuan bangsa bahari.`
+      },
+      {
+        pageNumber: 3,
         sectionTitle: "Badai Samudra & Tiga Pesisir Terdampar",
         image: "../assets/images/stories/story_pinisi.jpg",
         imageCaption: "Bahtera Sawerigading diterpa badai dahsyat hingga terbelah menjadi tiga bagian utama.",
@@ -35,7 +44,7 @@ window.STORIES_DATA = [
         Badan perahu terdampar di pesisir <strong>Desa Ara</strong>, tiang dan layarnya terhempas ke <strong>Desa Bira</strong>, sementara lunas dan rangkanya terseret ke <strong>Desa Lemo-Lemo</strong>. Ketiga desa pesisir Bulukumba inilah yang kelak ditakdirkan menjadi penjaga estafet keahlian maritim Nusantara.`
       },
       {
-        pageNumber: 3,
+        pageNumber: 4,
         sectionTitle: "Sumpah Suci Para Tetua Panrita Lopi",
         image: "../assets/images/stories/pinisi_bira.jpg",
         imageCaption: "Para ahli Panrita Lopi merakit lunas perahu di Pantai Bira dengan pasak kayu ulin tanpa paku besi.",
@@ -43,15 +52,25 @@ window.STORIES_DATA = [
         Setiap jengkal perahu Pinisi dibangun hanya berdasarkan ingatan batin, perhitungan bintang, serta ritual <em>Annyorong Lopi</em> (mendoakan kapal sebelum dilarung ke samudra raya).`
       },
       {
-        pageNumber: 4,
+        pageNumber: 5,
+        sectionTitle: "Rahasia Pasak Kayu Ulin Tanpa Paku Besi",
+        image: "../assets/images/stories/pinisi_bira.jpg",
+        imageCaption: "Pasak kayu ulin dimasukkan secara presisi ke dalam lubang sambungan papan lambung kapal.",
+        content: `Keajaiban perahu Pinisi terletak pada sambungan papan kulit lambung (*susun sirih*) yang dirapatkan dengan pasak kayu ulin (*tappi*). Ketika terkena air laut, kayu ulin mengembang dan mengunci kayu sekitarnya dengan sangat kuat, menciptakan lambung yang kedap air dan fleksibel menari mengikuti lekuk ombak.<br><br>
+        Keahlian ini diturunkan dari ayah ke anak tanpa cetak biru tertulis di atas kertas, melainkan murni melalui ketajaman rasa, disiplin batin, dan kepekaan rasa pendengaran saat mengetuk kayu.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Mahakarya Maritim Warisan Dunia UNESCO",
         image: "../assets/images/stories/story_pinisi.jpg",
         imageCaption: "Pinisi diakui UNESCO sebagai Karya Agung Warisan Budaya Lisan dan Nonbendawi Manusia.",
         content: `Hingga hari ini, perahu Pinisi terus berlayar mengitari bola dunia, membuktikan ketangguhan maritim Nusantara yang tak tertandingi oleh zaman modern.<br><br>
-        <strong>Kearifan Luhur:</strong> Pinisi mengajarkan bahwa keharmonisan dengan alam dan ketulusan niat adalah kompas sejati dalam mengarungi badai kehidupan. Segala rintangan sebesar apa pun dapat diatasi bila kita bersatu hati.`
+        <strong>Kearifan Luhur:</strong> Pinisi mengajarkan bahwa keharmonisan dengan alam dan ketulusan niat adalah kompas sejati dalam mengarungi badai kehidupan. Segala rintangan sebesar apa pun dapat diatasi bila kita bersatu hati dan memegang teguh martabat leluhur.`
       }
     ]
   },
+
+  // 2. PARANG RUSAK
   {
     id: "makna-parang-rusak",
     title: "Pertapaan Sultan Agung & Lahirnya Batik Parang Rusak",
@@ -76,6 +95,14 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 2,
+        sectionTitle: "Dialog Jiwa dengan Gelora Samudra",
+        image: "../assets/images/stories/story_parang.jpg",
+        imageCaption: "Hening malam di tepi samudra membawa perenungan mendalam tentang kepemimpinan yang adil.",
+        content: `Di tengah gemuruh ombak dan pekatnya malam, Sultan Agung merenungkan amanah berat yang dipikulnya memimpin jutaan rakyat Mataram. Beliau menyadari bahwa musuh terbesar seorang raja bukanlah pasukan musuh dari luar, melainkan hawa nafsu kekuasaan dan kesombongan yang bersemayam di dalam dada.<br><br>
+        Hanya seorang pemimpin yang telah menaklukkan dirinya sendirilah yang mampu memancarkan keadilan sejati bagi negeri.`
+      },
+      {
+        pageNumber: 3,
         sectionTitle: "Guratan Ombak Memecah Batu Karang",
         image: "../assets/images/stories/story_parang.jpg",
         imageCaption: "Gulungan ombak diagonal 45 derajat yang pantang menyerah mengikis batu karang baja.",
@@ -83,7 +110,7 @@ window.STORIES_DATA = [
         Bentuk ombak diagonal menyerupai bilah pedang parang yang meliuk dinamis membentuk aksara 'S' berkesinambungan, menyimbolkan jalinan hidup yang tak pernah putus antara manusia, alam, dan Sang Pencipta.`
       },
       {
-        pageNumber: 3,
+        pageNumber: 4,
         sectionTitle: "Torehan Canting Perdana di Bilik Keraton",
         image: "../assets/images/stories/parang_canting.jpg",
         imageCaption: "Sultan Agung menorehkan cairan lilin malam pertama pada kain mori di bilik peraduan keraton.",
@@ -91,15 +118,25 @@ window.STORIES_DATA = [
         Garis miring tajam mencerminkan keberanian ksatria, sementara isen-isen <em>mlinjon</em> di sela garis melambangkan ketajaman budi pekerti. Motif ini kemudian ditetapkan sebagai batik <em>awisan dalem</em> (motif larangan) yang sakral.`
       },
       {
-        pageNumber: 4,
-        sectionTitle: "Jiwa Ksatria Sejati Pantang Menyerah",
+        pageNumber: 5,
+        sectionTitle: "Falsafah Awisan Dalem Para Ksatria",
         image: "../assets/images/stories/parang_canting.jpg",
+        imageCaption: "Batik Parang Barong hanya dikenakan oleh raja dan putra mahkota pada prosesi agung keraton.",
+        content: `Ukuran ragam hias Parang Rusak Barong yang besar (di atas 12 cm) melambangkan martabat seorang raja yang memiliki ketenangan seluas samudra. Sedangkan Parang Rusak Klithik dengan garis halus melambangkan kelemahlembutan putri keraton.<br><br>
+        Setiap garis yang tidak pernah terputus mengajarkan kesinambungan regenerasi budi pekerti luhur dari orang tua kepada anak cucu agar tidak terputus oleh kemajuan zaman.`
+      },
+      {
+        pageNumber: 6,
+        sectionTitle: "Jiwa Ksatria Sejati Pantang Menyerah",
+        image: "../assets/images/stories/story_parang.jpg",
         imageCaption: "Batik Parang Barong dikenakan sebagai simbol kemenangan atas hawa nafsu diri sendiri.",
         content: `Batik Parang mengajarkan prinsip <em>perang sabil</em> dalam diri sendiri—perang melawan kemalasan, kesombongan, dan keangkaramurkaan.<br><br>
         <strong>Kearifan Luhur:</strong> Seperti ombak laut selatan yang tiada henti bergerak, manusia dituntut untuk terus berusaha tanpa keluh kesah, teguh memegang prinsip, dan selalu merendah hati bagai samudra yang menampung segala aliran air.`
       }
     ]
   },
+
+  // 3. MEGAMENDUNG
   {
     id: "legenda-megamendung",
     title: "Legenda Megamendung: Cinta Putri Ong Tien & Awan Cirebon",
@@ -124,14 +161,22 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 2,
-        sectionTitle: "Penyatuan Seni Keramik Ming & Batik Keraton",
+        sectionTitle: "Pertemuan Cinta & Toleransi Dua Peradaban",
         image: "../assets/images/stories/megamendung_port.jpg",
-        imageCaption: "Piring porselen biru-putih bergambar awan menginspirasi seniman keraton Cirebon.",
-        content: `Pernikahan agung ini menjadi tonggak emas perpaduan dua kebudayaan besar. Seniman dan pembatik keraton Cirebon terpesona oleh bentuk awan melengkung pada piring porselen sang putri.<br><br>
-        Namun para pembatik Jawa tidak sekadar meniru. Mereka memodifikasi bentuk awan menjadi lebih lancip dan mendatar, melambangkan kepemimpinan yang memayungi rakyat dan kesiapan menurunkan rahmat kesejukan bagi bumi.`
+        imageCaption: "Sunan Gunung Jati menyambut Putri Ong Tien dengan penuh penghormatan di Keraton Pakungwati.",
+        content: `Pernikahan agung ini disambut dengan sukacita oleh seluruh rakyat Cirebon. Sunan Gunung Jati membangun taman dan anjungan berornamen keramik porselen di lingkungan keraton, memadukan kaligrafi Arab dengan lukisan bunga teratai dan naga Tiongkok.<br><br>
+        Kisah ini menjadi teladan abadi bahwa perbedaan ras, bahasa, dan latar belakang budaya dapat disatukan dalam bingkai cinta yang tulus dan saling memuliakan.`
       },
       {
         pageNumber: 3,
+        sectionTitle: "Penyatuan Seni Keramik Ming & Batik Keraton",
+        image: "../assets/images/stories/megamendung_port.jpg",
+        imageCaption: "Piring porselen biru-putih bergambar awan menginspirasi seniman keraton Cirebon.",
+        content: `Para seniman dan pembatik keraton Cirebon terpesona oleh bentuk awan melengkung pada piring porselen sang putri.<br><br>
+        Namun para pembatik Jawa tidak sekadar meniru. Mereka memodifikasi bentuk awan menjadi lebih lancip dan mendatar, melambangkan kepemimpinan yang memayungi rakyat dan kesiapan menurunkan rahmat kesejukan bagi bumi.`
+      },
+      {
+        pageNumber: 4,
         sectionTitle: "Rahasia Tujuh Lapis Gradasi Indigo-Crimson",
         image: "../assets/images/stories/story_megamendung.jpg",
         imageCaption: "Pencelupan malam berlapis menghasilkan gradasi tujuh tingkat warna langit Cirebon.",
@@ -139,8 +184,16 @@ window.STORIES_DATA = [
         Tujuh lapisan gradasi ini mencerminkan tujuh tingkatan lapisan langit (*sapta petala langit*) dan tujuh tingkatan kesadaran manusia dalam tasawuf untuk membersihkan jiwa menuju Yang Maha Suci.`
       },
       {
-        pageNumber: 4,
-        sectionTitle: "Awan Pengayom & Kedamaian Bangsa",
+        pageNumber: 5,
+        sectionTitle: "Kearifan Awan Pengayom Jagad",
+        image: "../assets/images/stories/story_megamendung.jpg",
+        imageCaption: "Garis awan yang tenang dan berirama mencerminkan kesabaran mengendalikan emosi.",
+        content: `Awan mendung yang bergulung di angkasa tidak pernah berteriak keras; ia menahan terik matahari yang memanggang bumi, lalu perlahan menjatuhkan butiran hujan yang menghidupkan kembali tanaman yang layu.<br><br>
+        Demikianlah watak seorang ksatria Cirebon: tidak mudah terpancing amarah, senantiasa berfikir jernih, dan kehadirannya selalu dinanti karena membawa kedamaian bagi lingkungan sekitar.`
+      },
+      {
+        pageNumber: 6,
+        sectionTitle: "Harmoni Kerukunan Bangsa Abadi",
         image: "../assets/images/stories/story_megamendung.jpg",
         imageCaption: "Megamendung lestari sebagai simbol harmoni kerukunan antaretnis di Nusantara.",
         content: `Megamendung mengajarkan manusia agar memiliki sifat seperti awan mendung: mampu menahan terik matahari yang menyengat dan memberikan naungan kesejukan bagi siapa pun yang berteduh di bawahnya.<br><br>
@@ -148,6 +201,8 @@ window.STORIES_DATA = [
       }
     ]
   },
+
+  // 4. TRUNTUM
   {
     id: "kisah-batik-truntum",
     title: "Kisah Batik Truntum: Cinta Ratu Kencana & Bintang Melati",
@@ -180,6 +235,14 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 3,
+        sectionTitle: "Ketekunan Batin Menghapus Gundah Gulana",
+        image: "../assets/images/stories/story_truntum.jpg",
+        imageCaption: "Jari-jemari sang Ratu menari lincah di atas kain mori mengubah kesedihan menjadi karya adiluhung.",
+        content: `Proses membatik truntum menuntut konsentrasi batin yang sangat tinggi. Bila hati sedang gelisah, jarak antar titik bunga melati akan menjadi berantakan.<br><br>
+        Sang Ratu melatih nafas dan pikirannya agar selaras dengan detak jantungnya. Setiap kuntum bunga melati yang mekar di atas kain menjadi cermin dari hati yang telah pasrah seutuhnya kepada kehendak Ilahi.`
+      },
+      {
+        pageNumber: 4,
         sectionTitle: "Langkah Sang Raja & Berseminya Cinta Sejati",
         image: "../assets/images/stories/story_truntum.jpg",
         imageCaption: "Sri Susuhunan Pakubuwono terharu menatap keindahan karya dan ketulusan batin sang Ratu.",
@@ -187,15 +250,24 @@ window.STORIES_DATA = [
         Raja menyadari betapa dalam ketulusan dan kesetiaan sang ratu. Sejak saat itu, kasih sayang raja bersemi kembali lebih erat dari sebelumnya, dan kain tersebut dinamai <strong>Batik Truntum</strong>.`
       },
       {
-        pageNumber: 4,
+        pageNumber: 5,
         sectionTitle: "Busana Suci Para Orang Tua Mempelai",
         image: "../assets/images/stories/story_truntum.jpg",
         imageCaption: "Batik Truntum wajib dikenakan orang tua pengantin Jawa sebagai doa cinta abadi tanpa akhir.",
-        content: `Hingga kini dalam upacara pernikahan adat Jawa, motif Truntum selalu dikenakan oleh kedua orang tua mempelai, sebagai simbol doa agar cinta kedua pengantin senantiasa bersemi (*tumaruntum*) dan menjadi teladan kasih abadi.<br><br>
-        <strong>Kearifan Luhur:</strong> Cinta sejati tidak menuntut, melainkan memberi dalam hening. Kesabaran dan keindahan budi pekerti adalah penerang yang tak akan pernah padam oleh gelapnya malam.`
+        content: `Hingga kini dalam upacara pernikahan adat Jawa, motif Truntum selalu dikenakan oleh kedua orang tua mempelai. Orang tua bertindak sebagai penuntun (*panuntun*) yang telah membuktikan bahwa cinta sejati mampu bertahan melewati segala ujian waktu.<br><br>
+        Kain ini menjadi simbol doa agar kasih sayang kedua mempelai senantiasa tumbuh mekar (*tumaruntum*) dan menjadi teladan bagi anak keturunan.`
+      },
+      {
+        pageNumber: 6,
+        sectionTitle: "Kearifan Luhur Kesetiaan Abadi",
+        image: "../assets/images/stories/story_truntum.jpg",
+        imageCaption: "Truntum mengajarkan bahwa cinta yang sejati tidak akan pernah lekang oleh waktu.",
+        content: `<strong>Kearifan Luhur:</strong> Cinta sejati tidak menuntut, melainkan memberi dalam hening. Kesabaran dan keindahan budi pekerti adalah penerang yang tak akan pernah padam oleh gelapnya malam.`
       }
     ]
   },
+
+  // 5. SONGKET
   {
     id: "benang-emas-sriwijaya",
     title: "Benang Emas Sriwijaya: Legenda Putri Kemarau & Songket Melayu",
@@ -236,6 +308,21 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 4,
+        sectionTitle: "Ragam Motif Pucuk Rebung & Bunga Melati",
+        image: "../assets/images/stories/story_songket.jpg",
+        imageCaption: "Motif Pucuk Rebung di kedua ujung kain songket melambangkan harapan masa depan yang gemilang.",
+        content: `Di kedua ujung kain songket Palembang, selalu tertera motif <em>Pucuk Rebung</em> yang menjulang runcing ke atas. Motif ini mengajarkan manusia agar memiliki cita-cita setinggi langit namun tetap berakar kuat pada nilai-nilai adat dan agama.<br><br>
+        Sedangkan taburan <em>Bunga Melati</em> dan <em>Bunga Tanjung</em> di badan kain melambangkan keharuman nama baik keluarga yang dijaga dengan budi bahasa yang santun.`
+      },
+      {
+        pageNumber: 5,
+        sectionTitle: "Marwah Bangsa & Warisan Bernilai Tinggi",
+        image: "../assets/images/stories/story_songket.jpg",
+        imageCaption: "Songket Palembang diwariskan turun-temurun dari nenek ke cucu sebagai harta pusaka keluarga.",
+        content: `Songket bukan sekadar pakaian pesta, melainkan investasi budaya yang nilainya tidak pernah tergerus zaman. Sehelai kain songket kuno benang emas murni sering kali diwariskan dari generasi ke generasi sebagai simbol kehormatan garis keturunan keluarga besar Melayu Palembang.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Mahkota Seni Tenun Ratu Segala Wastra",
         image: "../assets/images/stories/story_songket.jpg",
         imageCaption: "Songket Palembang diakui dunia sebagai 'The Queen of Textiles' bernilai seni adiluhung.",
@@ -244,6 +331,8 @@ window.STORIES_DATA = [
       }
     ]
   },
+
+  // 6. GRINGSING
   {
     id: "filosofi-kain-gringsing",
     title: "Tenun Ikat Gringsing: Penangkal Kegelapan Tenganan",
@@ -284,6 +373,22 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 4,
+        sectionTitle: "Motif Wayang & Cemplong Sakral",
+        image: "../assets/images/stories/story_gringsing.jpg",
+        imageCaption: "Motif Gringsing Wayang Kebo dan Lubeng menggambarkan perlindungan para dewa dari segala penjuru mata angin.",
+        content: `Di antara berbagai motif Gringsing, motif <em>Wayang Kebo</em> dan <em>Lubeng</em> adalah yang paling sakral. Motif ini menggambarkan tokoh-tokoh wayang mitologis yang menjaga empat penjuru mata angin (*Catur Lokapala*).<br><br>
+        Kain ini hanya boleh ditenun oleh wanita yang berada dalam keadaan hati suci dan tenang, diiringi doa keselamatan bagi seluruh jagad raya.`
+      },
+      {
+        pageNumber: 5,
+        sectionTitle: "Ritual Daur Hidup Manusia dari Lahir Hingga Moksa",
+        image: "../assets/images/stories/story_gringsing.jpg",
+        imageCaption: "Kain Gringsing membentengi raga dan batin dalam upacara potong gigi dan inisiasi kedewasaan.",
+        content: `Dalam setiap upacara adat di Tenganan, kain Gringsing selalu hadir sebagai tameng spiritual: saat upacara potong gigi (*metatah*), pernikahan adat, hingga upacara pelepasan arwah menuju keabadian.<br><br>
+        Kain ini menjadi jembatan mistik yang menghubungkan manusia dengan alam semesta dan Sang Hyang Widhi Wasa.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Menjaga Keseimbangan Kosmos Tri Hita Karana",
         image: "../assets/images/stories/story_gringsing.jpg",
         imageCaption: "Kain Gringsing digunakan dalam setiap upacara daur hidup manusia dari lahir hingga moksa.",
@@ -292,6 +397,8 @@ window.STORIES_DATA = [
       }
     ]
   },
+
+  // 7. NOKEN
   {
     id: "rahim-noken-papua",
     title: "Noken: Rahim Kehidupan & Perdamaian Lembah Pegunungan",
@@ -324,6 +431,14 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 3,
+        sectionTitle: "Kearifan Memetik Serat Hutan Tanpa Merusak",
+        image: "../assets/images/stories/story_noken.jpg",
+        imageCaption: "Mama Papua hanya mengambil kulit kayu secukupnya agar pohon tetap hidup dan bertunas kembali.",
+        content: `Tradisi Noken adalah bukti kearifan ekologis tingkat tinggi. Mama Papua hanya mengupas kulit kayu terluar pada musim tertentu, lalu mengoleskan abu kayu agar pohon tidak mati dan kulitnya dapat tumbuh kembali.<br><br>
+        Hutan dipandang sebagai ibu kandung yang memberi makan seluruh anak manusia, sehingga merusak hutan berarti merusak masa depan anak cucu.`
+      },
+      {
+        pageNumber: 4,
         sectionTitle: "Wadah Musyawarah Adat & Kotak Perdamaian Klan",
         image: "../assets/images/stories/story_noken.jpg",
         imageCaption: "Sistem Noken menjadi wadah mufakat musyawarah adat dan pemilihan umum suku Papua.",
@@ -331,7 +446,15 @@ window.STORIES_DATA = [
         Segala tuntutan dan denda adat dimasukkan ke dalam noken, lalu kepala suku bersama-sama memegang tali noken sebagai tanda bahwa permusuhan telah terkubur dan persaudaraan pulih kembali.`
       },
       {
-        pageNumber: 4,
+        pageNumber: 5,
+        sectionTitle: "Penyatuan Suara dalam Sistem Noken",
+        image: "../assets/images/stories/story_noken.jpg",
+        imageCaption: "Kepala suku bermusyawarah mufakat menyatukan suara seluruh warga ke dalam kantong noken.",
+        content: `Dalam kehidupan sosial modern, kearifan Noken diakui dalam sistem demokrasi lokal Papua sebagai <em>Sistem Noken</em>, di mana keputusan diambil melalui musyawarah mufakat seluruh warga desa di bawah kepemimpinan kepala suku yang bijaksana.<br><br>
+        Noken menjadi wadah yang menampung seluruh aspirasi tanpa ada seorang pun warga yang ditinggalkan di belakang.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Warisan Kemanusiaan Dunia UNESCO",
         image: "../assets/images/stories/story_noken.jpg",
         imageCaption: "Noken diakui UNESCO sebagai Warisan Budaya Takbenda yang Membutuhkan Perlindungan Mendesak.",
@@ -340,6 +463,8 @@ window.STORIES_DATA = [
       }
     ]
   },
+
+  // 8. TORAJA
   {
     id: "tenun-tedong-bonga",
     title: "Tenun Ikat Tedong Bonga & Jiwa Leluhur Toraja",
@@ -380,6 +505,21 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 4,
+        sectionTitle: "Filosofi Ukiran Pa'Barre Allo & Pa'Manuk Londong",
+        image: "../assets/images/stories/story_toraja.jpg",
+        imageCaption: "Ukiran matahari terbit dan ayam jantan perkasa melambangkan kepemimpinan yang berwibawa.",
+        content: `Motif tenun Toraja bersumber dari ukiran rumah adat: <em>Pa'Barre Allo</em> (lingkaran matahari terbit) yang melambangkan keagungan Tuhan Sang Pencipta, serta <em>Pa'Manuk Londong</em> (ayam jantan berkokok) yang melambangkan ksatria yang adil dan berani menegakkan kebenaran.<br><br>
+        Kain tenun ini menjadi benteng moral bagi keturunan Toraja agar selalu menjaga kehormatan nama keluarga di mana pun mereka merantau.`
+      },
+      {
+        pageNumber: 5,
+        sectionTitle: "Penyatuan Keluarga di Pelataran Rante",
+        image: "../assets/images/stories/story_toraja.jpg",
+        imageCaption: "Keluarga besar Toraja berkumpul dari seluruh penjuru dunia untuk merayakan persaudaraan.",
+        content: `Saat pesta adat digelar, sanak saudara yang telah merantau ke penjuru bumi kembali pulang ke kampung halaman (*Lembang*). Kain tenun pusaka dibentangkan bersama, menjadi saksi bisu bahwa ikatan persaudaraan tidak akan pernah lapuk oleh hujan dan tidak akan pernah lekang oleh panas.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Harmoni Adat Kosmos Aluk Todolo",
         image: "../assets/images/stories/story_toraja.jpg",
         imageCaption: "Kearifan Toraja menjaga keseimbangan alam, arwah leluhur, dan generasi penerus.",
@@ -388,6 +528,8 @@ window.STORIES_DATA = [
       }
     ]
   },
+
+  // 9. MINANG
   {
     id: "alam-takambang-guru",
     title: "Alam Takambang Jadi Guru: Falsafah Luhur Minangkabau",
@@ -420,6 +562,14 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 3,
+        sectionTitle: "Motif Itiak Pulang Patang & Kebersamaan",
+        image: "../assets/images/stories/story_minang.jpg",
+        imageCaption: "Motif Itiak Pulang Patang melambangkan ketertiban, kesopanan, dan kepatuhan pada aturan bersama.",
+        content: `Perhatikanlah bagaimana kawanan bebek berjalan beriringan pulang ke kandangnya saat petang hari. Mereka berjalan berbaris rapi, tidak saling mendahului dengan kasar, dan saling menjaga satu sama lain.<br><br>
+        Motif <em>Itiak Pulang Patang</em> pada kain songket Pandai Sikek mengajarkan manusia untuk taat pada norma masyarakat, hidup rukun berdampingan, dan selalu menjaga kesopanan di ruang publik.`
+      },
+      {
+        pageNumber: 4,
         sectionTitle: "Musyawarah Mufakat & Keadilan Lumbung Padi",
         image: "../assets/images/stories/story_minang.jpg",
         imageCaption: "Rangkiang lumbung padi mencerminkan ketahanan pangan dan keadilan sosial bagi seluruh kaum.",
@@ -427,15 +577,24 @@ window.STORIES_DATA = [
         Setiap sengketa diselesaikan dengan prinsip musyawarah mufakat: <em>Bulek aia dek pambuluah, bulek kato dek mupakaik</em>—bulat air karena pembuluh, bulat kata karena mufakat.`
       },
       {
-        pageNumber: 4,
+        pageNumber: 5,
         sectionTitle: "Budi Bahasa Luhur Menyeberang Samudra",
         image: "../assets/images/stories/story_minang.jpg",
         imageCaption: "Adat Basandi Syarak, Syarak Basandi Kitabullah menjadi tiang pemersatu budaya Minang.",
         content: `Falsafah alam mengajarkan bahwa di mana pun kaki berpijak di tanah rantau, budi bahasa yang santun dan adaptif terhadap kearifan lokal adalah harta yang paling berharga.<br><br>
-        <strong>Kearifan Luhur:</strong> Selalulah merunduk seperti padi yang berisi, belajar dari kebesaran alam semesta, dan jangan pernah sombong dengan sedikit ilmu yang kita miliki.`
+        <em>Dima bumi dipijak, di sinan langik dijunjuang</em>—di mana bumi dipijak, di situ langit dijunjung, menjadi bekal abadi pemuda Minang saat mengarungi dunia.`
+      },
+      {
+        pageNumber: 6,
+        sectionTitle: "Kearifan Luhur Berguru pada Semesta",
+        image: "../assets/images/stories/story_minang.jpg",
+        imageCaption: "Alam Takambang Jadi Guru adalah sumber etika kepemimpinan dan kearifan hidup yang abadi.",
+        content: `<strong>Kearifan Luhur:</strong> Selalulah merunduk seperti padi yang berisi, belajar dari kebesaran alam semesta, dan jangan pernah sombong dengan sedikit ilmu yang kita miliki. Jadilah manusia yang memberi manfaat di mana pun kamu berada.`
       }
     ]
   },
+
+  // 10. DAYAK
   {
     id: "falsafah-huma-betang",
     title: "Huma Betang: Kerukunan di Bawah Satu Atap Rimba",
@@ -468,6 +627,14 @@ window.STORIES_DATA = [
       },
       {
         pageNumber: 3,
+        sectionTitle: "Ukiran Batang Garing Pohon Kehidupan",
+        image: "../assets/images/stories/story_dayak.jpg",
+        imageCaption: "Ukiran Batang Garing pada dinding ulin melambangkan asal-usul penciptaan kosmos manusia.",
+        content: `Dinding-dinding Huma Betang dihiasi ukiran sulur pohon <em>Batang Garing</em> (Pohon Hayat). Akarnya menancap ke bumi melambangkan asal mula kehidupan, batangnya yang kokoh melambangkan kebersamaan, dan buahnya yang manis melambangkan berkah kebajikan yang dipetik bersama.<br><br>
+        Ukiran ini mengingatkan warga Betang bahwa mereka semua berasal dari satu rumpun pohon yang sama di hadapan Sang Pencipta (*Ranying Hatalla Langit*).`
+      },
+      {
+        pageNumber: 4,
         sectionTitle: "Meja Makan Terbuka Tanpa Dinding Pemisah",
         image: "../assets/images/stories/story_dayak.jpg",
         imageCaption: "Hasil buruan dan panen ladang dibagi rata kepada seluruh penghuni bilik tanpa memandang suku.",
@@ -475,7 +642,15 @@ window.STORIES_DATA = [
         Jika ada perselisihan antar warga, tetua adat (*Tamanggung*) menggelar sidang musyawarah di beranda utama di hadapan seluruh warga hingga tercapai kesepakatan damai tanpa dendam yang tertinggal.`
       },
       {
-        pageNumber: 4,
+        pageNumber: 5,
+        sectionTitle: "Perjanjian Tumbang Anoi Piagam Perdamaian Abadi",
+        image: "../assets/images/stories/story_dayak.jpg",
+        imageCaption: "Ratusan kepala suku Dayak berikrar menghapuskan permusuhan dalam Rapat Damai Tumbang Anoi 1894.",
+        content: `Semangat Huma Betang mencapai puncaknya pada tahun 1894 dalam musyawarah akbar <em>Tumbang Anoi</em>. Ratusan kepala suku Dayak dari seluruh penjuru pulau Kalimantan berkumpul dan bersepakat menghentikan tradisi perang antarsuku untuk selamanya.<br><br>
+        Mereka menetapkan hukum adat musyawarah dan ganti rugi damai sebagai jalan satu-satunya menyelesaikan konflik antarsesama manusia.`
+      },
+      {
+        pageNumber: 6,
         sectionTitle: "Miniatur Bhinneka Tunggal Ika Sejak Purba",
         image: "../assets/images/stories/story_dayak.jpg",
         imageCaption: "Falsafah Huma Betang adalah miniatur Bhinneka Tunggal Ika yang nyata sejak zaman purba.",

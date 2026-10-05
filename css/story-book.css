@@ -414,6 +414,7 @@
   color: #8B5710;
   background: linear-gradient(135deg, #A47E3F 0%, #633C08 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(1px 1px 1px rgba(201, 165, 103, 0.5));
 }
