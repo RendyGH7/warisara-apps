@@ -751,10 +751,12 @@
 
         this.playSuccessChime();
         this.setArenaMascotMood('happy');
+        if (window.WariMascot) window.WariMascot.react('correct');
       } else {
         this.streak = 0;
         this.playWrongChime();
         this.setArenaMascotMood('thinking');
+        if (window.WariMascot) window.WariMascot.react('wrong');
       }
 
       this.userAnswers[this.currentIndex] = {
@@ -908,6 +910,11 @@
       this.clearTimer();
       this.stopBGM();
       this.saveSessionStats();
+
+      // Mascot celebrate reaction
+      setTimeout(() => {
+        if (window.WariMascot) window.WariMascot.react('celebrate');
+      }, 600);
 
       const total = this.currentQuestions.length;
       const pct = Math.round((this.score / total) * 100);
