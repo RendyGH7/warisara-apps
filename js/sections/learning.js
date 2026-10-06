@@ -52,6 +52,7 @@
       this.highestStreakBadge = document.getElementById('stat-highest-streak');
 
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
+      this.heroStartWrapper = document.getElementById('hero-start-btn-wrapper');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
       this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
@@ -253,6 +254,10 @@
       this.bestStreakInSession = 0;
       this.livePoints = 0;
       this.sessionStartTime = Date.now();
+
+      if (this.heroStartWrapper) {
+        this.heroStartWrapper.classList.add('hidden');
+      }
 
       if (this.arenaSection) {
         this.arenaSection.classList.remove('hidden');
