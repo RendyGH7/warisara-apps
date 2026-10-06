@@ -8,6 +8,7 @@
       this.timerMode = false;
       this.autoAdvance = false;
       this.soundEnabled = true;
+      this.bgmEnabled = true;
 
       this.currentQuestions = [];
       this.currentIndex = 0;
@@ -15,15 +16,20 @@
       this.score = 0;
       this.streak = 0;
       this.bestStreakInSession = 0;
-      this.totalPoints = 0;
+      this.livePoints = 0;
       this.sessionStartTime = null;
 
       this.timerSeconds = 25;
       this.timerInterval = null;
+
       this.audioCtx = null;
+      this.bgmInterval = null;
+      this.bgmStep = 0;
 
       this.storageKey = 'warisara_quiz_learning_stats';
       this.stats = this.loadStats();
+
+      this.confettiAnimationId = null;
     }
 
     init() {
@@ -35,7 +41,8 @@
       this.bindEvents();
       this.renderCategoryChips();
       this.renderStatsBanner();
-      this.startNewQuizSession();
+      this.prepareNewQuestions();
+      this.renderQuestionCard('none');
     }
 
     cacheDom() {
@@ -45,16 +52,25 @@
       this.highestStreakBadge = document.getElementById('stat-highest-streak');
 
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
+      this.btnStartGame = document.getElementById('btn-quiz-start-game');
+      this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
       this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
       this.labelTimerToggle = document.getElementById('label-timer-toggle');
       this.btnAutoToggle = document.getElementById('btn-toggle-auto-advance');
       this.labelAutoToggle = document.getElementById('label-auto-toggle');
+      this.btnBgmToggle = document.getElementById('btn-toggle-bgm');
+      this.iconBgmToggle = document.getElementById('icon-bgm-toggle');
+      this.labelBgmToggle = document.getElementById('label-bgm-toggle');
       this.btnSoundToggle = document.getElementById('btn-toggle-sound');
       this.iconSoundToggle = document.getElementById('icon-sound-toggle');
-      this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
+
+      this.countdownOverlay = document.getElementById('quiz-countdown-overlay');
+      this.countdownDigit = document.getElementById('quiz-countdown-digit');
+      this.confettiCanvas = document.getElementById('confetti-canvas');
 
       this.arenaSection = document.getElementById('quiz-interactive-arena');
       this.stepIndicator = document.getElementById('quiz-step-indicator');
+      this.liveScoreBadge = document.getElementById('quiz-live-score');
       this.progressFill = document.getElementById('quiz-progress-fill');
       this.progressText = document.getElementById('quiz-progress-text');
       this.streakPill = document.getElementById('quiz-streak-pill');
@@ -84,10 +100,15 @@
     }
 
     bindEvents() {
+      if (this.btnStartGame) {
+        this.btnStartGame.addEventListener('click', () => {
+          this.startQuizizzFlow();
+        });
+      }
+
       if (this.btnShuffleNew10) {
         this.btnShuffleNew10.addEventListener('click', () => {
-          this.playTone(523, 0.1);
-          this.startNewQuizSession();
+          this.startQuizizzFlow();
         });
       }
 
@@ -95,7 +116,6 @@
         this.btnTimerToggle.addEventListener('click', () => {
           this.timerMode = !this.timerMode;
           this.updateTimerButtonState();
-          this.startNewQuizSession();
         });
       }
 
@@ -103,6 +123,18 @@
         this.btnAutoToggle.addEventListener('click', () => {
           this.autoAdvance = !this.autoAdvance;
           this.updateAutoButtonState();
+        });
+      }
+
+      if (this.btnBgmToggle) {
+        this.btnBgmToggle.addEventListener('click', () => {
+          this.bgmEnabled = !this.bgmEnabled;
+          this.updateBgmButtonState();
+          if (this.bgmEnabled) {
+            this.startBGM();
+          } else {
+            this.stopBGM();
+          }
         });
       }
 
@@ -127,7 +159,7 @@
       if (this.btnPlayAgain) {
         this.btnPlayAgain.addEventListener('click', () => {
           this.closeResultsModal();
-          this.startNewQuizSession();
+          this.startQuizizzFlow();
         });
       }
 
@@ -174,19 +206,67 @@
         } else if (key === 'arrowleft') {
           this.navigateQuestion(-1);
         } else if (key === 'r') {
-          this.startNewQuizSession();
+          this.startQuizizzFlow();
         }
       });
     }
 
-    handleNextClick() {
-      const isAnswered = Boolean(this.userAnswers[this.currentIndex]);
-      const isLast = this.currentIndex === this.currentQuestions.length - 1;
+    startQuizizzFlow() {
+      this.clearTimer();
+      this.stopBGM();
+      this.prepareNewQuestions();
 
-      if (isLast && isAnswered) {
-        this.showQuizResults();
+      if (this.countdownOverlay && this.countdownDigit) {
+        this.countdownOverlay.classList.add('active');
+        let count = 3;
+        this.countdownDigit.textContent = `${count}`;
+        this.playTone(440, 0.12, 'triangle');
+
+        const cdInterval = setInterval(() => {
+          count--;
+          if (count > 0) {
+            this.countdownDigit.textContent = `${count}`;
+            this.playTone(440, 0.12, 'triangle');
+          } else if (count === 0) {
+            this.countdownDigit.textContent = 'MULAI! 🚀';
+            this.playTone(660, 0.25, 'triangle');
+          } else {
+            clearInterval(cdInterval);
+            this.countdownOverlay.classList.remove('active');
+            this.launchQuizSession();
+          }
+        }, 850);
       } else {
-        this.navigateQuestion(1);
+        this.launchQuizSession();
+      }
+    }
+
+    launchQuizSession() {
+      this.currentIndex = 0;
+      this.userAnswers = {};
+      this.score = 0;
+      this.streak = 0;
+      this.bestStreakInSession = 0;
+      this.livePoints = 0;
+      this.sessionStartTime = Date.now();
+
+      this.updateStreakDisplay();
+      this.updateLivePointsDisplay();
+      this.renderQuestionCard('right');
+
+      if (this.arenaSection) {
+        this.arenaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      if (this.timerMode) {
+        if (this.timerBadge) this.timerBadge.classList.remove('hidden');
+        this.startQuestionTimer();
+      } else {
+        if (this.timerBadge) this.timerBadge.classList.add('hidden');
+      }
+
+      if (this.bgmEnabled) {
+        this.startBGM();
       }
     }
 
@@ -213,6 +293,25 @@
       } else {
         this.btnAutoToggle.classList.remove('active');
         if (this.labelAutoToggle) this.labelAutoToggle.textContent = 'Auto-Lanjut: Mati';
+      }
+    }
+
+    updateBgmButtonState() {
+      if (!this.btnBgmToggle) return;
+      if (this.bgmEnabled) {
+        this.btnBgmToggle.classList.add('active');
+        if (this.iconBgmToggle) {
+          this.iconBgmToggle.textContent = 'music_note';
+          this.iconBgmToggle.className = 'material-symbols-outlined text-base text-amber-300';
+        }
+        if (this.labelBgmToggle) this.labelBgmToggle.textContent = 'Musik: Aktif';
+      } else {
+        this.btnBgmToggle.classList.remove('active');
+        if (this.iconBgmToggle) {
+          this.iconBgmToggle.textContent = 'music_off';
+          this.iconBgmToggle.className = 'material-symbols-outlined text-base text-surface/40';
+        }
+        if (this.labelBgmToggle) this.labelBgmToggle.textContent = 'Musik: Mati';
       }
     }
 
@@ -264,7 +363,8 @@
           this.activeFilter = btn.dataset.cat;
           this.categoryChipsContainer.querySelectorAll('.quiz-filter-chip').forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
-          this.startNewQuizSession();
+          this.prepareNewQuestions();
+          this.renderQuestionCard('none');
         });
       });
     }
@@ -287,9 +387,7 @@
       }
     }
 
-    startNewQuizSession() {
-      this.clearTimer();
-
+    prepareNewQuestions() {
       let eligible = this.fullBank;
       if (this.activeFilter && this.activeFilter !== 'all') {
         eligible = this.fullBank.filter((q) => q.category === this.activeFilter);
@@ -304,24 +402,6 @@
           sessionOptions: this.shuffleArray(clonedOptions)
         };
       });
-
-      this.currentIndex = 0;
-      this.userAnswers = {};
-      this.score = 0;
-      this.streak = 0;
-      this.bestStreakInSession = 0;
-      this.totalPoints = 0;
-      this.sessionStartTime = Date.now();
-
-      this.updateStreakDisplay();
-      this.renderQuestionCard('right');
-
-      if (this.timerMode) {
-        if (this.timerBadge) this.timerBadge.classList.remove('hidden');
-        this.startQuestionTimer();
-      } else {
-        if (this.timerBadge) this.timerBadge.classList.add('hidden');
-      }
     }
 
     renderDotsNav() {
@@ -397,9 +477,9 @@
           }
 
           return `
-          <button class="quiz-option-choice ${extraClass}" data-opt-idx="${optIdx}" ${isAnswered ? 'disabled' : ''}>
+          <button class="quiz-option-choice ${extraClass}" data-opt-theme="${optIdx % 4}" data-opt-idx="${optIdx}" ${isAnswered ? 'disabled' : ''}>
             <span class="quiz-letter-badge">${letter}</span>
-            <span class="flex-1 text-xs sm:text-sm font-medium leading-relaxed">${opt.text}</span>
+            <span class="flex-1 text-xs sm:text-sm font-semibold leading-relaxed">${opt.text}</span>
             <span class="quiz-shortcut-badge">[${letter}]</span>
             ${
               isAnswered && opt.correct
@@ -425,21 +505,21 @@
         feedbackHtml = `
           <div class="quiz-feedback-box mt-6 border ${
             isRight
-              ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-100'
-              : 'bg-rose-950/40 border-rose-500/40 text-rose-100'
+              ? 'bg-emerald-950/45 border-emerald-500/50 text-emerald-100'
+              : 'bg-rose-950/45 border-rose-500/50 text-rose-100'
           }">
             <div class="flex items-center gap-2 mb-2 font-display text-sm font-bold ${
               isRight ? 'text-emerald-300' : 'text-rose-300'
             }">
-              <span class="material-symbols-outlined text-lg">${isRight ? 'task_alt' : 'info'}</span>
-              <span>${isRight ? 'Jawaban Benar! Kearifan Luhur Nusantara' : 'Ulasan Budaya & Fakta Autentik'}</span>
+              <span class="material-symbols-outlined text-xl">${isRight ? 'task_alt' : 'info'}</span>
+              <span>${isRight ? 'Luar Biasa! Jawaban Tepat (+850 Pts)' : 'Ulasan Kultural & Fakta Sejarah'}</span>
             </div>
             <p class="text-xs sm:text-sm leading-relaxed mb-4 text-surface/90 font-light">${correctOpt.explanation}</p>
 
             <div class="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
               <span class="text-[11px] text-surface/50 font-mono hidden sm:inline">Pintasan: Tekan Enter ↵</span>
               <button id="btn-inline-next" class="quiz-btn-inline-next">
-                <span>${isLast ? 'Lihat Skor & Pencapaian Kuis' : 'Lanjut ke Soal Berikutnya'}</span>
+                <span>${isLast ? 'Lihat Pencapaian Kuis' : 'Lanjut ke Soal Berikutnya'}</span>
                 <span class="material-symbols-outlined text-base">${isLast ? 'emoji_events' : 'arrow_forward'}</span>
               </button>
             </div>
@@ -479,7 +559,7 @@
             ${q.context}
           </div>
 
-          <div class="space-y-3" id="quiz-options-group">
+          <div class="quiz-options-grid" id="quiz-options-group">
             ${optionsHtml}
           </div>
 
@@ -519,8 +599,12 @@
         if (this.streak > this.bestStreakInSession) {
           this.bestStreakInSession = this.streak;
         }
-        const streakBonus = (this.streak - 1) * 25;
-        this.totalPoints += 100 + streakBonus;
+
+        const basePoints = 700;
+        const timeBonus = this.timerMode ? Math.max(0, this.timerSeconds * 12) : 150;
+        const streakBonus = (this.streak - 1) * 75;
+        this.livePoints += basePoints + timeBonus + streakBonus;
+
         this.playSuccessChime();
       } else {
         this.streak = 0;
@@ -533,6 +617,7 @@
       };
 
       this.updateStreakDisplay();
+      this.updateLivePointsDisplay();
       this.renderQuestionCard('none');
 
       const total = this.currentQuestions.length;
@@ -547,6 +632,17 @@
       }
     }
 
+    handleNextClick() {
+      const isAnswered = Boolean(this.userAnswers[this.currentIndex]);
+      const isLast = this.currentIndex === this.currentQuestions.length - 1;
+
+      if (isLast && isAnswered) {
+        this.showQuizResults();
+      } else {
+        this.navigateQuestion(1);
+      }
+    }
+
     updateStreakDisplay() {
       if (this.streakCounter) {
         this.streakCounter.textContent = `${this.streak}x`;
@@ -557,6 +653,12 @@
         } else {
           this.streakPill.classList.add('hidden');
         }
+      }
+    }
+
+    updateLivePointsDisplay() {
+      if (this.liveScoreBadge) {
+        this.liveScoreBadge.textContent = `${this.livePoints.toLocaleString('id-ID')} Pts`;
       }
     }
 
@@ -660,6 +762,7 @@
 
     showQuizResults() {
       this.clearTimer();
+      this.stopBGM();
       this.saveSessionStats();
 
       const total = this.currentQuestions.length;
@@ -696,8 +799,8 @@
 
         this.resultDetailsGrid.innerHTML = `
           <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Total Poin</span>
-            <span class="font-display text-lg text-brass-300 font-bold">${this.totalPoints}</span>
+            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Skor Kuis</span>
+            <span class="font-display text-lg text-brass-300 font-bold">${this.livePoints.toLocaleString('id-ID')}</span>
           </div>
           <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
             <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Streak Terbaik</span>
@@ -724,6 +827,7 @@
 
       if (pct >= 80) {
         this.playCelebrationFanfare();
+        this.launchConfetti();
       } else {
         this.playTone(523, 0.2);
       }
@@ -763,6 +867,7 @@
         this.resultsModal.classList.add('hidden');
         document.body.style.overflow = '';
       }
+      this.stopConfetti();
     }
 
     showToast(message) {
@@ -777,7 +882,7 @@
     shareAchievement() {
       const total = this.currentQuestions.length;
       const pct = Math.round((this.score / total) * 100);
-      const text = `✨ Saya meraih skor ${this.score}/${total} (${pct}%) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
+      const text = `✨ Saya meraih skor ${this.livePoints.toLocaleString('id-ID')} Pts (${this.score}/${total} Benar) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
 
       if (navigator.clipboard) {
         navigator.clipboard
@@ -803,8 +908,8 @@
         this.stats.bestStreak = this.bestStreakInSession;
       }
 
-      if (this.score > (this.stats.highestScore || 0)) {
-        this.stats.highestScore = this.score;
+      if (this.livePoints > (this.stats.highestScore || 0)) {
+        this.stats.highestScore = this.livePoints;
       }
 
       try {
@@ -839,7 +944,6 @@
     }
 
     getAudioContext() {
-      if (!this.soundEnabled) return null;
       if (!this.audioCtx) {
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         if (AudioContextClass) {
@@ -850,6 +954,101 @@
         this.audioCtx.resume().catch(() => {});
       }
       return this.audioCtx;
+    }
+
+    startBGM() {
+      this.stopBGM();
+      if (!this.bgmEnabled) return;
+
+      const melody = [
+        { f: 261.63, b: 130.81 },
+        { f: 329.63, b: null },
+        { f: 392.00, b: null },
+        { f: 440.00, b: null },
+        { f: 392.00, b: null },
+        { f: 329.63, b: null },
+        { f: 293.66, b: 146.83 },
+        { f: 369.99, b: null },
+        { f: 440.00, b: null },
+        { f: 493.88, b: null },
+        { f: 440.00, b: null },
+        { f: 369.99, b: null },
+        { f: 329.63, b: 164.81 },
+        { f: 392.00, b: null },
+        { f: 493.88, b: null },
+        { f: 523.25, b: null },
+        { f: 493.88, b: null },
+        { f: 392.00, b: null },
+        { f: 392.00, b: 196.00 },
+        { f: 440.00, b: null },
+        { f: 587.33, b: null },
+        { f: 523.25, b: null },
+        { f: 440.00, b: null },
+        { f: 392.00, b: null }
+      ];
+
+      this.bgmStep = 0;
+      this.bgmInterval = setInterval(() => {
+        if (!this.bgmEnabled) {
+          this.stopBGM();
+          return;
+        }
+
+        const note = melody[this.bgmStep % melody.length];
+        this.playBgmNote(note.f, note.b);
+        this.bgmStep++;
+      }, 240);
+    }
+
+    playBgmNote(freq, bassFreq) {
+      try {
+        const ctx = this.getAudioContext();
+        if (!ctx) return;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1400, ctx.currentTime);
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.028, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.22);
+
+        if (bassFreq) {
+          const bassOsc = ctx.createOscillator();
+          const bassGain = ctx.createGain();
+
+          bassOsc.type = 'sine';
+          bassOsc.frequency.setValueAtTime(bassFreq, ctx.currentTime);
+
+          bassGain.gain.setValueAtTime(0.04, ctx.currentTime);
+          bassGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+
+          bassOsc.connect(bassGain);
+          bassGain.connect(ctx.destination);
+
+          bassOsc.start();
+          bassOsc.stop(ctx.currentTime + 0.45);
+        }
+      } catch (e) {}
+    }
+
+    stopBGM() {
+      if (this.bgmInterval) {
+        clearInterval(this.bgmInterval);
+        this.bgmInterval = null;
+      }
     }
 
     playTone(freq, duration = 0.15, type = 'sine') {
@@ -918,6 +1117,79 @@
           }, idx * 90);
         });
       } catch (e) {}
+    }
+
+    launchConfetti() {
+      const canvas = this.confettiCanvas;
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#C9A567', '#FFD56B', '#4CAF50', '#64B5F6', '#BA68C8', '#EF5350'];
+      const particles = [];
+      const particleCount = 100;
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: canvas.width * 0.5,
+          y: canvas.height * 0.35,
+          vx: (Math.random() - 0.5) * 14,
+          vy: Math.random() * -12 - 4,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      const startTime = Date.now();
+      const render = () => {
+        const elapsed = Date.now() - startTime;
+        if (elapsed > 4500) {
+          this.stopConfetti();
+          return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.35;
+          p.rotation += p.rotSpeed;
+          if (elapsed > 3000) {
+            p.opacity = Math.max(0, 1 - (elapsed - 3000) / 1500);
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.4);
+          ctx.restore();
+        });
+
+        this.confettiAnimationId = requestAnimationFrame(render);
+      };
+
+      this.confettiAnimationId = requestAnimationFrame(render);
+    }
+
+    stopConfetti() {
+      if (this.confettiAnimationId) {
+        cancelAnimationFrame(this.confettiAnimationId);
+        this.confettiAnimationId = null;
+      }
+      if (this.confettiCanvas) {
+        const ctx = this.confettiCanvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, this.confettiCanvas.width, this.confettiCanvas.height);
+      }
     }
   }
 
