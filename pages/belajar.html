@@ -369,8 +369,8 @@
       </div>
     </section>
 
-    <div id="quiz-results-modal" class="modal-overlay hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-xl items-center justify-center p-4">
-      <div class="modal-container max-w-xl bg-[#161310] border border-brass-400/40 rounded-3xl p-6 sm:p-9 text-center space-y-6 shadow-2xl relative overflow-hidden">
+    <div id="quiz-results-modal" class="modal-overlay hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      <div class="modal-container w-full max-w-2xl bg-[#14110E] border border-brass-400/35 rounded-3xl p-6 sm:p-8 text-center space-y-5 shadow-2xl relative my-auto">
         
         <div class="absolute -top-24 -left-24 w-48 h-48 bg-brass-400/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-forest-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -398,18 +398,42 @@
         </div>
 
         <div>
-          <span class="text-[11px] uppercase tracking-widest text-brass-400 font-bold block mb-1">Gelar Pencapaian Kuis</span>
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-brass-400/15 border border-brass-400/30 text-brass-300 text-[10px] font-bold uppercase tracking-widest mb-1.5">
+            <span class="material-symbols-outlined text-xs">workspace_premium</span>
+            <span>Gelar Pencapaian Kuis</span>
+          </div>
           <h3 id="result-badge-title" class="font-display text-2xl sm:text-3xl font-light text-surface">
             Mahaguru Pusaka Nusantara
           </h3>
         </div>
 
+        <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brass-500/10 via-amber-500/5 to-white/[0.02] border border-brass-400/30 text-left space-y-3" id="result-motivational-box">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-brass-300">
+              <span class="material-symbols-outlined text-base text-amber-300">military_tech</span>
+              <span id="result-points-headline">Skor Akhir: 0 / 1.000 Pts</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-400/15 border border-amber-400/30 text-amber-300">
+              Target Maksimal: 1.000 Pts
+            </span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+            <div id="result-points-bar" class="h-full rounded-full bg-gradient-to-r from-[#A47E3F] via-[#C9A567] to-[#E6D3A7] transition-all duration-1000 shadow-[0_0_12px_rgba(201,165,103,0.5)]" style="width: 0%;"></div>
+          </div>
+          <p id="result-motivational-text" class="text-xs text-surface/75 leading-relaxed font-light">
+            Kumpulkan hingga 1.000 poin maksimal dengan menjawab semua 10 soal secara tepat!
+          </p>
+        </div>
+
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-left" id="result-details-grid">
         </div>
 
-        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/8 text-left">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-surface/50 block mb-2">Performa Berdasarkan Kategori:</span>
-          <div id="result-category-breakdown" class="space-y-1">
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/8 text-left space-y-2.5">
+          <div class="flex items-center justify-between pb-1 border-b border-white/5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400">Analisis Per Kategori Budaya:</span>
+            <span class="text-[10px] text-surface/40 font-mono">10 Soal Sesi Ini</span>
+          </div>
+          <div id="result-category-breakdown" class="space-y-1.5 studio-scroll">
           </div>
         </div>
 

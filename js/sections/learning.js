@@ -91,6 +91,9 @@
       this.resultProgressCircle = document.getElementById('result-circle-progress');
       this.resultDetailsGrid = document.getElementById('result-details-grid');
       this.resultCategoryBreakdown = document.getElementById('result-category-breakdown');
+      this.resultPointsHeadline = document.getElementById('result-points-headline');
+      this.resultPointsBar = document.getElementById('result-points-bar');
+      this.resultMotivationalText = document.getElementById('result-motivational-text');
       this.btnPlayAgain = document.getElementById('btn-result-play-again');
       this.btnReviewAnswers = document.getElementById('btn-result-review');
       this.btnShareResult = document.getElementById('btn-result-share');
@@ -497,7 +500,7 @@
               isRight ? 'text-emerald-300' : 'text-rose-300'
             }">
               <span class="material-symbols-outlined text-xl">${isRight ? 'task_alt' : 'info'}</span>
-              <span>${isRight ? 'Luar Biasa! Jawaban Tepat (+850 Pts)' : 'Ulasan Kultural & Fakta Sejarah'}</span>
+              <span>${isRight ? 'Luar Biasa! Jawaban Tepat (+100 Pts)' : 'Ulasan Kultural & Fakta Sejarah'}</span>
             </div>
             <p class="text-xs sm:text-sm leading-relaxed mb-4 text-surface/90 font-light">${correctOpt.explanation}</p>
 
@@ -584,10 +587,8 @@
           this.bestStreakInSession = this.streak;
         }
 
-        const basePoints = 700;
-        const timeBonus = Math.round(this.remainingSeconds * 0.4);
-        const streakBonus = (this.streak - 1) * 75;
-        this.livePoints += basePoints + timeBonus + streakBonus;
+        const basePoints = 100;
+        this.livePoints = this.score * basePoints;
 
         this.playSuccessChime();
       } else {
@@ -642,7 +643,7 @@
 
     updateLivePointsDisplay() {
       if (this.liveScoreBadge) {
-        this.liveScoreBadge.textContent = `${this.livePoints.toLocaleString('id-ID')} Pts`;
+        this.liveScoreBadge.textContent = `${this.livePoints} / 1.000 Pts`;
       }
     }
 
@@ -773,6 +774,26 @@
         this.resultProgressCircle.style.strokeDashoffset = offset;
       }
 
+      if (this.resultPointsHeadline) {
+        this.resultPointsHeadline.textContent = `Skor Akhir: ${this.livePoints} / 1.000 Pts`;
+      }
+      if (this.resultPointsBar) {
+        this.resultPointsBar.style.width = `${pct}%`;
+      }
+      if (this.resultMotivationalText) {
+        if (pct === 100) {
+          this.resultMotivationalText.textContent = 'Sempurna! Anda berhasil mengumpulkan skor maksimal 1.000 Poin! Wawasan tradisi dan pusaka Nusantara Anda luar biasa sempurna.';
+        } else if (pct >= 80) {
+          this.resultMotivationalText.textContent = `Hebat sekali! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Hanya butuh ${1000 - this.livePoints} poin lagi untuk kesempurnaan mutlak!`;
+        } else if (pct >= 60) {
+          this.resultMotivationalText.textContent = `Bagus! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Ayo coba lagi dengan 10 soal acak untuk merebut gelar tertinggi!`;
+        } else if (pct >= 40) {
+          this.resultMotivationalText.textContent = `Potensi bagus! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Pelajari konteks tradisi lebih dalam untuk mencapai 1.000 poin!`;
+        } else {
+          this.resultMotivationalText.textContent = `Langkah awal yang baik! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Ulangi sesi kuis untuk mengejar target 1.000 poin maksimal!`;
+        }
+      }
+
       if (this.resultDetailsGrid) {
         const durationSec = Math.round((Date.now() - (this.sessionStartTime || Date.now())) / 1000);
         const mins = Math.floor(durationSec / 60);
@@ -780,21 +801,36 @@
         const timeStr = `${mins > 0 ? `${mins}m ` : ''}${secs}s`;
 
         this.resultDetailsGrid.innerHTML = `
-          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Skor Kuis</span>
-            <span class="font-display text-lg text-brass-300 font-bold">${this.livePoints.toLocaleString('id-ID')}</span>
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/8 text-center space-y-1">
+            <div class="flex items-center justify-center gap-1 text-brass-400 text-xs">
+              <span class="material-symbols-outlined text-sm">stars</span>
+              <span class="text-[10px] uppercase font-mono tracking-wider">Skor Kuis</span>
+            </div>
+            <div class="font-display text-lg sm:text-xl text-brass-300 font-bold">${this.livePoints} <span class="text-xs font-normal text-surface/50">/ 1.000</span></div>
           </div>
-          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Streak Terbaik</span>
-            <span class="font-display text-lg text-amber-300 font-bold">${this.bestStreakInSession}x</span>
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/8 text-center space-y-1">
+            <div class="flex items-center justify-center gap-1 text-amber-400 text-xs">
+              <span class="material-symbols-outlined text-sm">task_alt</span>
+              <span class="text-[10px] uppercase font-mono tracking-wider">Akurasi</span>
+            </div>
+            <div class="font-display text-lg sm:text-xl text-amber-300 font-bold">${pct}%</div>
+            <span class="text-[10px] text-surface/50 font-mono block">${this.score} / ${total} Benar</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Durasi Kuis</span>
-            <span class="font-display text-lg text-forest-300 font-bold">${timeStr}</span>
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/8 text-center space-y-1">
+            <div class="flex items-center justify-center gap-1 text-emerald-400 text-xs">
+              <span class="material-symbols-outlined text-sm">local_fire_department</span>
+              <span class="text-[10px] uppercase font-mono tracking-wider">Streak</span>
+            </div>
+            <div class="font-display text-lg sm:text-xl text-emerald-300 font-bold">${this.bestStreakInSession}x</div>
+            <span class="text-[10px] text-surface/50 font-mono block">Beruntun</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Total Sesi</span>
-            <span class="font-display text-lg text-terracotta-300 font-bold">${this.stats.totalSessions} Sesi</span>
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/8 text-center space-y-1">
+            <div class="flex items-center justify-center gap-1 text-terracotta-300 text-xs">
+              <span class="material-symbols-outlined text-sm">schedule</span>
+              <span class="text-[10px] uppercase font-mono tracking-wider">Durasi</span>
+            </div>
+            <div class="font-display text-lg sm:text-xl text-terracotta-300 font-bold">${timeStr}</div>
+            <span class="text-[10px] text-surface/50 font-mono block">Dari 15 Menit</span>
           </div>
         `;
       }
@@ -804,6 +840,9 @@
       if (this.resultsModal) {
         this.resultsModal.classList.remove('hidden');
         this.resultsModal.classList.add('active');
+        this.resultsModal.scrollTop = 0;
+        const innerContainer = this.resultsModal.querySelector('.modal-container');
+        if (innerContainer) innerContainer.scrollTop = 0;
         document.body.style.overflow = 'hidden';
       }
 
@@ -833,10 +872,25 @@
       this.resultCategoryBreakdown.innerHTML = Object.entries(catStats)
         .map(([cat, s]) => {
           const pct = Math.round((s.correct / s.total) * 100);
+          let barGradient = 'from-emerald-500 to-teal-400';
+          let badgeClass = 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300';
+          if (pct === 0) {
+            barGradient = 'from-white/15 to-white/5';
+            badgeClass = 'bg-white/5 border-white/10 text-surface/50';
+          } else if (pct < 100) {
+            barGradient = 'from-amber-500 to-brass-400';
+            badgeClass = 'bg-amber-500/15 border-amber-500/30 text-amber-300';
+          }
+
           return `
-          <div class="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-            <span class="text-surface/80 truncate mr-2">${cat}</span>
-            <span class="font-mono text-brass-300 font-semibold flex-shrink-0">${s.correct}/${s.total} (${pct}%)</span>
+          <div class="flex items-center justify-between gap-3 text-xs py-2 px-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+            <span class="text-surface/85 truncate font-medium flex-1">${cat}</span>
+            <div class="w-20 sm:w-28 h-1.5 rounded-full bg-white/10 overflow-hidden flex-shrink-0">
+              <div class="h-full rounded-full bg-gradient-to-r ${barGradient}" style="width: ${pct}%"></div>
+            </div>
+            <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-md border flex-shrink-0 ${badgeClass}">
+              ${s.correct}/${s.total} (${pct}%)
+            </span>
           </div>
         `;
         })
@@ -864,7 +918,7 @@
     shareAchievement() {
       const total = this.currentQuestions.length;
       const pct = Math.round((this.score / total) * 100);
-      const text = `Saya meraih skor ${this.livePoints.toLocaleString('id-ID')} Pts (${this.score}/${total} Benar) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
+      const text = `Saya meraih skor ${this.livePoints} dari Maksimal 1.000 Poin (${this.score}/${total} Benar) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
 
       if (navigator.clipboard) {
         navigator.clipboard
