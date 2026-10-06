@@ -252,10 +252,10 @@
             <span>10 Soal Acak Baru</span>
           </button>
 
-          <button id="btn-toggle-quiz-timer" class="quiz-toggle-pill">
-            <span class="material-symbols-outlined text-base">timer_off</span>
-            <span id="label-timer-toggle">Mode Santai</span>
-          </button>
+          <div class="quiz-toggle-pill active" title="Batas Waktu Pengerjaan Kuis">
+            <span class="material-symbols-outlined text-base text-amber-300">timer</span>
+            <span>Waktu: 15 Menit</span>
+          </div>
 
           <button id="btn-toggle-auto-advance" class="quiz-toggle-pill">
             <span class="material-symbols-outlined text-base">bolt</span>
@@ -307,9 +307,10 @@
               </div>
 
               <div class="flex items-center gap-3">
-                <div id="quiz-timer-badge" class="hidden px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 font-mono text-xs font-bold flex items-center gap-1.5">
-                  <span class="material-symbols-outlined text-sm animate-pulse">timer</span>
-                  <span id="quiz-timer-value">25s</span>
+                <div id="quiz-timer-badge" class="px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-300 font-mono text-xs font-bold flex items-center gap-2">
+                  <span class="material-symbols-outlined text-base animate-pulse">timer</span>
+                  <span class="text-[10px] uppercase tracking-wider font-semibold opacity-75 hidden sm:inline">Sisa Waktu:</span>
+                  <span id="quiz-timer-value" class="text-sm font-bold tracking-wider">15:00</span>
                 </div>
 
                 <div class="text-[11px] text-surface/50 font-mono" id="quiz-progress-text">

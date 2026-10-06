@@ -20,7 +20,7 @@
       this.livePoints = 0;
       this.sessionStartTime = null;
 
-      this.timerSeconds = 25;
+      this.remainingSeconds = 15 * 60;
       this.timerInterval = null;
 
       this.audioCtx = null;
@@ -55,8 +55,6 @@
       this.heroStartWrapper = document.getElementById('hero-start-btn-wrapper');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
-      this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
-      this.labelTimerToggle = document.getElementById('label-timer-toggle');
       this.btnAutoToggle = document.getElementById('btn-toggle-auto-advance');
       this.labelAutoToggle = document.getElementById('label-auto-toggle');
       this.btnBgmToggle = document.getElementById('btn-toggle-bgm');
@@ -112,13 +110,6 @@
       if (this.btnShuffleNew10) {
         this.btnShuffleNew10.addEventListener('click', () => {
           this.startQuizizzFlow();
-        });
-      }
-
-      if (this.btnTimerToggle) {
-        this.btnTimerToggle.addEventListener('click', () => {
-          this.timerMode = !this.timerMode;
-          this.updateTimerButtonState();
         });
       }
 
@@ -268,30 +259,11 @@
       this.updateLivePointsDisplay();
       this.renderQuestionCard('right');
 
-      if (this.timerMode) {
-        if (this.timerBadge) this.timerBadge.classList.remove('hidden');
-        this.startQuestionTimer();
-      } else {
-        if (this.timerBadge) this.timerBadge.classList.add('hidden');
-      }
+      this.remainingSeconds = 15 * 60;
+      this.startSessionTimer();
 
       if (this.bgmEnabled) {
         this.startBGM();
-      }
-    }
-
-    updateTimerButtonState() {
-      if (!this.btnTimerToggle) return;
-      if (this.timerMode) {
-        this.btnTimerToggle.classList.add('active');
-        if (this.labelTimerToggle) this.labelTimerToggle.textContent = 'Mode Timer: 25s';
-        const icon = this.btnTimerToggle.querySelector('.material-symbols-outlined');
-        if (icon) icon.textContent = 'timer';
-      } else {
-        this.btnTimerToggle.classList.remove('active');
-        if (this.labelTimerToggle) this.labelTimerToggle.textContent = 'Mode Santai';
-        const icon = this.btnTimerToggle.querySelector('.material-symbols-outlined');
-        if (icon) icon.textContent = 'timer_off';
       }
     }
 
@@ -563,12 +535,12 @@
             </div>
           </div>
 
-          <h3 class="font-display text-xl sm:text-2xl text-surface font-light leading-snug mb-4">
+          <h3 class="font-display text-2xl sm:text-3xl text-surface font-light leading-snug mb-5">
             ${q.question}
           </h3>
 
-          <div class="quiz-context-panel text-xs text-surface/80 font-light leading-relaxed mb-6">
-            <strong class="text-brass-300 block mb-1 uppercase tracking-wider text-[10px] font-bold">Konteks Pusaka Tradisi:</strong>
+          <div class="quiz-context-panel text-sm text-surface/85 font-light leading-relaxed mb-7">
+            <strong class="text-brass-300 block mb-1.5 uppercase tracking-wider text-[11px] font-bold">Konteks Pusaka Tradisi:</strong>
             ${q.context}
           </div>
 
@@ -598,7 +570,6 @@
 
     handleOptionSelection(optIdx) {
       if (this.userAnswers[this.currentIndex] !== undefined) return;
-      this.clearTimer();
 
       const q = this.currentQuestions[this.currentIndex];
       const chosenOpt = q.sessionOptions[optIdx];
@@ -614,7 +585,7 @@
         }
 
         const basePoints = 700;
-        const timeBonus = this.timerMode ? Math.max(0, this.timerSeconds * 12) : 150;
+        const timeBonus = Math.round(this.remainingSeconds * 0.4);
         const streakBonus = (this.streak - 1) * 75;
         this.livePoints += basePoints + timeBonus + streakBonus;
 
@@ -720,30 +691,34 @@
         const dir = delta > 0 ? 'right' : 'left';
         this.currentIndex = clamped;
         this.renderQuestionCard(dir);
-
-        if (this.timerMode && !this.userAnswers[this.currentIndex]) {
-          this.startQuestionTimer();
-        } else {
-          this.clearTimer();
-        }
       }
     }
 
-    startQuestionTimer() {
+    startSessionTimer() {
       this.clearTimer();
-      this.timerSeconds = 25;
-      if (this.timerValue) this.timerValue.textContent = `${this.timerSeconds}s`;
+      this.updateTimerDisplay();
 
       this.timerInterval = setInterval(() => {
-        this.timerSeconds--;
-        if (this.timerValue) this.timerValue.textContent = `${this.timerSeconds}s`;
+        this.remainingSeconds--;
+        this.updateTimerDisplay();
 
-        if (this.timerSeconds <= 0) {
+        if (this.remainingSeconds <= 120 && this.timerBadge) {
+          this.timerBadge.className = 'px-3.5 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/50 text-rose-300 font-mono text-xs font-bold flex items-center gap-2 animate-pulse';
+        }
+
+        if (this.remainingSeconds <= 0) {
           this.clearTimer();
-          this.playTone(280, 0.3);
-          this.handleTimeout();
+          this.playTone(280, 0.4);
+          this.handleSessionTimeout();
         }
       }, 1000);
+    }
+
+    updateTimerDisplay() {
+      const mins = Math.floor(Math.max(0, this.remainingSeconds) / 60);
+      const secs = Math.max(0, this.remainingSeconds) % 60;
+      const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      if (this.timerValue) this.timerValue.textContent = timeStr;
     }
 
     clearTimer() {
@@ -753,24 +728,18 @@
       }
     }
 
-    handleTimeout() {
-      if (this.userAnswers[this.currentIndex] !== undefined) return;
-
-      this.streak = 0;
-      this.updateStreakDisplay();
-
-      this.userAnswers[this.currentIndex] = {
-        selectedIdx: -1,
-        isCorrect: false,
-        timedOut: true
-      };
-
-      this.renderQuestionCard('none');
-
-      const allAnswered = Object.keys(this.userAnswers).length === this.currentQuestions.length;
-      if (allAnswered) {
-        setTimeout(() => this.showQuizResults(), 1200);
-      }
+    handleSessionTimeout() {
+      this.clearTimer();
+      this.currentQuestions.forEach((_, idx) => {
+        if (this.userAnswers[idx] === undefined) {
+          this.userAnswers[idx] = {
+            selectedIdx: -1,
+            isCorrect: false,
+            timedOut: true
+          };
+        }
+      });
+      this.showQuizResults();
     }
 
     showQuizResults() {
