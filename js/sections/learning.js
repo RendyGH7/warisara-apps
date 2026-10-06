@@ -102,16 +102,18 @@
       this.toastTextEl = document.getElementById('toast-quiz-text');
 
       this.arenaMascotImg = document.getElementById('arena-mascot-img');
-      this.arenaMascotStatusText = document.getElementById('arena-mascot-status-text');
       this.arenaMascotQuote = document.getElementById('arena-mascot-quote');
-      this.heroMascotCard = document.getElementById('hero-mascot-card');
+      this.heroMascotCompanion = document.getElementById('hero-mascot-companion');
       this.heroMascotSpeech = document.getElementById('hero-mascot-speech');
       this.modalMascotImg = document.getElementById('modal-mascot-img');
       this.modalMascotSpeech = document.getElementById('modal-mascot-speech');
+      this.cornerMascotPeek = document.getElementById('corner-mascot-peek');
+      this.cornerMascotBubble = document.getElementById('corner-mascot-bubble');
+      this.cornerMascotImg = document.getElementById('corner-mascot-img');
     }
 
     bindEvents() {
-      if (this.heroMascotCard) {
+      if (this.heroMascotCompanion) {
         const mascotGreetings = [
           'Halo Sahabat Budaya! Kenalkan, aku Wari. Siap menjelajahi pusaka Nusantara?',
           'Kearifan Nusantara terbentang dari Sabang sampai Merauke. Ayo buktikan pengetahuanmu!',
@@ -119,12 +121,36 @@
           'Fokus dan semangat! Kuis ini menyajikan 10 soal acak dari ratusan pusaka tradisi!'
         ];
         let greetIdx = 0;
-        this.heroMascotCard.addEventListener('click', () => {
+        this.heroMascotCompanion.addEventListener('click', () => {
           greetIdx = (greetIdx + 1) % mascotGreetings.length;
           if (this.heroMascotSpeech) {
             this.heroMascotSpeech.textContent = mascotGreetings[greetIdx];
           }
           this.playTone(880, 0.12, 'triangle');
+        });
+      }
+
+      if (this.cornerMascotPeek) {
+        const peekGreetings = [
+          'Stt... Aku Wari! Semangat belajarnya ya!',
+          'Pusaka budaya adalah mahkota identitas kita!',
+          'Ayo capai 1.000 poin maksimal!',
+          'Aku selalu di sini menemanimu menjelajah!'
+        ];
+        let peekIdx = 0;
+        let peekTimer = null;
+        this.cornerMascotPeek.addEventListener('click', () => {
+          peekIdx = (peekIdx + 1) % peekGreetings.length;
+          const textSpan = this.cornerMascotBubble ? this.cornerMascotBubble.querySelector('span') : null;
+          if (textSpan) {
+            textSpan.textContent = peekGreetings[peekIdx];
+          }
+          this.cornerMascotPeek.classList.add('peek-active');
+          this.playTone(1046.5, 0.14, 'triangle');
+          if (peekTimer) clearTimeout(peekTimer);
+          peekTimer = setTimeout(() => {
+            this.cornerMascotPeek.classList.remove('peek-active');
+          }, 3200);
         });
       }
 

@@ -197,21 +197,15 @@
           Uji pemahaman Anda melalui kuis interaktif adaptif. Setiap sesi menyajikan 10 soal acak dari bank ratusan soal berbobot tentang wastra, arsitektur, tosan aji, seni pertunjukan, dan falsafah luhur Nusantara.
         </p>
 
-        <div class="mascot-hero-card mb-8" id="hero-mascot-card">
-          <div class="mascot-avatar-container">
-            <img src="../assets/mascot/wari-idle.png" alt="Wari - Maskot Budaya Warisara" id="hero-mascot-img" class="mascot-hero-img" />
-            <div class="mascot-badge-pill">
-              <span class="mascot-online-dot"></span>
-              <span>Si Wari</span>
+        <div class="hero-mascot-stage" id="hero-mascot-companion">
+          <img src="../assets/mascot/wari-idle.png" alt="Si Wari - Maskot Budaya Warisara" id="hero-mascot-img" class="hero-mascot-sprite" />
+          <div class="hero-mascot-bubble">
+            <div class="hero-mascot-bubble-title">
+              <span class="material-symbols-outlined text-sm">waving_hand</span>
+              <span>Si Wari Menyapa</span>
             </div>
-          </div>
-          <div class="mascot-hero-dialogue">
-            <div class="mascot-name-tag">
-              <span class="material-symbols-outlined text-sm text-brass-400">waving_hand</span>
-              <span>Sahabat Penjelajah Pusaka</span>
-            </div>
-            <p id="hero-mascot-speech" class="mascot-speech-bubble">
-              "Halo Sahabat Budaya! Kenalkan, aku Wari. Aku siap menemanimu menguji wawasan dan menjelajahi kekayaan pusaka Nusantara hari ini. Ayo klik tombol mulai di bawah dan raih skor tertinggimu!"
+            <p id="hero-mascot-speech" class="hero-mascot-bubble-text">
+              "Halo Sahabat Budaya! Kenalkan, aku Wari. Siap menguji wawasan pusaka Nusantara bersamaku hari ini? Ayo klik mulai dan raih skor tertinggimu!"
             </p>
           </div>
         </div>
@@ -331,21 +325,12 @@
             </div>
           </div>
 
-          <div class="quiz-mascot-strip" id="quiz-mascot-strip">
-            <div class="mascot-strip-avatar-wrap">
-              <img id="arena-mascot-img" src="../assets/mascot/wari-idle.png" alt="Wari - Maskot" class="arena-mascot-img" />
-            </div>
-            <div class="mascot-strip-content">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="mascot-tag-badge">Si Wari</span>
-                <span id="arena-mascot-status" class="mascot-mood-pill">
-                  <span class="material-symbols-outlined text-xs">auto_awesome</span>
-                  <span id="arena-mascot-status-text">Siap Menemani</span>
-                </span>
+          <div class="relative">
+            <div class="arena-mascot-perch" id="arena-mascot-perch">
+              <div class="arena-mascot-bubble" id="arena-mascot-bubble">
+                <span id="arena-mascot-quote">Pusaka Nusantara sarat makna, teliti baik-baik ya!</span>
               </div>
-              <p id="arena-mascot-quote" class="mascot-quote-text">
-                "Pusaka Nusantara sarat dengan kearifan luhur. Baca tiap butir pertanyaan dengan seksama ya!"
-              </p>
+              <img id="arena-mascot-img" src="../assets/mascot/wari-idle.png" alt="Si Wari - Maskot" class="arena-mascot-standalone" />
             </div>
           </div>
 
@@ -422,16 +407,14 @@
           </h3>
         </div>
 
-        <div class="modal-mascot-banner" id="modal-mascot-banner">
-          <div class="modal-mascot-avatar-wrap">
-            <img id="modal-mascot-img" src="../assets/mascot/wari-happy.png" alt="Wari Merayakan" class="modal-mascot-img" />
-          </div>
-          <div class="modal-mascot-dialogue">
-            <div class="modal-mascot-tag">
-              <span class="material-symbols-outlined text-sm text-brass-400">celebration</span>
+        <div class="modal-mascot-freestanding" id="modal-mascot-freestanding">
+          <img id="modal-mascot-img" src="../assets/mascot/wari-happy.png" alt="Si Wari Merayakan" class="modal-mascot-standalone" />
+          <div class="modal-mascot-speech-cloud">
+            <div class="modal-mascot-speech-cloud-title">
+              <span class="material-symbols-outlined text-xs">celebration</span>
               <span>Apresiasi Si Wari</span>
             </div>
-            <p id="modal-mascot-speech" class="modal-mascot-quote">
+            <p id="modal-mascot-speech" class="modal-mascot-speech-cloud-text">
               "Luar biasa! Penjelajahan budayamu telah tuntas dengan sangat membanggakan. Mari terus jaga dan lestarikan warisan leluhur kita!"
             </p>
           </div>
@@ -487,6 +470,13 @@
       </div>
     </div>
   </div>
+
+    <div id="corner-mascot-peek" class="corner-mascot-peek" title="Klik Si Wari untuk sapaan hangat!">
+      <div id="corner-mascot-bubble" class="corner-mascot-bubble">
+        <span>Stt... Aku Wari! Semangat belajarnya ya!</span>
+      </div>
+      <img id="corner-mascot-img" src="../assets/mascot/wari-idle.png" alt="Si Wari Mengintip" class="corner-mascot-sprite" />
+    </div>
 
     <div id="toast-quiz-message" class="toast-notification">
       <span class="material-symbols-outlined text-brass-300 text-base">check_circle</span>
