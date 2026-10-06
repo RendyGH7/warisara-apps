@@ -162,7 +162,7 @@
 
       if (this.btnReviewAnswers) {
         this.btnReviewAnswers.addEventListener('click', () => {
-          this.closeResultsModal();
+          this.dismissResultsModalOnly();
           this.currentIndex = 0;
           this.renderQuestionCard('left');
           if (this.arenaSection) {
@@ -173,6 +173,14 @@
 
       if (this.btnCloseResult) {
         this.btnCloseResult.addEventListener('click', () => this.closeResultsModal());
+      }
+
+      if (this.resultsModal) {
+        this.resultsModal.addEventListener('click', (e) => {
+          if (e.target === this.resultsModal) {
+            this.closeResultsModal();
+          }
+        });
       }
 
       if (this.btnShareResult) {
@@ -897,13 +905,39 @@
         .join('');
     }
 
-    closeResultsModal() {
+    dismissResultsModalOnly() {
       if (this.resultsModal) {
         this.resultsModal.classList.remove('active');
         this.resultsModal.classList.add('hidden');
         document.body.style.overflow = '';
       }
       this.stopConfetti();
+    }
+
+    closeResultsModal() {
+      this.dismissResultsModalOnly();
+      this.stopBGM();
+      this.clearTimer();
+      this.isGameActive = false;
+
+      if (this.arenaSection) {
+        this.arenaSection.classList.add('hidden');
+      }
+
+      if (this.heroStartWrapper) {
+        this.heroStartWrapper.classList.remove('hidden');
+      }
+
+      this.currentIndex = 0;
+      this.userAnswers = {};
+      this.score = 0;
+      this.streak = 0;
+      this.bestStreakInSession = 0;
+      this.livePoints = 0;
+      this.prepareNewQuestions();
+      this.renderStatsBanner();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     showToast(message) {

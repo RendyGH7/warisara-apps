@@ -881,3 +881,39 @@
   border-radius: 9999px;
 }
 
+.modal-results-shell {
+  position: relative;
+  width: 100%;
+  max-width: 42rem;
+  margin: auto;
+  padding-top: 3.25rem;
+}
+
+.modal-close-outside {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FBF8F2;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal-close-outside:hover {
+  background: rgba(201, 165, 103, 0.25);
+  border-color: rgba(201, 165, 103, 0.6);
+  color: #F5E6BE;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+}
+

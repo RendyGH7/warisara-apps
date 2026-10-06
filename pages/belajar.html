@@ -370,14 +370,17 @@
     </section>
 
     <div id="quiz-results-modal" class="modal-overlay hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div class="modal-container w-full max-w-2xl bg-[#14110E] border border-brass-400/35 rounded-3xl p-6 sm:p-8 text-center space-y-5 shadow-2xl relative my-auto">
+      <div class="modal-results-shell relative w-full max-w-2xl my-auto pt-12 sm:pt-14">
         
-        <div class="absolute -top-24 -left-24 w-48 h-48 bg-brass-400/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-forest-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-        <button id="btn-result-close" class="absolute top-4 right-4 text-surface/60 hover:text-surface p-1.5 rounded-full hover:bg-white/10 transition-colors" aria-label="Tutup Hasil">
-          <span class="material-symbols-outlined text-xl">close</span>
+        <button id="btn-result-close" class="modal-close-outside" aria-label="Tutup Hasil Kuis">
+          <span class="material-symbols-outlined text-base">close</span>
+          <span class="text-xs font-semibold tracking-wide">Tutup</span>
         </button>
+
+        <div class="modal-container w-full bg-[#14110E] border border-brass-400/35 rounded-3xl p-6 sm:p-8 text-center space-y-5 shadow-2xl relative">
+          
+          <div class="absolute -top-24 -left-24 w-48 h-48 bg-brass-400/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-forest-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="quiz-result-score-ring">
           <svg width="150" height="150">
@@ -456,6 +459,7 @@
 
       </div>
     </div>
+  </div>
 
     <div id="toast-quiz-message" class="toast-notification">
       <span class="material-symbols-outlined text-brass-300 text-base">check_circle</span>
