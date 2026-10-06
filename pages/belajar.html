@@ -282,57 +282,10 @@
 
     <canvas id="confetti-canvas"></canvas>
 
-    <section class="py-10 sm:py-14 px-4 sm:px-6 bg-[#15120F] min-h-[75vh]" id="quiz-interactive-arena">
+    <section class="hidden py-10 sm:py-14 px-4 sm:px-6 bg-[#15120F] min-h-[75vh]" id="quiz-interactive-arena">
       <div class="quiz-main-arena space-y-6">
 
-        <div id="quiz-lobby-view" class="quiz-lobby-card max-w-2xl mx-auto space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brass-400/15 border border-brass-400/30 text-brass-300 text-xs font-semibold uppercase tracking-wider">
-            <span class="material-symbols-outlined text-sm">menu_book</span>
-            <span>Ruang Persiapan Kuis</span>
-          </div>
-
-          <div class="space-y-2">
-            <h2 class="font-display text-2xl sm:text-3xl text-surface font-light">
-              Uji Pengetahuan Pusaka & Budaya
-            </h2>
-            <p class="text-xs sm:text-sm text-surface/75 max-w-lg mx-auto leading-relaxed">
-              Tiap sesi menyajikan 10 soal acak dari bank 130 pusaka Nusantara dengan skor bertingkat, bonus streak, dan ulasan kultural mendalam. Klik tombol mulai di bawah untuk memulai.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left max-w-lg mx-auto">
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/8 flex items-center gap-2.5">
-              <span class="material-symbols-outlined text-brass-400 text-lg">shuffle</span>
-              <div>
-                <div class="text-xs font-bold text-surface">10 Soal Acak</div>
-                <div class="text-[10px] text-surface/50">Bank 130 soal autentik</div>
-              </div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/8 flex items-center gap-2.5">
-              <span class="material-symbols-outlined text-amber-400 text-lg">local_fire_department</span>
-              <div>
-                <div class="text-xs font-bold text-surface">Bonus Streak</div>
-                <div class="text-[10px] text-surface/50">Pengali skor bertingkat</div>
-              </div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/8 flex items-center gap-2.5">
-              <span class="material-symbols-outlined text-forest-300 text-lg">verified</span>
-              <div>
-                <div class="text-xs font-bold text-surface">Ulasan Autentik</div>
-                <div class="text-[10px] text-surface/50">Penjelasan mendalam</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-2">
-            <button id="btn-lobby-start" class="btn-quizizz-start">
-              <span class="material-symbols-outlined text-2xl">play_arrow</span>
-              <span>Mulai Mengerjakan Kuis</span>
-            </button>
-          </div>
-        </div>
-
-        <div id="quiz-gameplay-view" class="hidden space-y-6">
+        <div id="quiz-gameplay-view" class="space-y-6">
           <div class="flex items-center gap-2 overflow-x-auto pb-2 studio-scroll" id="quiz-category-chips">
           </div>
 

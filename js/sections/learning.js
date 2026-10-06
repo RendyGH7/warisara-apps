@@ -53,7 +53,6 @@
 
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
-      this.btnLobbyStart = document.getElementById('btn-lobby-start');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
       this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
       this.labelTimerToggle = document.getElementById('label-timer-toggle');
@@ -65,7 +64,6 @@
       this.btnSoundToggle = document.getElementById('btn-toggle-sound');
       this.iconSoundToggle = document.getElementById('icon-sound-toggle');
 
-      this.lobbyView = document.getElementById('quiz-lobby-view');
       this.gameplayView = document.getElementById('quiz-gameplay-view');
 
       this.countdownOverlay = document.getElementById('quiz-countdown-overlay');
@@ -106,12 +104,6 @@
     bindEvents() {
       if (this.btnStartGame) {
         this.btnStartGame.addEventListener('click', () => {
-          this.startQuizizzFlow();
-        });
-      }
-
-      if (this.btnLobbyStart) {
-        this.btnLobbyStart.addEventListener('click', () => {
           this.startQuizizzFlow();
         });
       }
@@ -262,16 +254,14 @@
       this.livePoints = 0;
       this.sessionStartTime = Date.now();
 
-      if (this.lobbyView) this.lobbyView.classList.add('hidden');
-      if (this.gameplayView) this.gameplayView.classList.remove('hidden');
+      if (this.arenaSection) {
+        this.arenaSection.classList.remove('hidden');
+        this.arenaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
       this.updateStreakDisplay();
       this.updateLivePointsDisplay();
       this.renderQuestionCard('right');
-
-      if (this.arenaSection) {
-        this.arenaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
 
       if (this.timerMode) {
         if (this.timerBadge) this.timerBadge.classList.remove('hidden');
