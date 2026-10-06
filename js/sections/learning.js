@@ -29,6 +29,8 @@
 
       this.storageKey = 'warisara_quiz_learning_stats';
       this.stats = this.loadStats();
+      this.seenStorageKey = 'warisara_quiz_seen_ids';
+      this.seenQuestionIds = this.loadSeenQuestions();
 
       this.confettiAnimationId = null;
     }
@@ -54,7 +56,6 @@
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
       this.heroStartWrapper = document.getElementById('hero-start-btn-wrapper');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
-      this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
       this.btnBgmToggle = document.getElementById('btn-toggle-bgm');
       this.iconBgmToggle = document.getElementById('icon-bgm-toggle');
       this.labelBgmToggle = document.getElementById('label-bgm-toggle');
@@ -104,12 +105,6 @@
     bindEvents() {
       if (this.btnStartGame) {
         this.btnStartGame.addEventListener('click', () => {
-          this.startQuizizzFlow();
-        });
-      }
-
-      if (this.btnShuffleNew10) {
-        this.btnShuffleNew10.addEventListener('click', () => {
           this.startQuizizzFlow();
         });
       }
@@ -202,8 +197,6 @@
           this.handleNextClick();
         } else if (key === 'arrowleft') {
           this.navigateQuestion(-1);
-        } else if (key === 'r') {
-          this.startQuizizzFlow();
         }
       });
     }
@@ -363,15 +356,84 @@
       }
     }
 
+    loadSeenQuestions() {
+      try {
+        const raw = localStorage.getItem(this.seenStorageKey);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return [];
+    }
+
+    saveSeenQuestions() {
+      try {
+        localStorage.setItem(this.seenStorageKey, JSON.stringify(this.seenQuestionIds));
+      } catch (e) {}
+    }
+
+    cryptoRandom() {
+      if (window.crypto && window.crypto.getRandomValues) {
+        const buf = new Uint32Array(1);
+        window.crypto.getRandomValues(buf);
+        return buf[0] / (0xffffffff + 1);
+      }
+      return Math.random();
+    }
+
     prepareNewQuestions() {
-      let eligible = this.fullBank;
+      let pool = [...this.fullBank];
       if (this.activeFilter && this.activeFilter !== 'all') {
-        eligible = this.fullBank.filter((q) => q.category === this.activeFilter);
-        if (eligible.length < 5) eligible = this.fullBank;
+        const filtered = pool.filter((q) => q.category === this.activeFilter);
+        if (filtered.length >= 10) pool = filtered;
       }
 
-      const shuffledPool = this.shuffleArray([...eligible]);
-      this.currentQuestions = shuffledPool.slice(0, 10).map((q) => {
+      let unseen = pool.filter((q) => !this.seenQuestionIds.includes(q.id));
+      if (unseen.length < 10) {
+        this.seenQuestionIds = [];
+        this.saveSeenQuestions();
+        unseen = [...pool];
+      }
+
+      let selected = [];
+      if (!this.activeFilter || this.activeFilter === 'all') {
+        const byCategory = {};
+        unseen.forEach((q) => {
+          if (!byCategory[q.category]) byCategory[q.category] = [];
+          byCategory[q.category].push(q);
+        });
+
+        const categories = this.shuffleArray(Object.keys(byCategory));
+        categories.forEach((cat) => {
+          if (selected.length < 10 && byCategory[cat].length > 0) {
+            const shuffledCat = this.shuffleArray(byCategory[cat]);
+            selected.push(shuffledCat[0]);
+          }
+        });
+
+        if (selected.length < 10) {
+          const selectedIds = new Set(selected.map((q) => q.id));
+          const remaining = this.shuffleArray(unseen.filter((q) => !selectedIds.has(q.id)));
+          selected = selected.concat(remaining.slice(0, 10 - selected.length));
+        }
+      } else {
+        selected = this.shuffleArray(unseen).slice(0, 10);
+      }
+
+      if (selected.length < 10) {
+        const selectedIds = new Set(selected.map((q) => q.id));
+        const fallback = this.shuffleArray(pool.filter((q) => !selectedIds.has(q.id)));
+        selected = selected.concat(fallback.slice(0, 10 - selected.length));
+      }
+
+      selected = this.shuffleArray(selected).slice(0, 10);
+
+      selected.forEach((q) => {
+        if (!this.seenQuestionIds.includes(q.id)) {
+          this.seenQuestionIds.push(q.id);
+        }
+      });
+      this.saveSeenQuestions();
+
+      this.currentQuestions = selected.map((q) => {
         const clonedOptions = q.options.map((opt) => ({ ...opt }));
         return {
           ...q,
@@ -984,13 +1046,14 @@
     }
 
     shuffleArray(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(this.cryptoRandom() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
       }
-      return arr;
+      return copy;
     }
 
     getAudioContext() {
