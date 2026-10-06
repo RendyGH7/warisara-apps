@@ -299,7 +299,7 @@
   }
 
   function getSpeechTipClass (pos) {
-    const map = { br: 'tip-left', bl: 'tip-right', tr: 'tip-left', tl: 'tip-right' };
+    const map = { br: 'tip-right', bl: 'tip-left', tr: 'tip-right', tl: 'tip-left' };
     return map[pos] || 'tip-bottom';
   }
 
