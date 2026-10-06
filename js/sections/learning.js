@@ -7,6 +7,7 @@
       this.activeFilter = 'all';
       this.timerMode = false;
       this.autoAdvance = false;
+      this.soundEnabled = true;
 
       this.currentQuestions = [];
       this.currentIndex = 0;
@@ -45,11 +46,17 @@
 
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
       this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
+      this.labelTimerToggle = document.getElementById('label-timer-toggle');
+      this.btnAutoToggle = document.getElementById('btn-toggle-auto-advance');
+      this.labelAutoToggle = document.getElementById('label-auto-toggle');
+      this.btnSoundToggle = document.getElementById('btn-toggle-sound');
+      this.iconSoundToggle = document.getElementById('icon-sound-toggle');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
 
       this.arenaSection = document.getElementById('quiz-interactive-arena');
       this.stepIndicator = document.getElementById('quiz-step-indicator');
       this.progressFill = document.getElementById('quiz-progress-fill');
+      this.progressText = document.getElementById('quiz-progress-text');
       this.streakPill = document.getElementById('quiz-streak-pill');
       this.streakCounter = document.getElementById('quiz-streak-counter');
       this.timerBadge = document.getElementById('quiz-timer-badge');
@@ -71,6 +78,9 @@
       this.btnReviewAnswers = document.getElementById('btn-result-review');
       this.btnShareResult = document.getElementById('btn-result-share');
       this.btnCloseResult = document.getElementById('btn-result-close');
+
+      this.toastEl = document.getElementById('toast-quiz-message');
+      this.toastTextEl = document.getElementById('toast-quiz-text');
     }
 
     bindEvents() {
@@ -89,12 +99,29 @@
         });
       }
 
+      if (this.btnAutoToggle) {
+        this.btnAutoToggle.addEventListener('click', () => {
+          this.autoAdvance = !this.autoAdvance;
+          this.updateAutoButtonState();
+        });
+      }
+
+      if (this.btnSoundToggle) {
+        this.btnSoundToggle.addEventListener('click', () => {
+          this.soundEnabled = !this.soundEnabled;
+          this.updateSoundButtonState();
+          if (this.soundEnabled) {
+            this.playTone(660, 0.15);
+          }
+        });
+      }
+
       if (this.btnPrev) {
         this.btnPrev.addEventListener('click', () => this.navigateQuestion(-1));
       }
 
       if (this.btnNext) {
-        this.btnNext.addEventListener('click', () => this.navigateQuestion(1));
+        this.btnNext.addEventListener('click', () => this.handleNextClick());
       }
 
       if (this.btnPlayAgain) {
@@ -124,13 +151,86 @@
       }
 
       document.addEventListener('keydown', (e) => {
-        if (this.resultsModal && this.resultsModal.classList.contains('active')) return;
-        if (e.key === 'ArrowRight') {
-          this.navigateQuestion(1);
-        } else if (e.key === 'ArrowLeft') {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (this.resultsModal && this.resultsModal.classList.contains('active')) {
+          if (e.key === 'Escape') this.closeResultsModal();
+          return;
+        }
+
+        const key = e.key.toLowerCase();
+
+        if (key === 'a' || key === '1') {
+          this.handleOptionSelection(0);
+        } else if (key === 'b' || key === '2') {
+          this.handleOptionSelection(1);
+        } else if (key === 'c' || key === '3') {
+          this.handleOptionSelection(2);
+        } else if (key === 'd' || key === '4') {
+          this.handleOptionSelection(3);
+        } else if (key === 'arrowright' || key === 'enter' || key === ' ') {
+          if (e.key === ' ' || e.key === 'Enter') e.preventDefault();
+          this.handleNextClick();
+        } else if (key === 'arrowleft') {
           this.navigateQuestion(-1);
+        } else if (key === 'r') {
+          this.startNewQuizSession();
         }
       });
+    }
+
+    handleNextClick() {
+      const isAnswered = Boolean(this.userAnswers[this.currentIndex]);
+      const isLast = this.currentIndex === this.currentQuestions.length - 1;
+
+      if (isLast && isAnswered) {
+        this.showQuizResults();
+      } else {
+        this.navigateQuestion(1);
+      }
+    }
+
+    updateTimerButtonState() {
+      if (!this.btnTimerToggle) return;
+      if (this.timerMode) {
+        this.btnTimerToggle.classList.add('active');
+        if (this.labelTimerToggle) this.labelTimerToggle.textContent = 'Mode Timer: 25s';
+        const icon = this.btnTimerToggle.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = 'timer';
+      } else {
+        this.btnTimerToggle.classList.remove('active');
+        if (this.labelTimerToggle) this.labelTimerToggle.textContent = 'Mode Santai';
+        const icon = this.btnTimerToggle.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = 'timer_off';
+      }
+    }
+
+    updateAutoButtonState() {
+      if (!this.btnAutoToggle) return;
+      if (this.autoAdvance) {
+        this.btnAutoToggle.classList.add('active');
+        if (this.labelAutoToggle) this.labelAutoToggle.textContent = 'Auto-Lanjut: Aktif';
+      } else {
+        this.btnAutoToggle.classList.remove('active');
+        if (this.labelAutoToggle) this.labelAutoToggle.textContent = 'Auto-Lanjut: Mati';
+      }
+    }
+
+    updateSoundButtonState() {
+      if (!this.btnSoundToggle) return;
+      if (this.soundEnabled) {
+        this.btnSoundToggle.classList.add('active');
+        if (this.iconSoundToggle) {
+          this.iconSoundToggle.textContent = 'volume_up';
+          this.iconSoundToggle.className = 'material-symbols-outlined text-base text-brass-300';
+        }
+      } else {
+        this.btnSoundToggle.classList.remove('active');
+        if (this.iconSoundToggle) {
+          this.iconSoundToggle.textContent = 'volume_off';
+          this.iconSoundToggle.className = 'material-symbols-outlined text-base text-surface/40';
+        }
+      }
     }
 
     renderCategoryChips() {
@@ -142,11 +242,11 @@
         { id: 'Arsitektur Vernakular', label: 'Arsitektur Adat' },
         { id: 'Tosan Aji & Pusaka', label: 'Tosan Aji & Senjata' },
         { id: 'Seni Pertunjukan', label: 'Tarian & Teater' },
-        { id: 'Alat Musik Tradisional', label: 'Musik & Seni Bunyi' },
-        { id: 'Mitos & Tutur Lisan', label: 'Mitos & Cerita Rakyat' },
-        { id: 'Tradisi & Ritus Adat', label: 'Upacara & Falsafah' },
+        { id: 'Alat Musik Tradisional', label: 'Musik & Bunyi' },
+        { id: 'Mitos & Tutur Lisan', label: 'Mitos & Legenda' },
+        { id: 'Tradisi & Ritus Adat', label: 'Upacara & Adat' },
         { id: 'Kriya & Ukiran', label: 'Kriya & Ornamen' },
-        { id: 'Jalur Rempah & Kuliner', label: 'Jalur Rempah & Rasa' }
+        { id: 'Jalur Rempah & Kuliner', label: 'Jalur Rempah' }
       ];
 
       this.categoryChipsContainer.innerHTML = categories
@@ -161,10 +261,9 @@
 
       this.categoryChipsContainer.querySelectorAll('.quiz-filter-chip').forEach((btn) => {
         btn.addEventListener('click', () => {
+          this.activeFilter = btn.dataset.cat;
           this.categoryChipsContainer.querySelectorAll('.quiz-filter-chip').forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
-          this.activeFilter = btn.dataset.cat;
-          this.playTone(440, 0.08);
           this.startNewQuizSession();
         });
       });
@@ -172,15 +271,15 @@
 
     renderStatsBanner() {
       if (this.totalBankBadge) {
-        this.totalBankBadge.textContent = `${this.fullBank.length} Soal`;
+        this.totalBankBadge.textContent = this.fullBank.length > 0 ? `${this.fullBank.length}` : '130';
       }
       if (this.totalCompletedBadge) {
-        this.totalCompletedBadge.textContent = `${this.stats.totalSessions} Sesi`;
+        this.totalCompletedBadge.textContent = `${this.stats.totalSessions || 0}`;
       }
       if (this.avgAccuracyBadge) {
-        const totalAnswered = this.stats.totalAnswered || 0;
-        const totalCorrect = this.stats.totalCorrect || 0;
-        const pct = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+        const totalA = this.stats.totalAnswered || 0;
+        const totalC = this.stats.totalCorrect || 0;
+        const pct = totalA > 0 ? Math.round((totalC / totalA) * 100) : 0;
         this.avgAccuracyBadge.textContent = `${pct}%`;
       }
       if (this.highestStreakBadge) {
@@ -188,42 +287,21 @@
       }
     }
 
-    updateTimerButtonState() {
-      if (!this.btnTimerToggle) return;
-      if (this.timerMode) {
-        this.btnTimerToggle.classList.add('bg-brass-400', 'text-ink');
-        this.btnTimerToggle.classList.remove('bg-white/5', 'text-surface/80');
-        this.btnTimerToggle.innerHTML = `
-          <span class="material-symbols-outlined text-sm">timer</span>
-          <span>Timer: 25s Aktif</span>
-        `;
-      } else {
-        this.btnTimerToggle.classList.remove('bg-brass-400', 'text-ink');
-        this.btnTimerToggle.classList.add('bg-white/5', 'text-surface/80');
-        this.btnTimerToggle.innerHTML = `
-          <span class="material-symbols-outlined text-sm">timer_off</span>
-          <span>Mode Santai (Tanpa Timer)</span>
-        `;
-      }
-    }
-
     startNewQuizSession() {
       this.clearTimer();
 
       let eligible = this.fullBank;
-      if (this.activeFilter !== 'all') {
+      if (this.activeFilter && this.activeFilter !== 'all') {
         eligible = this.fullBank.filter((q) => q.category === this.activeFilter);
-        if (eligible.length === 0) eligible = this.fullBank;
+        if (eligible.length < 5) eligible = this.fullBank;
       }
 
-      const shuffled = this.shuffleArray([...eligible]);
-      const selected = shuffled.slice(0, Math.min(10, shuffled.length));
-
-      this.currentQuestions = selected.map((q) => {
-        const clonedOptions = this.shuffleArray([...q.options]);
+      const shuffledPool = this.shuffleArray([...eligible]);
+      this.currentQuestions = shuffledPool.slice(0, 10).map((q) => {
+        const clonedOptions = q.options.map((opt) => ({ ...opt }));
         return {
           ...q,
-          sessionOptions: clonedOptions
+          sessionOptions: this.shuffleArray(clonedOptions)
         };
       });
 
@@ -236,7 +314,6 @@
       this.sessionStartTime = Date.now();
 
       this.updateStreakDisplay();
-      this.renderDotsNav();
       this.renderQuestionCard('right');
 
       if (this.timerMode) {
@@ -272,7 +349,11 @@
             const dir = targetIdx > this.currentIndex ? 'right' : 'left';
             this.currentIndex = targetIdx;
             this.renderQuestionCard(dir);
-            if (this.timerMode) this.startQuestionTimer();
+            if (this.timerMode && !this.userAnswers[this.currentIndex]) {
+              this.startQuestionTimer();
+            } else {
+              this.clearTimer();
+            }
           }
         });
       });
@@ -288,13 +369,17 @@
         this.stepIndicator.textContent = `Soal ${String(this.currentIndex + 1).padStart(2, '0')} dari ${String(total).padStart(2, '0')}`;
       }
 
+      const pct = Math.round(((this.currentIndex + 1) / total) * 100);
       if (this.progressFill) {
-        const pct = ((this.currentIndex + 1) / total) * 100;
         this.progressFill.style.width = `${pct}%`;
+      }
+      if (this.progressText) {
+        this.progressText.textContent = `${pct}% Selesai`;
       }
 
       const answeredData = this.userAnswers[this.currentIndex];
       const isAnswered = Boolean(answeredData);
+      const isLast = this.currentIndex === total - 1;
 
       const animClass = slideDirection === 'left' ? 'anim-in-left' : 'anim-in-right';
 
@@ -315,14 +400,15 @@
           <button class="quiz-option-choice ${extraClass}" data-opt-idx="${optIdx}" ${isAnswered ? 'disabled' : ''}>
             <span class="quiz-letter-badge">${letter}</span>
             <span class="flex-1 text-xs sm:text-sm font-medium leading-relaxed">${opt.text}</span>
+            <span class="quiz-shortcut-badge">[${letter}]</span>
             ${
               isAnswered && opt.correct
-                ? '<span class="material-symbols-outlined text-emerald-400 text-lg">check_circle</span>'
+                ? '<span class="material-symbols-outlined text-emerald-400 text-xl flex-shrink-0">check_circle</span>'
                 : ''
             }
             ${
               isAnswered && answeredData.selectedIdx === optIdx && !opt.correct
-                ? '<span class="material-symbols-outlined text-rose-400 text-lg">cancel</span>'
+                ? '<span class="material-symbols-outlined text-rose-400 text-xl flex-shrink-0">cancel</span>'
                 : ''
             }
           </button>
@@ -339,28 +425,36 @@
         feedbackHtml = `
           <div class="quiz-feedback-box mt-6 border ${
             isRight
-              ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-100'
-              : 'bg-rose-950/40 border-rose-500/50 text-rose-100'
+              ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-100'
+              : 'bg-rose-950/40 border-rose-500/40 text-rose-100'
           }">
             <div class="flex items-center gap-2 mb-2 font-display text-sm font-bold ${
               isRight ? 'text-emerald-300' : 'text-rose-300'
             }">
-              <span class="material-symbols-outlined text-base">${isRight ? 'task_alt' : 'info'}</span>
-              <span>${isRight ? 'Jawaban Benar! Kebijaksanaan Luhur' : 'Penjelasan Kultural yang Tepat'}</span>
+              <span class="material-symbols-outlined text-lg">${isRight ? 'task_alt' : 'info'}</span>
+              <span>${isRight ? 'Jawaban Benar! Kearifan Luhur Nusantara' : 'Ulasan Budaya & Fakta Autentik'}</span>
             </div>
-            <p class="text-xs sm:text-sm leading-relaxed mb-1 opacity-90">${correctOpt.explanation}</p>
+            <p class="text-xs sm:text-sm leading-relaxed mb-4 text-surface/90 font-light">${correctOpt.explanation}</p>
+
+            <div class="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+              <span class="text-[11px] text-surface/50 font-mono hidden sm:inline">Pintasan: Tekan Enter ↵</span>
+              <button id="btn-inline-next" class="quiz-btn-inline-next">
+                <span>${isLast ? 'Lihat Skor & Pencapaian Kuis' : 'Lanjut ke Soal Berikutnya'}</span>
+                <span class="material-symbols-outlined text-base">${isLast ? 'emoji_events' : 'arrow_forward'}</span>
+              </button>
+            </div>
           </div>
         `;
       }
 
       this.cardContainer.innerHTML = `
         <div class="quiz-card-box ${animClass}">
-          <div class="flex flex-wrap items-center justify-between gap-2.5 pb-4 mb-5 border-b border-white/10 text-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-white/10 text-xs">
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">
+              <span class="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/35">
                 ${q.category}
               </span>
-              <span class="text-surface/60 font-mono flex items-center gap-1">
+              <span class="text-surface/65 font-mono flex items-center gap-1">
                 <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
                 <span>${q.province}</span>
               </span>
@@ -368,9 +462,9 @@
 
             <div class="flex items-center gap-2">
               <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/5 text-surface/75 border border-white/10">
-                ${q.level}
+                Tingkat: ${q.level}
               </span>
-              <span class="text-[10px] text-brass-400/90 font-mono font-bold">
+              <span class="text-[10px] text-brass-400/80 font-mono">
                 ID: ${q.id}
               </span>
             </div>
@@ -380,8 +474,8 @@
             ${q.question}
           </h3>
 
-          <div class="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/8 text-xs text-surface/75 font-light leading-relaxed mb-6">
-            <strong class="text-brass-300/90 block mb-1 uppercase tracking-wider text-[10px]">Konteks Pusaka Tradisi:</strong>
+          <div class="quiz-context-panel text-xs text-surface/80 font-light leading-relaxed mb-6">
+            <strong class="text-brass-300 block mb-1 uppercase tracking-wider text-[10px] font-bold">Konteks Pusaka Tradisi:</strong>
             ${q.context}
           </div>
 
@@ -400,6 +494,11 @@
         });
       });
 
+      const inlineNextBtn = document.getElementById('btn-inline-next');
+      if (inlineNextBtn) {
+        inlineNextBtn.addEventListener('click', () => this.handleNextClick());
+      }
+
       this.updateNavigationButtons();
       this.renderDotsNav();
     }
@@ -410,6 +509,8 @@
 
       const q = this.currentQuestions[this.currentIndex];
       const chosenOpt = q.sessionOptions[optIdx];
+      if (!chosenOpt) return;
+
       const isCorrect = Boolean(chosenOpt && chosenOpt.correct);
 
       if (isCorrect) {
@@ -434,11 +535,15 @@
       this.updateStreakDisplay();
       this.renderQuestionCard('none');
 
-      const allAnswered = Object.keys(this.userAnswers).length === this.currentQuestions.length;
+      const total = this.currentQuestions.length;
+      const allAnswered = Object.keys(this.userAnswers).length === total;
+
       if (allAnswered) {
-        setTimeout(() => this.showQuizResults(), 1200);
+        if (this.autoAdvance) {
+          setTimeout(() => this.showQuizResults(), 1200);
+        }
       } else if (this.autoAdvance) {
-        setTimeout(() => this.navigateQuestion(1), 1400);
+        setTimeout(() => this.navigateQuestion(1), 1500);
       }
     }
 
@@ -458,7 +563,7 @@
     updateNavigationButtons() {
       if (this.btnPrev) {
         this.btnPrev.disabled = this.currentIndex === 0;
-        this.btnPrev.style.opacity = this.currentIndex === 0 ? '0.4' : '1';
+        this.btnPrev.style.opacity = this.currentIndex === 0 ? '0.35' : '1';
       }
 
       if (this.btnNext) {
@@ -467,18 +572,16 @@
 
         if (isLast && allAnswered) {
           this.btnNext.innerHTML = `
-            <span>Lihat Hasil Evaluasi</span>
+            <span>Lihat Pencapaian Kuis</span>
             <span class="material-symbols-outlined text-sm">emoji_events</span>
           `;
-          this.btnNext.classList.add('bg-brass-400', 'text-ink');
-          this.btnNext.classList.remove('bg-white/10', 'text-surface');
+          this.btnNext.className = 'px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] text-[#120F0C] text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all';
         } else {
           this.btnNext.innerHTML = `
             <span>Selanjutnya</span>
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           `;
-          this.btnNext.classList.remove('bg-brass-400', 'text-ink');
-          this.btnNext.classList.add('bg-white/10', 'text-surface');
+          this.btnNext.className = 'px-6 py-2.5 rounded-xl bg-white/10 border border-white/15 hover:border-brass-400/50 text-surface text-xs font-semibold flex items-center gap-2 transition-all';
         }
       }
     }
@@ -563,23 +666,16 @@
       const pct = Math.round((this.score / total) * 100);
 
       let title = '';
-      let desc = '';
-
       if (pct === 100) {
         title = 'Mahaguru Pusaka Nusantara';
-        desc = 'Luar biasa sempurna! Penguasaan Anda atas falsafah, tosan aji, wastra, dan adat tradisi Nusantara berada pada tingkat tertinggi.';
       } else if (pct >= 80) {
         title = 'Ksatria Penjaga Tradisi';
-        desc = 'Hebat sekali! Anda memiliki pemahaman yang sangat mendalam tentang peradaban dan kekayaan luhur bangsa Indonesia.';
       } else if (pct >= 60) {
         title = 'Penjelajah Jejak Leluhur';
-        desc = 'Bagus! Fondasi wawasan budaya Anda sudah kokoh. Terus gali lembaran cerita dan ragam kriya pusaka lainnya.';
       } else if (pct >= 40) {
         title = 'Pelajar Adat Pemula';
-        desc = 'Perjalanan mengenal akar budaya baru saja dimulai. Coba lagi 10 soal acak berikutnya untuk memperdalam pemahaman!';
       } else {
         title = 'Pencari Benih Kearifan';
-        desc = 'Jangan patah semangat! Setiap lembaran warisan Nusantara menyimpan mutiara ilmu yang siap dipelajari kembali.';
       }
 
       if (this.resultTitle) this.resultTitle.textContent = title;
@@ -587,7 +683,7 @@
       if (this.resultPercentText) this.resultPercentText.textContent = `${pct}%`;
 
       if (this.resultProgressCircle) {
-        const circumference = 2 * Math.PI * 60;
+        const circumference = 2 * Math.PI * 65;
         const offset = circumference - (pct / 100) * circumference;
         this.resultProgressCircle.style.strokeDashoffset = offset;
       }
@@ -612,7 +708,7 @@
             <span class="font-display text-lg text-forest-300 font-bold">${timeStr}</span>
           </div>
           <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Total Latihan</span>
+            <span class="text-[10px] text-surface/60 uppercase font-mono block mb-1">Total Sesi</span>
             <span class="font-display text-lg text-terracotta-300 font-bold">${this.stats.totalSessions} Sesi</span>
           </div>
         `;
@@ -669,16 +765,25 @@
       }
     }
 
+    showToast(message) {
+      if (!this.toastEl) return;
+      if (this.toastTextEl) this.toastTextEl.textContent = message;
+      this.toastEl.classList.add('show');
+      setTimeout(() => {
+        this.toastEl.classList.remove('show');
+      }, 2600);
+    }
+
     shareAchievement() {
       const total = this.currentQuestions.length;
       const pct = Math.round((this.score / total) * 100);
-      const text = `✨ Saya meraih skor ${this.score}/${total} (${pct}%) di Pusat Belajar & Kuis Budaya WARISARA! Mari uji pemahaman adat dan pusaka Nusantara Anda: https://warisara.id/pages/belajar.html`;
+      const text = `✨ Saya meraih skor ${this.score}/${total} (${pct}%) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
 
       if (navigator.clipboard) {
         navigator.clipboard
           .writeText(text)
           .then(() => {
-            alert('🎉 Teks pencapaian berhasil disalin ke clipboard! Bagikan ke teman atau media sosial.');
+            this.showToast('Pencapaian disalin ke papan klip!');
           })
           .catch(() => {
             prompt('Salin teks pencapaian berikut:', text);
@@ -734,6 +839,7 @@
     }
 
     getAudioContext() {
+      if (!this.soundEnabled) return null;
       if (!this.audioCtx) {
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         if (AudioContextClass) {
@@ -747,6 +853,7 @@
     }
 
     playTone(freq, duration = 0.15, type = 'sine') {
+      if (!this.soundEnabled) return;
       try {
         const ctx = this.getAudioContext();
         if (!ctx) return;
@@ -769,6 +876,7 @@
     }
 
     playSuccessChime() {
+      if (!this.soundEnabled) return;
       try {
         const ctx = this.getAudioContext();
         if (!ctx) return;
@@ -783,6 +891,7 @@
     }
 
     playWrongChime() {
+      if (!this.soundEnabled) return;
       try {
         const ctx = this.getAudioContext();
         if (!ctx) return;
@@ -797,6 +906,7 @@
     }
 
     playCelebrationFanfare() {
+      if (!this.soundEnabled) return;
       try {
         const ctx = this.getAudioContext();
         if (!ctx) return;
