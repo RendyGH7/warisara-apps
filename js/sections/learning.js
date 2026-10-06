@@ -9,6 +9,7 @@
       this.autoAdvance = false;
       this.soundEnabled = true;
       this.bgmEnabled = true;
+      this.isGameActive = false;
 
       this.currentQuestions = [];
       this.currentIndex = 0;
@@ -42,7 +43,6 @@
       this.renderCategoryChips();
       this.renderStatsBanner();
       this.prepareNewQuestions();
-      this.renderQuestionCard('none');
     }
 
     cacheDom() {
@@ -53,6 +53,7 @@
 
       this.categoryChipsContainer = document.getElementById('quiz-category-chips');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
+      this.btnLobbyStart = document.getElementById('btn-lobby-start');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
       this.btnTimerToggle = document.getElementById('btn-toggle-quiz-timer');
       this.labelTimerToggle = document.getElementById('label-timer-toggle');
@@ -63,6 +64,9 @@
       this.labelBgmToggle = document.getElementById('label-bgm-toggle');
       this.btnSoundToggle = document.getElementById('btn-toggle-sound');
       this.iconSoundToggle = document.getElementById('icon-sound-toggle');
+
+      this.lobbyView = document.getElementById('quiz-lobby-view');
+      this.gameplayView = document.getElementById('quiz-gameplay-view');
 
       this.countdownOverlay = document.getElementById('quiz-countdown-overlay');
       this.countdownDigit = document.getElementById('quiz-countdown-digit');
@@ -106,6 +110,12 @@
         });
       }
 
+      if (this.btnLobbyStart) {
+        this.btnLobbyStart.addEventListener('click', () => {
+          this.startQuizizzFlow();
+        });
+      }
+
       if (this.btnShuffleNew10) {
         this.btnShuffleNew10.addEventListener('click', () => {
           this.startQuizizzFlow();
@@ -130,7 +140,7 @@
         this.btnBgmToggle.addEventListener('click', () => {
           this.bgmEnabled = !this.bgmEnabled;
           this.updateBgmButtonState();
-          if (this.bgmEnabled) {
+          if (this.bgmEnabled && this.isGameActive) {
             this.startBGM();
           } else {
             this.stopBGM();
@@ -183,6 +193,7 @@
       }
 
       document.addEventListener('keydown', (e) => {
+        if (!this.isGameActive) return;
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
         if (this.resultsModal && this.resultsModal.classList.contains('active')) {
@@ -228,7 +239,7 @@
             this.countdownDigit.textContent = `${count}`;
             this.playTone(440, 0.12, 'triangle');
           } else if (count === 0) {
-            this.countdownDigit.textContent = 'MULAI! 🚀';
+            this.countdownDigit.textContent = 'MULAI!';
             this.playTone(660, 0.25, 'triangle');
           } else {
             clearInterval(cdInterval);
@@ -242,6 +253,7 @@
     }
 
     launchQuizSession() {
+      this.isGameActive = true;
       this.currentIndex = 0;
       this.userAnswers = {};
       this.score = 0;
@@ -249,6 +261,9 @@
       this.bestStreakInSession = 0;
       this.livePoints = 0;
       this.sessionStartTime = Date.now();
+
+      if (this.lobbyView) this.lobbyView.classList.add('hidden');
+      if (this.gameplayView) this.gameplayView.classList.remove('hidden');
 
       this.updateStreakDisplay();
       this.updateLivePointsDisplay();
@@ -364,7 +379,10 @@
           this.categoryChipsContainer.querySelectorAll('.quiz-filter-chip').forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
           this.prepareNewQuestions();
-          this.renderQuestionCard('none');
+          if (this.isGameActive) {
+            this.currentIndex = 0;
+            this.renderQuestionCard('none');
+          }
         });
       });
     }
@@ -882,13 +900,13 @@
     shareAchievement() {
       const total = this.currentQuestions.length;
       const pct = Math.round((this.score / total) * 100);
-      const text = `✨ Saya meraih skor ${this.livePoints.toLocaleString('id-ID')} Pts (${this.score}/${total} Benar) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
+      const text = `Saya meraih skor ${this.livePoints.toLocaleString('id-ID')} Pts (${this.score}/${total} Benar) di Pusat Belajar & Kuis Budaya WARISARA! Uji wawasan tradisi Nusantara Anda di: https://warisara.id/pages/belajar.html`;
 
       if (navigator.clipboard) {
         navigator.clipboard
           .writeText(text)
           .then(() => {
-            this.showToast('Pencapaian disalin ke papan klip!');
+            this.showToast('Pencapaian disalin ke papan klip');
           })
           .catch(() => {
             prompt('Salin teks pencapaian berikut:', text);
@@ -989,7 +1007,7 @@
 
       this.bgmStep = 0;
       this.bgmInterval = setInterval(() => {
-        if (!this.bgmEnabled) {
+        if (!this.bgmEnabled || !this.isGameActive) {
           this.stopBGM();
           return;
         }
