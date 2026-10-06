@@ -72,7 +72,8 @@
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 1.25rem;
   padding: 1.25rem 1rem;
-  backdrop-blur: 16px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
 }
@@ -183,6 +184,7 @@
   font-weight: 900;
   background: linear-gradient(135deg, #FFF9ED 0%, #D4AF37 50%, #B38728 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6));
   animation: countdownPop 0.85s cubic-bezier(0.22, 1, 0.36, 1) infinite;
