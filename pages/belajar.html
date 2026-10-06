@@ -68,6 +68,7 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/learning.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/transitions.css" />
   <link rel="stylesheet" href="../css/responsive.css" />
@@ -174,227 +175,196 @@
   </div>
 
   <main id="page-content" class="page-module-main">
-  <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
-      <div class="absolute -top-32 -right-32 w-96 h-96 bg-indigo-900/30 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
-    </div>
+    <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+      <div class="learning-hero-pattern"></div>
+      <div class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-indigo-900/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-brass-900/20 rounded-full blur-[120px]"></div>
+      </div>
 
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <span class="glass-pill mb-4 inline-block">Halaman 08 • Pusat Pengetahuan & Kuis</span>
-      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
-        Belajar Dari Akar
-      </h1>
-      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
-        Pahami makna mendalam di balik karya para leluhur melalui modul kuis edukatif interaktif dengan umpan balik dan penjelasan instan.
-      </p>
-
-      <div class="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-white/5 border border-white/15 backdrop-blur-md">
-        <div class="flex items-center gap-2 text-xs text-surface/70">
-          <span class="material-symbols-outlined text-brass-400 text-base">emoji_events</span>
-          <span>Skor Pemahaman:</span>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm">
+          <span class="material-symbols-outlined text-base">school</span>
+          <span>Halaman 08 • Pusat Pengetahuan & Kuis Budaya</span>
         </div>
-        <span id="score-counter" class="font-display text-lg text-brass-300 font-bold">0 / 6 Benar</span>
-        <button id="btn-reset-quiz" class="text-[11px] uppercase tracking-wider text-surface/50 hover:text-surface underline ml-2">Ulangi Kuis</button>
-      </div>
-    </div>
-  </section>
 
-  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
-    <div class="max-w-4xl mx-auto space-y-8" id="quiz-container">
-      
-    </div>
-  </section>
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-surface tracking-tight leading-tight mb-6">
+          Belajar Dari Akar
+        </h1>
 
-  <div id="quiz-modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="modal-container max-w-lg bg-[#181512] border border-white/15 rounded-3xl p-8 text-center space-y-4">
-      <div class="w-16 h-16 rounded-full bg-brass-400/20 border border-brass-400/40 text-brass-300 flex items-center justify-center mx-auto">
-        <span class="material-symbols-outlined text-3xl">verified</span>
+        <p class="text-base sm:text-lg lg:text-xl text-surface/80 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+          Uji pemahaman Anda melalui kuis interaktif adaptif. Setiap sesi menyajikan 10 soal acak dari bank ratusan soal berbobot tentang wastra, arsitektur, tosan aji, seni pertunjukan, dan falsafah luhur Nusantara.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8">
+          <div class="p-2 border-r border-white/10 text-center">
+            <span id="stat-total-questions-bank" class="font-display text-xl sm:text-2xl font-bold text-brass-300 block">130 Soal</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Bank Pengetahuan</span>
+          </div>
+          <div class="p-2 border-r border-white/10 text-center">
+            <span id="stat-total-completed" class="font-display text-xl sm:text-2xl font-bold text-terracotta-300 block">0 Sesi</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Tuntas Diselesaikan</span>
+          </div>
+          <div class="p-2 border-r border-white/10 text-center">
+            <span id="stat-avg-accuracy" class="font-display text-xl sm:text-2xl font-bold text-forest-300 block">0%</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Akurasi Rata-rata</span>
+          </div>
+          <div class="p-2 text-center">
+            <span id="stat-highest-streak" class="font-display text-xl sm:text-2xl font-bold text-amber-300 block">0x</span>
+            <span class="text-[10px] text-surface/60 uppercase tracking-wider">Streak Terbaik</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button id="btn-shuffle-new-10" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:scale-105 transition-all">
+            <span class="material-symbols-outlined text-base">shuffle</span>
+            <span>10 Soal Acak Baru</span>
+          </button>
+
+          <button id="btn-toggle-quiz-timer" class="px-5 py-2.5 rounded-xl bg-white/5 border border-white/12 hover:border-brass-400/50 text-surface/80 hover:text-surface text-xs font-semibold flex items-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-base">timer_off</span>
+            <span>Mode Santai (Tanpa Timer)</span>
+          </button>
+        </div>
       </div>
-      <span class="text-xs uppercase tracking-widest text-brass-400 font-bold">Kuis Selesai!</span>
-      <h3 class="font-display text-3xl font-light text-surface">Penjaga Kearifan Tradisi</h3>
-      <p id="quiz-summary-text" class="text-xs text-surface/80 leading-relaxed font-light">
-        Selamat! Anda telah menuntaskan seluruh modul eksplorasi filosofis kebudayaan Nusantara dengan pemahaman yang mendalam.
-      </p>
-      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="cerita.html" class="w-full sm:w-auto btn-glass-gold flex items-center justify-center gap-2">
-          <span>Lanjut ke Cerita Rakyat</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
-        <button id="btn-close-summary" class="w-full sm:w-auto px-5 py-2.5 rounded-full border border-white/15 text-xs text-surface/80 hover:text-surface">
-          Tutup
+    </section>
+
+    <section class="py-10 sm:py-14 px-4 sm:px-6 bg-[#181512] min-h-[75vh]" id="quiz-interactive-arena">
+      <div class="quiz-main-arena space-y-6">
+
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 studio-scroll" id="quiz-category-chips">
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span id="quiz-step-indicator" class="font-mono text-xs uppercase tracking-widest text-brass-400 font-bold">
+              Soal 01 dari 10
+            </span>
+            <div id="quiz-streak-pill" class="quiz-streak-pill hidden">
+              <span class="material-symbols-outlined text-xs">local_fire_department</span>
+              <span id="quiz-streak-counter">0x</span>
+              <span class="text-[10px] uppercase">Streak!</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div id="quiz-timer-badge" class="hidden px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 font-mono text-xs font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm animate-pulse">timer</span>
+              <span id="quiz-timer-value">25s</span>
+            </div>
+
+            <div class="w-28 sm:w-44">
+              <div class="quiz-progress-track">
+                <div id="quiz-progress-fill" class="quiz-progress-fill" style="width: 10%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="py-1" id="quiz-dots-nav">
+        </div>
+
+        <div id="quiz-active-card-container">
+        </div>
+
+        <div class="flex items-center justify-between gap-4 pt-2">
+          <button id="btn-quiz-prev" class="px-5 py-2.5 rounded-xl bg-white/5 border border-white/12 hover:bg-white/10 text-surface text-xs font-semibold flex items-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Sebelumnya</span>
+          </button>
+
+          <button id="btn-quiz-next" class="px-6 py-2.5 rounded-xl bg-white/10 border border-white/15 hover:border-brass-400/50 text-surface text-xs font-semibold flex items-center gap-2 transition-all">
+            <span>Selanjutnya</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <div id="quiz-results-modal" class="modal-overlay hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-xl items-center justify-center p-4">
+      <div class="modal-container max-w-xl bg-[#181512] border border-brass-400/40 rounded-3xl p-6 sm:p-9 text-center space-y-6 shadow-2xl relative overflow-hidden">
+        
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-brass-400/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-forest-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <button id="btn-result-close" class="absolute top-4 right-4 text-surface/60 hover:text-surface p-1.5 rounded-full hover:bg-white/10 transition-colors" aria-label="Tutup Hasil">
+          <span class="material-symbols-outlined text-xl">close</span>
         </button>
+
+        <div class="quiz-result-score-ring">
+          <svg width="140" height="140">
+            <circle class="bg-ring" cx="70" cy="70" r="60"></circle>
+            <circle id="result-circle-progress" class="progress-ring" cx="70" cy="70" r="60"></circle>
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <span id="result-percent-text" class="font-display text-3xl font-bold text-brass-300">100%</span>
+            <span id="result-score-text" class="text-[11px] text-surface/60 font-mono">10 / 10 Benar</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-brass-400 font-bold block mb-1">Gelar Pencapaian Kuis</span>
+          <h3 id="result-badge-title" class="font-display text-2xl sm:text-3xl font-light text-surface">
+            Mahaguru Pusaka Nusantara
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-left" id="result-details-grid">
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/8 text-left">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-surface/50 block mb-2">Performa Berdasarkan Kategori:</span>
+          <div id="result-category-breakdown" class="space-y-1">
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button id="btn-result-play-again" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all">
+            <span class="material-symbols-outlined text-sm">shuffle</span>
+            <span>Ambil 10 Soal Acak Baru</span>
+          </button>
+
+          <button id="btn-result-review" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/5 border border-white/12 hover:bg-white/10 text-surface text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-sm">visibility</span>
+            <span>Tinjau Jawaban</span>
+          </button>
+
+          <button id="btn-result-share" class="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/5 border border-white/12 hover:bg-white/10 text-surface/80 hover:text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-all" title="Salin Pencapaian">
+            <span class="material-symbols-outlined text-sm">share</span>
+            <span>Bagikan</span>
+          </button>
+        </div>
+
       </div>
     </div>
-  </div>
   </main>
 
-  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
-      <div class="flex items-center gap-6">
-        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
-        <a href="cerita.html" class="hover:text-surface">Cerita Rakyat</a>
-        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
+  <footer class="py-10 bg-[#110F0D] text-surface/60 text-xs border-t border-border-dark px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold text-brass-300">W</span>
+        <div>
+          <div class="font-bold text-surface">WARISARA — Belajar Dari Akar</div>
+          <div class="text-[11px] text-surface/40">Pusat Pengetahuan & Modul Kuis Budaya Nusantara</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 text-xs">
+        <a href="../index.html" class="hover:text-brass-300 transition-colors">Peta Beranda</a>
+        <a href="cerita.html" class="hover:text-brass-300 transition-colors">Cerita Rakyat</a>
+        <a href="pass-it-on.html" class="hover:text-brass-300 transition-colors">Pass It On</a>
       </div>
     </div>
   </footer>
 
   <script src="../data/quiz.js"></script>
   <script src="../js/utils/helpers.js"></script>
+  <script src="../js/sections/learning.js"></script>
   <script src="../js/utils/page-transition.js"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
   <script src="../js/components/navbar.js"></script>
-  <script>
-    function initBelajarPage() {
-      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
-
-      const quizData = window.QUIZ_DATA || [];
-      const container = document.getElementById("quiz-container");
-      const scoreCounter = document.getElementById("score-counter");
-      const resetBtn = document.getElementById("btn-reset-quiz");
-      const modalOverlay = document.getElementById("quiz-modal-overlay");
-      const closeSummaryBtn = document.getElementById("btn-close-summary");
-      const summaryText = document.getElementById("quiz-summary-text");
-
-      let userAnswers = {}; // { [quizId]: selectedIndex }
-
-      function renderQuiz() {
-        if (!container) return;
-
-        container.innerHTML = quizData.map((q, qIndex) => {
-          const answered = userAnswers[q.id] !== undefined;
-          const selectedIdx = userAnswers[q.id];
-
-          return `
-            <div class="glass-card p-6 sm:p-8" id="card-${q.id}">
-              <div class="flex items-center justify-between text-xs text-surface/60 mb-4 pb-3 border-b border-white/10">
-                <div class="flex items-center gap-2">
-                  <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase bg-brass-400/20 text-brass-300">
-                    Modul 0${qIndex + 1}
-                  </span>
-                  <span>${q.category} • ${q.province}</span>
-                </div>
-                <span class="text-brass-300 font-medium">${q.level}</span>
-              </div>
-
-              <h3 class="font-display text-xl sm:text-2xl font-light text-surface mb-3 leading-snug">
-                ${q.question}
-              </h3>
-
-              <p class="text-xs text-surface/75 mb-6 font-light leading-relaxed bg-white/[0.02] p-3 rounded-xl border border-white/5">
-                <strong>Konteks Tradisi:</strong> ${q.context}
-              </p>
-
-              <div class="space-y-3">
-                ${q.options.map((opt, optIndex) => {
-                  let btnClass = "w-full text-left p-4 rounded-xl border text-xs font-medium transition-all shadow-sm ";
-                  if (!answered) {
-                    btnClass += "border-white/10 bg-white/5 hover:border-brass-400/60 hover:bg-white/10 text-surface";
-                  } else {
-                    if (opt.correct) {
-                      btnClass += "border-forest-500 bg-forest-500/20 text-forest-300 font-semibold";
-                    } else if (selectedIdx === optIndex && !opt.correct) {
-                      btnClass += "border-terracotta-500 bg-terracotta-500/20 text-terracotta-300 font-semibold";
-                    } else {
-                      btnClass += "border-white/5 bg-white/[0.02] text-surface/40 opacity-60";
-                    }
-                  }
-
-                  return `
-                    <button class="${btnClass} quiz-opt-btn" data-qid="${q.id}" data-opt="${optIndex}" ${answered ? "disabled" : ""}>
-                      <div class="flex items-start gap-2.5">
-                        <span class="font-mono text-[11px] mt-0.5 opacity-70">${String.fromCharCode(65 + optIndex)}.</span>
-                        <span>${opt.text}</span>
-                      </div>
-                    </button>
-                  `;
-                }).join("")}
-              </div>
-
-              ${answered ? `
-                <div class="mt-4 p-4 rounded-xl text-xs leading-relaxed border ${
-                  q.options[selectedIdx].correct
-                    ? "bg-forest-900/30 border-forest-500/40 text-forest-200"
-                    : "bg-terracotta-900/30 border-terracotta-500/40 text-terracotta-200"
-                }">
-                  <strong class="block mb-1">${q.options[selectedIdx].correct ? "✓ Penjelasan Tepat" : "✕ Evaluasi Filosofis"}</strong>
-                  ${q.options[selectedIdx].explanation}
-                </div>
-              ` : ""}
-            </div>
-          `;
-        }).join("");
-
-        // Attach listeners
-        container.querySelectorAll(".quiz-opt-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const qid = btn.dataset.qid;
-            const optIdx = parseInt(btn.dataset.opt, 10);
-            userAnswers[qid] = optIdx;
-            updateScore();
-            renderQuiz();
-
-            // Check if all answered
-            if (Object.keys(userAnswers).length === quizData.length) {
-              showSummary();
-            }
-          });
-        });
-      }
-
-      function updateScore() {
-        let correctCount = 0;
-        Object.entries(userAnswers).forEach(([qid, optIdx]) => {
-          const q = quizData.find((item) => item.id === qid);
-          if (q && q.options[optIdx] && q.options[optIdx].correct) {
-            correctCount++;
-          }
-        });
-
-        scoreCounter.textContent = `${correctCount} / ${quizData.length} Benar`;
-      }
-
-      function showSummary() {
-        let correctCount = 0;
-        Object.entries(userAnswers).forEach(([qid, optIdx]) => {
-          const q = quizData.find((item) => item.id === qid);
-          if (q && q.options[optIdx] && q.options[optIdx].correct) {
-            correctCount++;
-          }
-        });
-
-        summaryText.textContent = `Anda berhasil menjawab dengan benar ${correctCount} dari ${quizData.length} pertanyaan filosofis kebudayaan Nusantara. Tetap rawat dan wariskan pengetahuan luhur ini!`;
-        modalOverlay.classList.remove("hidden");
-        modalOverlay.classList.add("active");
-      }
-
-      if (closeSummaryBtn) {
-        closeSummaryBtn.addEventListener("click", () => {
-          modalOverlay.classList.remove("active");
-          modalOverlay.classList.add("hidden");
-        });
-      }
-
-      if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
-          userAnswers = {};
-          updateScore();
-          renderQuiz();
-        });
-      }
-
-      renderQuiz();
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initBelajarPage);
-    } else {
-      initBelajarPage();
-    }
-    window.initBelajarPage = initBelajarPage;
-  </script>
 </body>
 
 </html>
