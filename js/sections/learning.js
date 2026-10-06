@@ -100,9 +100,34 @@
 
       this.toastEl = document.getElementById('toast-quiz-message');
       this.toastTextEl = document.getElementById('toast-quiz-text');
+
+      this.arenaMascotImg = document.getElementById('arena-mascot-img');
+      this.arenaMascotStatusText = document.getElementById('arena-mascot-status-text');
+      this.arenaMascotQuote = document.getElementById('arena-mascot-quote');
+      this.heroMascotCard = document.getElementById('hero-mascot-card');
+      this.heroMascotSpeech = document.getElementById('hero-mascot-speech');
+      this.modalMascotImg = document.getElementById('modal-mascot-img');
+      this.modalMascotSpeech = document.getElementById('modal-mascot-speech');
     }
 
     bindEvents() {
+      if (this.heroMascotCard) {
+        const mascotGreetings = [
+          'Halo Sahabat Budaya! Kenalkan, aku Wari. Siap menjelajahi pusaka Nusantara?',
+          'Kearifan Nusantara terbentang dari Sabang sampai Merauke. Ayo buktikan pengetahuanmu!',
+          'Setiap ukiran, tenun, dan kidung punya cerita luhur. Mari kita pelajari bersama!',
+          'Fokus dan semangat! Kuis ini menyajikan 10 soal acak dari ratusan pusaka tradisi!'
+        ];
+        let greetIdx = 0;
+        this.heroMascotCard.addEventListener('click', () => {
+          greetIdx = (greetIdx + 1) % mascotGreetings.length;
+          if (this.heroMascotSpeech) {
+            this.heroMascotSpeech.textContent = mascotGreetings[greetIdx];
+          }
+          this.playTone(880, 0.12, 'triangle');
+        });
+      }
+
       if (this.btnStartGame) {
         this.btnStartGame.addEventListener('click', () => {
           this.startQuizizzFlow();
@@ -619,6 +644,64 @@
 
       this.updateNavigationButtons();
       this.renderDotsNav();
+
+      if (isAnswered) {
+        if (answeredData.isCorrect) {
+          this.setArenaMascotMood('happy');
+        } else {
+          this.setArenaMascotMood('thinking');
+        }
+      } else {
+        this.setArenaMascotMood('idle');
+      }
+    }
+
+    setArenaMascotMood(mood, customQuote = null) {
+      if (!this.arenaMascotImg) return;
+
+      const idleQuotes = [
+        'Pusaka Nusantara sarat dengan kearifan luhur. Baca tiap butir pertanyaan dengan seksama ya!',
+        'Perhatikan konteks budayanya dengan teliti, jawabannya tersembunyi dalam filosofi leluhur.',
+        'Tenang dan fokus, kamu memiliki waktu 15 menit untuk menyelesaikan seluruh soal.',
+        'Tahukah kamu? Setiap motif wastra dan rancang arsitektur menyimpan doa dan falsafah agung.'
+      ];
+
+      const happyQuotes = [
+        'Luar biasa! Jawabanmu tepat sekali! Wawasan budayamu sungguh mengagumkan!',
+        'Hebat! Tepat dan cermat! Pengetahuan pusakamu semakin terasah!',
+        'Keren sekali! Pertahankan konsentrasi dan raih poin maksimal!',
+        'Mantap! Satu langkah lebih dekat menuju gelar Mahaguru Pusaka!'
+      ];
+
+      const thinkingQuotes = [
+        'Mari pelajari pembahasannya! Dari setiap kekeliruan, lahir pemahaman baru yang berharga.',
+        'Menarik sekali sejarah pusaka ini! Jadikan ini bekal pengetahuan budayamu.',
+        'Jangan berkecil hati, ayo pahami konteksnya dan taklukkan soal berikutnya!',
+        'Warisan leluhur begitu kaya dan dalam. Mari renungkan makna di balik penjelasannya.'
+      ];
+
+      if (mood === 'happy') {
+        this.arenaMascotImg.src = '../assets/mascot/wari-happy.png';
+        this.arenaMascotImg.classList.remove('mascot-bounce');
+        void this.arenaMascotImg.offsetWidth;
+        this.arenaMascotImg.classList.add('mascot-bounce');
+        if (this.arenaMascotStatusText) this.arenaMascotStatusText.textContent = 'Hebat! Tepat Sekali';
+        if (this.arenaMascotQuote) {
+          this.arenaMascotQuote.textContent = customQuote || happyQuotes[Math.floor(Math.random() * happyQuotes.length)];
+        }
+      } else if (mood === 'thinking') {
+        this.arenaMascotImg.src = '../assets/mascot/wari-thinking.png';
+        if (this.arenaMascotStatusText) this.arenaMascotStatusText.textContent = 'Mari Pelajari Bersama';
+        if (this.arenaMascotQuote) {
+          this.arenaMascotQuote.textContent = customQuote || thinkingQuotes[Math.floor(Math.random() * thinkingQuotes.length)];
+        }
+      } else {
+        this.arenaMascotImg.src = '../assets/mascot/wari-idle.png';
+        if (this.arenaMascotStatusText) this.arenaMascotStatusText.textContent = 'Siap Menemani';
+        if (this.arenaMascotQuote) {
+          this.arenaMascotQuote.textContent = customQuote || idleQuotes[this.currentIndex % idleQuotes.length];
+        }
+      }
     }
 
     handleOptionSelection(optIdx) {
@@ -641,9 +724,11 @@
         this.livePoints = this.score * basePoints;
 
         this.playSuccessChime();
+        this.setArenaMascotMood('happy');
       } else {
         this.streak = 0;
         this.playWrongChime();
+        this.setArenaMascotMood('thinking');
       }
 
       this.userAnswers[this.currentIndex] = {
@@ -841,6 +926,19 @@
           this.resultMotivationalText.textContent = `Potensi bagus! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Pelajari konteks tradisi lebih dalam untuk mencapai 1.000 poin!`;
         } else {
           this.resultMotivationalText.textContent = `Langkah awal yang baik! Anda meraih ${this.livePoints} Poin dari Maksimal 1.000 Poin. Ulangi sesi kuis untuk mengejar target 1.000 poin maksimal!`;
+        }
+      }
+
+      if (this.modalMascotImg && this.modalMascotSpeech) {
+        if (pct >= 80) {
+          this.modalMascotImg.src = '../assets/mascot/wari-happy.png';
+          this.modalMascotSpeech.textContent = `Wah, luar biasa! Anda berhasil meraih ${this.livePoints} poin dari maksimal 1.000 poin! Pengetahuan Anda tentang pusaka Nusantara sungguh membanggakan!`;
+        } else if (pct >= 60) {
+          this.modalMascotImg.src = '../assets/mascot/wari-happy.png';
+          this.modalMascotSpeech.textContent = `Kerja bagus! Anda mengantongi ${this.livePoints} poin dari target 1.000 poin. Terus perdalam kecintaan Anda pada warisan budaya leluhur!`;
+        } else {
+          this.modalMascotImg.src = '../assets/mascot/wari-thinking.png';
+          this.modalMascotSpeech.textContent = `Awal penjelajahan yang baik! Anda mengumpulkan ${this.livePoints} poin. Jangan ragu mengulang kembali kuis untuk mengungkap kekayaan tradisi Nusantara!`;
         }
       }
 
@@ -1123,12 +1221,12 @@
         const filter = ctx.createBiquadFilter();
 
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1400, ctx.currentTime);
+        filter.frequency.setValueAtTime(2400, ctx.currentTime);
 
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-        gain.gain.setValueAtTime(0.028, ctx.currentTime);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
 
         osc.connect(filter);
@@ -1145,7 +1243,7 @@
           bassOsc.type = 'sine';
           bassOsc.frequency.setValueAtTime(bassFreq, ctx.currentTime);
 
-          bassGain.gain.setValueAtTime(0.04, ctx.currentTime);
+          bassGain.gain.setValueAtTime(0.22, ctx.currentTime);
           bassGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
 
           bassOsc.connect(bassGain);
@@ -1176,7 +1274,7 @@
         osc.type = type;
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.setValueAtTime(0.24, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
 
         osc.connect(gain);
