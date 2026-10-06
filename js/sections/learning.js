@@ -55,8 +55,6 @@
       this.heroStartWrapper = document.getElementById('hero-start-btn-wrapper');
       this.btnStartGame = document.getElementById('btn-quiz-start-game');
       this.btnShuffleNew10 = document.getElementById('btn-shuffle-new-10');
-      this.btnAutoToggle = document.getElementById('btn-toggle-auto-advance');
-      this.labelAutoToggle = document.getElementById('label-auto-toggle');
       this.btnBgmToggle = document.getElementById('btn-toggle-bgm');
       this.iconBgmToggle = document.getElementById('icon-bgm-toggle');
       this.labelBgmToggle = document.getElementById('label-bgm-toggle');
@@ -113,13 +111,6 @@
       if (this.btnShuffleNew10) {
         this.btnShuffleNew10.addEventListener('click', () => {
           this.startQuizizzFlow();
-        });
-      }
-
-      if (this.btnAutoToggle) {
-        this.btnAutoToggle.addEventListener('click', () => {
-          this.autoAdvance = !this.autoAdvance;
-          this.updateAutoButtonState();
         });
       }
 
@@ -275,17 +266,6 @@
 
       if (this.bgmEnabled) {
         this.startBGM();
-      }
-    }
-
-    updateAutoButtonState() {
-      if (!this.btnAutoToggle) return;
-      if (this.autoAdvance) {
-        this.btnAutoToggle.classList.add('active');
-        if (this.labelAutoToggle) this.labelAutoToggle.textContent = 'Auto-Lanjut: Aktif';
-      } else {
-        this.btnAutoToggle.classList.remove('active');
-        if (this.labelAutoToggle) this.labelAutoToggle.textContent = 'Auto-Lanjut: Mati';
       }
     }
 
