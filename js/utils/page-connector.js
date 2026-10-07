@@ -92,7 +92,7 @@ window.WARISARA_PAGE_CONNECTOR = {
     mediaElements.forEach((el) => {
       const src = el.getAttribute("src");
       if (src && src.startsWith("../")) {
-        el.setAttribute("src", src.replace(/^\.\.\
+        el.setAttribute("src", src.replace(/^\.\.\//, ""));
       }
     });
 
@@ -118,7 +118,7 @@ window.WARISARA_PAGE_CONNECTOR = {
         a.setAttribute("href", pageAnchorMap[href]);
         a.classList.add("dynamic-page-anchor");
       } else if (href.startsWith("../")) {
-        a.setAttribute("href", href.replace(/^\.\.\
+        a.setAttribute("href", href.replace(/^\.\.\//, ""));
       }
     });
   },
