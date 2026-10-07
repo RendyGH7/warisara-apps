@@ -312,14 +312,14 @@
       `;
     }
 
-    renderOpeningStageMarkup(story, pageIdx = 0) {
+    renderOpeningStageMarkup(story, pageIdx = 0, isOpen = false) {
       const leftPageHtml = this.getPageLeftHTML(pageIdx);
       const rightPageHtml = this.getPageRightHTML(pageIdx);
       const frontCoverHtml = this.getFrontCoverHTML(story);
 
       return `
         <div class="opening-flight-wrapper">
-          <div class="opening-stage-casing is-closed">
+          <div class="opening-stage-casing ${isOpen ? 'is-open' : 'is-closed'}">
             <div class="opening-ground-shadow"></div>
 
             <div class="opening-book-spread">
@@ -328,6 +328,7 @@
                   ${rightPageHtml}
                   <div class="opening-right-cast-shadow"></div>
                 </div>
+                <div class="opening-paper-block-thickness"></div>
               </div>
 
               <div class="opening-left-board">
@@ -335,11 +336,16 @@
                   <div class="opening-left-sheet">
                     ${leftPageHtml}
                   </div>
+                  <div class="opening-inside-fold-shadow"></div>
                 </div>
 
                 <div class="opening-board-face-outside">
                   ${frontCoverHtml}
                 </div>
+
+                <div class="opening-cover-edge-left"></div>
+                <div class="opening-cover-edge-top"></div>
+                <div class="opening-cover-edge-bottom"></div>
               </div>
 
               <div class="opening-spine-bar"></div>
@@ -365,7 +371,7 @@
       if (this.sideDock) this.sideDock.classList.add('is-hidden');
       if (this.btnModalClose) this.btnModalClose.classList.add('is-hidden');
 
-      this.openingStage.innerHTML = this.renderOpeningStageMarkup(story, 0);
+      this.openingStage.innerHTML = this.renderOpeningStageMarkup(story, 0, false);
       this.openingStage.classList.add('active');
       this.bookModal.classList.remove('modal-closing-backdrop');
       this.bookModal.classList.add('active');
@@ -401,7 +407,7 @@
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            flightWrapper.style.transition = 'transform 0.62s cubic-bezier(0.16, 1, 0.3, 1)';
+            flightWrapper.style.transition = 'transform 1.0s cubic-bezier(0.12, 0.95, 0.22, 1)';
             flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
 
             setTimeout(() => {
@@ -412,13 +418,13 @@
                 casingEl.classList.remove('is-closed');
                 casingEl.classList.add('is-open');
               }
-            }, 300);
+            }, 480);
 
             setTimeout(() => {
               if (this.bookCasing) {
                 this.bookCasing.classList.remove('is-hidden');
                 this.bookCasing.classList.add('book-settle');
-                setTimeout(() => this.bookCasing.classList.remove('book-settle'), 500);
+                setTimeout(() => this.bookCasing.classList.remove('book-settle'), 850);
               }
               if (this.openingStage) {
                 this.openingStage.classList.remove('active');
@@ -426,7 +432,7 @@
               }
               if (this.sideDock) this.sideDock.classList.remove('is-hidden');
               if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
-            }, 1250);
+            }, 1800);
           });
         });
       } else {
@@ -438,13 +444,13 @@
             casingEl.classList.remove('is-closed');
             casingEl.classList.add('is-open');
           }
-        }, 70);
+        }, 120);
 
         setTimeout(() => {
           if (this.bookCasing) {
             this.bookCasing.classList.remove('is-hidden');
             this.bookCasing.classList.add('book-settle');
-            setTimeout(() => this.bookCasing.classList.remove('book-settle'), 500);
+            setTimeout(() => this.bookCasing.classList.remove('book-settle'), 850);
           }
           if (this.openingStage) {
             this.openingStage.classList.remove('active');
@@ -452,7 +458,7 @@
           }
           if (this.sideDock) this.sideDock.classList.remove('is-hidden');
           if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
-        }, 1120);
+        }, 1500);
       }
     }
 
@@ -487,7 +493,8 @@
 
       if (this.openingStage && this.activeStory) {
         const pageToClose = this.currentPageIdx;
-        this.openingStage.innerHTML = this.renderOpeningStageMarkup(this.activeStory, pageToClose);
+        // 1. Render stage ALREADY in open state (isOpen = true) so it matches current open tome 1:1
+        this.openingStage.innerHTML = this.renderOpeningStageMarkup(this.activeStory, pageToClose, true);
         const flightWrapper = this.openingStage.querySelector('.opening-flight-wrapper');
         const casingEl = this.openingStage.querySelector('.opening-stage-casing');
 
@@ -496,14 +503,11 @@
           flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
         }
 
-        if (casingEl) {
-          casingEl.classList.remove('is-closed');
-          casingEl.classList.add('is-open');
-        }
-
+        // 2. Seamless swap: show openingStage and immediately hide bookCasing with zero ghost fade
         this.openingStage.classList.add('active');
-        if (this.bookCasing) this.bookCasing.classList.add('is-hidden');
+        if (this.bookCasing) this.bookCasing.classList.add('is-hidden-immediate');
 
+        // 3. Smooth natural breathing pause before majestic cover fold
         setTimeout(() => {
           if (window.WARISARA_STORY_AUDIO) {
             window.WARISARA_STORY_AUDIO.playBookClose();
@@ -512,8 +516,16 @@
             casingEl.classList.remove('is-open');
             casingEl.classList.add('is-closed');
           }
-        }, 40);
+        }, 100);
 
+        // 4. Solid cover settle/impact when the cover fully reaches closed state
+        setTimeout(() => {
+          if (casingEl) {
+            casingEl.classList.add('is-impact');
+          }
+        }, 1220);
+
+        // 5. Smooth flight back to the shelf slot (only once the book is solidly closed)
         setTimeout(() => {
           if (this.activeCardElement && flightWrapper) {
             const cardBox = this.activeCardElement.querySelector('.book-3d-card') || this.activeCardElement;
@@ -526,50 +538,63 @@
             const cardCenterX = returnRect.left + returnRect.width / 2;
             const cardCenterY = returnRect.top + returnRect.height / 2;
 
-            const closedBookSpreadWidth = Math.min(1050, stageRect.width || 1050);
+            const closedBookSpreadWidth = Math.min(1080, stageRect.width || 1080);
             const closedBookWidth = closedBookSpreadWidth * 0.5;
 
             const returnDx = cardCenterX - stageCenterX;
             const returnDy = cardCenterY - stageCenterY;
             const returnScale = Math.max(0.2, Math.min(1, returnRect.width / closedBookWidth));
 
-            flightWrapper.style.transition = 'transform 0.62s cubic-bezier(0.25, 1, 0.35, 1)';
+            flightWrapper.style.transition = 'transform 1.0s cubic-bezier(0.22, 1, 0.36, 1)';
             flightWrapper.style.transform = `translate3d(${returnDx}px, ${returnDy}px, 0px) scale(${returnScale}) rotateY(-8deg) rotateX(1.5deg)`;
             this.bookModal.classList.add('modal-closing-backdrop');
           }
-        }, 620);
+        }, 1350);
 
+        // 6. Touchdown on shelf: SEAMLESS HANDOFF (ZERO DISAPPEAR / REAPPEAR GAP)
         setTimeout(() => {
+          // Immediately reveal the real card on shelf at opacity 1 underneath the landing book
           if (this.activeCardElement) {
+            this.activeCardElement.classList.add('book-landed');
             this.activeCardElement.classList.remove('book-launching');
             try {
               this.activeCardElement.focus({ preventScroll: true });
             } catch (e) {}
           }
 
-          if (this.bookModal) {
-            this.bookModal.classList.remove('active', 'modal-closing-backdrop');
-            document.documentElement.classList.remove('book-modal-open');
-            document.body.classList.remove('book-modal-open');
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-          }
+          // Clean up stage and modal on the next animation frame for a 100% gapless handoff
+          requestAnimationFrame(() => {
+            if (this.bookModal) {
+              this.bookModal.classList.remove('active', 'modal-closing-backdrop');
+              document.documentElement.classList.remove('book-modal-open');
+              document.body.classList.remove('book-modal-open');
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+            }
 
-          if (typeof this.savedScrollY === 'number') {
-            window.scrollTo({ top: this.savedScrollY, behavior: 'instant' });
-          }
+            if (typeof this.savedScrollY === 'number') {
+              window.scrollTo({ top: this.savedScrollY, behavior: 'instant' });
+            }
 
-          if (this.openingStage) {
-            this.openingStage.classList.remove('active');
-            this.openingStage.innerHTML = '';
-          }
-          if (this.bookCasing) this.bookCasing.classList.remove('is-hidden');
+            if (this.openingStage) {
+              this.openingStage.classList.remove('active');
+              this.openingStage.innerHTML = '';
+            }
+            if (this.bookCasing) {
+              this.bookCasing.classList.remove('is-hidden', 'is-hidden-immediate');
+            }
 
-          this.activeStory = null;
-          this.activeCardElement = null;
-          this._isFlipping = false;
-          this._isClosing = false;
-        }, 1280);
+            // Remove temporary landed override so normal hover animations work
+            if (this.activeCardElement) {
+              this.activeCardElement.classList.remove('book-landed');
+            }
+
+            this.activeStory = null;
+            this.activeCardElement = null;
+            this._isFlipping = false;
+            this._isClosing = false;
+          });
+        }, 2350);
       } else {
         if (this.bookModal) {
           this.bookModal.classList.remove('active', 'modal-closing-backdrop');
@@ -966,13 +991,13 @@
         const casingEl = document.querySelector('.open-physical-book-casing');
         if (casingEl) {
           casingEl.classList.add('book-settle');
-          setTimeout(() => casingEl.classList.remove('book-settle'), 600);
+          setTimeout(() => casingEl.classList.remove('book-settle'), 850);
         }
 
         this._isFlipping = false;
         if (this.btnPrevPage) this.btnPrevPage.style.pointerEvents = '';
         if (this.btnNextPage) this.btnNextPage.style.pointerEvents = '';
-      }, 1050);
+      }, 1400);
     }
 
     updateStoryFontSize() {
