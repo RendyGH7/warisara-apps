@@ -1,52 +1,34 @@
-/* =====================================================================
-   wari-mascot.css — Si Wari Global Companion
-   Architecture: two-layer separation
-     .wari-companion        = position anchor
-     .wari-sprite-wrap      = idle loop + hover/active (CSS only)
-     img.wari-sprite        = expressive one-shots (Web Animations API)
-   This separation prevents transform conflicts that cause jank.
-   ===================================================================== */
-
-/* ── POSITION ANCHOR ─────────────────────────────────────────────── */
 .wari-companion {
   position: fixed;
   z-index: 9999;
   pointer-events: none;
   user-select: none;
-  /* Perspective for 3D tilt effect on hover */
   perspective: 600px;
 }
 .wari-companion * { pointer-events: auto; }
 
-
-/* ── IDLE WRAPPER (hover layer + idle loop) ──────────────────────── */
 .wari-sprite-wrap {
   display: inline-block;
   position: relative;
   will-change: transform;
   cursor: pointer;
-  /* GPU compositing */
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* Smooth hover in/out */
   transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* Hover: lift wrap without glowing children */
 .wari-sprite-wrap:hover {
   transform: scale(1.12) translateY(-6px) translateZ(0);
   filter: none;
   transition: transform 0.40s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* Active: springy press-down */
 .wari-sprite-wrap:active {
   transform: scale(0.95) translateY(2px) translateZ(0);
   filter: none;
   transition: transform 0.12s cubic-bezier(0.22,1,0.36,1);
 }
 
-/* ── SPRITE STAGE & DUAL-LAYER SPRITES (Ultra-smooth cross-dissolve) ─ */
 .wari-sprite-stage {
   position: relative;
   display: block;
@@ -57,7 +39,6 @@
 .wari-sprite {
   display: block;
   object-fit: contain;
-  /* Base shadow strictly on sprite */
   filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 24px rgba(201,165,103,0.20));
   will-change: transform, opacity, filter;
   backface-visibility: hidden;
@@ -81,7 +62,6 @@
   pointer-events: none;
 }
 
-/* Hover: playful energetic micro-float animation */
 @keyframes wariHoverPlayful {
   0%   { transform: translateY(0px) rotate(0deg) scale(1); }
   22%  { transform: translateY(-5px) rotate(-2deg) scale(1.02, 0.98); }
@@ -94,7 +74,6 @@
   animation: wariHoverPlayful 2.4s ease-in-out infinite;
 }
 
-/* Hover: golden aura STRICTLY on mascot sprite */
 .wari-sprite-wrap:hover .wari-sprite {
   filter:
     drop-shadow(0 28px 48px rgba(0,0,0,0.65))
@@ -103,14 +82,12 @@
     brightness(1.14);
 }
 
-/* Active: slight dim on mascot sprite */
 .wari-sprite-wrap:active .wari-sprite {
   filter:
     drop-shadow(0 14px 22px rgba(0,0,0,0.55))
     brightness(0.95);
 }
 
-/* ── SPEECH BUBBLE ────────────────────────────────────────────────── */
 .wari-speech {
   position: absolute;
   background: rgba(14, 10, 8, 0.94);
@@ -131,7 +108,6 @@
   letter-spacing: 0.01em;
   text-align: left;
   box-sizing: border-box;
-  /* Dark elegant backdrop - strictly NO golden glow on bubble */
   box-shadow:
     0 12px 30px rgba(0, 0, 0, 0.65),
     inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
@@ -156,12 +132,10 @@
   transform: translateY(-50%) scale(1);
 }
 
-/* Compensate wrap hover scale so the comment box stays at stable 1:1 scale */
 .wari-sprite-wrap:hover .wari-speech.visible {
   transform: translateY(-50%) scale(0.893);
 }
 
-/* Ensure no glow or filter ever bleeds onto the bubble when mascot is hovered */
 .wari-sprite-wrap:hover .wari-speech,
 .wari-sprite-wrap:active .wari-speech {
   filter: none !important;
@@ -176,7 +150,6 @@
 .wari-speech.tip-bottom { transform-origin: center bottom; }
 .wari-speech.tip-top    { transform-origin: center top; }
 
-/* Bubble arrow tip */
 .wari-speech::after {
   content: '';
   position: absolute;
@@ -191,7 +164,6 @@
 .wari-speech.tip-left::after   { left:-5.5px;   top:50%;  transform:translateY(-50%) rotate(45deg); border-top:none; border-right:none; }
 .wari-speech.tip-top::after    { top:-5.5px;    left:50%; transform:translateX(-50%) rotate(45deg); border-bottom:none; border-right:none; }
 
-/* ── ENTRANCE ANIMATIONS (applied to .wari-companion) ────────────── */
 @keyframes wariPeekPop {
   0%   { transform: translateY(120%) scale(0.52) rotate(5deg); opacity:0; }
   40%  { transform: translateY(-16px) scale(1.14) rotate(-2deg); opacity:1; }
@@ -215,14 +187,6 @@
   100% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; }
 }
 
-/* ── IDLE LOOP ANIMATIONS (applied to .wari-sprite-wrap) ─────────── */
-/*
-   These use only a few keyframes with smooth easing to avoid jank.
-   cubic-bezier(0.45,0,0.55,1) = sinusoidal ease-in-out
-   The wrap element loops these forever with no restart.
-*/
-
-/* Float: gentle sinusoidal drift — the smoothest idle */
 @keyframes wariDriftFloat {
   0%   { transform: translateY(0px)   rotate(-1.0deg) translateZ(0); }
   25%  { transform: translateY(-14px) rotate(0.6deg)  translateZ(0); }
@@ -231,7 +195,6 @@
   100% { transform: translateY(0px)   rotate(-1.0deg) translateZ(0); }
 }
 
-/* Bob: soft vertical bounce, never abrupt */
 @keyframes wariIdleBob {
   0%   { transform: translateY(0px)    rotate(-0.6deg) translateZ(0); }
   35%  { transform: translateY(-14px)  rotate(0.9deg)  translateZ(0); }
@@ -239,14 +202,12 @@
   100% { transform: translateY(0px)    rotate(-0.6deg) translateZ(0); }
 }
 
-/* Breath: micro scale-in/out */
 @keyframes wariBreath {
   0%,100% { transform: scaleX(1)     scaleY(1)     translateZ(0); }
   40%     { transform: scaleX(1.034) scaleY(0.972) translateZ(0); }
   70%     { transform: scaleX(0.970) scaleY(1.030) translateZ(0); }
 }
 
-/* Happy glow: pulsing golden light */
 @keyframes wariHappyGlow {
   0%,100% { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 20px rgba(245,210,70,0.20)); }
   50%     { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 64px rgba(245,210,70,0.85)) drop-shadow(0 0 102px rgba(245,210,70,0.44)); }
@@ -256,39 +217,28 @@
   50%     { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 58px rgba(201,165,103,0.78)) drop-shadow(0 0 96px rgba(201,165,103,0.40)); }
 }
 
-/* ── IDLE CLASS UTILITIES (on .wari-sprite-wrap) ─────────────────── */
 .wari-idle-float     { animation: wariDriftFloat 7.0s cubic-bezier(0.45,0,0.55,1) infinite; }
 .wari-idle-bob       { animation: wariIdleBob    5.2s cubic-bezier(0.45,0,0.55,1) infinite; }
 .wari-idle-breath    { animation: wariBreath     5.8s cubic-bezier(0.45,0,0.55,1) infinite; }
 .wari-idle-happyglow .wari-sprite { animation: wariHappyGlow  2.6s ease-in-out infinite; }
 .wari-idle-glow .wari-sprite      { animation: wariPulseGlow  3.2s ease-in-out infinite; }
 
-/* ── MOUSE PARALLAX TILT (JS adds .wari-tilt + CSS vars on wrapEl) ── */
-/*
-   CSS custom props: --tilt-x (deg) --tilt-y (deg) set by JS mousemove.
-   Applied as rotateX/Y on top of the running idle animation.
-   transition on transform lets tilt ease in/out smoothly.
-*/
 .wari-sprite-wrap.wari-tilt {
   transform:
     rotateX(var(--tilt-x, 0deg))
     rotateY(var(--tilt-y, 0deg))
     scale(1.06)
     translateZ(0);
-  /* Override base transition for tilt responsiveness */
   transition:
     transform 0.12s ease-out,
     filter    0.30s ease;
 }
 
-/* ── ENTRANCE CLASS (on .wari-companion) ─────────────────────────── */
 .wari-companion-br { bottom:28px; right:28px;  animation: wariPeekPop      1.15s cubic-bezier(0.22,1,0.36,1) both; }
 .wari-companion-bl { bottom:28px; left:28px;   animation: wariSlideInLeft  1.15s cubic-bezier(0.22,1,0.36,1) both; }
 .wari-companion-tr { top:110px;   right:28px;  animation: wariSlideInRight 1.15s cubic-bezier(0.22,1,0.36,1) both; }
 .wari-companion-tl { top:110px;   left:28px;   animation: wariSlideInLeft  1.15s cubic-bezier(0.22,1,0.36,1) both; }
 
-
-/* ── SIZES ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .wari-sprite-lg { width:108px; height:108px; }
   .wari-sprite-md { width:92px;  height:92px;  }
@@ -305,7 +255,6 @@
   .wari-sprite-sm { width:110px; height:110px; }
 }
 
-/* ── REDUCED MOTION ───────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .wari-companion { animation: none !important; }
   .wari-idle-float,.wari-idle-bob,.wari-idle-breath,

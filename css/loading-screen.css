@@ -1,6 +1,3 @@
-/* ==========================================================================
-   SCROLL LOCK & SCROLLBAR HIDING DURING PRELOADER
-   ========================================================================== */
 html.preloader-active,
 body.preloader-active {
   overflow: hidden !important;
