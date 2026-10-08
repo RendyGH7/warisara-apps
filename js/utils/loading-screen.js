@@ -8,6 +8,9 @@ window.WARISARA_PRELOADER = {
   animationFrameId: null,
   particles: [],
   isFinished: false,
+  _scrollLocked: false,
+  _boundPreventScroll: null,
+  _boundPreventKeyScroll: null,
 
   stanzas: [
     "Di antara samudera khatulistiwa, terhampar 38 bentang alam pusaka...",
@@ -17,10 +20,75 @@ window.WARISARA_PRELOADER = {
     "Menyibak gerbang penjelajahan WARISARA..."
   ],
 
-  init: function () {
-    
-    if (window.location.pathname.includes("/pages/")) {
+  _preventScroll: function (e) {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+  },
+
+  _preventKeyScroll: function (e) {
+    const scrollKeys = [
+      "Space", " ", "PageUp", "PageDown", "End", "Home",
+      "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"
+    ];
+    if (scrollKeys.includes(e.key) || scrollKeys.includes(e.code)) {
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    }
+  },
+
+  lockScroll: function () {
+    if (this._scrollLocked) return;
+    this._scrollLocked = true;
+
+    document.documentElement.classList.add("preloader-active");
+    if (document.body) {
+      document.body.classList.add("preloader-active");
+    }
+
+    if ("scrollRestoration" in history) {
+      try {
+        history.scrollRestoration = "manual";
+      } catch (e) {}
+    }
+
+    window.scrollTo(0, 0);
+
+    if (!this._boundPreventScroll) {
+      this._boundPreventScroll = this._preventScroll.bind(this);
+      this._boundPreventKeyScroll = this._preventKeyScroll.bind(this);
+    }
+
+    window.addEventListener("wheel", this._boundPreventScroll, { passive: false });
+    window.addEventListener("touchmove", this._boundPreventScroll, { passive: false });
+    window.addEventListener("keydown", this._boundPreventKeyScroll, { passive: false });
+  },
+
+  unlockScroll: function () {
+    this._scrollLocked = false;
+
+    document.documentElement.classList.remove("preloader-active");
+    if (document.body) {
       document.body.classList.remove("preloader-active");
+    }
+
+    if (this._boundPreventScroll) {
+      window.removeEventListener("wheel", this._boundPreventScroll);
+      window.removeEventListener("touchmove", this._boundPreventScroll);
+      window.removeEventListener("keydown", this._boundPreventKeyScroll);
+    }
+
+    if ("scrollRestoration" in history) {
+      try {
+        history.scrollRestoration = "auto";
+      } catch (e) {}
+    }
+  },
+
+  init: function () {
+    if (window.location.pathname.includes("/pages/")) {
+      this.unlockScroll();
       document.body.classList.add("page-fade-in");
       return;
     }
@@ -38,7 +106,7 @@ window.WARISARA_PRELOADER = {
     const hasPlayedBefore = sessionStorage.getItem("warisara_intro_played") === "true";
 
     if (!isReload && hasPlayedBefore) {
-      document.body.classList.remove("preloader-active");
+      this.unlockScroll();
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));
@@ -49,7 +117,7 @@ window.WARISARA_PRELOADER = {
       sessionStorage.setItem("warisara_intro_played", "true");
     } catch (e) {}
 
-    document.body.classList.add("preloader-active");
+    this.lockScroll();
     this.createDom();
     this.initCanvas();
     this.startCinematicSequence();
@@ -286,7 +354,7 @@ window.WARISARA_PRELOADER = {
       if (this.container) {
         this.container.classList.add("preloader-hidden");
       }
-      document.body.classList.remove("preloader-active");
+      this.unlockScroll();
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));

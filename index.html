@@ -64,15 +64,37 @@
     };
   </script>
 
+  <script>
+    (function () {
+      try {
+        var isReload = false;
+        var navEntries = performance.getEntriesByType("navigation");
+        if (navEntries.length > 0 && navEntries[0].type === "reload") {
+          isReload = true;
+        } else if (performance.navigation && performance.navigation.type === 1) {
+          isReload = true;
+        }
+        var hasPlayed = sessionStorage.getItem("warisara_intro_played") === "true";
+        if (isReload || !hasPlayed) {
+          document.documentElement.classList.add("preloader-active");
+          if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+          }
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="stylesheet" href="css/variables.css?v=11" />
-  <link rel="stylesheet" href="css/base.css?v=12" />
+  <link rel="stylesheet" href="css/base.css?v=13" />
   <link rel="stylesheet" href="css/navbar.css?v=11" />
   <link rel="stylesheet" href="css/hero.css?v=11" />
   <link rel="stylesheet" href="css/sections.css?v=11" />
   <link rel="stylesheet" href="css/components.css?v=11" />
   <link rel="stylesheet" href="css/creative-lab.css?v=11" />
   <link rel="stylesheet" href="css/transitions.css?v=11" />
-  <link rel="stylesheet" href="css/loading-screen.css?v=11" />
+  <link rel="stylesheet" href="css/loading-screen.css?v=12" />
   <link rel="stylesheet" href="css/responsive.css?v=11" />
   <link rel="stylesheet" href="css/wari-mascot.css" />
 </head>
@@ -1165,7 +1187,7 @@
     </div>
   </footer>
 
-  <script src="js/utils/loading-screen.js?v=11"></script>
+  <script src="js/utils/loading-screen.js?v=12"></script>
   <script src="js/utils/helpers.js?v=11"></script>
   <script src="js/utils/animation.js?v=11"></script>
   <script src="js/utils/scroll.js?v=11"></script>

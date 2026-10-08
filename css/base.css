@@ -35,6 +35,27 @@ body {
   cursor: url('../assets/images/cursor/lantern-default.svg') 4 4, auto;
 }
 
+html.preloader-active,
+body.preloader-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  touch-action: none !important;
+  -ms-touch-action: none !important;
+  overscroll-behavior: none !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html.preloader-active::-webkit-scrollbar,
+body.preloader-active::-webkit-scrollbar,
+html.preloader-active *::-webkit-scrollbar,
+body.preloader-active *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 /* ==========================================================================
    WARISARA LUXURY CUSTOM SCROLLBAR (GLOBAL)
    ========================================================================== */
