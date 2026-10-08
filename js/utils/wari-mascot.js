@@ -421,8 +421,8 @@
       greet();
     }, 1200);
 
-    // Context quotes (5s initial delay after greet)
-    setTimeout(() => startContextQuoteLoop(), 5000);
+    // Context quotes (starts after greet finishes and a calm pause)
+    setTimeout(() => startContextQuoteLoop(), 10500);
   }
 
   function getSpeechTipClass (pos) {
@@ -518,7 +518,7 @@
 
   // ── SPEECH BUBBLE ───────────────────────────────────────────────────
   function showBubble (text, duration) {
-    duration = duration || 3200;
+    duration = duration || 7200;
     if (!bubbleEl) return;
     clearTimeout(bubbleTimer);
     if (bubbleEl.classList.contains('visible')) {
@@ -545,8 +545,8 @@
     const msg = cfg.greetings[Math.floor(Math.random() * cfg.greetings.length)];
     setMood('happy', true);
     playAnim(cfg.initAnim || 'wave');
-    setTimeout(() => showBubble(msg, 4200), 300);
-    setTimeout(() => setMood('idle'), 3000);
+    setTimeout(() => showBubble(msg, 7200), 300);
+    setTimeout(() => setMood('idle'), 7200);
   }
 
   // ── CONTEXT QUOTE LOOP ──────────────────────────────────────────────
@@ -561,14 +561,14 @@
 
     setMood(ev.mood, true);
     playAnim(ev.anim);
-    setTimeout(() => showBubble(ev.text, 4200), 200);
-    setTimeout(() => { if (!isReacting) setMood('idle'); }, 2500);
-    scheduleNextContextQuote();
+    setTimeout(() => showBubble(ev.text, 7200), 200);
+    setTimeout(() => { if (!isReacting) setMood('idle'); }, 7200);
+    scheduleNextContextQuote(11500);
   }
 
-  function scheduleNextContextQuote () {
+  function scheduleNextContextQuote (delay) {
     clearTimeout(contextTimer);
-    contextTimer = setTimeout(runContextQuote, 5000);
+    contextTimer = setTimeout(runContextQuote, delay || 11500);
   }
 
   // ── MOUSE PARALLAX TILT ─────────────────────────────────────────────
@@ -605,37 +605,37 @@
       clickReact_spin,
     ];
     reactions[(clickCount - 1) % reactions.length]();
-    setTimeout(() => { isReacting = false; }, 2400);
+    setTimeout(() => { isReacting = false; setMood('idle'); }, 7000);
     clearTimeout(onWrapClick._reset);
-    onWrapClick._reset = setTimeout(() => { clickCount = 0; }, 9000);
+    onWrapClick._reset = setTimeout(() => { clickCount = 0; }, 12000);
   }
 
   function clickReact_happy () {
     const msg = cfg.greetings[Math.floor(Math.random() * cfg.greetings.length)];
     setMood('happy', true);
     playAnim('wave');
-    showBubble(msg, 3600);
+    showBubble(msg, 7000);
   }
   function clickReact_excited () {
     const msgs = ['Hei hei! Kenapa kamu klik aku terus? 😂','Aku senang! Klik lagi dong! 😄','Kamu bikin aku semangat! 🎉','Wow, perhatiannya ke aku! 🥰'];
     setMood('happy', true);
     playAnim('excited');
-    showBubble(msgs[Math.floor(Math.random() * msgs.length)], 3400);
+    showBubble(msgs[Math.floor(Math.random() * msgs.length)], 7000);
   }
   function clickReact_bounce () {
     setMood('happy', true);
     playAnim('bounce');
-    showBubble('Yeay!! 🎊 Kamu terus klik aku!', 3000);
+    showBubble('Yeay!! 🎊 Kamu terus klik aku!', 7000);
   }
   function clickReact_tada () {
     setMood('happy', true);
     playAnim('tada');
-    showBubble('🌟 Ta-da! Aku Si Wari yang hebat!', 3200);
+    showBubble('🌟 Ta-da! Aku Si Wari yang hebat!', 7000);
   }
   function clickReact_spin () {
     setMood('happy', true);
     playAnim('spin');
-    showBubble('Pusing~ Tapi tetap senang! 😵‍💫✨', 3000);
+    showBubble('Pusing~ Tapi tetap senang! 😵‍💫✨', 7000);
   }
 
   // ── PUBLIC API ──────────────────────────────────────────────────────
