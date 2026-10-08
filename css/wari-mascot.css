@@ -23,97 +23,137 @@
 .wari-sprite-wrap {
   display: inline-block;
   position: relative;
-  will-change: transform, filter;
+  will-change: transform;
   cursor: pointer;
   /* GPU compositing */
   transform: translateZ(0);
   backface-visibility: hidden;
   /* Smooth hover in/out */
-  transition:
-    transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
-    filter    0.38s ease;
+  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* Hover: lift + golden aura */
+/* Hover: lift wrap without glowing children */
 .wari-sprite-wrap:hover {
   transform: scale(1.12) translateY(-6px) translateZ(0);
-  filter:
-    drop-shadow(0 28px 48px rgba(0,0,0,0.65))
-    drop-shadow(0 0 52px rgba(201,165,103,0.70))
-    brightness(1.12);
-  transition:
-    transform 0.40s cubic-bezier(0.34,1.56,0.64,1),
-    filter    0.30s ease;
+  filter: none;
+  transition: transform 0.40s cubic-bezier(0.34,1.56,0.64,1);
 }
 
 /* Active: springy press-down */
 .wari-sprite-wrap:active {
   transform: scale(0.95) translateY(2px) translateZ(0);
-  filter: brightness(0.95);
-  transition:
-    transform 0.12s cubic-bezier(0.22,1,0.36,1),
-    filter    0.10s ease;
+  filter: none;
+  transition: transform 0.12s cubic-bezier(0.22,1,0.36,1);
 }
 
-/* ── SPRITE IMAGE (animation target only) ────────────────────────── */
+/* ── SPRITE IMAGE (animation target + aura glow) ─────────────────── */
 .wari-sprite {
   display: block;
   object-fit: contain;
-  /* Base shadow — wrap handles hover shadows via filter */
+  /* Base shadow strictly on sprite */
   filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 24px rgba(201,165,103,0.20));
-  /* NO transition here — only Web Animations API controls this element */
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
   backface-visibility: hidden;
   transform-origin: center bottom;
+  transition: filter 0.35s ease;
+}
+
+/* Hover: golden aura STRICTLY on mascot sprite */
+.wari-sprite-wrap:hover .wari-sprite {
+  filter:
+    drop-shadow(0 28px 48px rgba(0,0,0,0.65))
+    drop-shadow(0 0 52px rgba(201,165,103,0.85))
+    drop-shadow(0 0 22px rgba(245,210,70,0.40))
+    brightness(1.14);
+}
+
+/* Active: slight dim on mascot sprite */
+.wari-sprite-wrap:active .wari-sprite {
+  filter:
+    drop-shadow(0 14px 22px rgba(0,0,0,0.55))
+    brightness(0.95);
 }
 
 /* ── SPEECH BUBBLE ────────────────────────────────────────────────── */
 .wari-speech {
   position: absolute;
-  background: rgba(12,8,6,0.95);
-  border: 1.5px solid rgba(201,165,103,0.55);
-  border-radius: 1.4rem;
+  background: rgba(14, 10, 8, 0.94);
+  border: 1.5px solid rgba(201, 165, 103, 0.50);
+  border-radius: 1.15rem;
   padding: 0.65rem 1.05rem;
   font-family: 'Manrope', sans-serif;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
   color: #F4E8D1;
+  width: max-content;
+  min-width: 140px;
+  max-width: 250px;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  text-align: left;
+  box-sizing: border-box;
+  /* Dark elegant backdrop - strictly NO golden glow on bubble */
   box-shadow:
-    0 14px 36px rgba(0,0,0,0.62),
-    inset 0 1px 0 rgba(255,255,255,0.10);
+    0 12px 30px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  pointer-events: none;
+  pointer-events: none !important;
+  user-select: none;
   opacity: 0;
-  transform: scale(0.74) translateY(12px);
-  transform-origin: bottom center;
-  transition:
-    opacity   0.40s cubic-bezier(0.22,1,0.36,1),
-    transform 0.46s cubic-bezier(0.34,1.56,0.64,1);
-  line-height: 1.50;
-  max-width: 230px;
-  white-space: normal;
+  filter: none !important;
+  -webkit-filter: none !important;
+  z-index: 10;
   will-change: opacity, transform;
-  /* Keep bubble above sprite via z-index */
-  z-index: 1;
+  transform: translateY(-50%) scale(0.85);
+  transform-origin: right center;
+  transition:
+    opacity   0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 .wari-speech.visible {
   opacity: 1;
-  transform: scale(1) translateY(0);
+  transform: translateY(-50%) scale(1);
 }
+
+/* Compensate wrap hover scale so the comment box stays at stable 1:1 scale */
+.wari-sprite-wrap:hover .wari-speech.visible {
+  transform: translateY(-50%) scale(0.893);
+}
+
+/* Ensure no glow or filter ever bleeds onto the bubble when mascot is hovered */
+.wari-sprite-wrap:hover .wari-speech,
+.wari-sprite-wrap:active .wari-speech {
+  filter: none !important;
+  -webkit-filter: none !important;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.wari-speech.tip-left   { transform-origin: left center; }
+.wari-speech.tip-right  { transform-origin: right center; }
+.wari-speech.tip-bottom { transform-origin: center bottom; }
+.wari-speech.tip-top    { transform-origin: center top; }
 
 /* Bubble arrow tip */
 .wari-speech::after {
   content: '';
   position: absolute;
-  width: 10px; height: 10px;
-  background: rgba(12,8,6,0.95);
-  border: 1.5px solid rgba(201,165,103,0.55);
+  width: 9px;
+  height: 9px;
+  background: rgba(14, 10, 8, 0.94);
+  border: 1.5px solid rgba(201, 165, 103, 0.50);
+  pointer-events: none;
 }
-.wari-speech.tip-bottom::after { bottom:-5px; left:50%; transform:translateX(-50%) rotate(45deg); border-top:none; border-left:none; }
-.wari-speech.tip-right::after  { right:-5px;  top:50%;  transform:translateY(-50%) rotate(45deg); border-bottom:none; border-left:none; }
-.wari-speech.tip-left::after   { left:-5px;   top:50%;  transform:translateY(-50%) rotate(45deg); border-top:none; border-right:none; }
-.wari-speech.tip-top::after    { top:-5px;    left:50%; transform:translateX(-50%) rotate(45deg); border-bottom:none; border-right:none; }
+.wari-speech.tip-bottom::after { bottom:-5.5px; left:50%; transform:translateX(-50%) rotate(45deg); border-top:none; border-left:none; }
+.wari-speech.tip-right::after  { right:-5.5px;  top:50%;  transform:translateY(-50%) rotate(45deg); border-bottom:none; border-left:none; }
+.wari-speech.tip-left::after   { left:-5.5px;   top:50%;  transform:translateY(-50%) rotate(45deg); border-top:none; border-right:none; }
+.wari-speech.tip-top::after    { top:-5.5px;    left:50%; transform:translateX(-50%) rotate(45deg); border-bottom:none; border-right:none; }
 
 /* ── ENTRANCE ANIMATIONS (applied to .wari-companion) ────────────── */
 @keyframes wariPeekPop {
@@ -184,8 +224,8 @@
 .wari-idle-float     { animation: wariDriftFloat 7.0s cubic-bezier(0.45,0,0.55,1) infinite; }
 .wari-idle-bob       { animation: wariIdleBob    5.2s cubic-bezier(0.45,0,0.55,1) infinite; }
 .wari-idle-breath    { animation: wariBreath     5.8s cubic-bezier(0.45,0,0.55,1) infinite; }
-.wari-idle-happyglow { animation: wariHappyGlow  2.6s ease-in-out infinite; }
-.wari-idle-glow      { animation: wariPulseGlow  3.2s ease-in-out infinite; }
+.wari-idle-happyglow .wari-sprite { animation: wariHappyGlow  2.6s ease-in-out infinite; }
+.wari-idle-glow .wari-sprite      { animation: wariPulseGlow  3.2s ease-in-out infinite; }
 
 /* ── MOUSE PARALLAX TILT (JS adds .wari-tilt + CSS vars on wrapEl) ── */
 /*
@@ -217,7 +257,7 @@
   .wari-sprite-lg { width:108px; height:108px; }
   .wari-sprite-md { width:92px;  height:92px;  }
   .wari-sprite-sm { width:76px;  height:76px;  }
-  .wari-speech    { font-size:11.5px; max-width:185px; padding:0.5rem 0.9rem; }
+  .wari-speech    { font-size:11.5px; min-width:120px; max-width:185px; padding:0.5rem 0.85rem; }
   .wari-companion-tr,.wari-companion-tl { top:78px; }
   .wari-companion-br,.wari-companion-bl { bottom:18px; }
   .wari-companion-br,.wari-companion-tr { right:18px; }

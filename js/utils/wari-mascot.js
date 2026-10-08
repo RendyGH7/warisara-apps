@@ -397,7 +397,7 @@
     // Speech bubble (inside wrapEl so it moves with idle float)
     bubbleEl = document.createElement('div');
     bubbleEl.className = 'wari-speech ' + getSpeechTipClass(cfg.position);
-    positionBubble(cfg.position, bubbleEl, cfg.size);
+    positionBubble(cfg.position, bubbleEl);
     wrapEl.appendChild(bubbleEl);
 
     // Sprite image (expressive animation target only)
@@ -430,12 +430,23 @@
     return map[pos] || 'tip-bottom';
   }
 
-  function positionBubble (pos, bubble, size) {
-    const offset = size === 'sm' ? 120 : size === 'lg' ? 172 : 150;
-    if      (pos === 'br') bubble.style.cssText = `right:${offset+12}px;bottom:50%;transform:translateY(50%);`;
-    else if (pos === 'bl') bubble.style.cssText = `left:${offset+12}px;bottom:50%;transform:translateY(50%);`;
-    else if (pos === 'tr') bubble.style.cssText = `right:${offset+12}px;top:50%;transform:translateY(-50%);`;
-    else if (pos === 'tl') bubble.style.cssText = `left:${offset+12}px;top:50%;transform:translateY(-50%);`;
+  function positionBubble (pos, bubble) {
+    if (pos === 'br' || pos === 'tr') {
+      bubble.style.right = 'calc(100% + 14px)';
+      bubble.style.left = 'auto';
+      bubble.style.top = '50%';
+      bubble.style.bottom = 'auto';
+    } else if (pos === 'bl' || pos === 'tl') {
+      bubble.style.left = 'calc(100% + 14px)';
+      bubble.style.right = 'auto';
+      bubble.style.top = '50%';
+      bubble.style.bottom = 'auto';
+    } else {
+      bubble.style.right = 'calc(100% + 14px)';
+      bubble.style.left = 'auto';
+      bubble.style.top = '50%';
+      bubble.style.bottom = 'auto';
+    }
   }
 
   // ── IDLE ANIMATION — runs on wrapEl, never restarted ───────────────
