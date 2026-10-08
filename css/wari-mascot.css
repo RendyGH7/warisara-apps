@@ -46,7 +46,14 @@
   transition: transform 0.12s cubic-bezier(0.22,1,0.36,1);
 }
 
-/* ── SPRITE IMAGE (animation target + aura glow) ─────────────────── */
+/* ── SPRITE STAGE & DUAL-LAYER SPRITES (Ultra-smooth cross-dissolve) ─ */
+.wari-sprite-stage {
+  position: relative;
+  display: block;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
 .wari-sprite {
   display: block;
   object-fit: contain;
@@ -56,6 +63,35 @@
   backface-visibility: hidden;
   transform-origin: center bottom;
   transition: filter 0.35s ease;
+}
+
+.wari-sprite-front {
+  position: relative;
+  z-index: 2;
+}
+
+.wari-sprite-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hover: playful energetic micro-float animation */
+@keyframes wariHoverPlayful {
+  0%   { transform: translateY(0px) rotate(0deg) scale(1); }
+  22%  { transform: translateY(-5px) rotate(-2deg) scale(1.02, 0.98); }
+  50%  { transform: translateY(-9px) rotate(1.6deg) scale(0.99, 1.03); }
+  78%  { transform: translateY(-3.5px) rotate(-1deg) scale(1.015, 0.99); }
+  100% { transform: translateY(0px) rotate(0deg) scale(1); }
+}
+
+.wari-sprite-wrap:hover .wari-sprite-stage {
+  animation: wariHoverPlayful 2.4s ease-in-out infinite;
 }
 
 /* Hover: golden aura STRICTLY on mascot sprite */
