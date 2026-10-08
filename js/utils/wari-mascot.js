@@ -421,8 +421,8 @@
       greet();
     }, 1200);
 
-    // Context quotes (6.5s initial delay after greet)
-    setTimeout(() => startContextQuoteLoop(), 6500);
+    // Context quotes (5s initial delay after greet)
+    setTimeout(() => startContextQuoteLoop(), 5000);
   }
 
   function getSpeechTipClass (pos) {
@@ -534,8 +534,8 @@
     const msg = cfg.greetings[Math.floor(Math.random() * cfg.greetings.length)];
     setMood('happy', true);
     playAnim(cfg.initAnim || 'wave');
-    setTimeout(() => showBubble(msg, 4000), 300);
-    setTimeout(() => setMood('idle'), 2800);
+    setTimeout(() => showBubble(msg, 4200), 300);
+    setTimeout(() => setMood('idle'), 3000);
   }
 
   // ── CONTEXT QUOTE LOOP ──────────────────────────────────────────────
@@ -550,14 +550,14 @@
 
     setMood(ev.mood, true);
     playAnim(ev.anim);
-    setTimeout(() => showBubble(ev.text, 3800), 200);
-    setTimeout(() => { if (!isReacting) setMood('idle'); }, 1800);
+    setTimeout(() => showBubble(ev.text, 4200), 200);
+    setTimeout(() => { if (!isReacting) setMood('idle'); }, 2500);
     scheduleNextContextQuote();
   }
 
   function scheduleNextContextQuote () {
     clearTimeout(contextTimer);
-    contextTimer = setTimeout(runContextQuote, 4200);
+    contextTimer = setTimeout(runContextQuote, 5000);
   }
 
   // ── MOUSE PARALLAX TILT ─────────────────────────────────────────────
