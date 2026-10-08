@@ -87,12 +87,6 @@ window.WARISARA_PRELOADER = {
   },
 
   init: function () {
-    if (window.location.pathname.includes("/pages/")) {
-      this.unlockScroll();
-      document.body.classList.add("page-fade-in");
-      return;
-    }
-
     let isReload = false;
     try {
       const navEntries = performance.getEntriesByType("navigation");
@@ -350,11 +344,14 @@ window.WARISARA_PRELOADER = {
       sessionStorage.setItem("warisara_intro_played", "true");
     } catch (e) {}
 
+    window.scrollTo(0, 0);
+
     setTimeout(() => {
       if (this.container) {
         this.container.classList.add("preloader-hidden");
       }
       this.unlockScroll();
+      window.scrollTo(0, 0);
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));
