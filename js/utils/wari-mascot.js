@@ -1,29 +1,6 @@
-/**
- * Si Wari Global Companion — wari-mascot.js  v4.0
- *
- * Architecture (Multi-layer zero-conflict & zero-flicker):
- *   .wari-companion        = fixed position anchor + entrance animation
- *   .wari-sprite-wrap      = idle looping animation + CSS :hover/:active
- *   .wari-sprite-stage     = expressive WAAPI anims + hover playful animation
- *   .wari-sprite-front     = visible front sprite (cross-dissolves smoothly)
- *   .wari-sprite-back      = hidden back sprite (for seamless zero-flicker mood swap)
- *   .wari-speech           = speech bubble with dark backdrop & independent filters
- *
- * Key features:
- *   1. Zero-Flicker Mood Morph: Uses dual-image cross-dissolve so Wari never blinks out of existence.
- *   2. Responsive Smooth Clicks: Clicks 1-6 play delightful elastic bounce animations on the mascot
- *      without interrupting the speech bubble or expression.
- *   3. Dizzy Rule (7th Click): Only on the 7th click does Wari spin dizzy, change expression, and
- *      complain about being dizzy for 7.2s before easing back to idle.
- *   4. Synchronized Timing: Facial expression & gesture fire first -> speech bubble blooms in at the crest
- *      of the animation (360ms) -> speech stays visible for 7.2s -> bubble fades -> settle buffer (450ms) ->
- *      Wari smoothly returns to idle.
- *   5. Lively Hover: Dynamic spring scale on wrap + playful micro-bobbing on sprite stage.
- */
 (function () {
   'use strict';
 
-  // ── Detect asset base path ──────────────────────────────────────────
   const isInPages = window.location.pathname.includes('/pages/');
   const BASE = isInPages ? '../' : './';
 
@@ -33,13 +10,11 @@
     thinking: BASE + 'assets/mascot/wari-thinking.png',
   };
 
-  // ── Preload mood images immediately ─────────────────────────────────
   Object.values(IMGS).forEach(src => {
     const img = new Image();
     img.src = src;
   });
 
-  // ── Page-specific configuration ─────────────────────────────────────
   const PAGE_CONFIGS = {
     default: {
       position: 'br', size: 'md', initMood: 'idle', initAnim: 'wave', idleAnim: 'bob',
@@ -241,13 +216,12 @@
     },
   };
 
-  // ── State ───────────────────────────────────────────────────────────
-  let el             = null;   // .wari-companion (position anchor)
-  let wrapEl         = null;   // .wari-sprite-wrap (idle loop + hover container)
-  let spriteStageEl  = null;   // .wari-sprite-stage (expressive anim target + hover bobbing)
-  let spriteEl       = null;   // img.wari-sprite-front
-  let spriteBackEl   = null;   // img.wari-sprite-back (for cross-dissolve)
-  let bubbleEl       = null;   // .wari-speech
+  let el             = null;
+  let wrapEl         = null;
+  let spriteStageEl  = null;
+  let spriteEl       = null;
+  let spriteBackEl   = null;
+  let bubbleEl       = null;
 
   let bubbleTimer      = null;
   let contextTimer     = null;
@@ -263,15 +237,12 @@
   let activeMoodAnimFront  = null;
   let activeMoodAnimBack   = null;
 
-  // ── Idle CSS classes (applied to wrapEl) ───────────────────────────
   const ALL_IDLE_CLASSES = [
     'wari-idle-float', 'wari-idle-bob', 'wari-idle-breath',
     'wari-idle-happyglow', 'wari-idle-glow',
   ];
 
-  // ── Web Animations API keyframes ────────────────────────────────────
   const WAAPI_ANIMS = {
-    // Gestures
     wave: {
       frames: [
         { transform: 'rotate(0deg) scale(1) translateY(0)',         offset: 0    },
@@ -436,7 +407,6 @@
       ],
       options: { duration: 1400, easing: 'cubic-bezier(0.45,0,0.55,1)', fill: 'none' },
     },
-    // Dizzy reaction on the 7th click
     dizzy: {
       frames: [
         { transform: 'rotate(0deg) scale(1) translateY(0)',                           offset: 0    },
@@ -451,8 +421,6 @@
       ],
       options: { duration: 1800, easing: 'cubic-bezier(0.34,1.56,0.64,1)', fill: 'none' },
     },
-
-    // ── Dedicated Elastic Click Animations (Clicks 1 to 6) ─────────────
     clickBounce1: {
       frames: [
         { transform: 'scale(1) translateY(0)',                  offset: 0    },
@@ -521,7 +489,6 @@
     'clickBounce4', 'clickBounce5', 'clickBounce6'
   ];
 
-  // ── Page detection ──────────────────────────────────────────────────
   function detectPage () {
     const body = document.body;
     const dataPage = body.dataset.page || '';
@@ -533,35 +500,29 @@
     return 'default';
   }
 
-  // ── DOM building ────────────────────────────────────────────────────
   function buildMascot () {
     const page = detectPage();
     cfg = PAGE_CONFIGS[page] || PAGE_CONFIGS.default;
 
-    // Position anchor
     el = document.createElement('div');
     el.className = `wari-companion wari-companion-${cfg.position}`;
     el.id = 'wari-global-companion';
     el.setAttribute('role', 'complementary');
     el.setAttribute('aria-label', 'Si Wari — Maskot WARISARA');
 
-    // Hover + idle layer (wrap)
     wrapEl = document.createElement('div');
     wrapEl.className = 'wari-sprite-wrap';
     el.appendChild(wrapEl);
 
-    // Speech bubble (inside wrapEl so it floats smoothly along with idle bob)
     bubbleEl = document.createElement('div');
     bubbleEl.className = 'wari-speech ' + getSpeechTipClass(cfg.position);
     positionBubble(cfg.position, bubbleEl);
     wrapEl.appendChild(bubbleEl);
 
-    // Sprite stage container for expressive animations and lively hover bobs
     spriteStageEl = document.createElement('div');
     spriteStageEl.className = 'wari-sprite-stage';
     wrapEl.appendChild(spriteStageEl);
 
-    // Front sprite image (visible layer)
     spriteEl = document.createElement('img');
     spriteEl.className = `wari-sprite wari-sprite-front wari-sprite-${cfg.size}`;
     spriteEl.src = IMGS[cfg.initMood] || IMGS.idle;
@@ -569,7 +530,6 @@
     spriteEl.draggable = false;
     spriteStageEl.appendChild(spriteEl);
 
-    // Back sprite image (for zero-flicker cross-dissolve mood morphing)
     spriteBackEl = document.createElement('img');
     spriteBackEl.className = `wari-sprite wari-sprite-back wari-sprite-${cfg.size}`;
     spriteBackEl.src = IMGS[cfg.initMood] || IMGS.idle;
@@ -579,18 +539,15 @@
 
     document.body.appendChild(el);
 
-    // Events on wrapEl
     wrapEl.addEventListener('click',      onWrapClick);
     wrapEl.addEventListener('mousemove',  onWrapMouseMove);
     wrapEl.addEventListener('mouseleave', onWrapMouseLeave);
 
-    // Start idle animation after entrance, then greet smoothly
     setTimeout(() => {
       startIdleAnimation();
       greet();
     }, 1200);
 
-    // Context quotes (starts after greet finishes with calm spacing)
     setTimeout(() => startContextQuoteLoop(), 10500);
   }
 
@@ -618,7 +575,6 @@
     }
   }
 
-  // ── IDLE ANIMATION — runs on wrapEl, never restarted abruptly ──────
   function startIdleAnimation () {
     if (!wrapEl) return;
     ALL_IDLE_CLASSES.forEach(c => wrapEl.classList.remove(c));
@@ -631,14 +587,12 @@
     }
   }
 
-  // ── EXPRESSIVE ANIMATION — Web Animations API on spriteStageEl ─────
   function playAnim (anim) {
     const target = spriteStageEl || spriteEl;
     if (!target) return;
     const def = WAAPI_ANIMS[anim];
     if (!def) return;
 
-    // Gracefully cancel any running expressive animation
     if (activeExpressiveAnim) {
       try { activeExpressiveAnim.cancel(); } catch (e) {}
       activeExpressiveAnim = null;
@@ -647,7 +601,6 @@
     const a = target.animate(def.frames, def.options);
     activeExpressiveAnim = a;
 
-    // On completion, cancel effect so CSS hover animations can run cleanly
     a.onfinish = () => {
       if (activeExpressiveAnim === a) {
         try { a.cancel(); } catch (e) {}
@@ -657,7 +610,6 @@
     return a;
   }
 
-  // ── MOOD SWAP — Zero-flicker dual-layer cross-dissolve ──────────────
   function setMood (mood, silent) {
     if (!spriteEl || !spriteBackEl) return;
     currentMood = mood;
@@ -680,12 +632,10 @@
       activeMoodAnimBack = null;
     }
 
-    // Set new image on back layer while front is still showing
     spriteBackEl.src = src;
     spriteBackEl.style.opacity = '0';
     spriteEl.style.opacity = '1';
 
-    // Cross-dissolve: front eases out, back blooms in seamlessly
     activeMoodAnimFront = spriteEl.animate(
       [
         { opacity: 1, transform: 'scale(1)' },
@@ -714,7 +664,6 @@
     };
   }
 
-  // ── SPEECH BUBBLE ───────────────────────────────────────────────────
   function showBubble (text, duration) {
     duration = duration || 7200;
     if (!bubbleEl) return;
@@ -738,27 +687,22 @@
     }, duration);
   }
 
-  // ── GREET ───────────────────────────────────────────────────────────
   function greet () {
     const msg = cfg.greetings[Math.floor(Math.random() * cfg.greetings.length)];
 
-    // 1. Ekspresi ceria dan animasi salam awal
     setMood('happy', true);
     playAnim(cfg.initAnim || 'wave');
 
-    // 2. Balon ucapan muncul tepat saat gestur sudah terbentuk (360ms)
     setTimeout(() => {
       showBubble(msg, 7200);
     }, 360);
 
-    // 3. Setelah komentar 7.2s memudar, beri jeda tenang baru rileks ke idle
     clearTimeout(quoteSettleTimer);
     quoteSettleTimer = setTimeout(() => {
       if (!isReacting) setMood('idle');
     }, 7200 + 450);
   }
 
-  // ── CONTEXT QUOTE LOOP ──────────────────────────────────────────────
   function startContextQuoteLoop () { runContextQuote(); }
 
   function runContextQuote () {
@@ -768,22 +712,18 @@
     const ev = quotes[contextQuoteIdx % quotes.length];
     contextQuoteIdx++;
 
-    // 1. Maskot ganti ekspresi dan mulai bergerak (animasi gestur selaras)
     setMood(ev.mood, true);
     playAnim(ev.anim);
 
-    // 2. Balon komentar muncul harmonis di puncak gestur (360ms)
     setTimeout(() => {
       if (!isReacting) showBubble(ev.text, 7200);
     }, 360);
 
-    // 3. Setelah komentar 7.2 detik selesai memudar, maskot kembali ke idle secara halus
     clearTimeout(quoteSettleTimer);
     quoteSettleTimer = setTimeout(() => {
       if (!isReacting) setMood('idle');
     }, 7200 + 450);
 
-    // Jeda 5 detik tenang sebelum komentar berikutnya
     scheduleNextContextQuote(12500);
   }
 
@@ -792,7 +732,6 @@
     contextTimer = setTimeout(runContextQuote, delay || 12500);
   }
 
-  // ── MOUSE PARALLAX TILT ─────────────────────────────────────────────
   function onWrapMouseMove (e) {
     if (!wrapEl) return;
     const rect = wrapEl.getBoundingClientRect();
@@ -814,7 +753,6 @@
     wrapEl.style.removeProperty('--tilt-y');
   }
 
-  // ── CLICK HANDLER ──────────────────────────────────────────────────
   const DIZZY_MSGS = [
     'Aduhh... pusinggg~ Kebanyakan diklik! 😵‍💫💫',
     'Pusing~ Berputar-putar rasanya! 😵‍💫✨',
@@ -825,8 +763,6 @@
     if (e) e.stopPropagation();
     clickCount++;
 
-    // Klik 1 s/d 6: Tetap mainkan animasi elastis yang halus & lincah,
-    // TETAPI comment dan ekspresi TIDAK ganti sama sekali!
     if (clickCount < 7) {
       const animName = CLICK_ANIMS[clickAnimIdx % CLICK_ANIMS.length];
       clickAnimIdx++;
@@ -837,7 +773,6 @@
       return;
     }
 
-    // Tepat pada klik ke-7: reset hitungan dan picu reaksi pusing
     clickCount = 0;
     clearTimeout(onWrapClick._reset);
 
@@ -846,26 +781,21 @@
 
     const msg = DIZZY_MSGS[Math.floor(Math.random() * DIZZY_MSGS.length)];
 
-    // Ekspresi pusing (thinking mood) + animasi putar pusing
     setMood('thinking', true);
     playAnim('dizzy');
 
-    // Komentar pusing muncul pas di puncak putaran pusing (320ms)
     setTimeout(() => {
       showBubble(msg, 7200);
     }, 320);
 
-    // Durasi pusing 7.2 detik, setelah memudar maskot rileks kembali ke idle
     setTimeout(() => {
       isReacting = false;
       setMood('idle');
     }, 7200 + 450);
 
-    // Tunda siklus context quote agar komentar pusing tampil utuh
     scheduleNextContextQuote(12500);
   }
 
-  // ── PUBLIC API ──────────────────────────────────────────────────────
   window.WariMascot = {
     react: function (type) {
       if (!spriteEl) return;
@@ -903,7 +833,6 @@
     playAnim: playAnim,
   };
 
-  // ── INIT ────────────────────────────────────────────────────────────
   function init () {
     if (document.getElementById('wari-global-companion')) return;
     const bodyPage = document.body.dataset.page || '';
