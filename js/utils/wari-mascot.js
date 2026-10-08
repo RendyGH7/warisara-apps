@@ -363,6 +363,20 @@
       ],
       options: { duration:1400, easing:'cubic-bezier(0.45,0,0.55,1)', fill:'both' },
     },
+    dizzy: {
+      frames: [
+        { transform:'rotate(0deg) scale(1) translateY(0)',                           offset:0    },
+        { transform:'rotate(120deg) scale(1.18) translateY(-14px)',                  offset:0.15 },
+        { transform:'rotate(240deg) scale(1.22) translateY(-18px)',                  offset:0.30 },
+        { transform:'rotate(360deg) scale(1.12) translateY(-8px)',                   offset:0.45 },
+        { transform:'translateX(-16px) rotate(-12deg) scale(0.96) translateY(4px)', offset:0.58 },
+        { transform:'translateX(14px) rotate(10deg) scale(1.02) translateY(-2px)',  offset:0.70 },
+        { transform:'translateX(-10px) rotate(-7deg) scale(0.98)',                   offset:0.80 },
+        { transform:'translateX(6px) rotate(4deg) scale(1.01)',                     offset:0.90 },
+        { transform:'translateX(0) rotate(0deg) scale(1) translateY(0)',             offset:1    },
+      ],
+      options: { duration:1800, easing:'cubic-bezier(0.34,1.56,0.64,1)', fill:'both' },
+    },
   };
 
   // ── Page detection ──────────────────────────────────────────────────
@@ -594,48 +608,40 @@
   }
 
   // ── CLICK HANDLER ──────────────────────────────────────────────────
-  function onWrapClick () {
-    isReacting = true;
-    clickCount++;
-    const reactions = [
-      clickReact_happy,
-      clickReact_excited,
-      clickReact_bounce,
-      clickReact_tada,
-      clickReact_spin,
-    ];
-    reactions[(clickCount - 1) % reactions.length]();
-    setTimeout(() => { isReacting = false; setMood('idle'); }, 7000);
-    clearTimeout(onWrapClick._reset);
-    onWrapClick._reset = setTimeout(() => { clickCount = 0; }, 12000);
-  }
+  const DIZZY_MSGS = [
+    'Aduhh... pusinggg~ Kebanyakan diklik! 😵‍💫💫',
+    'Pusing~ Berputar-putar rasanya! 😵‍💫✨',
+    'Duh... kepalaku keliyengan, pelan-pelan ya! 😵‍💫🌀',
+  ];
 
-  function clickReact_happy () {
-    const msg = cfg.greetings[Math.floor(Math.random() * cfg.greetings.length)];
-    setMood('happy', true);
-    playAnim('wave');
-    showBubble(msg, 7000);
-  }
-  function clickReact_excited () {
-    const msgs = ['Hei hei! Kenapa kamu klik aku terus? 😂','Aku senang! Klik lagi dong! 😄','Kamu bikin aku semangat! 🎉','Wow, perhatiannya ke aku! 🥰'];
-    setMood('happy', true);
-    playAnim('excited');
-    showBubble(msgs[Math.floor(Math.random() * msgs.length)], 7000);
-  }
-  function clickReact_bounce () {
-    setMood('happy', true);
-    playAnim('bounce');
-    showBubble('Yeay!! 🎊 Kamu terus klik aku!', 7000);
-  }
-  function clickReact_tada () {
-    setMood('happy', true);
-    playAnim('tada');
-    showBubble('🌟 Ta-da! Aku Si Wari yang hebat!', 7000);
-  }
-  function clickReact_spin () {
-    setMood('happy', true);
-    playAnim('spin');
-    showBubble('Pusing~ Tapi tetap senang! 😵‍💫✨', 7000);
+  function onWrapClick () {
+    clickCount++;
+
+    // Klik 1 s/d 6: comment dan ekspresi TIDAK ganti sama sekali
+    if (clickCount < 7) {
+      clearTimeout(onWrapClick._reset);
+      onWrapClick._reset = setTimeout(() => { clickCount = 0; }, 15000);
+      return;
+    }
+
+    // Tepat pada klik ke-7: reset hitungan dan picu reaksi pusing
+    clickCount = 0;
+    clearTimeout(onWrapClick._reset);
+
+    isReacting = true;
+    const msg = DIZZY_MSGS[Math.floor(Math.random() * DIZZY_MSGS.length)];
+
+    setMood('thinking', true);
+    playAnim('dizzy');
+    showBubble(msg, 7200);
+
+    setTimeout(() => {
+      isReacting = false;
+      setMood('idle');
+    }, 7200);
+
+    // Tunda siklus context quote agar komentar pusing tampil penuh tanpa terpotong
+    scheduleNextContextQuote(11500);
   }
 
   // ── PUBLIC API ──────────────────────────────────────────────────────
