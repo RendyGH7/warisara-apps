@@ -253,11 +253,17 @@ window.WARISARA_HERO_MAP = {
 
     this.focusMapOnProvince(data.svgCenter);
 
-    if (shouldOpenPanel && window.WARISARA_PROVINCE_PANEL) {
-      if (this._modalTimer) clearTimeout(this._modalTimer);
-      this._modalTimer = setTimeout(() => {
-        window.WARISARA_PROVINCE_PANEL.openPanel(data);
-      }, 260);
+    if (shouldOpenPanel) {
+      document.body.classList.add("province-modal-open", "modal-open");
+      const navbar = document.getElementById("main-navbar");
+      if (navbar) navbar.classList.add("navbar-hidden");
+
+      if (window.WARISARA_PROVINCE_PANEL) {
+        if (this._modalTimer) clearTimeout(this._modalTimer);
+        this._modalTimer = setTimeout(() => {
+          window.WARISARA_PROVINCE_PANEL.openPanel(data);
+        }, 260);
+      }
     }
   },
 
@@ -282,6 +288,10 @@ window.WARISARA_HERO_MAP = {
     if (!this.svgMap) return;
 
     if (this._modalTimer) clearTimeout(this._modalTimer);
+
+    document.body.classList.remove("province-modal-open", "modal-open");
+    const navbar = document.getElementById("main-navbar");
+    if (navbar) navbar.classList.remove("navbar-hidden");
 
     this.animateViewBox(0, 18, 982, 390, 480, () => {
       this.svgMap.classList.remove("map-dimmed");
