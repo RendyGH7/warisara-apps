@@ -2088,6 +2088,7 @@
           syncUiToState();
           saveHistoryState();
           render();
+          scrollToStudioCanvas();
         }
       });
     });
@@ -2170,6 +2171,7 @@
       btn.addEventListener("click", () => {
         document.querySelectorAll(".motif-card-select").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
+        delete StudioState.id;
         StudioState.motif = btn.dataset.motif;
         saveHistoryState();
         render();
@@ -2201,10 +2203,20 @@
         const presetId = chip.dataset.presetId;
         const found = PRESETS.find((p) => p.id === presetId);
         if (found) {
+          if (StudioState.currentMode !== "generative") {
+            const genTabBtn = document.querySelector('.mode-tab-btn[data-mode="generative"]');
+            if (genTabBtn) {
+              genTabBtn.click();
+            } else {
+              StudioState.currentMode = "generative";
+            }
+          }
+
           Object.assign(StudioState, found);
           syncUiToState();
           saveHistoryState();
           render();
+          scrollToStudioCanvas();
         }
       });
     });
@@ -2524,6 +2536,7 @@
     StudioState.bgColor = randPal.bg;
 
     StudioState.seed = Math.floor(Math.random() * 1000000);
+    delete StudioState.id;
 
     syncUiToState();
     saveHistoryState();
@@ -2531,6 +2544,11 @@
   }
 
   function syncUiToState() {
+    document.querySelectorAll(".preset-chip").forEach((btn) => {
+      const isActive = btn.dataset.presetId === StudioState.id;
+      btn.classList.toggle("active", isActive);
+    });
+
     document.querySelectorAll(".motif-card-select").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.motif === StudioState.motif);
     });
@@ -2620,11 +2638,37 @@
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
   }
 
+  function scrollToStudioCanvas() {
+    const target = document.getElementById("mockup-tabs-container")
+      || document.getElementById("studio-preview-column")
+      || document.getElementById("view-flat-canvas")
+      || document.getElementById("creative-canvas");
+    if (!target) return;
+
+    const nav = document.getElementById("main-navbar");
+    const navHeight = nav ? (nav.offsetHeight + 24) : 85;
+    const targetRect = target.getBoundingClientRect();
+    const offsetPosition = window.pageYOffset + targetRect.top - navHeight;
+
+    window.scrollTo({
+      top: Math.max(0, Math.round(offsetPosition)),
+      behavior: "smooth"
+    });
+
+    const canvasPanel = document.querySelector(".studio-glass-panel-accent") || document.getElementById("view-flat-canvas");
+    if (canvasPanel) {
+      canvasPanel.classList.remove("preset-apply-glow");
+      void canvasPanel.offsetWidth;
+      canvasPanel.classList.add("preset-apply-glow");
+    }
+  }
+
   window.WARISARA_STUDIO = {
     init: init,
     render: render,
     state: StudioState,
     randomize: randomizeIntelligently,
+    scrollToStudioCanvas: scrollToStudioCanvas,
     openCertificateModal: openCertificateModal,
     closeCertificateModal: closeCertificateModal
   };
