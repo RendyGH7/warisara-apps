@@ -83,12 +83,13 @@ html, body {
   }
 
   #province-modal-overlay {
-    padding: 0.65rem !important;
+    padding: 0 !important;
   }
 
   #province-detail-modal {
-    max-height: 92vh !important;
-    border-radius: 1.25rem !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+    border-radius: 0 !important;
   }
 
   #province-detail-modal .px-6 {
