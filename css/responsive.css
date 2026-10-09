@@ -227,7 +227,7 @@ html, body {
   }
 
   #province-detail-modal {
-    max-width: 88vw !important;
+    max-width: 100% !important;
   }
 
   #modal-heritage-list {
