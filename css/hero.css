@@ -539,3 +539,31 @@ body.hero-animated #hero-map-wrapper {
 .custom-modal-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(201, 165, 103, 0.65);
 }
+
+#modal-btn-explore-heritage {
+  background: linear-gradient(135deg, #E6D3A7 0%, #C9A567 50%, #A47E3F 100%) !important;
+  color: #140F0A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(201, 165, 103, 0.38) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#modal-btn-explore-heritage:hover {
+  background: linear-gradient(135deg, #FFF1D2 0%, #E6D3A7 50%, #C9A567 100%) !important;
+  box-shadow: 0 6px 26px rgba(201, 165, 103, 0.55) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+#modal-btn-close-map {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(251, 248, 242, 0.85) !important;
+  transition: all 200ms ease !important;
+}
+
+#modal-btn-close-map:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(201, 165, 103, 0.4) !important;
+  color: #FFFFFF !important;
+}
