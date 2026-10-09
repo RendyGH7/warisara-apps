@@ -458,11 +458,13 @@ body.hero-animated #hero-map-wrapper {
   z-index: 1000 !important;
   opacity: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 35%, rgba(18, 14, 11, 0.88) 0%, rgba(6, 5, 4, 0.94) 100%);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #0c0907;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 165, 103, 0.35) transparent;
 }
 
 #province-modal-overlay.active {
@@ -471,37 +473,37 @@ body.hero-animated #hero-map-wrapper {
 }
 
 #province-detail-modal {
-  transform: scale(0.95) translateY(18px);
+  min-height: 100vh;
+  width: 100%;
+  transform: translateY(20px) scale(0.99);
   opacity: 0;
-  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 260ms ease-out;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 280ms ease-out;
   will-change: transform, opacity;
-  background: linear-gradient(168deg, rgba(25, 20, 16, 0.98) 0%, rgba(14, 11, 9, 0.99) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95),
-              0 0 0 1px rgba(255, 255, 255, 0.06),
-              0 0 50px -10px rgba(181, 123, 58, 0.2);
+  background-color: #0D0A08;
+  display: flex;
+  flex-direction: column;
 }
 
 #province-modal-overlay.active #province-detail-modal {
-  transform: scale(1) translateY(0);
+  transform: translateY(0) scale(1);
   opacity: 1;
 }
 
 #province-modal-overlay.active .modal-anim-stagger-1 {
-  animation: modalFadeUp 340ms 60ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalFadeUp 360ms 60ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #province-modal-overlay.active .modal-anim-stagger-2 {
-  animation: modalFadeUp 340ms 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalFadeUp 360ms 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #province-modal-overlay.active .modal-anim-stagger-3 {
-  animation: modalFadeUp 340ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalFadeUp 360ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #province-modal-overlay.active .modal-anim-stagger-4 {
-  animation: modalFadeUp 340ms 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalFadeUp 360ms 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes modalFadeUp {
@@ -514,6 +516,36 @@ body.hero-animated #hero-map-wrapper {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Wari Mascot Animations inside Province View */
+.modal-wari-bounce {
+  animation: wariHop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+@keyframes wariHop {
+  0% { transform: scale(1) translateY(0); }
+  35% { transform: scale(1.18, 0.88) translateY(-14px) rotate(-4deg); }
+  65% { transform: scale(0.95, 1.08) translateY(-2px) rotate(3deg); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.modal-wari-float {
+  animation: wariFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes wariFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Tab Active Styles */
+.province-tab-btn.active {
+  background: rgba(201, 165, 103, 0.16) !important;
+  border-color: rgba(201, 165, 103, 0.45) !important;
+  color: #FFF7EB !important;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.18);
 }
 
 .custom-modal-scroll {
@@ -567,3 +599,4 @@ body.hero-animated #hero-map-wrapper {
   border-color: rgba(201, 165, 103, 0.4) !important;
   color: #FFFFFF !important;
 }
+
