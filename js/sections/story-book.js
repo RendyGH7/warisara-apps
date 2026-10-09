@@ -407,7 +407,7 @@
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            flightWrapper.style.transition = 'transform 1.0s cubic-bezier(0.12, 0.95, 0.22, 1)';
+            flightWrapper.style.transition = 'transform 1.9s cubic-bezier(0.18, 0.98, 0.26, 1)';
             flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
 
             setTimeout(() => {
@@ -418,7 +418,7 @@
                 casingEl.classList.remove('is-closed');
                 casingEl.classList.add('is-open');
               }
-            }, 480);
+            }, 2100);
 
             setTimeout(() => {
               if (this.bookCasing) {
@@ -432,7 +432,7 @@
               }
               if (this.sideDock) this.sideDock.classList.remove('is-hidden');
               if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
-            }, 1800);
+            }, 3600);
           });
         });
       } else {
@@ -444,7 +444,7 @@
             casingEl.classList.remove('is-closed');
             casingEl.classList.add('is-open');
           }
-        }, 120);
+        }, 800);
 
         setTimeout(() => {
           if (this.bookCasing) {
@@ -458,7 +458,7 @@
           }
           if (this.sideDock) this.sideDock.classList.remove('is-hidden');
           if (this.btnModalClose) this.btnModalClose.classList.remove('is-hidden');
-        }, 1500);
+        }, 2200);
       }
     }
 
