@@ -106,8 +106,7 @@ window.WARISARA_PAGE_CONNECTOR = {
       "heritage-modern.html": "#module-heritage-modern",
       "creative-lab.html": "#module-creative-lab",
       "belajar.html": "#module-belajar",
-      "cerita.html": "#module-cerita",
-      "pass-it-on.html": "#module-pass-it-on"
+      "cerita.html": "#module-cerita"
     };
 
     anchorElements.forEach((a) => {
@@ -134,7 +133,7 @@ window.WARISARA_PAGE_CONNECTOR = {
       "creative-lab": "initCreativeLabPage",
       belajar: "initBelajarPage",
       cerita: "initCeritaPage",
-      "pass-it-on": "initPassItOnPage"
+      "detail-produk": "initDetailProdukPage"
     };
 
     const funcName = pageFunctionMap[pageId];
