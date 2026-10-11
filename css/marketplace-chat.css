@@ -15,9 +15,11 @@
   }
 }
 
-/* Hide navbar completely when Google Login modal is active */
+/* Hide navbar completely when Google Login or Chat Drawer is active */
 body.auth-modal-open #main-navbar,
-body.auth-modal-open #mobile-nav-drawer {
+body.auth-modal-open #mobile-nav-drawer,
+body.chat-drawer-open #main-navbar,
+body.chat-drawer-open #mobile-nav-drawer {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -29,8 +31,13 @@ body.auth-modal-open #mobile-nav-drawer {
   animation: chatBadgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Chat Drawer Container */
+/* Chat Drawer Container & Backdrop */
+#warisara-chat-backdrop {
+  z-index: 1000 !important;
+}
+
 #warisara-chat-drawer {
+  z-index: 1050 !important;
   transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
 }
