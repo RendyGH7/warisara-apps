@@ -753,9 +753,9 @@
             </div>
 
             <div class="space-y-2.5 max-w-xs mx-auto w-full">
-              <a href="pass-it-on.html" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all">
-                <span class="material-symbols-outlined text-sm">favorite</span>
-                <span>Tuliskan Pesan di Pass It On</span>
+              <a href="ekonomi-kreatif.html" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#B38728] via-[#D4AF37] to-[#B38728] hover:brightness-110 text-[#1A1208] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all">
+                <span class="material-symbols-outlined text-sm">shopping_bag</span>
+                <span>Jelajahi Produk Lokal Terkait</span>
               </a>
               <button id="btn-restart-book" class="w-full py-2.5 px-4 rounded-xl bg-[#2A1F17]/10 hover:bg-[#2A1F17]/15 text-[#2A1F17] text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-sm">restart_alt</span>

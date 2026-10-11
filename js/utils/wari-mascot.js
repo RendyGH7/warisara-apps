@@ -197,21 +197,20 @@
         { mood: 'happy',    anim: 'wave',    text: 'Ekspresikan jiwa budayamu! 🌟' },
       ],
     },
-    'pass-it-on': {
+    'detail-produk': {
       position: 'bl', size: 'md', initMood: 'happy', initAnim: 'wave', idleAnim: 'bob',
       greetings: [
-        'Teruskan warisan ke generasi berikut! 🤝',
-        'Berbagi itu indah!',
-        'Budaya hidup dari kita ke kita~',
-        'Lestarikan, sebarkan, wariskan!'
+        'Karya otentik langsung dari tangan perajin! 🛍️',
+        'Ingin tanya langsung? Klik Chat Penjual! 💬',
+        'Karya ini punya nilai filosofis lho~ ✨',
+        'Dukung pelestari lokal kita! 🌿'
       ],
       contextQuotes: [
-        { mood: 'happy',    anim: 'wave',    text: 'Warisan itu untuk diteruskan! 🤝' },
-        { mood: 'idle',     anim: 'nod',     text: 'Berbagi pengetahuan budaya itu mulia 🌿' },
-        { mood: 'happy',    anim: 'hop',     text: 'Kamu adalah agen pelestari budaya! 🌟' },
-        { mood: 'thinking', anim: 'think',   text: 'Sudah ajarkan anak cucu tentang batik? 🤔' },
-        { mood: 'happy',    anim: 'excited', text: 'Sebarkan cinta budaya ke semua! ❤️' },
-        { mood: 'idle',     anim: 'bob',     text: 'Budaya hidup dari mulut ke mulut~ 📢' },
+        { mood: 'happy',    anim: 'wave',    text: 'Chat penjual langsung untuk bertransaksi! 💬' },
+        { mood: 'idle',     anim: 'nod',     text: 'Fair trade menyejahterakan pengrajin lokal 🌿' },
+        { mood: 'happy',    anim: 'hop',     text: 'Karya ini 100% otentik Nusantara! 🌟' },
+        { mood: 'thinking', anim: 'think',   text: 'Filosofinya mendalam sekali ya~ 📜' },
+        { mood: 'happy',    anim: 'excited', text: 'Koleksi kriya Nusantara terbaik! ❤️' },
       ],
     },
   };
