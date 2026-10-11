@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ekonomi Kreatif & Produk Lokal — WARISARA</title>
+  <title>Pasar Produk Lokal & Kriya Nusantara — WARISARA</title>
   <meta name="description"
-    content="Etalase kriya lokal dan produk ekonomi kreatif berdaya saing global: menghubungkan apresiasi karya dengan pemberdayaan ekonomi komunitas perajin Nusantara." />
+    content="Marketplace C2C kriya dan produk lokal Nusantara. Beli dan jual karya otentik langsung antar sesama komunitas melalui chat personal ala Facebook Marketplace." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,25 +31,24 @@
             'ink-soft': '#3A322A',
             'ink-muted': '#6B6258',
             'hero-bg': '#151310',
-            indigo: {
-              900: '#16213A',
-              700: '#233A5E',
-              500: '#35578A',
-              300: '#6B8AB8'
-            },
             forest: {
               900: '#1E2E24',
               700: '#2E4A38',
-              500: '#3F6350'
+              500: '#3F6350',
+              400: '#527A64',
+              300: '#75A58B'
             },
             terracotta: {
               700: '#A8512F',
               500: '#C06A42',
+              400: '#D27F58',
               300: '#DDA07C'
             },
             brass: {
               600: '#A47E3F',
+              500: '#B89253',
               400: '#C9A567',
+              300: '#DCBE88',
               200: '#E6D3A7'
             },
             border: '#D9CDB8',
@@ -64,34 +63,13 @@
     };
   </script>
 
-  <script>
-    (function () {
-      try {
-        var isReload = false;
-        var navEntries = performance.getEntriesByType("navigation");
-        if (navEntries.length > 0 && navEntries[0].type === "reload") {
-          isReload = true;
-        } else if (performance.navigation && performance.navigation.type === 1) {
-          isReload = true;
-        }
-        var hasPlayed = sessionStorage.getItem("warisara_intro_played") === "true";
-        if (isReload || !hasPlayed) {
-          document.documentElement.classList.add("preloader-active");
-          if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
-          }
-          window.scrollTo(0, 0);
-        }
-      } catch (e) {}
-    })();
-  </script>
-
   <link rel="stylesheet" href="../css/variables.css" />
   <link rel="stylesheet" href="../css/base.css?v=13" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=12" />
   <link rel="stylesheet" href="../css/responsive.css" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
@@ -99,6 +77,7 @@
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="ekonomi-kreatif">
 
+  <!-- Main Navbar -->
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
     
@@ -107,6 +86,7 @@
         class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
     </a>
 
+    <!-- Navigasi Desktop: Pass It On dihapus -->
     <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
@@ -114,19 +94,27 @@
       <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
       <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
       <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
-      <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="ekonomi-kreatif.html" class="nav-link active" data-page="ekonomi-kreatif">Produk Lokal</a>
       <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
       <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
-      <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <div class="flex items-center gap-2.5 flex-shrink-0">
-      <a href="heritage-modern.html" class="btn-nav-icon" aria-label="Heritage × Modern" title="Heritage × Modern">
-        <span class="material-symbols-outlined text-base">auto_fix_high</span>
-      </a>
+    <!-- Navbar Action Icons: Chat Penjual & Profil Google -->
+    <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+      <!-- Chat Toggle Button di Navbar -->
+      <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
+        <span class="material-symbols-outlined text-base">chat</span>
+        <span class="nav-chat-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brass-400 text-ink text-[9px] font-bold flex items-center justify-center">2</span>
+      </button>
 
+      <!-- Google Auth Trigger -->
+      <button class="nav-auth-trigger focus:outline-none" aria-label="Akun Pengguna" title="Masuk dengan Google">
+        <!-- Disuntikkan secara dinamis oleh marketplace-auth.js -->
+      </button>
+
+      <!-- Tombol Hamburger Mobile -->
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
         aria-label="Buka Menu Navigasi">
@@ -135,6 +123,7 @@
     </div>
   </header>
 
+  <!-- Mobile Nav Drawer -->
   <div id="mobile-nav-drawer"
     class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out md:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -149,277 +138,549 @@
         <span class="material-symbols-outlined text-xl">close</span>
       </button>
     </div>
-    <div class="flex flex-col gap-1 text-xs sm:text-sm font-medium text-surface/90">
+
+    <nav class="flex flex-col gap-1 text-sm font-medium">
       <a href="../index.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="index">
-        <span class="material-symbols-outlined text-sm text-brass-400">map</span>
-        <span>01. Peta Jelajah Nusantara</span>
+        <span class="material-symbols-outlined text-base">explore</span>
+        <span>Peta Jelajah</span>
       </a>
       <a href="jelajahi.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
-        <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
-        <span>02. Jelajahi 38 Provinsi</span>
+        <span class="material-symbols-outlined text-base">map</span>
+        <span>38 Provinsi</span>
       </a>
       <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
-        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
-        <span>03. Karya Pusaka & Tradisi</span>
+        <span class="material-symbols-outlined text-base">museum</span>
+        <span>Karya Pusaka</span>
       </a>
       <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
-        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
-        <span>04. Profil Pelestari Budaya</span>
+        <span class="material-symbols-outlined text-base">handshake</span>
+        <span>Pelestari</span>
       </a>
-      <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
-        <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
-        <span>05. Ekonomi Kreatif & Produk</span>
+      <a href="ekonomi-kreatif.html" class="mobile-nav-link active py-2 px-3 rounded-lg bg-brass-400/20 text-brass-300 font-semibold flex items-center gap-2.5" data-page="ekonomi-kreatif">
+        <span class="material-symbols-outlined text-base">shopping_bag</span>
+        <span>Produk Lokal</span>
       </a>
       <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
-        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
-        <span>06. Heritage × Modern</span>
+        <span class="material-symbols-outlined text-base">auto_fix_high</span>
+        <span>Heritage × Modern</span>
       </a>
       <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
-        <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
-        <span>07. Creative Lab Canvas</span>
+        <span class="material-symbols-outlined text-base">palette</span>
+        <span>Creative Lab</span>
       </a>
       <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
-        <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
-        <span>08. Pusat Belajar & Kuis</span>
+        <span class="material-symbols-outlined text-base">school</span>
+        <span>Belajar</span>
       </a>
       <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
-        <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
-        <span>09. Cerita yang Diwariskan</span>
+        <span class="material-symbols-outlined text-base">menu_book</span>
+        <span>Cerita</span>
       </a>
-      <a href="pass-it-on.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
-        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
-        <span>10. Pesan Penutup: Pass It On</span>
-      </a>
-    </div>
-    <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
-      <span>Kembali ke Peta</span>
-      <span class="material-symbols-outlined text-sm">north_east</span>
-    </a>
+
+      <!-- Quick Chat Item in Mobile Nav -->
+      <button class="nav-chat-trigger mobile-nav-link text-left py-2 px-3 rounded-lg bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 transition-colors flex items-center justify-between mt-2">
+        <span class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-base">chat</span>
+          <span>Buka Chat Penjual</span>
+        </span>
+        <span class="px-2 py-0.5 rounded-full bg-brass-400 text-ink text-[10px] font-bold">2 Baru</span>
+      </button>
+    </nav>
   </div>
 
   <main id="page-content" class="page-module-main">
-  <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
-      <div class="absolute -top-32 -right-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <span class="glass-pill mb-4 inline-block">Halaman 05 • Story-First Commerce</span>
-      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
-        Ekonomi Kreatif & Kriya
-      </h1>
-      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light">
-        Menghubungkan karya otentik pengrajin daerah dengan kehidupan modern. Setiap produk membawa dampak ekonomi riil bagi pelestarian budaya.
-      </p>
-    </div>
-  </section>
-
-  <section class="sticky top-20 sm:top-24 z-30 py-4 px-4 bg-[#181512]/90 backdrop-blur-md border-y border-border-dark">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-      <div class="relative w-full md:w-80">
-        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
-        <input id="product-search-input" type="text" placeholder="Cari karya, material, nama perajin..."
-          class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+    
+    <!-- Hero Header Marketplace -->
+    <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-16 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+      <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
       </div>
 
-      <div id="product-filters" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs no-scrollbar">
-        <button data-cat="all" class="p-cat-btn active px-3.5 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua Produk</button>
-        <button data-cat="Wastra Adat" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Wastra Adat</button>
-        <button data-cat="Keramik & Gerabah" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Gerabah & Keramik</button>
-        <button data-cat="Anyaman Alami" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Anyaman Alami</button>
-        <button data-cat="Kriya Logam" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kriya Logam</button>
-        <button data-cat="Kriya Kayu & Aksesoris" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Aksesoris & Kayu</button>
-      </div>
-    </div>
-  </section>
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <span class="glass-pill mb-4 inline-block">Pasar Budaya & Kriya Nusantara • C2C Community Marketplace</span>
+        <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-4">
+          Etalase Produk Lokal & Kriya
+        </h1>
+        <p class="text-base sm:text-lg text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+          Tempat bertemunya pencinta budaya dan pengrajin se-Indonesia. Jual karyamu atau beli langsung dari sesama pengguna dengan bertransaksi personal via chat tanpa perantara.
+        </p>
 
-  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-xs text-surface/50 mb-6 flex items-center justify-between">
-        <span>Menampilkan <strong id="product-count" class="text-brass-300">0</strong> Produk Kriya Pilihan</span>
-        <span class="text-[11px] text-forest-300">100% Fair Trade & Dukungan Langsung Komunitas</span>
-      </div>
+        <!-- User Role Bar & Action CTAs (Beli & Jual ala Facebook Marketplace) -->
+        <div class="max-w-2xl mx-auto p-3.5 sm:p-4 rounded-3xl bg-white/[0.04] border border-brass-400/30 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xl">
+          <div class="flex items-center gap-3 text-left">
+            <div id="hero-user-avatar" class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
+              R
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span id="hero-user-name" class="text-xs font-bold text-surface">Rendy Pratama</span>
+                <span class="seller-verified-badge">Terhubung Google</span>
+              </div>
+              <p id="hero-user-email" class="text-[11px] text-brass-300/80 font-mono">rendy.kolektor@gmail.com</p>
+            </div>
+          </div>
 
-      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-      </div>
-    </div>
-  </section>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <!-- Tombol Beralih Akun (Uji Chat Email A <-> Email B) -->
+            <button id="btn-hero-switch-account" type="button"
+                    class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                    title="Ganti antara Email A (Pembeli) dan Email B (Penjual)">
+              <span class="material-symbols-outlined text-sm text-brass-400">swap_horiz</span>
+              <span class="text-[11px]">Ganti Akun Demo</span>
+            </button>
 
-  <div id="product-modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div id="product-detail-modal" class="modal-container max-w-2xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
-        <div>
-          <span id="modal-product-badge" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-2">BADGE</span>
-          <h2 id="modal-product-name" class="font-display text-2xl sm:text-3xl font-light text-surface">Nama Produk</h2>
-          <p id="modal-product-origin" class="text-xs text-surface/60 mt-1">Asal Daerah • Pengrajin</p>
+            <!-- Tombol Jual Produk Lokal -->
+            <button id="btn-hero-sell-product" type="button"
+                    class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-md">
+              <span class="material-symbols-outlined text-base">add_circle</span>
+              <span>+ Jual Produk</span>
+            </button>
+
+            <!-- Tombol Buka Chat -->
+            <button class="nav-chat-trigger px-3 py-2 rounded-xl bg-forest-900/40 hover:bg-forest-900/60 border border-forest-500/30 text-forest-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+              <span class="material-symbols-outlined text-sm">chat</span>
+              <span class="hidden md:inline">Kotak Masuk</span>
+            </button>
+          </div>
         </div>
-        <button id="modal-product-close" class="p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
-          <span class="material-symbols-outlined text-xl">close</span>
-        </button>
       </div>
+    </section>
 
-      <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/80">
-        <div class="flex items-center justify-between p-4 rounded-2xl bg-brass-400/10 border border-brass-400/25">
+    <!-- Sticky Filter & Search Bar Multi-Dimensi -->
+    <section class="sticky top-16 sm:top-20 z-30 py-3.5 px-4 bg-[#181512]/95 backdrop-blur-md border-y border-border-dark shadow-md">
+      <div class="max-w-6xl mx-auto space-y-3">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+          <!-- Input Pencarian -->
+          <div class="relative w-full md:w-80">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
+            <input id="product-search-input" type="text" placeholder="Cari karya, pengrajin, kota, material..."
+              class="w-full pl-10 pr-4 py-2.5 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+          </div>
+
+          <!-- Kategori Tabs Utama -->
+          <div id="product-filters" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs no-scrollbar">
+            <button data-cat="all" class="p-cat-btn active px-3.5 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua Produk</button>
+            <button data-cat="Wastra Adat" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Wastra Adat</button>
+            <button data-cat="Keramik & Gerabah" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Gerabah & Keramik</button>
+            <button data-cat="Anyaman Alami" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Anyaman Alami</button>
+            <button data-cat="Kriya Kayu & Aksesoris" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kriya Kayu</button>
+            <button data-cat="Kriya Logam" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kriya Logam</button>
+            <button data-cat="Kuliner Tradisi & Hasil Bumi" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kuliner & Kopi</button>
+            <button data-cat="Aksesoris & Perhiasan Etnik" class="p-cat-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Aksesoris Etnik</button>
+          </div>
+        </div>
+
+        <!-- Sub-Filter: Pulau Asal, Rentang Harga, Urutan, dan Tab Produk Saya -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/5 text-xs text-surface/70">
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Filter Pulau -->
+            <select id="filter-island" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-surface text-xs focus:outline-none focus:border-brass-400">
+              <option value="all">Semua Wilayah Pulau</option>
+              <option value="Jawa">Pulau Jawa</option>
+              <option value="Sumatera">Pulau Sumatera</option>
+              <option value="Bali & Nusa Tenggara">Bali & Nusa Tenggara</option>
+              <option value="Kalimantan">Pulau Kalimantan</option>
+              <option value="Sulawesi">Pulau Sulawesi</option>
+              <option value="Maluku & Papua">Maluku & Papua</option>
+            </select>
+
+            <!-- Filter Harga -->
+            <select id="filter-price" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-surface text-xs focus:outline-none focus:border-brass-400">
+              <option value="all">Semua Rentang Harga</option>
+              <option value="under250">&lt; Rp 250.000</option>
+              <option value="250to750">Rp 250.000 – Rp 750.000</option>
+              <option value="750to1500">Rp 750.000 – Rp 1.500.000</option>
+              <option value="above1500">&gt; Rp 1.500.000</option>
+            </select>
+
+            <!-- Urutkan -->
+            <select id="filter-sort" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-surface text-xs focus:outline-none focus:border-brass-400">
+              <option value="default">Urutan: Rekomendasi</option>
+              <option value="price-low">Harga: Terendah ke Tertinggi</option>
+              <option value="price-high">Harga: Tertinggi ke Terendah</option>
+              <option value="name">Nama: A - Z</option>
+            </select>
+          </div>
+
+          <!-- Switcher Tab: Semua Produk vs Karya Saya -->
+          <div class="flex items-center gap-1 bg-black/40 p-1 rounded-full border border-white/10">
+            <button id="tab-all-products" class="px-3 py-1 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-[11px] transition-all">
+              Semua Etalase (<span id="total-catalog-count">160+</span>)
+            </button>
+            <button id="tab-my-products" class="px-3 py-1 rounded-full text-surface/60 hover:text-surface text-[11px] transition-all">
+              Karya Saya
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid Produk Katalog Skalabel -->
+    <section class="py-10 px-4 sm:px-6 bg-[#181512] min-h-[70vh]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-xs text-surface/50 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span>Menampilkan <strong id="product-count" class="text-brass-300 font-bold">0</strong> Karya Kriya Lokal</span>
+            <span class="text-white/20">•</span>
+            <span class="text-forest-300">100% Fair-Trade & Transaksi Personal P2P</span>
+          </div>
+          <span class="text-[11px] text-surface/40">💡 Klik "Chat Penjual" untuk berbicara langsung dengan pemilik barang</span>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Tombol Muat Lebih Banyak (Pagination) -->
+        <div id="load-more-container" class="mt-12 text-center">
+          <button id="btn-load-more" class="px-8 py-3 rounded-full bg-white/5 hover:bg-brass-400/20 border border-white/15 hover:border-brass-400 text-surface hover:text-brass-300 text-xs font-semibold uppercase tracking-wider transition-all shadow-lg">
+            Muat Lebih Banyak Karya (+24 Produk)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal "+ Jual Produk Lokal" (Bagi Pengguna yang Ingin Menjadi Penjual) -->
+    <div id="sell-product-modal" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md items-center justify-center p-4">
+      <div class="w-full max-w-xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh] animate-modal-enter">
+        <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-brass-400/20 border border-brass-400/30 text-brass-300 flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">storefront</span>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-surface">Jual Karya / Produk Lokal</h3>
+              <p class="text-xs text-surface/60">Pasang iklan kriya Anda, pembeli akan menghubungi Anda via chat</p>
+            </div>
+          </div>
+          <button id="sell-modal-close" class="p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+        </div>
+
+        <form id="sell-product-form" class="p-6 overflow-y-auto space-y-4 text-xs">
+          <!-- Info Penjual Aktif -->
+          <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-surface/60">Penjual:</span>
+              <strong id="sell-form-user-name" class="text-surface font-semibold">...</strong>
+              <span id="sell-form-user-email" class="text-brass-300 font-mono text-[11px]">(...)</span>
+            </div>
+            <span class="text-[10px] text-forest-300 font-bold uppercase">Terverifikasi</span>
+          </div>
+
           <div>
-            <span class="text-[10px] uppercase tracking-wider text-surface/60 block">Estimasi Nilai Fair-Trade</span>
-            <span id="modal-product-price" class="font-display text-2xl text-brass-300 font-normal">Rp 0</span>
+            <label class="block text-surface/70 font-semibold mb-1">Nama Karya / Produk *</label>
+            <input id="sell-input-name" type="text" placeholder="Contoh: Selendang Tenun Gedogan Pewarna Indigo" required
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
           </div>
-          <span class="text-[11px] text-surface/70 text-right max-w-[200px]">Penetapan harga berkeadilan memperhitungkan waktu kerja dan bahan baku alami.</span>
-        </div>
 
-        <div>
-          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-1">Filosofi Desain</h4>
-          <p id="modal-product-philosophy" class="font-display text-base text-surface font-light leading-relaxed"></p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-400 block mb-1">Material Alami</span>
-            <p id="modal-product-materials" class="text-surface/90 font-medium"></p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-surface/70 font-semibold mb-1">Kategori *</label>
+              <select id="sell-input-category" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400">
+                <option value="Wastra Adat">Wastra Adat</option>
+                <option value="Keramik & Gerabah">Keramik & Gerabah</option>
+                <option value="Anyaman Alami">Anyaman Alami</option>
+                <option value="Kriya Kayu & Aksesoris">Kriya Kayu & Aksesoris</option>
+                <option value="Kriya Logam">Kriya Logam</option>
+                <option value="Kuliner Tradisi & Hasil Bumi">Kuliner & Hasil Bumi</option>
+                <option value="Aksesoris & Perhiasan Etnik">Aksesoris & Perhiasan</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-surface/70 font-semibold mb-1">Harga (Rupiah) *</label>
+              <input id="sell-input-price" type="number" placeholder="Contoh: 450000" min="10000" required
+                     class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+            </div>
           </div>
-          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-forest-400 block mb-1">Durasi & Proses</span>
-            <p id="modal-product-process" class="text-surface/90 font-medium"></p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-surface/70 font-semibold mb-1">Kota / Asal Sentra *</label>
+              <input id="sell-input-origin" type="text" placeholder="Contoh: Kasongan, Bantul" required
+                     class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+            </div>
+            <div>
+              <label class="block text-surface/70 font-semibold mb-1">Wilayah Pulau *</label>
+              <select id="sell-input-island" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400">
+                <option value="Jawa">Jawa</option>
+                <option value="Sumatera">Sumatera</option>
+                <option value="Bali & Nusa Tenggara">Bali & Nusa Tenggara</option>
+                <option value="Kalimantan">Kalimantan</option>
+                <option value="Sulawesi">Sulawesi</option>
+                <option value="Maluku & Papua">Maluku & Papua</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="p-4 rounded-2xl bg-forest-900/20 border border-forest-500/20">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Dampak Sosial & Komunitas</span>
-          <p id="modal-product-impact" class="text-surface/90 leading-relaxed"></p>
-        </div>
-      </div>
+          <div>
+            <label class="block text-surface/70 font-semibold mb-1">Material & Bahan Alami</label>
+            <input id="sell-input-material" type="text" placeholder="Contoh: Serat Kulit Kayu & Pewarna Alami Tanpa Sintetis"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+          </div>
 
-      <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
-        <a href="makers.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
-          <span>Temui Sosok Pembuatnya</span>
-          <span class="material-symbols-outlined text-sm">person</span>
-        </a>
-        <button id="modal-product-dismiss" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
+          <div>
+            <label class="block text-surface/70 font-semibold mb-1">Filosofi & Makna Kultural Singkat</label>
+            <textarea id="sell-input-philosophy" rows="2" placeholder="Ceritakan makna atau doa di balik karya ini..."
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-surface/70 font-semibold mb-1">Pilih Foto Ilustrasi Karya</label>
+            <div class="grid grid-cols-4 gap-2">
+              <label class="cursor-pointer border border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
+                <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80" checked class="sr-only" />
+                <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
+                <span class="absolute inset-0 bg-brass-400/20 group-hover:bg-brass-400/40 transition-colors"></span>
+              </label>
+              <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
+                <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80" class="sr-only" />
+                <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
+              </label>
+              <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
+                <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=800&q=80" class="sr-only" />
+                <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
+              </label>
+              <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
+                <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" class="sr-only" />
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-border-dark flex items-center justify-between">
+            <span class="text-[11px] text-surface/50">Tanpa biaya pendaftaran & komisi</span>
+            <button type="submit" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider transition-all shadow-lg">
+              Tayangkan Karya ke Etalase
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
   </main>
 
+  <!-- Footer: Pass It On dihapus -->
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
       <div class="flex items-center gap-6">
         <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
+        <a href="ekonomi-kreatif.html" class="hover:text-surface">Produk Lokal</a>
         <a href="heritage-modern.html" class="hover:text-surface">Heritage × Modern</a>
-        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
       </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="../data/products.js"></script>
   <script src="../js/utils/helpers.js"></script>
   <script src="../js/utils/page-transition.js"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
+  <script src="../js/utils/marketplace-auth.js"></script>
+  <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js"></script>
+
   <script>
     function initEkonomiKreatifPage() {
-      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
+      if (window.WARISARA_NAVBAR && typeof window.WARISARA_NAVBAR.init === "function") {
+        window.WARISARA_NAVBAR.init();
+      }
 
       const gridEl = document.getElementById("products-grid");
       const countEl = document.getElementById("product-count");
       const searchInput = document.getElementById("product-search-input");
       const catBtns = document.querySelectorAll(".p-cat-btn");
+      const islandSelect = document.getElementById("filter-island");
+      const priceSelect = document.getElementById("filter-price");
+      const sortSelect = document.getElementById("filter-sort");
+      const loadMoreBtn = document.getElementById("btn-load-more");
 
-      const modalOverlay = document.getElementById("product-modal-overlay");
-      const modalClose = document.getElementById("modal-product-close");
-      const modalDismiss = document.getElementById("modal-product-dismiss");
+      const tabAllBtn = document.getElementById("tab-all-products");
+      const tabMyBtn = document.getElementById("tab-my-products");
 
       let currentCat = "all";
+      let currentIsland = "all";
+      let currentPrice = "all";
+      let currentSort = "default";
       let query = "";
+      let activeTab = "all"; // "all" or "my"
+      let displayLimit = 24;
 
-      const products = window.PRODUCTS_DATA || [];
+      function updateHeroUserInfo() {
+        const user = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+        if (user) {
+          const nameEl = document.getElementById("hero-user-name");
+          const emailEl = document.getElementById("hero-user-email");
+          const avatarEl = document.getElementById("hero-user-avatar");
+          if (nameEl) nameEl.textContent = user.name;
+          if (emailEl) emailEl.textContent = user.email;
+          if (avatarEl) {
+            avatarEl.textContent = user.avatarLetter || user.name.charAt(0).toUpperCase();
+            avatarEl.className = `w-10 h-10 rounded-full bg-gradient-to-tr ${user.avatarColor || "from-amber-600 to-yellow-500"} text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md`;
+          }
+        }
+      }
 
-      function render() {
-        const filtered = products.filter((p) => {
+      function getFilteredProducts() {
+        const all = window.WARISARA_PRODUCTS ? window.WARISARA_PRODUCTS.getAll() : (window.PRODUCTS_DATA || []);
+        const currentUser = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+        const myEmail = currentUser ? currentUser.email.toLowerCase() : "";
+
+        return all.filter((p) => {
+          // Tab My Products
+          if (activeTab === "my") {
+            if (!p.sellerEmail || p.sellerEmail.toLowerCase() !== myEmail) return false;
+          }
+
+          // Category
           const matchCat = currentCat === "all" || p.category.toLowerCase().includes(currentCat.toLowerCase());
+
+          // Island
+          const matchIsland = currentIsland === "all" || (p.island && p.island.toLowerCase() === currentIsland.toLowerCase());
+
+          // Price range
+          let matchPrice = true;
+          const pVal = p.price || 0;
+          if (currentPrice === "under250") matchPrice = pVal < 250000;
+          else if (currentPrice === "250to750") matchPrice = pVal >= 250000 && pVal <= 750000;
+          else if (currentPrice === "750to1500") matchPrice = pVal > 750000 && pVal <= 1500000;
+          else if (currentPrice === "above1500") matchPrice = pVal > 1500000;
+
+          // Search query
           const q = query.toLowerCase().trim();
           const matchQ = !q ||
             p.name.toLowerCase().includes(q) ||
             p.origin.toLowerCase().includes(q) ||
             p.maker.toLowerCase().includes(q) ||
-            p.material.toLowerCase().includes(q);
-          return matchCat && matchQ;
-        });
+            (p.material && p.material.toLowerCase().includes(q)) ||
+            (p.province && p.province.toLowerCase().includes(q));
 
+          return matchCat && matchIsland && matchPrice && matchQ;
+        }).sort((a, b) => {
+          if (currentSort === "price-low") return (a.price || 0) - (b.price || 0);
+          if (currentSort === "price-high") return (b.price || 0) - (a.price || 0);
+          if (currentSort === "name") return a.name.localeCompare(b.name);
+          return 0;
+        });
+      }
+
+      function render() {
+        const filtered = getFilteredProducts();
         if (countEl) countEl.textContent = filtered.length;
 
-        gridEl.innerHTML = filtered.map((p) => `
-          <div class="glass-card p-6 flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1 duration-300"
+        const visible = filtered.slice(0, displayLimit);
+
+        if (visible.length === 0) {
+          gridEl.innerHTML = `
+            <div class="col-span-full text-center py-20 px-4">
+              <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 mx-auto flex items-center justify-center text-surface/40 mb-3">
+                <span class="material-symbols-outlined text-3xl">search_off</span>
+              </div>
+              <h3 class="font-display text-xl font-light text-surface mb-2">Tidak Menemukan Produk</h3>
+              <p class="text-xs text-surface/60 max-w-sm mx-auto mb-6">
+                ${activeTab === "my" ? "Anda belum mendaftarkan produk lokal untuk dijual. Klik tombol '+ Jual Produk' di atas untuk memulainya." : "Coba ubah kata kunci pencarian atau sesuaikan opsi filter wilayah dan kategori."}
+              </p>
+              ${activeTab === "my" ? `
+                <button type="button" onclick="document.getElementById('btn-hero-sell-product').click()" class="px-6 py-2.5 rounded-full bg-brass-400 text-ink text-xs font-bold uppercase tracking-wider">
+                  Pasang Iklan Sekarang
+                </button>
+              ` : `
+                <button type="button" onclick="document.getElementById('product-search-input').value=''; query=''; currentCat='all'; render();" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">
+                  Reset Semua Filter
+                </button>
+              `}
+            </div>
+          `;
+          if (loadMoreBtn) loadMoreBtn.parentElement.classList.add("hidden");
+          return;
+        }
+
+        gridEl.innerHTML = visible.map((p) => `
+          <div class="glass-card p-5 rounded-3xl flex flex-col justify-between group hover:border-brass-400/50 transition-all hover:-translate-y-1 duration-300 relative"
                data-product-id="${p.id}">
             <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">
+              <!-- Gambar Produk -->
+              <div class="relative aspect-video rounded-2xl overflow-hidden mb-4 bg-black/40">
+                <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-black/75 text-brass-300 border border-brass-400/30 backdrop-blur-md">
                   ${p.badge || p.category}
                 </span>
-                <span class="font-display text-sm text-brass-300 font-semibold">${p.priceEstimate}</span>
+                <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-semibold bg-black/75 text-surface/90 backdrop-blur-md">
+                  📍 ${p.origin.split(",")[0]}
+                </span>
               </div>
-              <h3 class="font-display text-xl font-light text-surface group-hover:text-brass-300 transition-colors mb-1">
-                ${p.name}
-              </h3>
-              <p class="text-xs text-surface/60 mb-3">${p.maker} • ${p.origin}</p>
-              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 line-clamp-2 italic">
-                "${p.philosophy}"
-              </p>
+
+              <!-- Judul & Info -->
+              <div class="flex items-start justify-between gap-2 mb-1.5">
+                <h3 class="font-display text-lg font-light text-surface group-hover:text-brass-300 transition-colors line-clamp-1">
+                  ${p.name}
+                </h3>
+              </div>
+
+              <div class="flex items-center justify-between mb-3 text-xs">
+                <span class="font-display text-base text-brass-300 font-semibold">${p.priceEstimate}</span>
+                <span class="text-[11px] text-surface/50 font-mono">★ ${p.rating ? p.rating.split(" ")[0] : "4.9"}</span>
+              </div>
+
+              <!-- Penjual Info Card -->
+              <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 mb-4 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2 overflow-hidden">
+                  <div class="w-6 h-6 rounded-full bg-brass-400/20 text-brass-300 font-bold text-[10px] flex items-center justify-center flex-shrink-0">
+                    ${(p.maker || "P").charAt(0).toUpperCase()}
+                  </div>
+                  <div class="overflow-hidden">
+                    <span class="block text-[11px] font-medium text-surface/90 truncate">${p.maker}</span>
+                    <span class="block text-[10px] text-brass-300/70 font-mono truncate">${p.sellerEmail || "penjual@gmail.com"}</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-forest-300 font-bold uppercase flex-shrink-0">Penjual</span>
+              </div>
             </div>
-            
-            <div>
-              <div class="pt-3 border-t border-white/10 mb-4">
-                <span class="text-[10px] uppercase tracking-wider text-surface/50 block mb-1">Material & Proses</span>
-                <p class="text-xs text-surface/90 line-clamp-1">${p.material}</p>
-              </div>
-              <div class="flex items-center justify-between text-xs text-brass-300 font-semibold uppercase tracking-wider">
-                <span>Pelajari Produk</span>
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
+
+            <!-- Tombol Aksi: Lihat Detail & Chat Penjual -->
+            <div class="pt-3 border-t border-white/10 grid grid-cols-2 gap-2">
+              <a href="detail-produk.html?id=${p.id}"
+                 class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-surface text-xs font-semibold flex items-center justify-center gap-1 transition-colors text-center">
+                <span>Lihat Detail</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+
+              <button type="button" data-action="chat" data-product-id="${p.id}"
+                      class="py-2.5 px-3 rounded-xl bg-brass-400/20 hover:bg-brass-400/30 text-brass-300 border border-brass-400/40 text-xs font-bold flex items-center justify-center gap-1 transition-all">
+                <span class="material-symbols-outlined text-sm">chat</span>
+                <span>Chat Penjual</span>
+              </button>
             </div>
           </div>
         `).join("");
 
-        gridEl.querySelectorAll("[data-product-id]").forEach((card) => {
-          card.addEventListener("click", () => {
-            const id = card.dataset.productId;
-            const item = products.find((p) => p.id === id);
-            if (item) openModal(item);
+        // Attach event listener ke tombol Chat Penjual
+        gridEl.querySelectorAll("[data-action='chat']").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.productId;
+            const p = window.WARISARA_PRODUCTS.getById(id);
+            if (p && window.WARISARA_CHAT) {
+              window.WARISARA_CHAT.openProductChat(p);
+            }
           });
         });
+
+        // Toggle visibility Load More
+        if (loadMoreBtn) {
+          if (visible.length < filtered.length) {
+            loadMoreBtn.parentElement.classList.remove("hidden");
+          } else {
+            loadMoreBtn.parentElement.classList.add("hidden");
+          }
+        }
       }
 
-      function openModal(p) {
-        document.getElementById("modal-product-name").textContent = p.name;
-        document.getElementById("modal-product-badge").textContent = p.badge || p.category;
-        document.getElementById("modal-product-origin").textContent = `${p.maker} • ${p.origin}`;
-        document.getElementById("modal-product-price").textContent = p.priceEstimate;
-        document.getElementById("modal-product-philosophy").textContent = `"${p.philosophy}"`;
-        document.getElementById("modal-product-materials").textContent = p.material;
-        document.getElementById("modal-product-process").textContent = p.process;
-        document.getElementById("modal-product-impact").textContent = p.impact;
-        modalOverlay.classList.remove("hidden");
-        modalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        modalOverlay.classList.remove("active");
-        modalOverlay.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-
-      if (modalClose) modalClose.addEventListener("click", closeModal);
-      if (modalDismiss) modalDismiss.addEventListener("click", closeModal);
-      if (modalOverlay) {
-        modalOverlay.addEventListener("click", (e) => {
-          if (e.target === modalOverlay) closeModal();
-        });
-      }
-
+      // Event Filters
       catBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           catBtns.forEach((b) => {
@@ -429,6 +690,7 @@
           btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300", "font-semibold");
           btn.classList.remove("border-white/10", "text-surface/70");
           currentCat = btn.dataset.cat;
+          displayLimit = 24;
           render();
         });
       });
@@ -436,10 +698,172 @@
       if (searchInput) {
         searchInput.addEventListener("input", (e) => {
           query = e.target.value;
+          displayLimit = 24;
           render();
         });
       }
 
+      if (islandSelect) {
+        islandSelect.addEventListener("change", (e) => {
+          currentIsland = e.target.value;
+          displayLimit = 24;
+          render();
+        });
+      }
+
+      if (priceSelect) {
+        priceSelect.addEventListener("change", (e) => {
+          currentPrice = e.target.value;
+          displayLimit = 24;
+          render();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener("change", (e) => {
+          currentSort = e.target.value;
+          render();
+        });
+      }
+
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", () => {
+          displayLimit += 24;
+          render();
+        });
+      }
+
+      // Tab switcher: Semua Produk vs Karya Saya
+      if (tabAllBtn && tabMyBtn) {
+        tabAllBtn.addEventListener("click", () => {
+          activeTab = "all";
+          tabAllBtn.className = "px-3 py-1 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-[11px] transition-all";
+          tabMyBtn.className = "px-3 py-1 rounded-full text-surface/60 hover:text-surface text-[11px] transition-all";
+          displayLimit = 24;
+          render();
+        });
+
+        tabMyBtn.addEventListener("click", () => {
+          activeTab = "my";
+          tabMyBtn.className = "px-3 py-1 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-[11px] transition-all";
+          tabAllBtn.className = "px-3 py-1 rounded-full text-surface/60 hover:text-surface text-[11px] transition-all";
+          displayLimit = 24;
+          render();
+        });
+      }
+
+      // Tombol Switch Akun Demo di Hero
+      const switchHeroBtn = document.getElementById("btn-hero-switch-account");
+      if (switchHeroBtn) {
+        switchHeroBtn.addEventListener("click", () => {
+          if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.switchAccountQuick === "function") {
+            window.WARISARA_AUTH.switchAccountQuick();
+            updateHeroUserInfo();
+            render();
+          }
+        });
+      }
+
+      // Modal Jual Produk Logic
+      const sellModal = document.getElementById("sell-product-modal");
+      const openSellBtn = document.getElementById("btn-hero-sell-product");
+      const closeSellBtn = document.getElementById("sell-modal-close");
+      const sellForm = document.getElementById("sell-product-form");
+
+      function openSellModal() {
+        const user = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+        if (!user) {
+          if (window.WARISARA_AUTH) window.WARISARA_AUTH.openAuthModal(openSellModal);
+          return;
+        }
+
+        document.getElementById("sell-form-user-name").textContent = user.name;
+        document.getElementById("sell-form-user-email").textContent = user.email;
+
+        sellModal.classList.remove("hidden");
+        sellModal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSellModal() {
+        sellModal.classList.add("hidden");
+        sellModal.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+
+      if (openSellBtn) openSellBtn.addEventListener("click", openSellModal);
+      if (closeSellBtn) closeSellBtn.addEventListener("click", closeSellModal);
+      if (sellModal) {
+        sellModal.addEventListener("click", (e) => {
+          if (e.target === sellModal) closeSellModal();
+        });
+      }
+
+      if (sellForm) {
+        sellForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const user = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+          if (!user) return;
+
+          const name = document.getElementById("sell-input-name").value.trim();
+          const cat = document.getElementById("sell-input-category").value;
+          const price = parseInt(document.getElementById("sell-input-price").value) || 100000;
+          const origin = document.getElementById("sell-input-origin").value.trim();
+          const island = document.getElementById("sell-input-island").value;
+          const material = document.getElementById("sell-input-material").value.trim() || "Bahan alami lokal Indonesia";
+          const phil = document.getElementById("sell-input-philosophy").value.trim() || "Karya kriya otentik dari sentra kerajinan Nusantara.";
+          const selectedPhoto = document.querySelector("input[name='sell_photo']:checked")?.value || "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80";
+
+          const newProd = {
+            id: "user-prod-" + Date.now(),
+            name: name,
+            category: cat,
+            origin: origin,
+            province: origin.split(",")[1]?.trim() || origin,
+            island: island,
+            maker: user.name,
+            sellerEmail: user.email,
+            price: price,
+            priceEstimate: "Rp " + price.toLocaleString("id-ID"),
+            material: material,
+            process: "Buatan tangan manual pengrajin komunitas",
+            philosophy: phil,
+            impact: `Dukungan langsung kepada pelestari lokal ${user.name}.`,
+            badge: "Karya Komunitas",
+            rating: "5.0 (Baru)",
+            stock: 3,
+            image: selectedPhoto,
+            isUserListing: true
+          };
+
+          window.WARISARA_PRODUCTS.addCustomProduct(newProd);
+          closeSellModal();
+          sellForm.reset();
+
+          if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
+            window.WARISARA_AUTH.showToast(`Iklan "${name}" berhasil ditayangkan ke pasar!`);
+          }
+
+          // Switch to My Products tab to show the new product
+          activeTab = "my";
+          if (tabMyBtn && tabAllBtn) {
+            tabMyBtn.className = "px-3 py-1 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-[11px] transition-all";
+            tabAllBtn.className = "px-3 py-1 rounded-full text-surface/60 hover:text-surface text-[11px] transition-all";
+          }
+          render();
+        });
+      }
+
+      window.addEventListener("warisara_auth_changed", () => {
+        updateHeroUserInfo();
+        render();
+      });
+
+      window.addEventListener("warisara_products_updated", () => {
+        render();
+      });
+
+      updateHeroUserInfo();
       render();
     }
 
@@ -455,4 +879,3 @@
 </body>
 
 </html>
-
