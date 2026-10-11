@@ -15,6 +15,16 @@
   }
 }
 
+/* Hide navbar completely when Google Login modal is active */
+body.auth-modal-open #main-navbar,
+body.auth-modal-open #mobile-nav-drawer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-120%) !important;
+}
+
 .chat-badge-pulse {
   animation: chatBadgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

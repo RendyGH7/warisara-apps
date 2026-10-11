@@ -108,6 +108,13 @@
       modal = document.getElementById("google-auth-modal");
     }
 
+    // Sembunyikan navbar saat fitur login diklik
+    document.body.classList.add("auth-modal-open");
+    const navbar = document.getElementById("main-navbar");
+    if (navbar) navbar.style.display = "none";
+    const mobileDrawer = document.getElementById("mobile-nav-drawer");
+    if (mobileDrawer) mobileDrawer.style.display = "none";
+
     if (modal) {
       modal.classList.remove("hidden");
       modal.classList.add("flex");
@@ -158,12 +165,19 @@
       modal.classList.remove("flex");
       document.body.style.overflow = "";
     }
+
+    // Tampilkan kembali navbar saat modal ditutup
+    document.body.classList.remove("auth-modal-open");
+    const navbar = document.getElementById("main-navbar");
+    if (navbar) navbar.style.display = "";
+    const mobileDrawer = document.getElementById("mobile-nav-drawer");
+    if (mobileDrawer) mobileDrawer.style.display = "";
   }
 
   function createAuthModalDOM() {
     const div = document.createElement("div");
     div.id = "google-auth-modal";
-    div.className = "hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md items-center justify-center p-4";
+    div.className = "hidden fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md items-center justify-center p-4";
     div.innerHTML = `
       <div class="w-full max-w-md bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col animate-modal-enter">
         <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
