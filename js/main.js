@@ -22,8 +22,10 @@
 
     try {
       if (window.WARISARA_CREATIVE_LAB) window.WARISARA_CREATIVE_LAB.init();
+      if (window.WARISARA_MINI_QUIZ) window.WARISARA_MINI_QUIZ.init();
+      if (window.WARISARA_HOME_CERITA) window.WARISARA_HOME_CERITA.init();
     } catch (e) {
-      console.error("Creative Lab initialization error:", e);
+      console.error("Creative Lab / Mini Quiz / Cerita initialization error:", e);
     }
 
     try {

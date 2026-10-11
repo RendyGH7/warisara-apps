@@ -1452,98 +1452,264 @@
       </div>
     </section>
 
+    <!-- MODULE BELAJAR (MINI KUIS BUDAYA 30% DEMO) -->
     <section id="module-belajar" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
       <div class="section-container">
-        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+        
+        <!-- Header -->
+        <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest-500/20 border border-forest-500/35 text-forest-300 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+            <span class="material-symbols-outlined text-sm text-forest-300">school</span>
+            <span>Pusat Belajar & Kuis Budaya • 30% Cuplikan Fitur</span>
+          </div>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
             Uji Wawasan Budaya Nusantara
           </h2>
+          <p class="text-xs sm:text-sm text-surface/75 max-w-2xl mx-auto leading-relaxed font-light">
+            Ikuti cuplikan mini kuis interaktif (3 tantangan terpilih) untuk menguji seberapa dalam apresiasi Anda terhadap filosofi wastra, tosan aji, dan tradisi kepulauan.
+          </p>
         </div>
 
-        <div class="max-w-2xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-forest-500/30 mb-10 text-center">
-          <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-forest-500/20 text-forest-300 mb-4 inline-block">Kuis Cuplikan Interaktif</span>
-          <h3 class="font-display text-xl sm:text-2xl text-surface font-light mb-6">
-            "Bahan alami apa yang secara tradisional digunakan oleh perajin Sumba untuk menghasilkan warna merah pekat pada Tenun Ikat?"
-          </h3>
+        <!-- Mini Quiz Interactive Card -->
+        <div id="mini-quiz-card" class="max-w-3xl mx-auto glass-card p-6 sm:p-9 rounded-3xl border border-forest-500/30 mb-8 shadow-2xl bg-[#14120F]/90">
+          
+          <!-- Top Console: Step indicator, Live Score, Streak -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-white/10">
+            <div class="flex items-center gap-2.5">
+              <span id="mini-quiz-indicator" class="font-mono text-xs uppercase tracking-widest text-forest-300 font-bold">
+                Tantangan 01 dari 03
+              </span>
+              <div class="px-3 py-1 rounded-full bg-forest-500/20 border border-forest-500/40 text-forest-200 font-mono text-xs font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-brass-300">stars</span>
+                <span id="mini-quiz-score">0 / 300 Pts</span>
+              </div>
+              <div id="mini-quiz-streak" class="px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold">
+                Streak: 0x 🔥
+              </div>
+            </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-left text-xs">
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">A</span>
-              <span>Kunyit & Bunga Telang</span>
-            </div>
-            <div class="p-3.5 rounded-xl bg-forest-500/20 border border-forest-400 text-forest-200 font-semibold flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-forest-500 text-ink flex items-center justify-center font-bold">B</span>
-              <span>Akar Pohon Mengkudu (Kombu) ✓</span>
-            </div>
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">C</span>
-              <span>Kulit Kayu Mahoni</span>
-            </div>
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-forest-400/50 hover:bg-forest-500/10 transition-colors cursor-pointer flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">D</span>
-              <span>Daun Pandan Suji</span>
+            <div class="flex items-center gap-2">
+              <span id="mini-quiz-category" class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-surface/70">Wastra & Tekstil</span>
+              <span id="mini-quiz-province" class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-500/15 border border-brass-500/30 text-brass-300">DI Yogyakarta</span>
             </div>
           </div>
 
-          <a href="pages/belajar.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-forest-600 hover:bg-forest-500 text-surface text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors">
-            <span>Mulai Kuis Lengkap (10 Tantangan)</span>
-            <span class="material-symbols-outlined text-sm">school</span>
-          </a>
+          <!-- Progress Bar -->
+          <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden mb-6">
+            <div id="mini-quiz-progress" class="h-full bg-gradient-to-r from-forest-500 via-forest-400 to-brass-400 transition-all duration-300" style="width: 33%;"></div>
+          </div>
+
+          <!-- Wari Mascot Companion Mini Dialogue Stage -->
+          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-3.5 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-forest-500/20 border border-forest-500/30 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <img id="mini-quiz-mascot-img" src="assets/mascot/wari-idle-clean.png" alt="Si Wari Maskot" class="w-10 h-10 object-contain" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="text-[10px] uppercase font-bold tracking-wider text-brass-400 mb-0.5 flex items-center gap-1">
+                <span>Si Wari Mendampingi</span>
+                <span class="material-symbols-outlined text-xs">sentiment_satisfied</span>
+              </div>
+              <p id="mini-quiz-mascot-speech" class="text-xs text-surface/90 font-medium italic leading-relaxed">
+                "Ayo pilih jawaban yang paling tepat! Wari yakin kamu bisa!"
+              </p>
+            </div>
+          </div>
+
+          <!-- ACTIVE QUESTION STAGE -->
+          <div id="mini-quiz-active-stage" class="space-y-6">
+            
+            <div>
+              <h3 id="mini-quiz-question-text" class="font-display text-lg sm:text-2xl text-surface font-light leading-snug mb-2">
+                Apa makna filosofis ombak berkesinambungan pada motif Batik Parang Rusak?
+              </h3>
+              <p id="mini-quiz-context-text" class="text-xs text-surface/60 font-light italic">
+                Motif Parang diciptakan oleh Sultan Agung dari Kesultanan Mataram saat bermeditasi di Pantai Parangtritis.
+              </p>
+            </div>
+
+            <!-- Dynamic Options Grid -->
+            <div id="mini-quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Injected by home-belajar.js -->
+            </div>
+
+            <!-- Feedback Explanation Box -->
+            <div id="mini-quiz-feedback" class="hidden p-4 rounded-2xl bg-forest-950/40 border border-forest-500/40 space-y-1.5 transition-all">
+              <div class="text-[10px] uppercase font-bold tracking-wider text-forest-300 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">menu_book</span>
+                <span>Penjelasan Kearifan Budaya</span>
+              </div>
+              <p id="mini-quiz-feedback-text" class="text-xs text-surface/90 font-light leading-relaxed">
+                Penjelasan filosofi kearifan tradisi.
+              </p>
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex items-center justify-end pt-2">
+              <button id="mini-quiz-next-btn" class="hidden px-6 py-2.5 rounded-full bg-forest-600 hover:bg-forest-500 text-white text-xs font-bold tracking-wider uppercase transition-all duration-200 shadow-lg flex items-center gap-2">
+                <span>Tantangan Berikutnya</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- RESULT STAGE (Hidden Initially) -->
+          <div id="mini-quiz-result-stage" class="hidden text-center py-6 space-y-5">
+            <div class="w-16 h-16 mx-auto rounded-full bg-forest-500/20 border border-forest-500/40 flex items-center justify-center text-brass-300 shadow-lg">
+              <span class="material-symbols-outlined text-3xl">emoji_events</span>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl sm:text-3xl font-light text-white mb-2">Uji Coba Mini Kuis Selesai! 🎉</h3>
+              <p class="text-xs sm:text-sm text-surface/75 max-w-md mx-auto leading-relaxed">
+                Anda telah menyelesaikan 30% cuplikan mini kuis budaya. Skor perolehan Anda:
+              </p>
+              <div id="mini-quiz-final-score" class="font-display text-3xl sm:text-4xl text-brass-300 font-bold mt-2">
+                300 / 300 Pts
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+              <button id="mini-quiz-restart-btn" class="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-surface text-xs font-semibold tracking-wider uppercase transition-colors flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">restart_alt</span>
+                <span>Ulangi Mini Kuis</span>
+              </button>
+              <a href="pages/belajar.html" class="px-7 py-3 rounded-full bg-forest-600 hover:bg-forest-500 text-white text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-xl flex items-center gap-2">
+                <span>Ikuti Kuis Lengkap 10 Soal (Bank Ratusan Soal)</span>
+                <span class="material-symbols-outlined text-sm">north_east</span>
+              </a>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
 
+    <!-- MODULE CERITA (30% LEMBARAN TUTUR LISAN SHOWCASE) -->
     <section id="module-cerita" class="section-spacer section-batik-ceplok-dark border-t border-border-dark">
       <div class="section-container">
-        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+        
+        <!-- Header -->
+        <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-500/20 border border-terracotta-500/35 text-terracotta-300 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+            <span class="material-symbols-outlined text-sm text-terracotta-300">menu_book</span>
+            <span>Perpustakaan Tutur Lisan & Wastra 3D • 30% Cuplikan Fitur</span>
+          </div>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-4 leading-tight">
             Hikayat, Legenda & Falsafah Hidup
           </h2>
+          <p class="text-xs sm:text-sm text-surface/75 max-w-2xl mx-auto leading-relaxed font-light">
+            Selami 3 cuplikan kisah adiluhung Nusantara. Dengarkan petuah bijak para tetua atau buka cuplikan lembaran cerita langsung di halaman ini.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 mb-3 inline-block">Sulawesi Selatan</span>
-              <h4 class="font-display text-xl text-surface mb-2">Pelayaran Sawerigading</h4>
-              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Kisah epik I La Galigo tentang lahirnya kapal Pinisi dan sumpah para pembuatnya yang menyatu dengan samudra."</p>
-            </div>
-            <a href="pages/cerita.html" class="text-xs text-terracotta-300 font-semibold flex items-center gap-1 hover:underline">
-              <span>Baca Kisah Lengkap</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-          </div>
-
-          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-500/20 text-brass-300 mb-3 inline-block">Bali (Tenganan)</span>
-              <h4 class="font-display text-xl text-surface mb-2">Tenun Gringsing</h4>
-              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Dewa Indra mengabadikan gemerlap bintang malam dalam benang ikat ganda sebagai pelindung dari kegelapan."</p>
-            </div>
-            <a href="pages/cerita.html" class="text-xs text-brass-300 font-semibold flex items-center gap-1 hover:underline">
-              <span>Baca Kisah Lengkap</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-          </div>
-
-          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-forest-500/20 text-forest-300 mb-3 inline-block">Kalimantan Tengah</span>
-              <h4 class="font-display text-xl text-surface mb-2">Falsafah Huma Betang</h4>
-              <p class="text-xs text-surface/75 leading-relaxed italic mb-4">"Rumah panjang Dayak tempat puluhan keluarga hidup rukun di bawah satu atap ulin dengan musyawarah."</p>
-            </div>
-            <a href="pages/cerita.html" class="text-xs text-forest-300 font-semibold flex items-center gap-1 hover:underline">
-              <span>Baca Kisah Lengkap</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-          </div>
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center justify-center gap-2 flex-wrap mb-8">
+          <button class="home-story-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-terracotta-500 text-white transition-all shadow-sm" data-theme="all">
+            Semua Kisah (3)
+          </button>
+          <button class="home-story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 text-surface/80 hover:bg-white/10 transition-all" data-theme="maritim">
+            Mitologi Maritim
+          </button>
+          <button class="home-story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 text-surface/80 hover:bg-white/10 transition-all" data-theme="tenun">
+            Wastra & Tenun Sakral
+          </button>
+          <button class="home-story-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 border border-white/10 text-surface/80 hover:bg-white/10 transition-all" data-theme="falsafah">
+            Falsafah Hidup
+          </button>
         </div>
 
+        <!-- Story Cards Grid (Injected by home-cerita.js) -->
+        <div id="home-stories-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <!-- Injected via js/sections/home-cerita.js -->
+        </div>
+
+        <!-- Shelf Bottom CTA to Full Cerita 3D Tome -->
         <div class="text-center">
-          <a href="pages/cerita.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-terracotta-400/40 text-terracotta-300 hover:bg-terracotta-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors">
-            <span>Jelajahi Seluruh Cerita Rakyat Nusantara</span>
+          <a href="pages/cerita.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-terracotta-400/40 text-terracotta-300 hover:bg-terracotta-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors shadow-lg">
+            <span>Buka Perpustakaan Lengkap 10 Kitab Pusaka 3D</span>
             <span class="material-symbols-outlined text-sm">auto_stories</span>
           </a>
+        </div>
+
+      </div>
+
+      <!-- IN-PAGE STORY PREVIEW MODAL -->
+      <div id="home-story-modal-overlay" class="hidden fixed inset-0 z-[1050] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative w-full max-w-2xl bg-[#171310] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+          
+          <!-- Modal Header -->
+          <div class="p-5 sm:p-6 border-b border-white/10 flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
+            <div>
+              <span id="home-story-modal-origin" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30 mb-1.5">
+                Wilayah • Kategori
+              </span>
+              <h3 id="home-story-modal-title" class="font-display text-xl sm:text-2xl font-light text-white">
+                Judul Cerita
+              </h3>
+            </div>
+            <button id="home-story-modal-close" class="p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-white transition-colors" aria-label="Tutup Lembaran">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
+
+          <!-- Modal Scrollable Body -->
+          <div class="p-5 sm:p-6 overflow-y-auto space-y-5 text-xs sm:text-sm text-surface/85">
+            <div class="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden bg-black/60 border border-white/10">
+              <img id="home-story-modal-cover" src="assets/images/stories/story_pinisi.jpg" alt="Sampul Cerita" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#171310] via-black/30 to-transparent"></div>
+              <div class="absolute bottom-3 left-4 right-4">
+                <blockquote id="home-story-modal-quote" class="font-display italic text-xs sm:text-sm text-brass-200 border-l-2 border-brass-400 pl-3 leading-relaxed">
+                  "Kutipan falsafah cerita."
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Page Reading Content -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
+              <div class="flex items-center justify-between">
+                <h4 id="home-story-modal-section-title" class="font-display text-base font-semibold text-brass-300">
+                  Judul Babak
+                </h4>
+                <span id="home-story-page-indicator" class="font-mono text-[10px] text-surface/50">
+                  Lembaran 01 dari 02 (Cuplikan)
+                </span>
+              </div>
+              <p id="home-story-modal-text" class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed">
+                Teks lembaran kisah nusantara.
+              </p>
+            </div>
+
+            <!-- Page Turner Controls & CTA -->
+            <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
+              <div class="flex items-center gap-2">
+                <button id="home-story-prev-page" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-surface/70 text-xs font-semibold flex items-center gap-1 transition-colors">
+                  <span class="material-symbols-outlined text-xs">arrow_back</span>
+                  <span>Sebelumnya</span>
+                </button>
+                <button id="home-story-next-page" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-surface/70 text-xs font-semibold flex items-center gap-1 transition-colors">
+                  <span>Berikutnya</span>
+                  <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+
+              <a id="home-story-read-full-btn" href="pages/cerita.html" class="px-4 py-2 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 text-white text-xs font-bold tracking-wider uppercase transition-transform hover:scale-102 flex items-center gap-1.5 shadow-md">
+                <span>Baca Kitab 3D Penuh</span>
+                <span class="material-symbols-outlined text-xs">north_east</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Floating Audio Quote Toast -->
+      <div id="home-story-quote-toast" class="fixed bottom-6 right-6 z-[1060] max-w-sm p-4 rounded-2xl bg-[#1E1712]/95 backdrop-blur-xl border border-terracotta-500/40 shadow-2xl text-xs text-surface flex items-start gap-3 transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+        <span class="material-symbols-outlined text-xl text-terracotta-400 flex-shrink-0 mt-0.5">volume_up</span>
+        <div class="flex-1">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-terracotta-300 mb-0.5">Petuah Tutur Lisan</div>
+          <p id="home-story-quote-toast-text" class="text-xs text-surface/90 italic leading-relaxed"></p>
         </div>
       </div>
     </section>
@@ -1603,6 +1769,8 @@
   <script src="js/components/province-panel.js?v=11"></script>
   <script src="js/sections/hero.js?v=11"></script>
   <script src="js/sections/creative-lab.js?v=11"></script>
+  <script src="js/sections/home-belajar.js?v=11"></script>
+  <script src="js/sections/home-cerita.js?v=11"></script>
 
   <script src="js/main.js?v=11"></script>
   <script src="js/utils/wari-mascot.js?v=5"></script>
