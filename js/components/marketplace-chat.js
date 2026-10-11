@@ -8,6 +8,7 @@
   const THREADS_STORAGE_KEY = "warisara_chat_threads";
   let activeThreadId = null;
   let chatDrawerEl = null;
+  let chatBackdropEl = null;
 
   // Percakapan demo awal antara Email A (Rendy) dan Email B (Dewi)
   function getInitialThreads() {
@@ -159,14 +160,27 @@
     ).sort((a, b) => (b.lastUpdate || 0) - (a.lastUpdate || 0));
   }
 
-  // Inisialisasi DOM Drawer Messenger
+  // Inisialisasi DOM Drawer Messenger & Backdrop
   function initChatDrawerDOM() {
     if (document.getElementById("warisara-chat-drawer")) return;
+
+    // Backdrop overlay: menempatkan seluruh konten HTML halaman di latar belakang
+    if (!document.getElementById("warisara-chat-backdrop")) {
+      const backdrop = document.createElement("div");
+      backdrop.id = "warisara-chat-backdrop";
+      backdrop.className =
+        "fixed inset-0 bg-black/65 backdrop-blur-sm z-[1000] transition-opacity duration-300 opacity-0 pointer-events-none";
+      document.body.appendChild(backdrop);
+      chatBackdropEl = backdrop;
+      backdrop.addEventListener("click", closeChatDrawer);
+    } else {
+      chatBackdropEl = document.getElementById("warisara-chat-backdrop");
+    }
 
     const drawer = document.createElement("div");
     drawer.id = "warisara-chat-drawer";
     drawer.className =
-      "closed fixed inset-y-0 right-0 z-[95] w-full max-w-md sm:max-w-lg chat-glass-panel flex flex-col shadow-2xl overflow-hidden font-body";
+      "closed fixed inset-y-0 right-0 z-[1050] w-full max-w-md sm:max-w-lg chat-glass-panel flex flex-col shadow-2xl overflow-hidden font-body";
 
     drawer.innerHTML = `
       <!-- Header Messenger -->
@@ -319,6 +333,20 @@
     if (!chatDrawerEl) return;
     chatDrawerEl.classList.remove("closed");
     chatDrawerEl.classList.add("open");
+
+    // Tampilkan backdrop overlay (HTML halaman berada di belakang)
+    if (chatBackdropEl) {
+      chatBackdropEl.classList.remove("opacity-0", "pointer-events-none");
+      chatBackdropEl.classList.add("opacity-100", "pointer-events-auto");
+    }
+
+    // Sembunyikan navbar agar tidak menutupi bagian atas drawer
+    document.body.classList.add("chat-drawer-open");
+    const navbar = document.getElementById("main-navbar");
+    if (navbar) navbar.style.display = "none";
+    const mobileDrawer = document.getElementById("mobile-nav-drawer");
+    if (mobileDrawer) mobileDrawer.style.display = "none";
+
     renderActiveView();
   }
 
@@ -326,6 +354,19 @@
     if (!chatDrawerEl) return;
     chatDrawerEl.classList.remove("open");
     chatDrawerEl.classList.add("closed");
+
+    // Sembunyikan backdrop overlay
+    if (chatBackdropEl) {
+      chatBackdropEl.classList.add("opacity-0", "pointer-events-none");
+      chatBackdropEl.classList.remove("opacity-100", "pointer-events-auto");
+    }
+
+    // Tampilkan kembali navbar
+    document.body.classList.remove("chat-drawer-open");
+    const navbar = document.getElementById("main-navbar");
+    if (navbar) navbar.style.display = "";
+    const mobileDrawer = document.getElementById("mobile-nav-drawer");
+    if (mobileDrawer) mobileDrawer.style.display = "";
   }
 
   function renderActiveView() {

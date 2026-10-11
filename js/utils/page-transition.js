@@ -29,11 +29,15 @@ window.WARISARA_TRANSITION = {
       veil.classList.add("active");
     }
 
+    const isSubpage = window.location.pathname.includes("/pages/");
+    const assetPrefix = isSubpage ? "../" : "";
+
     veil.innerHTML = `
       <div class="veil-shimmer-pattern"></div>
       <div class="veil-content">
-        <div class="veil-logo-badge">W</div>
-        <div class="veil-title">WARISARA</div>
+        <div class="veil-logo-img-wrap">
+          <img src="${assetPrefix}assets/logo/logo-full.png?v=15" alt="WARISARA" class="veil-logo-img" />
+        </div>
         <div class="veil-bar-track">
           <div class="veil-bar-fill"></div>
         </div>

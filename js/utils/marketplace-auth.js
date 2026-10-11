@@ -285,29 +285,18 @@
     }, 3200);
   }
 
-  // Update navbar user profile button
+  // Update navbar user profile button — Desain Simpel & Minimalis (Sesuai Permintaan)
   function updateNavbarAuthUI() {
     const authBtns = document.querySelectorAll(".nav-auth-trigger");
     authBtns.forEach((btn) => {
+      btn.className = "nav-auth-trigger btn-nav-icon relative focus:outline-none";
       if (!currentUser) {
-        btn.innerHTML = `
-          <span class="flex items-center gap-1.5 text-xs text-brass-300 font-semibold px-2.5 py-1 rounded-full bg-brass-400/15 border border-brass-400/30 hover:bg-brass-400/25 transition-all">
-            <span class="material-symbols-outlined text-sm">account_circle</span>
-            <span class="hidden sm:inline">Masuk Google</span>
-          </span>
-        `;
+        btn.innerHTML = `<span class="material-symbols-outlined text-base">person</span>`;
         btn.title = "Masuk dengan Akun Google";
       } else {
-        btn.innerHTML = `
-          <div class="flex items-center gap-1.5 text-xs text-surface px-2 py-1 rounded-full bg-white/5 border border-white/10 hover:border-brass-400/40 transition-all cursor-pointer">
-            <div class="w-5 h-5 rounded-full bg-gradient-to-tr ${currentUser.avatarColor || "from-amber-600 to-yellow-500"} text-white font-bold text-[10px] flex items-center justify-center">
-              ${currentUser.avatarLetter || currentUser.name.charAt(0)}
-            </div>
-            <span class="hidden md:inline font-medium text-[11px] max-w-[100px] truncate">${currentUser.name.split(" ")[0]}</span>
-            <span class="material-symbols-outlined text-xs text-surface/50">expand_more</span>
-          </div>
-        `;
-        btn.title = `Login: ${currentUser.name} (${currentUser.email}) — Klik untuk opsi akun`;
+        const letter = (currentUser.avatarLetter || currentUser.name.charAt(0) || "U").toUpperCase();
+        btn.innerHTML = `<span class="font-display font-bold text-xs uppercase text-surface">${letter}</span>`;
+        btn.title = `Akun: ${currentUser.name} (${currentUser.email}) — Klik untuk opsi akun`;
       }
     });
   }

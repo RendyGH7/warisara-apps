@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #1E1A16 0%, #0F0D0B 100%);
+  background: radial-gradient(circle at center, #100D0B 0%, #050403 100%);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
@@ -35,13 +35,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   transform: scale(0.92);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #page-transition-veil.active .veil-content {
   transform: scale(1);
+}
+
+.veil-logo-img-wrap {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: veilPulse 1.8s ease-in-out infinite;
+}
+
+.veil-logo-img-wrap::before {
+  content: '';
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(235, 195, 95, 0.35) 0%, rgba(201, 165, 103, 0.15) 50%, transparent 75%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.veil-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(235, 195, 95, 0.95)) 
+          drop-shadow(0 0 55px rgba(201, 165, 103, 0.6)) 
+          drop-shadow(0 6px 18px rgba(0, 0, 0, 0.85));
+  position: relative;
+  z-index: 2;
 }
 
 .veil-logo-badge {

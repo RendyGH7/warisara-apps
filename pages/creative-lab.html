@@ -94,9 +94,9 @@
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/creative-lab.css" />
-  <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/transitions.css?v=15" />
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
-  <link rel="stylesheet" href="../css/loading-screen.css?v=12" />
+  <link rel="stylesheet" href="../css/loading-screen.css?v=15" />
   <link rel="stylesheet" href="../css/responsive.css" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
 </head>
@@ -107,8 +107,7 @@
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
     
     <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
-      <span
-        class="w-8 h-8 rounded-full brand-glass-badge flex items-center justify-center font-display text-sm font-bold">W</span>
+      <img src="../assets/logo/logo-emblem.png?v=15" alt="WARISARA" class="w-8 h-8 object-contain hover:scale-105 transition-transform" />
     </a>
 
     <nav id="desktop-nav-menu" class="hidden xl:flex items-center gap-0.5 text-xs font-medium relative py-1 px-1 rounded-full"
@@ -148,8 +147,7 @@
     class="fixed top-20 inset-x-4 max-w-sm mx-auto p-5 z-50 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out xl:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
       <div class="flex items-center gap-2">
-        <span
-          class="w-7 h-7 rounded-full brand-glass-badge flex items-center justify-center font-display text-xs font-bold">W</span>
+        <img src="../assets/logo/logo-emblem.png?v=15" alt="WARISARA" class="w-7 h-7 object-contain" />
         <span class="font-display text-lg font-bold text-surface tracking-wider">WARISARA</span>
       </div>
       <button id="mobile-nav-close"
@@ -907,6 +905,10 @@
 
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="../assets/logo/logo-emblem.png?v=15" alt="WARISARA Emblem" class="w-8 h-8 object-contain drop-shadow" />
+        <img src="../assets/logo/logo-text.png?v=15" alt="WARISARA" class="h-6 sm:h-7 object-contain drop-shadow" />
+      </div>
       <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
       <div class="flex items-center gap-6">
         <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
@@ -918,13 +920,13 @@
 
   <script src="../data/products.js"></script>
   <script src="../js/utils/helpers.js"></script>
-  <script src="../js/utils/page-transition.js"></script>
+  <script src="../js/utils/page-transition.js?v=15"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
   <script src="../js/utils/marketplace-auth.js"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js"></script>
   <script src="../js/sections/creative-lab-studio.js"></script>
-  <script src="../js/utils/loading-screen.js?v=12"></script>
+  <script src="../js/utils/loading-screen.js?v=15"></script>
   <script src="../js/utils/wari-mascot.js?v=2"></script>
 </body>
 

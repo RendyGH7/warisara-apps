@@ -66,8 +66,8 @@ body.preloader-active *::-webkit-scrollbar {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.65;
-  filter: contrast(120%) brightness(95%) saturate(110%);
+  opacity: 0.24;
+  filter: contrast(130%) brightness(55%) saturate(85%);
   transform: scale(1.03);
   animation: cinematicSlowPan 24s ease-in-out infinite alternate;
 }
@@ -76,8 +76,8 @@ body.preloader-active *::-webkit-scrollbar {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse at 50% 50%, rgba(8, 6, 5, 0.42) 0%, rgba(8, 6, 5, 0.75) 60%, rgba(6, 4, 3, 0.95) 100%),
-    linear-gradient(180deg, rgba(6, 4, 3, 0.65) 0%, transparent 20%, transparent 80%, rgba(6, 4, 3, 0.8) 100%);
+    radial-gradient(ellipse at 50% 50%, rgba(5, 4, 3, 0.8) 0%, rgba(4, 3, 2, 0.94) 55%, rgba(2, 2, 1, 0.99) 100%),
+    linear-gradient(180deg, rgba(2, 2, 1, 0.88) 0%, transparent 25%, transparent 75%, rgba(2, 2, 1, 0.95) 100%);
   pointer-events: none;
 }
 
@@ -134,12 +134,12 @@ body.preloader-active *::-webkit-scrollbar {
 
 .preloader-seal-theater {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 175px;
+  height: 175px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .preloader-wayang-silhouette {
@@ -147,10 +147,10 @@ body.preloader-active *::-webkit-scrollbar {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 180px;
-  height: 230px;
-  opacity: 0.32;
-  filter: drop-shadow(0 0 16px rgba(201, 165, 103, 0.45));
+  width: 250px;
+  height: 310px;
+  opacity: 0.28;
+  filter: drop-shadow(0 0 20px rgba(201, 165, 103, 0.4));
   pointer-events: none;
   z-index: 1;
   animation: wayangBreath 4s ease-in-out infinite alternate;
@@ -158,9 +158,9 @@ body.preloader-active *::-webkit-scrollbar {
 
 .preloader-ring-outer {
   position: absolute;
-  inset: -16px;
+  inset: -20px;
   border-radius: 9999px;
-  border: 1.5px dashed rgba(201, 165, 103, 0.5);
+  border: 1.5px dashed rgba(201, 165, 103, 0.45);
   animation: rotateClockwise 28s linear infinite;
   z-index: 2;
 }
@@ -180,11 +180,46 @@ body.preloader-active *::-webkit-scrollbar {
 
 .preloader-ring-mid {
   position: absolute;
-  inset: -5px;
+  inset: -6px;
   border-radius: 9999px;
-  border: 1px solid rgba(230, 211, 167, 0.35);
+  border: 1px solid rgba(230, 211, 167, 0.3);
   animation: rotateCounter 18s linear infinite;
   z-index: 2;
+}
+
+.preloader-seal-logo-wrap {
+  width: 165px;
+  height: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  padding: 4px;
+  animation: sealLevitate 3.4s ease-in-out infinite alternate;
+}
+
+.preloader-seal-logo-wrap::before {
+  content: '';
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(235, 195, 95, 0.35) 0%, rgba(201, 165, 103, 0.15) 50%, transparent 75%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.preloader-main-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(235, 195, 95, 0.95)) 
+          drop-shadow(0 0 55px rgba(201, 165, 103, 0.6)) 
+          drop-shadow(0 6px 18px rgba(0, 0, 0, 0.85));
+  position: relative;
+  z-index: 4;
 }
 
 .preloader-seal-core {
@@ -216,11 +251,7 @@ body.preloader-active *::-webkit-scrollbar {
 }
 
 .preloader-title-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.15em;
-  margin-bottom: 0.5rem;
+  display: none;
 }
 
 .preloader-char {
