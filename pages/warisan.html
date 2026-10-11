@@ -92,6 +92,7 @@
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/transitions.css" />
+  <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=12" />
   <link rel="stylesheet" href="../css/responsive.css" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
@@ -119,13 +120,18 @@
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
       <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
-      <a href="pass-it-on.html" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <div class="flex items-center gap-2.5 flex-shrink-0">
-      <a href="jelajahi.html" class="btn-nav-icon" aria-label="Peta 38 Provinsi" title="Peta 38 Provinsi">
-        <span class="material-symbols-outlined text-base">explore</span>
-      </a>
+    <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+      <!-- Tombol Chat di Navbar -->
+      <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
+        <span class="material-symbols-outlined text-base">chat</span>
+        <span class="nav-chat-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brass-400 text-ink text-[9px] font-bold flex items-center justify-center">2</span>
+      </button>
+
+      <!-- Tombol Masuk / Profil Google -->
+      <button class="nav-auth-trigger focus:outline-none" aria-label="Akun Pengguna" title="Masuk dengan Google">
+      </button>
 
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
@@ -186,10 +192,13 @@
         <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
         <span>09. Cerita yang Diwariskan</span>
       </a>
-      <a href="pass-it-on.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="pass-it-on">
-        <span class="material-symbols-outlined text-sm text-brass-400">favorite</span>
-        <span>10. Pesan Penutup: Pass It On</span>
-      </a>
+      <button class="nav-chat-trigger mobile-nav-link text-left py-2 px-3 rounded-lg bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 transition-colors flex items-center justify-between mt-1">
+        <span class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-sm">chat</span>
+          <span>Chat & Pesan Penjual</span>
+        </span>
+        <span class="px-2 py-0.5 rounded-full bg-brass-400 text-ink text-[9px] font-bold">2 Baru</span>
+      </button>
     </div>
     <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
       <span>Kembali ke Peta</span>
@@ -301,16 +310,19 @@
       <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
       <div class="flex items-center gap-6">
         <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
+        <a href="ekonomi-kreatif.html" class="hover:text-surface">Produk Lokal</a>
         <a href="makers.html" class="hover:text-surface">Para Pelestari</a>
-        <a href="pass-it-on.html" class="hover:text-surface">Pass It On</a>
       </div>
     </div>
   </footer>
 
+  <script src="../data/products.js"></script>
   <script src="../data/heritage.js?v=8"></script>
   <script src="../js/utils/helpers.js?v=8"></script>
   <script src="../js/utils/page-transition.js?v=8"></script>
   <script src="../js/utils/lantern-cursor.js?v=8"></script>
+  <script src="../js/utils/marketplace-auth.js"></script>
+  <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=8"></script>
   <script>
     function initWarisanPage() {
