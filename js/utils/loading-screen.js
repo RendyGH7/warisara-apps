@@ -166,8 +166,12 @@ window.WARISARA_PRELOADER = {
             <div class="preloader-ring-outer"></div>
             <div class="preloader-ring-mid"></div>
             <div class="preloader-seal-logo-wrap">
-              <img src="${assetPrefix}assets/logo/logo-full.png?v=15" alt="WARISARA" class="preloader-main-logo" />
+              <img src="${assetPrefix}assets/logo/logo-emblem.png?v=25" alt="WARISARA Emblem" class="preloader-emblem-logo" />
             </div>
+          </div>
+
+          <div class="preloader-text-brand-wrap">
+            <img src="${assetPrefix}assets/logo/logo-text.png?v=25" alt="WariSara" class="preloader-text-logo" />
           </div>
 
           <div class="preloader-title-container" aria-label="WARISARA">

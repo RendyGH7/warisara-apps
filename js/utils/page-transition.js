@@ -35,8 +35,11 @@ window.WARISARA_TRANSITION = {
     veil.innerHTML = `
       <div class="veil-shimmer-pattern"></div>
       <div class="veil-content">
-        <div class="veil-logo-img-wrap">
-          <img src="${assetPrefix}assets/logo/logo-full.png?v=15" alt="WARISARA" class="veil-logo-img" />
+        <div class="veil-brand-unit">
+          <div class="veil-emblem-wrap">
+            <img src="${assetPrefix}assets/logo/logo-emblem.png?v=25" alt="WARISARA Emblem" class="veil-emblem-img" />
+          </div>
+          <img src="${assetPrefix}assets/logo/logo-text.png?v=25" alt="WariSara" class="veil-text-img" />
         </div>
         <div class="veil-bar-track">
           <div class="veil-bar-fill"></div>
