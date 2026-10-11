@@ -49,13 +49,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.9rem;
-  animation: veilPulse 1.8s ease-in-out infinite;
+  gap: 1rem;
+  animation: veilPulse 2.2s ease-in-out infinite;
 }
 
 .veil-emblem-wrap {
-  width: 105px;
-  height: 105px;
+  width: 115px;
+  height: 115px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,11 +65,11 @@
 .veil-emblem-wrap::before {
   content: '';
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(235, 195, 95, 0.4) 0%, rgba(201, 165, 103, 0.15) 50%, transparent 75%);
-  filter: blur(16px);
+  background: radial-gradient(circle, rgba(235, 195, 95, 0.28) 0%, rgba(201, 165, 103, 0.1) 50%, transparent 70%);
+  filter: blur(18px);
   pointer-events: none;
   z-index: 1;
 }
@@ -78,21 +78,19 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 25px rgba(235, 195, 95, 0.95)) 
-          drop-shadow(0 0 50px rgba(201, 165, 103, 0.6)) 
-          drop-shadow(0 6px 16px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 0 16px rgba(235, 195, 95, 0.75)) 
+          drop-shadow(0 0 36px rgba(201, 165, 103, 0.45));
   position: relative;
   z-index: 2;
 }
 
 .veil-text-img {
-  height: 36px;
+  height: 52px;
   width: auto;
-  max-width: 190px;
+  max-width: 260px;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(235, 195, 95, 0.85)) 
-          drop-shadow(0 0 35px rgba(201, 165, 103, 0.5)) 
-          drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 0 14px rgba(235, 195, 95, 0.75)) 
+          drop-shadow(0 0 28px rgba(201, 165, 103, 0.4));
   position: relative;
   z-index: 2;
 }
@@ -110,7 +108,7 @@
   font-family: 'Fraunces', serif;
   font-size: 1.5rem;
   font-weight: 800;
-  box-shadow: 0 0 35px rgba(201, 165, 103, 0.45);
+  box-shadow: none;
   animation: veilPulse 1.6s ease-in-out infinite;
 }
 
@@ -146,11 +144,9 @@
 @keyframes veilPulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 20px rgba(201, 165, 103, 0.3);
   }
   50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 40px rgba(201, 165, 103, 0.65);
+    transform: scale(1.04);
   }
 }
 

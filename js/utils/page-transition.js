@@ -37,9 +37,9 @@ window.WARISARA_TRANSITION = {
       <div class="veil-content">
         <div class="veil-brand-unit">
           <div class="veil-emblem-wrap">
-            <img src="${assetPrefix}assets/logo/logo-emblem.png?v=25" alt="WARISARA Emblem" class="veil-emblem-img" />
+            <img src="${assetPrefix}assets/logo/logo-emblem.png?v=31" alt="WARISARA Emblem" class="veil-emblem-img" />
           </div>
-          <img src="${assetPrefix}assets/logo/logo-text.png?v=25" alt="WariSara" class="veil-text-img" />
+          <img src="${assetPrefix}assets/logo/logo-text.png?v=31" alt="WariSara" class="veil-text-img" />
         </div>
         <div class="veil-bar-track">
           <div class="veil-bar-fill"></div>
