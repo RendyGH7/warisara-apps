@@ -125,13 +125,18 @@
       <a href="#module-creative-lab" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="#module-belajar" class="nav-link" data-page="belajar">Belajar</a>
       <a href="#module-cerita" class="nav-link" data-page="cerita">Cerita</a>
-      <a href="#module-pass-it-on" class="nav-link" data-page="pass-it-on">Pass It On</a>
     </nav>
 
-    <div class="flex items-center gap-2.5 flex-shrink-0">
-      <a href="#module-pass-it-on" class="btn-nav-icon" aria-label="Pass It On" title="Pass It On">
-        <span class="material-symbols-outlined text-base">favorite</span>
-      </a>
+    <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+      <!-- Tombol Chat di Navbar -->
+      <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
+        <span class="material-symbols-outlined text-base">chat</span>
+        <span class="nav-chat-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brass-400 text-ink text-[9px] font-bold flex items-center justify-center">2</span>
+      </button>
+
+      <!-- Tombol Masuk / Profil Google -->
+      <button class="nav-auth-trigger focus:outline-none" aria-label="Akun Pengguna" title="Masuk dengan Google">
+      </button>
 
       <button id="mobile-menu-btn"
         class="xl:hidden text-surface p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 focus:outline-none transition-colors"
