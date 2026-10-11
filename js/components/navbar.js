@@ -403,8 +403,7 @@ window.WARISARA_NAVBAR = {
       { id: "module-heritage-modern", target: "heritage-modern" },
       { id: "module-creative-lab", target: "creative-lab" },
       { id: "module-belajar", target: "belajar" },
-      { id: "module-cerita", target: "cerita" },
-      { id: "module-pass-it-on", target: "pass-it-on" }
+      { id: "module-cerita", target: "cerita" }
     ];
 
     this.refresh = function () {
@@ -431,8 +430,8 @@ window.WARISARA_NAVBAR = {
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollBottom = window.innerHeight + window.scrollY;
       if (scrollHeight - scrollBottom <= 120) {
-        if (currentActiveTarget !== "pass-it-on") {
-          setActiveLink("pass-it-on", true);
+        if (currentActiveTarget !== "cerita") {
+          setActiveLink("cerita", true);
         }
         return;
       }
