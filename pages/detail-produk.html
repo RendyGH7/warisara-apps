@@ -183,8 +183,48 @@
   </div>
 
   <main id="page-content" class="min-h-screen pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <!-- Breadcrumb Nav -->
-    <div class="mb-6 flex items-center gap-2 text-xs text-surface/60 overflow-x-auto no-scrollbar">
+    <!-- Gerbang Akses Login Google di Detail Produk (Muncul Saat Belum Login) -->
+    <section id="detail-auth-gate" class="py-16 sm:py-24 flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-brass-400/30 text-brass-300 text-xs font-semibold mb-4 backdrop-blur-md shadow-lg">
+        <span class="material-symbols-outlined text-sm text-brass-400">lock</span>
+        <span>Akses Terproteksi Produk Lokal</span>
+      </div>
+      <h1 class="font-display text-3xl sm:text-4xl font-light text-surface mb-3">
+        Masuk dengan Google
+      </h1>
+      <p class="text-xs sm:text-sm text-surface/70 leading-relaxed mb-8">
+        Sebelum dapat mengakses informasi detail karya, riwayat pengrajin, dan bertransaksi langsung via chat, Anda harus masuk atau mendaftar menggunakan Akun Google terlebih dahulu.
+      </p>
+
+      <div class="w-full p-6 sm:p-8 rounded-3xl bg-[#181512]/95 border border-white/15 shadow-2xl backdrop-blur-xl space-y-4">
+        <!-- Tombol One-Tap Google Sign-In -->
+        <button id="btn-detail-google-login" type="button"
+                class="w-full py-3.5 px-4 rounded-2xl bg-white hover:bg-neutral-100 text-neutral-800 text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+          </svg>
+          <span>Lanjutkan dengan Akun Google</span>
+        </button>
+
+        <a href="ekonomi-kreatif.html"
+           class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>Buka Gerbang Katalog Produk Lokal</span>
+        </a>
+
+        <div class="pt-3 border-t border-white/10 text-[11px] text-surface/50 text-center">
+          🔒 Terhubung aman dengan Google OAuth & Identitas WARISARA
+        </div>
+      </div>
+    </section>
+
+    <!-- Konten Detail Produk (Hanya Tampil Jika Sudah Login dengan Google) -->
+    <div id="detail-product-content" class="w-full hidden">
+      <!-- Breadcrumb Nav -->
+      <div class="mb-6 flex items-center gap-2 text-xs text-surface/60 overflow-x-auto no-scrollbar">
       <a href="../index.html" class="hover:text-brass-300 transition-colors">Beranda</a>
       <span class="material-symbols-outlined text-[14px] text-surface/40">chevron_right</span>
       <a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors">Produk Lokal</a>
@@ -387,7 +427,9 @@
         <!-- Rendered dynamically -->
       </div>
     </section>
-  </main>
+  </div>
+  <!-- Akhir detail-product-content -->
+</main>
 
   <!-- Footer -->
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
@@ -430,6 +472,38 @@
         window.location.href = "ekonomi-kreatif.html";
         return;
       }
+
+      // Proteksi Akses Produk Lokal dengan Akun Google
+      function checkDetailAuth() {
+        const isAuth = window.WARISARA_AUTH && window.WARISARA_AUTH.isLoggedIn();
+        const gateEl = document.getElementById("detail-auth-gate");
+        const contentEl = document.getElementById("detail-product-content");
+
+        if (!isAuth) {
+          if (gateEl) gateEl.classList.remove("hidden");
+          if (contentEl) contentEl.classList.add("hidden");
+        } else {
+          if (gateEl) gateEl.classList.add("hidden");
+          if (contentEl) contentEl.classList.remove("hidden");
+        }
+      }
+
+      const googleLoginBtn = document.getElementById("btn-detail-google-login");
+      if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", () => {
+          if (window.WARISARA_AUTH) {
+            window.WARISARA_AUTH.openAuthModal(() => {
+              checkDetailAuth();
+            });
+          }
+        });
+      }
+
+      window.addEventListener("warisara_auth_changed", () => {
+        checkDetailAuth();
+      });
+
+      checkDetailAuth();
 
       // Render Data ke Halaman
       document.title = `${product.name} — Detail Produk Lokal WARISARA`;
