@@ -61,38 +61,156 @@
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
 
   <style>
-    /* ================= ANIMASI LATAR BELAKANG BATIK BERGERAK ================= */
-    .batik-animated-bg {
+    /* ================= LATAR BELAKANG GERBANG NUSANTARA, WAYANG & BATIK BERGERAK ================= */
+    .portal-gate-wrapper {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background-color: #120F0D;
-      background-image: 
-        radial-gradient(circle at 50% 18%, rgba(201, 165, 103, 0.16) 0%, transparent 58%),
-        radial-gradient(circle at 85% 75%, rgba(186, 146, 82, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 15% 85%, rgba(42, 60, 48, 0.22) 0%, transparent 50%),
-        url('../assets/images/patterns/batik-kawung-dark.svg');
-      background-size: 100% 100%, 100% 100%, 100% 100%, 120px 120px;
-      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-      animation: batikDrift 60s linear infinite;
-      opacity: 0.95;
+      overflow: hidden;
+      background-color: #070504;
     }
 
-    .batik-animated-bg::after {
-      content: '';
+    .portal-gate-image {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, transparent 40%, rgba(16, 13, 11, 0.88) 100%);
-      pointer-events: none;
+      inset: -4%;
+      width: 108%;
+      height: 108%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(86%) contrast(115%) saturate(118%);
+      transform-origin: center center;
+      animation: gateCinematicMotion 45s ease-in-out infinite alternate;
     }
 
-    @keyframes batikDrift {
+    @keyframes gateCinematicMotion {
       0% {
-        background-position: 0 0, 0 0, 0 0, 0 0;
+        transform: scale(1.02) translate(0, 0);
+      }
+      50% {
+        transform: scale(1.06) translate(-1%, -0.8%);
       }
       100% {
-        background-position: 0 0, 0 0, 0 0, 240px 240px;
+        transform: scale(1.03) translate(0.8%, -0.4%);
+      }
+    }
+
+    /* Lapisan Gelap Elegan & Vignette Sinematik (Background Sedikit Gelap) */
+    .portal-dark-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: 
+        radial-gradient(ellipse at 50% 48%, rgba(6, 5, 4, 0.18) 0%, rgba(7, 6, 5, 0.52) 52%, rgba(5, 4, 3, 0.88) 100%),
+        linear-gradient(180deg, rgba(5, 4, 3, 0.62) 0%, rgba(5, 4, 3, 0.12) 28%, rgba(6, 5, 4, 0.38) 72%, rgba(4, 3, 2, 0.92) 100%);
+    }
+
+    /* Lapisan Motif Batik Nusantara Elegan — Sudut Diagonal Halus (seperti loading screen) */
+    /* Motif batik di sudut kiri atas */
+    .batik-corner-tl {
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 480px;
+      height: 480px;
+      z-index: 3;
+      pointer-events: none;
+      background-image: url('../assets/images/patterns/batik-parang-dark.svg');
+      background-size: 160px 160px;
+      background-repeat: repeat;
+      opacity: 0.18;
+      mix-blend-mode: screen;
+      -webkit-mask-image: radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, transparent 75%);
+      animation: batikCornerDrift 90s linear infinite;
+    }
+    /* Motif batik di sudut kanan atas */
+    .batik-corner-tr {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 480px;
+      height: 480px;
+      z-index: 3;
+      pointer-events: none;
+      background-image: url('../assets/images/patterns/batik-parang-dark.svg');
+      background-size: 160px 160px;
+      background-repeat: repeat;
+      opacity: 0.18;
+      mix-blend-mode: screen;
+      transform: scaleX(-1);
+      -webkit-mask-image: radial-gradient(ellipse at 100% 0%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 100% 0%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, transparent 75%);
+      animation: batikCornerDrift 90s linear infinite reverse;
+    }
+    /* Motif batik di sudut kiri bawah */
+    .batik-corner-bl {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 420px;
+      height: 420px;
+      z-index: 3;
+      pointer-events: none;
+      background-image: url('../assets/images/patterns/batik-parang-dark.svg');
+      background-size: 140px 140px;
+      background-repeat: repeat;
+      opacity: 0.14;
+      mix-blend-mode: screen;
+      -webkit-mask-image: radial-gradient(ellipse at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, transparent 75%);
+      animation: batikCornerDrift 120s linear infinite;
+    }
+    /* Motif batik di sudut kanan bawah */
+    .batik-corner-br {
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 420px;
+      height: 420px;
+      z-index: 3;
+      pointer-events: none;
+      background-image: url('../assets/images/patterns/batik-parang-dark.svg');
+      background-size: 140px 140px;
+      background-repeat: repeat;
+      opacity: 0.14;
+      mix-blend-mode: screen;
+      transform: scaleX(-1);
+      -webkit-mask-image: radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, transparent 75%);
+      animation: batikCornerDrift 120s linear infinite reverse;
+    }
+
+    @keyframes batikCornerDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 320px 320px; }
+    }
+
+    /* Sinar Suci Cahaya Gerbang Pembuka (Celestial Portal Glow) */
+    .portal-celestial-rays {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.22) 0%, rgba(186, 146, 82, 0.1) 40%, transparent 70%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 4;
+      animation: portalRaysPulse 7.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes portalRaysPulse {
+      0% {
+        transform: translateX(-50%) scale(0.92);
+        opacity: 0.55;
+      }
+      100% {
+        transform: translateX(-50%) scale(1.12);
+        opacity: 0.95;
       }
     }
 
@@ -102,13 +220,66 @@
       border-radius: 9999px;
       filter: blur(100px);
       pointer-events: none;
-      opacity: 0.28;
+      opacity: 0.22;
       animation: orbBreathe 8s ease-in-out infinite alternate;
     }
 
     @keyframes orbBreathe {
-      0% { transform: scale(1) translate(0, 0); opacity: 0.22; }
-      100% { transform: scale(1.15) translate(15px, -10px); opacity: 0.35; }
+      0% { transform: scale(1) translate(0, 0); opacity: 0.18; }
+      100% { transform: scale(1.15) translate(15px, -10px); opacity: 0.30; }
+    }
+
+    /* ================= EFEK CAHAYA HALUS DI BELAKANG KOTAK LOGIN & MASKOT ================= */
+    /* Efek Cahaya di Belakang Kotak Login (Subtle Gold Backlight - Sedikit Saja) */
+    .card-backlight-glow {
+      position: absolute;
+      inset: -14px;
+      border-radius: 38px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.28) 0%, rgba(186, 146, 82, 0.12) 48%, transparent 72%);
+      box-shadow: 0 0 50px 10px rgba(201, 165, 103, 0.16);
+      filter: blur(24px);
+      pointer-events: none;
+      z-index: 0;
+      animation: cardBacklightPulse 5.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes cardBacklightPulse {
+      0% {
+        transform: scale(0.97);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1.03);
+        opacity: 0.9;
+      }
+    }
+
+    /* Efek Cahaya di Belakang Maskot (Subtle Golden Halo - Sedikit Saja) */
+    .mascot-backlight-halo {
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 225px;
+      height: 225px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(230, 190, 80, 0.35) 0%, rgba(201, 165, 103, 0.16) 45%, transparent 70%);
+      box-shadow: 0 0 45px 12px rgba(212, 175, 55, 0.18);
+      filter: blur(20px);
+      pointer-events: none;
+      z-index: 0;
+      animation: mascotHaloBreathe 4.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes mascotHaloBreathe {
+      0% {
+        transform: translate(-50%, -50%) scale(0.92);
+        opacity: 0.55;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 0.88;
+      }
     }
 
     /* ================= ANIMASI MASKOT WARI ================= */
@@ -164,31 +335,61 @@
       }
     }
 
-    /* Speech Bubble */
+    /* Speech Bubble Glassmorphic with Directional Arrow */
     .wari-speech-bubble {
       position: relative;
-      background: rgba(28, 24, 20, 0.94);
-      border: 1px solid rgba(201, 165, 103, 0.35);
-      backdrop-filter: blur(12px);
-      border-radius: 18px;
-      padding: 12px 18px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(201, 165, 103, 0.15);
+      background: linear-gradient(135deg, rgba(26, 21, 16, 0.72) 0%, rgba(15, 12, 9, 0.82) 100%);
+      border: 1px solid rgba(201, 165, 103, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-radius: 20px;
+      padding: 14px 18px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), 0 0 20px rgba(201, 165, 103, 0.16);
       animation: bubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      max-width: 320px;
       text-align: left;
     }
 
-    .wari-speech-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 9px solid transparent;
-      border-right: 9px solid transparent;
-      border-top: 9px solid rgba(28, 24, 20, 0.94);
+    /* Panah Komentar Mengarah ke Kiri (Menunjuk ke Maskot Wari) pada Tablet & Desktop */
+    @media (min-width: 640px) {
+      .wari-speech-bubble::before {
+        content: '';
+        position: absolute;
+        top: 34px;
+        left: -9px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 9px solid rgba(201, 165, 103, 0.45);
+      }
+      .wari-speech-bubble::after {
+        content: '';
+        position: absolute;
+        top: 34px;
+        left: -8px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 8px solid rgba(24, 19, 14, 0.85);
+      }
+    }
+
+    /* Panah Komentar Mengarah ke Bawah pada Layar Mobile Kecil */
+    @media (max-width: 639px) {
+      .wari-speech-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid rgba(24, 19, 14, 0.85);
+      }
     }
 
     @keyframes bubblePop {
@@ -196,30 +397,64 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* ================= KARTU AUTENTIKASI MEWAH & SHIMMER BORDER ================= */
+    /* ================= KARTU AUTENTIKASI MEWAH — CRYSTAL FROSTED GLASS ULTRA BENING ================= */
     .glass-auth-card {
-      background: linear-gradient(135deg, rgba(26, 22, 18, 0.92) 0%, rgba(18, 15, 12, 0.96) 100%);
-      border: 1px solid rgba(201, 165, 103, 0.28);
-      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 248, 235, 0.07) 25%,
+        rgba(18, 13, 9, 0.08) 65%,
+        rgba(8, 6, 4, 0.12) 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-top: 2px solid rgba(255, 255, 255, 0.72);
+      border-left: 1.5px solid rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(40px) saturate(240%) brightness(1.18);
+      -webkit-backdrop-filter: blur(40px) saturate(240%) brightness(1.18);
       box-shadow: 
-        0 24px 60px rgba(0, 0, 0, 0.65),
-        0 0 40px rgba(201, 165, 103, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        0 32px 80px rgba(0, 0, 0, 0.42),
+        0 0 55px rgba(201, 165, 103, 0.16),
+        inset 0 2px 3px rgba(255, 255, 255, 0.65),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.12),
+        inset 1px 0 2px rgba(255, 255, 255, 0.30);
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
     }
 
+    /* Refleksi cahaya berputar di dalam kaca */
     .glass-auth-card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(201, 165, 103, 0.08) 0%, transparent 60%);
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.06) 60deg,
+        transparent 120deg,
+        rgba(255, 255, 255, 0.04) 200deg,
+        transparent 280deg,
+        rgba(255, 255, 255, 0.05) 320deg,
+        transparent 360deg
+      );
       pointer-events: none;
-      animation: cardLightRotate 20s linear infinite;
+      animation: cardLightRotate 18s linear infinite;
+    }
+
+    /* Kilat lurus di bagian atas kaca (glass top highlight) */
+    .glass-auth-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.75) 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.75) 65%, transparent 100%);
+      pointer-events: none;
+      animation: glassTopShimmer 4s ease-in-out infinite alternate;
     }
 
     @keyframes cardLightRotate {
@@ -227,11 +462,18 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Kartu Profil Perangkat Google */
+    @keyframes glassTopShimmer {
+      0% { opacity: 0.55; transform: scaleX(0.8); }
+      100% { opacity: 1; transform: scaleX(1.05); }
+    }
+
+    /* Kartu Profil Perangkat Google dengan Efek Kaca Bening & Kontras Teks Tajam */
     .auth-device-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       overflow: hidden;
@@ -339,19 +581,101 @@
       border-color: rgba(255, 255, 255, 0.16);
       transform: translateY(-1px);
     }
+    /* ================= ANIMASI JUDUL SELAMAT DATANG INTERAKTIF ================= */
+    .welcome-title-text {
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      color: transparent;
+      background: linear-gradient(
+        135deg,
+        #F5E8C0 0%,
+        #E8CFA0 20%,
+        #FFFFFF 38%,
+        #D4AF37 50%,
+        #F5E8C0 62%,
+        #FFFFFF 78%,
+        #C9A567 100%
+      );
+      background-size: 250% 250%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 40px rgba(212,175,55,0.35));
+      animation: titleShimmerGold 5s ease-in-out infinite, titleEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes titleShimmerGold {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes titleEntrance {
+      0%   { opacity: 0; transform: translateY(22px) scale(0.96); letter-spacing: 0.18em; }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1); letter-spacing: normal; }
+    }
+
+    /* Hover interaktif pada judul */
+    #welcome-heading:hover {
+      filter: drop-shadow(0 4px 28px rgba(0,0,0,0.9)) drop-shadow(0 0 55px rgba(212,175,55,0.6));
+      animation: titleShimmerGold 2.5s ease-in-out infinite;
+      cursor: default;
+    }
+
+    .welcome-logo-img {
+      height: clamp(52px, 8.5vw, 90px);
+      filter: drop-shadow(0 6px 28px rgba(201, 165, 103, 0.65)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
+      animation: logoFloat 4s ease-in-out infinite, logoEntrance 1.4s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+    }
+
+    .welcome-logo-img:hover {
+      transform: scale(1.07) translateY(-3px);
+      filter: drop-shadow(0 8px 36px rgba(201, 165, 103, 0.85)) drop-shadow(0 0 22px rgba(212, 175, 55, 0.5));
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    @keyframes logoEntrance {
+      0%   { opacity: 0; transform: translateY(18px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
   </style>
 </head>
 
 <body class="bg-hero-bg text-surface font-body antialiased min-h-screen flex flex-col selection:bg-brass-400 selection:text-ink overflow-x-hidden relative" data-page="login">
 
-  <!-- ================= LATAR BELAKANG BATIK BERGERAK & KILAU EMAS ================= -->
-  <div class="batik-animated-bg" aria-hidden="true"></div>
+  <!-- ================= LATAR BELAKANG GERBANG NUSANTARA, WAYANG, BATIK & PULAU INDONESIA ================= -->
+  <div class="portal-gate-wrapper" aria-hidden="true">
+    <!-- Gambar Gerbang Candi Bentar + Wayang Gunungan + Pulau Indonesia -->
+    <img src="../assets/images/hero/bg-login-nusantara-gate.jpg" 
+         alt="Gerbang Nusantara Pembuka WARISARA" 
+         class="portal-gate-image" />
+
+    <!-- Lapisan Suasana Gelap Elegan (Vignette & Sinematik Kegelapan) -->
+    <div class="portal-dark-vignette"></div>
+
+    <!-- Lapisan Tekstur Batik Nusantara Elegan di Sudut (seperti loading screen) -->
+    <div class="batik-corner-tl" aria-hidden="true"></div>
+    <div class="batik-corner-tr" aria-hidden="true"></div>
+    <div class="batik-corner-bl" aria-hidden="true"></div>
+    <div class="batik-corner-br" aria-hidden="true"></div>
+
+    <!-- Sinar Suci Cahaya Gerbang Pembuka (Celestial Portal Aura) -->
+    <div class="portal-celestial-rays"></div>
+  </div>
+
+  <!-- Canvas Animasi Debu Emas (Gold Dust) & Confetti Selebrasi -->
   <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-  <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/35 -top-20 -left-20"></div>
-  <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/20 top-1/2 -right-32"></div>
-  <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/18 bottom-10 left-1/3"></div>
+  <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/25 -top-20 -left-20"></div>
+  <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/18 top-1/2 -right-32"></div>
+  <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/15 bottom-10 left-1/3"></div>
 
   <!-- Tombol Navigasi Kembali Minimalis -->
   <a href="javascript:if(document.referrer&&!document.referrer.includes('login.html')){history.back();}else{window.location.href='../index.html';}" 
@@ -364,7 +688,7 @@
   <!-- ================= MAIN PORTAL: MASKOT + AUTHENTICATION CARD ================= -->
   <main class="flex-1 min-h-screen relative z-10 py-12 px-4 sm:px-6 flex items-center justify-center">
     
-    <div class="w-full max-w-5xl mx-auto">
+    <div class="w-full max-w-6xl mx-auto">
       
       <!-- Banner Notifikasi Redirect Otomatis (jika ada param redirect) -->
       <div id="auth-redirect-notice" class="hidden mb-6 p-3 rounded-2xl bg-brass-400/10 border border-brass-400/30 text-center text-xs text-brass-200 animate-pulse">
@@ -374,48 +698,67 @@
         </span>
       </div>
 
-      <!-- Grid 2 Kolom: Kiri Maskot Interaktif Wari & Headline Ringkas, Kanan Auth Card -->
+      <!-- Grid 2 Kolom: Kiri Judul Besar + Maskot + Komentar, Kanan Auth Card Glassmorphic -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
-        <!-- ================= KOLOM KIRI: MASKOT WARI INTERAKTIF ================= -->
-        <div class="lg:col-span-5 flex flex-col items-center text-center space-y-4">
+        <!-- ================= KOLOM KIRI: JUDUL BESAR DI TENGAH + MASKOT + KOMENTAR ================= -->
+        <div class="lg:col-span-7 flex flex-col space-y-4 text-center">
           
-          <!-- Speech Bubble Dinamis Maskot -->
-          <div class="wari-speech-bubble" id="wari-speech-box">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-brass-300">Wari Nusantara</span>
-            </div>
-            <p id="wari-speech-text" class="text-xs text-surface/90 leading-relaxed font-medium">
-              Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨
-            </p>
-          </div>
-
-          <!-- Maskot Wari dengan Animasi Melayang & Efek Hover/Klik -->
-          <div class="mascot-container py-2">
-            <div class="mascot-img-wrapper" id="mascot-trigger" title="Klik Wari untuk sapaan seru!">
-              <img id="mascot-image" 
-                   src="../assets/mascot/wari-idle-clean.png" 
-                   alt="Maskot Wari WARISARA" 
-                   class="w-48 sm:w-56 md:w-60 h-auto object-contain select-none pointer-events-auto" />
-            </div>
-            <div class="mascot-shadow"></div>
-          </div>
-
-          <!-- Headline Ringkas & Sesuai Tema (Tanpa Tulisan Panjang) -->
-          <div class="space-y-1.5">
-            <h1 class="font-display text-2xl sm:text-3xl font-light text-surface">
-              Selamat Datang di <span class="font-normal italic text-brass-300">WARISARA</span>
+          <!-- 1. Tulisan "Selamat Datang di WariSara" — Lebih Besar & Interaktif dengan Animasi -->
+          <div class="w-full flex flex-col items-center justify-center gap-2 pb-3 text-center" id="welcome-title-block">
+            <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight leading-none select-none">
+              Selamat Datang di
             </h1>
+            <img src="../assets/logo/logo-text.png" 
+                 alt="WariSara" 
+                 id="welcome-logo-text"
+                 class="welcome-logo-img w-auto object-contain select-none" />
           </div>
 
+          <!-- 2. Di Bawah Tulisan: Maskot di Kiri, Komentar di Kanan Maskot (di Kiri Kotak Login) -->
+          <div class="flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pt-1 text-left">
+            
+            <!-- Maskot Wari Berada di Bawah Tulisan Selamat Datang -->
+            <div class="mascot-container flex-shrink-0 relative">
+              <!-- Efek Cahaya Halus di Belakang Maskot -->
+              <div class="mascot-backlight-halo" aria-hidden="true"></div>
 
+              <div class="mascot-img-wrapper relative z-10" id="mascot-trigger" title="Klik Wari untuk sapaan seru!">
+                <img id="mascot-image" 
+                     src="../assets/mascot/wari-idle-clean.png" 
+                     alt="Maskot Wari WARISARA" 
+                     class="w-40 sm:w-48 md:w-52 h-auto object-contain select-none pointer-events-auto" />
+              </div>
+              <div class="mascot-shadow"></div>
+            </div>
+
+            <!-- Komentar dari Maskot: Berada di Bawah Logo Tulisan, di Sebelah Kanan Maskot, di Sebelah Kiri Kotak Login -->
+            <div class="flex-1 w-full max-w-sm sm:max-w-none">
+              <div class="wari-speech-bubble" id="wari-speech-box">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-brass-300">Wari Nusantara</span>
+                </div>
+                <p id="wari-speech-text" class="text-xs sm:text-sm text-surface/90 leading-relaxed font-medium">
+                  Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨
+                </p>
+                <div class="mt-2.5 pt-2 border-t border-white/10 flex items-center gap-2 text-[10px] text-surface/60">
+                  <span class="material-symbols-outlined text-xs text-brass-400">touch_app</span>
+                  <span>Klik Wari untuk sapaan & pantun nusantara!</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
         </div>
 
-        <!-- ================= KOLOM KANAN: KARTU AUTENTIKASI GOOGLE CLEAN + MODERN ================= -->
-        <div class="lg:col-span-7 w-full max-w-md mx-auto">
+        <!-- ================= KOLOM KANAN: KARTU AUTENTIKASI GOOGLE GLASSMORPHISM ================= -->
+        <div class="lg:col-span-5 w-full max-w-md mx-auto relative">
           
+          <!-- Efek Cahaya Halus di Belakang Kotak Login (Subtle Gold Backlight) -->
+          <div class="card-backlight-glow" aria-hidden="true"></div>
+
           <div class="glass-auth-card p-6 sm:p-7 rounded-3xl relative">
             
             <!-- Ornamen Aksen Sudut Batik Emas -->
@@ -1044,48 +1387,125 @@
         updateAuthStateView();
       });
 
-      // ================= ANIMASI PARTIKEL KILAU EMAS (SPARKLE CANVAS) =================
+      // ================= ANIMASI DEBU EMAS NUSANTARA (GOLDEN DUST ENGINE) =================
       const sparkleCanvas = document.getElementById('sparkle-canvas');
       if (sparkleCanvas) {
         const ctx = sparkleCanvas.getContext('2d');
         let width = (sparkleCanvas.width = window.innerWidth);
         let height = (sparkleCanvas.height = window.innerHeight);
 
+        let mouse = { x: -1000, y: -1000, active: false };
+
         window.addEventListener('resize', () => {
           width = sparkleCanvas.width = window.innerWidth;
           height = sparkleCanvas.height = window.innerHeight;
         });
 
-        const sparkles = Array.from({ length: 32 }, () => ({
+        window.addEventListener('mousemove', (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.active = true;
+        });
+
+        window.addEventListener('mouseleave', () => {
+          mouse.active = false;
+        });
+
+        const DUST_COLORS = [
+          '#FFEAA7', // kilau emas terang
+          '#F9D776', // kilau emas hangat
+          '#D4AF37', // emas kencana adiluhung
+          '#DFBE88', // kuningan antik
+          '#FFF8E7', // permata berkilau
+          '#C9A567'  // pusaka nusantara
+        ];
+
+        // Hitung jumlah partikel debu emas proporsional terhadap layar
+        const DUST_COUNT = Math.min(80, Math.max(45, Math.floor((window.innerWidth * window.innerHeight) / 18000)));
+
+        const dustParticles = Array.from({ length: DUST_COUNT }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 2 + 0.6,
-          speedY: Math.random() * 0.4 + 0.15,
-          speedX: (Math.random() - 0.5) * 0.25,
-          opacity: Math.random() * 0.6 + 0.2,
-          pulseSpeed: Math.random() * 0.02 + 0.01
+          radius: Math.random() * 2 + 0.65,
+          speedY: -(Math.random() * 0.42 + 0.14), // melayang anggun ke atas
+          speedX: (Math.random() - 0.5) * 0.28,
+          swayPhase: Math.random() * Math.PI * 2,
+          swaySpeed: Math.random() * 0.018 + 0.008,
+          swayAmplitude: Math.random() * 0.65 + 0.25,
+          color: DUST_COLORS[Math.floor(Math.random() * DUST_COLORS.length)],
+          baseOpacity: Math.random() * 0.5 + 0.25,
+          twinkleSpeed: Math.random() * 0.025 + 0.012,
+          twinklePhase: Math.random() * Math.PI * 2
         }));
 
-        function animateSparkles() {
+        function animateGoldDust() {
           ctx.clearRect(0, 0, width, height);
-          for (let p of sparkles) {
-            p.y -= p.speedY;
-            p.x += p.speedX;
-            p.opacity += Math.sin(Date.now() * p.pulseSpeed) * 0.01;
-            if (p.y < 0) {
+          const time = Date.now() * 0.001;
+
+          for (let p of dustParticles) {
+            // Gerakan mengalir debu emas (wafting in gentle air current)
+            p.swayPhase += p.swaySpeed;
+            p.y += p.speedY;
+            p.x += p.speedX + Math.sin(p.swayPhase) * p.swayAmplitude;
+
+            // Efek hembusan interaktif lembut dari kursor mouse
+            if (mouse.active) {
+              const dx = p.x - mouse.x;
+              const dy = p.y - mouse.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 110 && dist > 0) {
+                const force = (110 - dist) / 110;
+                p.x += (dx / dist) * force * 1.3;
+                p.y += (dy / dist) * force * 1.3;
+              }
+            }
+
+            // Loop layar atas ke bawah secara mulus
+            if (p.y < -10) {
               p.y = height + 10;
               p.x = Math.random() * width;
             }
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+
+            // Efek kilau berkelap-kelip (twinkling glow)
+            const shimmer = (Math.sin(time * 3 + p.twinklePhase) + 1) * 0.5;
+            const currentAlpha = Math.max(0.12, Math.min(0.88, p.baseOpacity * (0.6 + shimmer * 0.65)));
+
+            ctx.save();
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(223, 190, 136, ${Math.max(0.1, Math.min(0.75, p.opacity))})`;
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = '#C9A567';
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+            // Pendaran cahaya untuk butiran debu emas yang lebih besar
+            if (p.radius > 1.3) {
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = '#D4AF37';
+            }
+
+            ctx.globalAlpha = currentAlpha;
+            ctx.fillStyle = p.color;
             ctx.fill();
+
+            // Kilau silang mikro pada butiran debu paling terang
+            if (shimmer > 0.88 && p.radius > 1.6) {
+              ctx.strokeStyle = '#FFFFFF';
+              ctx.lineWidth = 0.5;
+              ctx.globalAlpha = currentAlpha * 0.65;
+              const cross = p.radius * 2;
+              ctx.beginPath();
+              ctx.moveTo(p.x - cross, p.y);
+              ctx.lineTo(p.x + cross, p.y);
+              ctx.moveTo(p.x, p.y - cross);
+              ctx.lineTo(p.x, p.y + cross);
+              ctx.stroke();
+            }
+
+            ctx.restore();
           }
-          requestAnimationFrame(animateSparkles);
+
+          requestAnimationFrame(animateGoldDust);
         }
-        animateSparkles();
+        animateGoldDust();
       }
 
       // ================= ANIMASI SELEBRASI CONFETTI EMAS =================
