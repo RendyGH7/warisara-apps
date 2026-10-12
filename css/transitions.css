@@ -1,19 +1,12 @@
-/* === Overlay tipis yang menutupi halaman baru saat veil selesai,
-   lalu menghilang pelan-pelan agar terkesan "muncul" === */
-#page-enter-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99998;        /* tepat di bawah veil (#page-transition-veil = 99999) */
-  background: #080605;
-  opacity: 1;
-  pointer-events: none;
-  transition: opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity;
+/* === Transisi Tirai Halaman WARISARA (Ultra Smooth & Cinematic) === */
+
+/* Mencegah kedip (anti-FOUC) saat halaman baru sedang dimuat dari proses transisi */
+html.page-transitioning-in {
+  background-color: #080605 !important;
 }
 
-/* Saat kelas ini ditambahkan, overlay mulai menghilang */
-#page-enter-overlay.page-entering {
-  opacity: 0;
+html.page-transitioning-in body {
+  background-color: #080605 !important;
 }
 
 #page-transition-veil {
@@ -28,36 +21,41 @@
   align-items: center;
   justify-content: center;
   background-color: #080605 !important;
-  background-image: radial-gradient(circle at center, #130F0B 0%, #080605 100%) !important;
+  background-image: radial-gradient(circle at center, #15110C 0%, #080605 100%) !important;
   opacity: 0;
   visibility: hidden;
-  /* Masuk: cepat, elegan */
-  transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0s linear 0.38s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  will-change: opacity, transform, visibility;
+  /* Transisi masuk: lembut, mewah, responsif */
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #page-transition-veil.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  /* Override transition saat aktif agar visibility langsung tampil */
-  transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
               visibility 0s linear 0s;
 }
 
-/* Tahap keluar (exit): konten logo memudar dulu, lalu tirai membuka lembut */
+/* Tahap keluar (Veil Exit):
+   Logo & teks melayang lembut ke atas sambil memudar,
+   kemudian tirai background memudar halus ke halaman baru tanpa patah */
 #page-transition-veil.veil-exiting .veil-content {
   opacity: 0;
-  transform: scale(0.97) translateY(-10px);
-  transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.36s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0.96) translateY(-14px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #page-transition-veil.veil-exiting {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
-              visibility 0s linear 0.73s;
+  pointer-events: none;
+  transition: opacity 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+              visibility 0s linear 0.78s;
 }
 
 .veil-shimmer-pattern {
@@ -283,7 +281,71 @@
   }
 }
 
-/* page-fade-in tidak dipakai untuk body lagi, hanya sebagai util class */
+/* === Animasi Masuk Halaman Tujuan yang Ultra-Smooth ===
+   Ketika transisi tirai selesai, konten halaman baru tampil dengan
+   efek meluncur lembut (gentle glide up), fade in, dan micro blur dissolve */
+body.page-entering-active {
+  overflow-x: hidden;
+}
+
+/* Navbar muncul dengan fade-in lembut tanpa mengubah posisi/koordinat translate */
+body.page-entering-active #main-navbar {
+  animation: warisaraNavbarEntrance 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Konten utama halaman (hero / main / sections) meluncur lembut ke atas */
+body.page-entering-active > main,
+body.page-entering-active > section,
+body.page-entering-active > #hero,
+body.page-entering-active > div:not(#page-transition-veil):not(#warisara-preloader) {
+  animation: warisaraPageContentEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Heading dan judul hero masuk dengan timing halus yang terkoordinasi */
+body.page-entering-active h1,
+body.page-entering-active .hero-title-wrap,
+body.page-entering-active .hero-display-title {
+  animation: warisaraHeroTitleEntrance 0.88s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+@keyframes warisaraNavbarEntrance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes warisaraPageContentEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(3px);
+  }
+  40% {
+    opacity: 0.6;
+    filter: blur(1.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes warisaraHeroTitleEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* page-fade-in util class */
 .page-fade-in {
   animation: pageEntranceFade 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

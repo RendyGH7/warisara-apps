@@ -121,6 +121,11 @@
         if (!hasPlayed || isReload) {
           document.documentElement.classList.add("preloader-active");
         }
+
+        var isTransitioning = sessionStorage.getItem("warisara_page_transition") === "true";
+        if (isTransitioning) {
+          document.documentElement.classList.add("page-transitioning-in");
+        }
       } catch (e) {}
     })();
   </script>

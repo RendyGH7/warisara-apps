@@ -203,10 +203,22 @@ window.WARISARA_TRANSITION = {
         </div>
       `;
 
+      // Jika halaman dibuka dari proses transisi, aktifkan tirai langsung untuk menutupi layar
+      if (wasTransitioning) {
+        veil.classList.add("active");
+        veil.style.opacity = "1";
+        veil.style.visibility = "visible";
+      }
+
       document.body.appendChild(veil);
       this.veilEl = veil;
     } else {
       this.veilEl = document.getElementById("page-transition-veil");
+      if (wasTransitioning) {
+        this.veilEl.classList.add("active");
+        this.veilEl.style.opacity = "1";
+        this.veilEl.style.visibility = "visible";
+      }
     }
 
     if (wasTransitioning) {
@@ -215,38 +227,60 @@ window.WARISARA_TRANSITION = {
   },
 
   /**
-   * Halaman baru dimuat:
-   * – Veil langsung disembunyikan tanpa animasi apapun.
-   * – Halaman langsung muncul. Bersih, tanpa efek gelap tambahan.
+   * Halaman baru dimuat dari proses transisi:
+   * – Layar tetap tertutup tirai dengan anggun (tanpa kedip putih atau patah).
+   * – Menambahkan kelas animasi masuk (page-entering-active) pada konten halaman tujuan.
+   * – Memicu transisi tirai keluar (veil-exiting) yang sangat halus dan mewah.
    */
   _handleIncomingPage: function () {
     try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
 
+    if (document.documentElement) {
+      document.documentElement.classList.remove("page-transitioning-in");
+    }
+
     if (!this.veilEl) return;
 
-    // Matikan semua transisi CSS pada veil, lalu sembunyikan seketika
-    this.veilEl.style.transition = "none";
-    this.veilEl.style.opacity = "0";
-    this.veilEl.style.visibility = "hidden";
-    this.veilEl.classList.remove("active", "veil-exiting");
+    // Pastikan tirai aktif dan bersih dari class exiting sebelumnya
+    this.veilEl.classList.remove("veil-exiting");
+    this.veilEl.classList.add("active");
+    this.veilEl.style.transition = "";
+    this.veilEl.style.opacity = "1";
+    this.veilEl.style.visibility = "visible";
 
-    // Pulihkan CSS veil ke kondisi semula setelah satu frame
-    // (agar siap dipakai untuk navigasi berikutnya)
+    // Pasang animasi masuk halus pada konten halaman tujuan
+    if (document.body) {
+      document.body.classList.add("page-entering-active");
+    }
+
+    // Jeda kecil (70ms) agar browser selesai menyusun layout halaman baru di balik tirai
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (this.veilEl) {
-          this.veilEl.style.transition = "";
-          this.veilEl.style.opacity = "";
-          this.veilEl.style.visibility = "";
-        }
-      });
+      setTimeout(() => {
+        if (!this.veilEl) return;
+
+        // Picu animasi tirai memudar keluar secara halus (veil-exiting)
+        this.veilEl.classList.add("veil-exiting");
+
+        // Setelah durasi transisi selesai (780ms), bersihkan kelas dan status
+        setTimeout(() => {
+          if (this.veilEl) {
+            this.veilEl.classList.remove("active", "veil-exiting");
+            this.veilEl.style.opacity = "";
+            this.veilEl.style.visibility = "";
+          }
+          if (document.body) {
+            document.body.classList.remove("page-entering-active");
+          }
+          this.isTransitioning = false;
+        }, 780);
+      }, 70);
     });
   },
 
   /**
    * Navigasi keluar:
-   * – Veil muncul dengan animasi lengkap (logo memutar, loading bar).
-   * – Setelah 1050ms (animasi loading ≈1 siklus penuh), baru navigasi.
+   * – Veil muncul dengan animasi lembut (opacity 0 -> 1, emblem spin & loading sweep).
+   * – Durasi disesuaikan menjadi 520ms agar terasa responsif, elegan, dan tidak membuat jeda terlalu lama.
    */
   navigateTo: function (url) {
     if (this.isTransitioning) return;
@@ -264,7 +298,7 @@ window.WARISARA_TRANSITION = {
 
     setTimeout(() => {
       window.location.href = url;
-    }, 1050);
+    }, 520);
   },
 
   bindLinkInterception: function () {
@@ -304,6 +338,9 @@ window.WARISARA_TRANSITION = {
         this.veilEl.style.opacity = "0";
         this.veilEl.style.visibility = "hidden";
         this.veilEl.classList.remove("active", "veil-exiting");
+        if (document.body) {
+          document.body.classList.remove("page-entering-active");
+        }
       }
     });
   },
