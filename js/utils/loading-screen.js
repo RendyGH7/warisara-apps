@@ -81,7 +81,7 @@ window.WARISARA_PRELOADER = {
 
     if ("scrollRestoration" in history) {
       try {
-        history.scrollRestoration = "auto";
+        history.scrollRestoration = "manual";
       } catch (e) {}
     }
   },

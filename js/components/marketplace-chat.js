@@ -117,10 +117,7 @@
     if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.getUser === "function") {
       return window.WARISARA_AUTH.getUser();
     }
-    return {
-      email: "rendy.kolektor@gmail.com",
-      name: "Rendy Pratama"
-    };
+    return null;
   }
 
   // Audio effect halus untuk chat
@@ -373,8 +370,40 @@
     initChatDrawerDOM();
     const currentUser = getCurrentUser();
     const emailDisplay = document.getElementById("chat-header-email-display");
-    if (emailDisplay && currentUser) {
-      emailDisplay.textContent = `${currentUser.name} (${currentUser.email})`;
+    if (emailDisplay) {
+      if (currentUser) {
+        emailDisplay.textContent = `${currentUser.name} (${currentUser.email})`;
+      } else {
+        emailDisplay.textContent = "Belum Masuk Akun Google";
+      }
+    }
+
+    if (!currentUser) {
+      const listView = document.getElementById("chat-threads-list-view");
+      const convView = document.getElementById("chat-conversation-view");
+      if (convView) {
+        convView.classList.add("hidden");
+        convView.classList.remove("flex");
+      }
+      if (listView) {
+        listView.classList.remove("hidden");
+        listView.innerHTML = `
+          <div class="text-center py-16 px-4">
+            <div class="w-14 h-14 rounded-full bg-white/5 border border-white/10 mx-auto flex items-center justify-center text-surface/40 mb-3">
+              <span class="material-symbols-outlined text-2xl">lock</span>
+            </div>
+            <h4 class="font-display text-sm font-semibold text-surface mb-1">Akses Chat Memerlukan Akun Google</h4>
+            <p class="text-xs text-surface/60 max-w-xs mx-auto mb-4">
+              Silakan masuk dengan akun Google terlebih dahulu untuk mengirim pesan ke penjual produk lokal.
+            </p>
+            <button type="button" onclick="if(window.WARISARA_AUTH) window.WARISARA_AUTH.openAuthModal();"
+                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brass-400 text-ink text-xs font-bold uppercase tracking-wider hover:bg-brass-300 transition-all shadow-md">
+              <span>Masuk dengan Google</span>
+            </button>
+          </div>
+        `;
+      }
+      return;
     }
 
     if (activeThreadId) {
