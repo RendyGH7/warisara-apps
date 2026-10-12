@@ -7,74 +7,139 @@ window.WARISARA_TRANSITION = {
     this.bindLinkInterception();
     this.handlePageShow();
     this.initScrollReveal();
+    this.initNavbarLogoSpin();
+  },
+
+  initNavbarLogoSpin: function () {
+    const bindSpin = () => {
+      const selector = '#main-navbar a[aria-label*="WARISARA"] img, a[aria-label="WARISARA Beranda"] img, .navbar-brand-emblem, .nav-brand-logo-interactive';
+      const logos = document.querySelectorAll(selector);
+
+      logos.forEach((img) => {
+        img.classList.add('nav-brand-logo-interactive');
+        const parentLink = img.closest('a') || img;
+
+        if (parentLink.dataset.spinBound === "true") return;
+        parentLink.dataset.spinBound = "true";
+
+        let isSpinningBack = false;
+
+        parentLink.addEventListener("click", () => {
+          img.classList.remove("spin-back");
+          void img.offsetWidth;
+          img.classList.add("spin-back");
+          isSpinningBack = true;
+          setTimeout(() => {
+            img.classList.remove("spin-back");
+            isSpinningBack = false;
+          }, 700);
+        });
+
+        parentLink.addEventListener("mouseleave", () => {
+          if (!isSpinningBack) img.classList.remove("spin-back");
+        });
+      });
+    };
+
+    bindSpin();
+    window.addEventListener("load", bindSpin);
   },
 
   createVeil: function () {
-    if (document.getElementById("page-transition-veil")) {
-      this.veilEl = document.getElementById("page-transition-veil");
-      return;
-    }
-
     const wasTransitioning = sessionStorage.getItem("warisara_page_transition") === "true";
-    if (wasTransitioning) {
-      try {
-        sessionStorage.removeItem("warisara_page_transition");
-      } catch (e) {}
-    }
 
-    const veil = document.createElement("div");
-    veil.id = "page-transition-veil";
-    veil.setAttribute("aria-hidden", "true");
-    if (wasTransitioning) {
-      veil.classList.add("active");
-    }
+    if (!document.getElementById("page-transition-veil")) {
+      const isSubpage = window.location.pathname.includes("/pages/");
+      const assetPrefix = isSubpage ? "../" : "";
 
-    const isSubpage = window.location.pathname.includes("/pages/");
-    const assetPrefix = isSubpage ? "../" : "";
+      const veil = document.createElement("div");
+      veil.id = "page-transition-veil";
+      veil.setAttribute("aria-hidden", "true");
 
-    veil.innerHTML = `
-      <div class="veil-shimmer-pattern"></div>
-      <div class="veil-content">
-        <div class="veil-brand-unit">
-          <div class="veil-emblem-wrap">
-            <img src="${assetPrefix}assets/logo/logo-emblem.png?v=31" alt="WARISARA Emblem" class="veil-emblem-img" />
+      veil.innerHTML = `
+        <div class="veil-shimmer-pattern"></div>
+        <div class="veil-content">
+          <div class="veil-brand-unit">
+            <div class="veil-emblem-wrap">
+              <img src="${assetPrefix}assets/logo/logo-emblem.png?v=31" alt="WARISARA Emblem" class="veil-emblem-img" />
+            </div>
+            <img src="${assetPrefix}assets/logo/logo-text.png?v=31" alt="WariSara" class="veil-text-img" />
           </div>
-          <img src="${assetPrefix}assets/logo/logo-text.png?v=31" alt="WariSara" class="veil-text-img" />
+          <div class="veil-loader-wrapper">
+            <div class="veil-bar-track">
+              <div class="veil-bar-fill"></div>
+            </div>
+            <div class="veil-loading-label">
+              <span class="veil-pulse-dot"></span>
+              <span>MEMUAT PUSAKA</span>
+              <span class="veil-pulse-dot"></span>
+            </div>
+          </div>
         </div>
-        <div class="veil-bar-track">
-          <div class="veil-bar-fill"></div>
-        </div>
-      </div>
-    `;
+      `;
 
-    document.body.appendChild(veil);
-    this.veilEl = veil;
+      document.body.appendChild(veil);
+      this.veilEl = veil;
+    } else {
+      this.veilEl = document.getElementById("page-transition-veil");
+    }
 
+    if (wasTransitioning) {
+      this._handleIncomingPage();
+    }
+  },
+
+  /**
+   * Halaman baru dimuat:
+   * – Veil langsung disembunyikan tanpa animasi apapun.
+   * – Halaman langsung muncul. Bersih, tanpa efek gelap tambahan.
+   */
+  _handleIncomingPage: function () {
+    try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
+
+    if (!this.veilEl) return;
+
+    // Matikan semua transisi CSS pada veil, lalu sembunyikan seketika
+    this.veilEl.style.transition = "none";
+    this.veilEl.style.opacity = "0";
+    this.veilEl.style.visibility = "hidden";
+    this.veilEl.classList.remove("active", "veil-exiting");
+
+    // Pulihkan CSS veil ke kondisi semula setelah satu frame
+    // (agar siap dipakai untuk navigasi berikutnya)
     requestAnimationFrame(() => {
-      document.body.classList.add("page-fade-in");
-      if (wasTransitioning) {
-        setTimeout(() => {
-          veil.classList.remove("active");
-        }, 60);
-      }
+      requestAnimationFrame(() => {
+        if (this.veilEl) {
+          this.veilEl.style.transition = "";
+          this.veilEl.style.opacity = "";
+          this.veilEl.style.visibility = "";
+        }
+      });
     });
   },
 
+  /**
+   * Navigasi keluar:
+   * – Veil muncul dengan animasi lengkap (logo memutar, loading bar).
+   * – Setelah 1050ms (animasi loading ≈1 siklus penuh), baru navigasi.
+   */
   navigateTo: function (url) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
 
     if (!this.veilEl) this.createVeil();
 
-    try {
-      sessionStorage.setItem("warisara_page_transition", "true");
-    } catch (e) {}
+    try { sessionStorage.setItem("warisara_page_transition", "true"); } catch (e) {}
 
+    this.veilEl.style.transition = "";
+    this.veilEl.style.opacity = "";
+    this.veilEl.style.visibility = "";
+    this.veilEl.classList.remove("veil-exiting");
     this.veilEl.classList.add("active");
 
     setTimeout(() => {
       window.location.href = url;
-    }, 340);
+    }, 1050);
   },
 
   bindLinkInterception: function () {
@@ -85,17 +150,20 @@ window.WARISARA_TRANSITION = {
       const href = anchor.getAttribute("href");
       const target = anchor.getAttribute("target");
 
-      if (!href || href.startsWith("#") || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:") || target === "_blank") {
-        return;
-      }
+      if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("javascript:") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        target === "_blank"
+      ) return;
 
       if (href.startsWith("http://") || href.startsWith("https://")) {
         try {
           const urlObj = new URL(href);
           if (urlObj.origin !== window.location.origin) return;
-        } catch (err) {
-          return;
-        }
+        } catch (err) { return; }
       }
 
       e.preventDefault();
@@ -104,13 +172,14 @@ window.WARISARA_TRANSITION = {
   },
 
   handlePageShow: function () {
-    
     window.addEventListener("pageshow", (event) => {
       this.isTransitioning = false;
-      if (this.veilEl) {
-        this.veilEl.classList.remove("active");
+      if (event.persisted && this.veilEl) {
+        this.veilEl.style.transition = "none";
+        this.veilEl.style.opacity = "0";
+        this.veilEl.style.visibility = "hidden";
+        this.veilEl.classList.remove("active", "veil-exiting");
       }
-      document.body.classList.add("page-fade-in");
     });
   },
 
@@ -121,15 +190,10 @@ window.WARISARA_TRANSITION = {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-revealed");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("is-revealed");
         });
       },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px"
-      }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
 
     reveals.forEach((el) => observer.observe(el));

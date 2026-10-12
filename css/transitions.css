@@ -1,3 +1,21 @@
+/* === Overlay tipis yang menutupi halaman baru saat veil selesai,
+   lalu menghilang pelan-pelan agar terkesan "muncul" === */
+#page-enter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;        /* tepat di bawah veil (#page-transition-veil = 99999) */
+  background: #080605;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+
+/* Saat kelas ini ditambahkan, overlay mulai menghilang */
+#page-enter-overlay.page-entering {
+  opacity: 0;
+}
+
 #page-transition-veil {
   position: fixed;
   inset: 0;
@@ -9,17 +27,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #100D0B 0%, #050403 100%);
+  background-color: #080605 !important;
+  background-image: radial-gradient(circle at center, #130F0B 0%, #080605 100%) !important;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Masuk: cepat, elegan */
+  transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0.38s;
 }
 
 #page-transition-veil.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  /* Override transition saat aktif agar visibility langsung tampil */
+  transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0s;
+}
+
+/* Tahap keluar (exit): konten logo memudar dulu, lalu tirai membuka lembut */
+#page-transition-veil.veil-exiting .veil-content {
+  opacity: 0;
+  transform: scale(0.97) translateY(-10px);
+  transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.36s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#page-transition-veil.veil-exiting {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+              visibility 0s linear 0.73s;
 }
 
 .veil-shimmer-pattern {
@@ -36,12 +74,15 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  transform: scale(0.92);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(0.95) translateY(6px);
+  opacity: 0;
+  transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.42s ease;
 }
 
 #page-transition-veil.active .veil-content {
-  transform: scale(1);
+  transform: scale(1) translateY(0);
+  opacity: 1;
 }
 
 .veil-brand-unit {
@@ -50,47 +91,65 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  animation: veilPulse 2.2s ease-in-out infinite;
+  position: relative;
+  animation: veilGentleBreathe 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* Hilangkan efek aura/glow tebal di belakang teks */
+.veil-brand-unit::before {
+  display: none !important;
 }
 
 .veil-emblem-wrap {
-  width: 115px;
-  height: 115px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 2;
 }
 
+/* Cahaya aura emblem atas dikurangi sedikit agar lembut */
 .veil-emblem-wrap::before {
   content: '';
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(235, 195, 95, 0.28) 0%, rgba(201, 165, 103, 0.1) 50%, transparent 70%);
-  filter: blur(18px);
+  background: radial-gradient(circle, rgba(255, 235, 175, 0.12) 0%, rgba(201, 165, 103, 0.05) 45%, transparent 68%);
+  filter: blur(12px);
   pointer-events: none;
   z-index: 1;
 }
 
+/* Logo atas diberi animasi berputar 360deg halus saat transisi dan cahaya dikurangi */
 .veil-emblem-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 16px rgba(235, 195, 95, 0.75)) 
-          drop-shadow(0 0 36px rgba(201, 165, 103, 0.45));
+  transform-origin: center center;
+  animation: veilEmblemSpin 14s linear infinite;
+  will-change: transform;
+  filter: drop-shadow(0 0 5px rgba(255, 240, 190, 0.35)) 
+          drop-shadow(0 0 10px rgba(201, 165, 103, 0.18)) 
+          drop-shadow(0 6px 16px rgba(0, 0, 0, 0.75));
   position: relative;
   z-index: 2;
 }
 
+@keyframes veilEmblemSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Tulisan logo sedikit saja lebih besar dan HILANGKAN efek cahaya (glow) */
 .veil-text-img {
-  height: 52px;
+  height: clamp(62px, 9.2vw, 82px);
   width: auto;
-  max-width: 260px;
+  max-width: min(390px, 86vw);
   object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(235, 195, 95, 0.75)) 
-          drop-shadow(0 0 28px rgba(201, 165, 103, 0.4));
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.75));
   position: relative;
   z-index: 2;
 }
@@ -121,13 +180,27 @@
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+/* UI Loading yang jauh lebih terlihat, jelas, dan dinamis */
+.veil-loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.4rem;
+  position: relative;
+  z-index: 3;
+}
+
 .veil-bar-track {
-  width: 120px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.12);
+  width: 200px;
+  max-width: 82vw;
+  height: 4.5px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(212, 168, 83, 0.45);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 0 14px rgba(201, 165, 103, 0.35), inset 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .veil-bar-fill {
@@ -135,10 +208,61 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 40%;
-  background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, transparent);
+  width: 50%;
+  background: linear-gradient(90deg, transparent 0%, #8A5822 15%, #C9A567 45%, #FFF8EB 75%, #FFFFFF 90%, transparent 100%);
   border-radius: 9999px;
-  animation: veilSweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  box-shadow: 0 0 14px rgba(255, 245, 205, 0.95), 0 0 5px #FFF3DB;
+  animation: veilSweep 1.15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.veil-loading-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 200, 0.85);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+  animation: veilLabelPulse 1.8s ease-in-out infinite alternate;
+}
+
+.veil-pulse-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #E6D3A7;
+  box-shadow: 0 0 6px #FFF3DB;
+}
+
+@keyframes veilLabelPulse {
+  0% { opacity: 0.65; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes veilGentleBreathe {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.025);
+  }
+  100% {
+    transform: translateY(1px) scale(0.995);
+  }
+}
+
+@keyframes veilAuraBreath {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  100% {
+    opacity: 1.15;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
 }
 
 @keyframes veilPulse {
@@ -159,17 +283,14 @@
   }
 }
 
+/* page-fade-in tidak dipakai untuk body lagi, hanya sebagai util class */
 .page-fade-in {
-  animation: pageEntranceFade 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: pageEntranceFade 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes pageEntranceFade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-on-scroll {
