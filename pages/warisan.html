@@ -67,11 +67,6 @@
   <script>
     (function () {
       try {
-        if ("scrollRestoration" in history) {
-          history.scrollRestoration = "manual";
-        }
-        window.scrollTo(0, 0);
-
         var isReload = false;
         var navEntries = performance.getEntriesByType("navigation");
         if (navEntries.length > 0 && navEntries[0].type === "reload") {
@@ -79,8 +74,17 @@
         } else if (performance.navigation && performance.navigation.type === 1) {
           isReload = true;
         }
+        if (isReload) {
+          window.location.replace("../index.html#hero");
+          return;
+        }
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+        window.scrollTo(0, 0);
+
         var hasPlayed = sessionStorage.getItem("warisara_intro_played") === "true";
-        if (isReload || !hasPlayed) {
+        if (!hasPlayed) {
           document.documentElement.classList.add("preloader-active");
         }
       } catch (e) {}

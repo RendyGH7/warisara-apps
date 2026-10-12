@@ -66,6 +66,17 @@
   <script>
     (function () {
       try {
+        var isReload = false;
+        var navEntries = performance.getEntriesByType("navigation");
+        if (navEntries.length > 0 && navEntries[0].type === "reload") {
+          isReload = true;
+        } else if (performance.navigation && performance.navigation.type === 1) {
+          isReload = true;
+        }
+        if (isReload) {
+          window.location.replace("../index.html#hero");
+          return;
+        }
         if ("scrollRestoration" in history) {
           history.scrollRestoration = "manual";
         }

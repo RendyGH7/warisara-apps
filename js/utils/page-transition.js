@@ -48,12 +48,33 @@ window.WARISARA_TRANSITION = {
       forceScrollToHero();
     });
 
+    // Tangkap shortcut refresh keyboard (Ctrl+R, F5, Cmd+R)
+    window.addEventListener('keydown', (e) => {
+      const isCtrlR = (e.ctrlKey || e.metaKey) && (e.key === 'r' || e.key === 'R' || e.code === 'KeyR');
+      const isF5 = e.key === 'F5' || e.code === 'F5';
+      if (isCtrlR || isF5) {
+        e.preventDefault();
+        const isSubpage = window.location.pathname.includes('/pages/');
+        if (isSubpage) {
+          window.location.href = '../index.html#hero';
+        } else {
+          forceScrollToHero();
+          if (window.location.hash !== '#hero') {
+            window.location.hash = 'hero';
+          }
+          window.location.reload();
+        }
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
       forceScrollToHero();
-      if (window.location.hash) {
-        try {
-          history.replaceState(null, '', window.location.pathname + window.location.search);
-        } catch (e) {}
+      const isSubpage = window.location.pathname.includes('/pages/');
+      if (!isSubpage) {
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+          heroSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
       }
       requestAnimationFrame(forceScrollToHero);
       setTimeout(forceScrollToHero, 30);

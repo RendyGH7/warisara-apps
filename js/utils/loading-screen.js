@@ -99,7 +99,7 @@ window.WARISARA_PRELOADER = {
 
     const hasPlayedBefore = sessionStorage.getItem("warisara_intro_played") === "true";
 
-    if (!isReload && hasPlayedBefore) {
+    if (hasPlayedBefore) {
       this.unlockScroll();
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
