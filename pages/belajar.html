@@ -67,6 +67,32 @@
   <script>
     (function () {
       try {
+        // Utilitas Pembersihan Aktivitas saat Refresh (Kecuali 3 Pengecualian / Whitelist)
+        window.WARISARA_RESET_REFRESH = function () {
+          try {
+            var WHITELIST_KEYS = [
+              'warisara_creative_gallery',     // Pengecualian 1: Desain Creative Lab
+              'warisara_active_user',          // Pengecualian 2: Akun Google login produk lokal
+              'warisara_user_products',        // Pengecualian 2: Produk karya user
+              'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
+              'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
+              'warisara_quiz_seen_ids'         // Pengecualian 3: Riwayat soal kuis
+            ];
+            var preserved = {};
+            for (var i = 0; i < WHITELIST_KEYS.length; i++) {
+              var k = WHITELIST_KEYS[i];
+              var v = localStorage.getItem(k);
+              if (v !== null) preserved[k] = v;
+            }
+            localStorage.clear();
+            for (var pk in preserved) {
+              localStorage.setItem(pk, preserved[pk]);
+            }
+            sessionStorage.removeItem("warisara_intro_played");
+            sessionStorage.removeItem("warisara_page_transition");
+          } catch (e) {}
+        };
+
         var isReload = false;
         var navEntries = performance.getEntriesByType("navigation");
         if (navEntries.length > 0 && navEntries[0].type === "reload") {
@@ -74,10 +100,13 @@
         } else if (performance.navigation && performance.navigation.type === 1) {
           isReload = true;
         }
+
         if (isReload) {
+          window.WARISARA_RESET_REFRESH();
           window.location.replace("../index.html#hero");
           return;
         }
+
         if ("scrollRestoration" in history) {
           history.scrollRestoration = "manual";
         }
