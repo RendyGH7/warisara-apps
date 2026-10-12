@@ -70,6 +70,11 @@
   <script>
     (function () {
       try {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+        window.scrollTo(0, 0);
+
         var isReload = false;
         var navEntries = performance.getEntriesByType("navigation");
         if (navEntries.length > 0 && navEntries[0].type === "reload") {
@@ -80,10 +85,6 @@
         var hasPlayed = sessionStorage.getItem("warisara_intro_played") === "true";
         if (isReload || !hasPlayed) {
           document.documentElement.classList.add("preloader-active");
-          if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
-          }
-          window.scrollTo(0, 0);
         }
       } catch (e) {}
     })();

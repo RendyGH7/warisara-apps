@@ -1,13 +1,76 @@
+// Selalu kembalikan posisi scroll ke hero/awal saat reload atau navigasi
+if ('scrollRestoration' in history) {
+  try {
+    history.scrollRestoration = 'manual';
+  } catch (e) {}
+}
+window.scrollTo(0, 0);
+
 window.WARISARA_TRANSITION = {
   isTransitioning: false,
   veilEl: null,
 
   init: function () {
+    this.initScrollToTopOnRefresh();
     this.createVeil();
     this.bindLinkInterception();
     this.handlePageShow();
     this.initScrollReveal();
     this.initNavbarLogoSpin();
+  },
+
+  initScrollToTopOnRefresh: function () {
+    if ('scrollRestoration' in history) {
+      try {
+        history.scrollRestoration = 'manual';
+      } catch (e) {}
+    }
+
+    const forceScrollToHero = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    };
+
+    forceScrollToHero();
+
+    window.addEventListener('beforeunload', () => {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      forceScrollToHero();
+    });
+
+    window.addEventListener('pagehide', () => {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      forceScrollToHero();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      forceScrollToHero();
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      requestAnimationFrame(forceScrollToHero);
+      setTimeout(forceScrollToHero, 30);
+      setTimeout(forceScrollToHero, 100);
+      setTimeout(forceScrollToHero, 250);
+    });
+
+    window.addEventListener('load', () => {
+      forceScrollToHero();
+      setTimeout(forceScrollToHero, 50);
+      setTimeout(forceScrollToHero, 150);
+    });
+
+    window.addEventListener('pageshow', () => {
+      forceScrollToHero();
+      setTimeout(forceScrollToHero, 50);
+    });
   },
 
   initNavbarLogoSpin: function () {
