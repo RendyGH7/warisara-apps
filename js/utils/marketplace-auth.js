@@ -108,12 +108,9 @@
       modal = document.getElementById("google-auth-modal");
     }
 
-    // CSS di marketplace-chat.css sudah menyembunyikan navbar via class ini
-    document.body.classList.add("auth-modal-open");
-
     if (modal) {
       modal.classList.remove("hidden");
-      modal.classList.add("flex");
+      modal.style.display = "flex";
       document.body.style.overflow = "hidden";
 
       // Render preset account list
@@ -158,20 +155,18 @@
     const modal = document.getElementById("google-auth-modal");
     if (modal) {
       modal.classList.add("hidden");
-      modal.classList.remove("flex");
+      modal.style.display = "none";
       document.body.style.overflow = "";
     }
-
-    // CSS otomatis menampilkan navbar kembali saat class ini dihapus
-    document.body.classList.remove("auth-modal-open");
   }
 
   function createAuthModalDOM() {
     const div = document.createElement("div");
     div.id = "google-auth-modal";
-    div.className = "hidden fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md items-center justify-center p-4";
+    div.className = "hidden fixed inset-0 z-[99999] bg-black/75 backdrop-blur-md items-center justify-center p-4";
+    div.style.display = "none";
     div.innerHTML = `
-      <div class="w-full max-w-md bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col animate-modal-enter">
+      <div class="auth-modal-dialog w-full max-w-md bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
         <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-white p-2 flex items-center justify-center shadow-lg">
@@ -323,7 +318,7 @@
     updateUI: updateNavbarAuthUI
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function initAuthSystem() {
     updateNavbarAuthUI();
     document.addEventListener("click", (e) => {
       const trigger = e.target.closest(".nav-auth-trigger");
@@ -332,5 +327,11 @@
         openGoogleAuthModal();
       }
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAuthSystem);
+  } else {
+    initAuthSystem();
+  }
 })();

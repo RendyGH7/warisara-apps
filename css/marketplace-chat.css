@@ -15,15 +15,50 @@
   }
 }
 
-/* Hide navbar when Google Login or Chat Drawer is active (tanpa display:none agar tidak black screen) */
-body.auth-modal-open #main-navbar,
-body.auth-modal-open #mobile-nav-drawer,
-body.chat-drawer-open #main-navbar,
+/* Chat Drawer navbar handling */
 body.chat-drawer-open #mobile-nav-drawer {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transition: opacity 0.2s ease, visibility 0.2s ease !important;
+}
+
+/* Google Auth Modal Styling — Kokoh & Selalu Terlihat */
+#google-auth-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  background: rgba(12, 10, 8, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+#google-auth-modal.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.auth-modal-dialog {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: authModalEnter 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes authModalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .chat-badge-pulse {
