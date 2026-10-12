@@ -914,10 +914,22 @@
       const switchHeroBtn = document.getElementById("btn-hero-switch-account");
       if (switchHeroBtn) {
         switchHeroBtn.addEventListener("click", () => {
-          if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.switchAccountQuick === "function") {
-            window.WARISARA_AUTH.switchAccountQuick();
-            updateHeroUserInfo();
-            render();
+          if (window.WARISARA_AUTH) {
+            if (typeof window.WARISARA_AUTH.openAuthModal === "function") {
+              window.WARISARA_AUTH.openAuthModal();
+            } else if (typeof window.WARISARA_AUTH.switchAccountQuick === "function") {
+              window.WARISARA_AUTH.switchAccountQuick();
+            }
+          }
+        });
+      }
+
+      // Tombol Logout di Hero Bar
+      const heroLogoutBtn = document.getElementById("btn-hero-logout");
+      if (heroLogoutBtn) {
+        heroLogoutBtn.addEventListener("click", () => {
+          if (window.WARISARA_AUTH) {
+            window.WARISARA_AUTH.logout();
           }
         });
       }
@@ -1012,17 +1024,131 @@
         });
       }
 
+      // --- LOGIKA GOOGLE AUTH GATE ---
+      function checkAuthAndToggleGate() {
+        const isAuth = window.WARISARA_AUTH && window.WARISARA_AUTH.isLoggedIn();
+        const gateSection = document.getElementById("produk-lokal-auth-gate");
+        const catalogSection = document.getElementById("produk-lokal-catalog-content");
+
+        if (!isAuth) {
+          if (gateSection) gateSection.classList.remove("hidden");
+          if (catalogSection) catalogSection.classList.add("hidden");
+          renderGatePresets();
+        } else {
+          if (gateSection) gateSection.classList.add("hidden");
+          if (catalogSection) catalogSection.classList.remove("hidden");
+          updateHeroUserInfo();
+          render();
+        }
+      }
+
+      function renderGatePresets() {
+        const presetsList = document.getElementById("gate-presets-list");
+        if (!presetsList || !window.WARISARA_AUTH) return;
+        const presets = window.WARISARA_AUTH.getPresets();
+        presetsList.innerHTML = presets.map((acc) => `
+          <button type="button" data-gate-email="${acc.email}"
+                  class="w-full p-3 rounded-2xl bg-white/[0.03] hover:bg-brass-400/15 border border-white/10 hover:border-brass-400/40 transition-all flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr ${acc.avatarColor} text-white font-bold text-xs flex items-center justify-center shadow-md">
+                ${acc.avatarLetter}
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors flex items-center gap-1.5">
+                  <span>${acc.name}</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] bg-brass-400/20 text-brass-300 font-bold uppercase">Akun Google</span>
+                </div>
+                <div class="text-[11px] text-surface/60 font-mono">${acc.email}</div>
+                <div class="text-[10px] text-surface/40 mt-0.5">${acc.role} • ${acc.city}</div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-surface/40 group-hover:text-brass-300 transition-all text-sm group-hover:translate-x-1">arrow_forward</span>
+          </button>
+        `).join("");
+
+        presetsList.querySelectorAll("[data-gate-email]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const email = btn.dataset.gateEmail;
+            window.WARISARA_AUTH.loginAs(email);
+            if (window.WARISARA_AUTH.showToast) {
+              window.WARISARA_AUTH.showToast(`Berhasil masuk sebagai ${email}`);
+            }
+          });
+        });
+      }
+
+      // Tab Switcher pada Gate (Masuk vs Registrasi)
+      const gateTabLogin = document.getElementById("gate-tab-login-btn");
+      const gateTabRegister = document.getElementById("gate-tab-register-btn");
+      const gatePanelLogin = document.getElementById("gate-panel-login");
+      const gatePanelRegister = document.getElementById("gate-panel-register");
+
+      if (gateTabLogin && gateTabRegister && gatePanelLogin && gatePanelRegister) {
+        gateTabLogin.addEventListener("click", () => {
+          gateTabLogin.className = "flex-1 py-2.5 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5";
+          gateTabRegister.className = "flex-1 py-2.5 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5";
+          gatePanelLogin.classList.remove("hidden");
+          gatePanelRegister.classList.add("hidden");
+        });
+
+        gateTabRegister.addEventListener("click", () => {
+          gateTabRegister.className = "flex-1 py-2.5 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5";
+          gateTabLogin.className = "flex-1 py-2.5 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5";
+          gatePanelRegister.classList.remove("hidden");
+          gatePanelLogin.classList.add("hidden");
+        });
+      }
+
+      // One-tap Google Sign-in button
+      const googleOneTapBtn = document.getElementById("gate-btn-google-one-tap");
+      if (googleOneTapBtn) {
+        googleOneTapBtn.addEventListener("click", () => {
+          if (window.WARISARA_AUTH) {
+            const presets = window.WARISARA_AUTH.getPresets();
+            window.WARISARA_AUTH.loginAs(presets[0]);
+            window.WARISARA_AUTH.showToast(`Masuk instan dengan Google: ${presets[0].email}`);
+          }
+        });
+      }
+
+      // Form Manual Login Google
+      const gateLoginForm = document.getElementById("gate-login-form");
+      if (gateLoginForm) {
+        gateLoginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const email = document.getElementById("gate-login-email").value.trim();
+          if (email && window.WARISARA_AUTH) {
+            window.WARISARA_AUTH.loginAs(email);
+            window.WARISARA_AUTH.showToast(`Masuk berhasil: ${email}`);
+          }
+        });
+      }
+
+      // Form Registrasi Akun Google
+      const gateRegisterForm = document.getElementById("gate-register-form");
+      if (gateRegisterForm) {
+        gateRegisterForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("gate-reg-name").value.trim();
+          const email = document.getElementById("gate-reg-email").value.trim();
+          const city = document.getElementById("gate-reg-city").value.trim();
+          const role = document.getElementById("gate-reg-role").value;
+          if (name && email && window.WARISARA_AUTH) {
+            window.WARISARA_AUTH.registerWithGoogle({ name, email, city, role });
+            window.WARISARA_AUTH.showToast(`Selamat datang ${name}, akun Google Anda berhasil terdaftar!`);
+          }
+        });
+      }
+
       window.addEventListener("warisara_auth_changed", () => {
-        updateHeroUserInfo();
-        render();
+        checkAuthAndToggleGate();
       });
 
       window.addEventListener("warisara_products_updated", () => {
         render();
       });
 
-      updateHeroUserInfo();
-      render();
+      checkAuthAndToggleGate();
     }
 
     if (document.readyState === "loading") {
