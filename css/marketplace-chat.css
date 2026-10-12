@@ -15,16 +15,15 @@
   }
 }
 
-/* Hide navbar completely when Google Login or Chat Drawer is active */
+/* Hide navbar when Google Login or Chat Drawer is active (tanpa display:none agar tidak black screen) */
 body.auth-modal-open #main-navbar,
 body.auth-modal-open #mobile-nav-drawer,
 body.chat-drawer-open #main-navbar,
 body.chat-drawer-open #mobile-nav-drawer {
-  display: none !important;
-  visibility: hidden !important;
   opacity: 0 !important;
+  visibility: hidden !important;
   pointer-events: none !important;
-  transform: translateY(-120%) !important;
+  transition: opacity 0.2s ease, visibility 0.2s ease !important;
 }
 
 .chat-badge-pulse {

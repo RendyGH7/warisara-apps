@@ -108,12 +108,8 @@
       modal = document.getElementById("google-auth-modal");
     }
 
-    // Sembunyikan navbar saat fitur login diklik
+    // CSS di marketplace-chat.css sudah menyembunyikan navbar via class ini
     document.body.classList.add("auth-modal-open");
-    const navbar = document.getElementById("main-navbar");
-    if (navbar) navbar.style.display = "none";
-    const mobileDrawer = document.getElementById("mobile-nav-drawer");
-    if (mobileDrawer) mobileDrawer.style.display = "none";
 
     if (modal) {
       modal.classList.remove("hidden");
@@ -166,12 +162,8 @@
       document.body.style.overflow = "";
     }
 
-    // Tampilkan kembali navbar saat modal ditutup
+    // CSS otomatis menampilkan navbar kembali saat class ini dihapus
     document.body.classList.remove("auth-modal-open");
-    const navbar = document.getElementById("main-navbar");
-    if (navbar) navbar.style.display = "";
-    const mobileDrawer = document.getElementById("mobile-nav-drawer");
-    if (mobileDrawer) mobileDrawer.style.display = "";
   }
 
   function createAuthModalDOM() {
