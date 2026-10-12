@@ -183,64 +183,222 @@
   </div>
 
   <main id="page-content" class="page-module-main">
-    
-    <!-- Hero Header Marketplace -->
-    <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-16 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-      <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
-        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
+
+    <!-- Gerbang Akses Login & Registrasi Google (Wajib Sebelum Mengakses Produk Lokal) -->
+    <section id="produk-lokal-auth-gate" class="relative pt-32 sm:pt-40 pb-20 px-4 sm:px-6 min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <!-- Glow ambient background -->
+      <div class="absolute inset-0 pointer-events-none opacity-30">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brass-600/25 via-amber-500/10 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-forest-900/20 rounded-full blur-3xl"></div>
       </div>
 
-      <div class="max-w-5xl mx-auto text-center relative z-10">
-        <span class="glass-pill mb-4 inline-block">Pasar Budaya & Kriya Nusantara • C2C Community Marketplace</span>
-        <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-4">
-          Etalase Produk Lokal & Kriya
-        </h1>
-        <p class="text-base sm:text-lg text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
-          Tempat bertemunya pencinta budaya dan pengrajin se-Indonesia. Jual karyamu atau beli langsung dari sesama pengguna dengan bertransaksi personal via chat tanpa perantara.
-        </p>
+      <div class="w-full max-w-xl mx-auto relative z-10">
+        <!-- Header Pengantar Gerbang -->
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-brass-400/30 text-brass-300 text-xs font-semibold mb-4 backdrop-blur-md shadow-lg">
+            <span class="material-symbols-outlined text-sm text-brass-400">verified_user</span>
+            <span>Akses Khusus Produk Lokal Nusantara</span>
+          </div>
+          <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface tracking-tight leading-tight mb-3">
+            Masuk dengan Google
+          </h1>
+          <p class="text-xs sm:text-sm text-surface/70 max-w-md mx-auto leading-relaxed">
+            Sebelum mengakses etalase karya, berkomunikasi dengan pengrajin, dan bertransaksi langsung antar pengguna, silakan masuk atau daftarkan akun Anda dengan Google.
+          </p>
+        </div>
 
-        <!-- User Role Bar & Action CTAs (Beli & Jual ala Facebook Marketplace) -->
-        <div class="max-w-2xl mx-auto p-3.5 sm:p-4 rounded-3xl bg-white/[0.04] border border-brass-400/30 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xl">
-          <div class="flex items-center gap-3 text-left">
-            <div id="hero-user-avatar" class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
-              R
-            </div>
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span id="hero-user-name" class="text-xs font-bold text-surface">Rendy Pratama</span>
-                <span class="seller-verified-badge">Terhubung Google</span>
-              </div>
-              <p id="hero-user-email" class="text-[11px] text-brass-300/80 font-mono">rendy.kolektor@gmail.com</p>
-            </div>
+        <!-- Kartu Box Autentikasi Google -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-[#181512]/95 border border-white/15 shadow-2xl backdrop-blur-xl">
+          <!-- Tab Switcher: Masuk vs Registrasi -->
+          <div class="flex items-center p-1 rounded-2xl bg-white/5 border border-white/10 mb-6 text-xs font-semibold">
+            <button id="gate-tab-login-btn" type="button"
+                    class="flex-1 py-2.5 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-base">login</span>
+              <span>Masuk Akun</span>
+            </button>
+            <button id="gate-tab-register-btn" type="button"
+                    class="flex-1 py-2.5 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-base">person_add</span>
+              <span>Daftar Akun Baru</span>
+            </button>
           </div>
 
-          <div class="flex items-center gap-2 w-full sm:w-auto">
-            <!-- Tombol Beralih Akun (Uji Chat Email A <-> Email B) -->
-            <button id="btn-hero-switch-account" type="button"
-                    class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-                    title="Ganti antara Email A (Pembeli) dan Email B (Penjual)">
-              <span class="material-symbols-outlined text-sm text-brass-400">swap_horiz</span>
-              <span class="text-[11px]">Ganti Akun Demo</span>
+          <!-- PANEL 1: MASUK DENGAN GOOGLE -->
+          <div id="gate-panel-login" class="space-y-5">
+            <!-- Tombol One-Tap Sign In with Google Utama -->
+            <button id="gate-btn-google-one-tap" type="button"
+                    class="w-full py-3.5 px-4 rounded-2xl bg-white hover:bg-neutral-100 text-neutral-800 text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] group">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+              </svg>
+              <span>Lanjutkan dengan Akun Google</span>
             </button>
 
-            <!-- Tombol Jual Produk Lokal -->
-            <button id="btn-hero-sell-product" type="button"
-                    class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-md">
-              <span class="material-symbols-outlined text-base">add_circle</span>
-              <span>+ Jual Produk</span>
-            </button>
+            <!-- Divider -->
+            <div class="relative flex items-center justify-center my-3">
+              <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+              <span class="relative px-3 bg-[#181512] text-[10px] uppercase font-bold tracking-wider text-surface/40">atau pilih profil Google demo</span>
+            </div>
 
-            <!-- Tombol Buka Chat -->
-            <button class="nav-chat-trigger px-3 py-2 rounded-xl bg-forest-900/40 hover:bg-forest-900/60 border border-forest-500/30 text-forest-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
-              <span class="material-symbols-outlined text-sm">chat</span>
-              <span class="hidden md:inline">Kotak Masuk</span>
-            </button>
+            <!-- List Akun Google Demo -->
+            <div id="gate-presets-list" class="space-y-2">
+              <!-- Render otomatis dari PRESET_ACCOUNTS -->
+            </div>
+
+            <!-- Divider Email Input -->
+            <div class="relative flex items-center justify-center my-2">
+              <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+              <span class="relative px-3 bg-[#181512] text-[10px] uppercase font-bold tracking-wider text-surface/40">atau masuk dengan Gmail Anda</span>
+            </div>
+
+            <!-- Form Manual Email Google -->
+            <form id="gate-login-form" class="space-y-3">
+              <div>
+                <label class="block text-[11px] font-medium text-surface/70 mb-1">Email Google (@gmail.com)</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-sm">mail</span>
+                  <input id="gate-login-email" type="email" placeholder="nama.anda@gmail.com" required
+                         class="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400 transition-colors" />
+                </div>
+              </div>
+              <button type="submit"
+                      class="w-full py-2.5 rounded-xl bg-brass-400/20 hover:bg-brass-400/30 border border-brass-400/40 text-brass-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Masuk Sekarang</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- PANEL 2: REGISTRASI AKUN BARU DENGAN GOOGLE -->
+          <div id="gate-panel-register" class="hidden space-y-4">
+            <form id="gate-register-form" class="space-y-3">
+              <div>
+                <label class="block text-[11px] font-medium text-surface/70 mb-1">Nama Lengkap</label>
+                <input id="gate-reg-name" type="text" placeholder="Contoh: Rian Anggoro" required
+                       class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-medium text-surface/70 mb-1">Email Google (@gmail.com)</label>
+                <input id="gate-reg-email" type="email" placeholder="rian.anggoro@gmail.com" required
+                       class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-medium text-surface/70 mb-1">Kota Asal / Domisili</label>
+                  <input id="gate-reg-city" type="text" placeholder="Contoh: Yogyakarta" required
+                         class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-medium text-surface/70 mb-1">Tipe Akun</label>
+                  <select id="gate-reg-role" class="w-full px-3 py-2.5 text-xs rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400">
+                    <option value="Pembeli & Kolektor Seni">Pembeli & Kolektor Seni</option>
+                    <option value="Penjual / Artisan Lokal">Penjual / Artisan Lokal</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit"
+                      class="w-full py-3 mt-2 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2">
+                <svg viewBox="0 0 24 24" class="w-4 h-4 bg-white rounded-full p-0.5">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                </svg>
+                <span>Daftar & Hubungkan dengan Google</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Footer Keamanan & Privasi -->
+          <div class="pt-5 mt-5 border-t border-white/10 text-center text-[11px] text-surface/50 space-y-1">
+            <div class="flex items-center justify-center gap-1.5 text-brass-300/80">
+              <span class="material-symbols-outlined text-xs">lock</span>
+              <span class="font-medium">Autentikasi Aman Terintegrasi Google</span>
+            </div>
+            <p>Data akun digunakan untuk transaksi C2C dan komunikasi antar pengguna secara aman.</p>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Konten Etalase Produk Lokal (Hanya Tampil Jika Sudah Login dengan Google) -->
+    <div id="produk-lokal-catalog-content" class="w-full hidden">
+      <!-- Hero Header Marketplace -->
+      <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-16 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+        <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+          <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+          <div class="absolute -top-32 -right-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+          <span class="glass-pill mb-4 inline-block">Pasar Budaya & Kriya Nusantara • C2C Community Marketplace</span>
+          <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-4">
+            Etalase Produk Lokal & Kriya
+          </h1>
+          <p class="text-base sm:text-lg text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+            Tempat bertemunya pencinta budaya dan pengrajin se-Indonesia. Jual karyamu atau beli langsung dari sesama pengguna dengan bertransaksi personal via chat tanpa perantara.
+          </p>
+
+          <!-- User Role Bar & Action CTAs (Beli & Jual ala Facebook Marketplace) -->
+          <div class="max-w-3xl mx-auto p-3.5 sm:p-4 rounded-3xl bg-white/[0.04] border border-brass-400/30 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xl">
+            <div class="flex items-center gap-3 text-left">
+              <div id="hero-user-avatar" class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
+                R
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span id="hero-user-name" class="text-xs font-bold text-surface">Rendy Pratama</span>
+                  <span class="seller-verified-badge flex items-center gap-1">
+                    <svg viewBox="0 0 24 24" class="w-2.5 h-2.5 inline-block">
+                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                      <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                    </svg>
+                    <span>Terverifikasi Google</span>
+                  </span>
+                </div>
+                <p id="hero-user-email" class="text-[11px] text-brass-300/80 font-mono">rendy.kolektor@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <!-- Tombol Beralih Akun (Uji Chat Email A <-> Email B) -->
+              <button id="btn-hero-switch-account" type="button"
+                      class="flex-1 sm:flex-none px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                      title="Ganti antara Email A (Pembeli) dan Email B (Penjual)">
+                <span class="material-symbols-outlined text-sm text-brass-400">swap_horiz</span>
+                <span class="text-[11px]">Ganti Akun</span>
+              </button>
+
+              <!-- Tombol Jual Produk Lokal -->
+              <button id="btn-hero-sell-product" type="button"
+                      class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-md">
+                <span class="material-symbols-outlined text-base">add_circle</span>
+                <span>+ Jual</span>
+              </button>
+
+              <!-- Tombol Buka Chat -->
+              <button class="nav-chat-trigger px-3 py-2 rounded-xl bg-forest-900/40 hover:bg-forest-900/60 border border-forest-500/30 text-forest-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                <span class="material-symbols-outlined text-sm">chat</span>
+                <span class="hidden md:inline">Pesan</span>
+              </button>
+
+              <!-- Tombol Keluar / Logout Google -->
+              <button id="btn-hero-logout" type="button"
+                      class="px-3 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all"
+                      title="Keluar dari Akun Google">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                <span class="text-[11px]">Keluar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
     <!-- Sticky Filter & Search Bar Multi-Dimensi -->
     <section class="sticky top-16 sm:top-20 z-30 py-3.5 px-4 bg-[#181512]/95 backdrop-blur-md border-y border-border-dark shadow-md">
