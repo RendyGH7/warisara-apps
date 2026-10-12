@@ -6,6 +6,44 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
+// Utilitas Global: Pembersihan Aktivitas saat Refresh dengan 3 Pengecualian (Whitelist)
+window.WARISARA_RESET_REFRESH = function () {
+  try {
+    // 1. Data yang DIKECUALIKAN / DIPERTAHANKAN (Whitelist):
+    // - Pengecualian 1: Desain Creative Lab (warisara_creative_gallery)
+    // - Pengecualian 2: Akun Google login & produk listing user (warisara_active_user, warisara_user_products)
+    // - Pengecualian 3: Skor kuis tertinggi & statistik belajar (warisara_quiz_learning_stats, warisara_quiz_progress, warisara_quiz_seen_ids)
+    const WHITELIST_KEYS = [
+      'warisara_creative_gallery',     // Pengecualian 1: Desain Creative Lab
+      'warisara_active_user',          // Pengecualian 2: Akun Google login produk lokal
+      'warisara_user_products',        // Pengecualian 2: Produk karya user
+      'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
+      'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
+      'warisara_quiz_seen_ids'         // Pengecualian 3: Riwayat soal kuis
+    ];
+
+    const preserved = {};
+    WHITELIST_KEYS.forEach(function (key) {
+      const val = localStorage.getItem(key);
+      if (val !== null) preserved[key] = val;
+    });
+
+    // 2. Bersihkan semua aktivitas lain di localStorage
+    localStorage.clear();
+
+    // 3. Pulihkan kembali HANYA 3 data whitelist
+    Object.keys(preserved).forEach(function (key) {
+      localStorage.setItem(key, preserved[key]);
+    });
+
+    // 4. Bersihkan sessionStorage agar loading screen selalu diputar dari awal
+    sessionStorage.removeItem('warisara_intro_played');
+    sessionStorage.removeItem('warisara_page_transition');
+  } catch (err) {
+    console.warn('[WARISARA] Reset refresh error:', err);
+  }
+};
+
 window.WARISARA_TRANSITION = {
   isTransitioning: false,
   veilEl: null,
@@ -54,14 +92,17 @@ window.WARISARA_TRANSITION = {
       const isF5 = e.key === 'F5' || e.code === 'F5';
       if (isCtrlR || isF5) {
         e.preventDefault();
+        if (typeof window.WARISARA_RESET_REFRESH === 'function') {
+          window.WARISARA_RESET_REFRESH();
+        }
         const isSubpage = window.location.pathname.includes('/pages/');
         if (isSubpage) {
-          window.location.href = '../index.html#hero';
+          window.location.replace('../index.html#hero');
         } else {
           forceScrollToHero();
-          if (window.location.hash !== '#hero') {
-            window.location.hash = 'hero';
-          }
+          try {
+            history.replaceState(null, '', 'index.html#hero');
+          } catch (err) {}
           window.location.reload();
         }
       }
