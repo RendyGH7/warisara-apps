@@ -97,9 +97,22 @@ window.WARISARA_PRELOADER = {
       }
     } catch (e) {}
 
+    // Jika reload terdeteksi, bersihkan aktivitas (kecuali 3 data penting) dan hapus flag intro
+    if (isReload) {
+      if (typeof window.WARISARA_RESET_REFRESH === "function") {
+        window.WARISARA_RESET_REFRESH();
+      } else {
+        try {
+          sessionStorage.removeItem("warisara_intro_played");
+          sessionStorage.removeItem("warisara_page_transition");
+        } catch (e) {}
+      }
+    }
+
     const hasPlayedBefore = sessionStorage.getItem("warisara_intro_played") === "true";
 
-    if (hasPlayedBefore) {
+    // Hanya lewati loading screen jika BUKAN reload dan sudah pernah diputar pada sesi navigasi normal
+    if (hasPlayedBefore && !isReload) {
       this.unlockScroll();
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
@@ -356,6 +369,10 @@ window.WARISARA_PRELOADER = {
       }
       this.unlockScroll();
       window.scrollTo(0, 0);
+      const heroMap = document.getElementById("hero") || document.getElementById("hero-map-wrapper") || document.getElementById("indonesia-map-svg");
+      if (heroMap) {
+        heroMap.scrollIntoView({ behavior: "instant", block: "start" });
+      }
       document.body.classList.add("hero-animated");
       document.body.classList.add("page-fade-in");
       window.dispatchEvent(new CustomEvent("warisara:hero-animated"));
