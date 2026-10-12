@@ -414,6 +414,25 @@
     updateNavbarChatBadge();
   }
 
+  function isThreadUnread(th, myEmail) {
+    if (!th || !th.messages || th.messages.length === 0) return false;
+    if (th.readBy && th.readBy[myEmail.toLowerCase()]) return false;
+    const lastMsg = th.messages[th.messages.length - 1];
+    return lastMsg && lastMsg.sender && lastMsg.sender.toLowerCase() !== myEmail.toLowerCase();
+  }
+
+  function getUnreadCount() {
+    const user = getCurrentUser();
+    if (!user || !user.email) return 0;
+    const threads = getUserThreads();
+    const myEmail = user.email.toLowerCase();
+    let count = 0;
+    threads.forEach((th) => {
+      if (isThreadUnread(th, myEmail)) count++;
+    });
+    return count;
+  }
+
   function showThreadsListView() {
     activeThreadId = null;
     const listView = document.getElementById("chat-threads-list-view");
@@ -427,11 +446,20 @@
       convView.classList.remove("flex");
     }
     if (backBtn) backBtn.classList.add("hidden");
-    if (titleEl) titleEl.textContent = "Daftar Percakapan & Transaksi";
 
     const threads = getUserThreads();
     const currentUser = getCurrentUser();
     const myEmail = (currentUser ? currentUser.email : "").toLowerCase();
+    const unreadCount = getUnreadCount();
+
+    if (titleEl) {
+      titleEl.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span>Daftar Percakapan & Transaksi</span>
+          ${unreadCount > 0 ? `<span class="px-2 py-0.5 rounded-full bg-brass-400 text-ink text-[10px] font-extrabold shadow-sm">${unreadCount} Baru</span>` : ""}
+        </div>
+      `;
+    }
 
     if (!threads || threads.length === 0) {
       listView.innerHTML = `
@@ -457,22 +485,30 @@
       const partnerName = (th.participantNames && th.participantNames[partnerEmail]) || partnerEmail.split("@")[0];
       const lastMsg = th.messages && th.messages.length > 0 ? th.messages[th.messages.length - 1] : { text: "Mulai percakapan...", time: "" };
       const prod = th.product || {};
+      const isUnread = isThreadUnread(th, myEmail);
 
       return `
         <div data-thread-id="${th.id}"
-             class="chat-thread-row p-3.5 rounded-2xl bg-white/[0.03] hover:bg-brass-400/10 border border-white/10 hover:border-brass-400/30 cursor-pointer transition-all flex items-center gap-3 group">
-          <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-700 to-yellow-600 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
+             class="chat-thread-row p-3.5 rounded-2xl ${isUnread ? "bg-white/[0.06] border-brass-400/50 shadow-md ring-1 ring-brass-400/20" : "bg-white/[0.03] border-white/10"} hover:bg-brass-400/10 border hover:border-brass-400/40 cursor-pointer transition-all flex items-center gap-3 group relative">
+          <div class="relative w-11 h-11 rounded-full bg-gradient-to-tr from-amber-700 to-yellow-600 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
             ${partnerName.charAt(0).toUpperCase()}
+            ${isUnread ? `<span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-brass-400 text-ink border-2 border-[#181512] flex items-center justify-center text-[8px] font-black shadow-md animate-pulse">!</span>` : ""}
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between mb-0.5">
-              <span class="text-xs font-bold text-surface group-hover:text-brass-300 transition-colors truncate">${partnerName}</span>
-              <span class="text-[10px] text-surface/50 font-mono">${lastMsg.time || ""}</span>
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-xs ${isUnread ? "font-extrabold text-surface" : "font-bold text-surface/90"} group-hover:text-brass-300 transition-colors truncate">${partnerName}</span>
+                ${isUnread ? `<span class="px-1.5 py-0.2 rounded-full bg-brass-400/20 border border-brass-400/40 text-brass-300 text-[9px] font-bold uppercase tracking-wider">Baru</span>` : ""}
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <span class="text-[10px] ${isUnread ? "text-brass-300 font-semibold" : "text-surface/50"} font-mono">${lastMsg.time || ""}</span>
+                ${isUnread ? `<span class="w-2 h-2 rounded-full bg-brass-400 shadow-sm animate-pulse"></span>` : ""}
+              </div>
             </div>
             <div class="text-[11px] text-brass-300/80 truncate mb-1">
               🛍️ ${prod.name || "Diskusi Produk Lokal"}
             </div>
-            <p class="text-xs text-surface/60 truncate font-light">
+            <p class="text-xs ${isUnread ? "text-surface font-semibold" : "text-surface/60 font-light"} truncate">
               ${lastMsg.text}
             </p>
           </div>
@@ -513,6 +549,14 @@
     const myEmail = (currentUser ? currentUser.email : "").toLowerCase();
     const partnerEmail = thread.participant1.toLowerCase() === myEmail ? thread.participant2 : thread.participant1;
     const partnerName = (thread.participantNames && thread.participantNames[partnerEmail]) || partnerEmail.split("@")[0];
+
+    // Tandai thread ini sebagai sudah dibaca untuk akun aktif
+    if (myEmail) {
+      if (!thread.readBy) thread.readBy = {};
+      thread.readBy[myEmail] = true;
+      saveThreads(threads);
+      updateNavbarChatBadge();
+    }
 
     if (titleEl) {
       titleEl.innerHTML = `<span class="text-brass-300 font-bold">${partnerName}</span> <span class="text-[10px] text-surface/40 font-mono">(${partnerEmail})</span>`;
@@ -727,12 +771,45 @@
   }
 
   function updateNavbarChatBadge() {
+    const count = getUnreadCount();
+
+    // 1. Tanda Notifikasi di Tombol Profile Avatar Navbar (#nav-profile-trigger)
+    const profileBadges = document.querySelectorAll("#nav-profile-chat-badge, .nav-profile-unread-badge");
+    profileBadges.forEach((b) => {
+      if (count > 0) {
+        b.textContent = count;
+        b.classList.remove("hidden");
+        b.style.display = "flex";
+      } else {
+        b.classList.add("hidden");
+        b.style.display = "none";
+      }
+    });
+
+    // 2. Tanda Notifikasi di Pop-up Profile Menu (#nav-profile-menu)
+    const dropdownBadges = document.querySelectorAll("#nav-dropdown-chat-badge, .nav-dropdown-chat-badge");
+    dropdownBadges.forEach((b) => {
+      if (count > 0) {
+        b.textContent = count;
+        b.classList.remove("hidden");
+        b.style.display = "inline-flex";
+      } else {
+        b.classList.add("hidden");
+        b.style.display = "none";
+      }
+    });
+
+    // 3. Tanda Notifikasi legacy
     const badges = document.querySelectorAll(".nav-chat-badge");
-    const count = 2; // Notifikasi aktif
     badges.forEach((b) => {
-      b.textContent = count;
-      b.classList.remove("hidden");
-      b.classList.add("chat-badge-pulse");
+      if (count > 0) {
+        b.textContent = count;
+        b.classList.remove("hidden");
+        b.classList.add("chat-badge-pulse");
+      } else {
+        b.classList.add("hidden");
+        b.classList.remove("chat-badge-pulse");
+      }
     });
   }
 

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk & Registrasi Akun Google — WARISARA</title>
+  <meta name="description"
+    content="Portal masuk dan registrasi resmi WARISARA dengan autentikasi Google One-Tap terverifikasi. Akses eksklusif pasar produk lokal, artisan nusantara, dan transaksi aman." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#F6F1E7',
+            'bg-alt': '#EFE7D8',
+            surface: '#FBF8F2',
+            'surface-dim': '#ECE4D4',
+            ink: '#1A1612',
+            'ink-soft': '#3A322A',
+            'ink-muted': '#6B6258',
+            'hero-bg': '#14110E',
+            brass: {
+              600: '#A47E3F',
+              500: '#BA9252',
+              400: '#C9A567',
+              300: '#DFBE88',
+              200: '#E6D3A7'
+            },
+            border: '#D9CDB8',
+            'border-dark': '#2F2A23'
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Identity Services (GIS) SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css?v=15" />
+  <link rel="stylesheet" href="../css/navbar.css?v=21" />
+  <link rel="stylesheet" href="../css/components.css?v=20" />
+  <link rel="stylesheet" href="../css/transitions.css?v=47" />
+  <link rel="stylesheet" href="../css/marketplace-chat.css" />
+
+  <style>
+    /* ================= ANIMASI LATAR BELAKANG BATIK BERGERAK ================= */
+    .batik-animated-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-color: #120F0D;
+      background-image: 
+        radial-gradient(circle at 50% 18%, rgba(201, 165, 103, 0.16) 0%, transparent 58%),
+        radial-gradient(circle at 85% 75%, rgba(186, 146, 82, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(42, 60, 48, 0.22) 0%, transparent 50%),
+        url('../assets/images/patterns/batik-kawung-dark.svg');
+      background-size: 100% 100%, 100% 100%, 100% 100%, 120px 120px;
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+      animation: batikDrift 60s linear infinite;
+      opacity: 0.95;
+    }
+
+    .batik-animated-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 40%, rgba(16, 13, 11, 0.88) 100%);
+      pointer-events: none;
+    }
+
+    @keyframes batikDrift {
+      0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+      }
+      100% {
+        background-position: 0 0, 0 0, 0 0, 240px 240px;
+      }
+    }
+
+    /* Ambient Glow Pulses */
+    .ambient-gold-orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(100px);
+      pointer-events: none;
+      opacity: 0.28;
+      animation: orbBreathe 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbBreathe {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.22; }
+      100% { transform: scale(1.15) translate(15px, -10px); opacity: 0.35; }
+    }
+
+    /* ================= ANIMASI MASKOT WARI ================= */
+    .mascot-container {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
+    }
+
+    .mascot-img-wrapper {
+      position: relative;
+      animation: wariFloat 4.6s ease-in-out infinite;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .mascot-img-wrapper:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .mascot-img-wrapper:active {
+      transform: scale(0.96) rotate(3deg);
+    }
+
+    @keyframes wariFloat {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-14px) rotate(1.8deg);
+      }
+    }
+
+    .mascot-shadow {
+      width: 140px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(201, 165, 103, 0.15) 45%, transparent 70%);
+      animation: shadowPulse 4.6s ease-in-out infinite;
+      margin-top: -8px;
+    }
+
+    @keyframes shadowPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.75;
+      }
+      50% {
+        transform: scale(0.78);
+        opacity: 0.35;
+      }
+    }
+
+    /* Speech Bubble */
+    .wari-speech-bubble {
+      position: relative;
+      background: rgba(28, 24, 20, 0.94);
+      border: 1px solid rgba(201, 165, 103, 0.35);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 12px 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(201, 165, 103, 0.15);
+      animation: bubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 320px;
+      text-align: left;
+    }
+
+    .wari-speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-top: 9px solid rgba(28, 24, 20, 0.94);
+    }
+
+    @keyframes bubblePop {
+      0% { opacity: 0; transform: scale(0.85) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ================= KARTU AUTENTIKASI MEWAH & SHIMMER BORDER ================= */
+    .glass-auth-card {
+      background: linear-gradient(135deg, rgba(26, 22, 18, 0.92) 0%, rgba(18, 15, 12, 0.96) 100%);
+      border: 1px solid rgba(201, 165, 103, 0.28);
+      backdrop-filter: blur(20px);
+      box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(201, 165, 103, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .glass-auth-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(201, 165, 103, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+      animation: cardLightRotate 20s linear infinite;
+    }
+
+    @keyframes cardLightRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Kartu Profil Perangkat Google */
+    .auth-device-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .auth-device-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.15), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .auth-device-card:hover {
+      transform: translateY(-2px) scale(1.01);
+      background: rgba(201, 165, 103, 0.08);
+      border-color: rgba(201, 165, 103, 0.45);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 18px rgba(201, 165, 103, 0.2);
+    }
+
+    .auth-device-card:hover::after {
+      left: 100%;
+    }
+
+    /* Tombol Utama Google One-Tap */
+    .btn-google-primary {
+      position: relative;
+      overflow: hidden;
+      background: #FFFFFF;
+      color: #1F1F1F;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-google-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      transform: rotate(30deg) translateY(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .btn-google-primary:hover {
+      background: #F8F9FA;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(201, 165, 103, 0.35);
+    }
+
+    .btn-google-primary:hover::after {
+      transform: rotate(30deg) translateY(100%);
+    }
+
+    .btn-google-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Animasi Canvas Partikel */
+    #sparkle-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Google Picker Modal Styles */
+    @keyframes googleSlide {
+      0% { left: -40%; width: 30%; }
+      50% { left: 40%; width: 50%; }
+      100% { left: 100%; width: 30%; }
+    }
+    .animate-googleSlide {
+      animation: googleSlide 1.2s infinite ease-in-out;
+    }
+
+    @keyframes modalEnter {
+      0% { opacity: 0; transform: scale(0.95) translateY(12px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-modal-enter {
+      animation: modalEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .google-picker-account-item {
+      transition: all 0.18s ease;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .google-picker-account-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body class="bg-hero-bg text-surface font-body antialiased min-h-screen flex flex-col selection:bg-brass-400 selection:text-ink overflow-x-hidden relative" data-page="login">
+
+  <!-- ================= LATAR BELAKANG BATIK BERGERAK & KILAU EMAS ================= -->
+  <div class="batik-animated-bg" aria-hidden="true"></div>
+  <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/35 -top-20 -left-20"></div>
+  <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/20 top-1/2 -right-32"></div>
+  <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/18 bottom-10 left-1/3"></div>
+
+  <!-- Tombol Navigasi Kembali Minimalis -->
+  <a href="javascript:if(document.referrer&&!document.referrer.includes('login.html')){history.back();}else{window.location.href='../index.html';}" 
+     class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181512]/80 hover:bg-[#181512] border border-white/15 hover:border-brass-400/50 text-surface/80 hover:text-brass-300 text-xs font-semibold backdrop-blur-md transition-all shadow-lg group">
+    <span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
+    <img src="../assets/logo/logo-emblem.png" alt="WARISARA" class="w-4 h-4 object-contain" />
+    <span>Kembali</span>
+  </a>
+
+  <!-- ================= MAIN PORTAL: MASKOT + AUTHENTICATION CARD ================= -->
+  <main class="flex-1 min-h-screen relative z-10 py-12 px-4 sm:px-6 flex items-center justify-center">
+    
+    <div class="w-full max-w-5xl mx-auto">
+      
+      <!-- Banner Notifikasi Redirect Otomatis (jika ada param redirect) -->
+      <div id="auth-redirect-notice" class="hidden mb-6 p-3 rounded-2xl bg-brass-400/10 border border-brass-400/30 text-center text-xs text-brass-200 animate-pulse">
+        <span class="inline-flex items-center gap-1.5 font-semibold">
+          <span class="material-symbols-outlined text-sm text-brass-400">info</span>
+          <span>Silakan masuk dengan akun Google untuk melanjutkan ke halaman yang Anda tuju.</span>
+        </span>
+      </div>
+
+      <!-- Grid 2 Kolom: Kiri Maskot Interaktif Wari & Headline Ringkas, Kanan Auth Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- ================= KOLOM KIRI: MASKOT WARI INTERAKTIF ================= -->
+        <div class="lg:col-span-5 flex flex-col items-center text-center space-y-4">
+          
+          <!-- Speech Bubble Dinamis Maskot -->
+          <div class="wari-speech-bubble" id="wari-speech-box">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-brass-300">Wari Nusantara</span>
+            </div>
+            <p id="wari-speech-text" class="text-xs text-surface/90 leading-relaxed font-medium">
+              Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨
+            </p>
+          </div>
+
+          <!-- Maskot Wari dengan Animasi Melayang & Efek Hover/Klik -->
+          <div class="mascot-container py-2">
+            <div class="mascot-img-wrapper" id="mascot-trigger" title="Klik Wari untuk sapaan seru!">
+              <img id="mascot-image" 
+                   src="../assets/mascot/wari-idle-clean.png" 
+                   alt="Maskot Wari WARISARA" 
+                   class="w-48 sm:w-56 md:w-60 h-auto object-contain select-none pointer-events-auto" />
+            </div>
+            <div class="mascot-shadow"></div>
+          </div>
+
+          <!-- Headline Ringkas & Sesuai Tema (Tanpa Tulisan Panjang) -->
+          <div class="space-y-1.5">
+            <h1 class="font-display text-2xl sm:text-3xl font-light text-surface">
+              Selamat Datang di <span class="font-normal italic text-brass-300">WARISARA</span>
+            </h1>
+          </div>
+
+
+
+        </div>
+
+        <!-- ================= KOLOM KANAN: KARTU AUTENTIKASI GOOGLE CLEAN + MODERN ================= -->
+        <div class="lg:col-span-7 w-full max-w-md mx-auto">
+          
+          <div class="glass-auth-card p-6 sm:p-7 rounded-3xl relative">
+            
+            <!-- Ornamen Aksen Sudut Batik Emas -->
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-brass-400/20 via-transparent to-transparent pointer-events-none"></div>
+
+            <!-- Header Card Bersih -->
+            <div class="flex items-center gap-3 pb-4 border-b border-white/10">
+              <div class="w-10 h-10 rounded-2xl bg-white p-2 flex items-center justify-center shadow-md flex-shrink-0">
+                <svg viewBox="0 0 24 24" class="w-6 h-6">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h2 id="page-auth-title" class="font-display text-base sm:text-lg font-bold text-surface">Masuk Akun Google</h2>
+                <p id="page-auth-subtitle" class="text-[11px] text-surface/60">Pilih akun Google Anda untuk melanjutkan</p>
+              </div>
+            </div>
+
+            <!-- ================= VIEW 1: STATE BELUM LOGIN ================= -->
+            <div id="auth-unlogged-view" class="pt-4 space-y-4">
+              
+              <!-- Tab Switcher Minimalis (Masuk vs Daftar) -->
+              <div class="flex items-center p-1 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold relative">
+                <button id="page-tab-login" type="button" 
+                        class="flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">login</span>
+                  <span>Masuk Akun</span>
+                </button>
+                <button id="page-tab-register" type="button" 
+                        class="flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold">
+                  <span class="material-symbols-outlined text-sm">person_add</span>
+                  <span>Daftar Baru</span>
+                </button>
+              </div>
+
+              <!-- Tombol Utama Google One-Tap -->
+              <button id="page-btn-google-primary" type="button"
+                      class="btn-google-primary w-full py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                </svg>
+                <span id="page-google-btn-text">Lanjutkan dengan Akun Google</span>
+              </button>
+
+              <!-- Divider Bersih -->
+              <div class="relative py-0.5 flex items-center justify-center">
+                <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+                <span class="relative px-3 bg-[#181512] text-[10px] uppercase font-bold tracking-wider text-surface/40">atau pilih profil di perangkat</span>
+              </div>
+
+              <!-- Daftar Akun Google Terhubung di Perangkat (1-Klik) -->
+              <div id="page-device-accounts-list" class="space-y-2">
+                <!-- Di-render dinamis oleh JavaScript -->
+              </div>
+
+              <!-- Tambah Akun Google Personal / Lainnya -->
+              <button id="page-btn-add-account" type="button"
+                      class="w-full p-2.5 rounded-xl border border-dashed border-white/20 hover:border-brass-400/50 hover:bg-brass-400/10 text-surface/70 hover:text-brass-300 text-xs font-medium transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-sm text-brass-400">add_circle</span>
+                <span>Hubungkan Akun Google Lainnya</span>
+              </button>
+
+              <!-- Keamanan -->
+              <div class="pt-2 border-t border-white/10 text-center text-[10px] text-surface/50 flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-brass-400">lock</span>
+                <span>Autentikasi Terverifikasi Google Identity Services</span>
+              </div>
+            </div>
+
+            <!-- ================= VIEW 2: STATE SUDAH LOGIN (AKTIF) ================= -->
+            <div id="auth-logged-view" class="pt-4 space-y-4 hidden">
+              
+              <!-- Card Profil Aktif -->
+              <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-brass-400/35 flex items-center gap-3">
+                <div id="logged-user-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-base flex items-center justify-center shadow-lg flex-shrink-0">
+                  R
+                </div>
+                <div class="overflow-hidden flex-1">
+                  <div class="flex items-center gap-1.5">
+                    <span id="logged-user-name" class="font-bold text-xs sm:text-sm text-surface truncate">Rendy Pratama</span>
+                    <span class="material-symbols-outlined text-xs text-emerald-400">verified</span>
+                  </div>
+                  <div id="logged-user-email" class="text-[11px] text-brass-300 font-mono truncate">rendy.kolektor@gmail.com</div>
+                </div>
+              </div>
+
+              <!-- Shortcut Navigasi Cepat -->
+              <div class="space-y-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-surface/50 block">Akses Layanan</span>
+                
+                <a href="ekonomi-kreatif.html"
+                   class="w-full p-2.5 rounded-xl bg-brass-400/15 hover:bg-brass-400/25 border border-brass-400/30 text-surface flex items-center justify-between transition-all group">
+                  <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-brass-400 text-lg">storefront</span>
+                    <div class="text-left">
+                      <div class="text-xs font-bold group-hover:text-brass-300 transition-colors">Buka Pasar Produk Lokal</div>
+                      <div class="text-[10px] text-surface/50">Jelajahi karya & transaksi pengrajin</div>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-brass-300 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+
+                <button type="button" id="logged-btn-open-chat"
+                        class="w-full p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 text-surface flex items-center justify-between transition-all group">
+                  <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-brass-400 text-lg">chat</span>
+                    <div class="text-left">
+                      <div class="text-xs font-bold group-hover:text-brass-300 transition-colors">Pesan & Diskusi Penjual</div>
+                      <div class="text-[10px] text-surface/50">Hubungi langsung pembuat karya</div>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-surface/40 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+
+              <!-- Ganti Akun & Keluar -->
+              <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10">
+                <button type="button" id="logged-btn-switch-account"
+                        class="py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface text-xs font-semibold transition-all flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">swap_horiz</span>
+                  <span>Ganti Akun</span>
+                </button>
+                <button type="button" id="logged-btn-logout"
+                        class="py-2 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 text-xs font-semibold transition-all flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">logout</span>
+                  <span>Keluar</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= POP-UP MODAL GOOGLE AUTH (FITUR DARI GOOGLE-AUTH PAGE) ================= -->
+  <div id="google-picker-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div class="relative w-full max-w-md bg-[#202124] border border-white/10 rounded-3xl overflow-hidden shadow-2xl animate-modal-enter my-auto text-[#e8eaed]">
+      
+      <!-- Loading bar Google -->
+      <div id="picker-loading-bar" class="hidden absolute top-0 left-0 right-0 h-1 bg-[#4285f4] overflow-hidden z-20">
+        <div class="absolute inset-y-0 w-1/3 bg-[#8ab4f8] animate-googleSlide"></div>
+      </div>
+
+      <!-- Tombol Tutup Pop-up -->
+      <button id="picker-btn-close" type="button" 
+              class="absolute top-4 right-4 text-surface/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors z-10" 
+              aria-label="Tutup Pop-up">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+
+      <!-- Panel Utama Pilihan Akun -->
+      <div id="picker-main-panel" class="p-6 sm:p-8">
+        <div class="text-center mb-5">
+          <svg class="w-10 h-10 mx-auto mb-3" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+          </svg>
+          <h2 id="picker-title" class="text-xl font-medium text-white mb-1">Pilih Akun Google</h2>
+          <p id="picker-subtitle" class="text-xs text-[#9aa0a6]">untuk melanjutkan ke <strong class="text-brass-300 font-semibold">WARISARA</strong></p>
+        </div>
+
+        <!-- Daftar Akun Google -->
+        <div id="picker-accounts-container" class="space-y-1.5 max-h-60 overflow-y-auto pr-1">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Tombol Tambah Akun Lain -->
+        <button type="button" id="picker-btn-toggle-custom" 
+                class="w-full mt-3 p-3 rounded-xl border border-dashed border-white/20 hover:border-[#8ab4f8] hover:bg-[#8ab4f8]/5 flex items-center gap-3 transition-colors text-left group">
+          <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#8ab4f8] group-hover:scale-105 transition-transform flex-shrink-0">
+            <span class="material-symbols-outlined text-lg">person_add</span>
+          </div>
+          <div class="overflow-hidden flex-1">
+            <div class="text-xs font-medium text-[#8ab4f8]">Gunakan Akun Google Lain</div>
+            <div class="text-[11px] text-[#9aa0a6] truncate">Masuk dengan email Gmail personal Anda</div>
+          </div>
+        </button>
+
+        <!-- Box Input Email Custom -->
+        <div id="picker-custom-account-box" class="hidden mt-3 p-3 rounded-xl bg-black/40 border border-white/10 space-y-2">
+          <input type="email" id="picker-custom-email-input" placeholder="contoh: nama.anda@gmail.com" 
+                 class="w-full bg-[#181512] border border-white/20 rounded-lg px-3 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#8ab4f8] transition-colors" />
+          <button type="button" id="picker-custom-submit-btn" 
+                  class="w-full py-2 rounded-lg bg-[#8ab4f8] hover:bg-[#6ba1f8] text-[#181512] font-semibold text-xs transition-colors">
+            Lanjutkan Otentikasi
+          </button>
+        </div>
+
+        <div class="mt-5 pt-3 border-t border-white/10 text-center text-[10px] text-[#9aa0a6] leading-relaxed">
+          Untuk melanjutkan, Google akan membagikan nama, alamat email, dan foto profil Anda dengan <strong class="text-surface font-semibold">WARISARA</strong>.
+        </div>
+      </div>
+
+      <!-- Panel Status Loading Saat Menghubungkan -->
+      <div id="picker-status-panel" class="hidden p-10 text-center space-y-4">
+        <div class="w-10 h-10 border-2 border-white/15 border-t-[#8ab4f8] rounded-full animate-spin mx-auto"></div>
+        <div>
+          <h3 class="text-base font-medium text-white mb-1">Menghubungkan Akun Google...</h3>
+          <p class="text-xs text-[#9aa0a6]">Memverifikasi identitas Anda untuk akses aman ke WARISARA</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="../js/utils/page-transition.js"></script>
+  <script src="../js/utils/marketplace-auth.js"></script>
+  <script src="../js/components/marketplace-chat.js"></script>
+
+  <script>
+    (function () {
+      let currentTab = 'login'; // 'login' | 'register'
+
+      // Elemen DOM
+      const tabLogin = document.getElementById('page-tab-login');
+      const tabRegister = document.getElementById('page-tab-register');
+      const authTitle = document.getElementById('page-auth-title');
+      const authSubtitle = document.getElementById('page-auth-subtitle');
+      const googleBtnText = document.getElementById('page-google-btn-text');
+      const btnGooglePrimary = document.getElementById('page-btn-google-primary');
+      const btnAddAccount = document.getElementById('page-btn-add-account');
+      const accountsList = document.getElementById('page-device-accounts-list');
+      const unloggedView = document.getElementById('auth-unlogged-view');
+      const loggedView = document.getElementById('auth-logged-view');
+
+      // Elemen Maskot
+      const mascotTrigger = document.getElementById('mascot-trigger');
+      const mascotImg = document.getElementById('mascot-image');
+      const speechBox = document.getElementById('wari-speech-box');
+      const speechText = document.getElementById('wari-speech-text');
+
+      // Box Cepat Email
+      const quickEmailBox = document.getElementById('quick-email-input-box');
+      const quickInputEmail = document.getElementById('quick-input-email');
+      const quickBtnSubmit = document.getElementById('quick-btn-submit-email');
+
+      // Ambil Parameter URL ?redirect=...
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect');
+      const tabParam = urlParams.get('tab');
+
+      if (redirectUrl) {
+        const noticeEl = document.getElementById('auth-redirect-notice');
+        if (noticeEl) noticeEl.classList.remove('hidden');
+      }
+
+      // Dialog Maskot Interaktif
+      const MASCOT_MESSAGES = {
+        idle: "Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨",
+        hoverGoogle: "Tinggal 1-klik aja! Tanpa password, otomatis tersambung aman! 🚀",
+        loginClick: "Menghubungkan akun Google kamu... Tunggu sebentar ya! ⏳",
+        register: "Daftar instan! Nama & profilmu langsung tersambung otomatis! 🎨",
+        success: "Yey! Berhasil masuk! Selamat menjelajahi mahakarya nusantara! 🎉",
+        clickFun: [
+          "Batik & tenun dari 38 provinsi menantimu di pasar lokal! 🧵",
+          "Tahukah kamu? Setiap motif batik memiliki filosofi dan doa luhur! 🌿",
+          "Ada ratusan karya pelestari budaya yang siap kamu dukung hari ini! ✨",
+          "Aku Wari, siap memandu perjalanan budayamu di WARISARA! 🦁"
+        ]
+      };
+
+      function setMascotMood(mood, text) {
+        if (!mascotImg || !speechText) return;
+        
+        if (mood === 'happy' || mood === 'success') {
+          mascotImg.src = '../assets/mascot/wari-happy-clean.png';
+        } else {
+          mascotImg.src = '../assets/mascot/wari-idle-clean.png';
+        }
+
+        if (text) {
+          speechText.textContent = text;
+          speechBox.classList.remove('animate-bubblePop');
+          void speechBox.offsetWidth; // trigger reflow
+          speechBox.classList.add('animate-bubblePop');
+        }
+      }
+
+      // Interaksi Klik Maskot (Fun Easter Egg)
+      if (mascotTrigger) {
+        let funIdx = 0;
+        mascotTrigger.addEventListener('click', () => {
+          const msg = MASCOT_MESSAGES.clickFun[funIdx % MASCOT_MESSAGES.clickFun.length];
+          funIdx++;
+          setMascotMood('happy', msg);
+          createConfettiBurst(20);
+          setTimeout(() => {
+            if (!window.WARISARA_AUTH || !window.WARISARA_AUTH.isLoggedIn()) {
+              setMascotMood('idle', MASCOT_MESSAGES.idle);
+            }
+          }, 4500);
+        });
+      }
+
+      // Interaksi Tab Masuk vs Registrasi
+      function setTab(tab) {
+        currentTab = tab;
+        if (tab === 'register') {
+          tabLogin.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
+          tabRegister.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
+          authTitle.textContent = 'Daftar Akun Baru';
+          authSubtitle.textContent = 'Daftarkan profil Google Anda secara instan';
+          googleBtnText.textContent = 'Daftar Instan dengan Akun Google';
+          setMascotMood('idle', MASCOT_MESSAGES.register);
+        } else {
+          tabLogin.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
+          tabRegister.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
+          authTitle.textContent = 'Masuk Akun Google';
+          authSubtitle.textContent = 'Pilih akun Google Anda untuk melanjutkan';
+          googleBtnText.textContent = 'Lanjutkan dengan Akun Google';
+          setMascotMood('idle', MASCOT_MESSAGES.idle);
+        }
+        renderAccounts();
+      }
+
+      if (tabLogin) tabLogin.addEventListener('click', () => setTab('login'));
+      if (tabRegister) tabRegister.addEventListener('click', () => setTab('register'));
+
+      // Render Akun Google di Perangkat
+      function renderAccounts() {
+        if (!accountsList || !window.WARISARA_AUTH) return;
+        const all = typeof window.WARISARA_AUTH.getAllAccounts === 'function' 
+          ? window.WARISARA_AUTH.getAllAccounts() 
+          : window.WARISARA_AUTH.getPresets();
+
+        accountsList.innerHTML = all.map(acc => `
+          <button type="button" data-device-email="${acc.email}"
+                  class="auth-device-card w-full p-2.5 rounded-2xl flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr ${acc.avatarColor || 'from-amber-600 to-yellow-500'} text-white font-bold text-xs flex items-center justify-center shadow-md flex-shrink-0">
+                ${acc.avatarLetter || acc.name.charAt(0).toUpperCase()}
+              </div>
+              <div class="overflow-hidden">
+                <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors flex items-center gap-1.5">
+                  <span class="truncate">${acc.name}</span>
+                  <span class="px-1.5 py-0.2 rounded text-[8px] bg-emerald-500/20 text-emerald-300 font-semibold flex-shrink-0">Google</span>
+                </div>
+                <div class="text-[11px] text-surface/60 font-mono truncate">${acc.email}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <span class="text-[10px] px-2.5 py-1 rounded-full ${currentTab === 'register' ? 'bg-brass-400 text-ink font-bold' : 'bg-white/10 text-surface/90 font-medium'} group-hover:bg-brass-400 group-hover:text-ink transition-colors flex items-center gap-1">
+                <span>${currentTab === 'register' ? 'Daftar' : 'Masuk'}</span>
+                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+              </span>
+            </div>
+          </button>
+        `).join('');
+
+        accountsList.querySelectorAll('[data-device-email]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const email = btn.dataset.deviceEmail;
+            const found = all.find(a => a.email.toLowerCase() === email.toLowerCase());
+            handleSuccessfulAuth(found);
+          });
+        });
+      }
+
+      // Handler Login Berhasil + Selebrasi Confetti & Redirect
+      function handleSuccessfulAuth(account) {
+        if (!window.WARISARA_AUTH) return;
+
+        setMascotMood('happy', `Halo ${account.name}! Berhasil masuk. Menyiapkan halaman... 🎉`);
+        createConfettiBurst(60);
+
+        if (currentTab === 'register') {
+          window.WARISARA_AUTH.registerWithGoogle({ ...account });
+          window.WARISARA_AUTH.showToast(`Selamat datang ${account.name}! Akun Google Anda terdaftar.`);
+        } else {
+          window.WARISARA_AUTH.loginAs(account);
+          window.WARISARA_AUTH.showToast(`Berhasil masuk dengan Akun Google: ${account.name}`);
+        }
+
+        // Jika ada URL redirect, langsung arahkan setelah 1 detik!
+        if (redirectUrl) {
+          setTimeout(() => {
+            window.location.href = redirectUrl;
+          }, 950);
+        } else {
+          updateAuthStateView();
+        }
+      }
+
+      // ================= CONTROLLER POP-UP MODAL GOOGLE AUTH =================
+      const pickerModal = document.getElementById('google-picker-modal');
+      const pickerCloseBtn = document.getElementById('picker-btn-close');
+      const pickerTitle = document.getElementById('picker-title');
+      const pickerSubtitle = document.getElementById('picker-subtitle');
+      const pickerAccountsContainer = document.getElementById('picker-accounts-container');
+      const pickerLoadingBar = document.getElementById('picker-loading-bar');
+      const pickerMainPanel = document.getElementById('picker-main-panel');
+      const pickerStatusPanel = document.getElementById('picker-status-panel');
+      const pickerToggleCustom = document.getElementById('picker-btn-toggle-custom');
+      const pickerCustomBox = document.getElementById('picker-custom-account-box');
+      const pickerCustomEmailInput = document.getElementById('picker-custom-email-input');
+      const pickerCustomSubmitBtn = document.getElementById('picker-custom-submit-btn');
+
+      function openGooglePickerModal(mode = currentTab) {
+        if (!pickerModal) return;
+        currentTab = mode;
+        setMascotMood('happy', MASCOT_MESSAGES.hoverGoogle);
+
+        // Reset state
+        if (pickerLoadingBar) pickerLoadingBar.classList.add('hidden');
+        if (pickerMainPanel) pickerMainPanel.classList.remove('hidden');
+        if (pickerStatusPanel) pickerStatusPanel.classList.add('hidden');
+        if (pickerCustomBox) pickerCustomBox.classList.add('hidden');
+        if (pickerCustomEmailInput) pickerCustomEmailInput.value = '';
+
+        if (mode === 'register') {
+          if (pickerTitle) pickerTitle.textContent = 'Registrasi dengan Google';
+          if (pickerSubtitle) pickerSubtitle.innerHTML = 'daftarkan akun baru untuk <strong class="text-brass-300 font-semibold">WARISARA</strong>';
+        } else {
+          if (pickerTitle) pickerTitle.textContent = 'Pilih Akun Google';
+          if (pickerSubtitle) pickerSubtitle.innerHTML = 'untuk melanjutkan ke <strong class="text-brass-300 font-semibold">WARISARA</strong>';
+        }
+
+        renderPickerAccounts();
+
+        pickerModal.classList.remove('hidden');
+        pickerModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeGooglePickerModal() {
+        if (!pickerModal) return;
+        pickerModal.classList.add('hidden');
+        pickerModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      window.openGooglePickerModal = openGooglePickerModal;
+
+      if (pickerCloseBtn) {
+        pickerCloseBtn.addEventListener('click', closeGooglePickerModal);
+      }
+
+      if (pickerModal) {
+        pickerModal.addEventListener('click', (e) => {
+          if (e.target === pickerModal) closeGooglePickerModal();
+        });
+      }
+
+      function renderPickerAccounts() {
+        if (!pickerAccountsContainer || !window.WARISARA_AUTH) return;
+        const all = typeof window.WARISARA_AUTH.getAllAccounts === 'function'
+          ? window.WARISARA_AUTH.getAllAccounts()
+          : window.WARISARA_AUTH.getPresets();
+
+        pickerAccountsContainer.innerHTML = all.map(acc => `
+          <button type="button" data-picker-email="${acc.email}"
+                  class="google-picker-account-item w-full p-2.5 rounded-xl flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr ${acc.avatarColor || 'from-amber-600 to-yellow-500'} text-white font-bold text-xs flex items-center justify-center shadow-md flex-shrink-0">
+                ${acc.avatarLetter || acc.name.charAt(0).toUpperCase()}
+              </div>
+              <div class="overflow-hidden">
+                <div class="text-xs font-medium text-white group-hover:text-[#8ab4f8] transition-colors truncate">
+                  ${acc.name}
+                </div>
+                <div class="text-[11px] text-[#9aa0a6] font-mono truncate">${acc.email}</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-surface/40 group-hover:text-[#8ab4f8] group-hover:translate-x-0.5 transition-all">
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </button>
+        `).join('');
+
+        pickerAccountsContainer.querySelectorAll('[data-picker-email]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const email = btn.dataset.pickerEmail;
+            const found = all.find(a => a.email.toLowerCase() === email.toLowerCase());
+            selectAccountFromPicker(found || { email });
+          });
+        });
+      }
+
+      function selectAccountFromPicker(account) {
+        if (pickerLoadingBar) pickerLoadingBar.classList.remove('hidden');
+        if (pickerMainPanel) pickerMainPanel.classList.add('hidden');
+        if (pickerStatusPanel) pickerStatusPanel.classList.remove('hidden');
+
+        setTimeout(() => {
+          closeGooglePickerModal();
+          handleSuccessfulAuth(account);
+        }, 700);
+      }
+
+      if (pickerToggleCustom && pickerCustomBox) {
+        pickerToggleCustom.addEventListener('click', () => {
+          pickerCustomBox.classList.toggle('hidden');
+          if (!pickerCustomBox.classList.contains('hidden') && pickerCustomEmailInput) {
+            pickerCustomEmailInput.focus();
+          }
+        });
+      }
+
+      if (pickerCustomSubmitBtn && pickerCustomEmailInput) {
+        pickerCustomSubmitBtn.addEventListener('click', () => {
+          const emailVal = pickerCustomEmailInput.value.trim();
+          if (!emailVal || !emailVal.includes('@')) {
+            alert('Silakan masukkan alamat email Gmail yang valid.');
+            return;
+          }
+          const rawName = emailVal.split('@')[0].replace(/[\._]/g, ' ');
+          const formattedName = rawName.replace(/\b\w/g, l => l.toUpperCase());
+          const newAccount = {
+            id: 'google-' + Date.now(),
+            name: formattedName,
+            email: emailVal,
+            role: 'Pengguna Terverifikasi Google',
+            city: 'Indonesia',
+            avatarLetter: formattedName.charAt(0).toUpperCase(),
+            avatarColor: 'from-blue-600 to-indigo-600'
+          };
+          selectAccountFromPicker(newAccount);
+        });
+
+        pickerCustomEmailInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') pickerCustomSubmitBtn.click();
+        });
+      }
+
+      // Action: Hover pada tombol Google
+      if (btnGooglePrimary) {
+        btnGooglePrimary.addEventListener('mouseenter', () => {
+          setMascotMood('happy', MASCOT_MESSAGES.hoverGoogle);
+        });
+        btnGooglePrimary.addEventListener('mouseleave', () => {
+          setMascotMood('idle', currentTab === 'register' ? MASCOT_MESSAGES.register : MASCOT_MESSAGES.idle);
+        });
+
+        btnGooglePrimary.addEventListener('click', () => {
+          openGooglePickerModal(currentTab);
+        });
+      }
+
+      // Action: Tambah Akun Google Lainnya membuka Pop-up Modal
+      if (btnAddAccount) {
+        btnAddAccount.addEventListener('click', () => {
+          openGooglePickerModal(currentTab);
+        });
+      }
+
+      // Periksa Status Auth Pengguna
+      function updateAuthStateView() {
+        if (!window.WARISARA_AUTH) return;
+        const user = window.WARISARA_AUTH.getUser();
+
+        if (user) {
+          if (unloggedView) unloggedView.classList.add('hidden');
+          if (loggedView) loggedView.classList.remove('hidden');
+
+          const avatarEl = document.getElementById('logged-user-avatar');
+          const nameEl = document.getElementById('logged-user-name');
+          const emailEl = document.getElementById('logged-user-email');
+
+          if (avatarEl) {
+            avatarEl.textContent = user.avatarLetter || user.name.charAt(0).toUpperCase();
+            avatarEl.className = `w-11 h-11 rounded-full bg-gradient-to-tr ${user.avatarColor || 'from-amber-600 to-yellow-500'} text-white font-bold text-base flex items-center justify-center shadow-lg flex-shrink-0`;
+          }
+          if (nameEl) nameEl.textContent = user.name;
+          if (emailEl) emailEl.textContent = user.email;
+
+          authTitle.textContent = 'Akun Google Terhubung';
+          authSubtitle.textContent = `Selamat datang, ${user.name}`;
+          setMascotMood('happy', `Selamat datang kembali ${user.name}! Siap belanja atau jelajah karya hari ini? ✨`);
+        } else {
+          if (unloggedView) unloggedView.classList.remove('hidden');
+          if (loggedView) loggedView.classList.add('hidden');
+          setTab(currentTab);
+        }
+      }
+
+      // Action: Chat & Menu Akun
+      const btnOpenChat = document.getElementById('logged-btn-open-chat');
+      if (btnOpenChat) {
+        btnOpenChat.addEventListener('click', () => {
+          if (window.WARISARA_CHAT && typeof window.WARISARA_CHAT.openDrawer === 'function') {
+            window.WARISARA_CHAT.openDrawer();
+          }
+        });
+      }
+
+      const btnSwitchAcc = document.getElementById('logged-btn-switch-account');
+      if (btnSwitchAcc) {
+        btnSwitchAcc.addEventListener('click', () => {
+          openGooglePickerModal('login');
+        });
+      }
+
+      const btnLogout = document.getElementById('logged-btn-logout');
+      if (btnLogout) {
+        btnLogout.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (window.WARISARA_AUTH) {
+            window.WARISARA_AUTH.logout();
+          }
+          try {
+            localStorage.removeItem('warisara_active_user');
+          } catch(e) {}
+          updateAuthStateView();
+          setMascotMood('idle', 'Sampai jumpa lagi! Kamu bisa masuk kapan saja dengan akun Google.');
+        });
+      }
+
+      window.addEventListener('warisara_auth_changed', () => {
+        updateAuthStateView();
+      });
+
+      // ================= ANIMASI PARTIKEL KILAU EMAS (SPARKLE CANVAS) =================
+      const sparkleCanvas = document.getElementById('sparkle-canvas');
+      if (sparkleCanvas) {
+        const ctx = sparkleCanvas.getContext('2d');
+        let width = (sparkleCanvas.width = window.innerWidth);
+        let height = (sparkleCanvas.height = window.innerHeight);
+
+        window.addEventListener('resize', () => {
+          width = sparkleCanvas.width = window.innerWidth;
+          height = sparkleCanvas.height = window.innerHeight;
+        });
+
+        const sparkles = Array.from({ length: 32 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 2 + 0.6,
+          speedY: Math.random() * 0.4 + 0.15,
+          speedX: (Math.random() - 0.5) * 0.25,
+          opacity: Math.random() * 0.6 + 0.2,
+          pulseSpeed: Math.random() * 0.02 + 0.01
+        }));
+
+        function animateSparkles() {
+          ctx.clearRect(0, 0, width, height);
+          for (let p of sparkles) {
+            p.y -= p.speedY;
+            p.x += p.speedX;
+            p.opacity += Math.sin(Date.now() * p.pulseSpeed) * 0.01;
+            if (p.y < 0) {
+              p.y = height + 10;
+              p.x = Math.random() * width;
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(223, 190, 136, ${Math.max(0.1, Math.min(0.75, p.opacity))})`;
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = '#C9A567';
+            ctx.fill();
+          }
+          requestAnimationFrame(animateSparkles);
+        }
+        animateSparkles();
+      }
+
+      // ================= ANIMASI SELEBRASI CONFETTI EMAS =================
+      const confettiCanvas = document.getElementById('confetti-canvas');
+      let confettiCtx = confettiCanvas ? confettiCanvas.getContext('2d') : null;
+      let activeConfetti = [];
+
+      function createConfettiBurst(count = 50) {
+        if (!confettiCanvas || !confettiCtx) return;
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        const colors = ['#C9A567', '#DFC48C', '#F3E5AB', '#34D399', '#F59E0B', '#FFF'];
+        const originX = window.innerWidth / 2;
+        const originY = window.innerHeight * 0.45;
+
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 8 + 3;
+          activeConfetti.push({
+            x: originX,
+            y: originY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 4,
+            size: Math.random() * 6 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 10,
+            opacity: 1
+          });
+        }
+
+        if (activeConfetti.length === count) {
+          requestAnimationFrame(renderConfetti);
+        }
+      }
+
+      function renderConfetti() {
+        if (!confettiCtx) return;
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        
+        for (let i = activeConfetti.length - 1; i >= 0; i--) {
+          const c = activeConfetti[i];
+          c.x += c.vx;
+          c.y += c.vy;
+          c.vy += 0.25; // gravity
+          c.rotation += c.rotSpeed;
+          c.opacity -= 0.012;
+
+          if (c.opacity <= 0 || c.y > confettiCanvas.height) {
+            activeConfetti.splice(i, 1);
+            continue;
+          }
+
+          confettiCtx.save();
+          confettiCtx.translate(c.x, c.y);
+          confettiCtx.rotate((c.rotation * Math.PI) / 180);
+          confettiCtx.globalAlpha = c.opacity;
+          confettiCtx.fillStyle = c.color;
+          confettiCtx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size * 0.6);
+          confettiCtx.restore();
+        }
+
+        if (activeConfetti.length > 0) {
+          requestAnimationFrame(renderConfetti);
+        } else {
+          confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        }
+      }
+
+      // Inisialisasi Tab Awal
+      if (tabParam === 'register') {
+        setTab('register');
+      } else {
+        setTab('login');
+      }
+
+      // Pastikan tampilan tersinkronisasi saat halaman dimuat
+      document.addEventListener('DOMContentLoaded', () => {
+        updateAuthStateView();
+      });
+
+      setTimeout(updateAuthStateView, 250);
+    })();
+  </script>
+</body>
+</html>

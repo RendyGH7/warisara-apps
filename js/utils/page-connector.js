@@ -100,7 +100,7 @@ window.WARISARA_PAGE_CONNECTOR = {
     const pageAnchorMap = {
       "../index.html": "#hero",
       "jelajahi.html": "#module-jelajahi",
-      "warisan.html": "#module-warisan",
+      "login.html": "#module-warisan",
       "makers.html": "#module-makers",
       "ekonomi-kreatif.html": "#module-ekonomi-kreatif",
       "heritage-modern.html": "#module-heritage-modern",

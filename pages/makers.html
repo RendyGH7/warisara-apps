@@ -116,19 +116,24 @@
         if (!hasPlayed) {
           document.documentElement.classList.add("preloader-active");
         }
+
+        var isTransitioning = sessionStorage.getItem("warisara_page_transition") === "true";
+        if (isTransitioning) {
+          document.documentElement.classList.add("page-transitioning-in");
+        }
       } catch (e) {}
     })();
   </script>
 
   <link rel="stylesheet" href="../css/variables.css" />
-  <link rel="stylesheet" href="../css/base.css?v=13" />
+  <link rel="stylesheet" href="../css/base.css?v=14" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/transitions.css?v=39" />
+  <link rel="stylesheet" href="../css/transitions.css?v=47" />
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=32" />
-  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/responsive.css?v=2" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
 </head>
 
@@ -146,8 +151,7 @@
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
       <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
-      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
-      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="makers.html" class="nav-link active" data-page="makers">Pelestari</a>
       <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
       <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
@@ -193,17 +197,13 @@
         <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
         <span>02. Jelajahi 38 Provinsi</span>
       </a>
-      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
-        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
-        <span>03. Karya Pusaka & Tradisi</span>
-      </a>
       <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
         <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
-        <span>04. Profil Pelestari Budaya</span>
+        <span>03. Profil Pelestari Budaya</span>
       </a>
       <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
         <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
-        <span>05. Ekonomi Kreatif & Produk</span>
+        <span>04. Ekonomi Kreatif & Produk</span>
       </a>
       <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
         <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
@@ -320,7 +320,7 @@
       <div class="flex items-center gap-6">
         <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
         <a href="ekonomi-kreatif.html" class="hover:text-surface">Produk Lokal</a>
-        <a href="warisan.html" class="hover:text-surface">Karya Pusaka</a>
+        <a href="jelajahi.html" class="hover:text-surface">38 Provinsi</a>
       </div>
     </div>
   </footer>
@@ -328,7 +328,7 @@
   <script src="../data/products.js"></script>
   <script src="../data/makers.js"></script>
   <script src="../js/utils/helpers.js"></script>
-  <script src="../js/utils/page-transition.js?v=41"></script>
+  <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
   <script src="../js/utils/marketplace-auth.js"></script>
   <script src="../js/components/marketplace-chat.js"></script>

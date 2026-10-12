@@ -116,19 +116,24 @@
         if (!hasPlayed) {
           document.documentElement.classList.add("preloader-active");
         }
+
+        var isTransitioning = sessionStorage.getItem("warisara_page_transition") === "true";
+        if (isTransitioning) {
+          document.documentElement.classList.add("page-transitioning-in");
+        }
       } catch (e) {}
     })();
   </script>
 
   <link rel="stylesheet" href="../css/variables.css?v=10" />
-  <link rel="stylesheet" href="../css/base.css?v=13" />
+  <link rel="stylesheet" href="../css/base.css?v=14" />
   <link rel="stylesheet" href="../css/navbar.css?v=10" />
   <link rel="stylesheet" href="../css/sections.css?v=10" />
   <link rel="stylesheet" href="../css/components.css?v=10" />
-  <link rel="stylesheet" href="../css/transitions.css?v=39" />
+  <link rel="stylesheet" href="../css/transitions.css?v=47" />
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=32" />
-  <link rel="stylesheet" href="../css/responsive.css?v=10" />
+  <link rel="stylesheet" href="../css/responsive.css?v=2" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
 </head>
 
@@ -145,8 +150,7 @@
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
-      <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
-      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
+      <a href="jelajahi.html" class="nav-link active" data-page="jelajahi">38 Provinsi</a>
       <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
       <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
       <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
@@ -188,21 +192,17 @@
         <span class="material-symbols-outlined text-sm text-brass-400">map</span>
         <span>01. Peta Jelajah Nusantara</span>
       </a>
-      <a href="jelajahi.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="jelajahi">
+      <a href="jelajahi.html" class="mobile-nav-link active py-2 px-3 rounded-lg bg-brass-400/20 text-brass-300 font-semibold flex items-center gap-2.5" data-page="jelajahi">
         <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
         <span>02. Jelajahi 38 Provinsi</span>
       </a>
-      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
-        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
-        <span>03. Karya Pusaka & Tradisi</span>
-      </a>
       <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
         <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
-        <span>04. Profil Pelestari Budaya</span>
+        <span>03. Profil Pelestari Budaya</span>
       </a>
       <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
         <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
-        <span>05. Ekonomi Kreatif & Produk</span>
+        <span>04. Ekonomi Kreatif & Produk</span>
       </a>
       <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
         <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
@@ -361,8 +361,8 @@
       </div>
 
       <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
-        <a href="warisan.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
-          <span>Katalog Pusaka Lengkap</span>
+        <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
+          <span>Katalog Produk Lokal</span>
           <span class="material-symbols-outlined text-sm">north_east</span>
         </a>
         <button id="modal-btn-dismiss" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
@@ -381,7 +381,7 @@
       <div class="flex items-center gap-6">
         <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
         <a href="ekonomi-kreatif.html" class="hover:text-surface">Produk Lokal</a>
-        <a href="warisan.html" class="hover:text-surface">Karya Pusaka</a>
+        <a href="makers.html" class="hover:text-surface">Pelestari</a>
       </div>
     </div>
   </footer>
@@ -389,7 +389,7 @@
   <script src="../data/products.js"></script>
   <script src="../data/provinces.js?v=10"></script>
   <script src="../js/utils/helpers.js?v=10"></script>
-  <script src="../js/utils/page-transition.js?v=41"></script>
+  <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js?v=10"></script>
   <script src="../js/utils/marketplace-auth.js"></script>
   <script src="../js/components/marketplace-chat.js"></script>

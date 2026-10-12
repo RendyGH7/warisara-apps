@@ -385,3 +385,277 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   }
 }
 
+/* ==========================================================================
+   WARISARA LUXURY NAVBAR AUTH & PROFILE WIDGET
+   ========================================================================== */
+.nav-auth-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-nav-auth-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(201, 165, 103, 0.14);
+  border: 1px solid rgba(201, 165, 103, 0.38);
+  color: #FBF8F2;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn-nav-auth-login:hover {
+  background: rgba(201, 165, 103, 0.28);
+  border-color: #DCBE88;
+  color: #FFFDF8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.25);
+}
+
+.btn-nav-auth-login:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.nav-profile-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.nav-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.22rem 0.65rem 0.22rem 0.22rem;
+  border-radius: 9999px;
+  background: rgba(26, 22, 18, 0.96);
+  border: 1px solid rgba(201, 165, 103, 0.32);
+  color: #FBF8F2;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.nav-profile-btn:hover {
+  background: rgba(36, 30, 24, 1);
+  border-color: #C9A567;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-profile-dropdown.is-open .nav-profile-btn {
+  background: rgba(36, 30, 24, 1);
+  border-color: #C9A567;
+  box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.25);
+}
+
+/* Sembunyikan tombol chat standalone di luar profil sesuai permintaan user */
+#nav-chat-toggle-btn {
+  display: none !important;
+}
+
+.nav-profile-avatar {
+  position: relative;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* Badge Notifikasi Chat di Profil Navbar */
+.nav-profile-unread-badge {
+  position: absolute;
+  top: -0.32rem;
+  right: -0.32rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.25rem;
+  border-radius: 9999px;
+  background-color: #C9A567 !important;
+  color: #1A1612 !important;
+  font-size: 0.62rem !important;
+  font-weight: 800 !important;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #14100D !important;
+  box-shadow: 0 0 10px rgba(201, 165, 103, 0.75), 0 2px 5px rgba(0,0,0,0.5);
+  z-index: 10;
+  pointer-events: none;
+  animation: chatBadgePulse 2s infinite ease-in-out;
+}
+
+.nav-profile-unread-badge.hidden,
+.nav-dropdown-chat-badge.hidden {
+  display: none !important;
+}
+
+.nav-dropdown-chat-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.35rem;
+  border-radius: 9999px;
+  background-color: #C9A567;
+  color: #1A1612;
+  font-size: 0.62rem;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(201, 165, 103, 0.4);
+}
+
+.nav-profile-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #FBF8F2;
+  max-width: 6.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-profile-chevron {
+  font-size: 1.05rem;
+  color: rgba(251, 248, 242, 0.6);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.nav-profile-dropdown.is-open .nav-profile-chevron {
+  transform: rotate(180deg);
+  color: #C9A567;
+}
+
+.nav-profile-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 17.5rem;
+  max-width: 90vw;
+  padding: 0.45rem;
+  border-radius: 1.25rem;
+  background: rgba(20, 16, 13, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.88), 0 0 24px rgba(201, 165, 103, 0.1);
+  z-index: 999;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-profile-dropdown.is-open .nav-profile-menu {
+  display: flex;
+  animation: navProfileMenuIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes navProfileMenuIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-profile-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.58rem 0.85rem;
+  border-radius: 0.85rem;
+  background: transparent;
+  border: none;
+  color: rgba(251, 248, 242, 0.85);
+  font-size: 0.74rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.nav-profile-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #FFF2D1;
+  padding-left: 0.95rem;
+}
+
+.nav-profile-item.item-danger {
+  color: #fb7185;
+}
+
+.nav-profile-item.item-danger:hover {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fecdd3;
+}
+
+/* ==========================================================================
+   WARISARA GOOGLE AUTH MODAL ENHANCEMENTS
+   ========================================================================== */
+.auth-modal-dialog {
+  animation: authModalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes authModalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.auth-account-row {
+  cursor: pointer;
+}
+
+.auth-role-chip {
+  cursor: pointer;
+}
+
+.auth-modal-dialog *::-webkit-scrollbar {
+  width: 5px;
+}
+
+.auth-modal-dialog *::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.auth-modal-dialog *::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.25);
+  border-radius: 999px;
+}
+
+.auth-modal-dialog *::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.5);
+}
+
+
+
+

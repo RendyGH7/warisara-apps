@@ -45,10 +45,14 @@ window.WARISARA_RESET_REFRESH = function () {
 };
 
 window.WARISARA_TRANSITION = {
+  isInitialized: false,
   isTransitioning: false,
   veilEl: null,
 
   init: function () {
+    if (this.isInitialized) return;
+    this.isInitialized = true;
+
     this.initScrollToTopOnRefresh();
     this.createVeil();
     this.bindLinkInterception();
@@ -203,11 +207,16 @@ window.WARISARA_TRANSITION = {
         </div>
       `;
 
-      // Jika halaman dibuka dari proses transisi, aktifkan tirai langsung untuk menutupi layar
+      // Jika halaman dibuka dari proses transisi:
+      // Sembunyikan logo/loader (veil-exit-only) agar animasi transisi HANYA MUNCUL 1 KALI (pada saat berpindah).
+      // Halaman tujuan hanya membuka tirai dengan dissolve yang sangat halus dan mewah.
       if (wasTransitioning) {
-        veil.classList.add("active");
+        veil.classList.add("veil-exit-only");
+        veil.style.transition = "none";
         veil.style.opacity = "1";
         veil.style.visibility = "visible";
+        veil.classList.add("active");
+        void veil.offsetHeight;
       }
 
       document.body.appendChild(veil);
@@ -215,9 +224,12 @@ window.WARISARA_TRANSITION = {
     } else {
       this.veilEl = document.getElementById("page-transition-veil");
       if (wasTransitioning) {
-        this.veilEl.classList.add("active");
+        this.veilEl.classList.add("veil-exit-only");
+        this.veilEl.style.transition = "none";
         this.veilEl.style.opacity = "1";
         this.veilEl.style.visibility = "visible";
+        this.veilEl.classList.add("active");
+        void this.veilEl.offsetHeight;
       }
     }
 
@@ -228,9 +240,9 @@ window.WARISARA_TRANSITION = {
 
   /**
    * Halaman baru dimuat dari proses transisi:
-   * – Layar tetap tertutup tirai dengan anggun (tanpa kedip putih atau patah).
-   * – Menambahkan kelas animasi masuk (page-entering-active) pada konten halaman tujuan.
-   * – Memicu transisi tirai keluar (veil-exiting) yang sangat halus dan mewah.
+   * – Layar tetap tertutup tirai gelap (tanpa menampilkan logo/loader ulang sehingga TIDAK dobel).
+   * – Menambahkan kelas animasi masuk halus (page-entering-active) pada konten halaman tujuan.
+   * – Membuka/melarutkan tirai keluar (veil-exiting) secara ultra-smooth.
    */
   _handleIncomingPage: function () {
     try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
@@ -241,46 +253,50 @@ window.WARISARA_TRANSITION = {
 
     if (!this.veilEl) return;
 
-    // Pastikan tirai aktif dan bersih dari class exiting sebelumnya
+    this.veilEl.classList.add("veil-exit-only");
     this.veilEl.classList.remove("veil-exiting");
-    this.veilEl.classList.add("active");
-    this.veilEl.style.transition = "";
+    this.veilEl.style.transition = "none";
     this.veilEl.style.opacity = "1";
     this.veilEl.style.visibility = "visible";
+    void this.veilEl.offsetHeight;
 
     // Pasang animasi masuk halus pada konten halaman tujuan
     if (document.body) {
       document.body.classList.add("page-entering-active");
     }
 
-    // Jeda kecil (70ms) agar browser selesai menyusun layout halaman baru di balik tirai
+    // Jeda kecil (60ms) agar browser selesai menyusun layout halaman baru di balik tirai
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        if (!this.veilEl) return;
-
-        // Picu animasi tirai memudar keluar secara halus (veil-exiting)
-        this.veilEl.classList.add("veil-exiting");
-
-        // Setelah durasi transisi selesai (780ms), bersihkan kelas dan status
+      requestAnimationFrame(() => {
         setTimeout(() => {
-          if (this.veilEl) {
-            this.veilEl.classList.remove("active", "veil-exiting");
-            this.veilEl.style.opacity = "";
-            this.veilEl.style.visibility = "";
-          }
-          if (document.body) {
-            document.body.classList.remove("page-entering-active");
-          }
-          this.isTransitioning = false;
-        }, 780);
-      }, 70);
+          if (!this.veilEl) return;
+
+          // Aktifkan kembali CSS transition untuk animasi dissolve keluar yang ultra-smooth
+          this.veilEl.style.transition = "";
+          this.veilEl.classList.add("veil-exiting");
+
+          // Setelah durasi transisi dissolve selesai (900ms), bersihkan kelas dan status
+          setTimeout(() => {
+            if (this.veilEl) {
+              this.veilEl.classList.remove("active", "veil-exiting", "veil-exit-only");
+              this.veilEl.style.opacity = "";
+              this.veilEl.style.visibility = "";
+              this.veilEl.style.transition = "";
+            }
+            if (document.body) {
+              document.body.classList.remove("page-entering-active");
+            }
+            this.isTransitioning = false;
+          }, 900);
+        }, 60);
+      });
     });
   },
 
   /**
    * Navigasi keluar:
-   * – Veil muncul dengan animasi lembut (opacity 0 -> 1, emblem spin & loading sweep).
-   * – Durasi disesuaikan menjadi 520ms agar terasa responsif, elegan, dan tidak membuat jeda terlalu lama.
+   * – Menampilkan SATU-SATUNYA animasi transisi lengkap dengan logo berputar dan laser sweep.
+   * – Durasi dibuat 780ms agar terasa sinematik, anggun, mewah, dan tidak terburu-buru.
    */
   navigateTo: function (url) {
     if (this.isTransitioning) return;
@@ -290,15 +306,17 @@ window.WARISARA_TRANSITION = {
 
     try { sessionStorage.setItem("warisara_page_transition", "true"); } catch (e) {}
 
+    // Pastikan konten logo dan loader terlihat untuk animasi transisi satu-satunya ini
+    this.veilEl.classList.remove("veil-exit-only", "veil-exiting");
     this.veilEl.style.transition = "";
     this.veilEl.style.opacity = "";
     this.veilEl.style.visibility = "";
-    this.veilEl.classList.remove("veil-exiting");
     this.veilEl.classList.add("active");
 
+    // Durasi dibuat sedikit lebih lama (780ms) untuk transisi yang smooth dan stabil
     setTimeout(() => {
       window.location.href = url;
-    }, 520);
+    }, 780);
   },
 
   bindLinkInterception: function () {
@@ -325,6 +343,21 @@ window.WARISARA_TRANSITION = {
         } catch (err) { return; }
       }
 
+      // Cegah navigasi ulang jika user mengklik link yang mengarah ke halaman yang sedang dibuka
+      try {
+        const urlObj = new URL(href, window.location.href);
+        if (
+          urlObj.origin === window.location.origin &&
+          urlObj.pathname === window.location.pathname &&
+          urlObj.search === window.location.search &&
+          !urlObj.hash
+        ) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+      } catch (err) {}
+
       e.preventDefault();
       this.navigateTo(href);
     });
@@ -333,14 +366,18 @@ window.WARISARA_TRANSITION = {
   handlePageShow: function () {
     window.addEventListener("pageshow", (event) => {
       this.isTransitioning = false;
-      if (event.persisted && this.veilEl) {
+      try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
+      if (this.veilEl) {
         this.veilEl.style.transition = "none";
         this.veilEl.style.opacity = "0";
         this.veilEl.style.visibility = "hidden";
-        this.veilEl.classList.remove("active", "veil-exiting");
-        if (document.body) {
-          document.body.classList.remove("page-entering-active");
-        }
+        this.veilEl.classList.remove("active", "veil-exiting", "veil-exit-only");
+      }
+      if (document.body) {
+        document.body.classList.remove("page-entering-active");
+      }
+      if (document.documentElement) {
+        document.documentElement.classList.remove("page-transitioning-in");
       }
     });
   },

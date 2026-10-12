@@ -26,18 +26,25 @@ html.page-transitioning-in body {
   visibility: hidden;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  will-change: opacity, transform, visibility;
-  /* Transisi masuk: lembut, mewah, responsif */
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              visibility 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, visibility;
+  /* Transisi masuk: dibuat lebih lama, mewah, dan sangat lembut */
+  transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.52s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #page-transition-veil.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+  transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
               visibility 0s linear 0s;
+}
+
+/* Sembunyikan konten logo/loader saat halaman baru dibuka dari transisi,
+   sehingga animasi logo & loader HANYA MUNCUL 1 KALI (pada saat berpindah),
+   dan halaman baru hanya membuka tirai dengan sangat halus tanpa kedip/dobel */
+#page-transition-veil.veil-exit-only .veil-content {
+  display: none !important;
 }
 
 /* Tahap keluar (Veil Exit):
@@ -46,16 +53,16 @@ html.page-transitioning-in body {
 #page-transition-veil.veil-exiting .veil-content {
   opacity: 0;
   transform: scale(0.96) translateY(-14px);
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #page-transition-veil.veil-exiting {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
-              visibility 0s linear 0.78s;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
+              visibility 0s linear 0.92s;
 }
 
 .veil-shimmer-pattern {
@@ -72,10 +79,11 @@ html.page-transitioning-in body {
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  transform: scale(0.95) translateY(6px);
+  transform: scale(0.95) translateY(8px);
   opacity: 0;
-  transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.42s ease;
+  will-change: transform, opacity;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.5s ease;
 }
 
 #page-transition-veil.active .veil-content {
@@ -285,7 +293,7 @@ html.page-transitioning-in body {
    Ketika transisi tirai selesai, konten halaman baru tampil dengan
    efek meluncur lembut (gentle glide up), fade in, dan micro blur dissolve */
 body.page-entering-active {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Navbar muncul dengan fade-in lembut tanpa mengubah posisi/koordinat translate */
@@ -298,39 +306,37 @@ body.page-entering-active > main,
 body.page-entering-active > section,
 body.page-entering-active > #hero,
 body.page-entering-active > div:not(#page-transition-veil):not(#warisara-preloader) {
-  animation: warisaraPageContentEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: warisaraPageContentEntrance 0.82s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }
 
 /* Heading dan judul hero masuk dengan timing halus yang terkoordinasi */
 body.page-entering-active h1,
 body.page-entering-active .hero-title-wrap,
 body.page-entering-active .hero-display-title {
-  animation: warisaraHeroTitleEntrance 0.88s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  animation: warisaraHeroTitleEntrance 0.84s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both;
+  will-change: opacity, transform;
 }
 
 @keyframes warisaraNavbarEntrance {
   0% {
     opacity: 0;
+    transform: translateY(-8px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes warisaraPageContentEntrance {
   0% {
     opacity: 0;
-    transform: translateY(22px);
-    filter: blur(3px);
-  }
-  40% {
-    opacity: 0.6;
-    filter: blur(1.5px);
+    transform: translateY(16px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0px);
   }
 }
 
@@ -351,8 +357,8 @@ body.page-entering-active .hero-display-title {
 }
 
 @keyframes pageEntranceFade {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .reveal-on-scroll {

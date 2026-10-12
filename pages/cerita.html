@@ -118,20 +118,25 @@
         if (!hasPlayed) {
           document.documentElement.classList.add("preloader-active");
         }
+
+        var isTransitioning = sessionStorage.getItem("warisara_page_transition") === "true";
+        if (isTransitioning) {
+          document.documentElement.classList.add("page-transitioning-in");
+        }
       } catch (e) {}
     })();
   </script>
 
   <link rel="stylesheet" href="../css/variables.css" />
-  <link rel="stylesheet" href="../css/base.css?v=13" />
+  <link rel="stylesheet" href="../css/base.css?v=14" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/sections.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/story-book.css" />
-  <link rel="stylesheet" href="../css/transitions.css?v=39" />
+  <link rel="stylesheet" href="../css/transitions.css?v=47" />
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=32" />
-  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/responsive.css?v=2" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
 </head>
 
@@ -149,13 +154,12 @@
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
       <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
-      <a href="warisan.html" class="nav-link" data-page="warisan">Karya Pusaka</a>
       <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
       <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
       <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
-      <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
+      <a href="cerita.html" class="nav-link active" data-page="cerita">Cerita</a>
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
@@ -195,33 +199,29 @@
         <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
         <span>02. Jelajahi 38 Provinsi</span>
       </a>
-      <a href="warisan.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="warisan">
-        <span class="material-symbols-outlined text-sm text-terracotta-400">category</span>
-        <span>03. Karya Pusaka & Tradisi</span>
-      </a>
       <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
         <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
-        <span>04. Profil Pelestari Budaya</span>
+        <span>03. Profil Pelestari Budaya</span>
       </a>
       <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
         <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
-        <span>05. Ekonomi Kreatif & Produk</span>
+        <span>04. Ekonomi Kreatif & Produk</span>
       </a>
       <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
         <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
-        <span>06. Heritage × Modern</span>
+        <span>05. Heritage × Modern</span>
       </a>
       <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
         <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
-        <span>07. Creative Lab Canvas</span>
+        <span>06. Creative Lab Canvas</span>
       </a>
       <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
         <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
-        <span>08. Pusat Belajar & Kuis</span>
+        <span>07. Pusat Belajar & Kuis</span>
       </a>
-      <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
+      <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5 active text-brass-300" data-page="cerita">
         <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
-        <span>09. Cerita yang Diwariskan</span>
+        <span>08. Cerita yang Diwariskan</span>
       </a>
       <button class="nav-chat-trigger mobile-nav-link text-left py-2 px-3 rounded-lg bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 transition-colors flex items-center justify-between mt-1">
         <span class="flex items-center gap-2.5">
@@ -248,18 +248,11 @@
 
       <div class="max-w-4xl mx-auto text-center relative z-10">
         
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm">
-          <span class="material-symbols-outlined text-base">menu_book</span>
-          <span>Halaman 09 • Perpustakaan Tutur Lisan & Wastra 3D</span>
-        </div>
 
         <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-surface tracking-tight leading-tight mb-6">
           Cerita yang Diwariskan
         </h1>
         
-        <p class="text-base sm:text-lg lg:text-xl text-surface/80 max-w-2xl mx-auto leading-relaxed font-light mb-8">
-          Buka lembaran pusaka buku cerita 3D interaktif. Dengarkan tutur lisan para tetua, hayati kelahiran kain suci, dan petik butiran falsafah hidup bangsa Indonesia.
-        </p>
 
         <div class="grid grid-cols-3 max-w-lg mx-auto p-3 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md text-center">
           <div class="px-2 border-r border-white/10">
@@ -413,7 +406,7 @@
   <script src="../js/utils/helpers.js"></script>
   <script src="../js/utils/story-audio.js"></script>
   <script src="../js/sections/story-book.js"></script>
-  <script src="../js/utils/page-transition.js?v=41"></script>
+  <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
   <script src="../js/utils/marketplace-auth.js"></script>
   <script src="../js/components/marketplace-chat.js"></script>

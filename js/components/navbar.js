@@ -397,7 +397,6 @@ window.WARISARA_NAVBAR = {
     const core10Sections = [
       { id: "hero", target: "hero" },
       { id: "module-jelajahi", target: "jelajahi" },
-      { id: "module-warisan", target: "warisan" },
       { id: "module-makers", target: "makers" },
       { id: "module-ekonomi-kreatif", target: "ekonomi-kreatif" },
       { id: "module-heritage-modern", target: "heritage-modern" },
@@ -495,6 +494,315 @@ window.WARISARA_NAVBAR = {
     setTimeout(syncInitialPill, 40);
     setTimeout(syncInitialPill, 120);
     setTimeout(syncInitialPill, 300);
+
+    // ==========================================================================
+    // WARISARA NAVBAR AUTH & PROFILE WIDGET
+    // ==========================================================================
+    function initNavbarAuth() {
+      const actionsContainer = document.querySelector("#main-navbar .flex.items-center.gap-2") ||
+                               document.querySelector("#main-navbar .flex-shrink-0:last-child");
+      if (!actionsContainer) return;
+
+      let authContainer = document.getElementById("navbar-auth-section");
+      if (!authContainer) {
+        authContainer = document.createElement("div");
+        authContainer.id = "navbar-auth-section";
+        authContainer.className = "nav-auth-wrapper";
+        const mobileBtn = actionsContainer.querySelector("#mobile-menu-btn");
+        if (mobileBtn) {
+          actionsContainer.insertBefore(authContainer, mobileBtn);
+        } else {
+          actionsContainer.appendChild(authContainer);
+        }
+      }
+
+      function renderAuth() {
+        if (!authContainer) return;
+        const user = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+
+        if (!user) {
+          const isPagesDir = window.location.pathname.includes("/pages/");
+          const authPageUrl = isPagesDir ? "login.html" : "pages/login.html";
+
+          // Tombol Masuk / Daftar Modern saat Pengguna Belum Login -> Mengarahkan Langsung ke Halaman Login/Registrasi
+          authContainer.innerHTML = `
+            <div class="flex items-center gap-1.5">
+              <a id="nav-btn-login" href="${authPageUrl}" class="btn-nav-auth-login" title="Masuk atau Daftar dengan Google">
+                <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 flex-shrink-0">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                </svg>
+                <span>Masuk / Daftar</span>
+              </a>
+            </div>
+          `;
+        } else {
+          // Widget Profil Mewah & Interaktif saat Pengguna Sudah Login
+          const shortName = user.name ? (user.name.split(" ")[0] + (user.name.split(" ")[1] ? " " + user.name.split(" ")[1].charAt(0) + "." : "")) : "Akun";
+          const avatarLetter = user.avatarLetter || (user.name ? user.name.charAt(0).toUpperCase() : "U");
+          const avatarColor = user.avatarColor || "from-amber-600 to-yellow-500";
+
+          authContainer.innerHTML = `
+            <div class="nav-profile-dropdown" id="nav-profile-dropdown">
+              <button id="nav-profile-trigger" type="button" class="nav-profile-btn relative" aria-haspopup="true" aria-expanded="false" title="Menu Akun: ${user.name}">
+                <div class="nav-profile-avatar bg-gradient-to-tr ${avatarColor}">
+                  ${avatarLetter}
+                  <span id="nav-profile-chat-badge" class="nav-profile-unread-badge hidden">2</span>
+                </div>
+                <span class="nav-profile-name hidden sm:inline">${shortName}</span>
+                <span class="material-symbols-outlined nav-profile-chevron">expand_more</span>
+              </button>
+
+              <div class="nav-profile-menu" id="nav-profile-menu">
+                <!-- Info Profil -->
+                <div class="p-3 border-b border-white/10 flex items-center gap-3 bg-white/[0.02]">
+                  <div class="w-9 h-9 rounded-full bg-gradient-to-tr ${avatarColor} text-white font-bold text-xs flex items-center justify-center shadow-md flex-shrink-0">
+                    ${avatarLetter}
+                  </div>
+                  <div class="overflow-hidden flex-1">
+                    <div class="text-xs font-bold text-surface truncate">${user.name}</div>
+                    <div class="text-[11px] text-brass-300/80 font-mono truncate">${user.email}</div>
+                  </div>
+                </div>
+
+                <!-- Opsi Aksi Sesuai Permintaan User -->
+                <div class="p-1.5 space-y-0.5">
+                  <!-- Fitur Chat di Pop-up Profile -->
+                  <button type="button" id="nav-action-chat" class="nav-profile-item group relative">
+                    <span class="material-symbols-outlined text-base text-brass-400 group-hover:scale-110 transition-transform">chat</span>
+                    <div class="flex-1 text-left flex items-center justify-between">
+                      <div>
+                        <span class="block text-xs font-semibold text-surface group-hover:text-brass-300">Pesan & Diskusi</span>
+                        <span class="block text-[10px] text-surface/50">Chat langsung penjual & pembeli</span>
+                      </div>
+                      <span id="nav-dropdown-chat-badge" class="nav-dropdown-chat-badge hidden">2</span>
+                    </div>
+                  </button>
+
+                  <button type="button" id="nav-action-sell" class="nav-profile-item group">
+                    <span class="material-symbols-outlined text-base text-brass-400 group-hover:scale-110 transition-transform">add_circle</span>
+                    <div class="flex-1 text-left">
+                      <span class="block text-xs font-semibold text-surface group-hover:text-brass-300">Jual Produk Lokal</span>
+                      <span class="block text-[10px] text-surface/50">Pasang karya ke etalase pasar</span>
+                    </div>
+                  </button>
+
+                  <button type="button" id="nav-action-switch" class="nav-profile-item group">
+                    <span class="material-symbols-outlined text-base text-amber-400 group-hover:scale-110 transition-transform">swap_horiz</span>
+                    <div class="flex-1 text-left">
+                      <span class="block text-xs font-semibold text-surface group-hover:text-amber-300">Ganti Akun Google</span>
+                      <span class="block text-[10px] text-surface/50">Beralih akun Google yang tersedia</span>
+                    </div>
+                  </button>
+
+                  <div class="my-1 border-t border-white/10"></div>
+
+                  <button type="button" id="nav-action-logout" class="nav-profile-item item-danger group">
+                    <span class="material-symbols-outlined text-base group-hover:rotate-12 transition-transform">logout</span>
+                    <span class="text-xs font-semibold">Keluar dari Akun</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          const dropdownEl = authContainer.querySelector("#nav-profile-dropdown");
+          const triggerBtn = authContainer.querySelector("#nav-profile-trigger");
+          if (dropdownEl && triggerBtn) {
+            triggerBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              const isOpen = dropdownEl.classList.contains("is-open");
+              dropdownEl.classList.toggle("is-open", !isOpen);
+              triggerBtn.setAttribute("aria-expanded", String(!isOpen));
+            });
+
+            // Action: Pesan & Diskusi (Chat)
+            const chatBtn = authContainer.querySelector("#nav-action-chat");
+            if (chatBtn) {
+              chatBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownEl.classList.remove("is-open");
+                triggerBtn.setAttribute("aria-expanded", "false");
+
+                if (window.WARISARA_CHAT && typeof window.WARISARA_CHAT.openDrawer === "function") {
+                  window.WARISARA_CHAT.openDrawer();
+                }
+              });
+            }
+
+            // Action: + Jual Produk
+            const sellBtn = authContainer.querySelector("#nav-action-sell");
+            if (sellBtn) {
+              sellBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownEl.classList.remove("is-open");
+                triggerBtn.setAttribute("aria-expanded", "false");
+
+                if (typeof window.openSellProductModal === "function") {
+                  window.openSellProductModal();
+                } else {
+                  const modal = document.getElementById("sell-product-modal");
+                  if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.style.display = "flex";
+                    document.body.style.overflow = "hidden";
+                  } else {
+                    const isPagesDir = window.location.pathname.includes("/pages/");
+                    window.location.href = (isPagesDir ? "ekonomi-kreatif.html" : "pages/ekonomi-kreatif.html") + "?action=sell";
+                  }
+                }
+              });
+            }
+
+            // Action: Ganti Akun
+            const switchBtn = authContainer.querySelector("#nav-action-switch");
+            if (switchBtn) {
+              switchBtn.addEventListener("click", () => {
+                dropdownEl.classList.remove("is-open");
+                if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.openAuthModal === "function") {
+                  window.WARISARA_AUTH.openAuthModal();
+                }
+              });
+            }
+
+            // Action: Keluar
+            const logoutBtn = authContainer.querySelector("#nav-action-logout");
+            if (logoutBtn) {
+              logoutBtn.addEventListener("click", () => {
+                dropdownEl.classList.remove("is-open");
+                if (window.WARISARA_AUTH) {
+                  window.WARISARA_AUTH.logout();
+                }
+              });
+            }
+
+            // Segera sinkronkan tanda notifikasi chat jika ada percakapan aktif
+            if (window.WARISARA_CHAT && typeof window.WARISARA_CHAT.updateNavbarBadge === "function") {
+              window.WARISARA_CHAT.updateNavbarBadge();
+            }
+          }
+        }
+
+        renderMobileDrawerAuth(user);
+      }
+
+      function renderMobileDrawerAuth(user) {
+        const mobileDrawer = document.getElementById("mobile-nav-drawer");
+        if (!mobileDrawer) return;
+
+        let mobileAuthBox = document.getElementById("mobile-drawer-auth-box");
+        if (!mobileAuthBox) {
+          mobileAuthBox = document.createElement("div");
+          mobileAuthBox.id = "mobile-drawer-auth-box";
+          mobileAuthBox.className = "pt-3 mt-1 border-t border-white/10";
+          mobileDrawer.appendChild(mobileAuthBox);
+        }
+
+        if (!user) {
+          const isPagesDir = window.location.pathname.includes("/pages/");
+          const authPageUrl = isPagesDir ? "login.html" : "pages/login.html";
+          mobileAuthBox.innerHTML = `
+            <div class="grid grid-cols-2 gap-2">
+              <a href="${authPageUrl}" id="mobile-btn-login" class="py-2.5 px-3 rounded-xl bg-white/10 text-surface hover:bg-white/15 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                <span class="material-symbols-outlined text-sm">login</span>
+                <span>Masuk</span>
+              </a>
+              <a href="${authPageUrl}?tab=register" id="mobile-btn-register" class="py-2.5 px-3 rounded-xl bg-brass-400 text-ink font-bold text-xs flex items-center justify-center gap-1.5 shadow-md transition-colors">
+                <span class="material-symbols-outlined text-sm">person_add</span>
+                <span>Daftar Akun</span>
+              </a>
+            </div>
+          `;
+        } else {
+          const avatarColor = user.avatarColor || "from-amber-600 to-yellow-500";
+          const avatarLetter = user.avatarLetter || user.name.charAt(0).toUpperCase();
+
+          mobileAuthBox.innerHTML = `
+            <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2.5">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr ${avatarColor} text-white font-bold text-xs flex items-center justify-center shadow">
+                  ${avatarLetter}
+                </div>
+                <div class="overflow-hidden flex-1">
+                  <div class="text-xs font-bold text-surface truncate">${user.name}</div>
+                  <div class="text-[10px] text-brass-300 font-mono truncate">${user.email}</div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-1.5 pt-1 text-xs">
+                <button type="button" id="mobile-action-sell" class="py-1.5 px-2 rounded-lg bg-brass-400/20 text-brass-300 font-semibold text-[11px] flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">add_circle</span>
+                  <span>+ Jual</span>
+                </button>
+                <button type="button" id="mobile-action-switch" class="py-1.5 px-2 rounded-lg bg-white/5 text-surface/80 font-semibold text-[11px] flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">swap_horiz</span>
+                  <span>Ganti</span>
+                </button>
+              </div>
+              <button type="button" id="mobile-action-logout" class="w-full py-1.5 rounded-lg bg-rose-500/10 text-rose-300 hover:bg-rose-500/20 text-[11px] font-semibold flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                <span>Keluar</span>
+              </button>
+            </div>
+          `;
+
+          const mobSell = mobileAuthBox.querySelector("#mobile-action-sell");
+          const mobSwitch = mobileAuthBox.querySelector("#mobile-action-switch");
+          const mobLogout = mobileAuthBox.querySelector("#mobile-action-logout");
+
+          if (mobSell) mobSell.addEventListener("click", () => {
+            const closeBtn = document.getElementById("mobile-nav-close");
+            if (closeBtn) closeBtn.click();
+            if (typeof window.openSellProductModal === "function") window.openSellProductModal();
+            else window.location.href = (window.location.pathname.includes("/pages/") ? "ekonomi-kreatif.html" : "pages/ekonomi-kreatif.html") + "?action=sell";
+          });
+
+          if (mobSwitch) mobSwitch.addEventListener("click", () => {
+            const closeBtn = document.getElementById("mobile-nav-close");
+            if (closeBtn) closeBtn.click();
+            if (window.WARISARA_AUTH) window.WARISARA_AUTH.openAuthModal();
+          });
+
+          if (mobLogout) mobLogout.addEventListener("click", () => {
+            const closeBtn = document.getElementById("mobile-nav-close");
+            if (closeBtn) closeBtn.click();
+            if (window.WARISARA_AUTH) window.WARISARA_AUTH.logout();
+          });
+        }
+      }
+
+      // Tutup dropdown jika klik di luar atau tekan Escape
+      document.addEventListener("click", (e) => {
+        const dropdownEl = document.getElementById("nav-profile-dropdown");
+        if (dropdownEl && dropdownEl.classList.contains("is-open")) {
+          if (!dropdownEl.contains(e.target)) {
+            dropdownEl.classList.remove("is-open");
+            const btn = document.getElementById("nav-profile-trigger");
+            if (btn) btn.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          const dropdownEl = document.getElementById("nav-profile-dropdown");
+          if (dropdownEl && dropdownEl.classList.contains("is-open")) {
+            dropdownEl.classList.remove("is-open");
+            const btn = document.getElementById("nav-profile-trigger");
+            if (btn) btn.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+
+      window.addEventListener("warisara_auth_changed", renderAuth);
+
+      renderAuth();
+    }
+
+    initNavbarAuth();
 
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(syncInitialPill);
