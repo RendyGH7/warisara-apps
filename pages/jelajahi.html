@@ -675,19 +675,114 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-8 h-8 object-contain drop-shadow" />
-        <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-6 sm:h-7 object-contain drop-shadow" />
+  <!-- FOOTER PROFESIONAL & MODERN -->
+  <footer class="relative bg-[#0E0C0A] text-surface/70 text-xs border-t border-white/10 pt-16 pb-12 px-4 sm:px-8 overflow-hidden">
+    <!-- Subtle Ambient Glow -->
+    <div class="absolute -top-32 left-1/4 w-96 h-96 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 right-1/4 w-96 h-96 bg-forest-900/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10 space-y-12">
+      
+      <!-- Bagian Atas: Brand + Deskripsi + Download App Buttons -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
+        
+        <!-- Kolom Brand & Penjelasan Web (5 Cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-10 h-10 object-contain drop-shadow" />
+            <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-7 object-contain drop-shadow" />
+          </div>
+
+          <p class="text-xs sm:text-sm text-surface/75 font-light leading-relaxed pr-0 lg:pr-6">
+            <strong>WARISARA</strong> adalah wadah digital terpadu pelestarian dan pemberdayaan kebudayaan Nusantara. Mengintegrasikan ensiklopedia 38 provinsi, galeri kriya adiluhung, ekonomi kreatif pengrajin lokal, kanvas Creative Lab, dan modul edukasi interaktif untuk merawat warisan adiluhung bangsa Indonesia.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-1 text-[10px] uppercase font-mono tracking-wider text-surface/50">
+            <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-brass-300">🇮🇩 Bangga Buatan Indonesia</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400">✨ 38 Provinsi Nusantara</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-indigo-300">🏅 TECHTOPIA Vol. 2</span>
+          </div>
+        </div>
+
+        <!-- Kolom Tautan Cepat / Navigasi (3 Cols) -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300">Eksplorasi Budaya</h4>
+          <ul class="space-y-2 text-xs font-light text-surface/70">
+            <li><a href="../index.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Peta Jelajah Nusantara</a></li>
+            <li><a href="jelajahi.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Ensiklopedia 38 Provinsi</a></li>
+            <li><a href="makers.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Profil Maestro Pelestari</a></li>
+            <li><a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pasar Ekonomi Kreatif</a></li>
+            <li><a href="creative-lab.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Creative Lab Canvas</a></li>
+            <li><a href="belajar.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pusat Belajar & Kuis</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom Download Mobile Apps di Google Play & App Store (4 Cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 mb-1 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-brass-400">smartphone</span>
+              <span>Unduh Aplikasi WARISARA</span>
+            </h4>
+            <p class="text-xs text-surface/65 font-light leading-relaxed">
+              Bawa ensiklopedia 38 provinsi, paspor penjelajah, dan kuis edukasi ke mana saja dalam genggamanmu.
+            </p>
+          </div>
+
+          <!-- App Store & Play Store Download Badges -->
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-1">
+            
+            <!-- Google Play Button -->
+            <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Google Play Store">
+              <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" fill="#EA4335"/>
+                <path d="M47 38.6c-5.5 8.9-8.7 19.8-8.7 32.5v369.8c0 12.7 3.2 23.6 8.7 32.5l212.9-217.4L47 38.6z" fill="#4285F4"/>
+                <path d="M325.3 277.7l60.1 60.1L104.6 499l220.7-221.3z" fill="#34A853"/>
+                <path d="M452.6 230.9L385.4 192l-60.1 42.3 60.1 43.4 67.2-38.9c13.7-7.9 13.7-20 0-27.9z" fill="#FBBC04"/>
+              </svg>
+              <div class="flex flex-col">
+                <span class="text-[9px] uppercase tracking-wider text-surface/50 font-medium leading-none">TEMUKAN DI</span>
+                <span class="font-display text-sm font-semibold text-surface group-hover:text-brass-300 transition-colors leading-tight mt-0.5">Google Play</span>
+              </div>
+            </button>
+
+            <!-- Apple App Store Button -->
+            <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Apple App Store">
+              <svg class="w-6 h-6 flex-shrink-0 fill-surface group-hover:fill-brass-300 transition-colors" viewBox="0 0 170 170">
+                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.59-7.71-11.72-14-4.89-7.4-8.86-15.8-11.91-25.19-3.05-9.39-4.58-18.42-4.58-27.11 0-12.5 3.17-23.11 9.5-31.84 6.33-8.72 14.33-13.2 24-13.43 4.9 0 10.37 1.34 16.42 4.02 6.04 2.68 9.94 4.08 11.68 4.22 1.95-.27 6.04-1.74 12.27-4.42 6.23-2.68 11.43-3.87 15.62-3.58 11.63.85 20.67 5.17 27.13 12.98-9.82 5.95-14.64 14.19-14.47 24.71.18 8.16 3.26 15.11 9.24 20.85 5.98 5.74 13.06 9.07 21.23 10-1.84 5.69-3.95 11.23-6.33 16.63zM119.22 31.02c0-7.25 2.66-13.97 7.98-20.17 5.32-6.19 11.83-10.05 19.53-11.58.55 3.15.55 6.13 0 8.94-.83 6.94-3.79 13.41-8.88 19.41-5.08 6.01-11.3 9.77-18.63 11.28v-7.88z"/>
+              </svg>
+              <div class="flex flex-col">
+                <span class="text-[9px] uppercase tracking-wider text-surface/50 font-medium leading-none">UNDUH DI</span>
+                <span class="font-display text-sm font-semibold text-surface group-hover:text-brass-300 transition-colors leading-tight mt-0.5">App Store</span>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="flex items-center gap-2 text-[11px] text-surface/50 pt-1">
+            <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
+            <span>Tersedia untuk Android & iOS (PWA Ready)</span>
+          </div>
+        </div>
+
       </div>
-      <div>© 2026 WARISARA. Dilombakan pada TECHTOPIA Vol. 2 (INTEGER#8).</div>
-      <div class="flex items-center gap-6">
-        <a href="../index.html" class="hover:text-surface">Peta Beranda</a>
-        <a href="ekonomi-kreatif.html" class="hover:text-surface">Produk Lokal</a>
-        <a href="makers.html" class="hover:text-surface">Pelestari</a>
+
+      <!-- Bagian Bawah: Hak Cipta & Informasi Legal -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-surface/50 pt-2">
+        <div>
+          © 2026 <strong>WARISARA</strong>. Dikembangkan untuk <strong>TECHTOPIA Vol. 2 (INTEGER#8)</strong>.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../index.html" class="hover:text-brass-300 transition-colors">Beranda</a>
+          <a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors">Produk UMKM</a>
+          <a href="makers.html" class="hover:text-brass-300 transition-colors">Pelestari</a>
+          <button id="scroll-to-top-btn" class="hover:text-brass-300 transition-colors flex items-center gap-1 cursor-pointer" title="Kembali ke Atas">
+            <span>Ke Atas</span>
+            <span class="material-symbols-outlined text-xs">arrow_upward</span>
+          </button>
+        </div>
       </div>
+
     </div>
   </footer>
 
