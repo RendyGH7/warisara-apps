@@ -561,26 +561,42 @@
       border-color: rgba(255, 255, 255, 0.16);
       transform: translateY(-1px);
     }
-    /* ================= JUDUL ELEGAN & ANIMASI GANTI TEKS (CYCLING TAGLINE) ================= */
-
-    /* Tulisan "Selamat Datang di" — diperkecil, rapi, proporsional, tanpa efek hover */
-    .welcome-subtitle-text {
-      font-size: clamp(0.72rem, 1.05vw, 0.90rem);
-      color: rgba(230, 210, 167, 0.82);
-      font-family: 'Manrope', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.85));
-      animation: subtitleEntrance 1s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* ================= JUDUL UTAMA SELAMAT DATANG (DIKEMBALIKAN KE SEMULA) ================= */
+    .welcome-title-text {
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      color: transparent;
+      background: linear-gradient(
+        135deg,
+        #F5E8C0 0%,
+        #E8CFA0 20%,
+        #FFFFFF 38%,
+        #D4AF37 50%,
+        #F5E8C0 62%,
+        #FFFFFF 78%,
+        #C9A567 100%
+      );
+      background-size: 250% 250%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 40px rgba(212,175,55,0.35));
+      animation: titleShimmerGold 5s ease-in-out infinite, titleEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
       cursor: default;
       user-select: none;
       pointer-events: none;
     }
 
-    @keyframes subtitleEntrance {
-      0%   { opacity: 0; transform: translateY(8px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes titleShimmerGold {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes titleEntrance {
+      0%   { opacity: 0; transform: translateY(22px) scale(0.96); letter-spacing: 0.18em; }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1); letter-spacing: normal; }
     }
 
     /* Logo WariSara — ukuran pas, tetap floating anggun, TANPA efek hover */
