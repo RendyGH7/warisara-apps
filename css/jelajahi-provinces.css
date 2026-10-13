@@ -2,6 +2,15 @@
    WARISARA - JELAJAHI 38 PROVINSI (EDISI ULTIMATE ENSIKLOPEDIA & PASPOR)
    ========================================================================== */
 
+/* Modal Overlays display rules */
+.modal-overlay.active {
+  display: flex !important;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
 /* Passport Widget in Hero */
 .passport-hero-widget {
   background: linear-gradient(135deg, rgba(26, 22, 18, 0.95), rgba(35, 29, 23, 0.9));
