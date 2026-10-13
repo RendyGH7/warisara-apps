@@ -1037,9 +1037,26 @@
 
     // Event Search
     var searchInput = document.getElementById('province-search-input');
+    var clearSearchBtn = document.getElementById('search-clear-btn');
     if (searchInput) {
       searchInput.addEventListener('input', function (e) {
         currentSearchQuery = e.target.value;
+        if (clearSearchBtn) {
+          if (currentSearchQuery.length > 0) {
+            clearSearchBtn.classList.remove('hidden');
+          } else {
+            clearSearchBtn.classList.add('hidden');
+          }
+        }
+        renderProvincesGrid();
+      });
+    }
+
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('click', function () {
+        if (searchInput) searchInput.value = '';
+        currentSearchQuery = '';
+        clearSearchBtn.classList.add('hidden');
         renderProvincesGrid();
       });
     }
@@ -1049,11 +1066,9 @@
     islandBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         islandBtns.forEach(function (b) {
-          b.classList.remove('active', 'border-brass-400', 'bg-brass-400/20', 'text-brass-300', 'font-semibold');
-          b.classList.add('border-white/10', 'text-surface/70');
+          b.classList.remove('active');
         });
-        btn.classList.add('active', 'border-brass-400', 'bg-brass-400/20', 'text-brass-300', 'font-semibold');
-        btn.classList.remove('border-white/10', 'text-surface/70');
+        btn.classList.add('active');
         currentIsland = btn.getAttribute('data-island');
         renderProvincesGrid();
       });
@@ -1064,24 +1079,13 @@
     statusBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         statusBtns.forEach(function (b) {
-          b.classList.remove('active', 'bg-brass-400', 'text-ink', 'font-bold');
-          b.classList.add('bg-white/5', 'text-surface/70');
+          b.classList.remove('active');
         });
-        btn.classList.add('active', 'bg-brass-400', 'text-ink', 'font-bold');
-        btn.classList.remove('bg-white/5', 'text-surface/70');
+        btn.classList.add('active');
         currentStatus = btn.getAttribute('data-status');
         renderProvincesGrid();
       });
     });
-
-    // Event Sort Select
-    var sortSelect = document.getElementById('province-sort-select');
-    if (sortSelect) {
-      sortSelect.addEventListener('change', function (e) {
-        currentSort = e.target.value;
-        renderProvincesGrid();
-      });
-    }
 
     // Modal Tabs
     var tabBtns = document.querySelectorAll('.modal-tab-btn');
