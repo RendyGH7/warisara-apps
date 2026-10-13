@@ -1174,6 +1174,47 @@
       });
     }
 
+    // Scroll To Top Button
+    var scrollTopBtn = document.getElementById('scroll-to-top-btn');
+    if (scrollTopBtn) {
+      scrollTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // App Download Buttons
+    document.querySelectorAll('.app-download-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var storeText = btn.querySelector('.font-display') ? btn.querySelector('.font-display').textContent : 'Store';
+        playSound('success');
+        
+        var modal = document.createElement('div');
+        modal.className = 'fixed inset-0 z-[1200] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4';
+        modal.innerHTML = `
+          <div class="bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-12 h-12 rounded-2xl bg-brass-400/20 text-brass-300 border border-brass-400/30 flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-2xl">install_mobile</span>
+            </div>
+            <h4 class="font-display text-lg text-surface font-light mb-1">Aplikasi ${storeText}</h4>
+            <p class="text-xs text-surface/75 font-light leading-relaxed mb-4">
+              Aplikasi mobile native WARISARA di <strong>${storeText}</strong> sedang dalam tahap finalisasi dan segera dirilis untuk publik!
+            </p>
+            <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10 text-[11px] text-surface/60 mb-5 text-left flex items-start gap-2">
+              <span class="material-symbols-outlined text-sm text-brass-400 flex-shrink-0 mt-0.5">info</span>
+              <span>Saat ini Anda sudah dapat memasang versi <strong>Web App (PWA)</strong> langsung dari browser di ponsel Anda.</span>
+            </div>
+            <button class="w-full py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-colors cursor-pointer">
+              Mengerti
+            </button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        modal.querySelector('button').onclick = function () { modal.remove(); };
+        modal.onclick = function (ev) { if (ev.target === modal) modal.remove(); };
+      });
+    });
+
     // Global Keydown
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
