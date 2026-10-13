@@ -767,7 +767,7 @@
     optionBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var selectedIdx = parseInt(btn.getAttribute('data-option-idx'), 10);
-        var correctIdx = quiz.answer;
+        var correctIdx = (typeof quiz.correct !== 'undefined' ? quiz.correct : quiz.answer);
 
         optionBtns.forEach(function (b) { b.disabled = true; });
 
