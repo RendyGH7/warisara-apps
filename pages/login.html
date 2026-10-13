@@ -563,7 +563,7 @@
     }
     /* ================= JUDUL UTAMA SELAMAT DATANG (DIKEMBALIKAN KE SEMULA) ================= */
     .welcome-title-text {
-      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
       color: transparent;
       background: linear-gradient(
         135deg,
@@ -688,6 +688,20 @@
       opacity: 0;
       transform: translateY(-16px);
     }
+
+    /* Penyesuaian Kolom Kiri Selaras dengan Panjang/Tinggi Kotak Login di Desktop */
+    @media (min-width: 1024px) {
+      .auth-portal-grid {
+        align-items: stretch !important;
+      }
+      .auth-portal-left-col {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: 100% !important;
+        min-height: 100% !important;
+      }
+    }
   </style>
 </head>
 
@@ -743,14 +757,14 @@
       </div>
 
       <!-- Grid 2 Kolom: Kiri Judul Besar + Maskot + Komentar, Kanan Auth Card Glassmorphic -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div class="auth-portal-grid grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
         <!-- ================= KOLOM KIRI: JUDUL BESAR DI TENGAH + MASKOT + KOMENTAR ================= -->
-        <div class="lg:col-span-7 flex flex-col space-y-4 text-center">
+        <div class="auth-portal-left-col lg:col-span-7 flex flex-col justify-between text-center lg:py-2">
           
           <!-- 1. Tulisan Selamat Datang di & Logo WariSara -->
           <div class="w-full flex flex-col items-center justify-center gap-2 pb-2 text-center" id="welcome-title-block">
-            <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight leading-none select-none">
+            <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight leading-none select-none sm:whitespace-nowrap">
               Selamat Datang di
             </h1>
 
@@ -771,7 +785,7 @@
           </div>
 
           <!-- 2. Di Bawah Tulisan: Maskot di Kiri, Komentar di Kanan Maskot (di Kiri Kotak Login) -->
-          <div class="flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pt-1 text-left">
+          <div class="w-full flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pt-1 text-left">
             
             <!-- Maskot Wari Berada di Bawah Tulisan Selamat Datang -->
             <div class="mascot-container flex-shrink-0 relative">
