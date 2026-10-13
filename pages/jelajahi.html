@@ -70,20 +70,12 @@
         // Utilitas Pembersihan Aktivitas saat Refresh (Kecuali Whitelist Pengecualian)
         window.WARISARA_RESET_REFRESH = function () {
           try {
-            var WHITELIST_KEYS = [
-              'warisara_creative_gallery',     // Pengecualian 1: Desain Creative Lab
-              'warisara_active_user',          // Pengecualian 2: Akun Google login produk lokal
-              'warisara_user_products',        // Pengecualian 2: Produk karya user
-              'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
-              'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
-              'warisara_quiz_seen_ids',        // Pengecualian 3: Riwayat soal kuis
-              'warisara_explorer_passport'     // Pengecualian 4: Paspor Penjelajah 38 Provinsi
-            ];
             var preserved = {};
-            for (var i = 0; i < WHITELIST_KEYS.length; i++) {
-              var k = WHITELIST_KEYS[i];
-              var v = localStorage.getItem(k);
-              if (v !== null) preserved[k] = v;
+            for (var i = 0; i < localStorage.length; i++) {
+              var k = localStorage.key(i);
+              if (k && k.indexOf('warisara_') === 0) {
+                preserved[k] = localStorage.getItem(k);
+              }
             }
             localStorage.clear();
             for (var pk in preserved) {
@@ -248,36 +240,12 @@
       </div>
 
       <div class="max-w-5xl mx-auto text-center relative z-10">
-        <span class="glass-pill mb-4 inline-block tracking-wider uppercase text-[11px] font-semibold text-brass-300">
-          ✨ Ensiklopedia Budaya Interaktif • Edisi Terlengkap 38 Provinsi
-        </span>
         <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-5">
           38 Provinsi Nusantara
         </h1>
-        <p class="text-sm sm:text-lg text-surface/80 max-w-3xl mx-auto leading-relaxed font-light mb-8">
-          Jelajahi keragaman 38 provinsi di Indonesia secara mendalam — telusuri kuliner otentik, pusaka senjata adiluhung, destinasi wisata memukau, kabar hot terkini, dialek lokal, serta kumpulkan stempel di Paspor Penjelajah Digitalmu!
-        </p>
 
         <!-- Stats Counter -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto py-5 border-y border-white/10 text-center mb-8">
-          <div>
-            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
-            <span class="text-[11px] uppercase tracking-wider text-surface/60">Provinsi Lengkap</span>
-          </div>
-          <div>
-            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">190+</span>
-            <span class="text-[11px] uppercase tracking-wider text-surface/60">Ilustrasi Realistis</span>
-          </div>
-          <div>
-            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
-            <span class="text-[11px] uppercase tracking-wider text-surface/60">Kuis Edukasi</span>
-          </div>
-          <div>
-            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">76+</span>
-            <span class="text-[11px] uppercase tracking-wider text-surface/60">Kuliner & Pusaka</span>
-          </div>
-        </div>
-
+    
         <!-- PASSPORT & COMPASS HERO WIDGET -->
         <div class="passport-hero-widget p-5 sm:p-6 rounded-3xl max-w-3xl mx-auto text-left flex flex-col md:flex-row items-center justify-between gap-5">
           <div class="flex-1 w-full">
@@ -321,76 +289,112 @@
       </div>
     </section>
 
-    <!-- SEARCH & MULTI-FILTER BAR -->
-    <section class="filter-bar-sticky sticky top-20 sm:top-24 z-30 py-3.5 px-4 sm:px-6">
-      <div class="max-w-6xl mx-auto space-y-3">
-        
-        <!-- Baris 1: Kolom Pencarian + Filter Status Paspor -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <!-- Search Input -->
-          <div class="relative w-full sm:w-80">
-            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
-            <input id="province-search-input" type="text" placeholder="Cari provinsi, kuliner, senjata, wisata..."
-              class="w-full pl-10 pr-9 py-2 text-xs rounded-full bg-black/40 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all" />
-            <button id="search-clear-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm p-0.5">
-              <span class="material-symbols-outlined text-sm">close</span>
-            </button>
-          </div>
-
-          <!-- Status Filter Segmented Control -->
-          <div class="flex items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
-            <span class="text-[11px] text-surface/50 font-medium hidden md:inline">Status Paspor:</span>
-            <div class="segmented-status-box">
-              <button data-status="all" class="status-filter-btn active segmented-status-btn">
-                <span>Semua</span>
-                <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-black/25 font-mono">38</span>
-              </button>
-              <button data-status="stamped" class="status-filter-btn segmented-status-btn">
-                <span class="material-symbols-outlined text-[13px] text-amber-400">verified</span>
-                <span>Dicap</span>
-              </button>
-              <button data-status="unstamped" class="status-filter-btn segmented-status-btn">
-                <span class="material-symbols-outlined text-[13px] opacity-60">lock</span>
-                <span>Belum</span>
+    <!-- SEARCH & MULTI-FILTER BAR (STATIS - TIDAK MENGIKUTI SCROLL) -->
+    <section class="filter-bar-section py-4 px-4 sm:px-6 bg-[#181512]">
+      <div class="max-w-6xl mx-auto">
+        <!-- Floating Glassmorphism Deck Card -->
+        <div class="filter-deck-card p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-brass-400/20 bg-[#16120E]/90 backdrop-blur-2xl shadow-2xl space-y-3 sm:space-y-3.5">
+          
+          <!-- Baris 1: Kolom Pencarian + Quick Count + Filter Status Paspor -->
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+            <!-- Search Input -->
+            <div class="relative flex-1 max-w-full md:max-w-md">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400 text-lg pointer-events-none">search</span>
+              <input id="province-search-input" type="text" placeholder="Cari provinsi, ibukota, pusaka, kuliner, wisata..."
+                class="w-full pl-10 pr-9 py-2.5 text-xs rounded-xl sm:rounded-full bg-black/50 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 focus:ring-2 focus:ring-brass-400/25 transition-all shadow-inner" />
+              <button id="search-clear-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm p-1 transition-colors">
+                <span class="material-symbols-outlined text-sm">close</span>
               </button>
             </div>
-          </div>
-        </div>
 
-        <!-- Baris 2: Tab Pulau (Full Width, Wrap/Flex Rapi, Tanpa Scrollbar Jelek) -->
-        <div class="pt-2.5 border-t border-white/[0.06] flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar">
-          <div id="island-filters" class="flex items-center gap-1.5 sm:gap-2 flex-nowrap sm:flex-wrap justify-start sm:justify-center w-full no-scrollbar py-0.5">
-            <button data-island="all" class="island-btn island-filter-pill active">
-              <span>Semua</span>
-              <span class="pill-count">38</span>
-            </button>
-            <button data-island="Sumatera" class="island-btn island-filter-pill">
-              <span>Sumatera</span>
-              <span class="pill-count">10</span>
-            </button>
-            <button data-island="Jawa" class="island-btn island-filter-pill">
-              <span>Jawa</span>
-              <span class="pill-count">6</span>
-            </button>
-            <button data-island="Bali & Nusa Tenggara" class="island-btn island-filter-pill">
-              <span>Bali & NT</span>
-              <span class="pill-count">3</span>
-            </button>
-            <button data-island="Kalimantan" class="island-btn island-filter-pill">
-              <span>Kalimantan</span>
-              <span class="pill-count">5</span>
-            </button>
-            <button data-island="Sulawesi" class="island-btn island-filter-pill">
-              <span>Sulawesi</span>
-              <span class="pill-count">6</span>
-            </button>
-            <button data-island="Maluku & Papua" class="island-btn island-filter-pill">
-              <span>Maluku & Papua</span>
-              <span class="pill-count">8</span>
-            </button>
+            <!-- Status Paspor Segmented Control -->
+            <div class="flex items-center justify-between md:justify-end gap-2.5 flex-shrink-0">
+              <span class="text-[11px] text-surface/60 font-medium flex items-center gap-1.5 hidden sm:inline-flex">
+                <span class="material-symbols-outlined text-xs text-brass-400">verified_user</span>
+                <span>Status Paspor:</span>
+              </span>
+              <div class="segmented-status-box">
+                <button data-status="all" class="status-filter-btn active segmented-status-btn">
+                  <span>Semua</span>
+                  <span class="status-badge-count">38</span>
+                </button>
+                <button data-status="stamped" class="status-filter-btn segmented-status-btn">
+                  <span class="material-symbols-outlined text-[13px] text-emerald-400">check_circle</span>
+                  <span>Dicap</span>
+                </button>
+                <button data-status="unstamped" class="status-filter-btn segmented-status-btn">
+                  <span class="material-symbols-outlined text-[13px] text-surface/50">lock</span>
+                  <span>Belum</span>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
 
+          <!-- Baris 2: Navigasi Wilayah Berdasarkan 5 Pulau Utama Indonesia -->
+          <div class="pt-2.5 border-t border-white/[0.08] flex items-center overflow-x-auto no-scrollbar">
+            <div id="island-filters" class="flex items-center gap-1.5 sm:gap-2 flex-nowrap min-w-max py-0.5 w-full">
+              
+              <!-- Tab Semua -->
+              <button data-island="all" class="island-btn island-filter-pill active">
+                <span class="material-symbols-outlined text-[13px]">travel_explore</span>
+                <span>Semua</span>
+                <span class="pill-count">38</span>
+              </button>
+
+              <!-- Separator -->
+              <div class="island-group-divider"></div>
+
+              <!-- Group Header: 5 Pulau Utama -->
+              <div class="island-group-header">
+                <span class="material-symbols-outlined text-xs text-brass-400">landscape</span>
+                <span>5 Pulau Utama</span>
+              </div>
+
+              <!-- 5 Pulau Utama Buttons -->
+              <button data-island="Sumatera" class="island-btn island-filter-pill">
+                <span>Sumatera</span>
+                <span class="pill-count">10</span>
+              </button>
+              <button data-island="Jawa" class="island-btn island-filter-pill">
+                <span>Jawa</span>
+                <span class="pill-count">6</span>
+              </button>
+              <button data-island="Kalimantan" class="island-btn island-filter-pill">
+                <span>Kalimantan</span>
+                <span class="pill-count">5</span>
+              </button>
+              <button data-island="Sulawesi" class="island-btn island-filter-pill">
+                <span>Sulawesi</span>
+                <span class="pill-count">6</span>
+              </button>
+              <button data-island="Papua" class="island-btn island-filter-pill">
+                <span>Papua</span>
+                <span class="pill-count">6</span>
+              </button>
+
+              <!-- Separator -->
+              <div class="island-group-divider"></div>
+
+              <!-- Group Header: Kepulauan -->
+              <div class="island-group-header text-surface/60">
+                <span class="material-symbols-outlined text-xs text-brass-400/80">waves</span>
+                <span>Kepulauan</span>
+              </div>
+
+              <!-- Kepulauan Buttons -->
+              <button data-island="Bali & Nusa Tenggara" class="island-btn island-filter-pill">
+                <span>Bali & NT</span>
+                <span class="pill-count">3</span>
+              </button>
+              <button data-island="Maluku" class="island-btn island-filter-pill">
+                <span>Maluku</span>
+                <span class="pill-count">2</span>
+              </button>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -675,7 +679,7 @@
 
   </main>
 
-    <!-- FOOTER PROFESIONAL & MODERN -->
+              <!-- FOOTER PROFESIONAL & MODERN -->
   <footer class="relative bg-[#0E0C0A] text-surface/70 text-xs border-t border-white/10 pt-16 pb-12 px-4 sm:px-8 overflow-hidden">
     <!-- Subtle Ambient Glow -->
     <div class="absolute -top-32 left-1/4 w-96 h-96 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -687,10 +691,10 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
         
         <!-- Kolom Brand & Penjelasan Web (5 Cols) -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="flex items-center gap-3">
-            <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-10 h-10 object-contain drop-shadow" />
-            <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-7 object-contain drop-shadow" />
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-0">
+          <div class="flex items-center gap-5">
+            <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-14 h-14 object-contain drop-shadow" />
+            <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-[42px] sm:h-[46px] object-contain drop-shadow" />
           </div>
 
           <p class="text-xs sm:text-sm text-surface/75 font-light leading-relaxed pr-0 lg:pr-6">
@@ -751,11 +755,6 @@
               </div>
             </button>
 
-          </div>
-
-          <div class="flex items-center gap-2 text-[11px] text-surface/50 pt-1">
-            <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
-            <span>Tersedia untuk Android & iOS (PWA Ready)</span>
           </div>
         </div>
 
@@ -827,7 +826,7 @@
   <script src="../js/utils/helpers.js?v=10"></script>
   <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js?v=10"></script>
-  <script src="../js/utils/marketplace-auth.js"></script>
+  <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=10"></script>
   <script src="../js/sections/jelajahi-provinces.js?v=4"></script>

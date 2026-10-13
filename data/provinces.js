@@ -31,8 +31,8 @@
     "tourism": {
       "name": "Masjid Raya Baiturrahman & Titik Nol Kilometer Pulau Weh",
       "desc": "Monumen agung berpayung elektrik peninggalan Sultan Iskandar Muda serta surga diving Pulau Weh Sabang dengan taman terumbu karang tropis yang memesona.",
-      "image": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/aceh-cover.jpg",
+      "photo": "../assets/images/provinces/aceh-cover.jpg"
     },
     "language": {
       "name": "Bahasa Aceh",
@@ -90,7 +90,7 @@
       {
         "title": "Keagungan Masjid Raya Baiturrahman",
         "category": "Wisata & Arsitektur",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/aceh-cover.jpg"
       },
       {
         "title": "Kelezatan Rempah Mie Aceh Kepiting",
@@ -139,8 +139,8 @@
     "culinary": {
       "name": "Ikan Mas Arsik Andaliman & Bika Ambon",
       "desc": "Olahan ikan mas bumbu kuning rempah andaliman yang bergetir khas di lidah dipadu asam gelugur segar, serta legitnya kue Bika Ambon bersarang lebah.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Piso Gaja Dompak",
@@ -151,8 +151,8 @@
     "tourism": {
       "name": "Danau Toba, Pulau Samosir & Istana Maimun",
       "desc": "Danau vulkanik terbesar di dunia dengan perkampungan megalitikum Tomok serta kemegahan arsitektur Istana Maimun perpaduan Melayu, Islam, dan Eropa.",
-      "image": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/sumatera-utara-cover.jpg",
+      "photo": "../assets/images/provinces/sumatera-utara-cover.jpg"
     },
     "language": {
       "name": "Bahasa Batak & Melayu Deli",
@@ -210,12 +210,12 @@
       {
         "title": "Panorama Kaldera Magis Danau Toba",
         "category": "Wisata Alam",
-        "url": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/sumatera-utara-cover.jpg"
       },
       {
         "title": "Sajian Ikan Mas Arsik Bumbu Andaliman",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pedang Pusaka Piso Gaja Dompak",
@@ -265,14 +265,14 @@
     "weapon": {
       "name": "Karih Minangkabau",
       "desc": "Senjata keris tikam berbilah melengkung tanpa lekuk (luk), diselipkan di pinggang depan sebagai lambang penjaga kehormatan marwah keluarga.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Jam Gadang Bukittinggi, Lembah Harau & Danau Maninjau",
       "desc": "Tebing granit megah Lembah Harau dengan air terjun alami, menara Jam Gadang peninggalan 1926, dan kelokan 44 Danau Maninjau yang spektakuler.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/sumatera-barat-cover.jpg",
+      "photo": "../assets/images/provinces/sumatera-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Minangkabau",
@@ -330,7 +330,7 @@
       {
         "title": "Keindahan Lembah Harau dan Tebing Granit",
         "category": "Wisata Alam",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/sumatera-barat-cover.jpg"
       },
       {
         "title": "Rendang Daging Sapi Karamelisasi Rempah",
@@ -340,7 +340,7 @@
       {
         "title": "Karih Pusaka Khas Minangkabau",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Kemegahan Arsitektur Istano Basa Pagaruyung",
@@ -379,20 +379,20 @@
     "culinary": {
       "name": "Gulai Ikan Patin Asam Pedas & Bolu Kemojo",
       "desc": "Sup ikan patin berkuah merah terang berbumbu asam kandis, cabai giling, dan daun kesum wangi, diimbangi manis gurihnya Bolu Kemojo beraroma pandan.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pedang Jenawi",
       "desc": "Pedang baja panjang bermata satu peninggalan hulubalang panglima perang kerajaan Melayu, simbol kehormatan perwira pelindung negeri.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Istana Siak Sri Indrapura & Candi Muara Takus",
       "desc": "Istana The Sun Palace bergaya Eropa-Arab-Melayu peninggalan 1889 dan mahakarya stupa Candi Buddha tertua Muara Takus di tengah hutan Kampar.",
-      "image": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/riau-cover.jpg",
+      "photo": "../assets/images/provinces/riau-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Riau",
@@ -450,17 +450,17 @@
       {
         "title": "Megahnya Istana Siak Sri Indrapura",
         "category": "Arsitektur Kerajaan",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/riau-cover.jpg"
       },
       {
         "title": "Gulai Ikan Patin Asam Pedas Melayu",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pedang Pusaka Jenawi Melayu Riau",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Atraksi Pacu Jalur Tradisional Sungai Kuantan",
@@ -499,20 +499,20 @@
     "culinary": {
       "name": "Mie Lendir & Olahan Siput Laut Gonggong",
       "desc": "Mie kuning berkuah kacang kental manis gurih berbumbu ubi jalar, disajikan bersama siput laut gonggong rebus cocol sambal cabai rawit jeruk nipis.",
-      "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Tumbuk Lada",
       "desc": "Senjata tikam pendek bersarung kayu kemuning ukiran pucuk rebung, pusaka andalan pelaut Melayu dalam pertempuran jarak dekat di atas geladak kapal.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pulau Penyengat Mas Kawin Sultan & Jembatan Barelang Batam",
       "desc": "Masjid Sultan berbahan putih telur di Pulau Penyengat serta kemegahan 6 jembatan kabel Barelang yang menghubungkan pulau-pulau di Kepri.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/kepulauan-riau-cover.jpg",
+      "photo": "../assets/images/provinces/kepulauan-riau-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Kepulauan",
@@ -570,17 +570,17 @@
       {
         "title": "Masjid Bersejarah Putih Telur Pulau Penyengat",
         "category": "Wisata Budaya",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/kepulauan-riau-cover.jpg"
       },
       {
         "title": "Sajian Siput Laut Gonggong Khas Kepri",
         "category": "Kuliner Laut",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Badik Tumbuk Lada Melayu Bahari",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Kemegahan Arsitektur Jembatan Barelang Batam",
@@ -619,20 +619,20 @@
     "culinary": {
       "name": "Tempoyak Ikan Patin & Nasi Minyak",
       "desc": "Gulai asam pedas fermentasi durian asli dipadu daging ikan patin Sungai Batanghari yang lembut gurih, disantap bersama Nasi Minyak harum rempah kapulaga.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Siginjai",
       "desc": "Keris bertatahkan bilah pamor emas murni dan intan permata berlian peninggalan Sultan Thaha, pusaka lambang pemegang mandat kekuasaan tertinggi bumi Jambi.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Percandian Muaro Jambi & Gunung Kerinci Atap Sumatra",
       "desc": "Kompleks candi bata merah terluas di Asia Tenggara dan puncak tertinggi gunung berapi Indonesia (3.805 mdpl) dengan kebun teh Kayu Aro tertua.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/jambi-cover.jpg",
+      "photo": "../assets/images/provinces/jambi-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Jambi",
@@ -690,17 +690,17 @@
       {
         "title": "Kompleks Percandian Bata Merah Muaro Jambi",
         "category": "Situs Cagar Budaya",
-        "url": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/jambi-cover.jpg"
       },
       {
         "title": "Gulai Tempoyak Ikan Patin Batanghari",
         "category": "Kuliner Tradisional",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Keramat Keris Siginjai Jambi",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Lanskap Kebun Teh Kayu Aro & Gunung Kerinci",
@@ -739,20 +739,20 @@
     "culinary": {
       "name": "Pempek Kapal Selam Cuko Asli & Pindang Patin",
       "desc": "Olahan daging ikan tenggiri kenyal gurih berisi telur bebek utuh yang disiram kuah cuko asam pedas manis gula batok linggau kental.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Palembang / Klewang Belango",
       "desc": "Keris berhulu ukiran gading atau kayu kemuning motif kepala naga dengan bilah pamor beras wutah, simbol wibawa ksatria bahari Musi.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Jembatan Ampera Sungai Musi & Pulau Kemaro",
       "desc": "Ikon kebanggaan Jembatan Ampera sepanjang 1.177 meter yang melintasi Sungai Musi serta legenda cinta abadi pagoda 9 lantai Pulau Kemaro.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/sumatera-selatan-cover.jpg",
+      "photo": "../assets/images/provinces/sumatera-selatan-cover.jpg"
     },
     "language": {
       "name": "Bahasa Palembang",
@@ -810,17 +810,17 @@
       {
         "title": "Kilau Senja Jembatan Ampera Sungai Musi",
         "category": "Landmark Ikonik",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/sumatera-selatan-cover.jpg"
       },
       {
         "title": "Pempek Kapal Selam Kuah Cuko Hitam Kental",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keris Pusaka Berpamor Khas Palembang",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Tari Gending Sriwijaya Keraton",
@@ -859,20 +859,20 @@
     "culinary": {
       "name": "Pendap Ikan Daun Talas & Bagar Hiu",
       "desc": "Daging ikan dibumbui rempah parutan kelapa pedas gurih dibungkus berlapis-lapis daun talas lalu direbus 8 jam hingga lembut meresap.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Kuduk & Kerambit Bengkulu",
       "desc": "Pisau lengkung cakar macan bermata ganda yang sangat mematikan dalam pertarungan jarak dekat, diwariskan pendekar silat pesisir Bengkulu.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Benteng Marlborough & Cagar Alam Bunga Rafflesia Arnoldii",
       "desc": "Benteng kokoh berbentuk kura-kura menghadap Samudera Hindia dan hutan hujan Taba Penanjung tempat mekarnya bunga parasit terbesar di dunia.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/bengkulu-cover.jpg",
+      "photo": "../assets/images/provinces/bengkulu-cover.jpg"
     },
     "language": {
       "name": "Bahasa Bengkulu",
@@ -930,17 +930,17 @@
       {
         "title": "Kemegahan Bersejarah Benteng Marlborough",
         "category": "Benteng Bersejarah",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/bengkulu-cover.jpg"
       },
       {
         "title": "Sajian Tradisional Ikan Pendap Daun Talas",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Senjata Belati Lengkung Kerambit Bengkulu",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Mekarnya Bunga Raksasa Langka Rafflesia Arnoldii",
@@ -985,14 +985,14 @@
     "weapon": {
       "name": "Terapang Lampung",
       "desc": "Keris pusaka bangsawan adat dengan sarung berlapis lempengan emas murni berukiran burung garuda, lambang kebangsawanan dan kedaulatan.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Way Kambas & Teluk Kiluan Lumba-Lumba",
       "desc": "Pusat konservasi gajah Sumatra liar di Way Kambas serta teluk tenang Kiluan tempat ribuan lumba-lumba hidung botol melompat di lautan lepas.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/lampung-cover.jpg",
+      "photo": "../assets/images/provinces/lampung-cover.jpg"
     },
     "language": {
       "name": "Bahasa Lampung",
@@ -1050,7 +1050,7 @@
       {
         "title": "Konservasi Gajah Sumatra Taman Nasional Way Kambas",
         "category": "Konservasi Satwa",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/lampung-cover.jpg"
       },
       {
         "title": "Sajian Ikan Bakar Seruit Sambal Tempoyak",
@@ -1060,7 +1060,7 @@
       {
         "title": "Pusaka Emas Terapang Bangsawan Lampung",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Lumba-lumba Liar Bermain di Teluk Kiluan",
@@ -1099,20 +1099,20 @@
     "culinary": {
       "name": "Lempah Kuning Ikan Tenggiri Nanas & Otak-otak Belinyu",
       "desc": "Sup ikan laut berkuah kuning asam segar dari paduan kunyit, cabai rawit, terasi toboali, dan potongan nanas manis, serta otak-otak tenggiri bakar daun pisang.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Siwar Panjang",
       "desc": "Senjata pusaka berbilah tajam lurus pipih bersarung kayu pelawan bertatahkan timah murni, senjata andalan para pejuang Depati Amir.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pantai Tanjung Tinggi Laskar Pelangi & Pulau Lengkuas",
       "desc": "Hamparan batu granit raksasa purba artistik setinggi 10 meter di tepi pantai toska serta mercusuar kolonial Belanda tahun 1882 di Pulau Lengkuas.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/bangka-belitung-cover.jpg",
+      "photo": "../assets/images/provinces/bangka-belitung-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Bangka / Belitung",
@@ -1170,17 +1170,17 @@
       {
         "title": "Batu Granit Raksasa Pantai Tanjung Tinggi",
         "category": "Keajaiban Alam",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/bangka-belitung-cover.jpg"
       },
       {
         "title": "Lempah Kuning Ikan Tenggiri Nanas Kuah Segar",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Tradisional Siwar Panjang Bangka",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Mercusuar Kuno Bersejarah Pulau Lengkuas",
@@ -1219,20 +1219,20 @@
     "culinary": {
       "name": "Sate Bandeng Tanpa Duri & Rabeg Banten",
       "desc": "Ikan bandeng yang dicabut durinya lalu diisi adonan daging ikan berbumbu santan rempah lalu dibakar, dipadu semur kambing Rabeg rempah pala pekat khas para Sultan.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Golok Ciomas",
       "desc": "Golok tempaan sakral dari mata air Ciomas dengan pamor besi kuno, pusaka legendaris para jawara Banten sebagai lambang keberanian menegakkan kebenaran.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Kawasan Adat Suku Baduy & Taman Nasional Ujung Kulon",
       "desc": "Desa adat Kanekes tanpa listrik yang hidup selaras dengan alam serta suaka habitat alami terakhir badak jawa bercula satu di semenanjung Ujung Kulon.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/banten-cover.jpg",
+      "photo": "../assets/images/provinces/banten-cover.jpg"
     },
     "language": {
       "name": "Bahasa Sunda Banten & Jawa Serang",
@@ -1290,17 +1290,17 @@
       {
         "title": "Keheningan Alami Desa Adat Baduy Kanekes",
         "category": "Desa Budaya",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/banten-cover.jpg"
       },
       {
         "title": "Sajian Sate Bandeng Gurih Tanpa Duri",
         "category": "Kuliner Tradisional",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Sakral Golok Ciomas Banten",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Habitat Badak Jawa Taman Nasional Ujung Kulon",
@@ -1339,20 +1339,20 @@
     "culinary": {
       "name": "Kerak Telor Bebek Serundeng & Soto Betawi",
       "desc": "Beras ketan yang dimasak di atas wajan arang tanpa minyak bersama telur bebek, ebi gurih, dan taburan serundeng kelapa pedas manis, serta Soto Betawi kuah susu berempah.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Golok Betawi (Golok Gobang)",
       "desc": "Senjata pusaka jawara dan ksatria rakyat Betawi dengan sarung kayu johar berukir kepala burung kakatua, simbol kegagahan dan penjaga kampung.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1584441405886-bc91be61e56a?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1584441405886-bc91be61e56a?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Monumen Nasional (Monas) & Kawasan Kota Tua Fatahillah",
       "desc": "Tugu api kemerdekaan berlapis emas murni 50 kg setinggi 132 meter serta kawasan museum gedung kolonial abad ke-17 di Kota Tua yang estetik.",
-      "image": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/dki-jakarta-cover.jpg",
+      "photo": "../assets/images/provinces/dki-jakarta-cover.jpg"
     },
     "language": {
       "name": "Bahasa Betawi",
@@ -1410,17 +1410,17 @@
       {
         "title": "Kilau Keemasan Puncak Monumen Nasional (Monas)",
         "category": "Landmark Nasional",
-        "url": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/dki-jakarta-cover.jpg"
       },
       {
         "title": "Kelezatan Tradisional Kerak Telor Bebek Serundeng",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Golok Gagang Tanduk Jawara Betawi",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1584441405886-bc91be61e56a?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Suasana Sore di Lapangan Fatahillah Kota Tua",
@@ -1459,20 +1459,20 @@
     "culinary": {
       "name": "Nasi Liwet Kastrol Pasundan & Peuyeum Bandung",
       "desc": "Nasi liwet wangi daun salam sereh dengan taburan teri medan dan petai dalam panci kastrol, dinikmati bersama ayam goreng lengkuas dan sambal terasi dadak.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Kujang Pajajaran",
       "desc": "Senjata pusaka sakti khas Sunda berlekuk indah melambangkan pulau Jawa dan huruf Arab Ba, senjata ksatria berdaya pertahanan spiritual tinggi.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Kawah Putih Ciwidey, Tangkuban Parahu & Saung Angklung Udjo",
       "desc": "Danau kawah vulkanik berwarna toska mistis di Ciwidey, legenda kawah Sangkuriang Tangkuban Parahu, dan konser harmoni bambu dunia di Bandung.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/jawa-barat-cover.jpg",
+      "photo": "../assets/images/provinces/jawa-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Sunda",
@@ -1530,17 +1530,17 @@
       {
         "title": "Pesona Danau Vulkanik Kawah Putih Ciwidey",
         "category": "Wisata Alam",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/jawa-barat-cover.jpg"
       },
       {
         "title": "Nasi Liwet Kastrol Pasundan Komplet",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Sakti Kujang Pasundan Berlukiskan Pamor",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Harmoni Bambu Angklung Saung Udjo",
@@ -1579,20 +1579,20 @@
     "culinary": {
       "name": "Lumpia Basah/Goreng Semarang & Nasi Gandul Pati",
       "desc": "Rebung muda manis gurih bercampur daging kepiting dan udang dalam kulit lumpia renyah bersaus kental bawang putih, serta legitnya Nasi Liwet Solo.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Jawa Gayaman Surakarta",
       "desc": "Keris pusaka tempaan empu dengan warangka gayaman bulat simbol kematangan batin, berbilah pamor beras wutah penolak energi negatif.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Candi Borobudur Magelang & Dataran Tinggi Dieng",
       "desc": "Candi Buddha terbesar di dunia peninggalan wangsa Syailendra 750 M serta negeri para dewa Dieng Plateau dengan kawah belerang dan telaga warna.",
-      "image": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/jawa-tengah-cover.jpg",
+      "photo": "../assets/images/provinces/jawa-tengah-cover.jpg"
     },
     "language": {
       "name": "Bahasa Jawa",
@@ -1650,17 +1650,17 @@
       {
         "title": "Stupa Agung Keajaiban Dunia Candi Borobudur",
         "category": "Mahakarya Dunia",
-        "url": "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/jawa-tengah-cover.jpg"
       },
       {
         "title": "Lumpia Semarang Goreng Gurih Renyah",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Keris Gayaman Solo Bertatahkan Pamor",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Kabut Syahdu Dataran Tinggi Dieng Plateau",
@@ -1699,20 +1699,20 @@
     "culinary": {
       "name": "Gudeg Yu Djum Nangka Muda & Bakpia Pathok",
       "desc": "Olahan gori (nangka muda) dimasak santan dan gula aren berhari-hari hingga cokelat pekat lembut bersanding krecek pedas dan areh santan gurih kental.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Yogyakarta Branggah",
       "desc": "Keris dengan warangka model branggah anggun gagah simbol ksatria tangguh nan berbudi pekerti luhur pembela kedaulatan tanah tumpah darah.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1533158307587-828f0a76ef46?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1533158307587-828f0a76ef46?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Keraton Ngayogyakarta Hadiningrat, Malioboro & Candi Prambanan",
       "desc": "Kompleks istana kerajaan hidup bernilai filosofis tinggi, jalan budaya Malioboro, dan candi Hindu terindah di dunia Candi Prambanan abad ke-9.",
-      "image": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Jawa Krama Inggil",
@@ -1770,17 +1770,17 @@
       {
         "title": "Kemegahan Candi Roro Jonggrang Prambanan",
         "category": "Warisan Dunia",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Gudeg Komplet Nangka Muda Telur Areh",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Keris Warangka Branggah Jogja",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1533158307587-828f0a76ef46?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Bangsal Kencana Keraton Ngayogyakarta",
@@ -1819,20 +1819,20 @@
     "culinary": {
       "name": "Rawon Daging Sapi Kluwek Hitam & Rujak Cingur",
       "desc": "Sup daging sapi empuk berkuah hitam pekat dari rempah kluwek kaya rasa disajikan dengan tauge pendek dan sambal terasi, serta Rujak Cingur bumbu petis udang khas Sidoarjo.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Clurit Madura & Keris Majapahit",
       "desc": "Senjata bilah lengkung tajam sabit baja khas masyarakat Madura lambang harga diri ksatria, berdampingan dengan keris tempaan era Majapahit berhulu perunggu.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Gunung Bromo Kaldera Tengger & Kawah Ijen Api Biru",
       "desc": "Lanskap matahari terbit spektakuler lautan pasir Bromo serta fenomena langka dunia kobaran api belerang biru (Blue Fire) di kawah Ijen Banyuwangi.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Jawa Timuran & Madura",
@@ -1890,17 +1890,17 @@
       {
         "title": "Kemegahan Lanskap Kaldera Bromo Tengger Semeru",
         "category": "Keajaiban Alam",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Rawon Daging Sapi Kuah Kluwek Hitam Pekat",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Clurit Madura Baja Tempa Gagang Kayu",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pesona Kobaran Api Biru (Blue Fire) Kawah Ijen",
@@ -1939,20 +1939,20 @@
     "culinary": {
       "name": "Ayam Betutu Gilimanuk & Sate Lilit Ikan Laut",
       "desc": "Ayam utuh dibumbui rempah Base Genep lengkap yang dibungkus pelepah pinang lalu dipanggang perlahan dengan sekam api, serta sate lilit daging ikan tenggiri serai.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Tayuhan Bali",
       "desc": "Keris pusaka sakral dengan hulu (handle) berukir wujud dewa dewi atau ksatria berbahan kayu cendana atau gading, disucikan dalam upacara Tumpek Landep.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pura Tanah Lot Karang Laut, Ubud & Pura Luhur Uluwatu",
       "desc": "Pura megah di atas bongkahan karang samudera Tanah Lot, terasering sawah hijau Tegalalang Ubud, dan pementasan tari Kecak api di tebing karang Uluwatu saat senja.",
-      "image": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Bali",
@@ -2010,17 +2010,17 @@
       {
         "title": "Pura Tanah Lot Bertengger di Karang Laut Samudera",
         "category": "Ikon Budaya",
-        "url": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Ayam Betutu Gilimanuk Bumbu Base Genep",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keris Tayuhan Bali Berhulu Ukiran Emas Dewa",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Dramatisnya Atraksi Tari Kecak Api Uluwatu",
@@ -2059,20 +2059,20 @@
     "culinary": {
       "name": "Ayam Taliwang Bakar & Plecing Kangkung Lombok",
       "desc": "Ayam kampung muda dibakar berlumur bumbu cabai rawit pedas, bawang, tomat, dan terasi khas Lombok, disajikan dengan plecing kangkung air renyah.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Tulup & Keris Sasak Lombok",
       "desc": "Senjata sumpit beracun berbahan kayu nangka dengan anak sumpit (anjak) yang sangat akurat, berpasangan dengan keris Sasak berluk tajam bertatah pamor perak.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1578328819077-3e11765c9284?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1578328819077-3e11765c9284?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Gunung Rinjani Danau Segara Anak & Gili Trawangan",
       "desc": "Danau kawah vulkanik Segara Anak berketinggian 2.000 mdpl di Gunung Rinjani serta pulau bebas polusi kendaraan bermotor Gili Trawangan dengan air sebening kaca.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Sasak & Samawa",
@@ -2130,17 +2130,17 @@
       {
         "title": "Keagungan Danau Segara Anak Kaldera Rinjani",
         "category": "Gunung & Kaldera",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Ayam Taliwang Bakar Pedas Gurih Khas Lombok",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Senjata Pusaka Tulup dan Keris Adat Sasak",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1578328819077-3e11765c9284?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Kejernihan Air Laut Bebas Polusi Gili Trawangan",
@@ -2179,20 +2179,20 @@
     "culinary": {
       "name": "Daging Se'i Sapi Asap Kayu Kosambi & Jagung Bose",
       "desc": "Daging sapi pilihan yang diasap berjam-jam menggunakan kayu dan daun kosambi menghasilkan aroma khas gurih renyah, disantap bersama bubur jagung bose santan kacang merah.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Sundu & Parang Kabeala Sumba",
       "desc": "Senjata pusaka tikam bersarung kayu cendana atau tanduk kerbau berukir kuda jantan, senjata kehormatan ksatria adat Sumba dalam tradisi Pasola.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783901586-78822e399589?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783901586-78822e399589?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Komodo Labuan Bajo & Tiga Warna Danau Kelimutu",
       "desc": "Habitat satu-satunya di bumi reptil purba raksasa Varanus komodoensis serta keajaiban kawah tiga warna Danau Kelimutu di puncak gunung Ende.",
-      "image": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Manggarai, Dawan & Tetun",
@@ -2250,17 +2250,17 @@
       {
         "title": "Habitat Kadal Purba Raksasa Komodo Labuan Bajo",
         "category": "Satwa Langka Dunia",
-        "url": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Daging Asap Se'i Sapi Harum Daun Kosambi",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Parang Berukir Kabeala Sumba",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783901586-78822e399589?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keajaiban Alam Danau Tiga Warna Kelimutu Ende",
@@ -2299,20 +2299,20 @@
     "culinary": {
       "name": "Bubur Pedas Sambas & Choipan Singkawang",
       "desc": "Bubur beras sangrai kaya sayuran rempah pakis, daun kesum wangi, ubi kayu, dan kacang tanah gurih, dipadu lembutnya Choipan kukus berisi bengkuang ebi.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Mandau Dayak Kanayatn",
       "desc": "Bilah baja pamor bertatahkan tembaga perak dengan gagang tanduk rusa berukir burung enggang pusaka ksatria pelindung suku Dayak.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Tugu Khatulistiwa Pontianak & Danau Sentarum",
       "desc": "Monumen titik perlintasan garis khatulistiwa bumi tempat fenomena telur berdiri tegak saat titik kulminasi serta keajaiban danau musiman Sentarum.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/kalimantan-barat-cover.jpg",
+      "photo": "../assets/images/provinces/kalimantan-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Dayak Kanayatn & Melayu Pontianak",
@@ -2370,17 +2370,17 @@
       {
         "title": "Tugu Titik Perlintasan Khatulistiwa Bumi Pontianak",
         "category": "Ikon Geografis",
-        "url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Bubur Pedas Rempah Sayuran Khas Sambas",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Mandau Dayak Berhulu Tanduk Rusa Ukir",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keindahan Rawa Danau Musiman Sentarum Kapuas",
@@ -2419,20 +2419,20 @@
     "culinary": {
       "name": "Juhu Singkah Umbut Rotan & Ikan Wadi",
       "desc": "Gulai umbut rotan muda bertekstur empuk dengan rasa gurih bersemburat pahit nikmat yang dimasak bersama terong asam dan ikan baung sungai segar.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Duhung Dayak Ngaju",
       "desc": "Senjata tikam tertua suku Dayak Ngaju bermata ganda yang dipercaya berumur ribuan tahun, pusaka para tetua adat dalam upacara penyucian Tiwah.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1580136579395-5f564756858e?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1580136579395-5f564756858e?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Tanjung Puting & Sungai Kahayan",
       "desc": "Kawasan suaka orangutan liar terbesar di muka bumi di Camp Leakey serta menyusuri sungai hitam Kahayan menggunakan perahu klotok tradisional.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Dayak Ngaju",
@@ -2490,17 +2490,17 @@
       {
         "title": "Orangutan Liar di Habitat Alami Tanjung Puting",
         "category": "Konservasi Satwa",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Juhu Singkah Umbut Rotan Rempah Ikan Sungai",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Purba Duhung Senjata Suku Dayak Ngaju",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1580136579395-5f564756858e?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Megahnya Rumah Adat Panjang Huma Betang",
@@ -2539,20 +2539,20 @@
     "culinary": {
       "name": "Soto Banjar Limau Kuit & Ketupat Kandangan",
       "desc": "Soto ayam berkuah bening harum rempah kayu manis kapulaga dipadu perasan jeruk limau kuit, dimakan bersama perkedel ubi dan telur bebek pindang.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Nabur Banjar",
       "desc": "Pedang lengkung khas pendekar Banjar dengan pelindung jari tangan kuningan berukir, senjata legendaris pasukan perang Pangeran Antasari.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1582562124812-d8a4365797b1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1582562124812-d8a4365797b1?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pasar Terapung Lok Baintan Muara Sungai Barito & Geopark Meratus",
       "desc": "Aktivitas transaksi barter subuh para pedagang wanita bertopi tanggui di atas perahu jukung kayu serta keindahan bentang alam Geopark Pegunungan Meratus.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Banjar",
@@ -2610,17 +2610,17 @@
       {
         "title": "Suasana Fajar Pasar Terapung Lok Baintan Barito",
         "category": "Tradisi Budaya",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Soto Banjar Kuah Susu Rempah Berempah Gurih",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Pedang Parang Nabur Ksatria Banjar",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1582562124812-d8a4365797b1?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Puncak Pegunungan Megah Geopark Meratus",
@@ -2659,20 +2659,20 @@
     "culinary": {
       "name": "Nasi Bekepor Daging Masak Bumi Hangus & Gangan Asam",
       "desc": "Nasi liwet beraroma rempah daun kemangi minyak sayur peninggalan raja Kutai yang disantap bersama daging sapi masak kecap pekat berempah dan sayur asam patin.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Mandau Dayak Kenyah",
       "desc": "Mandau bertatahkan pamor kuningan hulu tanduk rusa berhias bulu burung enggang gading, senjata kehormatan ksatria adat Dayak Apo Kayan.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1582562124813-f92607997a38?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1582562124813-f92607997a38?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Kepulauan Derawan & Maratua Surga Penyu serta Titik Nol IKN",
       "desc": "Danau ubur-ubur tanpa sengat Kakaban, terumbu karang laut dalam Maratua tempat pari manta menari, serta kawasan hijau futuristik Ibu Kota Nusantara.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/kalimantan-timur.jpg",
+      "photo": "../assets/images/provinces/kalimantan-timur.jpg"
     },
     "language": {
       "name": "Bahasa Kutai & Dayak Kenyah",
@@ -2730,17 +2730,17 @@
       {
         "title": "Bawah Laut Kejernihan Pulau Maratua Derawan",
         "category": "Surga Bahari",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/kalimantan-timur.jpg"
       },
       {
         "title": "Nasi Bekepor Khas Kesultanan Kutai Kartanegara",
         "category": "Kuliner Istana",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Mandau Pusaka Dayak Kenyah Bertatah Perak",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1582562124813-f92607997a38?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Megahnya Mahakarya Istana Garuda di IKN Nusantara",
@@ -2779,20 +2779,20 @@
     "culinary": {
       "name": "Kepiting Soka Tarakan & Lawa Mentimun Kerang",
       "desc": "Kepiting soka cangkang lunak yang digoreng krispi dengan saus pedas asam manis khas Tarakan serta segarnya Lawa mentimun kerang kelapa sangrai suku Tidung.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Gayang Dayak Lundayeh & Mandau Tidung",
       "desc": "Senjata pedang panjang bersarung ukiran taring macan dahan dengan ikatan rotan merah darah, pusaka ksatria pelindung lembah dataran tinggi Krayan.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1584441405887-ca8c199588b1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1584441405887-ca8c199588b1?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Kayan Mentarang & Dataran Tinggi Krayan",
       "desc": "Kawasan konservasi hutan hujan tropis primer terluas di Asia (1,36 juta hektare) tempat garam gunung purba Krayan dan beras organik Adan yang harum.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/kalimantan-utara-cover.jpg",
+      "photo": "../assets/images/provinces/kalimantan-utara-cover.jpg"
     },
     "language": {
       "name": "Bahasa Tidung, Bulungan & Dayak Lundayeh",
@@ -2850,17 +2850,17 @@
       {
         "title": "Rimun Kanopi Hutan Primer Kayan Mentarang",
         "category": "Hutan Perawan",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/kalimantan-utara-cover.jpg"
       },
       {
         "title": "Kepiting Soka Cangkang Lunak Khas Tarakan",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Senjata Pusaka Gayang Dayak Lundayeh Krayan",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1584441405887-ca8c199588b1?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Atraksi Melompat Bambu Tari Magunatip Tidung",
@@ -2899,20 +2899,20 @@
     "culinary": {
       "name": "Tinutuan (Bubur Manado) & Cakalang Fufu Asap",
       "desc": "Bubur labu kuning kaya sayur kangkung, kemangi wangi, jagung manis, disajikan dengan sambal roa pedas dan ikan cakalang fufu asap jepit bambu.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pedang Santi Minahasa",
       "desc": "Pedang lurus bermata satu peninggalan ksatria adat Waranei Minahasa, berkepala burung garuda ukir penolak bahaya dan pelindung keluarga.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1584441405888-c78b27670868?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1584441405888-c78b27670868?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Laut Bunaken & Danau Tiga Warna Linow",
       "desc": "Dinding terumbu karang vertikal bawah laut Bunaken sedalam ratusan meter dengan penyu raksasa serta danau hidrotermal Linow yang berubah tiga warna di Tomohon.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Manado / Minahasa",
@@ -2970,17 +2970,17 @@
       {
         "title": "Dinding Karang Spektakuler Bawah Laut Bunaken",
         "category": "Taman Laut Dunia",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Tinutuan Bubur Manado Segar Sambal Roa",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pedang Pusaka Santi Ksatria Waranei Minahasa",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1584441405888-c78b27670868?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Atraksi Berani Prajurit Merah Tari Kabasaran",
@@ -3019,20 +3019,20 @@
     "culinary": {
       "name": "Binte Biluhuta (Milu Siram) & Ilabulo",
       "desc": "Sup jagung manis pipil khas berisi udang segar, suwiran ikan cakalang asap, kelapa parut, dan perasan jeruk nipis segar yang diseruput hangat pedas.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Wamilo & Bitu'o Gorontalo",
       "desc": "Golok senjata tajam berhulu kayu nangka bersarung bilah lengkung peninggalan para ksatria pengawal istana raja-raja Gorontalo.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1584441405889-aa804c8fcf4f?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1584441405889-aa804c8fcf4f?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Wisata Hiu Paus Botubarani & Benteng Otanaha Danau Limboto",
       "desc": "Perjumpaan jarak dekat dengan kawanan hiu paus jinak (Rhincodon typus) di pesisir Botubarani serta benteng batu kapur Otanaha abad ke-16 di atas bukit Danau Limboto.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Gorontalo",
@@ -3090,17 +3090,17 @@
       {
         "title": "Berenang Bersama Raksasa Jinak Hiu Paus Botubarani",
         "category": "Wisata Bahari",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Segarnya Semangkuk Binte Biluhuta Jagung Manis",
         "category": "Kuliner Tradisional",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Tradisional Wamilo Pengawal Raja",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1584441405889-aa804c8fcf4f?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Benteng Batu Kapur Bersejarah Otanaha Danau Limboto",
@@ -3139,20 +3139,20 @@
     "culinary": {
       "name": "Kaledo (Kaki Lembu Donggala) & Uve Mpoi",
       "desc": "Sup tulang kaki sapi berkuah bening asam pedas segar berbumbu cabai rawit hijau dan asam jawa muda, dinikmati dengan sedotan untuk menghisap sumsum gurihnya.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pasatimpo",
       "desc": "Keris pusaka ksatria suku Kaili dengan hulu bengkok berbentuk kepala burung dan warangka kayu berukir tembaga simbol status sosial pemimpin.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1563089146-599997674d43?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563089146-599997674d43?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Arca Megalitikum Lembah Bada Lore Lindu & Kepulauan Togean",
       "desc": "Patung batu raksasa misterius Palindo setinggi 4,5 meter di padang rumput Lore Lindu serta laguna karang dan danau ubur-ubur tanpa sengat di Kepulauan Togean.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Kaili & Pamona",
@@ -3210,17 +3210,17 @@
       {
         "title": "Misteri Patung Megalitikum Raksasa Palindo Lembah Bada",
         "category": "Prasejarah Dunia",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Sajian Kaledo Tulang Kaki Sapi Kuah Asam Pedas",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Keris Hulu Bengkok Pasatimpo Kaili",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1563089146-599997674d43?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Surga Terumbu Karang Atol Kepulauan Togean",
@@ -3259,20 +3259,20 @@
     "culinary": {
       "name": "Jepa Ubi Parut Ikan Tuing-Tuing & Bau Peapi",
       "desc": "Roti pipih ubi kayu panggang di atas piring tanah liat panjepangan dinikmati bersama ikan terbang bakar dan sup ikan kuah asam kuning Bau Peapi wangi mangga.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Gayang Mandar",
       "desc": "Badik pusaka berbilah tajam melengkung berpamor kurissi indah, diselipkan di pinggang kiri sebagai lambang pertahanan marwah diri dan keluarga ksatria.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1563089147-38446b149b16?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563089147-38446b149b16?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pantai Manakarra Landmark Selat Makassar & Negeri di Atas Awan Mamasa",
       "desc": "Anjungan Pantai Manakarra berlatar pulau Karampuang serta perbukitan pegunungan Mamasa dengan rumah adat Banua Tada beratap sirap kayu.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Mandar & Mamasa",
@@ -3330,17 +3330,17 @@
       {
         "title": "Melesat Cepat Perahu Layar Tradisional Sandeq Mandar",
         "category": "Maritim Nusantara",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Jepa Ubi Bakar dan Ikan Kuah Kuning Bau Peapi",
         "category": "Kuliner Tradisional",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Badik Gayang Bertatah Pamor Mandar",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1563089147-38446b149b16?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Atraksi Syukuran Kuda Menari Sayyang Pattu'du",
@@ -3379,20 +3379,20 @@
     "culinary": {
       "name": "Coto Makassar Rempah Kacang, Konro Bakar, & Pisang Ijo",
       "desc": "Sup jeroan dan daging sapi rebus kuah kacang tanah sangrai kental berbumbu 40 rempah (Rampa Patangpulo) dimakan bersama ketupat daun pandan, serta iga sapi Konro bakar saus kacang.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Makassar (Kawali Bugis)",
       "desc": "Badik pusaka tempaan besi meteorit berpamor tebba janna dengan sarung kayu cendana wangi, pusaka suci simbol harga diri (Siri') masyarakat Bugis-Makassar.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783928622-790176505bf7?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783928622-790176505bf7?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Tana Toraja Rumah Tongkonan, Tebing Lemo & Pantai Losari",
       "desc": "Rumah adat perahu Tongkonan, makam tebing batu purba Lemo dengan patung kayu Tau-tau di Toraja, serta panorama matahari terbenam Pantai Losari Makassar.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/stories/story_toraja.jpg",
+      "photo": "../assets/images/stories/story_toraja.jpg"
     },
     "language": {
       "name": "Bahasa Bugis & Makassar",
@@ -3450,17 +3450,17 @@
       {
         "title": "Mahakarya Kapal Layar Kayu Pinisi Bulukumba",
         "category": "Warisan Dunia UNESCO",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/stories/story_toraja.jpg"
       },
       {
         "title": "Semangkuk Gurih Coto Makassar Kuah 40 Rempah",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Badik Makassar Kawali Berpamor Meteorit",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783928622-790176505bf7?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Megahnya Rumah Adat Tongkonan Tana Toraja",
@@ -3499,20 +3499,20 @@
     "culinary": {
       "name": "Sinonggi Sagu Kuah Kuning & Kasuami Singkong",
       "desc": "Olahan pati sagu kenyal yang digulung dengan sumpit kayu (osengke) disiram kuah ikan kuah asam kuning segar beraroma daun kemangi, serta kue kerucut singkong Kasuami.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Mele Buton",
       "desc": "Keris ramping berbilah luk bergelombang dengan sarung berhias lilitan kawat perak halus bermotif sulur, pusaka bangsawan kesultanan Buton.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783928623-6cb56d819c96?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783928623-6cb56d819c96?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Kepulauan Wakatobi & Benteng Keraton Buton",
       "desc": "Pusat segitiga karang dunia Wakatobi dengan 750 dari 850 spesies karang bumi serta benteng batu kapur keliling terpanjang 2,7 kilometer di Bau-Bau.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Tolaki, Wolio & Muna",
@@ -3570,17 +3570,17 @@
       {
         "title": "Keanekaragaman Terumbu Karang Dunia Wakatobi",
         "category": "Taman Karang Dunia",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Sajian Sagu Sinonggi Kuah Asam Segar",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Keris Ramping Mele Kesultanan Buton",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783928623-6cb56d819c96?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Benteng Keraton Terluas di Dunia Benteng Buton",
@@ -3609,7 +3609,7 @@
   "maluku": {
     "id": "maluku",
     "name": "Maluku",
-    "island": "Maluku & Papua",
+    "island": "Maluku",
     "capital": "Ambon",
     "established": "19 Agustus 1945",
     "founders": "Kapitan Pattimura (Thomas Matulessy) & Martha Christina Tiahahu",
@@ -3619,20 +3619,20 @@
     "culinary": {
       "name": "Papeda Kuah Kuning & Ikan Asar Cakalang",
       "desc": "Bubur sagu mutiara kenyal yang diseruput bersama ikan tongkol kuah kuning rempah kunyit asam segar beraroma kemangi, serta gurihnya ikan cakalang asar asap bambu.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Salawaku",
       "desc": "Sepasang senjata perang berupa parang besi tajam dan perisai kayu Salawaku ramping bertatahkan motif kulit kerang mutiara penangkal senjata musuh.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783902615-b44c6888c3a1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783902615-b44c6888c3a1?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Kepulauan Banda Neira & Pantai Tebing Ora",
       "desc": "Benteng Belgica peninggalan VOC 1611 berlatar Gunung Api Banda yang eksotis serta surga terumbu karang tebing karst Pantai Ora Maluku Tengah.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Melayu Ambon",
@@ -3690,17 +3690,17 @@
       {
         "title": "Benteng Bersejarah Belgica Berlatar Gunung Api Banda Neira",
         "category": "Kepulauan Rempah",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Sajian Sagu Papeda Ikan Kuah Kuning Segar",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Perang Parang dan Perisai Salawaku Maluku",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783902615-b44c6888c3a1?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Tebing Batu Kapur Karst & Air Toska Pantai Ora",
@@ -3729,7 +3729,7 @@
   "maluku-utara": {
     "id": "maluku-utara",
     "name": "Maluku Utara",
-    "island": "Maluku & Papua",
+    "island": "Maluku",
     "capital": "Sofifi",
     "established": "4 Oktober 1999",
     "founders": "Sultan Baabullah (Penguasa 72 Pulau) & Sultan Nuku (Pangeran Pembebas Maluku)",
@@ -3739,20 +3739,20 @@
     "culinary": {
       "name": "Gohu Ikan Tuna Mentah & Popeda Sagu Kasbi",
       "desc": "Daging ikan tuna segar potongan dadu dilumuri perasan jeruk nipis cui, garam, rajangan cabai rawit merah, kemangi, disiram minyak kelapa panas mendidih dan kacang kenari sangrai.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Luhu Halmahera & Kalawai",
       "desc": "Parang bermata baja tunggal berhulu kayu hitam besi dengan ujung bilah melengkung ke atas, senjata andalan prajurit kora-kora kesultanan Ternate dan Tidore.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1579783902616-d44b58888b19?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579783902616-d44b58888b19?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Gunung Api Gamalama Ternate & Pulau Morotai Mutiara Pasifik",
       "desc": "Gunung kerucut vulkanik hijau Gamalama yang menjulang dari laut serta bekas pangkalan militer Perang Dunia II Jenderal Douglas MacArthur di Pulau Morotai.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Ternate & Tidore",
@@ -3810,17 +3810,17 @@
       {
         "title": "Puncak Megah Gunung Api Gamalama di Ternate",
         "category": "Gunung Vulkanik",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Gohu Ikan Tuna Segar Minyak Kelapa Panas",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Parang Luhu Pusaka Prajurit Kora-Kora Halmahera",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1579783902616-d44b58888b19?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keindahan Terumbu Karang Bawah Laut Pulau Morotai",
@@ -3849,7 +3849,7 @@
   "papua": {
     "id": "papua",
     "name": "Papua",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Jayapura",
     "established": "1 Mei 1963",
     "founders": "Frans Kaisiepo (Pahlawan Pengusul Nama Irian/Papua) & Silas Papare",
@@ -3859,20 +3859,20 @@
     "culinary": {
       "name": "Papeda Ikan Gabus Sentani & Ikan Bungkus Daun Talas",
       "desc": "Papeda sagu kenyal disiram kuah kuning ikan gabus danau Sentani kaya rempah kunyit serai, dipadu ikan laut bungkus bumbu rempah bakar daun talas.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1514944298352-78d128dc1f58?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1514944298352-78d128dc1f58?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pisau Belati Tulang Kasuari",
       "desc": "Belati tajam yang dipahat dari tulang kaki burung kasuari jantan berhias ronce bulu kasuari dan anyaman serat kulit kayu, pusaka kehormatan ksatria.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1578328819059-d89f41753c55?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1578328819059-d89f41753c55?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Danau Sentani Pulau Asei & Megahnya Jembatan Youtefa Jayapura",
       "desc": "Danau indah seluas 9.360 hektare berlatar Pegunungan Cycloop dengan 21 pulau kecil di tengahnya serta jembatan lengkung merah ikonik Teluk Youtefa.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "../assets/images/provinces/papua-cover.jpg",
+      "photo": "../assets/images/provinces/papua-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Papua & Sentani",
@@ -3930,17 +3930,17 @@
       {
         "title": "Keindahan Hamparan Air dan Bukit Danau Sentani",
         "category": "Danau Ikonik",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "../assets/images/provinces/papua-cover.jpg"
       },
       {
         "title": "Sajian Sagu Papeda Ikan Gabus Danau Sentani",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1514944298352-78d128dc1f58?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Belati Pusaka Ukir Tulang Kaki Burung Kasuari",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1578328819059-d89f41753c55?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Megahnya Arsitektur Merah Jembatan Youtefa Jayapura",
@@ -3969,7 +3969,7 @@
   "papua-barat": {
     "id": "papua-barat",
     "name": "Papua Barat",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Manokwari",
     "established": "4 Oktober 1999",
     "founders": "Lodewijk Mandacan (Pemimpin Adat Arfak Pendukung Kemerdekaan RI)",
@@ -3979,20 +3979,20 @@
     "culinary": {
       "name": "Ikan Bakar Sambal Giling Manokwari & Papeda",
       "desc": "Ikan tongkol atau kakap segar laut dalam dibakar arang disiram sambal rawit mentah giling kasar aroma jeruk limau serta papeda sagu kenyal.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Adat Fakfak & Busur Arfak",
       "desc": "Parang berhulu kayu besi ukir motif geometris khas suku Mbaham Matta Fakfak dan busur panah bambu hitam suku Arfak pemburu di hutan kanopi.",
-      "image": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1578328819060-f1c50e263ab2?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1578328819060-f1c50e263ab2?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Pulau Sejarah Mansinam & Hutan Kabut Pegunungan Arfak",
       "desc": "Monumen salib bersejarah dan sumur tua Pulau Mansinam serta pengamatan burung pintar pembuat sarang arsitek (Vogelkop Bowerbird) di Pegunungan Arfak.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Hatam, Meyah & Melayu Papua",
@@ -4050,17 +4050,17 @@
       {
         "title": "Monumen Bersejarah Salib Masuknya Peradaban Pulau Mansinam",
         "category": "Wisata Sejarah",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Ikan Bakar Tongkol Segar Sambal Rawit Manokwari",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Pusaka Parang Adat Berukir Suku Fakfak",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1578328819060-f1c50e263ab2?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Burung Pintar Namdur Pembuat Sarang Artistik Arfak",
@@ -4089,7 +4089,7 @@
   "papua-selatan": {
     "id": "papua-selatan",
     "name": "Papua Selatan",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Merauke",
     "established": "11 November 2022",
     "founders": "Tokoh Adat Suku Marind-Anim & Suku Asmat",
@@ -4099,20 +4099,20 @@
     "culinary": {
       "name": "Sagu Sep Daging Rusa & Abon Daging Rusa Merauke",
       "desc": "Olahan sagu bakar berbalut parutan kelapa dan potongan daging rusa segar yang dimasak di atas bara arang batu panas, gurih legit harum asap alami.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Perisai Perang Jamas Asmat & Tombak Tulang Kasuari",
       "desc": "Perisai kayu bakau utuh berukiran kepala burung kasuari dan roh leluhur dengan pewarna kapur karang merah arang, lambang keberanian pelindung klan.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1607604276584-2a6c8e03e481?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1607604276584-2a6c8e03e481?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Taman Nasional Wasur & Rumah Rayap Raksasa Musamus",
       "desc": "Serengeti Papua seluas 413.810 hektare dengan kawanan rusa dan kanguru pohon serta formasi sarang rayap alami Musamus setinggi 5 meter di padang sabana.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Marind-Anim & Asmat",
@@ -4170,17 +4170,17 @@
       {
         "title": "Rumah Rayap Raksasa Alami Musamus Sabana Wasur",
         "category": "Keajaiban Alam",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Sagu Sep Bakar Daging Rusa Khas Marind",
         "category": "Kuliner Tradisional",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Perisai Perang Jamas Asmat Berukir Kasuari",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1607604276584-2a6c8e03e481?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Mahakarya Seni Pahat Patung Tiang Bisj Asmat",
@@ -4209,7 +4209,7 @@
   "papua-tengah": {
     "id": "papua-tengah",
     "name": "Papua Tengah",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Nabire",
     "established": "11 November 2022",
     "founders": "Tokoh Adat Suku Mee & Suku Amungme",
@@ -4219,20 +4219,20 @@
     "culinary": {
       "name": "Ikan Asap Kuah Kuning Nabire & Olahan Sagu Ubi Merah",
       "desc": "Ikan kakap laut dalam hasil tangkapan pesisir Nabire diasap kering lalu dimasak dalam kuah kuning cabai rawit pedas asam segar berbumbu kemangi hutan.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Busur Panah Bambu Hutan & Parang Mimika",
       "desc": "Busur panah kokoh bertali serat rotan dengan mata anak panah bambu beracun getah pohon rengas, senjata berburu tangguh ksatria pegunungan tinggi.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1607604276585-3b98dc652f12?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1607604276585-3b98dc652f12?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Puncak Salju Abadi Carstensz Pyramid & Hiu Paus Kwatisore Nabire",
       "desc": "Puncak gletser es abadi 4.884 mdpl Seven Summits dunia serta interaksi berenang bersama kawanan hiu paus jinak di bagan nelayan Kwatisore Nabire.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Mee & Amungme",
@@ -4290,17 +4290,17 @@
       {
         "title": "Puncak Salju Abadi Carstensz Pyramid (Puncak Jaya)",
         "category": "Seven Summits Dunia",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Ikan Asap Kuah Kuning Rempah Khas Nabire",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Busur Panah Bambu Hutan Ksatria Suku Mee",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1607604276585-3b98dc652f12?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Kawanan Hiu Paus Kwatisore Teluk Cenderawasih Nabire",
@@ -4329,7 +4329,7 @@
   "papua-pegunungan": {
     "id": "papua-pegunungan",
     "name": "Papua Pegunungan",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Wamena",
     "established": "11 November 2022",
     "founders": "Tokoh Adat Suku Dani & Suku Lani Lembah Baliem",
@@ -4339,20 +4339,20 @@
     "culinary": {
       "name": "Barapen (Bakar Batu) Ayam Sayur Pakis & Ubi Madu Hipere",
       "desc": "Pesta kuliner tradisi memasak daging dan sayuran di lubang tanah beralas daun pisang menggunakan tumpukan batu membara, dipadu manisnya ubi jalar Hipere Wamena.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Tombak Sege & Busur Panah Dani",
       "desc": "Tombak kayu besi panjang bermata runcing tajam berhiaskan lilitan serat anggrek dan bulu cenderawasih, senjata kehormatan para panglima perang suku Dani.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1618336753975-c99e7102e21b?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1618336753975-c99e7102e21b?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Lembah Baliem, Danau Habema di Atas Awan & Mumi Bersejarah Jiwika",
       "desc": "Panorama lembah hijau berselimut kabut, danau tertinggi Indonesia Danau Habema (3.300 mdpl) kaki Gunung Trikora, dan mumi panglima perang Wimontok Mabel.",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Dani & Lani",
@@ -4410,17 +4410,17 @@
       {
         "title": "Panorama Lembah Berselimut Kabut Lembah Baliem Wamena",
         "category": "Lanskap Pegunungan",
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Pesta Adat Tradisi Memasak Bakar Batu Barapen",
         "category": "Tradisi Adat",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Tombak Kayu Besi Sege Panglima Perang Suku Dani",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1618336753975-c99e7102e21b?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Danau Tertinggi di Atas Awan Danau Habema Trikora",
@@ -4449,7 +4449,7 @@
   "papua-barat-daya": {
     "id": "papua-barat-daya",
     "name": "Papua Barat Daya",
-    "island": "Maluku & Papua",
+    "island": "Papua",
     "capital": "Sorong",
     "established": "8 Desember 2022",
     "founders": "Tokoh Adat Suku Malamoi & Frans Kaisiepo",
@@ -4459,20 +4459,20 @@
     "culinary": {
       "name": "Udang Selingkuh Saus Mentega & Papeda Ikan Kakap",
       "desc": "Udang air tawar berkaki capit besar seperti kepiting dengan daging tebal manis gurih yang dimasak saus mentega bawang putih, dipadu papeda sagu segar.",
-      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Busur Adat Malamoi & Kalawai Sumpit Karang",
       "desc": "Busur panah bambu hutan suku Moi dengan anak panah bertatahkan ukiran tulang ikan pari serta tombak kalawai mata tiga penusuk ikan karang.",
-      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1618336753976-b33c5e8b4e72?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1618336753976-b33c5e8b4e72?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Gugusan Karang Geosite Pianemo Raja Ampat & Laguna Bintang Misool",
       "desc": "Gugusan bukit karst pulau karang kerucut di atas perairan zamrud toska Pianemo serta laguna terumbu karang berbentuk bintang purba di Misool Selatan.",
-      "image": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
     },
     "language": {
       "name": "Bahasa Moi, Maya & Melayu Papua",
@@ -4530,17 +4530,17 @@
       {
         "title": "Panorama Keajaiban Dunia Gugusan Karang Pianemo Raja Ampat",
         "category": "Jantung Karang Dunia",
-        "url": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
       },
       {
         "title": "Sajian Mewah Udang Selingkuh Saus Mentega Bawang",
         "category": "Kuliner Khas",
-        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Busur Panah Bambu Adat Suku Malamoi Sorong",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+        "url": "https://images.unsplash.com/photo-1618336753976-b33c5e8b4e72?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Laguna Terumbu Karang Bentuk Bintang Misool Selatan",

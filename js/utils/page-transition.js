@@ -13,25 +13,18 @@ window.WARISARA_RESET_REFRESH = function () {
     // - Pengecualian 1: Desain Creative Lab (warisara_creative_gallery)
     // - Pengecualian 2: Akun Google login & produk listing user (warisara_active_user, warisara_user_products)
     // - Pengecualian 3: Skor kuis tertinggi & statistik belajar (warisara_quiz_learning_stats, warisara_quiz_progress, warisara_quiz_seen_ids)
-    const WHITELIST_KEYS = [
-      'warisara_creative_gallery',     // Pengecualian 1: Desain Creative Lab
-      'warisara_active_user',          // Pengecualian 2: Akun Google login produk lokal
-      'warisara_user_products',        // Pengecualian 2: Produk karya user
-      'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
-      'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
-      'warisara_quiz_seen_ids'         // Pengecualian 3: Riwayat soal kuis
-    ];
-
     const preserved = {};
-    WHITELIST_KEYS.forEach(function (key) {
-      const val = localStorage.getItem(key);
-      if (val !== null) preserved[key] = val;
-    });
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('warisara_')) {
+        preserved[k] = localStorage.getItem(k);
+      }
+    }
 
-    // 2. Bersihkan semua aktivitas lain di localStorage
+    // 2. Bersihkan aktivitas non-aplikasi lain di localStorage
     localStorage.clear();
 
-    // 3. Pulihkan kembali HANYA 3 data whitelist
+    // 3. Pulihkan kembali semua data warisara pengguna
     Object.keys(preserved).forEach(function (key) {
       localStorage.setItem(key, preserved[key]);
     });

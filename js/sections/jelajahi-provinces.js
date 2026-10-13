@@ -7,6 +7,22 @@
 (function () {
   'use strict';
 
+  // --- PATH NORMALIZER FOR LOCAL & REMOTE ASSETS ---
+  function fixImgPath(url) {
+    if (!url) return 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
+    var inPages = window.location.pathname.includes('/pages/');
+    if (inPages) {
+      if (url.startsWith('../')) return url;
+      if (url.startsWith('assets/')) return '../' + url;
+      if (url.startsWith('./assets/')) return '../' + url.substring(2);
+      return '../' + url;
+    } else {
+      if (url.startsWith('../assets/')) return url.substring(3);
+      return url;
+    }
+  }
+
   // --- AUDIO SYNTHESIZER (Web Audio API) ---
   var audioCtx = null;
   function getAudioContext() {
@@ -157,11 +173,26 @@
     requestAnimationFrame(animate);
   }
 
-  // --- PASPORT STORAGE & PROGRESS ---
-  var PASSPORT_KEY = 'warisara_explorer_passport';
+  function getPassportKey() {
+    try {
+      var u = (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.getUser === 'function') 
+        ? window.WARISARA_AUTH.getUser() 
+        : null;
+      if (!u) {
+        var rawUser = localStorage.getItem('warisara_active_user');
+        if (rawUser) u = JSON.parse(rawUser);
+      }
+      if (u && u.email) {
+        return 'warisara_passport_' + u.email.toLowerCase().trim();
+      }
+    } catch (e) {}
+    return 'warisara_explorer_passport';
+  }
+
   function getPassportData() {
     try {
-      var raw = localStorage.getItem(PASSPORT_KEY);
+      var key = getPassportKey();
+      var raw = localStorage.getItem(key);
       if (raw) return JSON.parse(raw);
     } catch (e) {}
     return { stamped: [] };
@@ -169,7 +200,8 @@
 
   function savePassportData(data) {
     try {
-      localStorage.setItem(PASSPORT_KEY, JSON.stringify(data));
+      var key = getPassportKey();
+      localStorage.setItem(key, JSON.stringify(data));
     } catch (e) {}
   }
 
@@ -288,7 +320,8 @@
 
     gridEl.innerHTML = filtered.map(function (prov) {
       var isStamped = isProvinceStamped(prov.id);
-      var coverPhoto = (prov.tourism && prov.tourism.photo) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
+      var rawCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
+      var coverPhoto = fixImgPath(rawCover);
       var culinaryName = prov.culinary ? prov.culinary.name : 'Kuliner Khas';
       var weaponName = prov.weapon ? prov.weapon.name : 'Senjata Pusaka';
       var tourismName = prov.tourism ? prov.tourism.name : 'Wisata Unggulan';
@@ -371,7 +404,8 @@
 
     // Set Modal Header Info
     var heroBanner = document.getElementById('modal-hero-banner');
-    var coverImg = (prov.tourism && prov.tourism.photo) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url);
+    var rawModalCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url);
+    var coverImg = fixImgPath(rawModalCover);
     if (heroBanner && coverImg) {
       heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(20, 18, 15, 0.4) 0%, rgba(20, 18, 15, 0.95) 100%), url(' + coverImg + ')';
     }
@@ -494,7 +528,7 @@
           <!-- Kuliner Khas -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
             <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group">
-              <img src="${(prov.culinary && prov.culinary.photo) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80'}" 
+              <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80')}" 
                    alt="${prov.culinary ? prov.culinary.name : 'Kuliner'}" 
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -522,7 +556,7 @@
           <!-- Senjata Tradisional -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
             <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group">
-              <img src="${(prov.weapon && prov.weapon.photo) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80'}" 
+              <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80')}" 
                    alt="${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}" 
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -558,7 +592,7 @@
           <!-- Destinasi Wisata -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10">
             <div class="relative h-56 sm:h-72 overflow-hidden bg-[#151310] group">
-              <img src="${(prov.tourism && prov.tourism.photo) || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80'}" 
+              <img src="${fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80')}" 
                    alt="${prov.tourism ? prov.tourism.name : 'Destinasi Wisata'}" 
                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
@@ -615,7 +649,7 @@
               ${activeGalleryList.map(function (item, idx) {
                 return `
                   <div class="gallery-thumb-card group" data-gallery-index="${idx}">
-                    <img src="${item.url}" alt="${item.title}" loading="lazy" />
+                    <img src="${fixImgPath(item.url)}" alt="${item.title}" loading="lazy" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2.5">
                       <p class="font-display text-[11px] text-surface font-medium line-clamp-1">${item.title}</p>
                       <p class="text-[9px] text-surface/60 line-clamp-1">${item.caption}</p>
@@ -1238,7 +1272,10 @@
       setTimeout(function () {
         openProvinceModal(provParam);
       }, 300);
-    }
+    window.addEventListener('warisara_auth_changed', function () {
+      updatePassportUI();
+      renderProvincesGrid();
+    });
   }
 
   // Expose global API

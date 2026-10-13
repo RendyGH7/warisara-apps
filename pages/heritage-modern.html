@@ -70,19 +70,12 @@
         // Utilitas Pembersihan Aktivitas saat Refresh (Kecuali 3 Pengecualian / Whitelist)
         window.WARISARA_RESET_REFRESH = function () {
           try {
-            var WHITELIST_KEYS = [
-              'warisara_creative_gallery',     // Pengecualian 1: Desain Creative Lab
-              'warisara_active_user',          // Pengecualian 2: Akun Google login produk lokal
-              'warisara_user_products',        // Pengecualian 2: Produk karya user
-              'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
-              'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
-              'warisara_quiz_seen_ids'         // Pengecualian 3: Riwayat soal kuis
-            ];
             var preserved = {};
-            for (var i = 0; i < WHITELIST_KEYS.length; i++) {
-              var k = WHITELIST_KEYS[i];
-              var v = localStorage.getItem(k);
-              if (v !== null) preserved[k] = v;
+            for (var i = 0; i < localStorage.length; i++) {
+              var k = localStorage.key(i);
+              if (k && k.indexOf('warisara_') === 0) {
+                preserved[k] = localStorage.getItem(k);
+              }
             }
             localStorage.clear();
             for (var pk in preserved) {
@@ -360,7 +353,7 @@
   </section>
   </main>
 
-    <!-- FOOTER PROFESIONAL & MODERN -->
+              <!-- FOOTER PROFESIONAL & MODERN -->
   <footer class="relative bg-[#0E0C0A] text-surface/70 text-xs border-t border-white/10 pt-16 pb-12 px-4 sm:px-8 overflow-hidden">
     <!-- Subtle Ambient Glow -->
     <div class="absolute -top-32 left-1/4 w-96 h-96 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -372,10 +365,10 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
         
         <!-- Kolom Brand & Penjelasan Web (5 Cols) -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="flex items-center gap-3">
-            <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-10 h-10 object-contain drop-shadow" />
-            <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-7 object-contain drop-shadow" />
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-0">
+          <div class="flex items-center gap-5">
+            <img src="../assets/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-14 h-14 object-contain drop-shadow" />
+            <img src="../assets/logo/logo-text.png?v=30" alt="WARISARA" class="h-[42px] sm:h-[46px] object-contain drop-shadow" />
           </div>
 
           <p class="text-xs sm:text-sm text-surface/75 font-light leading-relaxed pr-0 lg:pr-6">
@@ -436,11 +429,6 @@
               </div>
             </button>
 
-          </div>
-
-          <div class="flex items-center gap-2 text-[11px] text-surface/50 pt-1">
-            <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
-            <span>Tersedia untuk Android & iOS (PWA Ready)</span>
           </div>
         </div>
 

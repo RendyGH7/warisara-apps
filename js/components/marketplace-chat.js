@@ -59,39 +59,6 @@
           }
         ],
         lastUpdate: Date.now() - 3600000 * 1.5
-      },
-      {
-        id: "thread_rendy_joko",
-        participant1: "rendy.kolektor@gmail.com",
-        participant2: "joko.tembaga@gmail.com",
-        participantNames: {
-          "rendy.kolektor@gmail.com": "Rendy Pratama",
-          "joko.tembaga@gmail.com": "Mas Joko Prasetyo (Pandai Tembaga)"
-        },
-        product: {
-          id: "lampu-tumang",
-          name: "Lampu Meja Ukir Tembaga Pahat Tangan",
-          price: "Rp 680.000",
-          origin: "Boyolali, Jawa Tengah",
-          image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=400&q=80"
-        },
-        messages: [
-          {
-            id: "msg_j1",
-            sender: "rendy.kolektor@gmail.com",
-            text: "Mas Joko, untuk lampu tembaga ini apakah sudah termasuk fitting lampu kabel retro-nya?",
-            time: "Kemarin",
-            timestamp: Date.now() - 86400000
-          },
-          {
-            id: "msg_j2",
-            sender: "joko.tembaga@gmail.com",
-            text: "Sudah lengkap siap colok Mas Rendy! Menggunakan kabel rajut tembaga dan saklar dimmer kuningan.",
-            time: "Kemarin",
-            timestamp: Date.now() - 82000000
-          }
-        ],
-        lastUpdate: Date.now() - 82000000
       }
     ];
   }
@@ -99,7 +66,18 @@
   function getStoredThreads() {
     try {
       const stored = localStorage.getItem(THREADS_STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
+      if (stored) {
+        let threads = JSON.parse(stored);
+        if (Array.isArray(threads)) {
+          threads = threads.filter(
+            (t) =>
+              t.participant1 !== "joko.tembaga@gmail.com" &&
+              t.participant2 !== "joko.tembaga@gmail.com" &&
+              t.id !== "thread_rendy_joko"
+          );
+          return threads;
+        }
+      }
     } catch (e) {}
     const initial = getInitialThreads();
     saveThreads(initial);

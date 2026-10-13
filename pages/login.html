@@ -447,38 +447,90 @@
       100% { opacity: 1; transform: scaleX(1.05); }
     }
 
+    /* Scrollbar Utility Bersih Bebas Glitch */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+
     /* Kartu Profil Perangkat Google dengan Efek Kaca Bening & Kontras Teks Tajam */
     .auth-device-card {
       position: relative;
       background: rgba(255, 255, 255, 0.035);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  background 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       cursor: pointer;
       overflow: hidden;
+      box-sizing: border-box;
+      will-change: transform;
     }
 
     .auth-device-card::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
+      left: -120%;
+      width: 120%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.15), transparent);
-      transition: left 0.6s ease;
+      background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.18), transparent);
+      transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
 
     .auth-device-card:hover {
-      transform: translateY(-2px) scale(1.01);
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(201, 165, 103, 0.45);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 18px rgba(201, 165, 103, 0.2);
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(201, 165, 103, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+      border-color: rgba(201, 165, 103, 0.55);
+      box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.45), 0 0 18px -2px rgba(201, 165, 103, 0.25);
     }
 
     .auth-device-card:hover::after {
-      left: 100%;
+      left: 120%;
+    }
+
+    .auth-device-card:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .auth-device-card .auth-avatar-circle {
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .auth-device-card:hover .auth-avatar-circle {
+      transform: scale(1.07);
+      box-shadow: 0 0 14px rgba(201, 165, 103, 0.45);
+    }
+
+    .auth-device-card .auth-btn-pill {
+      transition: background 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .auth-device-card:hover .auth-btn-pill {
+      background: #C9A567;
+      color: #1A1612;
+      font-weight: 700;
+      box-shadow: 0 3px 12px rgba(201, 165, 103, 0.45);
+      transform: translateX(1px);
+    }
+
+    .auth-device-card:hover .auth-btn-pill .material-symbols-outlined {
+      transform: translateX(2px);
     }
 
     /* Tombol Utama Google One-Tap */
@@ -863,40 +915,157 @@
                 </button>
               </div>
 
-              <!-- Tombol Utama Google One-Tap -->
-              <button id="page-btn-google-primary" type="button"
-                      class="btn-google-primary w-full py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
-                <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
-                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
-                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
-                  <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
-                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
-                </svg>
-                <span id="page-google-btn-text">Lanjutkan dengan Akun Google</span>
-              </button>
+              <!-- ================= PANEL 1: MASUK AKUN ================= -->
+              <div id="panel-tab-login" class="space-y-3.5">
+                <!-- Tombol Utama Google One-Tap -->
+                <button id="page-btn-google-primary" type="button"
+                        class="btn-google-primary w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
+                  <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                  </svg>
+                  <span id="page-google-btn-text">Lanjutkan dengan Akun Google</span>
+                </button>
 
-              <!-- Divider Bersih -->
-              <div class="relative py-0.5 flex items-center justify-center">
-                <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
-                <span class="relative px-3 py-0.5 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/10 text-[10px] uppercase font-bold tracking-wider text-surface/60">atau pilih profil di perangkat</span>
+                <!-- Divider -->
+                <div class="relative py-0.5 flex items-center justify-center">
+                  <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+                  <span class="relative px-3 py-0.5 rounded-full bg-[#181512] border border-white/10 text-[10px] uppercase font-bold tracking-wider text-surface/60">atau masuk secara manual</span>
+                </div>
+
+                <!-- Formulir Masuk Manual -->
+                <form id="form-manual-login" novalidate class="space-y-2">
+                  <!-- Alert Box Notifikasi / Error -->
+                  <div id="login-alert-box" class="hidden p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs flex items-start gap-2">
+                    <span class="material-symbols-outlined text-sm text-rose-400 flex-shrink-0 mt-0.5">error</span>
+                    <span id="login-alert-msg" class="leading-relaxed"></span>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Email Terdaftar</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">mail</span>
+                      <input id="input-login-email" type="email" placeholder="nama@gmail.com" required
+                        class="w-full pl-9 pr-3.5 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Kata Sandi</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">lock</span>
+                      <input id="input-login-password" type="password" placeholder="••••••••" required
+                        class="w-full pl-9 pr-9 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                      <button type="button" id="btn-toggle-login-pass" class="absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm">
+                        <span class="material-symbols-outlined text-sm">visibility</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" id="btn-submit-manual-login"
+                    class="w-full py-2.5 px-4 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink font-bold text-xs tracking-wide transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 mt-1">
+                    <span class="material-symbols-outlined text-sm">login</span>
+                    <span>Masuk Akun</span>
+                  </button>
+                </form>
+
+                <!-- Pilihan Profil di Perangkat -->
+                <div class="pt-2 border-t border-white/10">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-surface/50">Akun di Perangkat (1-Klik Masuk)</span>
+                    <span class="text-[9px] text-brass-300 font-mono">Bebas Password</span>
+                  </div>
+                  <!-- Daftar Akun di Perangkat (Hanya 2 Akun Preset Resmi) -->
+                  <div id="page-device-accounts-list" class="space-y-2.5 overflow-hidden no-scrollbar">
+                    <!-- Di-render dinamis oleh JavaScript -->
+                  </div>
+                </div>
               </div>
 
-              <!-- Daftar Akun Google Terhubung di Perangkat (1-Klik) -->
-              <div id="page-device-accounts-list" class="space-y-2">
-                <!-- Di-render dinamis oleh JavaScript -->
-              </div>
+              <!-- ================= PANEL 2: DAFTAR BARU ================= -->
+              <div id="panel-tab-register" class="space-y-3.5 hidden">
+                <!-- Tombol Cepat Google Register -->
+                <button id="page-btn-google-register" type="button"
+                        class="btn-google-primary w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
+                  <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.1-6.68-4.93H1.21v3.13C3.25 21.36 7.32 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.21C.44 8.14 0 9.87 0 12s.44 3.86 1.21 5.4l4.11-3.13z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.32 0 3.25 2.64 1.21 6.6l4.11 3.13c.94-2.83 3.58-4.98 6.68-4.98z"/>
+                  </svg>
+                  <span>Daftar Cepat dengan Akun Google</span>
+                </button>
 
-              <!-- Tambah Akun Google Personal / Lainnya -->
-              <button id="page-btn-add-account" type="button"
-                      class="w-full p-2.5 rounded-xl border border-dashed border-white/20 hover:border-brass-400/50 hover:bg-brass-400/10 text-surface/70 hover:text-brass-300 text-xs font-medium transition-all flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-sm text-brass-400">add_circle</span>
-                <span>Hubungkan Akun Google Lainnya</span>
-              </button>
+                <!-- Divider -->
+                <div class="relative py-0.5 flex items-center justify-center">
+                  <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+                  <span class="relative px-3 py-0.5 rounded-full bg-[#181512] border border-white/10 text-[10px] uppercase font-bold tracking-wider text-surface/60">atau buat data akun manual</span>
+                </div>
+
+                <!-- Formulir Pendaftaran Manual -->
+                <form id="form-manual-register" novalidate class="space-y-2">
+                  <!-- Alert Box Notifikasi / Error -->
+                  <div id="reg-alert-box" class="hidden p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs flex items-start gap-2">
+                    <span class="material-symbols-outlined text-sm text-rose-400 flex-shrink-0 mt-0.5">error</span>
+                    <span id="reg-alert-msg" class="leading-relaxed"></span>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Nama Lengkap</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">person</span>
+                      <input id="input-reg-name" type="text" placeholder="Nama Lengkap Anda" required
+                        class="w-full pl-9 pr-3.5 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Alamat Email</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">mail</span>
+                      <input id="input-reg-email" type="email" placeholder="contoh@gmail.com" required
+                        class="w-full pl-9 pr-3.5 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Kata Sandi (Min. 6 Karakter)</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">lock</span>
+                      <input id="input-reg-password" type="password" placeholder="••••••••" required minlength="6"
+                        class="w-full pl-9 pr-9 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                      <button type="button" id="btn-toggle-reg-pass" class="absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm">
+                        <span class="material-symbols-outlined text-sm">visibility</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-[11px] font-semibold text-surface/75 mb-0.5">Konfirmasi Kata Sandi</label>
+                    <div class="relative">
+                      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-surface/40 text-base">lock_reset</span>
+                      <input id="input-reg-confirm" type="password" placeholder="••••••••" required minlength="6"
+                        class="w-full pl-9 pr-9 py-1.5 rounded-xl bg-black/40 border border-white/10 text-surface placeholder:text-surface/35 text-xs focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all font-sans" />
+                      <button type="button" id="btn-toggle-reg-confirm" class="absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm">
+                        <span class="material-symbols-outlined text-sm">visibility</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" id="btn-submit-manual-reg"
+                    class="w-full py-2.5 px-4 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink font-bold text-xs tracking-wide transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 mt-1">
+                    <span class="material-symbols-outlined text-sm">how_to_reg</span>
+                    <span>Buat Akun Baru</span>
+                  </button>
+                </form>
+              </div>
 
               <!-- Keamanan -->
               <div class="pt-2 border-t border-white/10 text-center text-[10px] text-surface/50 flex items-center justify-center gap-1.5">
-                <span class="material-symbols-outlined text-xs text-brass-400">lock</span>
-                <span>Autentikasi Terverifikasi Google Identity Services</span>
+                <span class="material-symbols-outlined text-xs text-brass-400">verified_user</span>
+                <span>Data terenkripsi dan tersimpan aman di ekosistem WARISARA</span>
               </div>
             </div>
 
@@ -1047,7 +1216,7 @@
 
   <!-- ================= SCRIPTS ================= -->
   <script src="../js/utils/page-transition.js"></script>
-  <script src="../js/utils/marketplace-auth.js"></script>
+  <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
 
   <script>
@@ -1096,14 +1265,35 @@
       // Elemen DOM
       const tabLogin = document.getElementById('page-tab-login');
       const tabRegister = document.getElementById('page-tab-register');
+      const panelLogin = document.getElementById('panel-tab-login');
+      const panelRegister = document.getElementById('panel-tab-register');
       const authTitle = document.getElementById('page-auth-title');
       const authSubtitle = document.getElementById('page-auth-subtitle');
       const googleBtnText = document.getElementById('page-google-btn-text');
       const btnGooglePrimary = document.getElementById('page-btn-google-primary');
-      const btnAddAccount = document.getElementById('page-btn-add-account');
+      const btnGoogleRegister = document.getElementById('page-btn-google-register');
       const accountsList = document.getElementById('page-device-accounts-list');
       const unloggedView = document.getElementById('auth-unlogged-view');
       const loggedView = document.getElementById('auth-logged-view');
+
+      // Elemen Form Manual Login
+      const formManualLogin = document.getElementById('form-manual-login');
+      const inputLoginEmail = document.getElementById('input-login-email');
+      const inputLoginPassword = document.getElementById('input-login-password');
+      const btnToggleLoginPass = document.getElementById('btn-toggle-login-pass');
+      const loginAlertBox = document.getElementById('login-alert-box');
+      const loginAlertMsg = document.getElementById('login-alert-msg');
+
+      // Elemen Form Manual Register
+      const formManualRegister = document.getElementById('form-manual-register');
+      const inputRegName = document.getElementById('input-reg-name');
+      const inputRegEmail = document.getElementById('input-reg-email');
+      const inputRegPassword = document.getElementById('input-reg-password');
+      const inputRegConfirm = document.getElementById('input-reg-confirm');
+      const btnToggleRegPass = document.getElementById('btn-toggle-reg-pass');
+      const btnToggleRegConfirm = document.getElementById('btn-toggle-reg-confirm');
+      const regAlertBox = document.getElementById('reg-alert-box');
+      const regAlertMsg = document.getElementById('reg-alert-msg');
 
       // Elemen Maskot
       const mascotTrigger = document.getElementById('mascot-trigger');
@@ -1111,12 +1301,7 @@
       const speechBox = document.getElementById('wari-speech-box');
       const speechText = document.getElementById('wari-speech-text');
 
-      // Box Cepat Email
-      const quickEmailBox = document.getElementById('quick-email-input-box');
-      const quickInputEmail = document.getElementById('quick-input-email');
-      const quickBtnSubmit = document.getElementById('quick-btn-submit-email');
-
-      // Ambil Parameter URL ?redirect=...
+      // Ambil Parameter URL ?redirect=... & ?tab=...
       const urlParams = new URLSearchParams(window.location.search);
       const redirectUrl = urlParams.get('redirect');
       const tabParam = urlParams.get('tab');
@@ -1131,7 +1316,7 @@
         idle: "Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨",
         hoverGoogle: "Tinggal 1-klik aja! Tanpa password, otomatis tersambung aman! 🚀",
         loginClick: "Menghubungkan akun Google kamu... Tunggu sebentar ya! ⏳",
-        register: "Daftar instan! Nama & profilmu langsung tersambung otomatis! 🎨",
+        register: "Kamu bisa daftar manual atau gunakan Google instan lho! 🎨",
         success: "Yey! Berhasil masuk! Selamat menjelajahi mahakarya nusantara! 🎉",
         clickFun: [
           "Batik & tenun dari 38 provinsi menantimu di pasar lokal! 🧵",
@@ -1174,22 +1359,41 @@
         });
       }
 
+      // Password Toggle Helper
+      function setupPassToggle(btn, input) {
+        if (!btn || !input) return;
+        btn.addEventListener('click', () => {
+          const isPass = input.type === 'password';
+          input.type = isPass ? 'text' : 'password';
+          const icon = btn.querySelector('.material-symbols-outlined');
+          if (icon) icon.textContent = isPass ? 'visibility_off' : 'visibility';
+        });
+      }
+      setupPassToggle(btnToggleLoginPass, inputLoginPassword);
+      setupPassToggle(btnToggleRegPass, inputRegPassword);
+      setupPassToggle(btnToggleRegConfirm, inputRegConfirm);
+
       // Interaksi Tab Masuk vs Registrasi
       function setTab(tab) {
         currentTab = tab;
+        if (loginAlertBox) loginAlertBox.classList.add('hidden');
+        if (regAlertBox) regAlertBox.classList.add('hidden');
+
         if (tab === 'register') {
-          tabLogin.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
-          tabRegister.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
-          authTitle.textContent = 'Daftar Akun Baru';
-          authSubtitle.textContent = 'Daftarkan profil Google Anda secara instan';
-          googleBtnText.textContent = 'Daftar Instan dengan Akun Google';
+          if (tabLogin) tabLogin.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
+          if (tabRegister) tabRegister.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
+          if (panelLogin) panelLogin.classList.add('hidden');
+          if (panelRegister) panelRegister.classList.remove('hidden');
+          if (authTitle) authTitle.textContent = 'Daftar Akun Baru';
+          if (authSubtitle) authSubtitle.textContent = 'Buat akun manual atau daftar instan dengan Google';
           setMascotMood('idle', MASCOT_MESSAGES.register);
         } else {
-          tabLogin.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
-          tabRegister.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
-          authTitle.textContent = 'Masuk Akun Google';
-          authSubtitle.textContent = 'Pilih akun Google Anda untuk melanjutkan';
-          googleBtnText.textContent = 'Lanjutkan dengan Akun Google';
+          if (tabLogin) tabLogin.className = 'flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5';
+          if (tabRegister) tabRegister.className = 'flex-1 py-2 rounded-xl text-surface/70 hover:text-surface transition-all flex items-center justify-center gap-1.5 font-semibold';
+          if (panelLogin) panelLogin.classList.remove('hidden');
+          if (panelRegister) panelRegister.classList.add('hidden');
+          if (authTitle) authTitle.textContent = 'Masuk Akun';
+          if (authSubtitle) authSubtitle.textContent = 'Pilih akun terhubung atau masukkan email & kata sandi';
           setMascotMood('idle', MASCOT_MESSAGES.idle);
         }
         renderAccounts();
@@ -1198,42 +1402,116 @@
       if (tabLogin) tabLogin.addEventListener('click', () => setTab('login'));
       if (tabRegister) tabRegister.addEventListener('click', () => setTab('register'));
 
-      // Render Akun Google di Perangkat
+      // Helper & Event Submit Form Login Manual
+      function executeManualLogin() {
+        if (loginAlertBox) loginAlertBox.classList.add('hidden');
+
+        const email = inputLoginEmail ? inputLoginEmail.value.trim() : '';
+        const password = inputLoginPassword ? inputLoginPassword.value.trim() : '';
+
+        const result = window.WARISARA_AUTH.loginManual({ email, password });
+        if (!result.success) {
+          if (loginAlertBox && loginAlertMsg) {
+            loginAlertMsg.textContent = result.message;
+            loginAlertBox.classList.remove('hidden');
+          }
+          setMascotMood('idle', 'Ups, periksa kembali email atau kata sandi Anda ya Sobat!');
+          return;
+        }
+
+        handleSuccessfulAuth(result.user);
+      }
+
+      if (formManualLogin) {
+        formManualLogin.addEventListener('submit', (e) => {
+          e.preventDefault();
+          executeManualLogin();
+        });
+      }
+
+      // Helper & Event Submit Form Registrasi Manual
+      function executeManualRegister() {
+        if (regAlertBox) regAlertBox.classList.add('hidden');
+
+        const name = inputRegName ? inputRegName.value.trim() : '';
+        const email = inputRegEmail ? inputRegEmail.value.trim() : '';
+        const password = inputRegPassword ? inputRegPassword.value.trim() : '';
+        const confirmPassword = inputRegConfirm ? inputRegConfirm.value.trim() : '';
+
+        const result = window.WARISARA_AUTH.registerManual({ name, email, password, confirmPassword });
+        if (!result.success) {
+          if (regAlertBox && regAlertMsg) {
+            if (result.code === 'EMAIL_EXISTS') {
+              regAlertMsg.innerHTML = result.message + ` <br/><button type="button" id="btn-quick-to-login" class="inline-flex items-center gap-1 mt-1 text-brass-300 hover:underline font-bold">Beralih ke Masuk Akun →</button>`;
+              regAlertBox.classList.remove('hidden');
+              setTimeout(() => {
+                const quickToLogin = document.getElementById('btn-quick-to-login');
+                if (quickToLogin) {
+                  quickToLogin.onclick = () => {
+                    setTab('login');
+                    if (inputLoginEmail) inputLoginEmail.value = email;
+                    if (inputLoginPassword) inputLoginPassword.focus();
+                  };
+                }
+              }, 50);
+            } else {
+              regAlertMsg.textContent = result.message;
+              regAlertBox.classList.remove('hidden');
+            }
+          }
+          setMascotMood('idle', 'Periksa kembali formulir pendaftaran ya Sobat!');
+          return;
+        }
+
+        handleSuccessfulAuth(result.user);
+      }
+
+      if (formManualRegister) {
+        formManualRegister.addEventListener('submit', (e) => {
+          e.preventDefault();
+          executeManualRegister();
+        });
+      }
+
+      // Render Akun Google di Perangkat (Strictly Deduplicated)
       function renderAccounts() {
         if (!accountsList || !window.WARISARA_AUTH) return;
-        const all = typeof window.WARISARA_AUTH.getAllAccounts === 'function' 
-          ? window.WARISARA_AUTH.getAllAccounts() 
-          : window.WARISARA_AUTH.getPresets();
+        const all = window.WARISARA_AUTH.getAllAccounts();
 
-        accountsList.innerHTML = all.map(acc => `
+        accountsList.innerHTML = all.map(acc => {
+          const isGoogle = acc.provider === 'google' || acc.email.endsWith('@gmail.com');
+          return `
           <button type="button" data-device-email="${acc.email}"
-                  class="auth-device-card w-full p-2.5 rounded-2xl flex items-center justify-between text-left group">
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-gradient-to-tr ${acc.avatarColor || 'from-amber-600 to-yellow-500'} text-white font-bold text-xs flex items-center justify-center shadow-md flex-shrink-0">
+                  class="auth-device-card w-full p-2.5 sm:p-3 rounded-2xl flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3 min-w-0 pr-2">
+              <div class="auth-avatar-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr ${acc.avatarColor || 'from-amber-600 to-yellow-500'} text-white font-bold text-xs sm:text-sm flex items-center justify-center shadow-md flex-shrink-0">
                 ${acc.avatarLetter || acc.name.charAt(0).toUpperCase()}
               </div>
-              <div class="overflow-hidden">
-                <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors flex items-center gap-1.5">
+              <div class="overflow-hidden min-w-0">
+                <div class="text-xs sm:text-[13px] font-semibold text-surface group-hover:text-brass-300 transition-colors flex items-center gap-1.5">
                   <span class="truncate">${acc.name}</span>
-                  <span class="px-1.5 py-0.2 rounded text-[8px] bg-emerald-500/20 text-emerald-300 font-semibold flex-shrink-0">Google</span>
+                  <span class="px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] ${isGoogle ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-brass-400/20 text-brass-300 border border-brass-400/30'} font-semibold flex-shrink-0">
+                    ${isGoogle ? 'Google' : 'Warisara ID'}
+                  </span>
                 </div>
-                <div class="text-[11px] text-surface/60 font-mono truncate">${acc.email}</div>
+                <div class="text-[11px] text-surface/60 font-mono truncate group-hover:text-surface/80 transition-colors">${acc.email}</div>
               </div>
             </div>
             <div class="flex items-center gap-1 flex-shrink-0">
-              <span class="text-[10px] px-2.5 py-1 rounded-full ${currentTab === 'register' ? 'bg-brass-400 text-ink font-bold' : 'bg-white/10 text-surface/90 font-medium'} group-hover:bg-brass-400 group-hover:text-ink transition-colors flex items-center gap-1">
-                <span>${currentTab === 'register' ? 'Daftar' : 'Masuk'}</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+              <span class="auth-btn-pill text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/10 text-surface/90 font-semibold flex items-center gap-1">
+                <span>Masuk</span>
+                <span class="material-symbols-outlined text-xs sm:text-sm transition-transform">arrow_forward</span>
               </span>
             </div>
           </button>
-        `).join('');
+        `;
+        }).join('');
 
         accountsList.querySelectorAll('[data-device-email]').forEach(btn => {
           btn.addEventListener('click', () => {
             const email = btn.dataset.deviceEmail;
             const found = all.find(a => a.email.toLowerCase() === email.toLowerCase());
-            handleSuccessfulAuth(found);
+            handleSuccessfulAuth(found || { email });
           });
         });
       }
@@ -1245,13 +1523,8 @@
         setMascotMood('happy', `Halo ${account.name}! Berhasil masuk. Menyiapkan halaman... 🎉`);
         createConfettiBurst(60);
 
-        if (currentTab === 'register') {
-          window.WARISARA_AUTH.registerWithGoogle({ ...account });
-          window.WARISARA_AUTH.showToast(`Selamat datang ${account.name}! Akun Google Anda terdaftar.`);
-        } else {
-          window.WARISARA_AUTH.loginAs(account);
-          window.WARISARA_AUTH.showToast(`Berhasil masuk dengan Akun Google: ${account.name}`);
-        }
+        window.WARISARA_AUTH.loginAs(account);
+        window.WARISARA_AUTH.showToast(`Berhasil masuk sebagai: ${account.name} (${account.email})`);
 
         // Jika ada URL redirect, langsung arahkan setelah 1 detik!
         if (redirectUrl) {
@@ -1414,14 +1687,20 @@
         });
 
         btnGooglePrimary.addEventListener('click', () => {
-          openGooglePickerModal(currentTab);
+          openGooglePickerModal('login');
         });
       }
 
-      // Action: Tambah Akun Google Lainnya membuka Pop-up Modal
-      if (btnAddAccount) {
-        btnAddAccount.addEventListener('click', () => {
-          openGooglePickerModal(currentTab);
+      if (btnGoogleRegister) {
+        btnGoogleRegister.addEventListener('mouseenter', () => {
+          setMascotMood('happy', MASCOT_MESSAGES.hoverGoogle);
+        });
+        btnGoogleRegister.addEventListener('mouseleave', () => {
+          setMascotMood('idle', MASCOT_MESSAGES.register);
+        });
+
+        btnGoogleRegister.addEventListener('click', () => {
+          openGooglePickerModal('register');
         });
       }
 
@@ -1445,7 +1724,7 @@
           if (nameEl) nameEl.textContent = user.name;
           if (emailEl) emailEl.textContent = user.email;
 
-          authTitle.textContent = 'Akun Google Terhubung';
+          authTitle.textContent = user.provider === 'google' ? 'Akun Google Terhubung' : 'Akun WARISARA Aktif';
           authSubtitle.textContent = `Selamat datang, ${user.name}`;
           setMascotMood('happy', `Selamat datang kembali ${user.name}! Siap belanja atau jelajah karya hari ini? ✨`);
         } else {
@@ -1454,6 +1733,14 @@
           setTab(currentTab);
         }
       }
+
+      // Inisialisasi awal tab & view
+      if (tabParam === 'register') {
+        setTab('register');
+      } else {
+        setTab('login');
+      }
+      updateAuthStateView();
 
       // Action: Chat & Menu Akun
       const btnOpenChat = document.getElementById('logged-btn-open-chat');
