@@ -1,0 +1,343 @@
+/* ==========================================================================
+   WARISARA - JELAJAHI 38 PROVINSI (EDISI ULTIMATE ENSIKLOPEDIA & PASPOR)
+   ========================================================================== */
+
+/* Passport Widget in Hero */
+.passport-hero-widget {
+  background: linear-gradient(135deg, rgba(26, 22, 18, 0.95), rgba(35, 29, 23, 0.9));
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(201, 165, 103, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.passport-hero-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, #C9A567, transparent);
+}
+
+/* Card Province in Grid */
+.province-card-ultimate {
+  background: rgba(26, 22, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.province-card-ultimate:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 165, 103, 0.5);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(201, 165, 103, 0.2);
+}
+
+.province-card-cover {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+  background: #151310;
+}
+
+.province-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.province-card-ultimate:hover .province-card-cover img {
+  transform: scale(1.08);
+}
+
+.province-card-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(21, 19, 16, 0.3) 50%, rgba(26, 22, 18, 0.98) 100%);
+}
+
+.stamp-mini-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.stamp-mini-badge.stamped {
+  background: rgba(201, 165, 103, 0.25);
+  color: #E6D3A7;
+  border: 1px solid rgba(201, 165, 103, 0.6);
+  box-shadow: 0 0 15px rgba(201, 165, 103, 0.3);
+}
+
+.stamp-mini-badge.unstamped {
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(246, 241, 231, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Modal Tabs */
+.modal-tab-btn {
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(246, 241, 231, 0.7);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.modal-tab-btn:hover {
+  color: #F6F1E7;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.modal-tab-btn.active {
+  color: #1A1612;
+  background: #C9A567;
+  border-color: #E6D3A7;
+  box-shadow: 0 4px 15px rgba(201, 165, 103, 0.4);
+}
+
+/* Quiz Option Buttons */
+.quiz-option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(246, 241, 231, 0.9);
+  font-size: 13px;
+  line-height: 1.5;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  background: rgba(201, 165, 103, 0.12);
+  border-color: rgba(201, 165, 103, 0.4);
+  transform: translateX(4px);
+  color: #FFF;
+}
+
+.quiz-option-btn.correct {
+  background: rgba(30, 120, 60, 0.25) !important;
+  border-color: #2ECC71 !important;
+  color: #A9DFBF !important;
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+}
+
+.quiz-option-btn.wrong {
+  background: rgba(180, 40, 40, 0.25) !important;
+  border-color: #E74C3C !important;
+  color: #F5B7B1 !important;
+  animation: quizShake 0.4s ease;
+}
+
+@keyframes quizShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* Passport Book Modal */
+.passport-book-modal {
+  background: #14120F;
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(201, 165, 103, 0.15);
+}
+
+.passport-stamp-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.passport-stamp-card:hover {
+  border-color: rgba(201, 165, 103, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.passport-stamp-card.earned {
+  border: 1px solid rgba(201, 165, 103, 0.4);
+  background: radial-gradient(circle at center, rgba(201, 165, 103, 0.12), rgba(20, 18, 15, 0.8));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.stamp-seal-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.passport-stamp-card.earned .stamp-seal-circle {
+  border: 2px dashed #C9A567;
+  background: rgba(201, 165, 103, 0.18);
+  color: #E6D3A7;
+  transform: rotate(-8deg);
+  box-shadow: 0 0 15px rgba(201, 165, 103, 0.25);
+}
+
+.passport-stamp-card:hover .stamp-seal-circle {
+  transform: rotate(0deg) scale(1.08);
+}
+
+.passport-stamp-card.locked .stamp-seal-circle {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Cultural Compass Widget */
+.compass-dial-outer {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid #C9A567;
+  background: radial-gradient(circle, #25201A 0%, #151310 100%);
+  position: relative;
+  box-shadow: 0 0 35px rgba(201, 165, 103, 0.25), inset 0 0 25px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.compass-needle {
+  position: absolute;
+  width: 8px;
+  height: 180px;
+  transform-origin: center center;
+  transition: transform 2s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+}
+
+.compass-needle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 75px solid #E74C3C;
+}
+
+.compass-needle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 75px solid #C9A567;
+}
+
+.compass-pivot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #E6D3A7;
+  border: 3px solid #A47E3F;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  z-index: 5;
+  position: absolute;
+}
+
+/* Gallery Lightbox */
+.gallery-thumb-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 140px;
+  background: #151310;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-thumb-card:hover {
+  transform: scale(1.03);
+  border-color: #C9A567;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-thumb-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-thumb-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Confetti Layer */
+#confetti-canvas-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Hot News Glowing Badge */
+.hot-badge-pulse {
+  animation: pulseHot 2s infinite ease-in-out;
+}
+
+@keyframes pulseHot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
+}

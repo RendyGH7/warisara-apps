@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>38 Provinsi Nusantara — WARISARA</title>
   <meta name="description"
-    content="Eksplorasi warisan budaya dan kriya adiluhung dari 38 provinsi di seluruh Nusantara dalam satu wadah digital terpadu." />
+    content="Ensiklopedia budaya interaktif 38 provinsi di seluruh Nusantara: kuliner otentik, senjata pusaka, wisata memukau, berita hot terkini, dialek lokal, kuis edukatif, dan paspor penjelajah digital." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,7 +67,7 @@
   <script>
     (function () {
       try {
-        // Utilitas Pembersihan Aktivitas saat Refresh (Kecuali 3 Pengecualian / Whitelist)
+        // Utilitas Pembersihan Aktivitas saat Refresh (Kecuali Whitelist Pengecualian)
         window.WARISARA_RESET_REFRESH = function () {
           try {
             var WHITELIST_KEYS = [
@@ -76,7 +76,8 @@
               'warisara_user_products',        // Pengecualian 2: Produk karya user
               'warisara_quiz_learning_stats',  // Pengecualian 3: Skor kuis tertinggi & statistik belajar
               'warisara_quiz_progress',        // Pengecualian 3: Progres modul kuis
-              'warisara_quiz_seen_ids'         // Pengecualian 3: Riwayat soal kuis
+              'warisara_quiz_seen_ids',        // Pengecualian 3: Riwayat soal kuis
+              'warisara_explorer_passport'     // Pengecualian 4: Paspor Penjelajah 38 Provinsi
             ];
             var preserved = {};
             for (var i = 0; i < WHITELIST_KEYS.length; i++) {
@@ -135,9 +136,13 @@
   <link rel="stylesheet" href="../css/loading-screen.css?v=32" />
   <link rel="stylesheet" href="../css/responsive.css?v=2" />
   <link rel="stylesheet" href="../css/wari-mascot.css?v=2" />
+  <link rel="stylesheet" href="../css/jelajahi-provinces.css?v=2" />
 </head>
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="jelajahi">
+
+  <!-- Confetti Canvas Layer -->
+  <canvas id="confetti-canvas-layer"></canvas>
 
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
@@ -160,6 +165,11 @@
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+      <!-- Tombol Paspor di Navbar -->
+      <button class="open-passport-trigger btn-nav-icon relative text-brass-300 hover:text-brass-200" title="Buka Paspor Penjelajah">
+        <span class="material-symbols-outlined text-base">auto_stories</span>
+      </button>
+
       <!-- Tombol Chat di Navbar -->
       <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
         <span class="material-symbols-outlined text-base">chat</span>
@@ -220,13 +230,6 @@
         <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
         <span>09. Cerita yang Diwariskan</span>
       </a>
-      <button class="nav-chat-trigger mobile-nav-link text-left py-2 px-3 rounded-lg bg-brass-400/10 hover:bg-brass-400/20 text-brass-300 transition-colors flex items-center justify-between mt-1">
-        <span class="flex items-center gap-2.5">
-          <span class="material-symbols-outlined text-sm">chat</span>
-          <span>Chat & Pesan Penjual</span>
-        </span>
-        <span class="px-2 py-0.5 rounded-full bg-brass-400 text-ink text-[9px] font-bold">2 Baru</span>
-      </button>
     </div>
     <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
       <span>Kembali ke Peta</span>
@@ -236,141 +239,412 @@
 
   <main id="page-content" class="page-module-main">
     
-    <section class="relative pt-36 sm:pt-44 pb-16 sm:pb-20 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
-    <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
-      <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <span class="glass-pill mb-4 inline-block">Halaman 02 • Ensiklopedia Budaya</span>
-      <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-6">
-        38 Provinsi Nusantara
-      </h1>
-      <p class="text-base sm:text-xl text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
-        Jelajahi keragaman kriya adiluhung, filosofi tradisi, dan pelestari lokal dari Sabang sampai Merauke dalam satu sistem data terpadu.
-      </p>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-6 border-t border-white/10 text-center">
-        <div>
-          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
-          <span class="text-[11px] uppercase tracking-wider text-surface/60">Provinsi</span>
-        </div>
-        <div>
-          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">17.500+</span>
-          <span class="text-[11px] uppercase tracking-wider text-surface/60">Pulau</span>
-        </div>
-        <div>
-          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">1.340+</span>
-          <span class="text-[11px] uppercase tracking-wider text-surface/60">Suku Bangsa</span>
-        </div>
-        <div>
-          <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">2.200+</span>
-          <span class="text-[11px] uppercase tracking-wider text-surface/60">WBTb Resmi</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sticky top-20 sm:top-24 z-30 py-4 px-4 bg-[#181512]/90 backdrop-blur-md border-y border-border-dark">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-      
-      <div class="relative w-full md:w-80">
-        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
-        <input id="province-search-input" type="text" placeholder="Cari provinsi, ibu kota, kriya..."
-          class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+    <!-- Hero Section -->
+    <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-18 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+      <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-forest-900/30 rounded-full blur-3xl"></div>
       </div>
 
-      <div id="island-filters" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs no-scrollbar">
-        <button data-island="all" class="island-btn active px-3.5 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua (38)</button>
-        <button data-island="Sumatera" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sumatera</button>
-        <button data-island="Jawa" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Jawa</button>
-        <button data-island="Bali & Nusa Tenggara" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Bali & Nusa Tenggara</button>
-        <button data-island="Kalimantan" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kalimantan</button>
-        <button data-island="Sulawesi" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sulawesi</button>
-        <button data-island="Maluku & Papua" class="island-btn px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Maluku & Papua</button>
-      </div>
-    </div>
-  </section>
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <span class="glass-pill mb-4 inline-block tracking-wider uppercase text-[11px] font-semibold text-brass-300">
+          ✨ Ensiklopedia Budaya Interaktif • Edisi Terlengkap 38 Provinsi
+        </span>
+        <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-5">
+          38 Provinsi Nusantara
+        </h1>
+        <p class="text-sm sm:text-lg text-surface/80 max-w-3xl mx-auto leading-relaxed font-light mb-8">
+          Jelajahi keragaman 38 provinsi di Indonesia secara mendalam — telusuri kuliner otentik, pusaka senjata adiluhung, destinasi wisata memukau, kabar hot terkini, dialek lokal, serta kumpulkan stempel di Paspor Penjelajah Digitalmu!
+        </p>
 
-  <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
-    <div class="max-w-6xl mx-auto">
-      <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between">
-        <span>Menampilkan <strong id="visible-count" class="text-brass-300">38</strong> dari 38 Provinsi</span>
-        <span class="text-[11px]">Klik kartu untuk membaca rincian pusaka</span>
-      </div>
+        <!-- Stats Counter -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto py-5 border-y border-white/10 text-center mb-8">
+          <div>
+            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
+            <span class="text-[11px] uppercase tracking-wider text-surface/60">Provinsi Lengkap</span>
+          </div>
+          <div>
+            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">190+</span>
+            <span class="text-[11px] uppercase tracking-wider text-surface/60">Ilustrasi Realistis</span>
+          </div>
+          <div>
+            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">38</span>
+            <span class="text-[11px] uppercase tracking-wider text-surface/60">Kuis Edukasi</span>
+          </div>
+          <div>
+            <span class="block font-display text-2xl sm:text-3xl text-brass-300 font-light">76+</span>
+            <span class="text-[11px] uppercase tracking-wider text-surface/60">Kuliner & Pusaka</span>
+          </div>
+        </div>
 
-      <div id="provinces-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- PASSPORT & COMPASS HERO WIDGET -->
+        <div class="passport-hero-widget p-5 sm:p-6 rounded-3xl max-w-3xl mx-auto text-left flex flex-col md:flex-row items-center justify-between gap-5">
+          <div class="flex-1 w-full">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-brass-400 text-lg">military_tech</span>
+                <span class="text-xs uppercase tracking-wider font-bold text-brass-300">Paspor Penjelajah Nusantara</span>
+              </div>
+              <span class="passport-level-badge text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brass-400/20 text-brass-200 border border-brass-400/30">
+                Tingkat Awal
+              </span>
+            </div>
+
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="passport-level-title font-display text-lg sm:text-xl text-surface font-light">
+                Pelancong Pemula 🌿
+              </span>
+              <span class="text-xs font-mono text-surface/70">
+                <strong class="passport-count-val text-brass-300 font-bold">0</strong> / 38 Stempel (<span class="passport-percent-val">0%</span>)
+              </span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden relative">
+              <div class="passport-progress-fill h-full bg-gradient-to-r from-brass-600 via-brass-400 to-amber-200 transition-all duration-700 rounded-full" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 w-full md:w-auto justify-end flex-shrink-0">
+            <button class="open-passport-trigger px-4 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-transform hover:scale-105 shadow-lg flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">auto_stories</span>
+              <span>Buka Paspor</span>
+            </button>
+            <button class="open-compass-trigger px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-medium border border-white/15 transition-transform hover:scale-105 flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm text-brass-400">explore</span>
+              <span>Kompas Budaya</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEARCH & MULTI-FILTER BAR -->
+    <section class="sticky top-20 sm:top-24 z-30 py-3 px-4 bg-[#181512]/95 backdrop-blur-md border-y border-border-dark">
+      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3">
         
-      </div>
+        <!-- Search Input -->
+        <div class="relative w-full lg:w-80 flex-shrink-0">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/50 text-lg">search</span>
+          <input id="province-search-input" type="text" placeholder="Cari provinsi, kuliner, senjata, wisata..."
+            class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white/5 border border-white/10 text-surface placeholder:text-surface/40 focus:outline-none focus:border-brass-400 transition-colors" />
+        </div>
 
-      <div id="provinces-empty-state" class="hidden text-center py-16 text-surface/60">
-        <span class="material-symbols-outlined text-4xl mb-2 text-surface/30">search_off</span>
-        <h3 class="font-display text-xl font-light text-surface">Provinsi Tidak Ditemukan</h3>
-        <p class="text-xs mt-1">Coba gunakan kata kunci pencarian lain atau pilih tab pulau yang berbeda.</p>
+        <!-- Island Filter Pills -->
+        <div id="island-filters" class="flex items-center gap-1.5 overflow-x-auto w-full lg:w-auto pb-1 lg:pb-0 text-xs no-scrollbar">
+          <button data-island="all" class="island-btn active px-3 py-1.5 rounded-full border border-brass-400 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all">Semua (38)</button>
+          <button data-island="Sumatera" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sumatera (10)</button>
+          <button data-island="Jawa" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Jawa (6)</button>
+          <button data-island="Bali & Nusa Tenggara" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Bali & NT (3)</button>
+          <button data-island="Kalimantan" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Kalimantan (5)</button>
+          <button data-island="Sulawesi" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Sulawesi (6)</button>
+          <button data-island="Maluku & Papua" class="island-btn px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 text-surface/70 hover:text-surface whitespace-nowrap transition-all">Maluku & Papua (8)</button>
+        </div>
+
+        <!-- Extra View / Sort -->
+        <div class="flex items-center gap-2 w-full lg:w-auto justify-end text-xs">
+          <!-- Status Filter -->
+          <div class="flex items-center p-0.5 rounded-full bg-white/5 border border-white/10">
+            <button data-status="all" class="status-filter-btn active px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold text-[11px] transition-colors">Semua</button>
+            <button data-status="stamped" class="status-filter-btn px-2.5 py-1 rounded-full text-surface/70 hover:text-surface text-[11px] transition-colors">⭐ Dicap</button>
+            <button data-status="unstamped" class="status-filter-btn px-2.5 py-1 rounded-full text-surface/70 hover:text-surface text-[11px] transition-colors">🔒 Belum</button>
+          </div>
+
+          <!-- Sort Select -->
+          <select id="province-sort-select" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-surface text-[11px] focus:outline-none focus:border-brass-400">
+            <option value="name" class="bg-[#181512] text-surface">Nama (A-Z)</option>
+            <option value="island" class="bg-[#181512] text-surface">Pulau</option>
+            <option value="year" class="bg-[#181512] text-surface">Tahun Berdiri</option>
+          </select>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROVINCES GRID SECTION -->
+    <section class="py-12 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
+      <div class="max-w-6xl mx-auto">
+        <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between">
+          <span>Menampilkan <strong id="visible-count" class="text-brass-300">38</strong> dari 38 Provinsi Nusantara</span>
+          <span class="text-[11px] hidden sm:inline text-surface/40">Klik kartu provinsi untuk melihat ilustrasi realistis & menjawab kuis edukasi</span>
+        </div>
+
+        <!-- Dynamic Grid -->
+        <div id="provinces-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Cards injected dynamically by jelajahi-provinces.js -->
+        </div>
+
+        <div id="provinces-empty-state" class="hidden text-center py-20 text-surface/60">
+          <span class="material-symbols-outlined text-5xl mb-3 text-surface/30">search_off</span>
+          <h3 class="font-display text-2xl font-light text-surface">Provinsi Tidak Ditemukan</h3>
+          <p class="text-xs mt-2 max-w-sm mx-auto leading-relaxed">Coba periksa kembali kata kunci pencarian Anda atau kembalikan filter pulau dan status ke posisi awal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
+    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-5">
+      <div id="province-detail-modal" class="modal-container w-full max-w-4xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+        
+        <!-- Modal Hero Header Banner with Realistic Photo -->
+        <div id="modal-hero-banner" class="relative p-6 sm:p-8 bg-cover bg-center border-b border-border-dark flex flex-col justify-end min-h-[220px] sm:min-h-[250px]">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-[#181512]/60 to-transparent pointer-events-none"></div>
+          
+          <!-- Top Action Bar -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+            <div class="flex items-center gap-2">
+              <span id="modal-province-island" class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md">
+                PULAU
+              </span>
+              <div id="modal-stamp-status-badge"></div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="modal-voice-greeting-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/80 border border-white/20 backdrop-blur-md transition-colors" title="Dengarkan Sapaan Lokal">
+                <span class="material-symbols-outlined text-lg">volume_up</span>
+              </button>
+              <button class="province-modal-close-trigger p-2 rounded-full bg-black/50 hover:bg-white/20 text-surface/80 border border-white/20 backdrop-blur-md transition-colors" aria-label="Tutup">
+                <span class="material-symbols-outlined text-lg">close</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Title and Metadata -->
+          <div class="relative z-10">
+            <h2 id="modal-province-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-2 drop-shadow">
+              Nama Provinsi
+            </h2>
+            <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-surface/80">
+              <span>Ibu Kota: <strong id="modal-province-capital" class="text-brass-300 font-semibold">-</strong></span>
+              <span>•</span>
+              <span>Berdiri: <strong id="modal-province-established" class="text-surface font-semibold">-</strong></span>
+              <span>•</span>
+              <span class="truncate max-w-xs">Tokoh / Pendiri: <strong id="modal-province-founders" class="text-surface/90 font-medium">-</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Navigation Tabs Inside Modal -->
+        <div class="px-4 sm:px-6 py-2.5 bg-[#14120F] border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
+            <span class="material-symbols-outlined text-sm">temple_buddhist</span>
+            <span>Ikhtisar & Sejarah</span>
+          </button>
+          <button id="tab-btn-culinary-weapon" data-tab="culinary-weapon" class="modal-tab-btn">
+            <span class="material-symbols-outlined text-sm">restaurant</span>
+            <span>Kuliner & Senjata Pusaka</span>
+          </button>
+          <button id="tab-btn-tourism-news" data-tab="tourism-news" class="modal-tab-btn">
+            <span class="material-symbols-outlined text-sm">photo_camera</span>
+            <span>Wisata & Berita Hot</span>
+          </button>
+          <button id="tab-btn-gallery" data-tab="gallery" class="modal-tab-btn">
+            <span class="material-symbols-outlined text-sm">collections</span>
+            <span>Galeri Realistis (5 Foto)</span>
+          </button>
+          <button id="tab-btn-quiz" data-tab="quiz" class="modal-tab-btn">
+            <span class="material-symbols-outlined text-sm">quiz</span>
+            <span>Kuis Kilat Edukatif</span>
+          </button>
+        </div>
+
+        <!-- Tab Contents Container -->
+        <div class="p-5 sm:p-7 overflow-y-auto space-y-6 flex-1 text-xs sm:text-sm text-surface/85">
+          
+          <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1 leading-relaxed">
+            "Pernyataan filosofis kebudayaan provinsi."
+          </blockquote>
+
+          <!-- Tab 1: Ikhtisar & Sejarah -->
+          <div id="tab-overview-content" class="tab-pane">
+            <div id="tab-history-content"></div>
+          </div>
+
+          <!-- Tab 2: Kuliner & Senjata -->
+          <div id="tab-culinary-weapon-content" class="tab-pane hidden"></div>
+
+          <!-- Tab 3: Wisata & Berita Hot -->
+          <div id="tab-tourism-news-content" class="tab-pane hidden"></div>
+
+          <!-- Tab 4: Galeri Realistis -->
+          <div id="tab-gallery-content" class="tab-pane hidden"></div>
+
+          <!-- Tab 5: Kuis Kilat -->
+          <div id="tab-quiz-content" class="tab-pane hidden"></div>
+
+          <!-- Wari Mascot Interactive Commentary -->
+          <div class="p-4 rounded-2xl bg-gradient-to-r from-brass-900/15 via-white/[0.02] to-transparent border border-brass-400/20 flex items-start gap-3.5">
+            <img src="../assets/wari/wari-idle.png" alt="Wari Maskot" class="w-10 h-10 object-contain flex-shrink-0 animate-bounce duration-1000" />
+            <div class="text-xs">
+              <span class="font-bold text-brass-300 block mb-0.5">Wari Berbisik:</span>
+              <p id="modal-wari-tip-text" class="text-surface/80 font-light leading-relaxed">
+                Tahukah kamu keunikan adat istiadat dari provinsi ini?
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal Footer Navigation & Marketplace CTA -->
+        <div class="p-4 px-6 border-t border-border-dark bg-[#120F0D] flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors">
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+              <span>Sebelumnya</span>
+            </button>
+            <button id="modal-nav-next" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors">
+              <span>Selanjutnya</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold">
+              <span class="material-symbols-outlined text-sm">storefront</span>
+              <span>Beli Produk Lokal Terkait</span>
+            </a>
+            <button class="province-modal-close-trigger px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors">
+              Tutup
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
-  </section>
 
-  <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div id="province-detail-modal" class="modal-container max-w-2xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      
-      <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
-        <div>
-          <span id="modal-province-island" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-2">PULAU</span>
-          <h2 id="modal-province-name" class="font-display text-2xl sm:text-3xl font-light text-surface">Nama Provinsi</h2>
-          <p class="text-xs text-surface/60 mt-1">Ibu Kota: <strong id="modal-province-capital" class="text-surface/90 font-medium">Kota</strong></p>
+    <!-- PASPOR PENJELAJAH MODAL (PASSPORT BOOK 38 STEMPEL) -->
+    <div id="passport-book-modal" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-5">
+      <div class="passport-book-modal w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+        
+        <!-- Passport Header -->
+        <div class="p-6 border-b border-border-dark bg-gradient-to-r from-brass-900/30 via-black/40 to-black/60 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-brass-400/20 border border-brass-400/40 flex items-center justify-center text-brass-300">
+              <span class="material-symbols-outlined text-2xl">auto_stories</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-brass-400 block">Koleksi Cap Digital</span>
+              <h3 class="font-display text-2xl font-light text-surface">Paspor Penjelajah Nusantara</h3>
+            </div>
+          </div>
+          <button class="close-passport-trigger p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
         </div>
-        <button id="modal-close-btn" class="p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors" aria-label="Tutup">
-          <span class="material-symbols-outlined text-xl">close</span>
+
+        <!-- Passport User Progress Card -->
+        <div class="p-6 border-b border-white/10 bg-white/[0.02]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+            <div>
+              <span id="passport-modal-level-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">
+                Tingkat Awal
+              </span>
+              <h4 id="passport-modal-level-title" class="font-display text-2xl text-surface font-light mt-1">
+                Pelancong Pemula 🌿
+              </h4>
+            </div>
+            <div class="text-right sm:text-right">
+              <span class="text-xs text-surface/60 block">Progres Penjelajahan</span>
+              <span id="passport-modal-count" class="font-display text-xl text-brass-300 font-medium">0 dari 38 Provinsi</span>
+            </div>
+          </div>
+          <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+            <div id="passport-modal-bar" class="h-full bg-gradient-to-r from-brass-600 to-amber-200 transition-all duration-500 rounded-full" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Stamps Grid (38 Provinsi) -->
+        <div class="p-6 overflow-y-auto flex-1">
+          <p class="text-xs text-surface/60 mb-4 font-light">
+            Selesaikan kuis edukasi pada tiap provinsi untuk memperoleh stempel emas kehormatan. Klik salah satu stempel untuk langsung membuka ensiklopedia provinsi tersebut.
+          </p>
+          <div id="passport-stamps-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            <!-- Stamped items injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Passport Footer -->
+        <div class="p-4 px-6 border-t border-border-dark bg-[#120F0D] flex items-center justify-between text-xs">
+          <span class="text-surface/50 text-[11px]">Progres disimpan permanen di perangkat Anda.</span>
+          <button class="close-passport-trigger px-5 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold transition-colors">
+            Tutup Paspor
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- KOMPAS BUDAYA MODAL (RANDOMIZER) -->
+    <div id="compass-randomizer-modal" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/85 backdrop-blur-md items-center justify-center p-4">
+      <div class="w-full max-w-md bg-[#161310] border border-brass-400/40 rounded-3xl overflow-hidden shadow-2xl p-6 text-center">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400">Destinasi Tak Terduga</span>
+          <button class="close-compass-trigger p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+        </div>
+
+        <h3 class="font-display text-2xl font-light text-surface mb-1">Kompas Budaya Nusantara</h3>
+        <p class="text-xs text-surface/70 font-light mb-6">
+          Bingung mau menjelajah ke mana hari ini? Putar jarum kompas dan biarkan takdir menuntunmu ke sudut Nusantara yang menakjubkan!
+        </p>
+
+        <!-- Compass Dial Outer -->
+        <div class="compass-dial-outer mb-6">
+          <div id="compass-needle-el" class="compass-needle"></div>
+          <div class="compass-pivot"></div>
+          <span class="absolute top-2 text-[10px] font-bold text-brass-400">U</span>
+          <span class="absolute bottom-2 text-[10px] font-bold text-brass-400">S</span>
+          <span class="absolute right-2 text-[10px] font-bold text-brass-400">T</span>
+          <span class="absolute left-2 text-[10px] font-bold text-brass-400">B</span>
+        </div>
+
+        <button id="compass-spin-action-btn" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold shadow-lg transition-transform hover:scale-105 mb-4">
+          🧭 Putar Jarum Kompas
         </button>
-      </div>
 
-      <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/80">
-        
-        <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1 leading-relaxed">
-          "Pernyataan filosofis kebudayaan provinsi."
-        </blockquote>
-
-        <div>
-          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-1">Sekilas Budaya</h4>
-          <p id="modal-province-desc" class="font-light leading-relaxed">Deskripsi singkat latar belakang tradisi.</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-400 block mb-1">Kriya & Keahlian Utama</span>
-          <p id="modal-craft-highlight" class="font-display text-base text-surface font-light">Tenun Ikat, Ukiran Kayu, Seni Logam</p>
-        </div>
-
-        <div>
-          <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/50 mb-3">Warisan Budaya Unggulan (WBTb)</h4>
-          <div id="modal-heritage-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            
-          </div>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-forest-900/20 border border-forest-500/20">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Suara Pelestari Tradisi</span>
-          <p id="modal-maker-quote" class="italic text-surface/90 mb-2 leading-relaxed">"Kutipan dari pengrajin atau pemangku adat."</p>
-          <div class="flex items-center justify-between text-[11px] text-surface/60 pt-2 border-t border-forest-500/20">
-            <span id="modal-maker-name" class="font-semibold text-surface">Nama Maestro</span>
-            <span id="modal-maker-role">Perajin Adat</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-4 border-t border-border-dark bg-[#120F0D] flex items-center justify-between">
-        <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-200">
-          <span>Katalog Produk Lokal</span>
-          <span class="material-symbols-outlined text-sm">north_east</span>
-        </a>
-        <button id="modal-btn-dismiss" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
+        <div id="compass-result-card" class="hidden"></div>
       </div>
     </div>
-  </div>
+
+    <!-- LIGHTBOX MODAL FOR REALISTIC GALLERY -->
+    <div id="gallery-lightbox-modal" class="modal-overlay hidden fixed inset-0 z-[1100] bg-black/95 backdrop-blur-lg items-center justify-center p-4">
+      <div class="relative w-full max-w-4xl flex flex-col items-center">
+        <!-- Close button -->
+        <button class="close-lightbox-trigger absolute -top-12 right-0 p-2 text-surface hover:text-brass-300 transition-colors">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <!-- Main Image -->
+        <div class="relative max-h-[75vh] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-black">
+          <img id="lightbox-img" src="" alt="Galeri Realistis" class="max-h-[75vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl" />
+          
+          <!-- Prev Button -->
+          <button id="lightbox-prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface border border-white/20 transition-all">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <!-- Next Button -->
+          <button id="lightbox-next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface border border-white/20 transition-all">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+        </div>
+
+        <!-- Caption -->
+        <div class="mt-4 text-center max-w-xl">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <h4 id="lightbox-title" class="font-display text-base text-surface font-normal">Judul Foto</h4>
+            <span id="lightbox-counter" class="text-xs text-brass-400 font-mono">1 / 5</span>
+          </div>
+          <p id="lightbox-caption" class="text-xs text-surface/70 font-light">Takarir foto penjelasan cagar budaya.</p>
+        </div>
+      </div>
+    </div>
+
   </main>
 
+  <!-- Footer -->
   <footer class="py-8 bg-[#13110E] text-surface/60 text-xs border-t border-border-dark px-6 text-center">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -386,202 +660,18 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="../data/products.js"></script>
-  <script src="../data/provinces.js?v=10"></script>
+  <script src="../data/provinces.js?v=20"></script>
   <script src="../js/utils/helpers.js?v=10"></script>
   <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js?v=10"></script>
   <script src="../js/utils/marketplace-auth.js"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=10"></script>
-  <script>
-    function initJelajahiPage() {
-      if (window.WARISARA_NAVBAR) window.WARISARA_NAVBAR.init();
-
-      const gridEl = document.getElementById("provinces-grid");
-      const emptyStateEl = document.getElementById("provinces-empty-state");
-      const visibleCountEl = document.getElementById("visible-count");
-      const searchInput = document.getElementById("province-search-input");
-      const islandBtns = document.querySelectorAll(".island-btn");
-
-      // Modal elements
-      const modalOverlay = document.getElementById("province-modal-overlay");
-      const modalCloseBtn = document.getElementById("modal-close-btn");
-      const modalDismissBtn = document.getElementById("modal-btn-dismiss");
-
-      let currentIsland = "all";
-      let searchQuery = "";
-
-      const provincesArray = window.PROVINCES_DATA ? Object.values(window.PROVINCES_DATA) : [];
-
-      function renderProvinces() {
-        if (!gridEl) return;
-
-        const filtered = provincesArray.filter((prov) => {
-          const matchIsland = currentIsland === "all" || prov.island.toLowerCase() === currentIsland.toLowerCase();
-          const query = searchQuery.toLowerCase().trim();
-          const matchQuery = !query ||
-            prov.name.toLowerCase().includes(query) ||
-            prov.capital.toLowerCase().includes(query) ||
-            prov.craftHighlight.toLowerCase().includes(query) ||
-            prov.island.toLowerCase().includes(query);
-
-          return matchIsland && matchQuery;
-        });
-
-        if (visibleCountEl) visibleCountEl.textContent = filtered.length;
-
-        if (filtered.length === 0) {
-          gridEl.innerHTML = "";
-          emptyStateEl.classList.remove("hidden");
-          return;
-        }
-
-        emptyStateEl.classList.add("hidden");
-        gridEl.innerHTML = filtered.map((prov) => `
-          <div class="province-card glass-card p-6 flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1 duration-300"
-               data-province-id="${prov.id}">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/25">
-                  ${prov.island}
-                </span>
-                <span class="text-[11px] text-surface/50 font-mono">Ibu Kota: ${prov.capital}</span>
-              </div>
-              <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors mb-2">
-                ${prov.name}
-              </h3>
-              <p class="text-xs text-surface/75 font-light leading-relaxed mb-4 line-clamp-2">
-                "${prov.shortStatement}"
-              </p>
-            </div>
-            
-            <div>
-              <div class="pt-3 border-t border-white/10 mb-4">
-                <span class="text-[10px] uppercase tracking-wider text-surface/50 block mb-1">Keahlian Unggulan</span>
-                <p class="text-xs text-surface/90 font-medium">${prov.craftHighlight}</p>
-              </div>
-              <div class="flex items-center justify-between text-xs text-brass-400 font-semibold uppercase tracking-wider">
-                <span>Pelajari Tradisi</span>
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-            </div>
-          </div>
-        `).join("");
-
-        // Attach click triggers to open modal
-        gridEl.querySelectorAll(".province-card").forEach((card) => {
-          card.addEventListener("click", () => {
-            const provId = card.dataset.provinceId;
-            openProvinceModal(provId);
-          });
-        });
-      }
-
-      function openProvinceModal(provId) {
-        const prov = window.PROVINCES_DATA ? window.PROVINCES_DATA[provId] : null;
-        if (!prov || !modalOverlay) return;
-
-        document.getElementById("modal-province-name").textContent = prov.name;
-        document.getElementById("modal-province-island").textContent = `PULAU ${prov.island.toUpperCase()}`;
-        document.getElementById("modal-province-capital").textContent = prov.capital;
-        document.getElementById("modal-province-statement").textContent = `"${prov.shortStatement}"`;
-        document.getElementById("modal-province-desc").textContent = prov.shortDescription;
-        document.getElementById("modal-craft-highlight").textContent = prov.craftHighlight;
-
-        if (prov.maker) {
-          document.getElementById("modal-maker-name").textContent = prov.maker.name;
-          document.getElementById("modal-maker-role").textContent = prov.maker.role;
-          document.getElementById("modal-maker-quote").textContent = `"${prov.maker.quote}"`;
-        }
-
-        const listEl = document.getElementById("modal-heritage-list");
-        if (listEl && prov.heritage) {
-          listEl.innerHTML = prov.heritage.map((item) => `
-            <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10">
-              <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-500/20 text-terracotta-300 mb-1">
-                ${item.category}
-              </span>
-              <h5 class="font-display text-sm font-normal text-surface">${item.name}</h5>
-              <p class="text-[11px] text-surface/70 mt-1 leading-relaxed">${item.desc}</p>
-            </div>
-          `).join("");
-        }
-
-        modalOverlay.classList.remove("hidden");
-        modalOverlay.classList.add("active");
-        document.body.classList.add("province-modal-open", "modal-open");
-        document.body.style.overflow = "hidden";
-        const navbar = document.getElementById("main-navbar");
-        if (navbar) navbar.classList.add("navbar-hidden");
-      }
-
-      function closeModal() {
-        if (modalOverlay) {
-          modalOverlay.classList.remove("active");
-          modalOverlay.classList.add("hidden");
-          document.body.classList.remove("province-modal-open", "modal-open");
-          document.body.style.overflow = "";
-          const navbar = document.getElementById("main-navbar");
-          if (navbar) navbar.classList.remove("navbar-hidden");
-        }
-      }
-
-      if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
-      if (modalDismissBtn) modalDismissBtn.addEventListener("click", closeModal);
-      if (modalOverlay) {
-        modalOverlay.addEventListener("click", (e) => {
-          if (e.target === modalOverlay) closeModal();
-        });
-      }
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
-
-      // Filter events
-      islandBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          islandBtns.forEach((b) => {
-            b.classList.remove("active", "border-brass-400", "bg-brass-400/20", "text-brass-300", "font-semibold");
-            b.classList.add("border-white/10", "text-surface/70");
-          });
-          btn.classList.add("active", "border-brass-400", "bg-brass-400/20", "text-brass-300", "font-semibold");
-          btn.classList.remove("border-white/10", "text-surface/70");
-          currentIsland = btn.dataset.island;
-          renderProvinces();
-        });
-      });
-
-      if (searchInput) {
-        searchInput.addEventListener("input", (e) => {
-          searchQuery = e.target.value;
-          renderProvinces();
-        });
-      }
-
-      // Initial render
-      renderProvinces();
-
-      // Check URL query param e.g. ?province=aceh or ?province=bali
-      const urlParams = new URLSearchParams(window.location.search);
-      const provParam = urlParams.get("province");
-      if (provParam && window.PROVINCES_DATA && window.PROVINCES_DATA[provParam]) {
-        setTimeout(() => {
-          openProvinceModal(provParam);
-        }, 200);
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initJelajahiPage);
-    } else {
-      initJelajahiPage();
-    }
-    window.initJelajahiPage = initJelajahiPage;
-  </script>
+  <script src="../js/sections/jelajahi-provinces.js?v=2"></script>
   <script src="../js/utils/loading-screen.js?v=31"></script>
   <script src="../js/utils/wari-mascot.js?v=2"></script>
 </body>
 
 </html>
-
