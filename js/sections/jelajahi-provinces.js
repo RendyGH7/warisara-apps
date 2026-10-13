@@ -761,7 +761,7 @@
     `;
 
     var optionBtns = quizContainer.querySelectorAll('.quiz-option-btn');
-    var feedbackBox = quizContainer.getElementById('quiz-feedback-box');
+    var feedbackBox = document.getElementById('quiz-feedback-box');
 
     optionBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
