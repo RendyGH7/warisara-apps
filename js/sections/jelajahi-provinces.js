@@ -659,6 +659,7 @@
     // Show modal overlay
     modalOverlay.classList.remove('hidden');
     modalOverlay.classList.add('active');
+    modalOverlay.style.display = 'flex';
     document.body.classList.add('province-modal-open', 'modal-open');
     document.body.style.overflow = 'hidden';
 
@@ -822,6 +823,7 @@
     if (modalOverlay) {
       modalOverlay.classList.remove('active');
       modalOverlay.classList.add('hidden');
+      modalOverlay.style.display = 'none';
       document.body.classList.remove('province-modal-open', 'modal-open');
       document.body.style.overflow = '';
       var navbar = document.getElementById('main-navbar');
