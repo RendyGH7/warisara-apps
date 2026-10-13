@@ -11,6 +11,114 @@
   display: none !important;
 }
 
+/* Strict Scrollbar Killer for all browsers & platforms */
+.no-scrollbar::-webkit-scrollbar,
+#island-filters::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.no-scrollbar,
+#island-filters {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Luxury Filter Bar Styles */
+.filter-bar-sticky {
+  background: rgba(22, 19, 16, 0.95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.island-filter-pill {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(246, 241, 231, 0.7);
+  user-select: none;
+}
+
+.island-filter-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #F6F1E7;
+  border-color: rgba(201, 165, 103, 0.3);
+  transform: translateY(-1px);
+}
+
+.island-filter-pill.active {
+  background: #C9A567 !important;
+  color: #1A1612 !important;
+  font-weight: 700 !important;
+  border-color: #E6D3A7 !important;
+  box-shadow: 0 4px 15px rgba(201, 165, 103, 0.35);
+}
+
+.island-filter-pill .pill-count {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.island-filter-pill.active .pill-count {
+  background: rgba(26, 22, 18, 0.25);
+  color: #1A1612;
+}
+
+/* Segmented Control for Status */
+.segmented-status-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.segmented-status-btn {
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(246, 241, 231, 0.7);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.segmented-status-btn:hover:not(.active) {
+  color: #F6F1E7;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.segmented-status-btn.active {
+  background: #C9A567 !important;
+  color: #1A1612 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
 /* Passport Widget in Hero */
 .passport-hero-widget {
   background: linear-gradient(135deg, rgba(26, 22, 18, 0.95), rgba(35, 29, 23, 0.9));
