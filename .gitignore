@@ -1,0 +1,10 @@
+# WARISARA - Git Ignore
+# File konfigurasi lokal berisi API Key rahasia
+js/config.js
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

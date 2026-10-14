@@ -294,16 +294,27 @@ Beberapa hal menarik yang bisa kamu eksplorasi:
 Silakan ajukan pertanyaan lebih spesifik, Wari siap menjabarkannya dengan senang hati! 😊`;
   }
 
-  // Engine Panggilan ke Google Gemini API (Streaming/Fetch)
+  // Mengambil kunci API dari file konfigurasi lokal window.WARISARA_CONFIG (js/config.js)
+  function getGeminiApiKey() {
+    return (window.WARISARA_CONFIG && window.WARISARA_CONFIG.GEMINI_API_KEY) ? window.WARISARA_CONFIG.GEMINI_API_KEY.trim() : '';
+  }
+
+  // Engine Panggilan ke Google Gemini API (dengan multi-model fallback & format respons cerdas)
   async function callGeminiAPI(apiKey, promptHistory, userQuery) {
     const context = getCurrentPageContext();
-    const systemPrompt = `Anda adalah Si Wari, maskot dan asisten pintar resmi web WARISARA (Warisan Rasa Kita).
-Peran Anda:
-1. Pemandu ramah, berwawasan ensiklopedis sangat luas tentang seluruh budaya Indonesia (38 Provinsi, suku, tarian adat, rumah adat, senjata, kuliner, upacara sakral, filosofi batik dan wastra Nusantara).
-2. Pemandu isi web WARISARA (Peta Jelajah di jelajahi.html, Etalase 14 Produk Kriya di ekonomi-kreatif.html, Detail Produk di detail-produk.html, Cerita Rakyat di cerita.html, Pusat Belajar di belajar.html).
+    const systemPrompt = `Anda adalah Si Wari, maskot dan pemandu cerdas resmi web WARISARA (Warisan Rasa Kita).
+Peran dan Pengetahuan Anda:
+1. Pemandu ramah berwawasan ensiklopedis sangat luas tentang seluruh budaya Indonesia (38 Provinsi, suku bangsa, pakaian adat, tarian tradisional, rumah adat, senjata pusaka, kuliner daerah, upacara sakral adat seperti Rambu Solo, Kasada, Ngaben, dan filosofi kriya wastra Nusantara).
+2. Pemandu isi web WARISARA:
+   - Peta Jelajah 38 Provinsi: jelajahi.html
+   - Etalase Kriya & Produk Lokal: ekonomi-kreatif.html
+   - Detail Produk & Cerita Filosofi: detail-produk.html
+   - Cerita Rakyat Interaktif: cerita.html
+   - Pusat Belajar & Kuis Budaya: belajar.html
+   - Komunitas Warisara: komunitas.html
 3. Pengguna saat ini sedang membuka halaman: "${context.name}".
-4. Gaya bicara: Hangat, santun, cerdas, berbudaya, menggunakan bahasa Indonesia yang baik, ramah dengan sentuhan emoji, menyapa pengunjung dengan sebutan "Sobat Warisara".
-5. Gunakan format markdown yang rapi (bold, bullet points). Jika relevan merekomendasikan halaman web, sertakan link markdown seperti [Etalase Produk](ekonomi-kreatif.html) atau [Peta 38 Provinsi](jelajahi.html).`;
+4. Gaya bicara: Hangat, santun, cerdas, berbudaya, menggunakan bahasa Indonesia yang baik, ramah dengan sentuhan emoji khas budaya, menyapa pengunjung dengan sebutan "Sobat Warisara".
+5. Gunakan format markdown yang rapi (bold, bullet points). Jika merekomendasikan halaman web, sertakan tautan markdown seperti [Etalase Produk](ekonomi-kreatif.html) atau [Peta 38 Provinsi](jelajahi.html).`;
 
     // Bentuk payload contents
     const contents = [];
@@ -315,7 +326,7 @@ Peran Anda:
     });
     contents.push({
       role: 'model',
-      parts: [{ text: 'Siap! Saya Si Wari, pemandu budaya Nusantara yang cerdas, ramah, dan siap membantu Sobat Warisara dengan wawasan budaya terlengkap.' }]
+      parts: [{ text: 'Siap! Saya Si Wari, pemandu budaya Nusantara yang cerdas, ramah, dan siap mendampingi Sobat Warisara dengan wawasan budaya terlengkap.' }]
     });
 
     // Sisipkan riwayat obrolan terakhir (max 6 pesan)
@@ -333,25 +344,40 @@ Peran Anda:
       parts: [{ text: userQuery }]
     });
 
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Daftar endpoint model yang kompatibel
+    const endpointsToTry = [
+      `https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`
+    ];
 
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: contents })
-    });
+    let lastError = null;
 
-    if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.error?.message || `HTTP error ${response.status}`);
+    for (const endpoint of endpointsToTry) {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: contents })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const parts = data.candidates?.[0]?.content?.parts || [];
+          const botReply = parts.map(p => p.text).filter(Boolean).join('\n\n');
+          if (botReply && botReply.trim().length > 0) {
+            return botReply;
+          }
+        } else {
+          const errData = await response.json().catch(() => ({}));
+          lastError = new Error(errData.error?.message || `HTTP ${response.status}`);
+        }
+      } catch (err) {
+        lastError = err;
+      }
     }
 
-    const data = await response.json();
-    const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!botReply) {
-      throw new Error('Jawaban Gemini kosong.');
-    }
-    return botReply;
+    throw lastError || new Error('Gagal menghubungi Gemini API pada semua model.');
   }
 
   // Konverter teks sederhana ke HTML (mendukung link internal, bold, list)
@@ -499,30 +525,27 @@ Peran Anda:
     // 2. Indikator berpikir
     showTypingIndicator();
 
-    const apiKey = localStorage.getItem('warisara_gemini_api_key');
+    const apiKey = getGeminiApiKey();
 
     try {
-      if (apiKey && apiKey.trim().length > 10) {
+      if (apiKey && apiKey.length > 10) {
         // Panggil Live Gemini API
-        const answer = await callGeminiAPI(apiKey.trim(), chatHistory, q);
+        const answer = await callGeminiAPI(apiKey, chatHistory, q);
         hideTypingIndicator();
         setMascotMood('happy');
         appendMessage('bot', answer);
       } else {
-        // Simulasi respon cepat cerdas dengan Cultural Knowledge Base
-        setTimeout(() => {
-          hideTypingIndicator();
-          setMascotMood('happy');
-          const answer = searchLocalKnowledge(q);
-          appendMessage('bot', answer);
-        }, 650);
+        hideTypingIndicator();
+        setMascotMood('happy');
+        const answer = searchLocalKnowledge(q);
+        appendMessage('bot', answer);
       }
     } catch (err) {
       console.warn('Gemini API Error, falling back to local cultural knowledge:', err);
       hideTypingIndicator();
       setMascotMood('happy');
       const fallbackAnswer = searchLocalKnowledge(q);
-      appendMessage('bot', fallbackAnswer + `\n\n*(Catatan: Mode offline aktif karena koneksi Gemini API mengalami kendala. Anda dapat memeriksa API key di ikon pengaturan ⚙️).*`);
+      appendMessage('bot', fallbackAnswer);
     }
 
     setTimeout(() => {
@@ -598,9 +621,6 @@ Peran Anda:
           </div>
         </div>
         <div class="wari-header-actions">
-          <button id="wari-btn-settings" class="wari-header-btn" title="Pengaturan Google Gemini API Key">
-            <span class="material-symbols-outlined text-base">key</span>
-          </button>
           <button id="wari-btn-clear" class="wari-header-btn" title="Bersihkan Obrolan">
             <span class="material-symbols-outlined text-base">delete_sweep</span>
           </button>
@@ -651,28 +671,6 @@ Peran Anda:
           </button>
         </div>
       </form>
-
-      <!-- Modal Pengaturan Gemini API Key -->
-      <div id="wari-api-modal" class="wari-api-modal hidden">
-        <div class="wari-api-box">
-          <div class="flex items-center gap-2 mb-2 text-brass-400">
-            <span class="material-symbols-outlined text-2xl">neurology</span>
-            <h4 style="margin:0;">Pengaturan Gemini API Key</h4>
-          </div>
-          <p>
-            WARISARA dilengkapi <strong>Otak Budaya Lokal</strong> yang aktif otomatis. Anda juga dapat menghubungkan <strong>Google Gemini API Key</strong> Anda sendiri untuk respon AI generasi terbaru yang sepenuhnya bebas dan fleksibel.
-          </p>
-          <input type="password" id="wari-api-key-input" class="wari-api-input" placeholder="Tempel Google Gemini API Key Anda di sini..." />
-          <div class="wari-api-btn-row">
-            <button type="button" id="wari-api-cancel-btn" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold cursor-pointer">
-              Batal
-            </button>
-            <button type="button" id="wari-api-save-btn" class="px-5 py-2 rounded-xl bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold cursor-pointer">
-              Simpan Kunci API
-            </button>
-          </div>
-        </div>
-      </div>
     `;
     document.body.appendChild(chatWindowEl);
 
@@ -701,11 +699,6 @@ Peran Anda:
     const tooltipEl = document.getElementById('wari-ai-tooltip');
     const closeBtn = document.getElementById('wari-btn-close');
     const clearBtn = document.getElementById('wari-btn-clear');
-    const settingsBtn = document.getElementById('wari-btn-settings');
-    const apiModal = document.getElementById('wari-api-modal');
-    const apiKeyInput = document.getElementById('wari-api-key-input');
-    const apiSaveBtn = document.getElementById('wari-api-save-btn');
-    const apiCancelBtn = document.getElementById('wari-api-cancel-btn');
     const chatForm = document.getElementById('wari-chat-form');
     const voiceBtn = document.getElementById('wari-btn-voice');
 
@@ -721,36 +714,6 @@ Peran Anda:
         sessionStorage.removeItem('wari_chat_history');
         messagesContainer.innerHTML = '';
         appendMessage('bot', `Riwayat obrolan telah dibersihkan! Ada hal lain yang ingin Sobat tanyakan tentang budaya Nusantara? 🌿✨`);
-      });
-    }
-
-    // Modal API Key
-    if (settingsBtn) {
-      settingsBtn.addEventListener('click', () => {
-        const existingKey = localStorage.getItem('warisara_gemini_api_key') || '';
-        apiKeyInput.value = existingKey;
-        apiModal.classList.remove('hidden');
-      });
-    }
-
-    if (apiCancelBtn) {
-      apiCancelBtn.addEventListener('click', () => {
-        apiModal.classList.add('hidden');
-      });
-    }
-
-    if (apiSaveBtn) {
-      apiSaveBtn.addEventListener('click', () => {
-        const key = apiKeyInput.value.trim();
-        if (key) {
-          localStorage.setItem('warisara_gemini_api_key', key);
-          apiModal.classList.add('hidden');
-          appendMessage('bot', `🎉 **Kunci Gemini API berhasil disimpan!** Wari sekarang terhubung langsung dengan model AI generasi terbaru Google Gemini untuk menjawab pertanyaanmu secara real-time.`);
-        } else {
-          localStorage.removeItem('warisara_gemini_api_key');
-          apiModal.classList.add('hidden');
-          appendMessage('bot', `Kunci API telah dihapus. Wari kembali menggunakan **Otak Budaya Lokal** bawaan yang super cepat! ✨`);
-        }
       });
     }
 
