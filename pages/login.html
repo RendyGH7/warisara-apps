@@ -754,10 +754,26 @@
         min-height: 100% !important;
       }
     }
+
+    /* Normalisasi Scroll: Hilangkan bentrok overflow html/body dan pastikan scroll responsif di semua perangkat */
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      overflow-x: hidden;
+      overflow-y: visible;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overscroll-behavior-y: none;
+    }
   </style>
 </head>
 
-<body class="bg-hero-bg text-surface font-body antialiased min-h-screen flex flex-col selection:bg-brass-400 selection:text-ink overflow-x-hidden relative" data-page="login">
+<body class="bg-hero-bg text-surface font-body antialiased min-h-screen min-h-[100dvh] flex flex-col selection:bg-brass-400 selection:text-ink relative" data-page="login">
 
   <!-- ================= LATAR BELAKANG GERBANG NUSANTARA, WAYANG, BATIK & PULAU INDONESIA ================= -->
   <div class="portal-gate-wrapper" aria-hidden="true">
@@ -783,9 +799,12 @@
   <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-  <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/25 -top-20 -left-20"></div>
-  <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/18 top-1/2 -right-32"></div>
-  <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/15 bottom-10 left-1/3"></div>
+  <!-- Container Partikel Ambient Glow Tetap (Cegah scroll horizontal & peregangan tinggi halaman) -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/25 -top-20 -left-20"></div>
+    <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/18 top-1/2 -right-32"></div>
+    <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/15 bottom-10 left-1/3"></div>
+  </div>
 
   <!-- Tombol Navigasi Kembali Minimalis -->
   <a href="javascript:if(document.referrer&&!document.referrer.includes('login.html')){history.back();}else{window.location.href='../index.html';}" 
@@ -796,9 +815,9 @@
   </a>
 
   <!-- ================= MAIN PORTAL: MASKOT + AUTHENTICATION CARD ================= -->
-  <main class="flex-1 min-h-screen relative z-10 py-12 px-4 sm:px-6 flex items-center justify-center">
+  <main class="flex-1 min-h-screen min-h-[100dvh] relative z-10 py-8 sm:py-12 lg:py-14 px-4 sm:px-6 flex flex-col justify-start sm:justify-center">
     
-    <div class="w-full max-w-6xl mx-auto">
+    <div class="w-full max-w-6xl mx-auto my-auto">
       
       <!-- Banner Notifikasi Redirect Otomatis (jika ada param redirect) -->
       <div id="auth-redirect-notice" class="hidden mb-6 p-3 rounded-2xl bg-brass-400/10 border border-brass-400/30 text-center text-xs text-brass-200 animate-pulse">
@@ -1142,7 +1161,7 @@
   </main>
 
   <!-- ================= POP-UP MODAL GOOGLE AUTH (FITUR DARI GOOGLE-AUTH PAGE) ================= -->
-  <div id="google-picker-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md items-center justify-center p-4">
+  <div id="google-picker-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md overflow-y-auto p-4 flex justify-center items-center">
     <div class="relative w-full max-w-md bg-[#202124] border border-white/10 rounded-3xl overflow-hidden shadow-2xl animate-modal-enter my-auto text-[#e8eaed]">
       
       <!-- Loading bar Google -->
@@ -1582,9 +1601,11 @@
         pickerModal.classList.add('hidden');
         pickerModal.style.display = 'none';
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
       }
 
       window.openGooglePickerModal = openGooglePickerModal;
+      window.closeGooglePickerModal = closeGooglePickerModal;
 
       if (pickerCloseBtn) {
         pickerCloseBtn.addEventListener('click', closeGooglePickerModal);
@@ -1595,6 +1616,23 @@
           if (e.target === pickerModal) closeGooglePickerModal();
         });
       }
+
+      // Pastikan tombol Escape selalu menutup modal dan mengembalikan scroll
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pickerModal && !pickerModal.classList.contains('hidden')) {
+          closeGooglePickerModal();
+        }
+      });
+
+      // Fail-safe: pulihkan scroll jika user kembali dari cache / popstate
+      window.addEventListener('pageshow', () => {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      });
+      window.addEventListener('popstate', () => {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      });
 
       function renderPickerAccounts() {
         if (!pickerAccountsContainer || !window.WARISARA_AUTH) return;
