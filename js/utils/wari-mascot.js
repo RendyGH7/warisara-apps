@@ -517,7 +517,8 @@ Peran dan Pengetahuan Anda:
     if (!q || isThinking) return;
 
     chatInput.value = '';
-    chatInput.style.height = 'auto';
+    chatInput.style.height = '42px';
+    chatInput.style.overflowY = 'hidden';
 
     // 1. Tampilkan pesan pengguna
     appendMessage('user', q);
@@ -661,7 +662,7 @@ Peran dan Pengetahuan Anda:
 
       <!-- Baris Input Form -->
       <form id="wari-chat-form" class="wari-chat-input-bar">
-        <textarea id="wari-chat-input" placeholder="Tanya apa saja seputar budaya Nusantara atau web..." rows="1" maxlength="1000"></textarea>
+        <textarea id="wari-chat-input" placeholder="Tanya Si Wari seputar budaya..." rows="1" maxlength="1000"></textarea>
         <div class="wari-input-actions">
           <button type="button" id="wari-btn-voice" class="wari-input-btn" title="Bicara (Input Suara)">
             <span class="material-symbols-outlined text-base">mic</span>
@@ -735,8 +736,15 @@ Peran dan Pengetahuan Anda:
       });
 
       chatInput.addEventListener('input', () => {
-        chatInput.style.height = 'auto';
-        chatInput.style.height = Math.min(chatInput.scrollHeight, 90) + 'px';
+        chatInput.style.height = '42px';
+        const scrollH = chatInput.scrollHeight;
+        if (scrollH > 44) {
+          chatInput.style.height = Math.min(scrollH, 96) + 'px';
+          chatInput.style.overflowY = scrollH > 96 ? 'auto' : 'hidden';
+        } else {
+          chatInput.style.height = '42px';
+          chatInput.style.overflowY = 'hidden';
+        }
       });
     }
 

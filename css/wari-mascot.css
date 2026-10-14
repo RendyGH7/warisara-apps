@@ -546,65 +546,94 @@
   transform: translateY(-1px);
 }
 
-/* Chat Input Bar */
+/* Chat Input Bar - Luxury Refined Capsule */
 .wari-chat-input-bar {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: rgba(12, 9, 7, 0.96);
-  border-top: 1px solid rgba(201, 165, 103, 0.2);
+  align-items: flex-end;
+  gap: 10px;
+  padding: 12px 14px 14px;
+  background: rgba(14, 11, 8, 0.98);
+  border-top: 1px solid rgba(201, 165, 103, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 #wari-chat-input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 10px 14px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 12.5px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 165, 103, 0.22);
+  border-radius: 22px;
+  padding: 10px 16px;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 1.4 !important;
   color: #FBF8F2;
-  resize: none;
+  resize: none !important;
   outline: none;
-  max-height: 90px;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  min-height: 42px;
+  height: 42px;
+  max-height: 100px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+#wari-chat-input::-webkit-scrollbar,
+#wari-chat-input::-webkit-scrollbar-button,
+#wari-chat-input::-webkit-scrollbar-thumb,
+#wari-chat-input::-webkit-scrollbar-track {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
 #wari-chat-input:focus {
   border-color: rgba(201, 165, 103, 0.65);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.18), 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 #wari-chat-input::placeholder {
-  color: rgba(251, 248, 242, 0.35);
+  color: rgba(251, 248, 242, 0.42);
+  font-size: 12.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wari-input-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: 2px;
 }
 
 .wari-input-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(251, 248, 242, 0.7);
-  width: 36px;
-  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(251, 248, 242, 0.75);
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wari-input-btn:hover {
-  background: rgba(201, 165, 103, 0.2);
-  border-color: #C9A567;
-  color: #C9A567;
+  background: rgba(201, 165, 103, 0.18);
+  border-color: rgba(201, 165, 103, 0.5);
+  color: #DCBE88;
+  transform: scale(1.05);
 }
 
 .wari-input-btn.recording {
@@ -615,29 +644,29 @@
 }
 
 .wari-send-btn {
-  background: linear-gradient(135deg, #C9A567 0%, #A47E3F 100%);
+  background: linear-gradient(135deg, #DFB976 0%, #B88B42 100%);
   border: none;
-  color: #1A1612;
-  width: 36px;
-  height: 36px;
+  color: #16120D;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.4);
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wari-send-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 20px rgba(201, 165, 103, 0.6);
-  background: linear-gradient(135deg, #DCBE88 0%, #B8924F 100%);
+  transform: scale(1.06) translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201, 165, 103, 0.55);
+  background: linear-gradient(135deg, #E8CA8C 0%, #C99E52 100%);
 }
 
 .wari-send-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
 /* Settings Modal */
