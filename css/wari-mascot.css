@@ -1,266 +1,760 @@
-.wari-companion {
+/* ==========================================================================
+   WARISARA — Wari AI Chatbot & Companion Design System
+   Pemandu Budaya Nusantara Cerdas & Mewah (Glassmorphism & Gold Heritage)
+   ========================================================================== */
+
+/* --- Floating Mascot Trigger (Pojok Kanan Bawah) --- */
+.wari-ai-widget {
   position: fixed;
-  z-index: 9999;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
   pointer-events: none;
   user-select: none;
-  perspective: 600px;
 }
-.wari-companion * { pointer-events: auto; }
 
-.wari-sprite-wrap {
-  display: inline-block;
+.wari-ai-widget * {
+  pointer-events: auto;
+}
+
+/* Tooltip / Balon Sapaan Melayang */
+.wari-ai-tooltip {
   position: relative;
-  will-change: transform;
+  background: rgba(18, 14, 11, 0.96);
+  border: 1px solid rgba(201, 165, 103, 0.45);
+  border-radius: 18px;
+  padding: 10px 16px;
+  max-width: 260px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(201, 165, 103, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   cursor: pointer;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+  transform-origin: bottom right;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: wariTooltipFloat 4s ease-in-out infinite;
 }
 
-.wari-sprite-wrap:hover {
-  transform: scale(1.12) translateY(-6px) translateZ(0);
-  filter: none;
-  transition: transform 0.40s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-.wari-sprite-wrap:active {
-  transform: scale(0.95) translateY(2px) translateZ(0);
-  filter: none;
-  transition: transform 0.12s cubic-bezier(0.22,1,0.36,1);
-}
-
-.wari-sprite-stage {
-  position: relative;
-  display: block;
-  transform-origin: center bottom;
-  will-change: transform;
-}
-
-.wari-sprite {
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 24px rgba(201,165,103,0.20));
-  will-change: transform, opacity, filter;
-  backface-visibility: hidden;
-  transform-origin: center bottom;
-  transition: filter 0.35s ease;
-}
-
-.wari-sprite-front {
-  position: relative;
-  z-index: 2;
-}
-
-.wari-sprite-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.wari-ai-tooltip.hidden-tooltip {
   opacity: 0;
-  z-index: 1;
+  transform: scale(0.8) translateY(12px);
   pointer-events: none;
 }
 
-@keyframes wariHoverPlayful {
-  0%   { transform: translateY(0px) rotate(0deg) scale(1); }
-  22%  { transform: translateY(-5px) rotate(-2deg) scale(1.02, 0.98); }
-  50%  { transform: translateY(-9px) rotate(1.6deg) scale(0.99, 1.03); }
-  78%  { transform: translateY(-3.5px) rotate(-1deg) scale(1.015, 0.99); }
-  100% { transform: translateY(0px) rotate(0deg) scale(1); }
+.wari-tooltip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #C9A567;
+  margin-bottom: 4px;
 }
 
-.wari-sprite-wrap:hover .wari-sprite-stage {
-  animation: wariHoverPlayful 2.4s ease-in-out infinite;
+.wari-tooltip-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34A853;
+  box-shadow: 0 0 8px #34A853;
+  animation: wariGlowPulse 2s infinite;
 }
 
-.wari-sprite-wrap:hover .wari-sprite {
-  filter:
-    drop-shadow(0 28px 48px rgba(0,0,0,0.65))
-    drop-shadow(0 0 52px rgba(201,165,103,0.85))
-    drop-shadow(0 0 22px rgba(245,210,70,0.40))
-    brightness(1.14);
-}
-
-.wari-sprite-wrap:active .wari-sprite {
-  filter:
-    drop-shadow(0 14px 22px rgba(0,0,0,0.55))
-    brightness(0.95);
-}
-
-.wari-speech {
-  position: absolute;
-  background: rgba(14, 10, 8, 0.94);
-  border: 1.5px solid rgba(201, 165, 103, 0.50);
-  border-radius: 1.15rem;
-  padding: 0.65rem 1.05rem;
+#wari-tooltip-text {
   font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #F4E8D1;
-  width: max-content;
-  min-width: 140px;
-  max-width: 250px;
-  word-break: normal;
-  overflow-wrap: break-word;
-  white-space: normal;
+  font-size: 12px;
   line-height: 1.45;
-  letter-spacing: 0.01em;
-  text-align: left;
-  box-sizing: border-box;
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  pointer-events: none !important;
-  user-select: none;
-  opacity: 0;
-  filter: none !important;
-  -webkit-filter: none !important;
-  z-index: 10;
-  will-change: opacity, transform;
-  transform: translateY(-50%) scale(0.85);
-  transform-origin: right center;
-  transition:
-    opacity   0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #FBF8F2;
+  margin: 0;
 }
 
-.wari-speech.visible {
-  opacity: 1;
-  transform: translateY(-50%) scale(1);
-}
-
-.wari-sprite-wrap:hover .wari-speech.visible {
-  transform: translateY(-50%) scale(0.893);
-}
-
-.wari-sprite-wrap:hover .wari-speech,
-.wari-sprite-wrap:active .wari-speech {
-  filter: none !important;
-  -webkit-filter: none !important;
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-}
-
-.wari-speech.tip-left   { transform-origin: left center; }
-.wari-speech.tip-right  { transform-origin: right center; }
-.wari-speech.tip-bottom { transform-origin: center bottom; }
-.wari-speech.tip-top    { transform-origin: center top; }
-
-.wari-speech::after {
+/* Panah Tooltip */
+.wari-ai-tooltip::after {
   content: '';
   position: absolute;
-  width: 9px;
-  height: 9px;
-  background: rgba(14, 10, 8, 0.94);
-  border: 1.5px solid rgba(201, 165, 103, 0.50);
+  bottom: -6px;
+  right: 28px;
+  width: 10px;
+  height: 10px;
+  background: rgba(18, 14, 11, 0.96);
+  border-right: 1px solid rgba(201, 165, 103, 0.45);
+  border-bottom: 1px solid rgba(201, 165, 103, 0.45);
+  transform: rotate(45deg);
+}
+
+/* Tombol Trigger Avatar Maskot */
+.wari-ai-trigger {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wari-ai-trigger:hover {
+  transform: scale(1.08) translateY(-4px);
+}
+
+.wari-ai-trigger:active {
+  transform: scale(0.95) translateY(2px);
+}
+
+.wari-trigger-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 165, 103, 0.35) 0%, rgba(201, 165, 103, 0.08) 55%, transparent 75%);
+  filter: blur(10px);
   pointer-events: none;
-}
-.wari-speech.tip-bottom::after { bottom:-5.5px; left:50%; transform:translateX(-50%) rotate(45deg); border-top:none; border-left:none; }
-.wari-speech.tip-right::after  { right:-5.5px;  top:50%;  transform:translateY(-50%) rotate(45deg); border-bottom:none; border-left:none; }
-.wari-speech.tip-left::after   { left:-5.5px;   top:50%;  transform:translateY(-50%) rotate(45deg); border-top:none; border-right:none; }
-.wari-speech.tip-top::after    { top:-5.5px;    left:50%; transform:translateX(-50%) rotate(45deg); border-bottom:none; border-right:none; }
-
-@keyframes wariPeekPop {
-  0%   { transform: translateY(120%) scale(0.52) rotate(5deg); opacity:0; }
-  40%  { transform: translateY(-16px) scale(1.14) rotate(-2deg); opacity:1; }
-  58%  { transform: translateY(5px) scale(0.95) rotate(1deg); }
-  74%  { transform: translateY(-5px) scale(1.025) rotate(-0.5deg); }
-  88%  { transform: translateY(2px) scale(0.99); }
-  100% { transform: translateY(0) scale(1) rotate(0deg); opacity:1; }
-}
-@keyframes wariSlideInLeft {
-  0%   { transform: translateX(-160%) rotate(14deg) scale(0.68); opacity:0; }
-  42%  { transform: translateX(12px) rotate(-3deg) scale(1.06); opacity:1; }
-  60%  { transform: translateX(-6px) rotate(1.2deg) scale(0.96); }
-  78%  { transform: translateX(3px) rotate(-0.4deg) scale(1.015); }
-  100% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; }
-}
-@keyframes wariSlideInRight {
-  0%   { transform: translateX(160%) rotate(-14deg) scale(0.68); opacity:0; }
-  42%  { transform: translateX(-12px) rotate(3deg) scale(1.06); opacity:1; }
-  60%  { transform: translateX(6px) rotate(-1.2deg) scale(0.96); }
-  78%  { transform: translateX(-3px) rotate(0.4deg) scale(1.015); }
-  100% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; }
+  animation: wariHaloBreathe 3.5s ease-in-out infinite alternate;
 }
 
-@keyframes wariDriftFloat {
-  0%   { transform: translateY(0px)   rotate(-1.0deg) translateZ(0); }
-  25%  { transform: translateY(-14px) rotate(0.6deg)  translateZ(0); }
-  50%  { transform: translateY(-22px) rotate(1.2deg)  translateZ(0); }
-  75%  { transform: translateY(-12px) rotate(-0.4deg) translateZ(0); }
-  100% { transform: translateY(0px)   rotate(-1.0deg) translateZ(0); }
+.wari-trigger-mascot-wrap {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes wariIdleBob {
-  0%   { transform: translateY(0px)    rotate(-0.6deg) translateZ(0); }
-  35%  { transform: translateY(-14px)  rotate(0.9deg)  translateZ(0); }
-  65%  { transform: translateY(-8px)   rotate(-0.4deg) translateZ(0); }
-  100% { transform: translateY(0px)    rotate(-0.6deg) translateZ(0); }
+.wari-trigger-mascot {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 16px rgba(201, 165, 103, 0.35));
+  transition: filter 0.3s ease, transform 0.3s ease;
+  animation: wariFloatMascot 4.5s ease-in-out infinite;
 }
 
-@keyframes wariBreath {
-  0%,100% { transform: scaleX(1)     scaleY(1)     translateZ(0); }
-  40%     { transform: scaleX(1.034) scaleY(0.972) translateZ(0); }
-  70%     { transform: scaleX(0.970) scaleY(1.030) translateZ(0); }
+.wari-ai-trigger:hover .wari-trigger-mascot {
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(201, 165, 103, 0.75));
 }
 
-@keyframes wariHappyGlow {
-  0%,100% { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 20px rgba(245,210,70,0.20)); }
-  50%     { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 64px rgba(245,210,70,0.85)) drop-shadow(0 0 102px rgba(245,210,70,0.44)); }
-}
-@keyframes wariPulseGlow {
-  0%,100% { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 22px rgba(201,165,103,0.22)); }
-  50%     { filter: drop-shadow(0 18px 34px rgba(0,0,0,0.50)) drop-shadow(0 0 58px rgba(201,165,103,0.78)) drop-shadow(0 0 96px rgba(201,165,103,0.40)); }
-}
-
-.wari-idle-float     { animation: wariDriftFloat 7.0s cubic-bezier(0.45,0,0.55,1) infinite; }
-.wari-idle-bob       { animation: wariIdleBob    5.2s cubic-bezier(0.45,0,0.55,1) infinite; }
-.wari-idle-breath    { animation: wariBreath     5.8s cubic-bezier(0.45,0,0.55,1) infinite; }
-.wari-idle-happyglow .wari-sprite { animation: wariHappyGlow  2.6s ease-in-out infinite; }
-.wari-idle-glow .wari-sprite      { animation: wariPulseGlow  3.2s ease-in-out infinite; }
-
-.wari-sprite-wrap.wari-tilt {
-  transform:
-    rotateX(var(--tilt-x, 0deg))
-    rotateY(var(--tilt-y, 0deg))
-    scale(1.06)
-    translateZ(0);
-  transition:
-    transform 0.12s ease-out,
-    filter    0.30s ease;
+.wari-trigger-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  margin-top: -6px;
+  border-radius: 20px;
+  background: rgba(18, 14, 11, 0.95);
+  border: 1px solid rgba(201, 165, 103, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
 }
 
-.wari-companion-br { bottom:28px; right:28px;  animation: wariPeekPop      1.15s cubic-bezier(0.22,1,0.36,1) both; }
-.wari-companion-bl { bottom:28px; left:28px;   animation: wariSlideInLeft  1.15s cubic-bezier(0.22,1,0.36,1) both; }
-.wari-companion-tr { top:110px;   right:28px;  animation: wariSlideInRight 1.15s cubic-bezier(0.22,1,0.36,1) both; }
-.wari-companion-tl { top:110px;   left:28px;   animation: wariSlideInLeft  1.15s cubic-bezier(0.22,1,0.36,1) both; }
-
-@media (max-width: 768px) {
-  .wari-sprite-lg { width:108px; height:108px; }
-  .wari-sprite-md { width:92px;  height:92px;  }
-  .wari-sprite-sm { width:76px;  height:76px;  }
-  .wari-speech    { font-size:11.5px; min-width:120px; max-width:185px; padding:0.5rem 0.85rem; }
-  .wari-companion-tr,.wari-companion-tl { top:78px; }
-  .wari-companion-br,.wari-companion-bl { bottom:18px; }
-  .wari-companion-br,.wari-companion-tr { right:18px; }
-  .wari-companion-bl,.wari-companion-tl { left:18px; }
-}
-@media (min-width: 769px) {
-  .wari-sprite-lg { width:162px; height:162px; }
-  .wari-sprite-md { width:140px; height:140px; }
-  .wari-sprite-sm { width:110px; height:110px; }
+.wari-ai-trigger:hover .wari-trigger-badge {
+  border-color: #C9A567;
+  background: rgba(28, 22, 17, 0.98);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .wari-companion { animation: none !important; }
-  .wari-idle-float,.wari-idle-bob,.wari-idle-breath,
-  .wari-idle-happyglow,.wari-idle-glow { animation: none !important; }
-  .wari-sprite-wrap:hover {
-    transform: scale(1.06) translateZ(0);
-    transition: transform 0.2s ease;
+.wari-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34A853;
+  box-shadow: 0 0 8px #34A853;
+  animation: wariGlowPulse 1.8s infinite;
+}
+
+.wari-badge-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F4E8D1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* --- Luxury Chat Window Container --- */
+.wari-chat-window {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 410px;
+  max-width: calc(100vw - 32px);
+  height: 620px;
+  max-height: calc(100vh - 48px);
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 14, 11, 0.95);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(201, 165, 103, 0.38);
+  border-radius: 28px;
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.92), 0 0 50px rgba(201, 165, 103, 0.12);
+  overflow: hidden;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s;
+  transform-origin: bottom right;
+}
+
+.wari-chat-window.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.92) translateY(24px);
+}
+
+/* Chat Header */
+.wari-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(201, 165, 103, 0.12) 0%, rgba(201, 165, 103, 0.02) 100%);
+  border-bottom: 1px solid rgba(201, 165, 103, 0.2);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.wari-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wari-header-avatar-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 165, 103, 0.25) 0%, rgba(18, 14, 11, 0.8) 70%);
+  border: 1.5px solid rgba(201, 165, 103, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.wari-header-avatar {
+  width: 110%;
+  height: 110%;
+  object-fit: contain;
+  margin-top: -4px;
+  transition: transform 0.3s ease;
+}
+
+.wari-status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #34A853;
+  border: 2px solid #120E0B;
+  box-shadow: 0 0 6px #34A853;
+}
+
+.wari-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.wari-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wari-header-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FBF8F2;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.wari-header-ai-tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1.5px 6px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #4285F4, #9B51E0);
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.4);
+}
+
+.wari-header-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  color: rgba(251, 248, 242, 0.65);
+  margin: 0;
+}
+
+.wari-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wari-header-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(251, 248, 242, 0.7);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wari-header-btn:hover {
+  background: rgba(201, 165, 103, 0.2);
+  border-color: rgba(201, 165, 103, 0.5);
+  color: #C9A567;
+  transform: scale(1.06);
+}
+
+.wari-header-btn.wari-btn-close:hover {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.5);
+  color: #FF6B6B;
+}
+
+/* Page Context Sub-bar */
+.wari-page-context-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11px;
+  color: rgba(251, 248, 242, 0.6);
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Chat Messages Scroll Container */
+.wari-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.wari-chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wari-chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wari-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.25);
+  border-radius: 10px;
+}
+
+.wari-chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.5);
+}
+
+/* Message Rows */
+.wari-msg-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  animation: wariMsgIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.wari-msg-row.user-msg {
+  justify-content: flex-end;
+}
+
+.wari-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(201, 165, 103, 0.15);
+  border: 1px solid rgba(201, 165, 103, 0.3);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.wari-msg-bubble {
+  max-width: 82%;
+  padding: 11px 15px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  border-radius: 18px;
+  word-break: break-word;
+  position: relative;
+}
+
+.wari-msg-row.bot-msg .wari-msg-bubble {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #F4EBD9;
+  border-top-left-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.wari-msg-row.user-msg .wari-msg-bubble {
+  background: linear-gradient(135deg, rgba(201, 165, 103, 0.28) 0%, rgba(201, 165, 103, 0.14) 100%);
+  border: 1px solid rgba(201, 165, 103, 0.45);
+  color: #FFFFFF;
+  border-top-right-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.wari-msg-time {
+  display: block;
+  font-size: 9.5px;
+  color: rgba(251, 248, 242, 0.4);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Markdown formatting inside bot bubble */
+.wari-msg-bubble p {
+  margin: 0 0 8px 0;
+}
+
+.wari-msg-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.wari-msg-bubble strong {
+  color: #F8E6C3;
+  font-weight: 700;
+}
+
+.wari-msg-bubble ul, .wari-msg-bubble ol {
+  margin: 6px 0;
+  padding-left: 20px;
+}
+
+.wari-msg-bubble li {
+  margin-bottom: 4px;
+}
+
+.wari-msg-bubble a.wari-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #DCBE88;
+  background: rgba(201, 165, 103, 0.14);
+  border: 1px solid rgba(201, 165, 103, 0.3);
+  padding: 1px 7px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 11.5px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.wari-msg-bubble a.wari-inline-link:hover {
+  background: rgba(201, 165, 103, 0.3);
+  border-color: #C9A567;
+  color: #FFF;
+  transform: translateY(-1px);
+}
+
+/* Typing Indicator */
+.wari-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border-top-left-radius: 4px;
+  width: fit-content;
+}
+
+.wari-typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C9A567;
+  opacity: 0.4;
+  animation: wariTypingBounce 1.4s infinite ease-in-out both;
+}
+
+.wari-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.wari-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Suggested Prompt Chips */
+.wari-prompt-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+.wari-prompt-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.wari-chip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 165, 103, 0.25);
+  border-radius: 20px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  color: rgba(251, 248, 242, 0.85);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.wari-chip:hover {
+  background: rgba(201, 165, 103, 0.18);
+  border-color: #C9A567;
+  color: #FFF2D1;
+  transform: translateY(-1px);
+}
+
+/* Chat Input Bar */
+.wari-chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(12, 9, 7, 0.96);
+  border-top: 1px solid rgba(201, 165, 103, 0.2);
+  flex-shrink: 0;
+}
+
+#wari-chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  color: #FBF8F2;
+  resize: none;
+  outline: none;
+  max-height: 90px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+#wari-chat-input:focus {
+  border-color: rgba(201, 165, 103, 0.65);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+#wari-chat-input::placeholder {
+  color: rgba(251, 248, 242, 0.35);
+}
+
+.wari-input-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wari-input-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(251, 248, 242, 0.7);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wari-input-btn:hover {
+  background: rgba(201, 165, 103, 0.2);
+  border-color: #C9A567;
+  color: #C9A567;
+}
+
+.wari-input-btn.recording {
+  background: rgba(220, 53, 69, 0.3);
+  border-color: #DC3545;
+  color: #FF6B6B;
+  animation: wariGlowPulse 1.2s infinite;
+}
+
+.wari-send-btn {
+  background: linear-gradient(135deg, #C9A567 0%, #A47E3F 100%);
+  border: none;
+  color: #1A1612;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.4);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wari-send-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(201, 165, 103, 0.6);
+  background: linear-gradient(135deg, #DCBE88 0%, #B8924F 100%);
+}
+
+.wari-send-btn:active {
+  transform: scale(0.94);
+}
+
+/* Settings Modal */
+.wari-api-modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 9, 7, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 10;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.wari-api-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96);
+}
+
+.wari-api-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+}
+
+.wari-api-box h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  color: #FBF8F2;
+  margin: 0 0 6px 0;
+}
+
+.wari-api-box p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11.5px;
+  color: rgba(251, 248, 242, 0.7);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.wari-api-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #FFF;
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.wari-api-input:focus {
+  border-color: #C9A567;
+}
+
+.wari-api-btn-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Animations */
+@keyframes wariHaloBreathe {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.35; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.65; }
+}
+
+@keyframes wariFloatMascot {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  35% { transform: translateY(-7px) rotate(-1.5deg); }
+  70% { transform: translateY(-3px) rotate(1.2deg); }
+}
+
+@keyframes wariTooltipFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes wariGlowPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes wariTypingBounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+@keyframes wariMsgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .wari-ai-widget {
+    bottom: 18px;
+    right: 18px;
+  }
+  .wari-trigger-mascot-wrap {
+    width: 68px;
+    height: 68px;
+  }
+  .wari-chat-window {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    height: calc(100vh - 24px);
+    max-height: calc(100vh - 24px);
+    border-radius: 22px;
   }
 }
