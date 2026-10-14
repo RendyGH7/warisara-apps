@@ -755,20 +755,20 @@
       }
     }
 
-    /* Normalisasi Scroll: Hilangkan bentrok overflow html/body dan pastikan scroll responsif di semua perangkat */
+    /* Normalisasi Scroll: Mengaktifkan scroll native penuh untuk mouse wheel & laptop touchpad */
     html {
       overflow-x: hidden;
       overflow-y: auto;
       scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      height: auto;
     }
 
     body {
-      overflow-x: hidden;
-      overflow-y: visible;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
       min-height: 100dvh;
-      overscroll-behavior-y: none;
+      overflow: visible;
     }
   </style>
 </head>
