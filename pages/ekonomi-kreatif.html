@@ -554,7 +554,7 @@
           <!-- Switcher Tab: Semua Produk vs Karya Saya -->
           <div class="flex items-center gap-1 bg-black/40 p-1 rounded-full border border-white/10 self-end sm:self-auto">
             <button id="tab-all-products" class="px-3.5 py-1.5 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-xs transition-all">
-              Semua Etalase (<span id="total-catalog-count">160+</span>)
+              Semua Etalase (<span id="total-catalog-count">14</span>)
             </button>
             <button id="tab-my-products" class="px-3.5 py-1.5 rounded-full text-surface/60 hover:text-surface text-xs transition-all">
               Karya Saya
@@ -1096,6 +1096,11 @@
       function render() {
         const filtered = getFilteredProducts();
         if (countEl) countEl.textContent = filtered.length;
+        const totalCountEl = document.getElementById("total-catalog-count");
+        if (totalCountEl) {
+          const allProds = window.WARISARA_PRODUCTS ? window.WARISARA_PRODUCTS.getAll() : [];
+          totalCountEl.textContent = allProds.length;
+        }
 
         const visible = filtered.slice(0, displayLimit);
 
