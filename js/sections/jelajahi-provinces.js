@@ -1272,6 +1272,8 @@
       setTimeout(function () {
         openProvinceModal(provParam);
       }, 300);
+    }
+
     window.addEventListener('warisara_auth_changed', function () {
       updatePassportUI();
       renderProvincesGrid();
