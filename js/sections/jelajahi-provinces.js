@@ -356,28 +356,28 @@
               "${prov.shortStatement}"
             </blockquote>
 
-            <!-- Mini Highlight Pills: Kuliner, Senjata, Wisata -->
-            <div class="space-y-1.5 text-[11px] pt-3 border-t border-white/10">
-              <div class="flex items-center gap-2 text-surface/80">
-                <span class="text-xs">🍲</span>
-                <span class="text-surface/50 font-medium">Kuliner:</span>
-                <span class="truncate font-semibold text-brass-200">${culinaryName}</span>
+            <!-- Mini Highlight Badges: Kuliner, Senjata, Wisata -->
+            <div class="space-y-2 pt-3 border-t border-white/10 text-xs">
+              <div class="flex items-center gap-2 text-surface/85">
+                <span class="w-6 h-6 rounded-lg bg-terracotta-500/15 border border-terracotta-500/30 text-terracotta-300 flex items-center justify-center text-xs flex-shrink-0">🍲</span>
+                <span class="text-surface/50 text-[11px] font-mono">Kuliner:</span>
+                <span class="truncate font-medium text-brass-200 text-xs">${culinaryName}</span>
               </div>
-              <div class="flex items-center gap-2 text-surface/80">
-                <span class="text-xs">🗡️</span>
-                <span class="text-surface/50 font-medium">Senjata:</span>
-                <span class="truncate font-semibold text-brass-200">${weaponName}</span>
+              <div class="flex items-center gap-2 text-surface/85">
+                <span class="w-6 h-6 rounded-lg bg-brass-500/15 border border-brass-500/30 text-brass-300 flex items-center justify-center text-xs flex-shrink-0">🗡️</span>
+                <span class="text-surface/50 text-[11px] font-mono">Senjata:</span>
+                <span class="truncate font-medium text-brass-200 text-xs">${weaponName}</span>
               </div>
-              <div class="flex items-center gap-2 text-surface/80">
-                <span class="text-xs">🏞️</span>
-                <span class="text-surface/50 font-medium">Wisata:</span>
-                <span class="truncate font-semibold text-brass-200">${tourismName}</span>
+              <div class="flex items-center gap-2 text-surface/85">
+                <span class="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center text-xs flex-shrink-0">🏞️</span>
+                <span class="text-surface/50 text-[11px] font-mono">Wisata:</span>
+                <span class="truncate font-medium text-brass-200 text-xs">${tourismName}</span>
               </div>
             </div>
 
-            <div class="pt-2 flex items-center justify-between text-xs text-brass-400 font-semibold uppercase tracking-wider group-hover:text-brass-300">
-              <span>Buka Ensiklopedia & Kuis</span>
-              <span class="material-symbols-outlined text-sm group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-brass-400 font-bold uppercase tracking-wider group-hover:text-brass-300 transition-colors">
+              <span>Buka Ensiklopedia &amp; Kuis</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
             </div>
           </div>
         </article>
@@ -931,14 +931,20 @@
     // Switch to active tab (default: overview)
     switchModalTab(currentModalTab || 'overview');
 
-    // Show modal overlay
-    modalOverlay.classList.remove('hidden');
-    modalOverlay.classList.add('active');
+    // Show modal overlay with smooth spring animation
+    modalOverlay.classList.remove('hidden', 'modal-closing');
     modalOverlay.style.display = 'flex';
-    document.documentElement.classList.add('province-modal-open', 'modal-open');
-    document.documentElement.style.overflow = 'hidden';
-    document.body.classList.add('province-modal-open', 'modal-open');
-    document.body.style.overflow = 'hidden';
+
+    // Double requestAnimationFrame ensures that CSS transitions trigger smoothly without snap
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        modalOverlay.classList.add('active');
+        document.documentElement.classList.add('province-modal-open', 'modal-open');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.classList.add('province-modal-open', 'modal-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
 
     // Hide mascot comment / tooltip while modal is open
     if (window.WariMascot && window.WariMascot.hideTooltip) {
@@ -1113,23 +1119,37 @@
     });
   }
 
+  var isProvinceModalClosing = false;
+
   function closeProvinceModal() {
     var modalOverlay = document.getElementById('province-modal-overlay');
-    if (modalOverlay) {
-      modalOverlay.classList.remove('active');
+    if (!modalOverlay || isProvinceModalClosing) return;
+    if (!modalOverlay.classList.contains('active')) return;
+
+    isProvinceModalClosing = true;
+    modalOverlay.classList.remove('active');
+    modalOverlay.classList.add('modal-closing');
+
+    // Smooth exit transition before fully hiding
+    setTimeout(function () {
+      modalOverlay.classList.remove('modal-closing');
       modalOverlay.classList.add('hidden');
       modalOverlay.style.display = 'none';
+
       document.documentElement.classList.remove('province-modal-open', 'modal-open');
       document.documentElement.style.overflow = '';
       document.body.classList.remove('province-modal-open', 'modal-open');
       document.body.style.overflow = '';
+
       var navbar = document.getElementById('main-navbar');
       if (navbar) navbar.classList.remove('navbar-hidden');
 
       if (window.WariMascot && window.WariMascot.showTooltip) {
         window.WariMascot.showTooltip();
       }
-    }
+
+      isProvinceModalClosing = false;
+    }, 280);
   }
 
   // --- LIGHTBOX VIEWER ---
