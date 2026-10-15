@@ -513,92 +513,252 @@
       };
     }
 
-    // Render Tab 1: Ikhtisar & Sejarah
+    // Helper: Format Sejarah Ringkas & Menarik (Bite-Sized Timeline Points + Accordion)
+    function formatBiteSizedHistory(prov) {
+      var raw = (prov.historyBrief || prov.shortDescription || '').trim();
+      if (!raw) return '';
+
+      var sentences = raw.split(/(?<=[.?!])\s+/).filter(function (s) { return s.trim().length > 0; });
+      var bullets = [];
+
+      if (sentences.length >= 2) {
+        bullets.push({
+          tag: 'Akar Peradaban',
+          icon: 'account_balance',
+          color: 'brass',
+          text: sentences[0]
+        });
+        bullets.push({
+          tag: 'Tonggak Perjuangan',
+          icon: 'military_tech',
+          color: 'terracotta',
+          text: sentences[1]
+        });
+        if (sentences.length >= 3) {
+          bullets.push({
+            tag: 'Era Kontemporer',
+            icon: 'stars',
+            color: 'forest',
+            text: sentences.slice(2).join(' ')
+          });
+        }
+      } else {
+        bullets.push({
+          tag: 'Intisari Sejarah',
+          icon: 'history_edu',
+          color: 'brass',
+          text: raw
+        });
+      }
+
+      return `
+        <div class="rounded-2xl p-4 sm:p-5 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent border border-white/10 space-y-3.5">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brass-400"></span>
+              <h4 class="text-[11px] font-bold uppercase tracking-wider text-brass-300 font-mono">
+                Intisari Kilas Sejarah
+              </h4>
+            </div>
+            <span class="text-[10px] text-surface/50 font-mono bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">Ringkas &amp; Esensial</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5">
+            ${bullets.map(function (b) {
+              var iconColor = b.color === 'brass' ? 'text-brass-400' : (b.color === 'terracotta' ? 'text-terracotta-400' : 'text-emerald-400');
+              var badgeBg = b.color === 'brass' ? 'bg-brass-400/15 border-brass-400/30 text-brass-300' : (b.color === 'terracotta' ? 'bg-terracotta-500/15 border-terracotta-500/30 text-terracotta-300' : 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300');
+              return `
+                <div class="history-milestone-item p-3 rounded-xl bg-black/40 border border-white/10 flex items-start gap-3">
+                  <span class="material-symbols-outlined text-lg ${iconColor} flex-shrink-0 mt-0.5">${b.icon}</span>
+                  <div class="space-y-1 min-w-0 flex-1">
+                    <span class="inline-block px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider border ${badgeBg} font-mono">
+                      ${b.tag}
+                    </span>
+                    <p class="text-xs text-surface/90 font-light leading-relaxed">
+                      ${b.text}
+                    </p>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Accordion Baca Narasi Lengkap -->
+          <div class="pt-1 border-t border-white/10 flex flex-col">
+            <button id="toggle-history-narrative-btn" class="history-expand-btn self-start inline-flex items-center gap-1.5 text-xs text-brass-400 hover:text-brass-300 font-semibold transition-colors py-1 cursor-pointer">
+              <span>Baca Narasi Lengkap</span>
+              <span class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
+            </button>
+            <div id="history-full-narrative" class="history-full-narrative">
+              <p class="text-xs text-surface/75 font-light leading-relaxed pt-2 pl-3 border-l-2 border-brass-400/40 my-1 bg-white/[0.01] rounded-r-lg">
+                ${raw}
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Tab 1: Ikhtisar & Sejarah (Bite-sized, clean, modular)
     var historyEl = document.getElementById('tab-history-content');
     if (historyEl) {
       historyEl.innerHTML = `
-        <div class="space-y-5">
-          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-            <h4 class="text-[11px] font-bold uppercase tracking-wider text-brass-400 mb-2 flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">history_edu</span>
-              <span>Sejarah Singkat & Asal-Usul</span>
-            </h4>
-            <p class="text-xs sm:text-sm text-surface/85 font-light leading-relaxed">
-              ${prov.historyBrief || prov.shortDescription}
-            </p>
-          </div>
+        <div class="space-y-4">
+          <!-- 1. Intisari Kilas Sejarah (Bite-Sized) -->
+          ${formatBiteSizedHistory(prov)}
 
+          <!-- 2. Grid Sapaan Daerah & Kriya Luhur -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-              <h4 class="text-[11px] font-bold uppercase tracking-wider text-terracotta-400 mb-2 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">translate</span>
-                <span>Bahasa & Sapaan Khas</span>
-              </h4>
-              <div class="text-xs text-surface/80 space-y-1">
-                <p><strong class="text-surface font-semibold">Bahasa Daerah:</strong> ${prov.language ? prov.language.name : 'Bahasa Daerah Lokal'}</p>
-                <div class="p-2.5 rounded-xl bg-brass-400/10 border border-brass-400/20 my-2">
-                  <p class="font-display text-base text-brass-300 font-medium">"${prov.language ? prov.language.greeting : 'Sapaan Ramah'}"</p>
-                  <p class="text-[11px] text-surface/60 italic">Artinya: ${prov.language ? prov.language.meaning : 'Salam persaudaraan'}</p>
+            <!-- Kartu Bahasa & Sapaan Ramah -->
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-brass-500/10 via-white/[0.02] to-transparent border border-brass-400/25 flex flex-col justify-between space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-brass-300 font-mono">
+                  <span class="material-symbols-outlined text-sm text-brass-400">record_voice_over</span>
+                  <span>${prov.language ? prov.language.name : 'Bahasa Daerah'}</span>
                 </div>
-                ${prov.language && prov.language.commonPhrases && prov.language.commonPhrases.length ? `
-                <div class="mt-3 pt-2.5 border-t border-white/10 space-y-1.5">
-                  <span class="text-[10px] font-bold uppercase tracking-wider text-surface/60 block mb-1">Ungkapan Populer:</span>
-                  ${prov.language.commonPhrases.map(function(cp) {
-                    var phraseText = (typeof cp === 'object' && cp) ? cp.phrase : cp;
-                    var meaningText = (typeof cp === 'object' && cp) ? cp.meaning : '';
-                    return '<div class="flex items-baseline gap-2 text-xs py-0.5"><span class="font-medium text-brass-300 font-display flex-shrink-0">&ldquo;' + phraseText + '&rdquo;</span><span class="text-surface/30">—</span><span class="text-surface/75 italic font-light">' + meaningText + '</span></div>';
-                  }).join('')}
+                <button id="card-voice-play-btn" class="px-2.5 py-1 rounded-full bg-brass-400/20 hover:bg-brass-400 hover:text-ink text-brass-300 border border-brass-400/40 text-[10px] font-bold flex items-center gap-1 transition-all shadow-sm cursor-pointer" title="Dengarkan Sapaan">
+                  <span class="material-symbols-outlined text-sm">volume_up</span>
+                  <span>Dengar</span>
+                </button>
+              </div>
+
+              <div class="p-3 rounded-xl bg-black/40 border border-brass-400/20 shadow-inner">
+                <span class="text-[9px] uppercase font-mono tracking-widest text-surface/50 block mb-1">Sapaan Khas:</span>
+                <h5 class="font-display text-base sm:text-lg text-brass-100 font-light leading-snug mb-0.5">
+                  &ldquo;${prov.language ? prov.language.greeting : 'Selamat Datang'}&rdquo;
+                </h5>
+                <p class="text-xs text-surface/65 italic font-light">
+                  Artinya: &ldquo;${prov.language ? prov.language.meaning : 'Salam persaudaraan'}&rdquo;
+                </p>
+              </div>
+
+              ${prov.language && prov.language.commonPhrases && prov.language.commonPhrases.length ? `
+                <div class="pt-2 border-t border-white/10 space-y-1">
+                  <span class="text-[9px] font-bold uppercase tracking-wider text-surface/50 font-mono block">Ungkapan Populer:</span>
+                  <div class="flex flex-wrap gap-1">
+                    ${prov.language.commonPhrases.slice(0, 2).map(function (cp) {
+                      var phraseText = (typeof cp === 'object' && cp) ? cp.phrase : cp;
+                      var meaningText = (typeof cp === 'object' && cp) ? cp.meaning : '';
+                      return `
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-surface/80">
+                          <strong class="font-display text-brass-300 font-medium">${phraseText}</strong>
+                          ${meaningText ? `<span class="text-surface/40 text-[9px]">&bull;</span><span class="text-surface/60 text-[9px] italic">${meaningText}</span>` : ''}
+                        </span>
+                      `;
+                    }).join('')}
+                  </div>
                 </div>
-                ` : ''}
+              ` : ''}
+            </div>
+
+            <!-- Kartu Keahlian Kriya Luhur -->
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-terracotta-500/10 via-white/[0.02] to-transparent border border-terracotta-400/25 flex flex-col justify-between space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-terracotta-300 font-mono">
+                  <span class="material-symbols-outlined text-sm text-terracotta-400">palette</span>
+                  <span>Kriya Luhur</span>
+                </div>
+                <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-200 border border-terracotta-500/30 font-mono">
+                  Pusaka Lokal
+                </span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-black/40 border border-terracotta-500/20 shadow-inner">
+                <span class="text-[9px] uppercase font-mono tracking-widest text-surface/50 block mb-1">Identitas Kriya:</span>
+                <h5 class="font-display text-base sm:text-lg text-terracotta-100 font-light leading-snug mb-1">
+                  ${prov.craftHighlight}
+                </h5>
+                <p class="text-[11px] text-surface/70 font-light leading-relaxed">
+                  Keahlian adiluhung penopang ekonomi kreatif masyarakat setempat.
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between pt-1 text-[11px]">
+                <span class="text-surface/50 font-mono">Koleksi Wastra & Kriya</span>
+                <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1 text-terracotta-300 hover:text-terracotta-200 font-semibold transition-colors">
+                  <span>Lihat Produk</span>
+                  <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </a>
               </div>
             </div>
-
-            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-              <h4 class="text-[11px] font-bold uppercase tracking-wider text-indigo-400 mb-2 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">palette</span>
-                <span>Keahlian Kriya Luhur</span>
-              </h4>
-              <p class="font-display text-base text-surface font-light mb-1">${prov.craftHighlight}</p>
-              <p class="text-xs text-surface/70 font-light leading-relaxed">Keahlian turun-temurun yang menjadi identitas budaya dan penopang ekonomi kreatif masyarakat setempat.</p>
-            </div>
           </div>
 
-          <!-- WBTb List -->
-          <div>
-            <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/60 mb-3">Warisan Budaya Takbenda Resmi (WBTb)</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              ${(prov.heritage || []).map(function (item) {
-                return `
-                  <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between">
-                    <div>
-                      <span class="inline-block px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-400/20 text-brass-300 border border-brass-400/30 mb-1.5">
-                        ${item.category}
-                      </span>
-                      <h5 class="font-display text-sm font-medium text-surface mb-1">${item.name}</h5>
-                      <p class="text-[11px] text-surface/70 leading-relaxed font-light">${item.desc}</p>
+          <!-- 3. Warisan Budaya Takbenda (WBTb) Seal Badges -->
+          ${(prov.heritage && prov.heritage.length) ? `
+            <div class="space-y-2.5 pt-1">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
+                  <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/80 font-mono">
+                    Warisan Budaya Takbenda (WBTb)
+                  </h4>
+                </div>
+                <span class="text-[10px] text-surface/50 font-mono">${prov.heritage.length} Pusaka Resmi</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                ${prov.heritage.map(function (item) {
+                  var isUnesco = item.category && item.category.toLowerCase().includes('unesco');
+                  var badgeBorder = isUnesco ? 'border-amber-400/40 bg-amber-500/15 text-amber-300' : 'border-brass-400/30 bg-brass-400/15 text-brass-300';
+                  return `
+                    <div class="wbtb-badge-card p-3 rounded-xl bg-white/[0.025] border border-white/10 flex flex-col justify-between space-y-1.5">
+                      <div>
+                        <div class="flex items-center justify-between gap-1 mb-1">
+                          <span class="inline-block px-1.5 py-0.5 rounded text-[8.5px] font-bold uppercase tracking-wider border ${badgeBorder} font-mono">
+                            ${item.category}
+                          </span>
+                          ${isUnesco ? '<span class="material-symbols-outlined text-[13px] text-amber-400" title="UNESCO">grade</span>' : ''}
+                        </div>
+                        <h5 class="font-display text-sm font-medium text-surface mb-0.5">${item.name}</h5>
+                        <p class="text-[11px] text-surface/70 font-light leading-relaxed line-clamp-2">${item.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                `;
-              }).join('')}
+                  `;
+                }).join('')}
+              </div>
             </div>
-          </div>
+          ` : ''}
 
-          <!-- Suara Pelestari -->
+          <!-- 4. Suara Pelestari Tradisi -->
           ${prov.maker ? `
-            <div class="p-4 rounded-2xl bg-forest-900/25 border border-forest-500/25">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 block mb-1">Pesan Luhur Pelestari Tradisi</span>
-              <p class="italic text-xs sm:text-sm text-surface/90 mb-3 leading-relaxed">"${prov.maker.quote}"</p>
-              <div class="flex items-center justify-between text-xs text-surface/70 pt-2 border-t border-forest-500/20">
-                <span class="font-semibold text-surface flex items-center gap-1.5">
-                  <span class="material-symbols-outlined text-sm text-forest-400">person</span>
-                  ${prov.maker.name}
-                </span>
-                <span class="text-[11px] text-forest-300">${prov.maker.role}</span>
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-forest-900/30 via-black/40 to-transparent border border-forest-500/25 flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-forest-500/20 border border-forest-500/30 flex items-center justify-center text-forest-300 flex-shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-base">person</span>
+              </div>
+              <div class="min-w-0 flex-1 space-y-0.5">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 font-mono">Pesan Luhur Pelestari Tradisi</span>
+                  <span class="text-[10px] text-surface/50 font-mono">${prov.maker.role}</span>
+                </div>
+                <p class="italic text-xs text-surface/90 font-light leading-relaxed">
+                  &ldquo;${prov.maker.quote}&rdquo;
+                </p>
+                <span class="text-[11px] font-semibold text-brass-300 block pt-0.5">— ${prov.maker.name}</span>
               </div>
             </div>
           ` : ''}
         </div>
       `;
+
+      // Wire accordion expand narrative button
+      var toggleNarrativeBtn = document.getElementById('toggle-history-narrative-btn');
+      var narrativeBox = document.getElementById('history-full-narrative');
+      if (toggleNarrativeBtn && narrativeBox) {
+        toggleNarrativeBtn.addEventListener('click', function () {
+          var isExpanded = narrativeBox.classList.toggle('open');
+          toggleNarrativeBtn.classList.toggle('open', isExpanded);
+          toggleNarrativeBtn.querySelector('span:first-child').textContent = isExpanded ? 'Sembunyikan Narasi' : 'Baca Narasi Lengkap';
+        });
+      }
+
+      // Wire card voice play button
+      var cardVoiceBtn = document.getElementById('card-voice-play-btn');
+      if (cardVoiceBtn && prov.language) {
+        cardVoiceBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          speakRegionalGreeting(prov.language.greeting);
+        });
+      }
     }
 
     // Render Tab 2: Kuliner & Senjata Pusaka
