@@ -14,7 +14,7 @@ html.page-transitioning-in body {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 99999;
+  z-index: 999999 !important;
   pointer-events: none;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,20 @@ html.page-transitioning-in body {
   pointer-events: auto;
   transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
               visibility 0s linear 0s;
+}
+
+/* Sembunyikan Si Wari AI saat tirai transisi aktif */
+html.page-transitioning-in #wari-ai-widget,
+body.page-transitioning-in #wari-ai-widget,
+html.page-transitioning #wari-ai-widget,
+body.page-transitioning #wari-ai-widget,
+body.page-entering-active #wari-ai-widget,
+body:has(#page-transition-veil.active) #wari-ai-widget,
+#page-transition-veil.active ~ #wari-ai-widget {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Sembunyikan konten logo/loader saat halaman baru dibuka dari transisi,

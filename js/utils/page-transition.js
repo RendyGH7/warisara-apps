@@ -240,6 +240,13 @@ window.WARISARA_TRANSITION = {
   _handleIncomingPage: function () {
     try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
 
+    // Pastikan Si Wari AI tersembunyi saat halaman baru sedang masuk di balik tirai
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.add("transition-hidden");
+      wariWidget.style.display = "none";
+    }
+
     if (document.documentElement) {
       document.documentElement.classList.remove("page-transitioning-in");
     }
@@ -277,9 +284,19 @@ window.WARISARA_TRANSITION = {
               this.veilEl.style.transition = "";
             }
             if (document.body) {
-              document.body.classList.remove("page-entering-active");
+              document.body.classList.remove("page-entering-active", "page-transitioning");
+            }
+            if (document.documentElement) {
+              document.documentElement.classList.remove("page-transitioning");
             }
             this.isTransitioning = false;
+
+            // Munculkan kembali Si Wari AI setelah transisi halaman selesai 100%
+            const wari = document.getElementById("wari-ai-widget");
+            if (wari) {
+              wari.classList.remove("transition-hidden");
+              wari.style.display = "";
+            }
           }, 900);
         }, 60);
       });
@@ -294,6 +311,17 @@ window.WARISARA_TRANSITION = {
   navigateTo: function (url) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
+
+    // Sembunyikan Si Wari AI secara instan saat transisi halaman dimulai
+    document.documentElement.classList.add("page-transitioning");
+    if (document.body) {
+      document.body.classList.add("page-transitioning");
+    }
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.add("transition-hidden");
+      wariWidget.style.display = "none";
+    }
 
     if (!this.veilEl) this.createVeil();
 
@@ -367,10 +395,15 @@ window.WARISARA_TRANSITION = {
         this.veilEl.classList.remove("active", "veil-exiting", "veil-exit-only");
       }
       if (document.body) {
-        document.body.classList.remove("page-entering-active");
+        document.body.classList.remove("page-entering-active", "page-transitioning");
       }
       if (document.documentElement) {
-        document.documentElement.classList.remove("page-transitioning-in");
+        document.documentElement.classList.remove("page-transitioning", "page-transitioning-in");
+      }
+      const wari = document.getElementById("wari-ai-widget");
+      if (wari) {
+        wari.classList.remove("transition-hidden");
+        wari.style.display = "";
       }
     });
   },

@@ -25,7 +25,7 @@ body.preloader-active *::-webkit-scrollbar {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100000;
+  z-index: 1000000 !important;
   background-color: #070504;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,17 @@ body.preloader-active *::-webkit-scrollbar {
   pointer-events: none;
   transform: scale(1.05) translateY(-8px);
   filter: blur(4px);
+}
+
+/* Sembunyikan Si Wari AI secara total saat preloader aktif */
+html.preloader-active #wari-ai-widget,
+body.preloader-active #wari-ai-widget,
+#warisara-preloader:not(.preloader-hidden) ~ #wari-ai-widget,
+body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .preloader-backdrop-canvas {

@@ -47,6 +47,12 @@ window.WARISARA_PRELOADER = {
       document.body.classList.add("preloader-active");
     }
 
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.add("preloader-hidden");
+      wariWidget.style.display = "none";
+    }
+
     if ("scrollRestoration" in history) {
       try {
         history.scrollRestoration = "manual";
@@ -71,6 +77,12 @@ window.WARISARA_PRELOADER = {
     document.documentElement.classList.remove("preloader-active");
     if (document.body) {
       document.body.classList.remove("preloader-active");
+    }
+
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.remove("preloader-hidden");
+      wariWidget.style.display = "";
     }
 
     if (this._boundPreventScroll) {

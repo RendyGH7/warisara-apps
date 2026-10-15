@@ -75,6 +75,34 @@ html.province-modal-open .wari-ai-tooltip {
   animation: none !important;
 }
 
+/* ==========================================================================
+   SEMBUNYIKAN SI WARI AI SECARA TOTAL SAAT TRANSISI HALAMAN & PRELOADER
+   ========================================================================== */
+html.preloader-active #wari-ai-widget,
+body.preloader-active #wari-ai-widget,
+html.preloader-active .wari-ai-widget,
+body.preloader-active .wari-ai-widget,
+html.page-transitioning-in #wari-ai-widget,
+body.page-transitioning-in #wari-ai-widget,
+html.page-transitioning-in .wari-ai-widget,
+body.page-transitioning-in .wari-ai-widget,
+html.page-transitioning #wari-ai-widget,
+body.page-transitioning #wari-ai-widget,
+html.page-transitioning .wari-ai-widget,
+body.page-transitioning .wari-ai-widget,
+body.page-entering-active #wari-ai-widget,
+body.page-entering-active .wari-ai-widget,
+#wari-ai-widget.transition-hidden,
+#wari-ai-widget.preloader-hidden,
+.wari-ai-widget.transition-hidden,
+.wari-ai-widget.preloader-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  animation: none !important;
+}
+
 .wari-tooltip-top-bar {
   display: flex;
   align-items: center;

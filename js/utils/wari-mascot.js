@@ -748,6 +748,22 @@ Peran dan Pengetahuan Anda:
     widgetEl = document.createElement('div');
     widgetEl.id = 'wari-ai-widget';
     widgetEl.className = 'wari-ai-widget';
+
+    // Sembunyikan secara instan jika halaman sedang dalam transisi atau preloader
+    const isTransitioningNow = (
+      document.documentElement.classList.contains('preloader-active') ||
+      document.documentElement.classList.contains('page-transitioning-in') ||
+      document.documentElement.classList.contains('page-transitioning') ||
+      (document.body && document.body.classList.contains('preloader-active')) ||
+      (document.body && document.body.classList.contains('page-entering-active')) ||
+      (document.body && document.body.classList.contains('page-transitioning')) ||
+      sessionStorage.getItem('warisara_page_transition') === 'true'
+    );
+    if (isTransitioningNow) {
+      widgetEl.classList.add('transition-hidden');
+      widgetEl.style.display = 'none';
+    }
+
     widgetEl.innerHTML = `
       <!-- Tooltip Sapaan -->
       <div id="wari-ai-tooltip" class="wari-ai-tooltip" title="Klik untuk mengobrol dengan Wari">
@@ -1042,14 +1058,13 @@ Peran dan Pengetahuan Anda:
       for (let j = 0; j < els.length; j++) {
         const el = els[j];
         if (el.id === 'wari-chat-window' || el.closest('#wari-chat-window')) continue;
-        const style = window.getComputedStyle(el);
-        const isVisible = (
-          (el.classList.contains('active') || (!el.classList.contains('hidden') && el.style.display !== 'none')) &&
-          style.display !== 'none' &&
-          style.visibility !== 'hidden' &&
-          style.opacity !== '0'
-        );
-        if (isVisible) return true;
+        if (el.classList.contains('hidden') || el.style.display === 'none') continue;
+        if (el.classList.contains('active') || el.classList.contains('show') || el.classList.contains('open')) {
+          const style = window.getComputedStyle(el);
+          if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
+            return true;
+          }
+        }
       }
     }
     return false;
@@ -1057,7 +1072,7 @@ Peran dan Pengetahuan Anda:
 
   function hideMascotTooltip() {
     const tooltipEl = document.getElementById('wari-ai-tooltip');
-    if (tooltipEl) {
+    if (tooltipEl && !tooltipEl.classList.contains('hidden-tooltip')) {
       tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
     }
   }
@@ -1065,22 +1080,98 @@ Peran dan Pengetahuan Anda:
   function showMascotTooltip() {
     if (isAnyModalOpen()) return;
     const tooltipEl = document.getElementById('wari-ai-tooltip');
-    if (tooltipEl && !isOpen) {
+    if (tooltipEl && !isOpen && tooltipEl.classList.contains('hidden-tooltip')) {
       tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed');
     }
   }
 
+  function isTransitionOrPreloaderActive() {
+    try {
+      return (
+        document.documentElement.classList.contains('preloader-active') ||
+        document.documentElement.classList.contains('page-transitioning-in') ||
+        document.documentElement.classList.contains('page-transitioning') ||
+        (document.body && document.body.classList.contains('preloader-active')) ||
+        (document.body && document.body.classList.contains('page-entering-active')) ||
+        (document.body && document.body.classList.contains('page-transitioning')) ||
+        sessionStorage.getItem('warisara_page_transition') === 'true'
+      );
+    } catch (e) {
+      return false;
+    }
+  }
+
   function initModalWatcher() {
+    let isUpdating = false;
+    let scheduled = false;
+
     function checkAndSync() {
-      if (isAnyModalOpen()) {
-        hideMascotTooltip();
-      } else {
-        showMascotTooltip();
+      if (isUpdating) return;
+      isUpdating = true;
+      try {
+        const widget = document.getElementById('wari-ai-widget');
+        const isHiddenState = isTransitionOrPreloaderActive();
+
+        if (widget) {
+          if (isHiddenState) {
+            if (!widget.classList.contains('transition-hidden')) {
+              widget.classList.add('transition-hidden');
+            }
+            if (widget.style.display !== 'none') {
+              widget.style.display = 'none';
+            }
+            hideMascotTooltip();
+            return;
+          } else {
+            if (!widget.classList.contains('preloader-hidden')) {
+              if (widget.classList.contains('transition-hidden')) {
+                widget.classList.remove('transition-hidden');
+              }
+              if (widget.style.display === 'none') {
+                widget.style.display = '';
+              }
+            }
+          }
+        }
+
+        if (isAnyModalOpen()) {
+          hideMascotTooltip();
+        } else {
+          showMascotTooltip();
+        }
+      } finally {
+        isUpdating = false;
       }
     }
 
+    function scheduleSync() {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        checkAndSync();
+      });
+    }
+
     try {
-      const observer = new MutationObserver(checkAndSync);
+      const observer = new MutationObserver((mutations) => {
+        if (isUpdating) return;
+        // Abaikan mutasi jika semuanya berasal dari internal widget Wari atau preloader
+        const hasExternal = mutations.some((m) => {
+          const t = m.target;
+          if (!t || !t.closest) return false;
+          return (
+            !t.closest('#wari-ai-widget') &&
+            !t.closest('#wari-chat-window') &&
+            !t.closest('#warisara-preloader') &&
+            !t.closest('#page-transition-veil')
+          );
+        });
+        if (hasExternal) {
+          scheduleSync();
+        }
+      });
+
       observer.observe(document.body, {
         attributes: true,
         attributeFilter: ['class', 'style', 'hidden'],
@@ -1096,8 +1187,8 @@ Peran dan Pengetahuan Anda:
     window.addEventListener('modal:open', hideMascotTooltip);
     window.addEventListener('modal:close', showMascotTooltip);
 
-    // Initial check
-    setTimeout(checkAndSync, 200);
+    // Initial check via rAF
+    scheduleSync();
   }
 
   // Global API Wari
