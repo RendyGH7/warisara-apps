@@ -63,11 +63,15 @@ body.modal-open #mobile-nav-drawer {
   transition: transform 0.3s ease, opacity 0.25s ease, visibility 0.25s !important;
 }
 
+body.province-modal-open .wari-ai-tooltip,
+body.modal-open .wari-ai-tooltip,
 body.province-modal-open .wari-companion,
 body.modal-open .wari-companion {
   opacity: 0 !important;
+  visibility: hidden !important;
   pointer-events: none !important;
-  transition: opacity 0.25s ease !important;
+  transform: scale(0.7) translateY(14px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
 }
 
 @media (min-width: 640px) {

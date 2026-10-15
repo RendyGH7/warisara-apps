@@ -625,6 +625,26 @@
 .modal-scroll-pane {
   scrollbar-width: thin;
   scrollbar-color: rgba(201, 165, 103, 0.45) rgba(255, 255, 255, 0.03);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-scroll-pane {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+#province-modal-overlay {
+  overscroll-behavior: contain;
+}
+
+html.province-modal-open,
+body.province-modal-open,
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  height: 100% !important;
+  overscroll-behavior: none !important;
 }
 
 .modal-scroll-pane::-webkit-scrollbar,

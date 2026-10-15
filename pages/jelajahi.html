@@ -420,7 +420,7 @@
     </section>
 
     <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
-    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md items-center justify-center p-2 sm:p-4 lg:p-6">
+    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md items-center justify-center p-2 sm:p-4 lg:p-6 overflow-y-auto overscroll-contain">
       <div id="province-detail-modal" class="modal-container w-full max-w-6xl bg-[#161310] border border-brass-400/30 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh]">
         
         <!-- LEFT PANEL: VISUAL SHOWCASE & PROVINCE IDENTITY -->
@@ -551,12 +551,11 @@
           <!-- Tab Contents Scrollable Body -->
           <div class="modal-scroll-pane p-5 sm:p-7 pb-12 overflow-y-auto space-y-6 flex-1 min-h-0 text-xs sm:text-sm text-surface/85">
             
-            <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1.5 leading-relaxed bg-brass-400/5 rounded-r-xl pr-3">
-              "Pernyataan filosofis kebudayaan provinsi."
-            </blockquote>
-
             <!-- Tab 1: Ikhtisar & Sejarah -->
-            <div id="tab-overview-content" class="tab-pane">
+            <div id="tab-overview-content" class="tab-pane space-y-5">
+              <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1.5 leading-relaxed bg-brass-400/5 rounded-r-xl pr-3 mb-5">
+                "Pernyataan filosofis kebudayaan provinsi."
+              </blockquote>
               <div id="tab-history-content"></div>
             </div>
 

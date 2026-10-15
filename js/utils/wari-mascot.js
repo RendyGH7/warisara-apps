@@ -751,7 +751,12 @@ Peran dan Pengetahuan Anda:
     widgetEl.innerHTML = `
       <!-- Tooltip Sapaan -->
       <div id="wari-ai-tooltip" class="wari-ai-tooltip" title="Klik untuk mengobrol dengan Wari">
-        <span class="wari-tooltip-badge">Wari AI Pemandu</span>
+        <div class="wari-tooltip-top-bar">
+          <span class="wari-tooltip-badge">Wari AI Pemandu</span>
+          <button id="wari-tooltip-dismiss" class="wari-tooltip-dismiss" aria-label="Tutup pesan" title="Tutup komentar Wari">
+            <span class="material-symbols-outlined" style="font-size: 13px;">close</span>
+          </button>
+        </div>
         <p id="wari-tooltip-text">${pageCtx.tooltip}</p>
       </div>
 
@@ -888,7 +893,15 @@ Peran dan Pengetahuan Anda:
         toggleChatWindow();
       });
     }
-    if (tooltipEl) tooltipEl.addEventListener('click', () => {
+    const dismissTooltipBtn = document.getElementById('wari-tooltip-dismiss');
+    if (dismissTooltipBtn) {
+      dismissTooltipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (tooltipEl) tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
+      });
+    }
+    if (tooltipEl) tooltipEl.addEventListener('click', (e) => {
+      if (e.target && e.target.closest('#wari-tooltip-dismiss')) return;
       triggerBtn && triggerBtn.classList.add('wari-excited');
       setTimeout(() => triggerBtn && triggerBtn.classList.remove('wari-excited'), 700);
       toggleChatWindow(true);
@@ -997,6 +1010,96 @@ Peran dan Pengetahuan Anda:
     }
   }
 
+  // --- Modal Detection & Automatic Tooltip Suppression ---
+  function isAnyModalOpen() {
+    if (
+      document.body.classList.contains('modal-open') ||
+      document.body.classList.contains('province-modal-open') ||
+      document.body.classList.contains('lightbox-open') ||
+      document.body.classList.contains('passport-modal-open') ||
+      document.body.classList.contains('is-modal-active') ||
+      document.documentElement.classList.contains('modal-open') ||
+      document.documentElement.classList.contains('province-modal-open')
+    ) {
+      return true;
+    }
+
+    const modalSelectors = [
+      '#province-modal-overlay',
+      '#passport-book-modal',
+      '#gallery-lightbox-modal',
+      '#compass-randomizer-modal',
+      '#auth-modal',
+      '#product-detail-modal',
+      '#add-product-modal',
+      '#marketplace-chat-modal',
+      '.modal-overlay',
+      '[role="dialog"]:not(#wari-chat-window)'
+    ];
+
+    for (let i = 0; i < modalSelectors.length; i++) {
+      const els = document.querySelectorAll(modalSelectors[i]);
+      for (let j = 0; j < els.length; j++) {
+        const el = els[j];
+        if (el.id === 'wari-chat-window' || el.closest('#wari-chat-window')) continue;
+        const style = window.getComputedStyle(el);
+        const isVisible = (
+          (el.classList.contains('active') || (!el.classList.contains('hidden') && el.style.display !== 'none')) &&
+          style.display !== 'none' &&
+          style.visibility !== 'hidden' &&
+          style.opacity !== '0'
+        );
+        if (isVisible) return true;
+      }
+    }
+    return false;
+  }
+
+  function hideMascotTooltip() {
+    const tooltipEl = document.getElementById('wari-ai-tooltip');
+    if (tooltipEl) {
+      tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
+    }
+  }
+
+  function showMascotTooltip() {
+    if (isAnyModalOpen()) return;
+    const tooltipEl = document.getElementById('wari-ai-tooltip');
+    if (tooltipEl && !isOpen) {
+      tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed');
+    }
+  }
+
+  function initModalWatcher() {
+    function checkAndSync() {
+      if (isAnyModalOpen()) {
+        hideMascotTooltip();
+      } else {
+        showMascotTooltip();
+      }
+    }
+
+    try {
+      const observer = new MutationObserver(checkAndSync);
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'hidden'],
+        subtree: true,
+        childList: false
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style']
+      });
+    } catch (e) {}
+
+    window.addEventListener('modal:open', hideMascotTooltip);
+    window.addEventListener('modal:close', showMascotTooltip);
+
+    // Initial check
+    setTimeout(checkAndSync, 200);
+  }
+
   // Global API Wari
   window.WariMascot = {
     openChat: function (optionalQuestion) {
@@ -1010,13 +1113,20 @@ Peran dan Pengetahuan Anda:
       toggleChatWindow(true);
       handleUserSubmit(question);
     },
+    hideTooltip: hideMascotTooltip,
+    showTooltip: showMascotTooltip,
     setMood: setMascotMood
   };
 
   // Inisialisasi otomatis setelah DOM siap
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMascotChatbotUI);
-  } else {
+  function initWari() {
     buildMascotChatbotUI();
+    initModalWatcher();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWari);
+  } else {
+    initWari();
   }
 })();

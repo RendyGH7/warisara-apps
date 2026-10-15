@@ -775,8 +775,21 @@
     modalOverlay.classList.remove('hidden');
     modalOverlay.classList.add('active');
     modalOverlay.style.display = 'flex';
+    document.documentElement.classList.add('province-modal-open', 'modal-open');
+    document.documentElement.style.overflow = 'hidden';
     document.body.classList.add('province-modal-open', 'modal-open');
     document.body.style.overflow = 'hidden';
+
+    // Hide mascot comment / tooltip while modal is open
+    if (window.WariMascot && window.WariMascot.hideTooltip) {
+      window.WariMascot.hideTooltip();
+    }
+
+    // Reset modal scroll pane to top
+    var scrollPane = document.querySelector('.modal-scroll-pane');
+    if (scrollPane) {
+      scrollPane.scrollTop = 0;
+    }
 
     var navbar = document.getElementById('main-navbar');
     if (navbar) navbar.classList.add('navbar-hidden');
@@ -819,6 +832,12 @@
         }
       }
     });
+
+    // Reset scroll pane to top so questions/content are never cut off
+    var scrollPane = document.querySelector('.modal-scroll-pane');
+    if (scrollPane) {
+      scrollPane.scrollTop = 0;
+    }
   }
 
   // --- QUIZ INTERACTION ---
@@ -939,10 +958,16 @@
       modalOverlay.classList.remove('active');
       modalOverlay.classList.add('hidden');
       modalOverlay.style.display = 'none';
+      document.documentElement.classList.remove('province-modal-open', 'modal-open');
+      document.documentElement.style.overflow = '';
       document.body.classList.remove('province-modal-open', 'modal-open');
       document.body.style.overflow = '';
       var navbar = document.getElementById('main-navbar');
       if (navbar) navbar.classList.remove('navbar-hidden');
+
+      if (window.WariMascot && window.WariMascot.showTooltip) {
+        window.WariMascot.showTooltip();
+      }
     }
   }
 
@@ -968,6 +993,12 @@
     lightbox.classList.remove('hidden');
     lightbox.classList.add('active');
     lightbox.style.display = 'flex';
+    document.documentElement.classList.add('modal-open', 'lightbox-open');
+    document.body.classList.add('modal-open', 'lightbox-open');
+
+    if (window.WariMascot && window.WariMascot.hideTooltip) {
+      window.WariMascot.hideTooltip();
+    }
   }
   window.warisaraZoomImg = openCustomLightbox;
 
@@ -986,6 +1017,12 @@
     lightbox.classList.remove('hidden');
     lightbox.classList.add('active');
     lightbox.style.display = 'flex';
+    document.documentElement.classList.add('modal-open', 'lightbox-open');
+    document.body.classList.add('modal-open', 'lightbox-open');
+
+    if (window.WariMascot && window.WariMascot.hideTooltip) {
+      window.WariMascot.hideTooltip();
+    }
   }
 
   function updateLightboxImage() {
@@ -1009,6 +1046,17 @@
       lightbox.classList.remove('active');
       lightbox.classList.add('hidden');
       lightbox.style.display = 'none';
+      document.documentElement.classList.remove('lightbox-open');
+      document.body.classList.remove('lightbox-open');
+
+      var provModal = document.getElementById('province-modal-overlay');
+      if (!provModal || !provModal.classList.contains('active')) {
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+        if (window.WariMascot && window.WariMascot.showTooltip) {
+          window.WariMascot.showTooltip();
+        }
+      }
     }
   }
 
@@ -1067,7 +1115,14 @@
 
     modal.classList.remove('hidden');
     modal.classList.add('active');
+    document.documentElement.classList.add('modal-open', 'passport-modal-open');
+    document.body.classList.add('modal-open', 'passport-modal-open');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
+    if (window.WariMascot && window.WariMascot.hideTooltip) {
+      window.WariMascot.hideTooltip();
+    }
   }
 
   function closePassportModal() {
@@ -1075,8 +1130,17 @@
     if (modal) {
       modal.classList.remove('active');
       modal.classList.add('hidden');
+      document.documentElement.classList.remove('passport-modal-open');
+      document.body.classList.remove('passport-modal-open');
+
       if (!document.getElementById('province-modal-overlay').classList.contains('active')) {
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        if (window.WariMascot && window.WariMascot.showTooltip) {
+          window.WariMascot.showTooltip();
+        }
       }
     }
   }
@@ -1088,7 +1152,14 @@
     if (!modal) return;
     modal.classList.remove('hidden');
     modal.classList.add('active');
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
+    if (window.WariMascot && window.WariMascot.hideTooltip) {
+      window.WariMascot.hideTooltip();
+    }
   }
 
   function closeCompassModal() {
@@ -1097,7 +1168,13 @@
       modal.classList.remove('active');
       modal.classList.add('hidden');
       if (!document.getElementById('province-modal-overlay').classList.contains('active')) {
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        if (window.WariMascot && window.WariMascot.showTooltip) {
+          window.WariMascot.showTooltip();
+        }
       }
     }
   }

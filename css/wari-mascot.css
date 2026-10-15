@@ -48,10 +48,69 @@
   border-color: rgba(201, 165, 103, 0.65);
 }
 
-.wari-ai-tooltip.hidden-tooltip {
-  opacity: 0;
-  transform: scale(0.8) translateY(12px);
-  pointer-events: none;
+.wari-ai-tooltip.hidden-tooltip,
+.wari-ai-tooltip.modal-suppressed {
+  opacity: 0 !important;
+  transform: scale(0.8) translateY(12px) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* ==========================================================================
+   OTOMATIS TUTUP BALON KOMENTAR / SAPAAN SI WARI SAAT ADA MODAL/POP UP TERBUKA
+   ========================================================================== */
+body.modal-open .wari-ai-tooltip,
+body.province-modal-open .wari-ai-tooltip,
+body.lightbox-open .wari-ai-tooltip,
+body.passport-modal-open .wari-ai-tooltip,
+body.is-modal-active .wari-ai-tooltip,
+body[data-modal-open="true"] .wari-ai-tooltip,
+html:has(.modal-overlay.active) .wari-ai-tooltip,
+html:has(.modal-overlay:not(.hidden):not([style*="display: none"]):not([style*="display:none"])) .wari-ai-tooltip,
+html:has(#province-modal-overlay.active) .wari-ai-tooltip,
+html:has(#province-modal-overlay:not(.hidden):not([style*="display: none"]):not([style*="display:none"])) .wari-ai-tooltip,
+html:has(#passport-book-modal.active) .wari-ai-tooltip,
+html:has(#passport-book-modal:not(.hidden):not([style*="display: none"]):not([style*="display:none"])) .wari-ai-tooltip,
+html:has(#gallery-lightbox-modal.active) .wari-ai-tooltip,
+html:has(#gallery-lightbox-modal:not(.hidden):not([style*="display: none"]):not([style*="display:none"])) .wari-ai-tooltip,
+html:has([role="dialog"]:not(.hidden):not([style*="display: none"]):not([style*="display:none"]):not(#wari-chat-window)) .wari-ai-tooltip,
+html:has(dialog[open]) .wari-ai-tooltip {
+  opacity: 0 !important;
+  transform: scale(0.7) translateY(16px) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.22s !important;
+}
+
+.wari-tooltip-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.wari-tooltip-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.wari-tooltip-dismiss:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .wari-tooltip-badge {
@@ -63,7 +122,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #C9A567;
-  margin-bottom: 4px;
 }
 
 .wari-tooltip-badge::before {
