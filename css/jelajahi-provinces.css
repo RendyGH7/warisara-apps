@@ -34,118 +34,104 @@
 
 .filter-deck-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(28, 22, 17, 0.95) 0%, rgba(19, 15, 12, 0.98) 100%);
-  border: 1px solid rgba(201, 165, 103, 0.22);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75), 
-              0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-              0 1px 0 0 rgba(230, 211, 167, 0.25) inset;
+  background: rgba(22, 18, 14, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201, 165, 103, 0.18);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.65), 
+              0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-deck-card:hover {
+  border-color: rgba(201, 165, 103, 0.28);
 }
 
 .filter-deck-card::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 15%;
+  right: 15%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.6), rgba(230, 211, 167, 0.8), rgba(201, 165, 103, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.45), rgba(230, 211, 167, 0.6), rgba(201, 165, 103, 0.45), transparent);
   pointer-events: none;
 }
 
-/* Island Group Headers & Dividers */
+/* Island Group Dividers */
 .island-group-divider {
   width: 1px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.12);
-  margin: 0 4px;
-  flex-shrink: 0;
-}
-
-.island-group-header {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #C9A567;
-  background: rgba(201, 165, 103, 0.08);
-  border: 1px solid rgba(201, 165, 103, 0.2);
-  white-space: nowrap;
-  user-select: none;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 3px;
   flex-shrink: 0;
 }
 
 /* Island Filter Pill */
 .island-filter-pill {
-  padding: 6px 13px;
+  padding: 5px 12px;
   font-size: 11px;
   font-weight: 500;
   border-radius: 9999px;
   white-space: nowrap;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(246, 241, 231, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(246, 241, 231, 0.72);
   user-select: none;
   flex-shrink: 0;
 }
 
-.island-filter-pill:hover {
-  background: rgba(255, 255, 255, 0.09);
+.island-filter-pill:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
   color: #FFFFFF;
-  border-color: rgba(201, 165, 103, 0.4);
+  border-color: rgba(201, 165, 103, 0.3);
   transform: translateY(-1px);
 }
 
 .island-filter-pill.active {
-  background: linear-gradient(135deg, #F1DCB0 0%, #C9A567 100%) !important;
-  color: #14100C !important;
-  font-weight: 700 !important;
-  border-color: #FFF0D0 !important;
-  box-shadow: 0 4px 18px rgba(201, 165, 103, 0.45);
+  background: #C9A567 !important;
+  color: #120E0B !important;
+  font-weight: 600 !important;
+  border-color: #E2C58F !important;
+  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.3) !important;
 }
 
 .island-filter-pill .pill-count {
-  font-size: 9px;
-  padding: 1px 6px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(246, 241, 231, 0.9);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-weight: 600;
+  font-size: 10px;
+  opacity: 0.55;
+  font-weight: 500;
+  margin-left: 1px;
 }
 
 .island-filter-pill.active .pill-count {
-  background: rgba(20, 16, 12, 0.26);
-  color: #14100C;
+  opacity: 0.85;
+  font-weight: 700;
+  color: #120E0B;
 }
 
 /* Segmented Control for Status */
 .segmented-status-box {
-  background: rgba(10, 8, 6, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 3px;
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) inset;
 }
 
 .segmented-status-btn {
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: 9999px;
   font-size: 11px;
   font-weight: 500;
-  color: rgba(246, 241, 231, 0.7);
+  color: rgba(246, 241, 231, 0.65);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
@@ -153,27 +139,28 @@
   cursor: pointer;
   border: 1px solid transparent;
   user-select: none;
+  background: transparent;
 }
 
 .segmented-status-btn:hover:not(.active) {
   color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .segmented-status-btn.active {
-  background: linear-gradient(135deg, #F1DCB0 0%, #C9A567 100%) !important;
-  color: #14100C !important;
-  font-weight: 700 !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 3px 12px rgba(201, 165, 103, 0.35);
+  background: #C9A567 !important;
+  color: #120E0B !important;
+  font-weight: 600 !important;
+  border-color: #E2C58F !important;
+  box-shadow: 0 2px 8px rgba(201, 165, 103, 0.25);
 }
 
 .status-badge-count {
-  font-size: 9px;
-  padding: 1px 5px;
+  font-size: 10px;
+  padding: 0 3px;
   border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.25);
-  font-family: ui-monospace, SFMono-Regular, monospace;
+  opacity: 0.75;
+  font-weight: 600;
 }
 
 /* Passport Widget in Hero */
@@ -195,78 +182,419 @@
   background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, #C9A567, transparent);
 }
 
-/* Card Province in Grid */
+/* =============================================
+   MODERN MINIMALIST PROVINCE CARDS (GLASSMORPHISM & STAGGERED MASONRY)
+   ============================================= */
+.provinces-staggered-container {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.provinces-staggered-col {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+/* Stagger column offsets to create an organic, artistic rhythm ("ngacak tapi tetap terlayout") */
+@media (min-width: 640px) {
+  .provinces-staggered-col:nth-child(2) {
+    padding-top: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .provinces-staggered-col:nth-child(1) {
+    padding-top: 0;
+  }
+  .provinces-staggered-col:nth-child(2) {
+    padding-top: 4rem;
+  }
+  .provinces-staggered-col:nth-child(3) {
+    padding-top: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .provinces-staggered-col:nth-child(1) {
+    padding-top: 0;
+  }
+  .provinces-staggered-col:nth-child(2) {
+    padding-top: 4.5rem;
+  }
+  .provinces-staggered-col:nth-child(3) {
+    padding-top: 2rem;
+  }
+  .provinces-staggered-col:nth-child(4) {
+    padding-top: 6rem;
+  }
+}
+
 .province-card-ultimate {
-  background: rgba(26, 22, 18, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.5rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
   position: relative;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.65);
+  background: rgba(20, 16, 12, 0.92);
+  width: 100%;
+  cursor: pointer;
 }
 
+/* Card hover animation: card lifts up with luxury golden ambient shadow; NO IMAGE ZOOM */
 .province-card-ultimate:hover {
-  transform: translateY(-6px);
-  border-color: rgba(201, 165, 103, 0.5);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(201, 165, 103, 0.2);
+  transform: translateY(-8px);
+  border-color: rgba(201, 165, 103, 0.65);
+  box-shadow:
+    0 24px 48px -10px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(201, 165, 103, 0.35),
+    0 0 35px rgba(201, 165, 103, 0.22);
+  z-index: 10;
 }
 
+/* Dynamic Aspect Ratio Photo Viewport — Asymmetric & Free yet Crisp and Tidy */
 .province-card-cover {
   position: relative;
-  height: 240px;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Fallback baseline */
   overflow: hidden;
-  background: #151310;
+  background: #0E0C0A;
+  flex-shrink: 0;
+}
+
+/* Asymmetric Ratios for Editorial Waterfall Masonry */
+.province-card-cover.pcu-aspect-portrait {
+  aspect-ratio: 3 / 4; /* Tall landmark ~1.33 */
+}
+.province-card-cover.pcu-aspect-golden {
+  aspect-ratio: 4 / 5; /* Elegant vertical ~1.25 */
+}
+.province-card-cover.pcu-aspect-square {
+  aspect-ratio: 1 / 1; /* Balanced standard 1.0 */
+}
+.province-card-cover.pcu-aspect-landscape {
+  aspect-ratio: 4 / 3; /* Compact wide ~0.75 */
+}
+.province-card-cover.pcu-aspect-grand {
+  aspect-ratio: 5 / 7; /* Grand vertical ~1.4 */
+}
+.province-card-cover.pcu-aspect-cinematic {
+  aspect-ratio: 16 / 11; /* Wide panoramic ~0.69 */
 }
 
 .province-card-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.4s ease;
+  filter: brightness(0.92) saturate(1.02);
+  transform: none !important; /* NO ZOOM */
 }
 
+/* On card hover: do NOT zoom the photo; gently lift luminance */
 .province-card-ultimate:hover .province-card-cover img {
-  transform: scale(1.08);
+  transform: none !important; /* NO ZOOM */
+  filter: brightness(1.03) saturate(1.12);
 }
 
+/* Photo overlay vignette */
 .province-card-cover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(21, 19, 16, 0.3) 50%, rgba(26, 22, 18, 0.98) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.35) 0%,
+    transparent 35%,
+    rgba(0,0,0,0.15) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.stamp-mini-badge {
+.province-card-ultimate:hover .province-card-cover-overlay {
+  opacity: 0.8;
+}
+
+/* Gold shimmer sweep layer — elegant light refraction on hover */
+.pcu-card-shimmer {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(230, 211, 167, 0.18) 48%,
+    rgba(201, 165, 103, 0.12) 52%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 280% 100%;
+  background-position: 200% 0;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.province-card-ultimate:hover .pcu-card-shimmer {
+  animation: pcuShimmerSweep 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+@keyframes pcuShimmerSweep {
+  0%   { background-position: 220% 0; opacity: 0; }
+  8%   { opacity: 1; }
+  100% { background-position: -40% 0; opacity: 0; }
+}
+
+/* Top Row */
+.pcu-top-row {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pcu-island-badge {
+  padding: 4px 11px;
+  border-radius: 9999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: rgba(0,0,0,0.55);
+  color: #C9A567;
+  border: 1px solid rgba(201,165,103,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.pcu-stamp-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   padding: 4px 10px;
   border-radius: 9999px;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9.5px;
+  font-weight: 600;
+  background: rgba(0,0,0,0.5);
+  color: rgba(246,241,231,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.pcu-stamp-badge.stamped {
+  background: rgba(201,165,103,0.2);
+  color: #E6D3A7;
+  border-color: rgba(201,165,103,0.55);
+  box-shadow: 0 0 12px rgba(201,165,103,0.25);
+}
+
+/* Content Panel Below 1:1 Photo — soft frosted look, clarifies on hover */
+.pcu-glass-panel {
+  position: relative;
+  z-index: 5;
+  padding: 16px 16px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 14, 11, 0.98) 0%,
+    rgba(12, 10, 8, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  justify-content: space-between;
+  border-top: 1px solid rgba(201, 165, 103, 0.12);
+  transition: background 0.35s ease, border-color 0.3s ease;
+}
+
+/* Default (Unhovered): Crisp text with subdued opacity (no blur), lights up on hover */
+.pcu-capital-label,
+.pcu-name,
+.pcu-chips-row,
+.pcu-cta-row {
+  opacity: 0.72;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s ease,
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pcu-name {
+  opacity: 0.88;
+}
+
+.pcu-capital-label {
+  font-size: 10.5px;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  color: rgba(201, 165, 103, 0.75);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pcu-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: #F6F1E7;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+/* Chips row — neat multi-item flow */
+.pcu-chips-row {
   display: flex;
   align-items: center;
   gap: 5px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  z-index: 2;
+  flex-wrap: wrap;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
-.stamp-mini-badge.stamped {
-  background: rgba(201, 165, 103, 0.25);
-  color: #E6D3A7;
-  border: 1px solid rgba(201, 165, 103, 0.6);
-  box-shadow: 0 0 15px rgba(201, 165, 103, 0.3);
+.pcu-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(246, 241, 231, 0.72);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stamp-mini-badge.unstamped {
-  background: rgba(0, 0, 0, 0.5);
-  color: rgba(246, 241, 231, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+/* CTA Row */
+.pcu-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 7px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(201, 165, 103, 0.5);
+}
+
+.pcu-cta-icon {
+  font-size: 16px !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  color: rgba(201, 165, 103, 0.6);
+}
+
+/* ===== HOVER STATE: CRYSTAL CLEAR, LUMINESCENT & RAZOR-SHARP ===== */
+.province-card-ultimate:hover .pcu-glass-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(22, 17, 13, 0.99) 0%,
+    rgba(16, 12, 9, 1) 100%
+  );
+  border-top-color: rgba(201, 165, 103, 0.35);
+}
+
+.province-card-ultimate:hover .pcu-capital-label,
+.province-card-ultimate:hover .pcu-name,
+.province-card-ultimate:hover .pcu-chips-row,
+.province-card-ultimate:hover .pcu-cta-row {
+  opacity: 1 !important;
+}
+
+.province-card-ultimate:hover .pcu-capital-label {
+  color: #C9A567;
+}
+
+.province-card-ultimate:hover .pcu-name {
+  color: #FFFDF9;
+  text-shadow: 0 0 20px rgba(201, 165, 103, 0.35), 0 2px 10px rgba(0, 0, 0, 0.9);
+  font-weight: 400;
+}
+
+.province-card-ultimate:hover .pcu-chip {
+  background: rgba(201, 165, 103, 0.14);
+  border-color: rgba(201, 165, 103, 0.35);
+  color: #FFFDF9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.province-card-ultimate:hover .pcu-cta-row {
+  color: #F1DCB0;
+  border-color: rgba(201, 165, 103, 0.25);
+}
+
+.province-card-ultimate:hover .pcu-cta-icon {
+  transform: translateX(5px);
+  color: #FFF;
+}
+
+/* ===== CLICK: FULL-CARD FLASH BLOOM ===== */
+/* Ripple expands from click origin inside the card */
+.pcu-click-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 248, 220, 0.95) 0%,
+    rgba(230, 211, 167, 0.75) 30%,
+    rgba(201, 165, 103, 0.4) 60%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  animation: pcuRippleBloom 0.65s cubic-bezier(0.12, 0.8, 0.3, 1) forwards;
+  pointer-events: none;
+  z-index: 20;
+  mix-blend-mode: screen;
+}
+
+@keyframes pcuRippleBloom {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  40%  { opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(80); opacity: 0; }
+}
+
+/* White flash overlay on the whole card at click moment */
+.province-card-ultimate.pcu-card-clicked {
+  border-color: rgba(230, 211, 167, 0.9) !important;
+  box-shadow:
+    0 0 0 2px rgba(230, 211, 167, 0.6),
+    0 0 60px rgba(201, 165, 103, 0.5),
+    0 0 120px rgba(201, 165, 103, 0.2),
+    0 32px 64px -16px rgba(0, 0, 0, 0.95) !important;
+  animation: pcuCardFlash 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pcuCardFlash {
+  0%   { filter: brightness(1.5) saturate(0.8); }
+  20%  { filter: brightness(1.8) saturate(0.6); }
+  60%  { filter: brightness(1.2) saturate(1.0); }
+  100% { filter: brightness(1.0) saturate(1.0); }
 }
 
 /* Modal Tabs */
@@ -516,64 +844,7 @@
   }
 }
 
-/* ===== ENHANCED PROVINCE CARD BODY ===== */
-
-/* Province card quote blockquote polish */
-.province-card-ultimate blockquote {
-  border-left: 2px solid rgba(201, 165, 103, 0.45);
-  padding-left: 0.75rem;
-  margin: 0;
-  font-style: italic;
-  color: rgba(246, 241, 231, 0.82);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* Province card body section */
-.province-card-body {
-  padding: 1.1rem 1.25rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  flex: 1;
-}
-
-/* Province info rows inside card */
-.province-card-info-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 11px;
-  line-height: 1.4;
-  color: rgba(246, 241, 231, 0.75);
-}
-
-.province-card-info-row .info-label {
-  font-weight: 600;
-  color: rgba(201, 165, 103, 0.9);
-  flex-shrink: 0;
-}
-
-/* Province card CTA link */
-.province-card-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.625rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(201, 165, 103, 0.9);
-  transition: all 0.2s ease;
-  background: rgba(201, 165, 103, 0.04);
-}
-
-.province-card-ultimate:hover .province-card-cta {
-  color: #E6D3A7;
-  background: rgba(201, 165, 103, 0.08);
-}
+/* ===== PROVINCE CARD BODY (deprecated, kept for compat) ===== */
 
 /* ===== MODAL CONTENT POLISH ===== */
 
@@ -657,9 +928,9 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  background-color: rgba(6, 4, 3, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(6, 4, 3, 0.52);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
               background-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -667,30 +938,47 @@
               visibility 0s linear 0s;
 }
 
+/* Phase 1 of close: keep overlay fully visible while the panel exits */
 #province-modal-overlay.modal-closing {
-  opacity: 0 !important;
-  visibility: hidden !important;
   pointer-events: none !important;
-  background-color: rgba(6, 4, 3, 0) !important;
-  backdrop-filter: blur(0px) !important;
-  -webkit-backdrop-filter: blur(0px) !important;
-  transition: opacity 280ms cubic-bezier(0.4, 0, 1, 1),
-              background-color 280ms cubic-bezier(0.4, 0, 1, 1),
-              backdrop-filter 280ms cubic-bezier(0.4, 0, 1, 1),
-              -webkit-backdrop-filter 280ms cubic-bezier(0.4, 0, 1, 1),
-              visibility 0s linear 280ms !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: rgba(6, 4, 3, 0.52) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
-/* Modal Container Physics */
+/* Modal Container Physics — Spring entrance, elegant retreat */
 #province-detail-modal {
-  transform: translateY(32px) scale(0.93);
+  transform: translateY(36px) scale(0.92);
   opacity: 0;
-  filter: blur(6px);
-  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1),
-              filter 340ms cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(8px);
+  background: rgba(18, 15, 12, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(201, 165, 103, 0.12);
+  transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 380ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 360ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity, filter;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(201, 165, 103, 0.12);
+  position: relative;
+}
+
+/* Golden shimmer line sweeps across the top of the modal when it opens */
+#province-detail-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  right: auto;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.6), rgba(230, 211, 167, 0.95), rgba(201, 165, 103, 0.6), transparent);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 2px 2px 0 0;
 }
 
 #province-modal-overlay.active #province-detail-modal {
@@ -699,32 +987,67 @@
   filter: blur(0px);
 }
 
+/* Trigger the golden shimmer sweep when modal is opened */
+#province-modal-overlay.active #province-detail-modal::before {
+  animation: modalGoldShimmer 0.75s 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalGoldShimmer {
+  0%   { left: -100%; opacity: 0; }
+  5%   { opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { left: 100%; opacity: 0; }
+}
+/* ===================================================
+   MODAL CLOSE: PHASED DRAMATIC EXIT
+   Panel drops + blurs first, then backdrop fades
+   =================================================== */
+
+/* Phase 1: Inner modal panel drops and dissolves */
 #province-modal-overlay.modal-closing #province-detail-modal {
-  transform: translateY(22px) scale(0.95);
-  opacity: 0 !important;
-  filter: blur(4px) !important;
-  transition: transform 260ms cubic-bezier(0.4, 0, 1, 1),
-              opacity 240ms ease-in,
-              filter 240ms ease-in;
+  animation: modalPanelExit 320ms cubic-bezier(0.4, 0, 0.8, 1) forwards !important;
+  transition: none !important;
+}
+
+@keyframes modalPanelExit {
+  0%   {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  20%  {
+    transform: translateY(-6px) scale(1.015);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateY(55px) scale(0.91);
+    opacity: 0;
+    filter: blur(12px);
+  }
 }
 
 /* Staggered Children Animation */
 #province-modal-overlay.active .modal-stagger-1 {
-  animation: modalStaggerIn 380ms 60ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalStaggerIn 400ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #province-modal-overlay.active .modal-stagger-2 {
-  animation: modalStaggerIn 380ms 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalStaggerIn 400ms 140ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 #province-modal-overlay.active .modal-stagger-3 {
-  animation: modalStaggerIn 380ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modalStaggerIn 400ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#province-modal-overlay.active .modal-stagger-4 {
+  animation: modalStaggerIn 400ms 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes modalStaggerIn {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -732,12 +1055,32 @@
   }
 }
 
+/* Phase 2 (modal-closing-backdrop): Overlay fades out with golden vignette flash */
+#province-modal-overlay.modal-closing-backdrop {
+  opacity: 0 !important;
+  background-color: rgba(6, 4, 3, 0) !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+  background-image: radial-gradient(ellipse at center, rgba(201, 165, 103, 0.08) 0%, transparent 60%) !important;
+  transition: opacity 320ms ease-in,
+              background-color 320ms ease-in,
+              backdrop-filter 320ms ease-in,
+              -webkit-backdrop-filter 320ms ease-in !important;
+}
+
+/* The overlay itself fades ONLY during backdrop phase */
+#province-modal-overlay.modal-closing:not(.modal-closing-backdrop) {
+  opacity: 1 !important;
+  background-color: rgba(6, 4, 3, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
 html.province-modal-open,
 body.province-modal-open,
 html.modal-open,
 body.modal-open {
   overflow: hidden !important;
-  height: 100% !important;
   overscroll-behavior: none !important;
 }
 
@@ -853,7 +1196,7 @@ body.modal-open {
 
 /* Province grid section better spacing */
 #provinces-grid {
-  gap: 1.75rem;
+  gap: 1.25rem;
 }
 
 /* Smooth card entrance animation */
@@ -945,21 +1288,31 @@ body.modal-open {
 }
 
 /* Quick Illustration Switcher Chips */
+#modal-illustration-chips {
+  overflow: visible;
+}
+
 .art-switcher-chip {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
+  gap: 6px;
+  padding: 6px 13px;
   border-radius: 9999px;
   font-size: 11px;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(246, 241, 231, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(246, 241, 231, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+  box-sizing: border-box;
+}
+
+.art-switcher-chip svg {
+  stroke: currentColor;
+  transition: stroke 0.2s ease;
 }
 
 .art-switcher-chip:hover {
@@ -974,37 +1327,43 @@ body.modal-open {
   color: #120F0D;
   border-color: #E6D3A7;
   font-weight: 700;
-  box-shadow: 0 2px 12px rgba(201, 165, 103, 0.4);
+  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.35);
   transform: translateY(-1px);
+}
+
+.art-switcher-chip.active svg {
+  stroke: #120F0D;
 }
 
 /* Right Panel Tabs */
 .modal-tab-btn {
-  padding: 8px 14px;
+  padding: 8px 16px;
   font-size: 11px;
   font-weight: 600;
   border-radius: 9999px;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 6px;
-  color: rgba(246, 241, 231, 0.7);
-  background: transparent;
-  border: 1px solid transparent;
+  gap: 7px;
+  color: rgba(246, 241, 231, 0.65);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
 }
 
 .modal-tab-btn:hover {
   color: #F6F1E7;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(201, 165, 103, 0.12);
+  border-color: rgba(201, 165, 103, 0.3);
 }
 
 .modal-tab-btn.active {
   color: #120F0D;
-  background: #C9A567;
+  background: linear-gradient(135deg, #C9A567 0%, #B38E4F 100%);
   border-color: #E6D3A7;
-  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.35);
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(201, 165, 103, 0.35);
 }
 
 /* Refined Reading Cards inside Modal */

@@ -89,15 +89,58 @@ body.modal-locked {
   animation: chatBadgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Chat Drawer Container & Backdrop */
+/* Chat Drawer Container & Backdrop — Selalu di depan elemen melayang */
 #warisara-chat-backdrop {
-  z-index: 1000 !important;
+  z-index: 99990 !important;
 }
 
 #warisara-chat-drawer {
-  z-index: 1050 !important;
+  z-index: 100000 !important;
   transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Saat Chat Terbuka: Maskot Wari Berada di Belakang Chat & Tidak Bisa Diklik */
+body.chat-drawer-open #wari-ai-widget,
+body.chat-drawer-open .wari-ai-widget,
+html.chat-drawer-open #wari-ai-widget,
+html.chat-drawer-open .wari-ai-widget,
+#wari-ai-widget.chat-suppressed,
+.wari-ai-widget.chat-suppressed {
+  z-index: 900 !important;
+  pointer-events: none !important;
+}
+
+body.chat-drawer-open #wari-ai-widget *,
+body.chat-drawer-open .wari-ai-widget *,
+html.chat-drawer-open #wari-ai-widget *,
+html.chat-drawer-open .wari-ai-widget *,
+#wari-ai-widget.chat-suppressed *,
+.wari-ai-widget.chat-suppressed * {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+body.chat-drawer-open #wari-ai-tooltip,
+body.chat-drawer-open .wari-ai-tooltip,
+html.chat-drawer-open #wari-ai-tooltip,
+html.chat-drawer-open .wari-ai-tooltip,
+#wari-ai-tooltip.chat-suppressed {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  animation: none !important;
+}
+
+body.chat-drawer-open #wari-chat-window,
+body.chat-drawer-open .wari-chat-window,
+html.chat-drawer-open #wari-chat-window,
+html.chat-drawer-open .wari-chat-window {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 #warisara-chat-drawer.closed {

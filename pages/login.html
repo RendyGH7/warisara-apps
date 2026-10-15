@@ -1350,16 +1350,16 @@
 
       // Dialog Maskot Interaktif
       const MASCOT_MESSAGES = {
-        idle: "Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya! ✨",
-        hoverGoogle: "Tinggal 1-klik aja! Tanpa password, otomatis tersambung aman! 🚀",
-        loginClick: "Menghubungkan akun Google kamu... Tunggu sebentar ya! ⏳",
-        register: "Kamu bisa daftar manual atau gunakan Google instan lho! 🎨",
-        success: "Yey! Berhasil masuk! Selamat menjelajahi mahakarya nusantara! 🎉",
+        idle: "Halo Sobat! Masuk dengan Google yuk, langsung terhubung ke pasar produk lokal & pelestari budaya!",
+        hoverGoogle: "Tinggal 1-klik aja! Tanpa password, otomatis tersambung aman!",
+        loginClick: "Menghubungkan akun Google kamu... Tunggu sebentar ya!",
+        register: "Kamu bisa daftar manual atau gunakan Google instan lho!",
+        success: "Berhasil masuk! Selamat menjelajahi mahakarya nusantara!",
         clickFun: [
-          "Batik & tenun dari 38 provinsi menantimu di pasar lokal! 🧵",
-          "Tahukah kamu? Setiap motif batik memiliki filosofi dan doa luhur! 🌿",
-          "Ada ratusan karya pelestari budaya yang siap kamu dukung hari ini! ✨",
-          "Aku Wari, siap memandu perjalanan budayamu di WARISARA! 🦁"
+          "Batik & tenun dari 38 provinsi menantimu di pasar lokal!",
+          "Tahukah kamu? Setiap motif batik memiliki filosofi dan doa luhur!",
+          "Ada ratusan karya pelestari budaya yang siap kamu dukung hari ini!",
+          "Aku Wari, siap memandu perjalanan budayamu di WARISARA!"
         ]
       };
 
@@ -1557,7 +1557,7 @@
       function handleSuccessfulAuth(account) {
         if (!window.WARISARA_AUTH) return;
 
-        setMascotMood('happy', `Halo ${account.name}! Berhasil masuk. Menyiapkan halaman... 🎉`);
+        setMascotMood('happy', `Halo ${account.name}! Berhasil masuk. Menyiapkan halaman...`);
         createConfettiBurst(60);
 
         window.WARISARA_AUTH.loginAs(account);

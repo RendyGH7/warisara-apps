@@ -50,8 +50,15 @@
 
 .wari-ai-tooltip.hidden-tooltip,
 .wari-ai-tooltip.modal-suppressed,
+.wari-ai-tooltip.user-dismissed,
 #wari-ai-tooltip.hidden-tooltip,
 #wari-ai-tooltip.modal-suppressed,
+#wari-ai-tooltip.user-dismissed,
+#wari-ai-tooltip.chat-suppressed,
+body.chat-drawer-open #wari-ai-tooltip,
+body.chat-drawer-open .wari-ai-tooltip,
+html.chat-drawer-open #wari-ai-tooltip,
+html.chat-drawer-open .wari-ai-tooltip,
 body.modal-open #wari-ai-tooltip,
 body.modal-open .wari-ai-tooltip,
 body.province-modal-open #wari-ai-tooltip,
@@ -73,6 +80,37 @@ html.province-modal-open .wari-ai-tooltip {
   visibility: hidden !important;
   pointer-events: none !important;
   animation: none !important;
+}
+
+/* Ketika chat marketplace sedang dibuka: Wari diletakkan di belakang chat & tidak bisa diklik */
+body.chat-drawer-open #wari-ai-widget,
+body.chat-drawer-open .wari-ai-widget,
+html.chat-drawer-open #wari-ai-widget,
+html.chat-drawer-open .wari-ai-widget,
+#wari-ai-widget.chat-suppressed,
+.wari-ai-widget.chat-suppressed {
+  z-index: 50 !important;
+  pointer-events: none !important;
+}
+
+body.chat-drawer-open #wari-ai-widget *,
+body.chat-drawer-open .wari-ai-widget *,
+html.chat-drawer-open #wari-ai-widget *,
+html.chat-drawer-open .wari-ai-widget *,
+#wari-ai-widget.chat-suppressed *,
+.wari-ai-widget.chat-suppressed * {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+body.chat-drawer-open #wari-chat-window,
+body.chat-drawer-open .wari-chat-window,
+html.chat-drawer-open #wari-chat-window,
+html.chat-drawer-open .wari-chat-window {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* ==========================================================================
@@ -115,21 +153,32 @@ body.page-entering-active .wari-ai-widget,
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.6);
-  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   padding: 0;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.wari-tooltip-dismiss span {
+  pointer-events: none;
+  font-size: 13px;
+  line-height: 1;
 }
 
 .wari-tooltip-dismiss:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(220, 53, 69, 0.4);
+  border-color: rgba(220, 53, 69, 0.6);
   color: #fff;
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .wari-tooltip-badge {

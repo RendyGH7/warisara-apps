@@ -1711,8 +1711,8 @@
     "tourism": {
       "name": "Keraton Ngayogyakarta Hadiningrat, Malioboro & Candi Prambanan",
       "desc": "Kompleks istana kerajaan hidup bernilai filosofis tinggi, jalan budaya Malioboro, dan candi Hindu terindah di dunia Candi Prambanan abad ke-9.",
-      "image": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/di-yogyakarta-cover.jpg",
+      "photo": "../assets/images/provinces/di-yogyakarta-cover.jpg"
     },
     "language": {
       "name": "Bahasa Jawa Krama Inggil",
@@ -1770,7 +1770,7 @@
       {
         "title": "Kemegahan Candi Roro Jonggrang Prambanan",
         "category": "Warisan Dunia",
-        "url": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/di-yogyakarta-cover.jpg"
       },
       {
         "title": "Gudeg Komplet Nangka Muda Telur Areh",
@@ -1831,8 +1831,8 @@
     "tourism": {
       "name": "Gunung Bromo Kaldera Tengger & Kawah Ijen Api Biru",
       "desc": "Lanskap matahari terbit spektakuler lautan pasir Bromo serta fenomena langka dunia kobaran api belerang biru (Blue Fire) di kawah Ijen Banyuwangi.",
-      "image": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/jawa-timur-cover.jpg",
+      "photo": "../assets/images/provinces/jawa-timur-cover.jpg"
     },
     "language": {
       "name": "Bahasa Jawa Timuran & Madura",
@@ -1890,7 +1890,7 @@
       {
         "title": "Kemegahan Lanskap Kaldera Bromo Tengger Semeru",
         "category": "Keajaiban Alam",
-        "url": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/jawa-timur-cover.jpg"
       },
       {
         "title": "Rawon Daging Sapi Kuah Kluwek Hitam Pekat",
@@ -1951,8 +1951,8 @@
     "tourism": {
       "name": "Pura Tanah Lot Karang Laut, Ubud & Pura Luhur Uluwatu",
       "desc": "Pura megah di atas bongkahan karang samudera Tanah Lot, terasering sawah hijau Tegalalang Ubud, dan pementasan tari Kecak api di tebing karang Uluwatu saat senja.",
-      "image": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/bali-cover.jpg",
+      "photo": "../assets/images/provinces/bali-cover.jpg"
     },
     "language": {
       "name": "Bahasa Bali",
@@ -2010,7 +2010,7 @@
       {
         "title": "Pura Tanah Lot Bertengger di Karang Laut Samudera",
         "category": "Ikon Budaya",
-        "url": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/bali-cover.jpg"
       },
       {
         "title": "Ayam Betutu Gilimanuk Bumbu Base Genep",
@@ -2071,8 +2071,8 @@
     "tourism": {
       "name": "Gunung Rinjani Danau Segara Anak & Gili Trawangan",
       "desc": "Danau kawah vulkanik Segara Anak berketinggian 2.000 mdpl di Gunung Rinjani serta pulau bebas polusi kendaraan bermotor Gili Trawangan dengan air sebening kaca.",
-      "image": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/nusa-tenggara-barat-cover.jpg",
+      "photo": "../assets/images/provinces/nusa-tenggara-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Sasak & Samawa",
@@ -2130,7 +2130,7 @@
       {
         "title": "Keagungan Danau Segara Anak Kaldera Rinjani",
         "category": "Gunung & Kaldera",
-        "url": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/nusa-tenggara-barat-cover.jpg"
       },
       {
         "title": "Ayam Taliwang Bakar Pedas Gurih Khas Lombok",
@@ -2191,8 +2191,8 @@
     "tourism": {
       "name": "Taman Nasional Komodo Labuan Bajo & Tiga Warna Danau Kelimutu",
       "desc": "Habitat satu-satunya di bumi reptil purba raksasa Varanus komodoensis serta keajaiban kawah tiga warna Danau Kelimutu di puncak gunung Ende.",
-      "image": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/nusa-tenggara-timur-cover.jpg",
+      "photo": "../assets/images/provinces/nusa-tenggara-timur-cover.jpg"
     },
     "language": {
       "name": "Bahasa Manggarai, Dawan & Tetun",
@@ -2250,7 +2250,7 @@
       {
         "title": "Habitat Kadal Purba Raksasa Komodo Labuan Bajo",
         "category": "Satwa Langka Dunia",
-        "url": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/nusa-tenggara-timur-cover.jpg"
       },
       {
         "title": "Daging Asap Se'i Sapi Harum Daun Kosambi",
@@ -2370,7 +2370,7 @@
       {
         "title": "Tugu Titik Perlintasan Khatulistiwa Bumi Pontianak",
         "category": "Ikon Geografis",
-        "url": "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/kalimantan-barat-cover.jpg"
       },
       {
         "title": "Bubur Pedas Rempah Sayuran Khas Sambas",
@@ -2431,8 +2431,8 @@
     "tourism": {
       "name": "Taman Nasional Tanjung Puting & Sungai Kahayan",
       "desc": "Kawasan suaka orangutan liar terbesar di muka bumi di Camp Leakey serta menyusuri sungai hitam Kahayan menggunakan perahu klotok tradisional.",
-      "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/kalimantan-tengah-cover.jpg",
+      "photo": "../assets/images/provinces/kalimantan-tengah-cover.jpg"
     },
     "language": {
       "name": "Bahasa Dayak Ngaju",
@@ -2490,7 +2490,7 @@
       {
         "title": "Orangutan Liar di Habitat Alami Tanjung Puting",
         "category": "Konservasi Satwa",
-        "url": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/kalimantan-tengah-cover.jpg"
       },
       {
         "title": "Juhu Singkah Umbut Rotan Rempah Ikan Sungai",
@@ -2551,8 +2551,8 @@
     "tourism": {
       "name": "Pasar Terapung Lok Baintan Muara Sungai Barito & Geopark Meratus",
       "desc": "Aktivitas transaksi barter subuh para pedagang wanita bertopi tanggui di atas perahu jukung kayu serta keindahan bentang alam Geopark Pegunungan Meratus.",
-      "image": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/kalimantan-selatan-cover.jpg",
+      "photo": "../assets/images/provinces/kalimantan-selatan-cover.jpg"
     },
     "language": {
       "name": "Bahasa Banjar",
@@ -2610,7 +2610,7 @@
       {
         "title": "Suasana Fajar Pasar Terapung Lok Baintan Barito",
         "category": "Tradisi Budaya",
-        "url": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/kalimantan-selatan-cover.jpg"
       },
       {
         "title": "Soto Banjar Kuah Susu Rempah Berempah Gurih",
@@ -2671,8 +2671,8 @@
     "tourism": {
       "name": "Kepulauan Derawan & Maratua Surga Penyu serta Titik Nol IKN",
       "desc": "Danau ubur-ubur tanpa sengat Kakaban, terumbu karang laut dalam Maratua tempat pari manta menari, serta kawasan hijau futuristik Ibu Kota Nusantara.",
-      "image": "../assets/images/provinces/kalimantan-timur.jpg",
-      "photo": "../assets/images/provinces/kalimantan-timur.jpg"
+      "image": "../assets/images/provinces/kalimantan-timur-cover.jpg",
+      "photo": "../assets/images/provinces/kalimantan-timur-cover.jpg"
     },
     "language": {
       "name": "Bahasa Kutai & Dayak Kenyah",
@@ -2730,7 +2730,7 @@
       {
         "title": "Bawah Laut Kejernihan Pulau Maratua Derawan",
         "category": "Surga Bahari",
-        "url": "../assets/images/provinces/kalimantan-timur.jpg"
+        "url": "../assets/images/provinces/kalimantan-timur-cover.jpg"
       },
       {
         "title": "Nasi Bekepor Khas Kesultanan Kutai Kartanegara",
@@ -2911,8 +2911,8 @@
     "tourism": {
       "name": "Taman Nasional Laut Bunaken & Danau Tiga Warna Linow",
       "desc": "Dinding terumbu karang vertikal bawah laut Bunaken sedalam ratusan meter dengan penyu raksasa serta danau hidrotermal Linow yang berubah tiga warna di Tomohon.",
-      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/sulawesi-utara-cover.jpg",
+      "photo": "../assets/images/provinces/sulawesi-utara-cover.jpg"
     },
     "language": {
       "name": "Bahasa Manado / Minahasa",
@@ -2970,7 +2970,7 @@
       {
         "title": "Dinding Karang Spektakuler Bawah Laut Bunaken",
         "category": "Taman Laut Dunia",
-        "url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/sulawesi-utara-cover.jpg"
       },
       {
         "title": "Tinutuan Bubur Manado Segar Sambal Roa",
@@ -3031,8 +3031,8 @@
     "tourism": {
       "name": "Wisata Hiu Paus Botubarani & Benteng Otanaha Danau Limboto",
       "desc": "Perjumpaan jarak dekat dengan kawanan hiu paus jinak (Rhincodon typus) di pesisir Botubarani serta benteng batu kapur Otanaha abad ke-16 di atas bukit Danau Limboto.",
-      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/gorontalo-cover.jpg",
+      "photo": "../assets/images/provinces/gorontalo-cover.jpg"
     },
     "language": {
       "name": "Bahasa Gorontalo",
@@ -3090,7 +3090,7 @@
       {
         "title": "Berenang Bersama Raksasa Jinak Hiu Paus Botubarani",
         "category": "Wisata Bahari",
-        "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/gorontalo-cover.jpg"
       },
       {
         "title": "Segarnya Semangkuk Binte Biluhuta Jagung Manis",
@@ -3151,8 +3151,8 @@
     "tourism": {
       "name": "Arca Megalitikum Lembah Bada Lore Lindu & Kepulauan Togean",
       "desc": "Patung batu raksasa misterius Palindo setinggi 4,5 meter di padang rumput Lore Lindu serta laguna karang dan danau ubur-ubur tanpa sengat di Kepulauan Togean.",
-      "image": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/sulawesi-tengah-cover.jpg",
+      "photo": "../assets/images/provinces/sulawesi-tengah-cover.jpg"
     },
     "language": {
       "name": "Bahasa Kaili & Pamona",
@@ -3210,7 +3210,7 @@
       {
         "title": "Misteri Patung Megalitikum Raksasa Palindo Lembah Bada",
         "category": "Prasejarah Dunia",
-        "url": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/sulawesi-tengah-cover.jpg"
       },
       {
         "title": "Sajian Kaledo Tulang Kaki Sapi Kuah Asam Pedas",
@@ -3271,8 +3271,8 @@
     "tourism": {
       "name": "Pantai Manakarra Landmark Selat Makassar & Negeri di Atas Awan Mamasa",
       "desc": "Anjungan Pantai Manakarra berlatar pulau Karampuang serta perbukitan pegunungan Mamasa dengan rumah adat Banua Tada beratap sirap kayu.",
-      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/sulawesi-barat-cover.jpg",
+      "photo": "../assets/images/provinces/sulawesi-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Mandar & Mamasa",
@@ -3330,7 +3330,7 @@
       {
         "title": "Melesat Cepat Perahu Layar Tradisional Sandeq Mandar",
         "category": "Maritim Nusantara",
-        "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/sulawesi-barat-cover.jpg"
       },
       {
         "title": "Jepa Ubi Bakar dan Ikan Kuah Kuning Bau Peapi",
@@ -3391,8 +3391,8 @@
     "tourism": {
       "name": "Tana Toraja Rumah Tongkonan, Tebing Lemo & Pantai Losari",
       "desc": "Rumah adat perahu Tongkonan, makam tebing batu purba Lemo dengan patung kayu Tau-tau di Toraja, serta panorama matahari terbenam Pantai Losari Makassar.",
-      "image": "../assets/images/stories/story_toraja.jpg",
-      "photo": "../assets/images/stories/story_toraja.jpg"
+      "image": "../assets/images/provinces/sulawesi-selatan-cover.jpg",
+      "photo": "../assets/images/provinces/sulawesi-selatan-cover.jpg"
     },
     "language": {
       "name": "Bahasa Bugis & Makassar",
@@ -3450,7 +3450,7 @@
       {
         "title": "Mahakarya Kapal Layar Kayu Pinisi Bulukumba",
         "category": "Warisan Dunia UNESCO",
-        "url": "../assets/images/stories/story_toraja.jpg"
+        "url": "../assets/images/provinces/sulawesi-selatan-cover.jpg"
       },
       {
         "title": "Semangkuk Gurih Coto Makassar Kuah 40 Rempah",
@@ -3511,8 +3511,8 @@
     "tourism": {
       "name": "Taman Nasional Kepulauan Wakatobi & Benteng Keraton Buton",
       "desc": "Pusat segitiga karang dunia Wakatobi dengan 750 dari 850 spesies karang bumi serta benteng batu kapur keliling terpanjang 2,7 kilometer di Bau-Bau.",
-      "image": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/sulawesi-tenggara-cover.jpg",
+      "photo": "../assets/images/provinces/sulawesi-tenggara-cover.jpg"
     },
     "language": {
       "name": "Bahasa Tolaki, Wolio & Muna",
@@ -3570,7 +3570,7 @@
       {
         "title": "Keanekaragaman Terumbu Karang Dunia Wakatobi",
         "category": "Taman Karang Dunia",
-        "url": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/sulawesi-tenggara-cover.jpg"
       },
       {
         "title": "Sajian Sagu Sinonggi Kuah Asam Segar",
@@ -3631,8 +3631,8 @@
     "tourism": {
       "name": "Kepulauan Banda Neira & Pantai Tebing Ora",
       "desc": "Benteng Belgica peninggalan VOC 1611 berlatar Gunung Api Banda yang eksotis serta surga terumbu karang tebing karst Pantai Ora Maluku Tengah.",
-      "image": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/maluku-cover.jpg",
+      "photo": "../assets/images/provinces/maluku-cover.jpg"
     },
     "language": {
       "name": "Bahasa Melayu Ambon",
@@ -3690,7 +3690,7 @@
       {
         "title": "Benteng Bersejarah Belgica Berlatar Gunung Api Banda Neira",
         "category": "Kepulauan Rempah",
-        "url": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/maluku-cover.jpg"
       },
       {
         "title": "Sajian Sagu Papeda Ikan Kuah Kuning Segar",
@@ -3751,8 +3751,8 @@
     "tourism": {
       "name": "Gunung Api Gamalama Ternate & Pulau Morotai Mutiara Pasifik",
       "desc": "Gunung kerucut vulkanik hijau Gamalama yang menjulang dari laut serta bekas pangkalan militer Perang Dunia II Jenderal Douglas MacArthur di Pulau Morotai.",
-      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/maluku-utara-cover.jpg",
+      "photo": "../assets/images/provinces/maluku-utara-cover.jpg"
     },
     "language": {
       "name": "Bahasa Ternate & Tidore",
@@ -3810,7 +3810,7 @@
       {
         "title": "Puncak Megah Gunung Api Gamalama di Ternate",
         "category": "Gunung Vulkanik",
-        "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/maluku-utara-cover.jpg"
       },
       {
         "title": "Gohu Ikan Tuna Segar Minyak Kelapa Panas",
@@ -3991,8 +3991,8 @@
     "tourism": {
       "name": "Pulau Sejarah Mansinam & Hutan Kabut Pegunungan Arfak",
       "desc": "Monumen salib bersejarah dan sumur tua Pulau Mansinam serta pengamatan burung pintar pembuat sarang arsitek (Vogelkop Bowerbird) di Pegunungan Arfak.",
-      "image": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/papua-barat-cover.jpg",
+      "photo": "../assets/images/provinces/papua-barat-cover.jpg"
     },
     "language": {
       "name": "Bahasa Hatam, Meyah & Melayu Papua",
@@ -4050,7 +4050,7 @@
       {
         "title": "Monumen Bersejarah Salib Masuknya Peradaban Pulau Mansinam",
         "category": "Wisata Sejarah",
-        "url": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/papua-barat-cover.jpg"
       },
       {
         "title": "Ikan Bakar Tongkol Segar Sambal Rawit Manokwari",
@@ -4111,8 +4111,8 @@
     "tourism": {
       "name": "Taman Nasional Wasur & Rumah Rayap Raksasa Musamus",
       "desc": "Serengeti Papua seluas 413.810 hektare dengan kawanan rusa dan kanguru pohon serta formasi sarang rayap alami Musamus setinggi 5 meter di padang sabana.",
-      "image": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/papua-selatan-cover.jpg",
+      "photo": "../assets/images/provinces/papua-selatan-cover.jpg"
     },
     "language": {
       "name": "Bahasa Marind-Anim & Asmat",
@@ -4170,7 +4170,7 @@
       {
         "title": "Rumah Rayap Raksasa Alami Musamus Sabana Wasur",
         "category": "Keajaiban Alam",
-        "url": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/papua-selatan-cover.jpg"
       },
       {
         "title": "Sagu Sep Bakar Daging Rusa Khas Marind",
@@ -4231,8 +4231,8 @@
     "tourism": {
       "name": "Puncak Salju Abadi Carstensz Pyramid & Hiu Paus Kwatisore Nabire",
       "desc": "Puncak gletser es abadi 4.884 mdpl Seven Summits dunia serta interaksi berenang bersama kawanan hiu paus jinak di bagan nelayan Kwatisore Nabire.",
-      "image": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/papua-tengah-cover.jpg",
+      "photo": "../assets/images/provinces/papua-tengah-cover.jpg"
     },
     "language": {
       "name": "Bahasa Mee & Amungme",
@@ -4290,7 +4290,7 @@
       {
         "title": "Puncak Salju Abadi Carstensz Pyramid (Puncak Jaya)",
         "category": "Seven Summits Dunia",
-        "url": "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/papua-tengah-cover.jpg"
       },
       {
         "title": "Ikan Asap Kuah Kuning Rempah Khas Nabire",
@@ -4351,8 +4351,8 @@
     "tourism": {
       "name": "Lembah Baliem, Danau Habema di Atas Awan & Mumi Bersejarah Jiwika",
       "desc": "Panorama lembah hijau berselimut kabut, danau tertinggi Indonesia Danau Habema (3.300 mdpl) kaki Gunung Trikora, dan mumi panglima perang Wimontok Mabel.",
-      "image": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/papua-pegunungan-cover.jpg",
+      "photo": "../assets/images/provinces/papua-pegunungan-cover.jpg"
     },
     "language": {
       "name": "Bahasa Dani & Lani",
@@ -4410,7 +4410,7 @@
       {
         "title": "Panorama Lembah Berselimut Kabut Lembah Baliem Wamena",
         "category": "Lanskap Pegunungan",
-        "url": "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/papua-pegunungan-cover.jpg"
       },
       {
         "title": "Pesta Adat Tradisi Memasak Bakar Batu Barapen",
@@ -4471,8 +4471,8 @@
     "tourism": {
       "name": "Gugusan Karang Geosite Pianemo Raja Ampat & Laguna Bintang Misool",
       "desc": "Gugusan bukit karst pulau karang kerucut di atas perairan zamrud toska Pianemo serta laguna terumbu karang berbentuk bintang purba di Misool Selatan.",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      "photo": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+      "image": "../assets/images/provinces/papua-barat-daya-cover.jpg",
+      "photo": "../assets/images/provinces/papua-barat-daya-cover.jpg"
     },
     "language": {
       "name": "Bahasa Moi, Maya & Melayu Papua",
@@ -4530,7 +4530,7 @@
       {
         "title": "Panorama Keajaiban Dunia Gugusan Karang Pianemo Raja Ampat",
         "category": "Jantung Karang Dunia",
-        "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+        "url": "../assets/images/provinces/papua-barat-daya-cover.jpg"
       },
       {
         "title": "Sajian Mewah Udang Selingkuh Saus Mentega Bawang",

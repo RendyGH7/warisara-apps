@@ -144,7 +144,7 @@
       const backdrop = document.createElement("div");
       backdrop.id = "warisara-chat-backdrop";
       backdrop.className =
-        "fixed inset-0 bg-black/65 backdrop-blur-sm z-[1000] transition-opacity duration-300 opacity-0 pointer-events-none";
+        "fixed inset-0 bg-black/65 backdrop-blur-sm z-[99990] transition-opacity duration-300 opacity-0 pointer-events-none";
       document.body.appendChild(backdrop);
       chatBackdropEl = backdrop;
       backdrop.addEventListener("click", closeChatDrawer);
@@ -155,7 +155,7 @@
     const drawer = document.createElement("div");
     drawer.id = "warisara-chat-drawer";
     drawer.className =
-      "closed fixed inset-y-0 right-0 z-[1050] w-full max-w-md sm:max-w-lg chat-glass-panel flex flex-col shadow-2xl overflow-hidden font-body";
+      "closed fixed inset-y-0 right-0 z-[100000] w-full max-w-md sm:max-w-lg chat-glass-panel flex flex-col shadow-2xl overflow-hidden font-body";
 
     drawer.innerHTML = `
       <!-- Header Messenger -->
@@ -315,8 +315,28 @@
       chatBackdropEl.classList.add("opacity-100", "pointer-events-auto");
     }
 
-    // Sembunyikan navbar agar tidak menutupi bagian atas drawer
+    // Sembunyikan navbar dan kunci interaksi Wari di belakang drawer
     document.body.classList.add("chat-drawer-open");
+    document.documentElement.classList.add("chat-drawer-open");
+
+    // Tempatkan Wari di belakang chat dan matikan klik / sembunyikan tooltip
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.add("chat-suppressed");
+      wariWidget.style.setProperty("z-index", "50", "important");
+      wariWidget.style.setProperty("pointer-events", "none", "important");
+    }
+    const wariTooltip = document.getElementById("wari-ai-tooltip");
+    if (wariTooltip) {
+      wariTooltip.classList.add("hidden-tooltip", "modal-suppressed", "chat-suppressed");
+      wariTooltip.style.setProperty("display", "none", "important");
+    }
+    const wariChatWindow = document.getElementById("wari-chat-window");
+    if (wariChatWindow) {
+      wariChatWindow.classList.add("hidden");
+      wariChatWindow.style.setProperty("display", "none", "important");
+    }
+
     const navbar = document.getElementById("main-navbar");
     if (navbar) navbar.style.display = "none";
     const mobileDrawer = document.getElementById("mobile-nav-drawer");
@@ -336,8 +356,28 @@
       chatBackdropEl.classList.remove("opacity-100", "pointer-events-auto");
     }
 
-    // Tampilkan kembali navbar
+    // Kembalikan status chat drawer open
     document.body.classList.remove("chat-drawer-open");
+    document.documentElement.classList.remove("chat-drawer-open");
+
+    // Pulihkan Wari widget
+    const wariWidget = document.getElementById("wari-ai-widget");
+    if (wariWidget) {
+      wariWidget.classList.remove("chat-suppressed");
+      wariWidget.style.removeProperty("z-index");
+      wariWidget.style.removeProperty("pointer-events");
+    }
+    const wariTooltip = document.getElementById("wari-ai-tooltip");
+    if (wariTooltip) {
+      wariTooltip.classList.remove("modal-suppressed", "chat-suppressed");
+      wariTooltip.style.removeProperty("display");
+    }
+    const wariChatWindow = document.getElementById("wari-chat-window");
+    if (wariChatWindow) {
+      wariChatWindow.style.removeProperty("display");
+    }
+
+    // Tampilkan kembali navbar
     const navbar = document.getElementById("main-navbar");
     if (navbar) navbar.style.display = "";
     const mobileDrawer = document.getElementById("mobile-nav-drawer");

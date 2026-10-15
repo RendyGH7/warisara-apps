@@ -102,21 +102,15 @@ window.WARISARA_PROVINCE_PANEL = {
   // Regional Illustration Fallback Directory
   getIllustrationForProvince: function (province) {
     if (!province) return "assets/images/hero/bg-hero-batik-hd.jpg";
-    if (province.id === "kalimantan-timur") {
-      return "assets/images/provinces/kalimantan-timur.jpg";
+    if (province.tourism && (province.tourism.photo || province.tourism.image)) {
+      let p = province.tourism.photo || province.tourism.image;
+      if (p.startsWith("../")) p = p.substring(3);
+      return p;
     }
-
-    const island = (province.island || "").toLowerCase();
-    if (island.includes("sumat")) return "assets/images/provinces/region-sumatra.jpg";
-    if (island.includes("jaw")) return "assets/images/provinces/region-jawa.jpg";
-    if (island.includes("bali")) return "assets/images/provinces/region-bali.jpg";
-    if (island.includes("nusa") || island.includes("tenggara")) return "assets/images/provinces/region-nusa-tenggara.jpg";
-    if (island.includes("kaliman") || island.includes("borneo")) return "assets/images/provinces/region-kalimantan.jpg";
-    if (island.includes("sulaw") || island.includes("celebes")) return "assets/images/provinces/region-sulawesi.jpg";
-    if (island.includes("maluk")) return "assets/images/provinces/region-maluku.jpg";
-    if (island.includes("papua")) return "assets/images/provinces/region-papua.jpg";
-
-    return "assets/images/provinces/region-jawa.jpg";
+    if (province.id) {
+      return "assets/images/provinces/" + province.id + "-cover.jpg";
+    }
+    return "assets/images/hero/bg-hero-batik-hd.jpg";
   },
 
   init: function () {

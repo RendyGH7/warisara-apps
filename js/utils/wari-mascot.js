@@ -447,6 +447,12 @@ Peran dan Pengetahuan Anda:
   let isOpen = false;
   let chatHistory = [];
   let isThinking = false;
+  let isTooltipDismissed = false;
+  try {
+    if (sessionStorage.getItem('wari_tooltip_dismissed') === 'true') {
+      isTooltipDismissed = true;
+    }
+  } catch (e) {}
 
   function setMascotMood(mood) {
     const src = IMGS[mood] || IMGS.idle;
@@ -790,6 +796,15 @@ Peran dan Pengetahuan Anda:
     `;
     document.body.appendChild(widgetEl);
 
+    // Jika user sebelumnya sudah menutup komentar Wari di sesi ini, langsung sembunyikan
+    if (isTooltipDismissed) {
+      const initialTooltip = document.getElementById('wari-ai-tooltip');
+      if (initialTooltip) {
+        initialTooltip.classList.add('hidden-tooltip', 'user-dismissed');
+        initialTooltip.style.display = 'none';
+      }
+    }
+
     // 2. Render Jendela Obrolan Mewah (Chat Window)
     chatWindowEl = document.createElement('div');
     chatWindowEl.id = 'wari-chat-window';
@@ -839,13 +854,13 @@ Peran dan Pengetahuan Anda:
 
       <!-- Chips Pertanyaan Cepat -->
       <div id="wari-prompt-chips" class="wari-prompt-chips">
-        <button type="button" class="wari-chip" data-prompt="Jelaskan fitur utama apa saja yang ada di web WARISARA">🌐 Jelajahi WARISARA</button>
-        <button type="button" class="wari-chip" data-prompt="Apa makna filosofi di balik motif Batik Parang Barong?">📜 Filosofi Batik Parang</button>
-        <button type="button" class="wari-chip" data-prompt="Rekomendasikan karya kriya terbaik yang ada di etalase produk lokal">🛍️ Rekomendasi Kriya</button>
-        <button type="button" class="wari-chip" data-prompt="Ceritakan tentang upacara pemakaman adat Rambu Solo di Tana Toraja">🏛️ Tradisi Rambu Solo</button>
-        <button type="button" class="wari-chip" data-prompt="Ada berapa provinsi di Indonesia dan apa saja pembagian pulaunya?">🗺️ 38 Provinsi</button>
-        <button type="button" class="wari-chip" data-prompt="Bagaimana cara membeli dan bertransaksi langsung dengan pengrajin lokal?">💬 Cara Beli & Chat</button>
-        <button type="button" class="wari-chip" data-prompt="Beri aku satu pantun bertema budaya Indonesia">🌺 Pantun Nusantara</button>
+        <button type="button" class="wari-chip" data-prompt="Jelaskan fitur utama apa saja yang ada di web WARISARA">Jelajahi WARISARA</button>
+        <button type="button" class="wari-chip" data-prompt="Apa makna filosofi di balik motif Batik Parang Barong?">Filosofi Batik Parang</button>
+        <button type="button" class="wari-chip" data-prompt="Rekomendasikan karya kriya terbaik yang ada di etalase produk lokal">Rekomendasi Kriya</button>
+        <button type="button" class="wari-chip" data-prompt="Ceritakan tentang upacara pemakaman adat Rambu Solo di Tana Toraja">Tradisi Rambu Solo</button>
+        <button type="button" class="wari-chip" data-prompt="Ada berapa provinsi di Indonesia dan apa saja pembagian pulaunya?">38 Provinsi</button>
+        <button type="button" class="wari-chip" data-prompt="Bagaimana cara membeli dan bertransaksi langsung dengan pengrajin lokal?">Cara Beli & Chat</button>
+        <button type="button" class="wari-chip" data-prompt="Beri aku satu pantun bertema budaya Indonesia">Pantun Nusantara</button>
       </div>
 
       <!-- Baris Input Form -->
@@ -912,12 +927,15 @@ Peran dan Pengetahuan Anda:
     const dismissTooltipBtn = document.getElementById('wari-tooltip-dismiss');
     if (dismissTooltipBtn) {
       dismissTooltipBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (tooltipEl) tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
+        dismissMascotTooltip(e);
+      });
+      dismissTooltipBtn.addEventListener('touchend', (e) => {
+        dismissMascotTooltip(e);
       });
     }
     if (tooltipEl) tooltipEl.addEventListener('click', (e) => {
       if (e.target && e.target.closest('#wari-tooltip-dismiss')) return;
+      if (isTooltipDismissed) return;
       triggerBtn && triggerBtn.classList.add('wari-excited');
       setTimeout(() => triggerBtn && triggerBtn.classList.remove('wari-excited'), 700);
       toggleChatWindow(true);
@@ -1070,7 +1088,27 @@ Peran dan Pengetahuan Anda:
     return false;
   }
 
-  function hideMascotTooltip() {
+  function dismissMascotTooltip(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+    isTooltipDismissed = true;
+    try {
+      sessionStorage.setItem('wari_tooltip_dismissed', 'true');
+    } catch (err) {}
+    const tooltipEl = document.getElementById('wari-ai-tooltip');
+    if (tooltipEl) {
+      tooltipEl.classList.add('hidden-tooltip', 'user-dismissed');
+      tooltipEl.style.display = 'none';
+    }
+  }
+
+  function hideMascotTooltip(isUserDismiss = false) {
+    if (isUserDismiss) {
+      dismissMascotTooltip();
+      return;
+    }
     const tooltipEl = document.getElementById('wari-ai-tooltip');
     if (tooltipEl && !tooltipEl.classList.contains('hidden-tooltip')) {
       tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
@@ -1078,10 +1116,12 @@ Peran dan Pengetahuan Anda:
   }
 
   function showMascotTooltip() {
+    if (isTooltipDismissed) return;
     if (isAnyModalOpen()) return;
     const tooltipEl = document.getElementById('wari-ai-tooltip');
     if (tooltipEl && !isOpen && tooltipEl.classList.contains('hidden-tooltip')) {
-      tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed');
+      tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed', 'user-dismissed');
+      tooltipEl.style.display = '';
     }
   }
 
@@ -1164,6 +1204,7 @@ Peran dan Pengetahuan Anda:
             !t.closest('#wari-ai-widget') &&
             !t.closest('#wari-chat-window') &&
             !t.closest('#warisara-preloader') &&
+            !t.closest('#warisara-lantern-cursor') &&
             !t.closest('#page-transition-veil')
           );
         });
@@ -1205,7 +1246,14 @@ Peran dan Pengetahuan Anda:
       handleUserSubmit(question);
     },
     hideTooltip: hideMascotTooltip,
-    showTooltip: showMascotTooltip,
+    showTooltip: function () {
+      isTooltipDismissed = false;
+      try {
+        sessionStorage.removeItem('wari_tooltip_dismissed');
+      } catch (e) {}
+      showMascotTooltip();
+    },
+    dismissTooltip: dismissMascotTooltip,
     setMood: setMascotMood
   };
 

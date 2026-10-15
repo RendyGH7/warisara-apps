@@ -224,11 +224,11 @@
   }
 
   function getLevelTitle(count) {
-    if (count >= 38) return { title: 'Adiraja Kebudayaan Nusantara 👑', badge: 'Tuntas 100%' };
-    if (count >= 25) return { title: 'Mahapatih Nusantara 🥇', badge: 'Tingkat Mahir' };
-    if (count >= 12) return { title: 'Pengelana Khatulistiwa 🥈', badge: 'Tingkat Menengah' };
-    if (count >= 1) return { title: 'Pelancong Pemula 🥉', badge: 'Tingkat Awal' };
-    return { title: 'Calon Penjelajah 🌿', badge: 'Belum Mulai' };
+    if (count >= 38) return { title: 'Adiraja Kebudayaan Nusantara', badge: 'Tuntas 100%' };
+    if (count >= 25) return { title: 'Mahapatih Nusantara', badge: 'Tingkat Mahir' };
+    if (count >= 12) return { title: 'Pengelana Khatulistiwa', badge: 'Tingkat Menengah' };
+    if (count >= 1) return { title: 'Pelancong Pemula', badge: 'Tingkat Awal' };
+    return { title: 'Calon Penjelajah', badge: 'Belum Mulai' };
   }
 
   // --- STATE ---
@@ -237,6 +237,7 @@
   var currentSearchQuery = '';
   var currentSort = 'name';
   var activeProvinceId = null;
+  var savedProvinceScrollY = 0;
   var currentModalTab = 'overview';
   var activeGalleryIndex = 0;
   var activeGalleryList = [];
@@ -263,6 +264,44 @@
 
     var levelBadgeEls = document.querySelectorAll('.passport-level-badge');
     levelBadgeEls.forEach(function (el) { el.textContent = level.badge; });
+  }
+
+  // --- HELPER: AMBIL PRODUK LOKAL OTENTIK DARI KATALOG WARISARA UNTUK PROVINSI INI ---
+  function getMatchingProductsForProvince(prov) {
+    if (!prov) return [];
+    var all = (window.WARISARA_PRODUCTS && typeof window.WARISARA_PRODUCTS.getAll === 'function')
+      ? window.WARISARA_PRODUCTS.getAll()
+      : (window.PRODUCTS_DATA || []);
+    if (!all || all.length === 0) return [];
+
+    var pName = (prov.name || '').toLowerCase().trim();
+    var pIsland = (prov.island || '').toLowerCase().trim();
+    var pId = (prov.id || '').toLowerCase().trim();
+
+    // 1. Exact match pada field province
+    var directMatches = all.filter(function (p) {
+      if (!p.province) return false;
+      var provStr = p.province.toLowerCase().trim();
+      return provStr.indexOf(pName) !== -1 || pName.indexOf(provStr) !== -1;
+    });
+    if (directMatches.length > 0) return directMatches;
+
+    // 2. Match pada origin atau nama/filosofi
+    var originMatches = all.filter(function (p) {
+      var orig = (p.origin || '').toLowerCase();
+      return orig.indexOf(pName) !== -1 || orig.indexOf(pId) !== -1;
+    });
+    if (originMatches.length > 0) return originMatches;
+
+    // 3. Match pada pulau / regional
+    var islandMatches = all.filter(function (p) {
+      if (!p.island) return false;
+      var isl = p.island.toLowerCase();
+      return isl.indexOf(pIsland) !== -1 || pIsland.indexOf(isl) !== -1;
+    });
+    if (islandMatches.length > 0) return islandMatches.slice(0, 2);
+
+    return [all[0]];
   }
 
   // --- PROVINCE RENDERING ---
@@ -318,77 +357,162 @@
 
     if (emptyEl) emptyEl.classList.add('hidden');
 
-    gridEl.innerHTML = filtered.map(function (prov) {
+    // Staggered column count based on viewport
+    function getStaggeredColCount() {
+      var w = window.innerWidth;
+      if (w >= 1280) return 4;
+      if (w >= 1024) return 3;
+      if (w >= 640) return 2;
+      return 1;
+    }
+
+    var colCount = getStaggeredColCount();
+    if (filtered.length < colCount) {
+      colCount = Math.max(1, filtered.length);
+    }
+
+    // Dynamic aspect-ratio sequence for organic, non-aligned waterfall flow ("Bebas & Tidak Sejajar tapi Tetap Rapih")
+    var aspectSequence = [
+      'pcu-aspect-portrait',   // 3:4 Tall
+      'pcu-aspect-landscape',  // 4:3 Wide
+      'pcu-aspect-square',     // 1:1 Square
+      'pcu-aspect-grand',      // 5:7 Grand
+      'pcu-aspect-golden',     // 4:5 Golden
+      'pcu-aspect-cinematic',  // 16:11 Wide
+      'pcu-aspect-portrait'    // 3:4 Tall
+    ];
+
+    if (filtered.length === 1) {
+      // Single card centered
+      var prov = filtered[0];
       var isStamped = isProvinceStamped(prov.id);
       var rawCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
       var coverPhoto = fixImgPath(rawCover);
       var culinaryName = prov.culinary ? prov.culinary.name : 'Kuliner Khas';
-      var weaponName = prov.weapon ? prov.weapon.name : 'Senjata Pusaka';
       var tourismName = prov.tourism ? prov.tourism.name : 'Wisata Unggulan';
+      var matchedProds = getMatchingProductsForProvince(prov);
+      var kriyaName = matchedProds.length > 0 ? matchedProds[0].name : (prov.craftHighlight || 'Kriya Nusantara');
 
-      return `
-        <article class="province-card-ultimate group cursor-pointer" data-prov-id="${prov.id}">
-          <div class="province-card-cover">
-            <img src="${coverPhoto}" alt="${prov.name}" loading="lazy" />
-            <div class="province-card-cover-overlay"></div>
-            
-            <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/30 backdrop-blur-md">
-                ${prov.island}
-              </span>
-            </div>
-
-            <div class="stamp-mini-badge ${isStamped ? 'stamped' : 'unstamped'}">
-              <span class="material-symbols-outlined text-[12px]">${isStamped ? 'verified' : 'lock'}</span>
-              <span>${isStamped ? 'Terjelajahi' : 'Belum Dicap'}</span>
-            </div>
-
-            <div class="absolute bottom-3 left-4 right-4 z-10">
-              <span class="text-[10px] uppercase font-mono tracking-wider text-surface/60">Ibu Kota: ${prov.capital}</span>
-              <h3 class="font-display text-2xl font-light text-surface group-hover:text-brass-300 transition-colors drop-shadow">
-                ${prov.name}
-              </h3>
-            </div>
-          </div>
-
-          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-            <blockquote class="text-xs text-surface/75 font-light italic leading-relaxed line-clamp-2 border-l-2 border-brass-400/50 pl-3 py-0.5">
-              "${prov.shortStatement}"
-            </blockquote>
-
-            <!-- Mini Highlight Badges: Kuliner, Senjata, Wisata -->
-            <div class="space-y-2 pt-3 border-t border-white/10 text-xs">
-              <div class="flex items-center gap-2 text-surface/85">
-                <span class="w-6 h-6 rounded-lg bg-terracotta-500/15 border border-terracotta-500/30 text-terracotta-300 flex items-center justify-center text-xs flex-shrink-0">🍲</span>
-                <span class="text-surface/50 text-[11px] font-mono">Kuliner:</span>
-                <span class="truncate font-medium text-brass-200 text-xs">${culinaryName}</span>
-              </div>
-              <div class="flex items-center gap-2 text-surface/85">
-                <span class="w-6 h-6 rounded-lg bg-brass-500/15 border border-brass-500/30 text-brass-300 flex items-center justify-center text-xs flex-shrink-0">🗡️</span>
-                <span class="text-surface/50 text-[11px] font-mono">Senjata:</span>
-                <span class="truncate font-medium text-brass-200 text-xs">${weaponName}</span>
-              </div>
-              <div class="flex items-center gap-2 text-surface/85">
-                <span class="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center text-xs flex-shrink-0">🏞️</span>
-                <span class="text-surface/50 text-[11px] font-mono">Wisata:</span>
-                <span class="truncate font-medium text-brass-200 text-xs">${tourismName}</span>
+      gridEl.innerHTML = `
+        <div class="max-w-sm mx-auto w-full">
+          <article class="province-card-ultimate group cursor-pointer" data-prov-id="${prov.id}">
+            <div class="province-card-cover pcu-aspect-square">
+              <img src="${coverPhoto}" alt="${prov.name}" loading="lazy" />
+              <div class="province-card-cover-overlay"></div>
+              <div class="pcu-card-shimmer"></div>
+              <div class="pcu-top-row">
+                <span class="pcu-island-badge">${prov.island}</span>
+                <span class="pcu-stamp-badge ${isStamped ? 'stamped' : ''}">
+                  <span class="material-symbols-outlined" style="font-size:11px">${isStamped ? 'verified' : 'lock'}</span>
+                  ${isStamped ? 'Terjelajahi' : 'Belum'}
+                </span>
               </div>
             </div>
-
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-brass-400 font-bold uppercase tracking-wider group-hover:text-brass-300 transition-colors">
-              <span>Buka Ensiklopedia &amp; Kuis</span>
-              <span class="material-symbols-outlined text-sm group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+            <div class="pcu-glass-panel">
+              <span class="pcu-capital-label"><span class="material-symbols-outlined" style="font-size:10px;vertical-align:middle;margin-right:3px">location_on</span>${prov.capital}</span>
+              <h3 class="pcu-name">${prov.name}</h3>
+              <div class="pcu-chips-row">
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">restaurant</span>${culinaryName}</span>
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">landscape</span>${tourismName}</span>
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">category</span>${kriyaName}</span>
+              </div>
+              <div class="pcu-cta-row">
+                <span>Jelajahi Ensiklopedia</span>
+                <span class="material-symbols-outlined pcu-cta-icon">arrow_forward</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       `;
-    }).join('');
+    } else {
+      var colsHtml = [];
+      for (var c = 0; c < colCount; c++) {
+        colsHtml.push([]);
+      }
 
-    // Attach click triggers to open modal
+      filtered.forEach(function (prov, index) {
+        var isStamped = isProvinceStamped(prov.id);
+        var rawCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
+        var coverPhoto = fixImgPath(rawCover);
+        var culinaryName = prov.culinary ? prov.culinary.name : 'Kuliner Khas';
+        var tourismName = prov.tourism ? prov.tourism.name : 'Wisata Unggulan';
+        var matchedProds = getMatchingProductsForProvince(prov);
+        var kriyaName = matchedProds.length > 0 ? matchedProds[0].name : (prov.craftHighlight || 'Kriya Nusantara');
+        var aspectClass = aspectSequence[index % aspectSequence.length];
+
+        var cardHtml = `
+          <article class="province-card-ultimate group cursor-pointer" data-prov-id="${prov.id}">
+            <div class="province-card-cover ${aspectClass}">
+              <img src="${coverPhoto}" alt="${prov.name}" loading="lazy" />
+              <div class="province-card-cover-overlay"></div>
+              <div class="pcu-card-shimmer"></div>
+
+              <div class="pcu-top-row">
+                <span class="pcu-island-badge">${prov.island}</span>
+                <span class="pcu-stamp-badge ${isStamped ? 'stamped' : ''}">
+                  <span class="material-symbols-outlined" style="font-size:11px">${isStamped ? 'verified' : 'lock'}</span>
+                  ${isStamped ? 'Terjelajahi' : 'Belum'}
+                </span>
+              </div>
+            </div>
+
+            <div class="pcu-glass-panel">
+              <span class="pcu-capital-label"><span class="material-symbols-outlined" style="font-size:10px;vertical-align:middle;margin-right:3px">location_on</span>${prov.capital}</span>
+              <h3 class="pcu-name">${prov.name}</h3>
+              <div class="pcu-chips-row">
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">restaurant</span>${culinaryName}</span>
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">landscape</span>${tourismName}</span>
+                <span class="pcu-chip"><span class="material-symbols-outlined" style="font-size:10px">category</span>${kriyaName}</span>
+              </div>
+              <div class="pcu-cta-row">
+                <span>Jelajahi Ensiklopedia</span>
+                <span class="material-symbols-outlined pcu-cta-icon">arrow_forward</span>
+              </div>
+            </div>
+          </article>
+        `;
+
+        colsHtml[index % colCount].push(cardHtml);
+      });
+
+      gridEl.innerHTML = colsHtml.map(function (colCards, colIdx) {
+        return `
+          <div class="provinces-staggered-col provinces-col-${colIdx + 1}">
+            ${colCards.join('')}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Attach click triggers to open modal with elegant ripple + glow effect
     gridEl.querySelectorAll('.province-card-ultimate').forEach(function (card) {
-      card.addEventListener('click', function () {
+      card.addEventListener('click', function (e) {
         var id = card.getAttribute('data-prov-id');
-        openProvinceModal(id);
+
+        // --- Card Click Ripple Effect ---
+        var ripple = document.createElement('span');
+        ripple.className = 'pcu-click-ripple';
+        // Position ripple at click point relative to card
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        card.appendChild(ripple);
+
+        // Add click-active class for gold-glow flash
+        card.classList.add('pcu-card-clicked');
+
+        // Remove after animation completes
+        setTimeout(function () {
+          ripple.remove();
+          card.classList.remove('pcu-card-clicked');
+        }, 600);
+
+        // Open modal after a short delay so the animation is visible
+        setTimeout(function () {
+          openProvinceModal(id);
+        }, 120);
       });
     });
   }
@@ -402,83 +526,36 @@
     var modalOverlay = document.getElementById('province-modal-overlay');
     if (!modalOverlay) return;
 
-    // Setup Available Illustrations for Province
-    var heroBanner = document.getElementById('modal-hero-banner');
-    var rawModalCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url);
-    var coverImg = fixImgPath(rawModalCover);
-
-    var artItems = {
-      landmark: {
-        url: coverImg,
-        title: prov.name,
-        caption: (prov.tourism ? prov.tourism.name : 'Landmark & Lanskap Utama')
-      },
-      culinary: {
-        url: fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || ''),
-        title: prov.culinary ? prov.culinary.name : 'Kuliner Khas',
-        caption: 'Kuliner Autentik: ' + (prov.culinary ? prov.culinary.name : 'Khas')
-      },
-      weapon: {
-        url: fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || ''),
-        title: prov.weapon ? prov.weapon.name : 'Senjata Pusaka',
-        caption: 'Pusaka Adat: ' + (prov.weapon ? prov.weapon.name : 'Senjata')
-      },
-      tourism: {
-        url: fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || ''),
-        title: prov.tourism ? prov.tourism.name : 'Destinasi Wisata',
-        caption: 'Wisata: ' + (prov.tourism ? prov.tourism.name : 'Ikonik')
-      },
-      gallery: {
-        url: fixImgPath((prov.gallery && prov.gallery[0] && prov.gallery[0].url) || coverImg),
-        title: (prov.gallery && prov.gallery[0] && prov.gallery[0].title) || 'Galeri Dokumentasi',
-        caption: 'Dokumentasi Warisan Budaya'
-      }
-    };
-
-    var currentHeroArt = 'landmark';
-
-    function setHeroIllustration(artKey) {
-      currentHeroArt = artKey;
-      var art = artItems[artKey];
-      if (!art || !art.url) return;
-
-      if (heroBanner) {
-        heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(12, 10, 8, 0.15) 0%, rgba(18, 15, 13, 0.8) 100%), url(' + art.url + ')';
-      }
-
-      var indicator = document.getElementById('illustration-caption-indicator');
-      if (indicator) indicator.textContent = art.caption;
-
-      var chips = document.querySelectorAll('.art-switcher-chip');
-      chips.forEach(function (chip) {
-        if (chip.getAttribute('data-art') === artKey) {
-          chip.classList.add('active');
-        } else {
-          chip.classList.remove('active');
-        }
-      });
+    // Save scroll position before modal locks the page, ONLY if opening fresh (not when switching with prev/next)
+    if (!modalOverlay.classList.contains('active')) {
+      savedProvinceScrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
     }
 
-    // Initialize Default Illustration (Landmark)
-    setHeroIllustration('landmark');
+    // Setup Dedicated Iconic Illustration for Province
+    var heroBanner = document.getElementById('modal-hero-banner');
+    var rawModalCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || 
+                        (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 
+                        (prov.photo || prov.image) || 
+                        'assets/images/provinces/kalimantan-timur-cover.jpg';
+    var coverImg = fixImgPath(rawModalCover);
+    var landmarkCaption = (prov.tourism && prov.tourism.name) ? prov.tourism.name : prov.name;
+    var matchingProducts = getMatchingProductsForProvince(prov);
 
-    // Wire Quick Switcher Chips
-    var chips = document.querySelectorAll('.art-switcher-chip');
-    chips.forEach(function (chip) {
-      chip.onclick = function (e) {
-        e.stopPropagation();
-        var key = chip.getAttribute('data-art');
-        setHeroIllustration(key);
-      };
-    });
+    if (heroBanner) {
+      heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%), url(' + coverImg + ')';
+    }
 
-    // Modal Hero Photo Zoom (Zooms currently displayed art)
+    var indicator = document.getElementById('illustration-caption-indicator');
+    if (indicator) {
+      indicator.textContent = landmarkCaption;
+    }
+
+    // Modal Hero Photo Zoom (Zooms the dedicated signature illustration)
     var heroZoomBtn = document.getElementById('modal-hero-zoom-btn');
     if (heroZoomBtn) {
       heroZoomBtn.onclick = function (e) {
         e.stopPropagation();
-        var art = artItems[currentHeroArt] || artItems.landmark;
-        openCustomLightbox(art.url, art.title, art.caption);
+        openCustomLightbox(coverImg, prov.name, landmarkCaption);
       };
     }
 
@@ -513,204 +590,144 @@
       };
     }
 
-    // Helper: Format Sejarah Ringkas & Menarik (Bite-Sized Timeline Points + Accordion)
+    // Helper: Format Sejarah Ringkas & Menarik (Storytelling, No duplicates, High Readability)
     function formatBiteSizedHistory(prov) {
       var raw = (prov.historyBrief || prov.shortDescription || '').trim();
       if (!raw) return '';
 
-      var sentences = raw.split(/(?<=[.?!])\s+/).filter(function (s) { return s.trim().length > 0; });
-      var bullets = [];
-
-      if (sentences.length >= 2) {
-        bullets.push({
-          tag: 'Akar Peradaban',
-          icon: 'account_balance',
-          color: 'brass',
-          text: sentences[0]
-        });
-        bullets.push({
-          tag: 'Tonggak Perjuangan',
-          icon: 'military_tech',
-          color: 'terracotta',
-          text: sentences[1]
-        });
-        if (sentences.length >= 3) {
-          bullets.push({
-            tag: 'Era Kontemporer',
-            icon: 'stars',
-            color: 'forest',
-            text: sentences.slice(2).join(' ')
-          });
-        }
-      } else {
-        bullets.push({
-          tag: 'Intisari Sejarah',
-          icon: 'history_edu',
-          color: 'brass',
-          text: raw
-        });
-      }
-
       return `
-        <div class="rounded-2xl p-4 sm:p-5 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent border border-white/10 space-y-3.5">
+        <div class="rounded-2xl p-5 sm:p-6 bg-gradient-to-br from-white/[0.04] via-white/[0.015] to-transparent border border-white/10 space-y-4">
           <div class="flex items-center justify-between gap-2">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-brass-400"></span>
-              <h4 class="text-[11px] font-bold uppercase tracking-wider text-brass-300 font-mono">
-                Intisari Kilas Sejarah
+              <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
+                Jejak Kisah &amp; Kearifan Sejarah
               </h4>
             </div>
             <span class="text-[10px] text-surface/50 font-mono bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">Ringkas &amp; Esensial</span>
           </div>
 
-          <div class="grid grid-cols-1 gap-2.5">
-            ${bullets.map(function (b) {
-              var iconColor = b.color === 'brass' ? 'text-brass-400' : (b.color === 'terracotta' ? 'text-terracotta-400' : 'text-emerald-400');
-              var badgeBg = b.color === 'brass' ? 'bg-brass-400/15 border-brass-400/30 text-brass-300' : (b.color === 'terracotta' ? 'bg-terracotta-500/15 border-terracotta-500/30 text-terracotta-300' : 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300');
-              return `
-                <div class="history-milestone-item p-3 rounded-xl bg-black/40 border border-white/10 flex items-start gap-3">
-                  <span class="material-symbols-outlined text-lg ${iconColor} flex-shrink-0 mt-0.5">${b.icon}</span>
-                  <div class="space-y-1 min-w-0 flex-1">
-                    <span class="inline-block px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider border ${badgeBg} font-mono">
-                      ${b.tag}
-                    </span>
-                    <p class="text-xs text-surface/90 font-light leading-relaxed">
-                      ${b.text}
-                    </p>
-                  </div>
-                </div>
-              `;
-            }).join('')}
+          <!-- Concise Editorial Text (No text repeats, relaxed line height, comfortable reading) -->
+          <p class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed">
+            ${raw}
+          </p>
+
+          <!-- Key Cultural Highlights Badges -->
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-400/10 border border-brass-400/25 text-brass-300 text-[11px] font-medium">
+              <span class="material-symbols-outlined text-sm">temple_buddhist</span>
+              <span>Akar Peradaban Nusantara</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-400/10 border border-brass-400/25 text-brass-300 text-[11px] font-medium">
+              <span class="material-symbols-outlined text-sm">auto_stories</span>
+              <span>Kearifan &amp; Tradisi Luhur</span>
+            </span>
           </div>
 
-          <!-- Accordion Baca Narasi Lengkap -->
-          <div class="pt-1 border-t border-white/10 flex flex-col">
-            <button id="toggle-history-narrative-btn" class="history-expand-btn self-start inline-flex items-center gap-1.5 text-xs text-brass-400 hover:text-brass-300 font-semibold transition-colors py-1 cursor-pointer">
-              <span>Baca Narasi Lengkap</span>
-              <span class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
-            </button>
-            <div id="history-full-narrative" class="history-full-narrative">
-              <p class="text-xs text-surface/75 font-light leading-relaxed pt-2 pl-3 border-l-2 border-brass-400/40 my-1 bg-white/[0.01] rounded-r-lg">
-                ${raw}
-              </p>
+          ${(prov.historyFull && prov.historyFull !== raw) ? `
+            <!-- Smooth Expand Narrative -->
+            <div class="pt-1">
+              <button id="toggle-history-narrative-btn" class="history-expand-btn inline-flex items-center gap-1.5 text-xs text-brass-400 hover:text-brass-300 font-semibold transition-colors py-1 cursor-pointer">
+                <span>Baca Narasi Lengkap</span>
+                <span class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
+              </button>
+              <div id="history-full-narrative" class="history-full-narrative">
+                <p class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed pt-2 pl-3 border-l-2 border-brass-400/40 my-2 bg-white/[0.015] rounded-r-xl">
+                  ${prov.historyFull}
+                </p>
+              </div>
             </div>
-          </div>
+          ` : ''}
         </div>
       `;
     }
 
-    // Render Tab 1: Ikhtisar & Sejarah (Bite-sized, clean, modular)
+    // Render Tab 1: Kisah & Identitas (Bite-sized, clean, modular, high readability)
     var historyEl = document.getElementById('tab-history-content');
     if (historyEl) {
       historyEl.innerHTML = `
-        <div class="space-y-4">
-          <!-- 1. Intisari Kilas Sejarah (Bite-Sized) -->
+        <div class="space-y-5">
+          <!-- 1. Intisari Kilas Sejarah -->
           ${formatBiteSizedHistory(prov)}
 
-          <!-- 2. Grid Sapaan Daerah & Kriya Luhur -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Kartu Bahasa & Sapaan Ramah -->
-            <div class="p-4 rounded-2xl bg-gradient-to-br from-brass-500/10 via-white/[0.02] to-transparent border border-brass-400/25 flex flex-col justify-between space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-brass-300 font-mono">
-                  <span class="material-symbols-outlined text-sm text-brass-400">record_voice_over</span>
-                  <span>${prov.language ? prov.language.name : 'Bahasa Daerah'}</span>
+          <!-- 2. Kartu Bahasa & Sapaan Luhur (Full Width, Spacious & Elegant) -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-brass-500/10 via-white/[0.02] to-transparent border border-brass-400/25 space-y-4">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-brass-400/15 border border-brass-400/30 flex items-center justify-center text-brass-300 flex-shrink-0">
+                  <span class="material-symbols-outlined text-base">record_voice_over</span>
                 </div>
-                <button id="card-voice-play-btn" class="px-2.5 py-1 rounded-full bg-brass-400/20 hover:bg-brass-400 hover:text-ink text-brass-300 border border-brass-400/40 text-[10px] font-bold flex items-center gap-1 transition-all shadow-sm cursor-pointer" title="Dengarkan Sapaan">
-                  <span class="material-symbols-outlined text-sm">volume_up</span>
-                  <span>Dengar</span>
-                </button>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
+                    ${prov.language ? prov.language.name : 'Bahasa & Sapaan Daerah'}
+                  </h4>
+                  <span class="text-[10px] text-surface/50 font-mono">Identitas Tutur Kata & Keramahan Adat</span>
+                </div>
               </div>
 
-              <div class="p-3 rounded-xl bg-black/40 border border-brass-400/20 shadow-inner">
-                <span class="text-[9px] uppercase font-mono tracking-widest text-surface/50 block mb-1">Sapaan Khas:</span>
-                <h5 class="font-display text-base sm:text-lg text-brass-100 font-light leading-snug mb-0.5">
-                  &ldquo;${prov.language ? prov.language.greeting : 'Selamat Datang'}&rdquo;
-                </h5>
-                <p class="text-xs text-surface/65 italic font-light">
-                  Artinya: &ldquo;${prov.language ? prov.language.meaning : 'Salam persaudaraan'}&rdquo;
-                </p>
-              </div>
-
-              ${prov.language && prov.language.commonPhrases && prov.language.commonPhrases.length ? `
-                <div class="pt-2 border-t border-white/10 space-y-1">
-                  <span class="text-[9px] font-bold uppercase tracking-wider text-surface/50 font-mono block">Ungkapan Populer:</span>
-                  <div class="flex flex-wrap gap-1">
-                    ${prov.language.commonPhrases.slice(0, 2).map(function (cp) {
-                      var phraseText = (typeof cp === 'object' && cp) ? cp.phrase : cp;
-                      var meaningText = (typeof cp === 'object' && cp) ? cp.meaning : '';
-                      return `
-                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-surface/80">
-                          <strong class="font-display text-brass-300 font-medium">${phraseText}</strong>
-                          ${meaningText ? `<span class="text-surface/40 text-[9px]">&bull;</span><span class="text-surface/60 text-[9px] italic">${meaningText}</span>` : ''}
-                        </span>
-                      `;
-                    }).join('')}
-                  </div>
-                </div>
-              ` : ''}
+              <button id="card-voice-play-btn" class="px-3.5 py-1.5 rounded-full bg-brass-400/20 hover:bg-brass-400 hover:text-ink text-brass-300 border border-brass-400/40 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer group" title="Dengarkan Sapaan">
+                <span class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">volume_up</span>
+                <span>Dengar Audio</span>
+              </button>
             </div>
 
-            <!-- Kartu Keahlian Kriya Luhur -->
-            <div class="p-4 rounded-2xl bg-gradient-to-br from-terracotta-500/10 via-white/[0.02] to-transparent border border-terracotta-400/25 flex flex-col justify-between space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-terracotta-300 font-mono">
-                  <span class="material-symbols-outlined text-sm text-terracotta-400">palette</span>
-                  <span>Kriya Luhur</span>
-                </div>
-                <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-200 border border-terracotta-500/30 font-mono">
-                  Pusaka Lokal
-                </span>
-              </div>
-
-              <div class="p-3 rounded-xl bg-black/40 border border-terracotta-500/20 shadow-inner">
-                <span class="text-[9px] uppercase font-mono tracking-widest text-surface/50 block mb-1">Identitas Kriya:</span>
-                <h5 class="font-display text-base sm:text-lg text-terracotta-100 font-light leading-snug mb-1">
-                  ${prov.craftHighlight}
-                </h5>
-                <p class="text-[11px] text-surface/70 font-light leading-relaxed">
-                  Keahlian adiluhung penopang ekonomi kreatif masyarakat setempat.
-                </p>
-              </div>
-
-              <div class="flex items-center justify-between pt-1 text-[11px]">
-                <span class="text-surface/50 font-mono">Koleksi Wastra & Kriya</span>
-                <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1 text-terracotta-300 hover:text-terracotta-200 font-semibold transition-colors">
-                  <span>Lihat Produk</span>
-                  <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </a>
-              </div>
+            <div class="p-4 rounded-xl bg-black/45 border border-brass-400/20 shadow-inner">
+              <span class="text-[9px] uppercase font-mono tracking-widest text-surface/50 block mb-1">Sapaan Hangat:</span>
+              <h5 class="font-display text-lg sm:text-xl text-brass-100 font-light leading-snug">
+                &ldquo;${prov.language ? prov.language.greeting : 'Selamat Datang'}&rdquo;
+              </h5>
+              <p class="text-xs text-surface/70 italic font-light mt-0.5">
+                Artinya: &ldquo;${prov.language ? prov.language.meaning : 'Salam persaudaraan nusantara'}&rdquo;
+              </p>
             </div>
+
+            ${prov.language && prov.language.commonPhrases && prov.language.commonPhrases.length ? `
+              <div class="pt-2 border-t border-white/10 space-y-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-surface/60 font-mono block">Ungkapan Populer:</span>
+                <div class="flex flex-wrap gap-2">
+                  ${prov.language.commonPhrases.map(function (cp) {
+                    var phraseText = (typeof cp === 'object' && cp) ? cp.phrase : cp;
+                    var meaningText = (typeof cp === 'object' && cp) ? cp.meaning : '';
+                    return `
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs text-surface/90 hover:border-brass-400/40 transition-colors">
+                        <strong class="font-display text-brass-300 font-medium">${phraseText}</strong>
+                        ${meaningText ? `<span class="text-surface/40">&bull;</span><span class="text-surface/60 text-[11px] italic">${meaningText}</span>` : ''}
+                      </span>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            ` : ''}
           </div>
 
           <!-- 3. Warisan Budaya Takbenda (WBTb) Seal Badges -->
           ${(prov.heritage && prov.heritage.length) ? `
-            <div class="space-y-2.5 pt-1">
+            <div class="space-y-3 pt-1">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
-                  <h4 class="text-[11px] font-bold uppercase tracking-wider text-surface/80 font-mono">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
                     Warisan Budaya Takbenda (WBTb)
                   </h4>
                 </div>
                 <span class="text-[10px] text-surface/50 font-mono">${prov.heritage.length} Pusaka Resmi</span>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 ${prov.heritage.map(function (item) {
                   var isUnesco = item.category && item.category.toLowerCase().includes('unesco');
                   var badgeBorder = isUnesco ? 'border-amber-400/40 bg-amber-500/15 text-amber-300' : 'border-brass-400/30 bg-brass-400/15 text-brass-300';
                   return `
-                    <div class="wbtb-badge-card p-3 rounded-xl bg-white/[0.025] border border-white/10 flex flex-col justify-between space-y-1.5">
+                    <div class="p-3.5 rounded-xl bg-white/[0.025] border border-white/10 flex flex-col justify-between space-y-1.5">
                       <div>
                         <div class="flex items-center justify-between gap-1 mb-1">
-                          <span class="inline-block px-1.5 py-0.5 rounded text-[8.5px] font-bold uppercase tracking-wider border ${badgeBorder} font-mono">
+                          <span class="inline-block px-2 py-0.5 rounded text-[8.5px] font-bold uppercase tracking-wider border ${badgeBorder} font-mono">
                             ${item.category}
                           </span>
                           ${isUnesco ? '<span class="material-symbols-outlined text-[13px] text-amber-400" title="UNESCO">grade</span>' : ''}
                         </div>
                         <h5 class="font-display text-sm font-medium text-surface mb-0.5">${item.name}</h5>
-                        <p class="text-[11px] text-surface/70 font-light leading-relaxed line-clamp-2">${item.desc}</p>
+                        <p class="text-xs text-surface/70 font-light leading-relaxed line-clamp-2">${item.desc}</p>
                       </div>
                     </div>
                   `;
@@ -721,19 +738,19 @@
 
           <!-- 4. Suara Pelestari Tradisi -->
           ${prov.maker ? `
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-forest-900/30 via-black/40 to-transparent border border-forest-500/25 flex items-start gap-3">
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-forest-900/25 via-black/30 to-transparent border border-forest-500/25 flex items-start gap-3.5">
               <div class="w-8 h-8 rounded-xl bg-forest-500/20 border border-forest-500/30 flex items-center justify-center text-forest-300 flex-shrink-0 mt-0.5">
                 <span class="material-symbols-outlined text-base">person</span>
               </div>
-              <div class="min-w-0 flex-1 space-y-0.5">
+              <div class="min-w-0 flex-1 space-y-1">
                 <div class="flex items-center justify-between gap-2">
                   <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 font-mono">Pesan Luhur Pelestari Tradisi</span>
                   <span class="text-[10px] text-surface/50 font-mono">${prov.maker.role}</span>
                 </div>
-                <p class="italic text-xs text-surface/90 font-light leading-relaxed">
+                <p class="italic text-xs sm:text-sm text-surface/90 font-light leading-relaxed">
                   &ldquo;${prov.maker.quote}&rdquo;
                 </p>
-                <span class="text-[11px] font-semibold text-brass-300 block pt-0.5">— ${prov.maker.name}</span>
+                <span class="text-xs font-semibold text-brass-300 block pt-0.5">— ${prov.maker.name}</span>
               </div>
             </div>
           ` : ''}
@@ -761,157 +778,130 @@
       }
     }
 
-    // Render Tab 2: Kuliner & Senjata Pusaka
+    // Render Tab 2: Kuliner, Senjata Pusaka & Mahakarya Kriya
     var culinaryWeaponEl = document.getElementById('tab-culinary-weapon-content');
     if (culinaryWeaponEl) {
       culinaryWeaponEl.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <!-- Kuliner Khas -->
-          <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
-            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || '')}', '${prov.culinary ? (prov.culinary.name || '').replace(/'/g, "\\'") : 'Kuliner'}', '${prov.culinary ? (prov.culinary.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-              <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80')}" 
-                   alt="${prov.culinary ? prov.culinary.name : 'Kuliner'}" 
-                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-terracotta-300 border border-terracotta-400/30 backdrop-blur-md flex items-center gap-1">
-                <span>🍲</span>
-                <span>Makanan Khas Autentik</span>
-              </span>
-              <div class="absolute bottom-3 left-4 right-4">
-                <h4 class="font-display text-xl sm:text-2xl text-surface font-light drop-shadow">
-                  ${prov.culinary ? prov.culinary.name : 'Kuliner Khas'}
-                </h4>
-              </div>
-            </div>
-            <div class="p-5 flex-1 flex flex-col justify-between text-xs text-surface/80">
-              <p class="font-light leading-relaxed mb-4">
-                ${prov.culinary ? prov.culinary.desc : 'Kekayaan rempah nusantara dengan perpaduan resep leluhur yang khas.'}
-              </p>
-              <div class="p-3 rounded-xl bg-terracotta-500/10 border border-terracotta-500/20 text-[11px] text-terracotta-200">
-                <strong class="block mb-0.5 text-terracotta-300 font-semibold">Karakter Rasa:</strong>
-                Kaya akan bumbu rempah alami lokal yang mencerminkan kekayaan bumi provinsi ${prov.name}.
-              </div>
-            </div>
-          </div>
-
-          <!-- Senjata Tradisional -->
-          <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
-            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Senjata Pusaka'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-              <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80')}" 
-                   alt="${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}" 
-                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/30 backdrop-blur-md flex items-center gap-1">
-                <span>🗡️</span>
-                <span>Senjata Khas & Pusaka</span>
-              </span>
-              <div class="absolute bottom-3 left-4 right-4">
-                <h4 class="font-display text-xl sm:text-2xl text-surface font-light drop-shadow">
-                  ${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}
-                </h4>
-              </div>
-            </div>
-            <div class="p-5 flex-1 flex flex-col justify-between text-xs text-surface/80">
-              <p class="font-light leading-relaxed mb-4">
-                ${prov.weapon ? prov.weapon.desc : 'Senjata pusaka berfilosofi tinggi yang melambangkan keberanian dan kehormatan adat.'}
-              </p>
-              <div class="p-3 rounded-xl bg-brass-500/10 border border-brass-500/20 text-[11px] text-brass-200">
-                <strong class="block mb-0.5 text-brass-300 font-semibold">Filosofi Pusaka:</strong>
-                Simbol ksatria, ketahanan jiwa, dan perlindungan marwah adat istiadat leluhur.
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // Render Tab 3: Wisata & Berita Hot
-    var tourismNewsEl = document.getElementById('tab-tourism-news-content');
-    if (tourismNewsEl) {
-      tourismNewsEl.innerHTML = `
         <div class="space-y-6">
-          <!-- Destinasi Wisata -->
-          <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10">
-            <div class="relative h-56 sm:h-72 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || '')}', '${prov.tourism ? (prov.tourism.name || '').replace(/'/g, "\\'") : 'Destinasi Wisata'}', '${prov.tourism ? (prov.tourism.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-              <img src="${fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80')}" 
-                   alt="${prov.tourism ? prov.tourism.name : 'Destinasi Wisata'}" 
-                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-emerald-300 border border-emerald-400/30 backdrop-blur-md flex items-center gap-1">
-                <span>🏞️</span>
-                <span>Destinasi Wisata Ikonik</span>
-              </span>
-              <div class="absolute bottom-4 left-5 right-5">
-                <h4 class="font-display text-2xl sm:text-3xl text-surface font-light drop-shadow">
-                  ${prov.tourism ? prov.tourism.name : 'Wisata Unggulan'}
-                </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Kuliner Khas -->
+            <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
+              <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || '')}', '${prov.culinary ? (prov.culinary.name || '').replace(/'/g, "\\'") : 'Kuliner'}', '${prov.culinary ? (prov.culinary.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
+                <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80')}" 
+                     alt="${prov.culinary ? prov.culinary.name : 'Kuliner'}" 
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-terracotta-300 border border-terracotta-400/30 backdrop-blur-md flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[13px]">restaurant</span>
+                  <span>Makanan Khas Autentik</span>
+                </span>
+                <div class="absolute bottom-3 left-4 right-4">
+                  <h4 class="font-display text-xl sm:text-2xl text-surface font-light drop-shadow">
+                    ${prov.culinary ? prov.culinary.name : 'Kuliner Khas'}
+                  </h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between text-xs text-surface/80">
+                <p class="font-light leading-relaxed mb-4">
+                  ${prov.culinary ? prov.culinary.desc : 'Kekayaan rempah nusantara dengan perpaduan resep leluhur yang khas.'}
+                </p>
+                <div class="p-3 rounded-xl bg-terracotta-500/10 border border-terracotta-500/20 text-[11px] text-terracotta-200">
+                  <strong class="block mb-0.5 text-terracotta-300 font-semibold">Karakter Rasa:</strong>
+                  Kaya akan bumbu rempah alami lokal yang mencerminkan kekayaan bumi provinsi ${prov.name}.
+                </div>
               </div>
             </div>
-            <div class="p-5 text-xs sm:text-sm text-surface/85 font-light leading-relaxed">
-              <p>${prov.tourism ? prov.tourism.desc : 'Keindahan bentang alam dan cagar budaya yang memikat jutaan wisatawan dari seluruh penjuru dunia.'}</p>
+
+            <!-- Senjata Tradisional -->
+            <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
+              <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Senjata Pusaka'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
+                <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80')}" 
+                     alt="${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}" 
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/30 backdrop-blur-md flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l2 2M16 16l4 4M19 13l2 2"/></svg>
+                  <span>Senjata Khas & Pusaka</span>
+                </span>
+                <div class="absolute bottom-3 left-4 right-4">
+                  <h4 class="font-display text-xl sm:text-2xl text-surface font-light drop-shadow">
+                    ${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}
+                  </h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between text-xs text-surface/80">
+                <p class="font-light leading-relaxed mb-4">
+                  ${prov.weapon ? prov.weapon.desc : 'Senjata pusaka berfilosofi tinggi yang melambangkan keberanian dan kehormatan adat.'}
+                </p>
+                <div class="p-3 rounded-xl bg-brass-500/10 border border-brass-500/20 text-[11px] text-brass-200">
+                  <strong class="block mb-0.5 text-brass-300 font-semibold">Filosofi Pusaka:</strong>
+                  Simbol ksatria, ketahanan jiwa, dan perlindungan marwah adat istiadat leluhur.
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Berita Hot Terkini -->
-          <div class="p-5 rounded-2xl bg-gradient-to-r from-red-950/20 via-black/40 to-black/30 border border-red-500/30">
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/40 flex items-center gap-1.5 hot-badge-pulse">
-                <span class="material-symbols-outlined text-[13px] text-red-400">local_fire_department</span>
-                <span>BERITA HOT TERKINI</span>
+          <!-- Mahakarya Kriya & Produk Otentik Provinsi -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-brass-500/10 via-white/[0.02] to-transparent border border-brass-400/25 space-y-4">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brass-400/15 border border-brass-400/30 flex items-center justify-center text-brass-300">
+                  <span class="material-symbols-outlined text-base">palette</span>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
+                    Mahakarya Kriya &amp; Produk Otentik
+                  </h4>
+                  <span class="text-[10px] text-surface/50 font-mono">Dibuat langsung oleh tangan terampil pengrajin lokal ${prov.name}</span>
+                </div>
+              </div>
+
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-200 border border-brass-400/30 font-mono">
+                ${matchingProducts.length} Produk Lokal
               </span>
-              <span class="text-[11px] text-surface/50 font-mono">${prov.hotNews ? prov.hotNews.date : 'Terkini 2026'}</span>
             </div>
-            <h4 class="font-display text-lg sm:text-xl text-surface font-normal mb-2 leading-snug">
-              ${prov.hotNews ? prov.hotNews.headline : `Kabar Terhangat Kebudayaan & Pariwisata ${prov.name}`}
-            </h4>
-            <p class="text-xs text-surface/80 font-light leading-relaxed mb-3">
-              ${prov.hotNews ? prov.hotNews.summary : 'Perkembangan terbaru seputar festival budaya, konservasi tradisi, dan kemajuan pariwisata lokal.'}
-            </p>
-            <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider text-surface/50 font-mono">
-              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-brass-300">#${prov.hotNews ? prov.hotNews.tag : 'Budaya'}</span>
-              <span>Laporan Edukasi Budaya Warisara</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
 
-    // Render Tab 4: Galeri Realistis (5 Foto HD)
-    var galleryEl = document.getElementById('tab-gallery-content');
-    activeGalleryList = prov.gallery || [];
-    if (galleryEl) {
-      if (activeGalleryList.length === 0) {
-        galleryEl.innerHTML = '<p class="text-xs text-surface/60 text-center py-8">Galeri foto sedang diperbarui.</p>';
-      } else {
-        galleryEl.innerHTML = `
-          <div class="space-y-4">
-            <p class="text-xs text-surface/70 font-light">Klik foto mana pun untuk memperbesar tampilan dalam resolusi ultra jernih.</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              ${activeGalleryList.map(function (item, idx) {
+            <!-- List of matching authentic products from WARISARA catalog -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${matchingProducts.slice(0, 2).map(function(mp) {
+                var pImg = fixImgPath(mp.image);
                 return `
-                  <div class="gallery-thumb-card group" data-gallery-index="${idx}">
-                    <img src="${fixImgPath(item.url)}" alt="${item.title}" loading="lazy" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2.5">
-                      <p class="font-display text-[11px] text-surface font-medium line-clamp-1">${item.title}</p>
-                      <p class="text-[9px] text-surface/60 line-clamp-1">${item.caption}</p>
+                  <div class="p-3.5 rounded-xl bg-black/45 border border-white/10 hover:border-brass-400/40 transition-all flex flex-col justify-between group">
+                    <div class="relative aspect-video rounded-lg overflow-hidden bg-[#181512] mb-3 border border-white/10 cursor-pointer" onclick="window.warisaraZoomImg('${pImg}', '${(mp.name || '').replace(/'/g, "\\'")}', '${(mp.material || '').replace(/'/g, "\\'")}')" title="Klik untuk perbesar ilustrasi produk">
+                      <img src="${pImg}" alt="${mp.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span class="absolute top-2 left-2 text-[9px] font-bold uppercase font-mono px-2 py-0.5 rounded-full bg-black/70 text-brass-300 border border-brass-400/30 backdrop-blur-md">${mp.category}</span>
+                    </div>
+                    <div class="space-y-1">
+                      <h5 class="font-display text-sm text-surface font-medium leading-snug group-hover:text-brass-300 transition-colors">
+                        ${mp.name}
+                      </h5>
+                      <p class="text-[11px] text-surface/60 line-clamp-1">${mp.material || 'Bahan baku lokal terpilih'}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 mt-2 border-t border-white/10">
+                      <span class="text-xs font-bold text-brass-300 font-mono">${mp.priceEstimate || ('Rp ' + (mp.price || 0).toLocaleString('id-ID'))}</span>
+                      <a href="detail-produk.html?id=${mp.id}" class="text-[10px] text-brass-400 hover:text-brass-200 font-bold uppercase tracking-wider inline-flex items-center gap-1 transition-colors">
+                        <span>Beli Kriya</span>
+                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                      </a>
                     </div>
                   </div>
                 `;
               }).join('')}
             </div>
-          </div>
-        `;
 
-        galleryEl.querySelectorAll('.gallery-thumb-card').forEach(function (card) {
-          card.addEventListener('click', function () {
-            var idx = parseInt(card.getAttribute('data-gallery-index'), 10);
-            openLightbox(idx);
-          });
-        });
-      }
+            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
+              <span class="text-surface/50 font-mono">Dukung pelestari budaya dan pengrajin daerah</span>
+              <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold transition-colors">
+                <span>Jelajahi Pasar Seni</span>
+                <span class="material-symbols-outlined text-sm">storefront</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
-    // Render Tab 5: Kuis Kilat Edukatif
+    // Render Tab 3: Kuis Kilat Edukatif
     renderProvinceQuiz(prov);
 
     // Render Wari Mascot Dialogue Tip
@@ -979,7 +969,7 @@
 
   function switchModalTab(tabKey) {
     currentModalTab = tabKey;
-    var tabs = ['overview', 'culinary-weapon', 'tourism-news', 'gallery', 'quiz'];
+    var tabs = ['overview', 'culinary-weapon', 'quiz'];
     tabs.forEach(function (t) {
       var btn = document.getElementById('tab-btn-' + t);
       var content = document.getElementById('tab-' + t + '-content');
@@ -1127,12 +1117,19 @@
     if (!modalOverlay.classList.contains('active')) return;
 
     isProvinceModalClosing = true;
+
+    // Phase 1: Animate the inner modal panel out (scale down + slide + blur)
     modalOverlay.classList.remove('active');
     modalOverlay.classList.add('modal-closing');
 
-    // Smooth exit transition before fully hiding
+    // Phase 2: After panel animation completes, fade out the overlay backdrop
     setTimeout(function () {
-      modalOverlay.classList.remove('modal-closing');
+      modalOverlay.classList.add('modal-closing-backdrop');
+    }, 180);
+
+    // Phase 3: Fully hide after all animations complete (500ms total)
+    setTimeout(function () {
+      modalOverlay.classList.remove('modal-closing', 'modal-closing-backdrop');
       modalOverlay.classList.add('hidden');
       modalOverlay.style.display = 'none';
 
@@ -1140,6 +1137,14 @@
       document.documentElement.style.overflow = '';
       document.body.classList.remove('province-modal-open', 'modal-open');
       document.body.style.overflow = '';
+
+      // Instantly restore exact scroll position where user was
+      if (typeof savedProvinceScrollY === 'number') {
+        window.scrollTo(0, savedProvinceScrollY);
+        requestAnimationFrame(function () {
+          window.scrollTo(0, savedProvinceScrollY);
+        });
+      }
 
       var navbar = document.getElementById('main-navbar');
       if (navbar) navbar.classList.remove('navbar-hidden');
@@ -1149,7 +1154,7 @@
       }
 
       isProvinceModalClosing = false;
-    }, 280);
+    }, 500);
   }
 
   // --- LIGHTBOX VIEWER ---
@@ -1399,12 +1404,13 @@
             <h4 class="font-display text-2xl text-surface font-light mb-1">${pickedProvince.name}</h4>
             <p class="text-xs text-brass-200 italic mb-3">"${pickedProvince.shortStatement}"</p>
             <div class="flex items-center justify-center gap-3 text-xs text-surface/80 mb-4">
-              <span>🍲 ${pickedProvince.culinary ? pickedProvince.culinary.name : 'Kuliner'}</span>
+              <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px] text-brass-400">restaurant</span>${pickedProvince.culinary ? pickedProvince.culinary.name : 'Kuliner Khas'}</span>
               <span>•</span>
-              <span>🏞️ ${pickedProvince.tourism ? pickedProvince.tourism.name : 'Wisata'}</span>
+              <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px] text-brass-400">account_balance</span>${pickedProvince.landmark ? pickedProvince.landmark.name : 'Ikon Budaya'}</span>
             </div>
-            <button id="compass-visit-btn" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold shadow-lg transition-transform hover:scale-105">
-              Jelajahi Sekarang ➔
+            <button id="compass-visit-btn" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold shadow-lg transition-transform hover:scale-105 inline-flex items-center justify-center gap-1.5">
+              <span>Jelajahi Sekarang</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
           </div>
         `;
@@ -1647,6 +1653,14 @@
     window.addEventListener('warisara_auth_changed', function () {
       updatePassportUI();
       renderProvincesGrid();
+    });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        renderProvincesGrid();
+      }, 150);
     });
   }
 
