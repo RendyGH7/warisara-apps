@@ -836,6 +836,7 @@
     // Reset scroll pane to top so questions/content are never cut off
     var scrollPane = document.querySelector('.modal-scroll-pane');
     if (scrollPane) {
+      scrollPane.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       scrollPane.scrollTop = 0;
     }
   }
