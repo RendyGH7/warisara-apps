@@ -402,12 +402,84 @@
     var modalOverlay = document.getElementById('province-modal-overlay');
     if (!modalOverlay) return;
 
-    // Set Modal Header Info
+    // Setup Available Illustrations for Province
     var heroBanner = document.getElementById('modal-hero-banner');
     var rawModalCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url);
     var coverImg = fixImgPath(rawModalCover);
-    if (heroBanner && coverImg) {
-      heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(20, 18, 15, 0.4) 0%, rgba(20, 18, 15, 0.95) 100%), url(' + coverImg + ')';
+
+    var artItems = {
+      landmark: {
+        url: coverImg,
+        title: prov.name,
+        caption: (prov.tourism ? prov.tourism.name : 'Landmark & Lanskap Utama')
+      },
+      culinary: {
+        url: fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || ''),
+        title: prov.culinary ? prov.culinary.name : 'Kuliner Khas',
+        caption: 'Kuliner Autentik: ' + (prov.culinary ? prov.culinary.name : 'Khas')
+      },
+      weapon: {
+        url: fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || ''),
+        title: prov.weapon ? prov.weapon.name : 'Senjata Pusaka',
+        caption: 'Pusaka Adat: ' + (prov.weapon ? prov.weapon.name : 'Senjata')
+      },
+      tourism: {
+        url: fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || ''),
+        title: prov.tourism ? prov.tourism.name : 'Destinasi Wisata',
+        caption: 'Wisata: ' + (prov.tourism ? prov.tourism.name : 'Ikonik')
+      },
+      gallery: {
+        url: fixImgPath((prov.gallery && prov.gallery[0] && prov.gallery[0].url) || coverImg),
+        title: (prov.gallery && prov.gallery[0] && prov.gallery[0].title) || 'Galeri Dokumentasi',
+        caption: 'Dokumentasi Warisan Budaya'
+      }
+    };
+
+    var currentHeroArt = 'landmark';
+
+    function setHeroIllustration(artKey) {
+      currentHeroArt = artKey;
+      var art = artItems[artKey];
+      if (!art || !art.url) return;
+
+      if (heroBanner) {
+        heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(12, 10, 8, 0.15) 0%, rgba(18, 15, 13, 0.8) 100%), url(' + art.url + ')';
+      }
+
+      var indicator = document.getElementById('illustration-caption-indicator');
+      if (indicator) indicator.textContent = art.caption;
+
+      var chips = document.querySelectorAll('.art-switcher-chip');
+      chips.forEach(function (chip) {
+        if (chip.getAttribute('data-art') === artKey) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
+    // Initialize Default Illustration (Landmark)
+    setHeroIllustration('landmark');
+
+    // Wire Quick Switcher Chips
+    var chips = document.querySelectorAll('.art-switcher-chip');
+    chips.forEach(function (chip) {
+      chip.onclick = function (e) {
+        e.stopPropagation();
+        var key = chip.getAttribute('data-art');
+        setHeroIllustration(key);
+      };
+    });
+
+    // Modal Hero Photo Zoom (Zooms currently displayed art)
+    var heroZoomBtn = document.getElementById('modal-hero-zoom-btn');
+    if (heroZoomBtn) {
+      heroZoomBtn.onclick = function (e) {
+        e.stopPropagation();
+        var art = artItems[currentHeroArt] || artItems.landmark;
+        openCustomLightbox(art.url, art.title, art.caption);
+      };
     }
 
     var nameEl = document.getElementById('modal-province-name');
@@ -468,7 +540,16 @@
                   <p class="font-display text-base text-brass-300 font-medium">"${prov.language ? prov.language.greeting : 'Sapaan Ramah'}"</p>
                   <p class="text-[11px] text-surface/60 italic">Artinya: ${prov.language ? prov.language.meaning : 'Salam persaudaraan'}</p>
                 </div>
-                <p class="text-[11px] text-surface/70"><strong class="text-surface font-semibold">Ungkapan Populer:</strong> ${prov.language ? prov.language.commonPhrases : '-'}</p>
+                ${prov.language && prov.language.commonPhrases && prov.language.commonPhrases.length ? `
+                <div class="mt-3 pt-2.5 border-t border-white/10 space-y-1.5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-surface/60 block mb-1">Ungkapan Populer:</span>
+                  ${prov.language.commonPhrases.map(function(cp) {
+                    var phraseText = (typeof cp === 'object' && cp) ? cp.phrase : cp;
+                    var meaningText = (typeof cp === 'object' && cp) ? cp.meaning : '';
+                    return '<div class="flex items-baseline gap-2 text-xs py-0.5"><span class="font-medium text-brass-300 font-display flex-shrink-0">&ldquo;' + phraseText + '&rdquo;</span><span class="text-surface/30">—</span><span class="text-surface/75 italic font-light">' + meaningText + '</span></div>';
+                  }).join('')}
+                </div>
+                ` : ''}
               </div>
             </div>
 
@@ -527,7 +608,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <!-- Kuliner Khas -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
-            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group">
+            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || '')}', '${prov.culinary ? (prov.culinary.name || '').replace(/'/g, "\\'") : 'Kuliner'}', '${prov.culinary ? (prov.culinary.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
               <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80')}" 
                    alt="${prov.culinary ? prov.culinary.name : 'Kuliner'}" 
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -555,7 +636,7 @@
 
           <!-- Senjata Tradisional -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
-            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group">
+            <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Senjata Pusaka'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
               <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80')}" 
                    alt="${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}" 
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -591,7 +672,7 @@
         <div class="space-y-6">
           <!-- Destinasi Wisata -->
           <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10">
-            <div class="relative h-56 sm:h-72 overflow-hidden bg-[#151310] group">
+            <div class="relative h-56 sm:h-72 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || '')}', '${prov.tourism ? (prov.tourism.name || '').replace(/'/g, "\\'") : 'Destinasi Wisata'}', '${prov.tourism ? (prov.tourism.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
               <img src="${fixImgPath((prov.tourism && (prov.tourism.photo || prov.tourism.image)) || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80')}" 
                    alt="${prov.tourism ? prov.tourism.name : 'Destinasi Wisata'}" 
                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -866,15 +947,45 @@
   }
 
   // --- LIGHTBOX VIEWER ---
+  function openCustomLightbox(url, title, caption) {
+    var lightbox = document.getElementById('gallery-lightbox-modal');
+    if (!lightbox) return;
+
+    var imgEl = document.getElementById('lightbox-img');
+    var titleEl = document.getElementById('lightbox-title');
+    var captionEl = document.getElementById('lightbox-caption');
+    var counterEl = document.getElementById('lightbox-counter');
+    var prevBtn = document.getElementById('lightbox-prev-btn');
+    var nextBtn = document.getElementById('lightbox-next-btn');
+
+    if (imgEl) imgEl.src = url;
+    if (titleEl) titleEl.textContent = title;
+    if (captionEl) captionEl.textContent = caption || '';
+    if (counterEl) counterEl.textContent = 'Ilustrasi HD';
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('active');
+    lightbox.style.display = 'flex';
+  }
+  window.warisaraZoomImg = openCustomLightbox;
+
   function openLightbox(index) {
     if (!activeGalleryList || activeGalleryList.length === 0) return;
     activeGalleryIndex = index;
     var lightbox = document.getElementById('gallery-lightbox-modal');
     if (!lightbox) return;
 
+    var prevBtn = document.getElementById('lightbox-prev-btn');
+    var nextBtn = document.getElementById('lightbox-next-btn');
+    if (prevBtn) prevBtn.style.display = '';
+    if (nextBtn) nextBtn.style.display = '';
+
     updateLightboxImage();
     lightbox.classList.remove('hidden');
     lightbox.classList.add('active');
+    lightbox.style.display = 'flex';
   }
 
   function updateLightboxImage() {
@@ -886,7 +997,7 @@
     var captionEl = document.getElementById('lightbox-caption');
     var counterEl = document.getElementById('lightbox-counter');
 
-    if (imgEl) imgEl.src = item.url;
+    if (imgEl) imgEl.src = fixImgPath(item.url);
     if (titleEl) titleEl.textContent = item.title;
     if (captionEl) captionEl.textContent = item.caption;
     if (counterEl) counterEl.textContent = `${activeGalleryIndex + 1} / ${activeGalleryList.length}`;
@@ -897,6 +1008,7 @@
     if (lightbox) {
       lightbox.classList.remove('active');
       lightbox.classList.add('hidden');
+      lightbox.style.display = 'none';
     }
   }
 

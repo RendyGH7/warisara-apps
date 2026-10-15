@@ -127,8 +127,8 @@
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
   <link rel="stylesheet" href="../css/loading-screen.css?v=32" />
   <link rel="stylesheet" href="../css/responsive.css?v=2" />
-  <link rel="stylesheet" href="../css/wari-mascot.css?v=13" />
-  <link rel="stylesheet" href="../css/jelajahi-provinces.css?v=4" />
+  <link rel="stylesheet" href="../css/wari-mascot.css?v=15" />
+  <link rel="stylesheet" href="../css/jelajahi-provinces.css?v=7" />
 </head>
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="jelajahi">
@@ -420,130 +420,195 @@
     </section>
 
     <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
-    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-5">
-      <div id="province-detail-modal" class="modal-container w-full max-w-4xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md items-center justify-center p-2 sm:p-4 lg:p-6">
+      <div id="province-detail-modal" class="modal-container w-full max-w-6xl bg-[#161310] border border-brass-400/30 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh]">
         
-        <!-- Modal Hero Header Banner with Realistic Photo -->
-        <div id="modal-hero-banner" class="relative p-6 sm:p-8 bg-cover bg-center border-b border-border-dark flex flex-col justify-end min-h-[220px] sm:min-h-[250px]">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-[#181512]/60 to-transparent pointer-events-none"></div>
+        <!-- LEFT PANEL: VISUAL SHOWCASE & PROVINCE IDENTITY -->
+        <div class="lg:w-[44%] w-full flex flex-col relative border-b lg:border-b-0 lg:border-r border-white/10 bg-[#120F0D] flex-shrink-0">
           
-          <!-- Top Action Bar -->
-          <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-            <div class="flex items-center gap-2">
-              <span id="modal-province-island" class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md">
-                PULAU
-              </span>
-              <div id="modal-stamp-status-badge"></div>
+          <!-- Large Illustration Showcase Area -->
+          <div id="modal-hero-banner" class="relative flex-1 min-h-[260px] sm:min-h-[300px] lg:min-h-0 bg-cover bg-center overflow-hidden flex flex-col justify-between p-5 sm:p-6">
+            <!-- Subtle lighting gradients that keep photo crisp & text legible -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-[#120F0D]/30 to-black/20 pointer-events-none"></div>
+
+            <!-- Top Action Header on Illustration -->
+            <div class="relative z-10 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="modal-province-island" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/70 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-lg">
+                  PULAU
+                </span>
+                <div id="modal-stamp-status-badge"></div>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <button id="modal-hero-zoom-btn" class="p-2 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Perbesar Ilustrasi HD">
+                  <span class="material-symbols-outlined text-lg">fullscreen</span>
+                </button>
+                <button id="modal-voice-greeting-btn" class="p-2 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Dengarkan Sapaan Lokal">
+                  <span class="material-symbols-outlined text-lg">volume_up</span>
+                </button>
+                <button class="province-modal-close-trigger lg:hidden p-2 rounded-full bg-black/60 hover:bg-white/20 text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" aria-label="Tutup">
+                  <span class="material-symbols-outlined text-lg">close</span>
+                </button>
+              </div>
             </div>
 
-            <div class="flex items-center gap-2">
-              <button id="modal-voice-greeting-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/80 border border-white/20 backdrop-blur-md transition-colors" title="Dengarkan Sapaan Lokal">
-                <span class="material-symbols-outlined text-lg">volume_up</span>
+            <!-- Bottom Metadata & Province Title on Illustration -->
+            <div class="relative z-10 pt-16">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-brass-300/90 block mb-1">Pusaka Kebudayaan Nusantara</span>
+              <h2 id="modal-province-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-2.5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] tracking-tight">
+                Nama Provinsi
+              </h2>
+              <div class="grid grid-cols-2 gap-2 text-xs text-surface/90 bg-black/65 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-lg">
+                <div>
+                  <span class="text-surface/50 text-[10px] block uppercase font-mono">Ibu Kota</span>
+                  <strong id="modal-province-capital" class="text-brass-200 font-semibold text-xs sm:text-sm">-</strong>
+                </div>
+                <div>
+                  <span class="text-surface/50 text-[10px] block uppercase font-mono">Berdiri</span>
+                  <strong id="modal-province-established" class="text-surface font-semibold text-xs sm:text-sm">-</strong>
+                </div>
+                <div class="col-span-2 pt-1 border-t border-white/10">
+                  <span class="text-surface/50 text-[10px] block uppercase font-mono">Tokoh / Pendiri</span>
+                  <strong id="modal-province-founders" class="text-surface/90 font-medium text-xs line-clamp-1">-</strong>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Illustration Switcher Bar -->
+          <div class="p-3 bg-[#0E0C0A] border-t border-white/10 flex-shrink-0">
+            <div class="flex items-center justify-between text-[10px] uppercase font-mono tracking-wider text-surface/50 mb-1.5 px-1">
+              <span>Pilihan Ilustrasi:</span>
+              <span id="illustration-caption-indicator" class="text-brass-400 font-medium truncate max-w-[150px]">Landmark Ikonik</span>
+            </div>
+            <div id="modal-illustration-chips" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+              <button data-art="landmark" class="art-switcher-chip active">
+                <span>🏛️</span>
+                <span>Landmark</span>
               </button>
-              <button class="province-modal-close-trigger p-2 rounded-full bg-black/50 hover:bg-white/20 text-surface/80 border border-white/20 backdrop-blur-md transition-colors" aria-label="Tutup">
-                <span class="material-symbols-outlined text-lg">close</span>
+              <button data-art="culinary" class="art-switcher-chip">
+                <span>🍲</span>
+                <span>Kuliner</span>
+              </button>
+              <button data-art="weapon" class="art-switcher-chip">
+                <span>🗡️</span>
+                <span>Pusaka</span>
+              </button>
+              <button data-art="tourism" class="art-switcher-chip">
+                <span>🏞️</span>
+                <span>Wisata</span>
+              </button>
+              <button data-art="gallery" class="art-switcher-chip">
+                <span>📷</span>
+                <span>Galeri</span>
               </button>
             </div>
           </div>
 
-          <!-- Title and Metadata -->
-          <div class="relative z-10">
-            <h2 id="modal-province-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface mb-2 drop-shadow">
-              Nama Provinsi
-            </h2>
-            <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-surface/80">
-              <span>Ibu Kota: <strong id="modal-province-capital" class="text-brass-300 font-semibold">-</strong></span>
-              <span>•</span>
-              <span>Berdiri: <strong id="modal-province-established" class="text-surface font-semibold">-</strong></span>
-              <span>•</span>
-              <span class="truncate max-w-xs">Tokoh / Pendiri: <strong id="modal-province-founders" class="text-surface/90 font-medium">-</strong></span>
-            </div>
-          </div>
         </div>
 
-        <!-- Sticky Navigation Tabs Inside Modal -->
-        <div class="px-4 sm:px-6 py-2.5 bg-[#14120F] border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar">
-          <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
-            <span class="material-symbols-outlined text-sm">temple_buddhist</span>
-            <span>Ikhtisar & Sejarah</span>
-          </button>
-          <button id="tab-btn-culinary-weapon" data-tab="culinary-weapon" class="modal-tab-btn">
-            <span class="material-symbols-outlined text-sm">restaurant</span>
-            <span>Kuliner & Senjata Pusaka</span>
-          </button>
-          <button id="tab-btn-tourism-news" data-tab="tourism-news" class="modal-tab-btn">
-            <span class="material-symbols-outlined text-sm">photo_camera</span>
-            <span>Wisata & Berita Hot</span>
-          </button>
-          <button id="tab-btn-gallery" data-tab="gallery" class="modal-tab-btn">
-            <span class="material-symbols-outlined text-sm">collections</span>
-            <span>Galeri Realistis (5 Foto)</span>
-          </button>
-          <button id="tab-btn-quiz" data-tab="quiz" class="modal-tab-btn">
-            <span class="material-symbols-outlined text-sm">quiz</span>
-            <span>Kuis Kilat Edukatif</span>
-          </button>
-        </div>
-
-        <!-- Tab Contents Container -->
-        <div class="p-5 sm:p-7 overflow-y-auto space-y-6 flex-1 text-xs sm:text-sm text-surface/85">
+        <!-- RIGHT PANEL: INFORMATION & ENCYCLOPEDIA PAVILION -->
+        <div class="lg:w-[56%] w-full flex flex-col bg-[#161310] overflow-hidden flex-1 min-h-0">
           
-          <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1 leading-relaxed">
-            "Pernyataan filosofis kebudayaan provinsi."
-          </blockquote>
+          <!-- Top Desktop Header Bar with Tabs & Close -->
+          <div class="px-5 py-3.5 bg-[#14120F] border-b border-white/10 flex items-center justify-between gap-3 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brass-400 animate-pulse"></span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-300">Paviliun Ensiklopedia & Budaya</span>
+            </div>
 
-          <!-- Tab 1: Ikhtisar & Sejarah -->
-          <div id="tab-overview-content" class="tab-pane">
-            <div id="tab-history-content"></div>
+            <button class="province-modal-close-trigger hidden lg:flex p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors cursor-pointer" aria-label="Tutup">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
           </div>
 
-          <!-- Tab 2: Kuliner & Senjata -->
-          <div id="tab-culinary-weapon-content" class="tab-pane hidden"></div>
+          <!-- Navigation Tabs Bar -->
+          <div class="px-4 py-2.5 bg-[#120F0D] border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
+            <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
+              <span class="material-symbols-outlined text-sm">temple_buddhist</span>
+              <span>Ikhtisar & Sejarah</span>
+            </button>
+            <button id="tab-btn-culinary-weapon" data-tab="culinary-weapon" class="modal-tab-btn">
+              <span class="material-symbols-outlined text-sm">restaurant</span>
+              <span>Kuliner & Senjata</span>
+            </button>
+            <button id="tab-btn-tourism-news" data-tab="tourism-news" class="modal-tab-btn">
+              <span class="material-symbols-outlined text-sm">photo_camera</span>
+              <span>Wisata & Berita</span>
+            </button>
+            <button id="tab-btn-gallery" data-tab="gallery" class="modal-tab-btn">
+              <span class="material-symbols-outlined text-sm">collections</span>
+              <span>Galeri Foto</span>
+            </button>
+            <button id="tab-btn-quiz" data-tab="quiz" class="modal-tab-btn">
+              <span class="material-symbols-outlined text-sm">quiz</span>
+              <span>Kuis Edukatif</span>
+            </button>
+          </div>
 
-          <!-- Tab 3: Wisata & Berita Hot -->
-          <div id="tab-tourism-news-content" class="tab-pane hidden"></div>
+          <!-- Tab Contents Scrollable Body -->
+          <div class="modal-scroll-pane p-5 sm:p-7 pb-12 overflow-y-auto space-y-6 flex-1 min-h-0 text-xs sm:text-sm text-surface/85">
+            
+            <blockquote id="modal-province-statement" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-1.5 leading-relaxed bg-brass-400/5 rounded-r-xl pr-3">
+              "Pernyataan filosofis kebudayaan provinsi."
+            </blockquote>
 
-          <!-- Tab 4: Galeri Realistis -->
-          <div id="tab-gallery-content" class="tab-pane hidden"></div>
+            <!-- Tab 1: Ikhtisar & Sejarah -->
+            <div id="tab-overview-content" class="tab-pane">
+              <div id="tab-history-content"></div>
+            </div>
 
-          <!-- Tab 5: Kuis Kilat -->
-          <div id="tab-quiz-content" class="tab-pane hidden"></div>
+            <!-- Tab 2: Kuliner & Senjata -->
+            <div id="tab-culinary-weapon-content" class="tab-pane hidden"></div>
 
-          <!-- Wari Mascot Interactive Commentary -->
-          <div class="p-4 rounded-2xl bg-gradient-to-r from-brass-900/15 via-white/[0.02] to-transparent border border-brass-400/20 flex items-start gap-3.5">
-            <img src="../assets/mascot/wari-idle-clean.png" alt="Wari Maskot" class="w-10 h-10 object-contain flex-shrink-0 animate-bounce duration-1000" />
-            <div class="text-xs">
-              <span class="font-bold text-brass-300 block mb-0.5">Wari Berbisik:</span>
-              <p id="modal-wari-tip-text" class="text-surface/80 font-light leading-relaxed">
-                Tahukah kamu keunikan adat istiadat dari provinsi ini?
-              </p>
+            <!-- Tab 3: Wisata & Berita Hot -->
+            <div id="tab-tourism-news-content" class="tab-pane hidden"></div>
+
+            <!-- Tab 4: Galeri Realistis -->
+            <div id="tab-gallery-content" class="tab-pane hidden"></div>
+
+            <!-- Tab 5: Kuis Kilat -->
+            <div id="tab-quiz-content" class="tab-pane hidden"></div>
+
+            <!-- Wari Mascot Interactive Commentary -->
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-brass-900/20 via-white/[0.02] to-transparent border border-brass-400/25 flex items-start gap-3.5">
+              <img src="../assets/mascot/wari-idle-clean.png" alt="Wari Maskot" class="w-10 h-10 object-contain flex-shrink-0 animate-bounce duration-1000" />
+              <div class="text-xs">
+                <span class="font-bold text-brass-300 block mb-0.5">Wari Berbisik:</span>
+                <p id="modal-wari-tip-text" class="text-surface/80 font-light leading-relaxed">
+                  Tahukah kamu keunikan adat istiadat dari provinsi ini?
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Footer Navigation & CTA -->
+          <div class="p-3.5 px-5 border-t border-white/10 bg-[#120F0D] flex items-center justify-between gap-3 text-xs flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span>Sebelumnya</span>
+              </button>
+              <button id="modal-nav-next" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
+                <span>Selanjutnya</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold text-xs">
+                <span class="material-symbols-outlined text-sm">storefront</span>
+                <span>Beli Produk</span>
+              </a>
+              <button class="province-modal-close-trigger px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors cursor-pointer">
+                Tutup
+              </button>
             </div>
           </div>
 
-        </div>
-
-        <!-- Modal Footer Navigation & Marketplace CTA -->
-        <div class="p-4 px-6 border-t border-border-dark bg-[#120F0D] flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div class="flex items-center gap-2">
-            <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors">
-              <span class="material-symbols-outlined text-sm">arrow_back</span>
-              <span>Sebelumnya</span>
-            </button>
-            <button id="modal-nav-next" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors">
-              <span>Selanjutnya</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </button>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold">
-              <span class="material-symbols-outlined text-sm">storefront</span>
-              <span>Beli Produk Lokal Terkait</span>
-            </a>
-            <button class="province-modal-close-trigger px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors">
-              Tutup
-            </button>
-          </div>
         </div>
 
       </div>
@@ -822,14 +887,14 @@
 
   <!-- Scripts -->
   <script src="../data/products.js"></script>
-  <script src="../data/provinces.js?v=20"></script>
+  <script src="../data/provinces.js?v=21"></script>
   <script src="../js/utils/helpers.js?v=10"></script>
   <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js?v=10"></script>
   <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=10"></script>
-  <script src="../js/sections/jelajahi-provinces.js?v=4"></script>
+  <script src="../js/sections/jelajahi-provinces.js?v=7"></script>
   <script src="../js/utils/loading-screen.js?v=31"></script>
   <script src="../js/config.example.js"></script>
   <script src="../js/config.js"></script>

@@ -1,10 +1,51 @@
-# WARISARA - Git Ignore
-# File konfigurasi lokal berisi API Key rahasia
-js/config.js
+# ==============================================================================
+# WARISARA — Project Git Ignore Rules
+# Techtopia Vol. 2 Web Design Competition
+# ==============================================================================
 
-# OS & Editor files
-.DS_Store
+# 1. Local Security & API Configuration (DO NOT COMMIT)
+# ------------------------------------------------------------------------------
+js/config.js
+*.env
+*.env.local
+
+# 2. Operating System Files
+# ------------------------------------------------------------------------------
+# Windows
 Thumbs.db
-*.log
-.vscode/
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Linux
+*~
+.directory
+
+# 3. Code Editors & IDE Settings
+# ------------------------------------------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# 4. Logs & Temporary Files
+# ------------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.temp/
+tmp/

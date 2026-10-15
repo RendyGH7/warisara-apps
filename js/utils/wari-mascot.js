@@ -454,15 +454,9 @@ Peran dan Pengetahuan Anda:
     if (headerAvatar) headerAvatar.src = src;
   }
 
-  function appendMessage(sender, text) {
-    const msgObj = { sender, text, time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) };
-    chatHistory.push(msgObj);
-
-    // Simpan ke sessionStorage agar riwayat bertahan selama sesi penjelajahan
-    try {
-      sessionStorage.setItem('wari_chat_history', JSON.stringify(chatHistory.slice(-20)));
-    } catch (e) {}
-
+  function renderMessageDOM(sender, text, timeStr) {
+    if (!messagesContainer) return;
+    const displayTime = timeStr || new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
     const row = document.createElement('div');
     row.className = `wari-msg-row ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
 
@@ -471,20 +465,34 @@ Peran dan Pengetahuan Anda:
         <img src="${IMGS.happy}" class="wari-msg-avatar" alt="Wari" />
         <div class="wari-msg-bubble">
           ${renderMarkdownToHTML(text)}
-          <span class="wari-msg-time">${msgObj.time}</span>
+          <span class="wari-msg-time">${displayTime}</span>
         </div>
       `;
     } else {
       row.innerHTML = `
         <div class="wari-msg-bubble">
           ${renderMarkdownToHTML(text)}
-          <span class="wari-msg-time">${msgObj.time}</span>
+          <span class="wari-msg-time">${displayTime}</span>
         </div>
       `;
     }
 
     messagesContainer.appendChild(row);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function appendMessage(sender, text, saveHistory = true) {
+    const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    if (saveHistory) {
+      chatHistory.push({ sender, text, time });
+
+      // Simpan ke sessionStorage agar riwayat bertahan selama sesi penjelajahan
+      try {
+        sessionStorage.setItem('wari_chat_history', JSON.stringify(chatHistory.slice(-20)));
+      } catch (e) {}
+    }
+
+    renderMessageDOM(sender, text, time);
   }
 
   function showTypingIndicator() {
@@ -499,11 +507,146 @@ Peran dan Pengetahuan Anda:
         <span class="wari-typing-dot"></span>
         <span class="wari-typing-dot"></span>
         <span class="wari-typing-dot"></span>
-        <span style="font-size:11px;color:rgba(251,248,242,0.6);margin-left:4px;font-family:'Manrope',sans-serif;">Wari sedang merangkai wawasan...</span>
+        <span class="wari-thinking-text">Wari sedang merangkai wawasan...</span>
       </div>
     `;
     messagesContainer.appendChild(row);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // ── ANIMASI: Particle burst on message send ──
+  function spawnParticles(originEl) {
+    if (!originEl) return;
+    const rect = originEl.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const colors = ['#C9A567', '#F4D98B', '#E8CA8C', '#FBF8F2', '#B88B42', '#DCBE88'];
+    const count = 10;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'wari-particle';
+      const angle = (360 / count) * i * (Math.PI / 180);
+      const dist = 38 + Math.random() * 28;
+      const tx = Math.cos(angle) * dist;
+      const ty = Math.sin(angle) * dist;
+      p.style.setProperty('--particle-end', `translate(${tx}px, ${ty}px)`);
+      p.style.left = cx + 'px';
+      p.style.top = cy + 'px';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.width = (4 + Math.random() * 4) + 'px';
+      p.style.height = p.style.width;
+      p.style.marginLeft = (-parseFloat(p.style.width) / 2) + 'px';
+      p.style.marginTop = (-parseFloat(p.style.height) / 2) + 'px';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 750);
+    }
+  }
+
+  // ── ANIMASI: Ripple on send button ──
+  function spawnSendRipple(btn) {
+    if (!btn) return;
+    const r = document.createElement('span');
+    r.className = 'wari-send-ripple';
+    btn.appendChild(r);
+    setTimeout(() => r.remove(), 550);
+  }
+
+  // ── ANIMASI: Emoji reaction pop on bot reply ──
+  const REACTION_EMOJIS = ['✨', '🌺', '🏺', '🌿', '💛', '🎉', '🇮🇩', '🎨'];
+  function spawnEmojiReaction(container) {
+    if (!container) return;
+    const lastBubble = container.querySelector('.wari-msg-row.bot-msg:last-of-type .wari-msg-bubble');
+    if (!lastBubble) return;
+    const emoji = document.createElement('span');
+    emoji.className = 'wari-emoji-reaction';
+    emoji.textContent = REACTION_EMOJIS[Math.floor(Math.random() * REACTION_EMOJIS.length)];
+    emoji.style.left = (Math.random() * 60 + 10) + '%';
+    emoji.style.bottom = '0';
+    lastBubble.style.position = 'relative';
+    lastBubble.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 950);
+  }
+
+  // ── ANIMASI: Scroll-to-bottom pill ──
+  function setupScrollPill(messagesEl) {
+    let pillEl = null;
+    messagesEl.addEventListener('scroll', () => {
+      const distFromBottom = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight;
+      if (distFromBottom > 120) {
+        if (!pillEl) {
+          pillEl = document.createElement('button');
+          pillEl.className = 'wari-scroll-btn';
+          pillEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px">arrow_downward</span> Pesan terbaru';
+          pillEl.style.position = 'sticky';
+          pillEl.style.bottom = '10px';
+          pillEl.style.alignSelf = 'center';
+          messagesEl.after(pillEl);
+          pillEl.addEventListener('click', () => {
+            messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+          });
+        }
+      } else {
+        if (pillEl) { pillEl.remove(); pillEl = null; }
+      }
+    });
+  }
+
+  // ── ANIMASI: Halo burst saat chatbot dibuka ──
+  function spawnOpenHalo() {
+    const trigBtn = document.getElementById('wari-ai-trigger');
+    if (!trigBtn) return;
+    const rect = trigBtn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    // 3 cincin emas yang menyebar
+    for (let i = 0; i < 3; i++) {
+      const ring = document.createElement('div');
+      ring.className = 'wari-open-ring';
+      const size = 80 + i * 36;
+      ring.style.cssText = `
+        position: fixed;
+        left: ${cx}px;
+        top: ${cy}px;
+        width: ${size}px;
+        height: ${size}px;
+        margin-left: ${-size / 2}px;
+        margin-top: ${-size / 2}px;
+        border-radius: 50%;
+        border: 2px solid rgba(201,165,103,${0.7 - i * 0.2});
+        pointer-events: none;
+        z-index: 99998;
+        animation: wariRingExpand 0.65s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s forwards;
+      `;
+      document.body.appendChild(ring);
+      setTimeout(() => ring.remove(), 800 + i * 80);
+    }
+
+    // Percikan partikel emas yang lebih banyak & berwarna-warni
+    const colors = ['#C9A567','#F4D98B','#FBF8F2','#E8CA8C','#B88B42'];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      const angle = (360 / 18) * i * (Math.PI / 180);
+      const dist = 55 + Math.random() * 45;
+      const tx = Math.cos(angle) * dist;
+      const ty = Math.sin(angle) * dist;
+      const sz = 4 + Math.random() * 5;
+      p.style.cssText = `
+        position: fixed;
+        left: ${cx - sz / 2}px;
+        top: ${cy - sz / 2}px;
+        width: ${sz}px;
+        height: ${sz}px;
+        border-radius: 50%;
+        background: ${colors[i % colors.length]};
+        pointer-events: none;
+        z-index: 99998;
+        animation: wariParticleBurst 0.75s ease-out ${Math.random() * 0.1}s forwards;
+        --particle-end: translate(${tx}px, ${ty}px);
+      `;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 900);
+    }
   }
 
   function hideTypingIndicator() {
@@ -511,6 +654,7 @@ Peran dan Pengetahuan Anda:
     const el = document.getElementById('wari-typing-row');
     if (el) el.remove();
   }
+
 
   async function handleUserSubmit(queryText) {
     const q = queryText || chatInput.value.trim();
@@ -535,11 +679,14 @@ Peran dan Pengetahuan Anda:
         hideTypingIndicator();
         setMascotMood('happy');
         appendMessage('bot', answer);
+        // Emoji reaction pop on bot reply
+        setTimeout(() => spawnEmojiReaction(messagesContainer), 120);
       } else {
         hideTypingIndicator();
         setMascotMood('happy');
         const answer = searchLocalKnowledge(q);
         appendMessage('bot', answer);
+        setTimeout(() => spawnEmojiReaction(messagesContainer), 120);
       }
     } catch (err) {
       console.warn('Gemini API Error, falling back to local cultural knowledge:', err);
@@ -547,6 +694,7 @@ Peran dan Pengetahuan Anda:
       setMascotMood('happy');
       const fallbackAnswer = searchLocalKnowledge(q);
       appendMessage('bot', fallbackAnswer);
+      setTimeout(() => spawnEmojiReaction(messagesContainer), 120);
     }
 
     setTimeout(() => {
@@ -555,18 +703,38 @@ Peran dan Pengetahuan Anda:
   }
 
   function toggleChatWindow(forceState) {
+    const wasOpen = isOpen;
     isOpen = typeof forceState === 'boolean' ? forceState : !isOpen;
-    if (isOpen) {
-      chatWindowEl.classList.remove('hidden');
+
+    if (isOpen && !wasOpen) {
+      // ── OPEN: spring in dari pojok bawah kanan ──
+      chatWindowEl.classList.remove('hidden', 'wari-closing');
+      chatWindowEl.classList.add('wari-opening');
       const tooltipEl = document.getElementById('wari-ai-tooltip');
       if (tooltipEl) tooltipEl.classList.add('hidden-tooltip');
       setMascotMood('happy');
+      // Halo burst di sekitar trigger
+      spawnOpenHalo();
       setTimeout(() => {
+        chatWindowEl.classList.remove('wari-opening');
+        chatWindowEl.classList.add('wari-window-active');
         if (chatInput) chatInput.focus();
-      }, 250);
-    } else {
-      chatWindowEl.classList.add('hidden');
+      }, 520);
+    } else if (!isOpen && wasOpen) {
+      // ── CLOSE: collapse shrink ke arah trigger ──
+      chatWindowEl.classList.remove('wari-opening', 'wari-window-active');
+      chatWindowEl.classList.add('wari-closing');
       setMascotMood('idle');
+      // Mascot wave saat close
+      const trigBtn = document.getElementById('wari-ai-trigger');
+      if (trigBtn) {
+        trigBtn.classList.add('wari-wave');
+        setTimeout(() => trigBtn.classList.remove('wari-wave'), 900);
+      }
+      setTimeout(() => {
+        chatWindowEl.classList.add('hidden');
+        chatWindowEl.classList.remove('wari-closing');
+      }, 380);
     }
   }
 
@@ -616,7 +784,6 @@ Peran dan Pengetahuan Anda:
           <div class="wari-header-info">
             <div class="wari-header-title-row">
               <h3 class="wari-header-name">Si Wari</h3>
-              <span class="wari-header-ai-tag">Gemini AI</span>
             </div>
             <p class="wari-header-sub">Pemandu Budaya & Kriya Nusantara</p>
           </div>
@@ -687,10 +854,17 @@ Peran dan Pengetahuan Anda:
       if (stored) {
         const hist = JSON.parse(stored);
         if (Array.isArray(hist) && hist.length > 0) {
-          chatHistory = hist;
-          // Render ulang riwayat
-          messagesContainer.innerHTML = '';
-          hist.forEach((m) => appendMessage(m.sender, m.text));
+          // Bersihkan jika ada pesan sistem 'Riwayat obrolan telah dibersihkan' yang sebelumnya tidak sengaja tersimpan
+          chatHistory = hist.filter((m) => m && m.text && !m.text.includes('Riwayat obrolan telah dibersihkan'));
+          if (chatHistory.length > 0) {
+            // Render ulang riwayat yang tersimpan tanpa menduplikasi data ke array
+            messagesContainer.innerHTML = '';
+            chatHistory.forEach((m) => renderMessageDOM(m.sender, m.text, m.time));
+            // Perbarui storage dengan riwayat bersih
+            sessionStorage.setItem('wari_chat_history', JSON.stringify(chatHistory.slice(-20)));
+          } else {
+            sessionStorage.removeItem('wari_chat_history');
+          }
         }
       }
     } catch (e) {}
@@ -703,9 +877,22 @@ Peran dan Pengetahuan Anda:
     const chatForm = document.getElementById('wari-chat-form');
     const voiceBtn = document.getElementById('wari-btn-voice');
 
-    // Buka/Tutup Chat
-    if (triggerBtn) triggerBtn.addEventListener('click', () => toggleChatWindow());
-    if (tooltipEl) tooltipEl.addEventListener('click', () => toggleChatWindow(true));
+    // ── Buka/Tutup Chat + animasi excited mascot ──
+    if (triggerBtn) {
+      triggerBtn.addEventListener('click', () => {
+        if (!isOpen) {
+          // OPEN: mascot excited jump
+          triggerBtn.classList.add('wari-excited');
+          setTimeout(() => triggerBtn.classList.remove('wari-excited'), 700);
+        }
+        toggleChatWindow();
+      });
+    }
+    if (tooltipEl) tooltipEl.addEventListener('click', () => {
+      triggerBtn && triggerBtn.classList.add('wari-excited');
+      setTimeout(() => triggerBtn && triggerBtn.classList.remove('wari-excited'), 700);
+      toggleChatWindow(true);
+    });
     if (closeBtn) closeBtn.addEventListener('click', () => toggleChatWindow(false));
 
     // Clear Riwayat
@@ -714,14 +901,21 @@ Peran dan Pengetahuan Anda:
         chatHistory = [];
         sessionStorage.removeItem('wari_chat_history');
         messagesContainer.innerHTML = '';
-        appendMessage('bot', `Riwayat obrolan telah dibersihkan! Ada hal lain yang ingin Sobat tanyakan tentang budaya Nusantara? 🌿✨`);
+        // Tampilkan konfirmasi di UI tanpa menyimpannya ke sessionStorage
+        renderMessageDOM('bot', `Riwayat obrolan telah dibersihkan! Ada hal lain yang ingin Sobat tanyakan tentang budaya Nusantara? 🌿✨`);
       });
     }
 
-    // Submit Chat Form
+    // Setup scroll-to-bottom pill
+    setupScrollPill(messagesContainer);
+
+    // ── Submit Chat Form + ripple & particle ──
+    const sendBtn = document.getElementById('wari-btn-send');
     if (chatForm) {
       chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        spawnSendRipple(sendBtn);
+        spawnParticles(sendBtn);
         handleUserSubmit();
       });
     }
@@ -731,6 +925,8 @@ Peran dan Pengetahuan Anda:
       chatInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
+          spawnSendRipple(sendBtn);
+          spawnParticles(sendBtn);
           handleUserSubmit();
         }
       });
@@ -748,11 +944,14 @@ Peran dan Pengetahuan Anda:
       });
     }
 
-    // Prompt Chips Click
+    // Prompt Chips Click + particle
     document.querySelectorAll('.wari-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         const prompt = chip.dataset.prompt;
-        if (prompt) handleUserSubmit(prompt);
+        if (prompt) {
+          spawnParticles(chip);
+          handleUserSubmit(prompt);
+        }
       });
     });
 

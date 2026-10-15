@@ -216,7 +216,7 @@
 
 .province-card-cover {
   position: relative;
-  height: 190px;
+  height: 240px;
   overflow: hidden;
   background: #151310;
 }
@@ -468,7 +468,7 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  height: 140px;
+  height: 160px;
   background: #151310;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -515,3 +515,327 @@
     box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
   }
 }
+
+/* ===== ENHANCED PROVINCE CARD BODY ===== */
+
+/* Province card quote blockquote polish */
+.province-card-ultimate blockquote {
+  border-left: 2px solid rgba(201, 165, 103, 0.45);
+  padding-left: 0.75rem;
+  margin: 0;
+  font-style: italic;
+  color: rgba(246, 241, 231, 0.82);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Province card body section */
+.province-card-body {
+  padding: 1.1rem 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+/* Province info rows inside card */
+.province-card-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(246, 241, 231, 0.75);
+}
+
+.province-card-info-row .info-label {
+  font-weight: 600;
+  color: rgba(201, 165, 103, 0.9);
+  flex-shrink: 0;
+}
+
+/* Province card CTA link */
+.province-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(201, 165, 103, 0.9);
+  transition: all 0.2s ease;
+  background: rgba(201, 165, 103, 0.04);
+}
+
+.province-card-ultimate:hover .province-card-cta {
+  color: #E6D3A7;
+  background: rgba(201, 165, 103, 0.08);
+}
+
+/* ===== MODAL CONTENT POLISH ===== */
+
+/* Modal overview content sections */
+#tab-history-content .space-y-5 > div,
+#tab-overview-content .space-y-5 > div {
+  transition: border-color 0.2s ease;
+}
+
+#tab-history-content .space-y-5 > div:hover,
+#tab-overview-content .space-y-5 > div:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Heritage WBTB grid item polish */
+#tab-history-content .grid .p-3\.5:hover {
+  border-color: rgba(201, 165, 103, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Common phrases display */
+.common-phrase-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  font-size: 10px;
+  padding: 2px 0;
+}
+
+.common-phrase-row .phrase-text {
+  font-weight: 600;
+  color: #C9A567;
+  flex-shrink: 0;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+}
+
+.common-phrase-row .phrase-divider {
+  color: rgba(246, 241, 231, 0.3);
+}
+
+.common-phrase-row .phrase-meaning {
+  color: rgba(246, 241, 231, 0.65);
+  font-style: italic;
+}
+
+/* Province modal container refined scroll */
+.modal-container,
+.modal-scroll-pane {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 165, 103, 0.45) rgba(255, 255, 255, 0.03);
+}
+
+.modal-scroll-pane::-webkit-scrollbar,
+.modal-container::-webkit-scrollbar,
+.modal-container *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.modal-scroll-pane::-webkit-scrollbar-track,
+.modal-container::-webkit-scrollbar-track,
+.modal-container *::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+  margin: 8px 0;
+}
+
+.modal-scroll-pane::-webkit-scrollbar-thumb,
+.modal-container::-webkit-scrollbar-thumb,
+.modal-container *::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.45);
+  border-radius: 9999px;
+  border: 1px solid rgba(201, 165, 103, 0.2);
+}
+
+.modal-scroll-pane::-webkit-scrollbar-thumb:hover,
+.modal-container::-webkit-scrollbar-thumb:hover,
+.modal-container *::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.8);
+}
+
+/* Modal hero title refinement */
+#modal-province-name {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  letter-spacing: -0.01em;
+}
+
+/* Province grid section better spacing */
+#provinces-grid {
+  gap: 1.75rem;
+}
+
+/* Smooth card entrance animation */
+.province-card-ultimate {
+  animation: cardFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger the card entrance */
+.province-card-ultimate:nth-child(1) { animation-delay: 0.02s; }
+.province-card-ultimate:nth-child(2) { animation-delay: 0.06s; }
+.province-card-ultimate:nth-child(3) { animation-delay: 0.10s; }
+.province-card-ultimate:nth-child(4) { animation-delay: 0.14s; }
+.province-card-ultimate:nth-child(5) { animation-delay: 0.18s; }
+.province-card-ultimate:nth-child(6) { animation-delay: 0.22s; }
+.province-card-ultimate:nth-child(n+7) { animation-delay: 0.26s; }
+
+/* Culinary/weapon photo section enhanced */
+#tab-culinary-weapon-content .rounded-2xl .relative.group {
+  overflow: hidden;
+}
+
+/* Gallery section heading */
+#tab-gallery-content .space-y-4 > p {
+  color: rgba(246, 241, 231, 0.6);
+  font-style: italic;
+  font-size: 11px;
+}
+
+/* Province card island badge */
+.province-card-ultimate .island-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.65);
+  color: rgba(201, 165, 103, 0.95);
+  border: 1px solid rgba(201, 165, 103, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* Empty state improved */
+#provinces-empty-state {
+  padding: 5rem 1rem;
+}
+
+#provinces-empty-state .material-symbols-outlined {
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.25;
+}
+
+/* Filter bar top shimmer line */
+.filter-bar-section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.25), transparent);
+}
+
+/* ==========================================================================
+   2-COLUMN LUXURY PAVILION DETAIL MODAL
+   ========================================================================== */
+
+#province-detail-modal {
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(201, 165, 103, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Hero Banner inside Left Panel */
+#modal-hero-banner {
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.35s ease-in-out;
+}
+
+/* Quick Illustration Switcher Chips */
+.art-switcher-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(246, 241, 231, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.art-switcher-chip:hover {
+  background: rgba(201, 165, 103, 0.15);
+  color: #F6F1E7;
+  border-color: rgba(201, 165, 103, 0.4);
+  transform: translateY(-1px);
+}
+
+.art-switcher-chip.active {
+  background: linear-gradient(135deg, #C9A567 0%, #B38E4F 100%);
+  color: #120F0D;
+  border-color: #E6D3A7;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(201, 165, 103, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Right Panel Tabs */
+.modal-tab-btn {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(246, 241, 231, 0.7);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.modal-tab-btn:hover {
+  color: #F6F1E7;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.modal-tab-btn.active {
+  color: #120F0D;
+  background: #C9A567;
+  border-color: #E6D3A7;
+  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.35);
+}
+
+/* Refined Reading Cards inside Modal */
+#tab-overview-content .p-4,
+#tab-history-content .p-4 {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 1023px) {
+  #province-detail-modal {
+    max-height: 94vh;
+    height: 94vh;
+  }
+  #modal-hero-banner {
+    min-height: 230px;
+    padding: 1rem;
+  }
+}
+
+

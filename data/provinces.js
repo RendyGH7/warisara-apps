@@ -1945,8 +1945,8 @@
     "weapon": {
       "name": "Keris Tayuhan Bali",
       "desc": "Keris pusaka sakral dengan hulu (handle) berukir wujud dewa dewi atau ksatria berbahan kayu cendana atau gading, disucikan dalam upacara Tumpek Landep.",
-      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
-      "photo": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+      "image": "assets/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Pura Tanah Lot Karang Laut, Ubud & Pura Luhur Uluwatu",
@@ -2020,7 +2020,7 @@
       {
         "title": "Keris Tayuhan Bali Berhulu Ukiran Emas Dewa",
         "category": "Senjata Pusaka",
-        "url": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+        "url": "assets/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Dramatisnya Atraksi Tari Kecak Api Uluwatu",

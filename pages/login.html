@@ -59,7 +59,7 @@
   <link rel="stylesheet" href="../css/components.css?v=20" />
   <link rel="stylesheet" href="../css/transitions.css?v=47" />
   <link rel="stylesheet" href="../css/marketplace-chat.css" />
-  <link rel="stylesheet" href="../css/wari-mascot.css?v=13" />
+  <link rel="stylesheet" href="../css/wari-mascot.css?v=15" />
 
   <style>
     /* ================= LATAR BELAKANG GERBANG NUSANTARA, WAYANG & BATIK BERGERAK ================= */
@@ -616,7 +616,11 @@
     }
     /* ================= JUDUL UTAMA SELAMAT DATANG (DIKEMBALIKAN KE SEMULA) ================= */
     .welcome-title-text {
+      display: inline-block;
       font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      line-height: 1.25;
+      padding-bottom: 0.16em;
+      padding-top: 0.05em;
       color: transparent;
       background: linear-gradient(
         135deg,
@@ -654,7 +658,7 @@
 
     /* Logo WariSara — ukuran pas, tetap floating anggun, TANPA efek hover */
     .welcome-logo-img {
-      height: clamp(52px, 8.5vw, 90px);
+      height: clamp(62px, 10vw, 106px);
       filter: drop-shadow(0 6px 28px rgba(201, 165, 103, 0.65)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
       animation: logoFloat 4.5s ease-in-out infinite, logoEntrance 1.2s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
       cursor: default;
@@ -672,7 +676,7 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Badge Animasi Ganti Tulisan Nusantara yang Cocok dengan WARISARA */
+    /* Badge Animasi Ganti Tulisan Nusantara yang Cocok dengan WARISARA (Posisi Paling Atas) */
     .cycling-tagline-pill {
       display: inline-flex;
       align-items: center;
@@ -680,15 +684,22 @@
       gap: 10px;
       padding: 6px 20px;
       border-radius: 9999px;
-      background: rgba(18, 14, 10, 0.45);
-      border: 1px solid rgba(212, 175, 55, 0.38);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      margin-top: 2px;
+      background: rgba(18, 14, 10, 0.55);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(212, 175, 55, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      margin-top: 0;
+      margin-bottom: 0;
       user-select: none;
       pointer-events: none;
       cursor: default;
+      animation: taglineEntrance 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes taglineEntrance {
+      0%   { opacity: 0; transform: translateY(-12px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .cycling-sparkle-icon {
@@ -834,19 +845,8 @@
         <!-- ================= KOLOM KIRI: JUDUL BESAR DI TENGAH + MASKOT + KOMENTAR ================= -->
         <div class="auth-portal-left-col lg:col-span-7 flex flex-col justify-between text-center lg:py-2">
           
-          <!-- 1. Tulisan Selamat Datang di & Logo WariSara -->
-          <div class="w-full flex flex-col items-center justify-center gap-2 pb-2 text-center" id="welcome-title-block">
-            <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight leading-none select-none sm:whitespace-nowrap">
-              Selamat Datang di
-            </h1>
-
-            <!-- Logo Teks WariSara (ukuran pas, tanpa hover) -->
-            <img src="../assets/logo/logo-text.png" 
-                 alt="WariSara" 
-                 id="welcome-logo-text"
-                 class="welcome-logo-img w-auto object-contain select-none" />
-
-            <!-- Animasi Ganti Tulisan Nusantara yang Cocok dengan WARISARA -->
+          <!-- 1. PALING ATAS: Animasi Ganti Tulisan Nusantara -->
+          <div class="w-full flex items-center justify-center pt-1 flex-shrink-0" id="top-tagline-wrapper">
             <div class="cycling-tagline-pill" id="cycling-tagline-container" aria-live="polite">
               <span class="cycling-sparkle-icon material-symbols-outlined">auto_awesome</span>
               <div class="cycling-text-viewport">
@@ -856,8 +856,19 @@
             </div>
           </div>
 
-          <!-- 2. Di Bawah Tulisan: Maskot di Kiri, Komentar di Kanan Maskot (di Kiri Kotak Login) -->
-          <div class="w-full flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pt-1 text-left">
+          <!-- 2. BENAR-BENAR DI TENGAH: Tulisan Selamat Datang di & Logo WariSara -->
+          <div class="w-full flex flex-col items-center justify-center gap-2 my-auto py-6 sm:py-10 lg:py-14 text-center flex-grow" id="welcome-title-block">
+            <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight select-none sm:whitespace-nowrap">
+              Selamat Datang di
+            </h1>
+            <img src="../assets/logo/logo-text.png" 
+                 alt="WariSara" 
+                 id="welcome-logo-text"
+                 class="welcome-logo-img w-auto object-contain select-none mt-2" />
+          </div>
+
+          <!-- 3. DI PALING BAWAH: Maskot di Kiri, Komentar di Kanan Maskot -->
+          <div class="w-full flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pb-1 text-left flex-shrink-0">
             
             <!-- Maskot Wari Berada di Bawah Tulisan Selamat Datang -->
             <div class="mascot-container flex-shrink-0 relative">
@@ -1135,18 +1146,24 @@
                 </button>
               </div>
 
-              <!-- Ganti Akun & Keluar -->
-              <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10">
-                <button type="button" id="logged-btn-switch-account"
-                        class="py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface text-xs font-semibold transition-all flex items-center justify-center gap-1.5">
-                  <span class="material-symbols-outlined text-sm">swap_horiz</span>
-                  <span>Ganti Akun</span>
-                </button>
-                <button type="button" id="logged-btn-logout"
-                        class="py-2 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 text-xs font-semibold transition-all flex items-center justify-center gap-1.5">
-                  <span class="material-symbols-outlined text-sm">logout</span>
-                  <span>Keluar</span>
-                </button>
+              <!-- Tombol Kembali ke Beranda dengan Auto Redirect 10 Detik -->
+              <div class="pt-2 border-t border-white/10 space-y-2">
+                <a href="../index.html" id="logged-btn-home"
+                   class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brass-400 via-amber-400 to-brass-500 hover:from-brass-300 hover:to-brass-400 text-ink font-bold text-xs sm:text-sm tracking-wide transition-all shadow-lg hover:shadow-brass-400/30 flex items-center justify-center gap-2 group cursor-pointer">
+                  <span class="material-symbols-outlined text-base transition-transform group-hover:-translate-x-1">home</span>
+                  <span>Kembali ke Beranda</span>
+                  <span id="auto-redirect-badge" class="px-2 py-0.5 rounded-full bg-black/20 text-ink text-[11px] font-mono font-bold">10s</span>
+                </a>
+
+                <!-- Indikator Bar Hitung Mundur 10 Detik -->
+                <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden relative">
+                  <div id="redirect-progress-bar" class="h-full bg-brass-400 transition-all duration-1000 ease-linear" style="width: 100%;"></div>
+                </div>
+
+                <p class="text-[10px] text-surface/60 text-center flex items-center justify-center gap-1.5 pt-0.5">
+                  <span class="material-symbols-outlined text-xs text-brass-400 animate-spin">sync</span>
+                  <span>Otomatis dialihkan ke halaman utama dalam <strong id="auto-redirect-secs" class="text-brass-300 font-bold">10</strong> detik</span>
+                </p>
               </div>
 
             </div>
@@ -1546,14 +1563,8 @@
         window.WARISARA_AUTH.loginAs(account);
         window.WARISARA_AUTH.showToast(`Berhasil masuk sebagai: ${account.name} (${account.email})`);
 
-        // Jika ada URL redirect, langsung arahkan setelah 1 detik!
-        if (redirectUrl) {
-          setTimeout(() => {
-            window.location.href = redirectUrl;
-          }, 950);
-        } else {
-          updateAuthStateView();
-        }
+        // Beralih ke tampilan akun terhubung dengan countdown 10 detik
+        updateAuthStateView();
       }
 
       // ================= CONTROLLER POP-UP MODAL GOOGLE AUTH =================
@@ -1765,12 +1776,64 @@
 
           authTitle.textContent = user.provider === 'google' ? 'Akun Google Terhubung' : 'Akun WARISARA Aktif';
           authSubtitle.textContent = `Selamat datang, ${user.name}`;
-          setMascotMood('happy', `Selamat datang kembali ${user.name}! Siap belanja atau jelajah karya hari ini? ✨`);
+          setMascotMood('happy', `Selamat datang kembali ${user.name}! Halaman akan otomatis beralih ke Beranda dalam 10 detik. ✨`);
+          startAutoHomeRedirect();
         } else {
+          if (redirectCountdownTimer) {
+            clearInterval(redirectCountdownTimer);
+            redirectCountdownTimer = null;
+          }
           if (unloggedView) unloggedView.classList.remove('hidden');
           if (loggedView) loggedView.classList.add('hidden');
           setTab(currentTab);
         }
+      }
+
+      // Controller Hitung Mundur 10 Detik Otomatis Kembali ke Beranda
+      let redirectCountdownTimer = null;
+      let remainingSeconds = 10;
+
+      function startAutoHomeRedirect() {
+        if (redirectCountdownTimer) {
+          clearInterval(redirectCountdownTimer);
+          redirectCountdownTimer = null;
+        }
+
+        remainingSeconds = 10;
+        const targetUrl = redirectUrl || '../index.html';
+        const badgeEl = document.getElementById('auto-redirect-badge');
+        const secsEl = document.getElementById('auto-redirect-secs');
+        const progressEl = document.getElementById('redirect-progress-bar');
+        const btnHome = document.getElementById('logged-btn-home');
+
+        if (badgeEl) badgeEl.textContent = `${remainingSeconds}s`;
+        if (secsEl) secsEl.textContent = `${remainingSeconds}`;
+        if (progressEl) {
+          progressEl.style.transition = 'none';
+          progressEl.style.width = '100%';
+          void progressEl.offsetWidth; // trigger reflow
+          progressEl.style.transition = 'width 1s linear';
+        }
+
+        if (btnHome) {
+          btnHome.href = targetUrl;
+          btnHome.onclick = () => {
+            if (redirectCountdownTimer) clearInterval(redirectCountdownTimer);
+          };
+        }
+
+        redirectCountdownTimer = setInterval(() => {
+          remainingSeconds--;
+          if (badgeEl) badgeEl.textContent = `${remainingSeconds}s`;
+          if (secsEl) secsEl.textContent = `${remainingSeconds}`;
+          if (progressEl) progressEl.style.width = `${Math.max(0, (remainingSeconds / 10) * 100)}%`;
+
+          if (remainingSeconds <= 0) {
+            clearInterval(redirectCountdownTimer);
+            redirectCountdownTimer = null;
+            window.location.href = targetUrl;
+          }
+        }, 1000);
       }
 
       // Inisialisasi awal tab & view
@@ -1781,36 +1844,13 @@
       }
       updateAuthStateView();
 
-      // Action: Chat & Menu Akun
+      // Action: Chat Penjual
       const btnOpenChat = document.getElementById('logged-btn-open-chat');
       if (btnOpenChat) {
         btnOpenChat.addEventListener('click', () => {
           if (window.WARISARA_CHAT && typeof window.WARISARA_CHAT.openDrawer === 'function') {
             window.WARISARA_CHAT.openDrawer();
           }
-        });
-      }
-
-      const btnSwitchAcc = document.getElementById('logged-btn-switch-account');
-      if (btnSwitchAcc) {
-        btnSwitchAcc.addEventListener('click', () => {
-          openGooglePickerModal('login');
-        });
-      }
-
-      const btnLogout = document.getElementById('logged-btn-logout');
-      if (btnLogout) {
-        btnLogout.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (window.WARISARA_AUTH) {
-            window.WARISARA_AUTH.logout();
-          }
-          try {
-            localStorage.removeItem('warisara_active_user');
-          } catch(e) {}
-          updateAuthStateView();
-          setMascotMood('idle', 'Sampai jumpa lagi! Kamu bisa masuk kapan saja dengan akun Google.');
         });
       }
 
