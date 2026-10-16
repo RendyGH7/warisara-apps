@@ -2002,3 +2002,65 @@ html.book-modal-open {
 #interactive-book-modal.active .open-physical-book-casing {
   overflow: visible;
 }
+
+/* ========================================================
+   STORY FILTER TABS & INTERACTIVE CLICK EFFECTS
+======================================================== */
+.story-filter-btn {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border-color: rgba(201, 165, 103, 0.35);
+}
+
+.story-filter-btn:active,
+.story-filter-btn.btn-press {
+  transform: scale(0.93) translateY(0);
+  transition-duration: 0.08s;
+}
+
+.story-filter-btn.active {
+  background: linear-gradient(135deg, #F5E5C9 0%, #D4B276 45%, #B8924F 100%) !important;
+  color: #1A1612 !important;
+  border-color: #F5E5C9 !important;
+  box-shadow: 0 4px 18px rgba(201, 165, 103, 0.5), 0 0 25px rgba(201, 165, 103, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.story-filter-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201, 165, 103, 0.65), 0 0 30px rgba(201, 165, 103, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+.story-filter-btn .story-filter-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: storyRippleAnim 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0%, rgba(201, 165, 103, 0.4) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+@keyframes storyRippleAnim {
+  0% {
+    transform: scale(0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
