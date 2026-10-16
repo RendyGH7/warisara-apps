@@ -371,16 +371,70 @@
       colCount = Math.max(1, filtered.length);
     }
 
-    // Dynamic aspect-ratio sequence for organic, non-aligned waterfall flow ("Bebas & Tidak Sejajar tapi Tetap Rapih")
-    var aspectSequence = [
-      'pcu-aspect-portrait',   // 3:4 Tall
-      'pcu-aspect-landscape',  // 4:3 Wide
-      'pcu-aspect-square',     // 1:1 Square
-      'pcu-aspect-grand',      // 5:7 Grand
-      'pcu-aspect-golden',     // 4:5 Golden
-      'pcu-aspect-cinematic',  // 16:11 Wide
-      'pcu-aspect-portrait'    // 3:4 Tall
-    ];
+    // Algoritma Penyeimbang Tinggi Kolom (Atas & Bawah Sejajar Rata, Tengah Tetap Berantakan/Asimetris)
+    function getBalancedAspectMatrix(totalCards, countCols) {
+      var aspectHeights = {
+        'pcu-aspect-cinematic': 350,
+        'pcu-aspect-landscape': 380,
+        'pcu-aspect-square': 410,
+        'pcu-aspect-golden': 450,
+        'pcu-aspect-portrait': 480,
+        'pcu-aspect-grand': 510
+      };
+      var aspectKeys = Object.keys(aspectHeights);
+
+      if (totalCards <= 1) return [['pcu-aspect-portrait']];
+
+      var baseCount = Math.floor(totalCards / countCols);
+      var extra = totalCards % countCols;
+      var colCardCounts = [];
+      for (var c = 0; c < countCols; c++) {
+        colCardCounts.push(baseCount + (c < extra ? 1 : 0));
+      }
+
+      var maxCards = Math.max.apply(null, colCardCounts);
+      var targetHeight = maxCards * 430;
+
+      var colAspects = [];
+      // Variasi rasio baris pertama agar awal kolom tampak asimetris dan dinamis, tetapi baseline atas tetap rata:
+      var startAspects = ['pcu-aspect-portrait', 'pcu-aspect-golden', 'pcu-aspect-square', 'pcu-aspect-portrait'];
+
+      for (var c = 0; c < countCols; c++) {
+        var numC = colCardCounts[c];
+        if (numC === 0) {
+          colAspects.push([]);
+          continue;
+        }
+        var curH = 0;
+        var asps = [];
+
+        for (var idx = 0; idx < numC; idx++) {
+          var chosen;
+          if (idx === 0) {
+            chosen = startAspects[c % startAspects.length];
+          } else if (idx === numC - 1) {
+            // Kartu terakhir: pilih rasio yang menutup selisih tinggi dengan kolom lain agar bawah rata rapih
+            var remaining = targetHeight - curH;
+            chosen = aspectKeys.reduce(function (prev, curr) {
+              return Math.abs(aspectHeights[curr] - remaining) < Math.abs(aspectHeights[prev] - remaining) ? curr : prev;
+            });
+          } else {
+            // Kartu tengah: pilih rasio bervariasi agar tetap berantakan/tidak sejajar kaku secara horizontal
+            var neededForRest = (targetHeight - curH) / (numC - idx);
+            var prevAsp = asps[asps.length - 1];
+            var candidates = aspectKeys.filter(function (k) { return k !== prevAsp; });
+            candidates.sort(function (a, b) {
+              return Math.abs(aspectHeights[a] - neededForRest) - Math.abs(aspectHeights[b] - neededForRest);
+            });
+            chosen = candidates[0];
+          }
+          asps.push(chosen);
+          curH += aspectHeights[chosen];
+        }
+        colAspects.push(asps);
+      }
+      return colAspects;
+    }
 
     if (filtered.length === 1) {
       // Single card centered
@@ -426,9 +480,13 @@
       `;
     } else {
       var colsHtml = [];
+      var colCardIndices = [];
       for (var c = 0; c < colCount; c++) {
         colsHtml.push([]);
+        colCardIndices.push(0);
       }
+
+      var aspectMatrix = getBalancedAspectMatrix(filtered.length, colCount);
 
       filtered.forEach(function (prov, index) {
         var isStamped = isProvinceStamped(prov.id);
@@ -438,7 +496,10 @@
         var tourismName = prov.tourism ? prov.tourism.name : 'Wisata Unggulan';
         var matchedProds = getMatchingProductsForProvince(prov);
         var kriyaName = matchedProds.length > 0 ? matchedProds[0].name : (prov.craftHighlight || 'Kriya Nusantara');
-        var aspectClass = aspectSequence[index % aspectSequence.length];
+
+        var colIdx = index % colCount;
+        var cardInColIdx = colCardIndices[colIdx]++;
+        var aspectClass = (aspectMatrix[colIdx] && aspectMatrix[colIdx][cardInColIdx]) || 'pcu-aspect-portrait';
 
         var cardHtml = `
           <article class="province-card-ultimate group cursor-pointer" data-prov-id="${prov.id}">
@@ -472,7 +533,7 @@
           </article>
         `;
 
-        colsHtml[index % colCount].push(cardHtml);
+        colsHtml[colIdx].push(cardHtml);
       });
 
       gridEl.innerHTML = colsHtml.map(function (colCards, colIdx) {
