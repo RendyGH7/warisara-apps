@@ -1195,17 +1195,11 @@
               </div>
             </div>
 
-            <!-- Tombol Aksi: Beli Sekarang / Lihat Detail & Chat Penjual -->
-            <div class="grid grid-cols-2 gap-2 pt-1">
-              <a href="detail-produk.html?id=${p.id}"
-                 class="btn-detail-link py-2.5 px-3 rounded-xl bg-gradient-to-r from-brass-500 via-brass-400 to-amber-400 hover:from-brass-400 hover:to-amber-300 text-[#140F0A] text-xs font-bold flex items-center justify-center gap-1.5 shadow-md shadow-brass-500/20 hover:shadow-brass-500/35 transition-all text-center">
-                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
-                <span>Beli Sekarang</span>
-              </a>
-
+            <!-- Tombol Aksi: Chat Penjual Langsung -->
+            <div class="pt-1.5">
               <button type="button" data-action="chat" data-product-id="${p.id}"
-                      class="btn-chat-action py-2.5 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] text-surface/90 hover:text-white border border-white/10 hover:border-brass-400/40 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
-                <span class="material-symbols-outlined text-[15px] text-brass-400">chat</span>
+                      class="btn-chat-action w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-brass-500 via-brass-400 to-amber-400 hover:from-brass-400 hover:to-amber-300 text-[#140F0A] text-xs font-bold flex items-center justify-center gap-2 shadow-md shadow-brass-500/20 hover:shadow-lg hover:shadow-brass-500/35 transition-all">
+                <span class="material-symbols-outlined text-[16px] text-[#140F0A]">chat</span>
                 <span>Chat Penjual</span>
               </button>
             </div>

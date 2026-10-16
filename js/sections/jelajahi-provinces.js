@@ -880,7 +880,7 @@
                     <div class="flex items-center justify-between pt-3 mt-2 border-t border-white/10">
                       <span class="text-xs font-bold text-brass-300 font-mono">${mp.priceEstimate || ('Rp ' + (mp.price || 0).toLocaleString('id-ID'))}</span>
                       <a href="detail-produk.html?id=${mp.id}" class="text-[10px] text-brass-400 hover:text-brass-200 font-bold uppercase tracking-wider inline-flex items-center gap-1 transition-colors">
-                        <span>Beli Kriya</span>
+                        <span>Lihat Kriya</span>
                         <span class="material-symbols-outlined text-xs">arrow_forward</span>
                       </a>
                     </div>

@@ -115,7 +115,7 @@
       answer: `**Cara Berbelanja & Bertransaksi di WARISARA:**
 1. Masuk ke halaman **[Etalase Produk Lokal](ekonomi-kreatif.html)** atau klik salah satu kartu kriya.
 2. Pastikan Anda telah masuk dengan Akun Google (Login instan).
-3. Klik tombol **"Chat Penjual & Beli Langsung"** pada produk pilihan Anda.
+3. Klik tombol **"Chat Penjual"** pada produk pilihan Anda.
 4. Jendela obrolan bergaya Facebook Messenger akan terbuka langsung ke penjual/pengrajin asli.
 5. Anda dapat menanyakan ketersediaan stok, memesan motif custom, dan menyepakati metode pembayaran (transfer bank / COD) secara transparan! 🤝`
     },
