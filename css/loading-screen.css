@@ -269,7 +269,7 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   width: 88px;
   height: 88px;
   border-radius: 9999px;
-  background: radial-gradient(circle at 35% 30%, #FFF3DB 0%, #C9A567 35%, #8A5822 75%, #381E06 100%);
+  background: radial-gradient(circle at 35% 30%, #FFF3DB 0%, #C9A567 35%, #744208 75%, #381E06 100%);
   border: 2px solid #FFF8EB;
   display: flex;
   align-items: center;
@@ -326,14 +326,14 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
 .preloader-ribbon-line {
   height: 2.5px;
   width: clamp(85px, 14vw, 132px);
-  background: linear-gradient(90deg, transparent 0%, #8A5822 18%, #C9A567 50%, #FFF8EB 85%, #FFFFFF 98%);
+  background: linear-gradient(90deg, transparent 0%, #744208 18%, #C9A567 50%, #FFF8EB 85%, #FFFFFF 98%);
   border-radius: 0;
   clip-path: polygon(0% 50%, 14px 0%, calc(100% - 8px) 0%, 100% 50%, calc(100% - 8px) 100%, 14px 100%);
   box-shadow: 0 0 10px rgba(201, 165, 103, 0.75), 0 0 3px #FFF3DB;
 }
 
 .preloader-ribbon-line:last-child {
-  background: linear-gradient(90deg, #FFFFFF 2%, #FFF8EB 15%, #C9A567 50%, #8A5822 82%, transparent 100%);
+  background: linear-gradient(90deg, #FFFFFF 2%, #FFF8EB 15%, #C9A567 50%, #744208 82%, transparent 100%);
   clip-path: polygon(0% 50%, 8px 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 8px 100%);
 }
 
@@ -409,7 +409,7 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   left: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #8A5822, #C9A567 55%, #FFF8EB 100%);
+  background: linear-gradient(90deg, #744208, #C9A567 55%, #FFF8EB 100%);
   border-radius: 9999px;
   box-shadow: 0 0 20px rgba(201, 165, 103, 1);
   transition: width 0.12s cubic-bezier(0.22, 1, 0.36, 1);
