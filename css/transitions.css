@@ -178,7 +178,7 @@ body:has(#page-transition-veil.active) #wari-ai-widget,
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #8A5822 0%, #C9A567 100%);
+  background: linear-gradient(135deg, #744208 0%, #C9A567 100%);
   border: 2px solid #E6D3A7;
   display: flex;
   align-items: center;
@@ -229,7 +229,7 @@ body:has(#page-transition-veil.active) #wari-ai-widget,
   left: 0;
   height: 100%;
   width: 50%;
-  background: linear-gradient(90deg, transparent 0%, #8A5822 15%, #C9A567 45%, #FFF8EB 75%, #FFFFFF 90%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #744208 15%, #C9A567 45%, #FFF8EB 75%, #FFFFFF 90%, transparent 100%);
   border-radius: 9999px;
   box-shadow: 0 0 14px rgba(255, 245, 205, 0.95), 0 0 5px #FFF3DB;
   animation: veilSweep 1.15s cubic-bezier(0.4, 0, 0.2, 1) infinite;

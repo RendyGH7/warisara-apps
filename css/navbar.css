@@ -275,7 +275,7 @@ body.modal-open .wari-companion {
 .btn-nav-icon:hover {
   background-color: var(--nav-brown-gold-hover);
   transform: scale(1.08);
-  box-shadow: 0 6px 18px rgba(138, 88, 34, 0.55);
+  box-shadow: 0 6px 18px rgba(116, 66, 8, 0.55);
 }
 
 .btn-nav-icon:active {
@@ -308,7 +308,7 @@ body.modal-open .wari-companion {
 .btn-nav-explore:hover {
   background-color: var(--nav-brown-gold-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(138, 88, 34, 0.55);
+  box-shadow: 0 6px 18px rgba(116, 66, 8, 0.55);
 }
 
 .btn-nav-explore:active {
@@ -339,7 +339,7 @@ body.modal-open .wari-companion {
   background-color: var(--nav-brown-gold);
   color: var(--nav-text-on-gold);
   font-weight: 700;
-  border: 1px solid rgba(181, 123, 58, 0.4);
+  border: 1px solid rgba(162, 91, 7, 0.4);
   box-shadow: 0 4px 12px var(--nav-brown-gold-glow);
 }
 
