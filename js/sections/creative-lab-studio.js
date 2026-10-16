@@ -552,7 +552,7 @@
       ctx.stroke();
       ctx.setLineDash([]);
 
-      ctx.fillStyle = "rgba(138, 88, 34, 0.55)";
+      ctx.fillStyle = "rgba(116, 66, 8, 0.55)";
       ctx.font = "600 11px 'Manrope', sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("Kanvas 1 Unit Motif — Goreskan Canting Bebas Buatan Anda Disini", w / 2, h * 0.055);
