@@ -100,14 +100,45 @@
 
     bindEvents: function () {
       this.filterBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          // Ripple click effect
+          const rect = btn.getBoundingClientRect();
+          const ripple = document.createElement("span");
+          ripple.className = "home-filter-ripple";
+          const size = Math.max(rect.width, rect.height) * 1.5;
+          ripple.style.width = ripple.style.height = `${size}px`;
+          const clientX = e.clientX || (rect.left + rect.width / 2);
+          const clientY = e.clientY || (rect.top + rect.height / 2);
+          ripple.style.left = `${clientX - rect.left - size / 2}px`;
+          ripple.style.top = `${clientY - rect.top - size / 2}px`;
+          btn.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 650);
+
+          // Tactile press bounce effect
+          btn.classList.add("btn-press");
+          setTimeout(() => btn.classList.remove("btn-press"), 220);
+
+          // Toggle active and inactive classes
           this.filterBtns.forEach((b) => {
             b.classList.remove("active", "bg-terracotta-500", "text-white");
             b.classList.add("bg-white/5", "text-surface/80", "border-white/10");
           });
           btn.classList.add("active", "bg-terracotta-500", "text-white");
           btn.classList.remove("bg-white/5", "text-surface/80", "border-white/10");
-          this.renderCards(btn.dataset.theme);
+
+          // Smooth transition for grid
+          if (this.gridContainer) {
+            this.gridContainer.style.transition = "opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)";
+            this.gridContainer.style.opacity = "0.35";
+            this.gridContainer.style.transform = "translateY(6px)";
+            setTimeout(() => {
+              this.renderCards(btn.dataset.theme);
+              this.gridContainer.style.opacity = "1";
+              this.gridContainer.style.transform = "translateY(0)";
+            }, 160);
+          } else {
+            this.renderCards(btn.dataset.theme);
+          }
         });
       });
 
