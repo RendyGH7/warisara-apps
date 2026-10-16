@@ -217,7 +217,7 @@
         this.mascotSpeech.textContent = `"Ayo pilih jawaban yang paling tepat untuk soal ke-${this.currentIndex + 1}! Wari yakin kamu bisa!"`;
       }
       if (this.mascotImg) {
-        this.mascotImg.src = "assets/mascot/wari-idle-clean.png";
+        this.mascotImg.src = "assets/images/mascot/wari-idle-clean.png";
       }
 
       // Render options
@@ -262,7 +262,7 @@
           this.mascotSpeech.textContent = `"Luar biasa tepat! Kamu paham betul filosofi ${q.province}! (+100 Pts)"`;
         }
         if (this.mascotImg) {
-          this.mascotImg.src = "assets/mascot/wari-happy-clean.png";
+          this.mascotImg.src = "assets/images/mascot/wari-happy-clean.png";
         }
       } else {
         this.streak = 0;
@@ -272,7 +272,7 @@
           this.mascotSpeech.textContent = `"Hampir tepat! Simak petuah dan penjelasan budayanya di bawah ini ya!"`;
         }
         if (this.mascotImg) {
-          this.mascotImg.src = "assets/mascot/wari-idle-clean.png";
+          this.mascotImg.src = "assets/images/mascot/wari-idle-clean.png";
         }
       }
 
@@ -336,7 +336,7 @@
         this.mascotSpeech.textContent = `"Hebat! Kamu telah menuntaskan 30% cuplikan mini kuis ini dengan skor ${this.score} Pts. Siap menguji 10 soal lengkap di Halaman Belajar?"`;
       }
       if (this.mascotImg) {
-        this.mascotImg.src = "assets/mascot/wari-happy-clean.png";
+        this.mascotImg.src = "assets/images/mascot/wari-happy-clean.png";
       }
     },
 

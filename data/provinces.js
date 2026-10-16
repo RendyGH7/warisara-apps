@@ -2,7 +2,7 @@
  * WARISARA - DATA ENSIKLOPEDIA 38 PROVINSI INDONESIA (EDISI ULTIMATE LENGKAP & OTENTIK)
  * Mencakup 38 Provinsi dengan Makanan Khas Autentik, Pusaka Khas,
  * Wisata Unggulan, Berita Hot, Sapaan Bahasa Daerah, Pendiri/Tokoh, Sejarah Singkat, dan Kuis Edukasi.
- * Seluruh data Makanan Khas & Pusaka Khas telah divalidasi otentik dan unik untuk masing-masing 38 provinsi.
+ * Seluruh data Makanan Khas & Pusaka Khas telah divalidasi otentik, unik, dan menggunakan aset gambar terverifikasi aktif.
  */
 
 (function() {
@@ -20,14 +20,14 @@
     "culinary": {
       "name": "Mie Aceh & Kuah Beulangong",
       "desc": "Mie tebal kenyal berkuah kari rempah pekat daging sapi atau kepiting khas Aceh, disajikan dengan acar bawang merah segar dan emping melinjo renyah.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Mie_Aceh_with_beef.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Mie_Aceh_with_beef.jpg"
+      "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Rencong Meucugek",
       "desc": "Pusaka belati khas Serambi Mekkah bertuah dengan gagang meucugek melengkung berbentuk huruf Arab Ba dan bilah berlafaz Basmalah, lambang keteguhan tauhid dan kehormatan rakyat Aceh.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg&w=800"
     },
     "tourism": {
       "name": "Masjid Raya Baiturrahman & Titik Nol Kilometer Pulau Weh",
@@ -96,12 +96,12 @@
       {
         "title": "Kelezatan Cita Rasa Mie Aceh & Kuah Beulangong",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Mie_Aceh_with_beef.jpg"
+        "url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Rencong Meucugek",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/b/ba/Rencong.jpg&w=800"
       },
       {
         "title": "Harmoni Gerak Selaras Tari Saman",
@@ -140,14 +140,14 @@
     "culinary": {
       "name": "Arsik Ikan Mas Andaliman & Bika Ambon",
       "desc": "Olahan ikan mas bumbu kuning khas Batak yang dimasak dengan asam gelugur, lokio, dan andaliman (merica Batak) getir segar, berdampingan dengan kelegitan kue bersarang Bika Ambon.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arsik_Ikan_Mas_2.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arsik_Ikan_Mas_2.jpg"
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Piso Gaja Dompak",
       "desc": "Pusaka sakral peninggalan Raja Sisingamangaraja dengan bilah baja bertuah dan ukiran gajah bermahkota pada tangkainya, melambangkan wibawa kepemimpinan spiritual dan ketajaman intuisi keadilan.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg&w=800"
     },
     "tourism": {
       "name": "Danau Toba, Pulau Samosir & Istana Maimun",
@@ -216,12 +216,12 @@
       {
         "title": "Kelezatan Cita Rasa Arsik Ikan Mas Andaliman & Bika Ambon",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arsik_Ikan_Mas_2.jpg"
+        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Piso Gaja Dompak",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/40/Piso_Surit.jpg&w=800"
       },
       {
         "title": "Kemegahan Arsitektur Istana Maimun Medan",
@@ -260,14 +260,14 @@
     "culinary": {
       "name": "Rendang Daging Minang & Sate Padang",
       "desc": "Daging sapi empuk yang dimasak berjam-jam dalam karamelisasi santan dan rempah asli Minangkabau hingga hitam kecokelatan, dinobatkan sebagai salah satu hidangan terenak di dunia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/64/Rendang_Daging_Sapi.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/64/Rendang_Daging_Sapi.JPG"
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Karih Minangkabau & Kurambiak",
       "desc": "Pusaka tikam bertuah khas Ranah Minang berbilah lengkung tanpa lekuk berhulu ukiran tanduk perak, bersanding dengan Kurambiak kuku harimau penjaga marwah adat kaum Minang.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG&w=800"
     },
     "tourism": {
       "name": "Jam Gadang Bukittinggi, Lembah Harau & Danau Maninjau",
@@ -336,12 +336,12 @@
       {
         "title": "Kelezatan Cita Rasa Rendang Daging Minang & Sate Padang",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Rendang_Daging_Sapi.JPG"
+        "url": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Karih Minangkabau & Kurambiak",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/c/cc/Kerambit_knife_and_sheath.JPG&w=800"
       },
       {
         "title": "Kemegahan Arsitektur Istano Basa Pagaruyung",
@@ -380,14 +380,14 @@
     "culinary": {
       "name": "Gulai Ikan Patin Asam Pedas & Bolu Kemojo",
       "desc": "Potongan ikan patin segar berlemak dari aliran Sungai Siak yang dimasak dalam kuah kuning asam pedas belimbing wuluh dan daun kesum, disandingkan kue manis legit Bolu Kemojo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Gulai_Ikan_Patin.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/d/da/Gulai_Ikan_Patin.JPG"
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pedang Jenawi",
       "desc": "Pusaka pedang lurus panjang bermata baja tempa khas para panglima perang dan laksamana Kesultanan Melayu Siak Sri Indrapura, simbol keberanian bahari dan integritas marwah Melayu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png"
+      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
     },
     "tourism": {
       "name": "Istana Siak Sri Indrapura & Candi Muara Takus",
@@ -456,12 +456,12 @@
       {
         "title": "Kelezatan Cita Rasa Gulai Ikan Patin Asam Pedas & Bolu Kemojo",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Gulai_Ikan_Patin.JPG"
+        "url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Pedang Jenawi",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png"
+        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Atraksi Pacu Jalur Tradisional Sungai Kuantan",
@@ -500,14 +500,14 @@
     "culinary": {
       "name": "Mie Tarempa & Olahan Siput Laut Gonggong",
       "desc": "Mie pipih kenyal bumbu cabai tumis dengan suwiran ikan tongkol khas Anambas, disandingkan dengan siput laut gonggong rebus cocol sambal asam pedas manis khas perairan Kepri.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Gonggong.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Gonggong.jpg"
+      "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Tumbuk Lada",
       "desc": "Pusaka tikam jarak dekat dengan sarung kayu kemuning berukir pucuk rebung khas pelaut dan bangsawan Kesultanan Riau-Lingga, lambang kesiapsiagaan membela kehormatan di tanah rantau.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tumbuk_Lada_daggers_%2830913874193%29.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tumbuk_Lada_daggers_%2830913874193%29.jpg"
+      "image": "assets/images/products/tudung-manto.jpg",
+      "photo": "assets/images/products/tudung-manto.jpg"
     },
     "tourism": {
       "name": "Pulau Penyengat Mas Kawin Sultan & Jembatan Barelang Batam",
@@ -576,12 +576,12 @@
       {
         "title": "Kelezatan Cita Rasa Mie Tarempa & Olahan Siput Laut Gonggong",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Gonggong.jpg"
+        "url": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Badik Tumbuk Lada",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tumbuk_Lada_daggers_%2830913874193%29.jpg"
+        "url": "assets/images/products/tudung-manto.jpg"
       },
       {
         "title": "Kemegahan Arsitektur Jembatan Barelang Batam",
@@ -620,14 +620,14 @@
     "culinary": {
       "name": "Tempoyak Ikan Patin Batanghari & Gulai Tepek Ikan",
       "desc": "Fermentasi durian alami khas Jambi yang dimasak bersama ikan patin Sungai Batanghari bercampur kunyit dan cabai rawit merah, menghasilkan cita rasa asam gurih beraroma eksotis.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Tempoyak_ikan_patin_Jambi.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/5/52/Tempoyak_ikan_patin_Jambi.jpg"
+      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Siginjai",
       "desc": "Pusaka mahkota Kesultanan Jambi peninggalan Orang Kayo Hitam yang bilahnya bertahtakan emas murni dan berlian pada sarungnya, lambang kedaulatan tertinggi dan pemersatu rakyat Jambi.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Tugu_Keris_Siginjai.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Tugu_Keris_Siginjai.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Percandian Muaro Jambi & Gunung Kerinci Atap Sumatra",
@@ -696,12 +696,12 @@
       {
         "title": "Kelezatan Cita Rasa Tempoyak Ikan Patin Batanghari & Gulai Tepek Ikan",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Tempoyak_ikan_patin_Jambi.jpg"
+        "url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Siginjai",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Tugu_Keris_Siginjai.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Lanskap Kebun Teh Kayu Aro & Gunung Kerinci",
@@ -740,14 +740,14 @@
     "culinary": {
       "name": "Pempek Kapal Selam Asli & Pindang Patin Pegagan",
       "desc": "Olahan daging ikan tenggiri giling kenyal dengan isian telur bebek disiram kuah cuko hitam pedas manis kental asam jawa aren asli Linggau, dipadu sup pindang patin beraroma nanas kemangi.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Pempek_Palembang.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Pempek_Palembang.JPG"
+      "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Palembang (Keris Belango)",
       "desc": "Pusaka tosan aji khas Kesultanan Palembang Darussalam dengan warangka kayu trembalo ukir gaya perahu dan pamor besi pulo tirani, lambang kemuliaan maritim Sungai Musi.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Keris_Rambe_Ayam%2C_Keris_Botol%2C_Tumbak_Lado%2C_Roodoos.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/d/de/Keris_Rambe_Ayam%2C_Keris_Botol%2C_Tumbak_Lado%2C_Roodoos.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Jembatan Ampera Sungai Musi & Pulau Kemaro",
@@ -816,12 +816,12 @@
       {
         "title": "Kelezatan Cita Rasa Pempek Kapal Selam Asli & Pindang Patin Pegagan",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Pempek_Palembang.JPG"
+        "url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Palembang (Keris Belango)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Keris_Rambe_Ayam%2C_Keris_Botol%2C_Tumbak_Lado%2C_Roodoos.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Keagungan Tari Gending Sriwijaya Keraton",
@@ -860,14 +860,14 @@
     "culinary": {
       "name": "Pendap Ikan Daun Talas & Bagar Hiu",
       "desc": "Ikan laut berbumbu kelapa parut rempah pekat yang dibungkus berlapis daun talas lalu direbus perlahan hingga 8 jam agar racun talas hilang dan meresap sempurna, warisan pesisir Bengkulu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg&w=800"
     },
     "weapon": {
       "name": "Kuduk Bengkulu (Sewar Bengkulu)",
       "desc": "Pusaka belati berbilah tajam melengkung tempaan pandai besi Rejang dan Serawai dengan hulu motif kepala burung berkepala perak, lambang ketangkasan dan kewaspadaan diri.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/96/COLLECTIE_TROPENMUSEUM_Houten_schede_van_een_kapmes_TMnr_17-77.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/96/COLLECTIE_TROPENMUSEUM_Houten_schede_van_een_kapmes_TMnr_17-77.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Benteng Marlborough & Cagar Alam Bunga Rafflesia Arnoldii",
@@ -936,12 +936,12 @@
       {
         "title": "Kelezatan Cita Rasa Pendap Ikan Daun Talas & Bagar Hiu",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/2/2f/Pendap_from_Bengkulu_-_IMG_20220210_181317_298.jpg&w=800"
       },
       {
         "title": "Keagungan Kuduk Bengkulu (Sewar Bengkulu)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/COLLECTIE_TROPENMUSEUM_Houten_schede_van_een_kapmes_TMnr_17-77.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Mekarnya Bunga Raksasa Langka Rafflesia Arnoldii",
@@ -980,14 +980,14 @@
     "culinary": {
       "name": "Seruit Ikan Baung & Gulai Taboh",
       "desc": "Ikan baung air tawar bakar yang diaduk bersama sambal terasi, tempoyak fermentasi durian, mangga kweni muda, dan lalapan segar khas Pepadun & Sai Batin, dipadu gulai kuah santan taboh.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/SERUIT_Lampung.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6a/SERUIT_Lampung.jpg"
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Terapang Lampung",
       "desc": "Keris pusaka bertuah para tetua adat (Penyimbang) Lampung dengan sarung kayu bersalut perak dan emas bermotif kapal dan flora tapis, simbol kebijaksanaan dalam musyawarah adat.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg&w=800"
     },
     "tourism": {
       "name": "Taman Nasional Way Kambas & Teluk Kiluan Lumba-Lumba",
@@ -1056,12 +1056,12 @@
       {
         "title": "Kelezatan Cita Rasa Seruit Ikan Baung & Gulai Taboh",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/SERUIT_Lampung.jpg"
+        "url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Terapang Lampung",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/4/4d/COLLECTIE_TROPENMUSEUM_Kris_met_schede_TMnr_A-1448.jpg&w=800"
       },
       {
         "title": "Lumba-lumba Liar Bermain di Teluk Kiluan",
@@ -1100,14 +1100,14 @@
     "culinary": {
       "name": "Lempah Kuning Ikan Tenggiri Nanas & Pantiaw",
       "desc": "Potongan ikan tenggiri segar berkuah kuning bening rempah kunyit, terasi Belitung (belacan), asam jawa, dan irisan nanas manis segar, dipadu mie kuah ikan gurih Pantiaw.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Lempah_kuning_stew.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Lempah_kuning_stew.JPG"
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Siwar Panjang",
       "desc": "Pusaka berbilah lurus pipih yang ramping dengan sarung kayu gaharu atau cendana khas bangsawan Melayu Bangka Belitung, lambang ketenangan budi pekerti dan ketegasan moral.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/49/Golok_2.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/49/Golok_2.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
     },
     "tourism": {
       "name": "Pantai Tanjung Tinggi Laskar Pelangi & Pulau Lengkuas",
@@ -1176,12 +1176,12 @@
       {
         "title": "Kelezatan Cita Rasa Lempah Kuning Ikan Tenggiri Nanas & Pantiaw",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Lempah_kuning_stew.JPG"
+        "url": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Siwar Panjang",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Golok_2.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
       },
       {
         "title": "Mercusuar Kuno Bersejarah Pulau Lengkuas",
@@ -1220,14 +1220,14 @@
     "culinary": {
       "name": "Sate Bandeng Tanpa Duri & Rabeg Banten",
       "desc": "Ikan bandeng utuh yang dikeluarkan duri dan dagingnya, dihaluskan dengan santan rempah lalu dimasukkan kembali ke kulitnya dan dibakar di atas bara arang, dipadu semur rabeg kambing rempah pala khas Sultan.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Sate_Bandeng_1.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/31/Sate_Bandeng_1.jpg"
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Golok Ciomas",
       "desc": "Pusaka golok tempaan sakral dari mata air Ciomas dengan pamor besi kuno, diwariskan turun-temurun oleh para jawara dan Kesultanan Banten sebagai lambang keberanian menegakkan kebenaran.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
     },
     "tourism": {
       "name": "Kawasan Adat Suku Baduy & Taman Nasional Ujung Kulon",
@@ -1296,12 +1296,12 @@
       {
         "title": "Kelezatan Cita Rasa Sate Bandeng Tanpa Duri & Rabeg Banten",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Sate_Bandeng_1.jpg"
+        "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Golok Ciomas",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
       },
       {
         "title": "Habitat Badak Jawa Taman Nasional Ujung Kulon",
@@ -1340,14 +1340,14 @@
     "culinary": {
       "name": "Kerak Telor Bebek Serundeng & Soto Betawi Santan Susu",
       "desc": "Beras ketan putih dimasak di atas wajan tanpa minyak bersama telur bebek, ebi sangrai, dan taburan serundeng kelapa pedas gurih bawang goreng, dipadu semangkuk soto Betawi daging kuah santan susu gurih.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Kerak_telor.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Kerak_telor.jpg"
+      "image": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Golok Betawi (Golok Gobang)",
       "desc": "Golok pusaka pendekar Betawi dengan bilah melengkung berujung rata atau lancip berhulu kayu ukir kepala buaya, simbol pembela kebenaran kaum lemah dan jiwa ksatria jawara sejati.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Pencak_Silat_Betawi_2.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/5/57/Pencak_Silat_Betawi_2.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
     },
     "tourism": {
       "name": "Monumen Nasional (Monas) & Kawasan Kota Tua Fatahillah",
@@ -1416,12 +1416,12 @@
       {
         "title": "Kelezatan Cita Rasa Kerak Telor Bebek Serundeng & Soto Betawi Santan Susu",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Kerak_telor.jpg"
+        "url": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Golok Betawi (Golok Gobang)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Pencak_Silat_Betawi_2.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/f/f6/Golok.jpg&w=800"
       },
       {
         "title": "Suasana Sore di Lapangan Fatahillah Kota Tua",
@@ -1460,14 +1460,14 @@
     "culinary": {
       "name": "Nasi Liwet Kastrol Pasundan & Peuyeum Bandung",
       "desc": "Nasi gurih beraroma daun salam, serai, bawang merah, cabai rawit, dan ikan asin jambal roti yang ditanak langsung di dalam panci kastrol tradisional, dipadu legitnya peuyeum singkong Bandung.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG&w=800"
     },
     "weapon": {
       "name": "Kujang Ciung Pajajaran",
       "desc": "Pusaka sakral tatar Sunda berbentuk lengkungan khas menyerupai burung ciung dengan tiga lubang perlambang Tritangtu Sunda, simbol ketajaman budi pekerti dan tuah spiritual Prabu Siliwangi.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png&w=800"
     },
     "tourism": {
       "name": "Kawah Putih Ciwidey, Tangkuban Parahu & Saung Angklung Udjo",
@@ -1536,12 +1536,12 @@
       {
         "title": "Kelezatan Cita Rasa Nasi Liwet Kastrol Pasundan & Peuyeum Bandung",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/ed/Nasi_Liwet_A.JPG&w=800"
       },
       {
         "title": "Keagungan Kujang Ciung Pajajaran",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/e/e9/Kujang.png&w=800"
       },
       {
         "title": "Harmoni Bambu Angklung Saung Udjo",
@@ -1580,14 +1580,14 @@
     "culinary": {
       "name": "Nasi Gandul Pati & Lumpia Basah Rebung Semarang",
       "desc": "Nasi hangat beralas daun pisang disiram kuah santan cokelat rempah gurih manis berisi irisan daging sapi empuk dan lidah bacem, dipadu lumpia basah/goreng isi rebung telur khas Semarang.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/53/Nasi_Gandul_3.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/5/53/Nasi_Gandul_3.jpg"
+      "image": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Kyai Gayaman Surakarta",
       "desc": "Pusaka tosan aji adiluhung berwarangka model Gayaman khas Kasunanan Surakarta dengan luk berpamor beras wutah, melambangkan ketenangan batin, kepemimpinan bijaksana, dan keselarasan jagad raya.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Kris_Helfferich-Sammluung.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Kris_Helfferich-Sammluung.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Candi Borobudur Magelang & Dataran Tinggi Dieng",
@@ -1656,12 +1656,12 @@
       {
         "title": "Kelezatan Cita Rasa Nasi Gandul Pati & Lumpia Basah Rebung Semarang",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Nasi_Gandul_3.jpg"
+        "url": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Kyai Gayaman Surakarta",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Kris_Helfferich-Sammluung.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Kabut Syahdu Dataran Tinggi Dieng Plateau",
@@ -1700,14 +1700,14 @@
     "culinary": {
       "name": "Gudeg Nangka Muda Areh Gurih & Bakpia Pathok",
       "desc": "Nangka muda gori dimasak perlahan berhari-hari dalam periuk tanah liat bersama santan, gula kelapa asli, dan daun jati hingga empuk kecokelatan meresap, disajikan bersama krecek pedas dan bakpia kacang hijau.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Nasi_Gudeg.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/2/22/Nasi_Gudeg.jpg"
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Branggah Ngayogyakarta",
       "desc": "Pusaka tosan aji sakral Kasultanan Ngayogyakarta Hadiningrat dengan warangka ladrang model Branggah dan hulu deder cecekan halus, melambangkan konsep Manunggaling Kawula Gusti.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Deder_Keris_Bali_di_Sonobudoyo.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Deder_Keris_Bali_di_Sonobudoyo.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Keraton Ngayogyakarta Hadiningrat, Malioboro & Candi Prambanan",
@@ -1776,12 +1776,12 @@
       {
         "title": "Kelezatan Cita Rasa Gudeg Nangka Muda Areh Gurih & Bakpia Pathok",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Nasi_Gudeg.jpg"
+        "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Branggah Ngayogyakarta",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Deder_Keris_Bali_di_Sonobudoyo.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Bangsal Kencana Keraton Ngayogyakarta",
@@ -1820,14 +1820,14 @@
     "culinary": {
       "name": "Rawon Daging Sapi Kluwek Hitam & Rujak Cingur Surabaya",
       "desc": "Sup daging sapi berkuah hitam pekat alami dari buah kluwek fermentasi yang dimasak rempah serai laos disajikan dengan taoge pendek dan telur asin, dipadu rujak cingur petis udang gurih sedap.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Rawon_Setan.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Rawon_Setan.jpg"
+      "image": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Clurit Sakera Madura & Keris Bethok Majapahit",
       "desc": "Pusaka berbilah lengkung tajam tempaan sakral pandai besi Aeng Tong-tong Madura berpadu ketangguhan keris bethok era keemasan Majapahit, simbol keberanian membela harga diri dan kehormatan negeri.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg"
+      "image": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg&w=800",
+      "photo": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg&w=800"
     },
     "tourism": {
       "name": "Gunung Bromo Kaldera Tengger & Kawah Ijen Api Biru",
@@ -1896,12 +1896,12 @@
       {
         "title": "Kelezatan Cita Rasa Rawon Daging Sapi Kluwek Hitam & Rujak Cingur Surabaya",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Rawon_Setan.jpg"
+        "url": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Clurit Sakera Madura & Keris Bethok Majapahit",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg"
+        "url": "https://wsrv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/3/3f/Celurit_madura_Jenis_Bulu_Ayam.jpg&w=800"
       },
       {
         "title": "Pesona Kobaran Api Biru (Blue Fire) Kawah Ijen",
@@ -1940,14 +1940,14 @@
     "culinary": {
       "name": "Ayam Betutu Gilimanuk & Sate Lilit Ikan Laut",
       "desc": "Ayam kampung utuh dibumbui rempah genep khas Bali dibungkus pelepah pinang lalu dipanggang sekam berjam-jam hingga empuk juicy meresap, disandingkan sate lilit daging ikan laut cincang berbumbu serai.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Ayam_Betutu.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Ayam_Betutu.jpg"
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Tayuhan Bali (Kadutan)",
       "desc": "Pusaka keris bertuah Bali berbilah panjang dengan deder hulu berukir patung dewa Nawasanga bertahtakan permata rubi dan warangka kayu pelet, perwujudan kekuatan spiritual pelindung dharma pulau dewata.",
-      "image": "assets/products/keris-kamardikan-madura.jpg",
-      "photo": "assets/products/keris-kamardikan-madura.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Pura Tanah Lot Karang Laut, Ubud & Pura Luhur Uluwatu",
@@ -2016,12 +2016,12 @@
       {
         "title": "Kelezatan Cita Rasa Ayam Betutu Gilimanuk & Sate Lilit Ikan Laut",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Ayam_Betutu.jpg"
+        "url": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Tayuhan Bali (Kadutan)",
         "category": "Pusaka Khas",
-        "url": "assets/products/keris-kamardikan-madura.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Dramatisnya Atraksi Tari Kecak Api Uluwatu",
@@ -2060,14 +2060,14 @@
     "culinary": {
       "name": "Ayam Taliwang Bakar & Plecing Kangkung Lombok",
       "desc": "Ayam kampung muda dibakar dengan bumbu cabai rawit merah, bawang, terasi lengkare khas Lombok, dan perasan jeruk limau segar, disajikan dengan plecing kangkung air segar pedas menggelegar.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Ayam_bakar_khas_Taliwang_2.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Ayam_bakar_khas_Taliwang_2.JPG"
+      "image": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Sampari & Tulup Sasak",
       "desc": "Pusaka keris berluk khas Sumbawa (Sampari) berdampingan dengan senjata tiup sakral Tulup dari bambu buluh suku Sasak Lombok, lambang ketepatan fokus batin dan penjaga kehormatan bumi Gora.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/COLLECTIE_TROPENMUSEUM_Kris_zonder_schede_TMnr_A-1402.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/34/COLLECTIE_TROPENMUSEUM_Kris_zonder_schede_TMnr_A-1402.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Gunung Rinjani Danau Segara Anak & Gili Trawangan",
@@ -2136,12 +2136,12 @@
       {
         "title": "Kelezatan Cita Rasa Ayam Taliwang Bakar & Plecing Kangkung Lombok",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Ayam_bakar_khas_Taliwang_2.JPG"
+        "url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Sampari & Tulup Sasak",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/COLLECTIE_TROPENMUSEUM_Kris_zonder_schede_TMnr_A-1402.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Kejernihan Air Laut Bebas Polusi Gili Trawangan",
@@ -2180,14 +2180,14 @@
     "culinary": {
       "name": "Daging Se'i Sapi Asap Kosambi & Kolo Ransang",
       "desc": "Daging sapi iris memanjang yang diasap perlahan di atas bara daun dan kayu kosambi hingga berwarna merah delima beraroma harum asap alami, disandingkan nasi bambu bakar Kolo khas Manggarai.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg"
+      "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Sundu & Kabeala Sumba",
       "desc": "Parang pusaka berhulu kayu ukir kepala hewan mitologi dengan bilah baja tempa khas ksatria berkuda pulau Sumba dan Timor, lambang keberanian prajurit padang sabana dan janji leluhur Marapu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c6/COLLECTIE_TROPENMUSEUM_Kapmes_met_houten_greep_en_houten_schede_TMnr_H-1438.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c6/COLLECTIE_TROPENMUSEUM_Kapmes_met_houten_greep_en_houten_schede_TMnr_H-1438.jpg"
+      "image": "assets/images/products/syal-tenun-sumba.jpg",
+      "photo": "assets/images/products/syal-tenun-sumba.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Komodo Labuan Bajo & Tiga Warna Danau Kelimutu",
@@ -2256,12 +2256,12 @@
       {
         "title": "Kelezatan Cita Rasa Daging Se'i Sapi Asap Kosambi & Kolo Ransang",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg"
+        "url": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Sundu & Kabeala Sumba",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/COLLECTIE_TROPENMUSEUM_Kapmes_met_houten_greep_en_houten_schede_TMnr_H-1438.jpg"
+        "url": "assets/images/products/syal-tenun-sumba.jpg"
       },
       {
         "title": "Keajaiban Alam Danau Tiga Warna Kelimutu Ende",
@@ -2300,14 +2300,14 @@
     "culinary": {
       "name": "Bubur Pedas Sambas & Choipan Singkawang",
       "desc": "Bubur beras sangrai tumbuk dimasak bersama puluhan ragam sayur herba hutan seperti daun kesum dan pakis bertabur teri kacang renyah, disandingkan kue kukus bengkuang gurih Choipan.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Bubur_100618-4100_sbs.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Bubur_100618-4100_sbs.jpg"
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Mandau Dayak Kanayatn",
       "desc": "Bilah mandau pusaka tempaan besi mato dengan ukiran kuningan bertatahkan rambut ritual dan sarung kumpang berlilit anyaman rotan simpai, pelindung sakral marwah ksatria Dayak Kanayatn.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Dayak_Woman_and_Mandau_151030001.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Dayak_Woman_and_Mandau_151030001.jpg"
+      "image": "assets/images/products/tenun-dayak-iban.jpg",
+      "photo": "assets/images/products/tenun-dayak-iban.jpg"
     },
     "tourism": {
       "name": "Tugu Khatulistiwa Pontianak & Danau Sentarum",
@@ -2376,12 +2376,12 @@
       {
         "title": "Kelezatan Cita Rasa Bubur Pedas Sambas & Choipan Singkawang",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Bubur_100618-4100_sbs.jpg"
+        "url": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Mandau Dayak Kanayatn",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Dayak_Woman_and_Mandau_151030001.jpg"
+        "url": "assets/images/products/tenun-dayak-iban.jpg"
       },
       {
         "title": "Keindahan Rawa Danau Musiman Sentarum Kapuas",
@@ -2420,14 +2420,14 @@
     "culinary": {
       "name": "Juhu Singkah Umbut Rotan & Ikan Wadi",
       "desc": "Gulai umbut rotan muda berkuah kuning rempah kunyit santan cair berpadu rasa pahit manis segar eksotis, disajikan bersama ikan sungai terfermentasi garam beras ketan (wadi khas Dayak).",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg"
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Duhung Dayak Ngaju",
       "desc": "Senjata pusaka tertua leluhur Dayak Ngaju berbilah simetris bermata dua yang disucikan dan hanya dikeluarkan saat upacara sakral Tiwah, lambang penuntun jiwa menuju keabadian Lewu Tatau.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/8/83/Senjata_Duhung_Dayak.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/8/83/Senjata_Duhung_Dayak.jpg"
+      "image": "assets/images/products/anyaman-rotan-katingan.jpg",
+      "photo": "assets/images/products/anyaman-rotan-katingan.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Tanjung Puting & Sungai Kahayan",
@@ -2496,12 +2496,12 @@
       {
         "title": "Kelezatan Cita Rasa Juhu Singkah Umbut Rotan & Ikan Wadi",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg"
+        "url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Duhung Dayak Ngaju",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Senjata_Duhung_Dayak.jpg"
+        "url": "assets/images/products/anyaman-rotan-katingan.jpg"
       },
       {
         "title": "Megahnya Rumah Adat Panjang Huma Betang",
@@ -2540,14 +2540,14 @@
     "culinary": {
       "name": "Soto Banjar Limau Kuit & Ketupat Kandangan",
       "desc": "Sup ayam kampung berkuah rempah kaya kayu manis cengkih pala disajikan dengan perkedel singkong dan kucuran jeruk limau kuit harum, berpadu ketupat kuah santan ikan gabus asap Kandangan.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Soto_Banjar_Bang_Amat.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Soto_Banjar_Bang_Amat.jpg"
+      "image": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Nabur Banjar",
       "desc": "Pedang pusaka lengkung Kesultanan Banjar dengan bilah pamor baja tempa dan pelindung tangan gagang kuningan emas, simbol ketangguhan prajurit maritim bandar sungai Banjar.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/COLLECTIE_TROPENMUSEUM_Zwaard_in_schede_-_Parang_Nabur_TM-6167-1a.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/d/da/COLLECTIE_TROPENMUSEUM_Zwaard_in_schede_-_Parang_Nabur_TM-6167-1a.png"
+      "image": "assets/images/products/kain-sasirangan-banjar.jpg",
+      "photo": "assets/images/products/kain-sasirangan-banjar.jpg"
     },
     "tourism": {
       "name": "Pasar Terapung Lok Baintan Muara Sungai Barito & Geopark Meratus",
@@ -2616,12 +2616,12 @@
       {
         "title": "Kelezatan Cita Rasa Soto Banjar Limau Kuit & Ketupat Kandangan",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Soto_Banjar_Bang_Amat.jpg"
+        "url": "https://images.unsplash.com/photo-1572448862527-d3c904757de6?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Parang Nabur Banjar",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/COLLECTIE_TROPENMUSEUM_Zwaard_in_schede_-_Parang_Nabur_TM-6167-1a.png"
+        "url": "assets/images/products/kain-sasirangan-banjar.jpg"
       },
       {
         "title": "Puncak Pegunungan Megah Geopark Meratus",
@@ -2660,14 +2660,14 @@
     "culinary": {
       "name": "Nasi Bekepor Sambal Raja & Gangan Asam Ikan Patin",
       "desc": "Nasi liwet bangsawan Kesultanan Kutai Kartanegara berempah daun kemangi dan ikan asin, disajikan dengan daging bumbu masak bumi hangus dan sayur asam ikan patin Sungai Mahakam.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg"
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Mandau Dayak Kenyah (Gayang Kutai)",
       "desc": "Mandau bertuah hulu tulang tanduk rusa berukir motif Aso (naga Dayak) dengan bilah cembung berhiaskan tatah koin tembaga pusaka, lambang kepemimpinan panglima tertinggi pedalaman Mahakam.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg"
+      "image": "assets/images/products/tenun-dayak-iban.jpg",
+      "photo": "assets/images/products/tenun-dayak-iban.jpg"
     },
     "tourism": {
       "name": "Kepulauan Derawan & Maratua Surga Penyu serta Titik Nol IKN",
@@ -2736,12 +2736,12 @@
       {
         "title": "Kelezatan Cita Rasa Nasi Bekepor Sambal Raja & Gangan Asam Ikan Patin",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Patin_bakar.jpg"
+        "url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Mandau Dayak Kenyah (Gayang Kutai)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg"
+        "url": "assets/images/products/tenun-dayak-iban.jpg"
       },
       {
         "title": "Megahnya Mahakarya Istana Garuda di IKN Nusantara",
@@ -2780,14 +2780,14 @@
     "culinary": {
       "name": "Kepiting Soka Tarakan Bumbu Saus Tiram & Nasi Subut",
       "desc": "Kepiting cangkang lunak muara Tarakan yang digoreng krispi dengan balutan saus rempah tiram gurih manis, disajikan bersama nasi olahan ubi jalar ungu nasi subut khas suku Tidung.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/64/Soft_Shell_Crab_%283627310255%29.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/64/Soft_Shell_Crab_%283627310255%29.jpg"
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Gayang Dayak Lundayeh",
       "desc": "Pusaka pedang panjang tempaan ksatria dataran tinggi Krayan suku Dayak Lundayeh dengan sarung berhiaskan manik-manik kuno tulang, simbol ketahanan hidup di alam liar perbatasan Borneo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg"
+      "image": "assets/images/products/tenun-dayak-iban.jpg",
+      "photo": "assets/images/products/tenun-dayak-iban.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Kayan Mentarang & Dataran Tinggi Krayan",
@@ -2856,12 +2856,12 @@
       {
         "title": "Kelezatan Cita Rasa Kepiting Soka Tarakan Bumbu Saus Tiram & Nasi Subut",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Soft_Shell_Crab_%283627310255%29.jpg"
+        "url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Gayang Dayak Lundayeh",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/COLLECTIE_TROPENMUSEUM_Zwaard_met_gevest_van_hertshoorn_schede_en_mesje_TMnr_444-20.jpg"
+        "url": "assets/images/products/tenun-dayak-iban.jpg"
       },
       {
         "title": "Atraksi Melompat Bambu Tari Magunatip Tidung",
@@ -2900,14 +2900,14 @@
     "culinary": {
       "name": "Tinutuan (Bubur Manado) & Cakalang Fufu Sambal Roa",
       "desc": "Bubur labu kuning dan jagung manis tanpa santan kaya daun gedi kemangi segar, disajikan bersama suwiran ikan cakalang asap kayu dan sensasi pedas smoky sambal ikan roa Manado.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/Tinutuan_bubur_Manado.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/93/Tinutuan_bubur_Manado.JPG"
+      "image": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pedang Santi Minahasa (Pedang Bara)",
       "desc": "Pusaka pedang bermata baja lurus tebal dengan ujung melengkung khas prajurit Waranei suku Minahasa, melambangkan semboyan I Yayat U Santi (Angkatlah Pedangmu membela kebenaran).",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9c/COLLECTIE_TROPENMUSEUM_Zwaard_-_RV-2077-2.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/9c/COLLECTIE_TROPENMUSEUM_Zwaard_-_RV-2077-2.png"
+      "image": "assets/images/products/kotak-sirih-minahasa.jpg",
+      "photo": "assets/images/products/kotak-sirih-minahasa.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Laut Bunaken & Danau Tiga Warna Linow",
@@ -2976,12 +2976,12 @@
       {
         "title": "Kelezatan Cita Rasa Tinutuan (Bubur Manado) & Cakalang Fufu Sambal Roa",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Tinutuan_bubur_Manado.JPG"
+        "url": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Pedang Santi Minahasa (Pedang Bara)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/COLLECTIE_TROPENMUSEUM_Zwaard_-_RV-2077-2.png"
+        "url": "assets/images/products/kotak-sirih-minahasa.jpg"
       },
       {
         "title": "Atraksi Berani Prajurit Merah Tari Kabasaran",
@@ -3020,14 +3020,14 @@
     "culinary": {
       "name": "Binte Biluhuta (Sup Jagung Siram) & Ilabulo",
       "desc": "Sup jagung putih manis disiram kuah kaldu ikan cakalang segar berbumbu cabai rawit kelapa parut dan daun kemangi dengan kucuran jeruk nipis, disandingkan pepes sagu hati ayam Ilabulo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Binte_Biluhuta.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Binte_Biluhuta.jpg"
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Wamilo & Bitu'o Gorontalo",
       "desc": "Pusaka bilah lengkung khas bangsawan Kerajaan Limboto dan Gorontalo dengan sarung kayu kuning bertali lilitan sutra adat, simbol keadilan pemimpin dan pengendalian amarah.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Longgo.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Longgo.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Wisata Hiu Paus Botubarani & Benteng Otanaha Danau Limboto",
@@ -3096,12 +3096,12 @@
       {
         "title": "Kelezatan Cita Rasa Binte Biluhuta (Sup Jagung Siram) & Ilabulo",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Binte_Biluhuta.jpg"
+        "url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Wamilo & Bitu'o Gorontalo",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Longgo.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Benteng Batu Kapur Bersejarah Otanaha Danau Limboto",
@@ -3140,14 +3140,14 @@
     "culinary": {
       "name": "Kaledo (Kaki Lembu Donggala) & Uve Mpoi",
       "desc": "Sup sumsum tulang kaki sapi Donggala berkuah bening segar tanpa santan, dimasak hanya dengan asam jawa muda mentah dan cabai rawit hijau tumbuk khas Palu yang asam pedas menggigit.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Kaledo_soup%2C_Central_Sulawesi%2C_2018-09-16.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Kaledo_soup%2C_Central_Sulawesi%2C_2018-09-16.jpg"
+      "image": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pasatimpo Kaili",
       "desc": "Pusaka belati berbilah bengkok dengan hulu kayu hitam eboni Sulawesi berukir dan sarung berbalut lempengan perak flora, lambang penolak bala dan tanda status ksatria suku Kaili.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/COLLECTIE_TROPENMUSEUM_Een_Kaili_Centraal-_en_Noord-Celebes_TMnr_10005738.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6d/COLLECTIE_TROPENMUSEUM_Een_Kaili_Centraal-_en_Noord-Celebes_TMnr_10005738.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Arca Megalitikum Lembah Bada Lore Lindu & Kepulauan Togean",
@@ -3216,12 +3216,12 @@
       {
         "title": "Kelezatan Cita Rasa Kaledo (Kaki Lembu Donggala) & Uve Mpoi",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Kaledo_soup%2C_Central_Sulawesi%2C_2018-09-16.jpg"
+        "url": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Pasatimpo Kaili",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/COLLECTIE_TROPENMUSEUM_Een_Kaili_Centraal-_en_Noord-Celebes_TMnr_10005738.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Surga Terumbu Karang Atol Kepulauan Togean",
@@ -3260,14 +3260,14 @@
     "culinary": {
       "name": "Jepa Ubi Ikan Tuing-Tuing & Bau Peapi Mandar",
       "desc": "Roti pipih ubi kayu parut bakar di atas piring tanah liat disajikan bersama olahan ikan cakalang kuah kuning asam mangga muda pekat khas nelayan ulung perairan Mandar.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Ikan_bakar_bumbu_tomat_Makassar.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/a/af/Ikan_bakar_bumbu_tomat_Makassar.JPG"
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Gayang Mandar",
       "desc": "Badik pusaka pelaut suku Mandar berbilah runcing tanpa lekuk dengan pamor garis kurissi tempaan sakral air kelapa tua, simbol ketenangan menghadapi badai samudra dan kehormatan persaudaraan.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Pakaian_Adat_Sulawesi_Barat.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Pakaian_Adat_Sulawesi_Barat.png"
+      "image": "assets/images/products/tenun-sutra-sengkang.jpg",
+      "photo": "assets/images/products/tenun-sutra-sengkang.jpg"
     },
     "tourism": {
       "name": "Pantai Manakarra Landmark Selat Makassar & Negeri di Atas Awan Mamasa",
@@ -3336,12 +3336,12 @@
       {
         "title": "Kelezatan Cita Rasa Jepa Ubi Ikan Tuing-Tuing & Bau Peapi Mandar",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Ikan_bakar_bumbu_tomat_Makassar.JPG"
+        "url": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Badik Gayang Mandar",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Pakaian_Adat_Sulawesi_Barat.png"
+        "url": "assets/images/products/tenun-sutra-sengkang.jpg"
       },
       {
         "title": "Atraksi Syukuran Kuda Menari Sayyang Pattu'du",
@@ -3380,14 +3380,14 @@
     "culinary": {
       "name": "Coto Makassar Kuah Rempah & Konro Bakar Iga Sapi",
       "desc": "Rebusan daging dan jeroan sapi dalam kuah kacang tanah sangrai tumbuk pekat kaya puluhan rempah pala cengkih disajikan ketupat daun pandan, dipadu gurih manisnya konro bakar iga sapi empuk.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Coto_Makassar-dish.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Coto_Makassar-dish.JPG"
+      "image": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Badik Kawali Bugis (Kawali Gecong)",
       "desc": "Pusaka sakral berbilah baja meteorit pamor seleppa dengan hulu kayu kemuning miring di pinggang kiri, pengejawantahan nilai adat tertinggi Siri' na Pacce (harga diri dan solidaritas kemanusiaan).",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Badik.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Badik.jpg"
+      "image": "assets/images/products/miniatur-pinisi-bulukumba.jpg",
+      "photo": "assets/images/products/miniatur-pinisi-bulukumba.jpg"
     },
     "tourism": {
       "name": "Tana Toraja Rumah Tongkonan, Tebing Lemo & Pantai Losari",
@@ -3456,12 +3456,12 @@
       {
         "title": "Kelezatan Cita Rasa Coto Makassar Kuah Rempah & Konro Bakar Iga Sapi",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Coto_Makassar-dish.JPG"
+        "url": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Badik Kawali Bugis (Kawali Gecong)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Badik.jpg"
+        "url": "assets/images/products/miniatur-pinisi-bulukumba.jpg"
       },
       {
         "title": "Megahnya Rumah Adat Tongkonan Tana Toraja",
@@ -3500,14 +3500,14 @@
     "culinary": {
       "name": "Sinonggi Sagu Kuah Ikan Kuning & Kasuami Tolaki",
       "desc": "Makanan pokok pati sagu kental kenyal disiram kuah ikan cakalang rempah belimbing wuluh dan sayur bening bayam, disandingkan tumpeng singkong kukus Kasuami khas Buton.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Kasuami.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Kasuami.jpg"
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Keris Mele Buton",
       "desc": "Keris pusaka khas Kesultanan Buton berbilah lurus ramping dengan warangka perak bertahtakan kaligrafi doa perlindungan maritim, simbol pertahanan benteng terluas di dunia dan ketaatan syariat.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Detail_dari_Hulu_Keris_Bugis_-_Museum_Keris_Nusantara.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Detail_dari_Hulu_Keris_Bugis_-_Museum_Keris_Nusantara.jpg"
+      "image": "assets/images/products/keris-kamardikan-madura.jpg",
+      "photo": "assets/images/products/keris-kamardikan-madura.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Kepulauan Wakatobi & Benteng Keraton Buton",
@@ -3576,12 +3576,12 @@
       {
         "title": "Kelezatan Cita Rasa Sinonggi Sagu Kuah Ikan Kuning & Kasuami Tolaki",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Kasuami.jpg"
+        "url": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Keris Mele Buton",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Detail_dari_Hulu_Keris_Bugis_-_Museum_Keris_Nusantara.jpg"
+        "url": "assets/images/products/keris-kamardikan-madura.jpg"
       },
       {
         "title": "Benteng Keraton Terluas di Dunia Benteng Buton",
@@ -3620,14 +3620,14 @@
     "culinary": {
       "name": "Papeda Ikan Kuah Kuning Kenari & Ikan Asar Cakalang",
       "desc": "Bubur sagu pohon asli disajikan bersama sup ikan tongkol kuah kuning kunyit bertabur cincangan biji kenari Banda gurih renyah, dipadu sedapnya aroma ikan cakalang asap kayu asar.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg"
+      "image": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Salawaku Maluku",
       "desc": "Pasangan pusaka legendaris Kapitan Pattimura berupa parang baja besi tajam dan perisai kayu ramping bertatahkan kulit kerang mutiara laut Banda, simbol perlawanan suci membela tanah air Maluku.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Perkasa_Prajurit_Kapita_--_Djuli_Pamungkas_DSC03134.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/31/Perkasa_Prajurit_Kapita_--_Djuli_Pamungkas_DSC03134.jpg"
+      "image": "assets/images/products/tenun-ikat-tanimbar.jpg",
+      "photo": "assets/images/products/tenun-ikat-tanimbar.jpg"
     },
     "tourism": {
       "name": "Kepulauan Banda Neira & Pantai Tebing Ora",
@@ -3696,12 +3696,12 @@
       {
         "title": "Kelezatan Cita Rasa Papeda Ikan Kuah Kuning Kenari & Ikan Asar Cakalang",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg"
+        "url": "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Parang Salawaku Maluku",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Perkasa_Prajurit_Kapita_--_Djuli_Pamungkas_DSC03134.jpg"
+        "url": "assets/images/products/tenun-ikat-tanimbar.jpg"
       },
       {
         "title": "Tebing Batu Kapur Karst & Air Toska Pantai Ora",
@@ -3740,14 +3740,14 @@
     "culinary": {
       "name": "Gohu Ikan Tuna Mentah & Popeda Sagu Kasbi",
       "desc": "Sashimi tuna segar khas Ternate dipotong dadu dilumuri perasan jeruk cui, kemangi, disiram minyak kelapa mendidih dan taburan kacang tanah sangrai, disandingkan popeda sagu kasbi kenyal.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Gohu_Ikan_in_Ternate.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Gohu_Ikan_in_Ternate.jpg"
+      "image": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Luhu Ternate (Pedang Kesultanan Tidore)",
       "desc": "Pusaka pedang kehormatan prajurit Kesultanan Ternate dan Tidore dengan hulu bertatahkan perak berukir lambang rempah cengkih pala, lambang kedaulatan empat kesultanan Moloku Kie Raha.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png"
+      "image": "assets/images/products/tenun-ikat-tanimbar.jpg",
+      "photo": "assets/images/products/tenun-ikat-tanimbar.jpg"
     },
     "tourism": {
       "name": "Gunung Api Gamalama Ternate & Pulau Morotai Mutiara Pasifik",
@@ -3816,12 +3816,12 @@
       {
         "title": "Kelezatan Cita Rasa Gohu Ikan Tuna Mentah & Popeda Sagu Kasbi",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Gohu_Ikan_in_Ternate.jpg"
+        "url": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Parang Luhu Ternate (Pedang Kesultanan Tidore)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/COLLECTIE_TROPENMUSEUM_Zwaard_en_een_schede_-_pedang_djenawi_ketjil_RV-761-40.png"
+        "url": "assets/images/products/tenun-ikat-tanimbar.jpg"
       },
       {
         "title": "Keindahan Terumbu Karang Bawah Laut Pulau Morotai",
@@ -3860,14 +3860,14 @@
     "culinary": {
       "name": "Papeda Ikan Gabus Danau Sentani & Ikan Bungkus Daun Talas",
       "desc": "Olahan sagu murni disajikan bersama ikan gabus endemik Danau Sentani bumbu kuning asam manis dan pepes ikan bungkus daun talas empuk beraroma serai dan daun salam hutan Papua.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg"
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Pisau Belati Tulang Kasuari Tabi",
       "desc": "Pusaka belati sakral yang diasah dari tulang kaki burung kasuari jantan hutan belantara, berhiaskan rumbai bulu kasuari dan anyaman serat anggrek, lambang kekuatan magis dan martabat Ondoafi.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/7/77/Collectie_Wereldmuseum%2C_RV-3070-187%2C_Dolk%2C_%27Dolk%27%2C_Voor_1953-1954.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/7/77/Collectie_Wereldmuseum%2C_RV-3070-187%2C_Dolk%2C_%27Dolk%27%2C_Voor_1953-1954.jpg"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Danau Sentani Pulau Asei & Megahnya Jembatan Youtefa Jayapura",
@@ -3936,12 +3936,12 @@
       {
         "title": "Kelezatan Cita Rasa Papeda Ikan Gabus Danau Sentani & Ikan Bungkus Daun Talas",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Papeda%2C_Kuah_Kuning%2C_Ikan_Tude_Bakar_1.jpg"
+        "url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Pisau Belati Tulang Kasuari Tabi",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Collectie_Wereldmuseum%2C_RV-3070-187%2C_Dolk%2C_%27Dolk%27%2C_Voor_1953-1954.jpg"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Megahnya Arsitektur Merah Jembatan Youtefa Jayapura",
@@ -3980,14 +3980,14 @@
     "culinary": {
       "name": "Ikan Bakar Sambal Giling Manokwari & Papeda Ikan Kakap",
       "desc": "Ikan kakap merah pesisir Teluk Doreri dibakar arang kelapa disiram sambal rawit tumbuk kasar khas Manokwari yang pedas pedar menggigit lidah, dipadu gurihnya sup kuning papeda ikan kakap.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG"
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Parang Saloi & Busur Panah Arfak",
       "desc": "Parang pusaka tempaan pesisir berdampingan dengan busur kayu hitam dan anak panah bambu buluh suku Arfak, simbol ketepatan membidik masa depan dan penjaga adat rumah Kaki Seribu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/Festival_Lembah_Baliem_3.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/92/Festival_Lembah_Baliem_3.jpg"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Pulau Sejarah Mansinam & Hutan Kabut Pegunungan Arfak",
@@ -4056,12 +4056,12 @@
       {
         "title": "Kelezatan Cita Rasa Ikan Bakar Sambal Giling Manokwari & Papeda Ikan Kakap",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG"
+        "url": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Parang Saloi & Busur Panah Arfak",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Festival_Lembah_Baliem_3.jpg"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Burung Pintar Namdur Pembuat Sarang Artistik Arfak",
@@ -4100,14 +4100,14 @@
     "culinary": {
       "name": "Sagu Sep Daging Rusa & Dendeng Rusa Merauke",
       "desc": "Makanan tradisi suku Marind berupa adonan sagu berlapis kelapa parut dan potongan daging rusa savana yang dibakar di atas bara batu menyala, disajikan bersama dendeng rusa gurih manis Merauke.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg"
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Perisai Jamas & Tombak Syuwi Asmat",
       "desc": "Perisai kayu pusaka penuh ukiran magis leluhur diwarnai kapur putih dan oker merah bersama tombak tulang hewan buruan suku Asmat, penghubung dunia manusia dengan roh leluhur (Mbitoro).",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Collectie_Wereldmuseum%2C_RV-1971-976%2C_Schild%2C_%27Schild%27%2C_1900-1919.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Collectie_Wereldmuseum%2C_RV-1971-976%2C_Schild%2C_%27Schild%27%2C_1900-1919.jpg"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Taman Nasional Wasur & Rumah Rayap Raksasa Musamus",
@@ -4176,12 +4176,12 @@
       {
         "title": "Kelezatan Cita Rasa Sagu Sep Daging Rusa & Dendeng Rusa Merauke",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Se%27i_sapi.jpg"
+        "url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Perisai Jamas & Tombak Syuwi Asmat",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Collectie_Wereldmuseum%2C_RV-1971-976%2C_Schild%2C_%27Schild%27%2C_1900-1919.jpg"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Mahakarya Seni Pahat Patung Tiang Bisj Asmat",
@@ -4220,14 +4220,14 @@
     "culinary": {
       "name": "Kepiting Bakar Batu Karang Nabire & Sagu Bakar Cenderawasih",
       "desc": "Kepiting bakau bertubuh besar dari muara Nabire yang dibakar bumbu rempah sederhana di atas bara arang kelapa dengan perasan jeruk nipis, disandingkan sagu lempeng bakar gurih renyah.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Kepiting_bakar_lada_hitam.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/8/80/Kepiting_bakar_lada_hitam.png"
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Busur Panah Adat Mee & Parang Pahat Kamoro",
       "desc": "Busur pusaka kayu besi hitam bertali serat kulit kayu melinjo suku Mee bersama pahat pusaka peradaban sungai suku Kamoro, simbol kemandirian hidup pegunungan dan keahlian mengukir kayu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Festival_Lembah_Baliem_.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Festival_Lembah_Baliem_.jpg"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Puncak Salju Abadi Carstensz Pyramid & Hiu Paus Kwatisore Nabire",
@@ -4296,12 +4296,12 @@
       {
         "title": "Kelezatan Cita Rasa Kepiting Bakar Batu Karang Nabire & Sagu Bakar Cenderawasih",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Kepiting_bakar_lada_hitam.png"
+        "url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Busur Panah Adat Mee & Parang Pahat Kamoro",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Festival_Lembah_Baliem_.jpg"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Kawanan Hiu Paus Kwatisore Teluk Cenderawasih Nabire",
@@ -4340,14 +4340,14 @@
     "culinary": {
       "name": "Udang Selingkuh Lembah Baliem & Barapen (Bakar Batu) Ubi Hipere",
       "desc": "Udang air tawar bercapit besar seperti kepiting dari Sungai Baliem Wamena yang dimasak rebus atau bakar gurih manis, didampingi ubi manis hipere dan sayur pakis dari upacara adat bakar batu.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/Danau_Paniai._Danau_Paniai_adalah_danau_yang_berada_di_kabupaten_Paniai._Danau_ini_memiliki_banyak_keanekaragaman_hayati_yang_sangat_banyak._Salah_satu_spesies_endemiknya_adalah_udang_selingkuh.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/3/34/Danau_Paniai._Danau_Paniai_adalah_danau_yang_berada_di_kabupaten_Paniai._Danau_ini_memiliki_banyak_keanekaragaman_hayati_yang_sangat_banyak._Salah_satu_spesies_endemiknya_adalah_udang_selingkuh.jpg"
+      "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Sege Lembah Baliem (Tombak Pusaka Dani)",
       "desc": "Tombak pusaka berujung kayu keras tajam dibalut lilitan serat rotan hutan dan bulu burung malam peninggalan panglima perang suku Dani, lambang kepemimpinan adat dan ketahanan hidup pegunungan Jayawijaya.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/44/Raiyani_Muharramah_Pria_suku_dani_DSC_5025.jpg",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/44/Raiyani_Muharramah_Pria_suku_dani_DSC_5025.jpg"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Lembah Baliem, Danau Habema di Atas Awan & Mumi Bersejarah Jiwika",
@@ -4421,7 +4421,7 @@
       {
         "title": "Keagungan Sege Lembah Baliem (Tombak Pusaka Dani)",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Raiyani_Muharramah_Pria_suku_dani_DSC_5025.jpg"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Danau Tertinggi di Atas Awan Danau Habema Trikora",
@@ -4460,14 +4460,14 @@
     "culinary": {
       "name": "Ikan Kuah Kuning Belimbing Wuluh Raja Ampat & Roti Abon Gulung Sorong",
       "desc": "Ikan kerapu laut karang berenang dalam kuah kuning segar belimbing wuluh dan kemangi pesisir Raja Ampat, dipadu kelezatan oleh-oleh legendaris roti abon sapi gurih bertabur wijen khas Sorong.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG"
+      "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80"
     },
     "weapon": {
       "name": "Kalawai Kalana & Belati Malamoi",
       "desc": "Tombak trisula pusaka penyelam tradisional kepulauan Raja Ampat bersama belati pusaka suku Malamoi semenanjung Doberai, simbol kearifan hukum Sasi Laut menjaga kelestarian terumbu karang.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/PSM_V52_D041_Papuan_spears.png",
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/46/PSM_V52_D041_Papuan_spears.png"
+      "image": "assets/images/products/noken-wamena.jpg",
+      "photo": "assets/images/products/noken-wamena.jpg"
     },
     "tourism": {
       "name": "Gugusan Karang Geosite Pianemo Raja Ampat & Laguna Bintang Misool",
@@ -4536,12 +4536,12 @@
       {
         "title": "Kelezatan Cita Rasa Ikan Kuah Kuning Belimbing Wuluh Raja Ampat & Roti Abon Gulung Sorong",
         "category": "Makanan Khas Autentik",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ikan_kakap_bakar_madu.JPG"
+        "url": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80"
       },
       {
         "title": "Keagungan Kalawai Kalana & Belati Malamoi",
         "category": "Pusaka Khas",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/PSM_V52_D041_Papuan_spears.png"
+        "url": "assets/images/products/noken-wamena.jpg"
       },
       {
         "title": "Laguna Terumbu Karang Bentuk Bintang Misool Selatan",

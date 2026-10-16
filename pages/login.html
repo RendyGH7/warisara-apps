@@ -822,7 +822,7 @@
   <a href="javascript:if(document.referrer&&!document.referrer.includes('login.html')){history.back();}else{window.location.href='../index.html';}" 
      class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181512]/80 hover:bg-[#181512] border border-white/15 hover:border-brass-400/50 text-surface/80 hover:text-brass-300 text-xs font-semibold backdrop-blur-md transition-all shadow-lg group">
     <span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
-    <img src="../assets/logo/logo-emblem.png" alt="WARISARA" class="w-4 h-4 object-contain" />
+    <img src="../assets/images/logo/logo-emblem.png" alt="WARISARA" class="w-4 h-4 object-contain" />
     <span>Kembali</span>
   </a>
 
@@ -861,7 +861,7 @@
             <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight select-none sm:whitespace-nowrap">
               Selamat Datang di
             </h1>
-            <img src="../assets/logo/logo-text.png" 
+            <img src="../assets/images/logo/logo-text.png" 
                  alt="WariSara" 
                  id="welcome-logo-text"
                  class="welcome-logo-img w-auto object-contain select-none mt-2" />
@@ -877,7 +877,7 @@
 
               <div class="mascot-img-wrapper relative z-10" id="mascot-trigger" title="Klik Wari untuk sapaan seru!">
                 <img id="mascot-image" 
-                     src="../assets/mascot/wari-idle-clean.png" 
+                     src="../assets/images/mascot/wari-idle-clean.png" 
                      alt="Maskot Wari WARISARA" 
                      class="w-40 sm:w-48 md:w-52 h-auto object-contain select-none pointer-events-auto" />
               </div>
@@ -920,7 +920,7 @@
 
             <!-- Header Card Bersih -->
             <div class="flex items-center gap-3.5 pb-4 border-b border-white/10">
-              <img src="../assets/logo/logo-emblem.png" 
+              <img src="../assets/images/logo/logo-emblem.png" 
                    alt="WARISARA" 
                    class="w-10 h-10 sm:w-11 sm:h-11 object-contain flex-shrink-0 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)]" />
               <div class="flex-1">
@@ -1367,9 +1367,9 @@
         if (!mascotImg || !speechText) return;
         
         if (mood === 'happy' || mood === 'success') {
-          mascotImg.src = '../assets/mascot/wari-happy-clean.png';
+          mascotImg.src = '../assets/images/mascot/wari-happy-clean.png';
         } else {
-          mascotImg.src = '../assets/mascot/wari-idle-clean.png';
+          mascotImg.src = '../assets/images/mascot/wari-idle-clean.png';
         }
 
         if (text) {

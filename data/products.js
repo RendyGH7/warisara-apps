@@ -19,7 +19,7 @@
     }
   }
 
-  // 14 Produk Kriya Otentik Nusantara (Setiap produk memiliki ilustrasi AI unik di assets/products/)
+  // 14 Produk Kriya Otentik Nusantara (Setiap produk memiliki ilustrasi AI unik di assets/images/products/)
   const featuredProducts = [
     {
       id: "syal-tenun-sumba",
@@ -39,7 +39,7 @@
       badge: "Eco & Slow Fashion",
       rating: "4.9 (38 ulasan)",
       stock: 6,
-      image: "assets/products/syal-tenun-sumba.jpg"
+      image: "assets/images/products/syal-tenun-sumba.jpg"
     },
     {
       id: "vas-banyumulek",
@@ -59,7 +59,7 @@
       badge: "Kriya Tanah Liat",
       rating: "4.8 (24 ulasan)",
       stock: 12,
-      image: "assets/products/vas-banyumulek.jpg"
+      image: "assets/images/products/vas-banyumulek.jpg"
     },
     {
       id: "tudung-manto",
@@ -79,7 +79,7 @@
       badge: "Warisan Langka",
       rating: "5.0 (19 ulasan)",
       stock: 4,
-      image: "assets/products/tudung-manto.jpg"
+      image: "assets/images/products/tudung-manto.jpg"
     },
     {
       id: "noken-wamena",
@@ -99,7 +99,7 @@
       badge: "UNESCO Safeguarded",
       rating: "4.9 (53 ulasan)",
       stock: 15,
-      image: "assets/products/noken-wamena.jpg"
+      image: "assets/images/products/noken-wamena.jpg"
     },
     {
       id: "lampu-tumang",
@@ -119,7 +119,7 @@
       badge: "Kriya Kontemporer",
       rating: "4.9 (46 ulasan)",
       stock: 8,
-      image: "assets/products/lampu-tumang.jpg"
+      image: "assets/images/products/lampu-tumang.jpg"
     },
     {
       id: "jam-kayu-jepara",
@@ -139,7 +139,7 @@
       badge: "Sustainable Upcycling",
       rating: "4.8 (31 ulasan)",
       stock: 10,
-      image: "assets/products/jam-kayu-jepara.jpg"
+      image: "assets/images/products/jam-kayu-jepara.jpg"
     },
     {
       id: "batik-tulis-jogja-parang",
@@ -159,7 +159,7 @@
       badge: "Masterpiece Adat",
       rating: "5.0 (42 ulasan)",
       stock: 3,
-      image: "assets/products/batik-tulis-jogja-parang.jpg"
+      image: "assets/images/products/batik-tulis-jogja-parang.jpg"
     },
     {
       id: "songket-pandai-sikek",
@@ -179,7 +179,7 @@
       badge: "Kriya Pusaka",
       rating: "5.0 (27 ulasan)",
       stock: 2,
-      image: "assets/products/songket-pandai-sikek.jpg"
+      image: "assets/images/products/songket-pandai-sikek.jpg"
     },
     {
       id: "topeng-kayu-bobung",
@@ -199,7 +199,7 @@
       badge: "Warisan Seni Rupa",
       rating: "4.8 (18 ulasan)",
       stock: 7,
-      image: "assets/products/topeng-kayu-bobung.jpg"
+      image: "assets/images/products/topeng-kayu-bobung.jpg"
     },
     {
       id: "keris-kamardikan-madura",
@@ -219,7 +219,7 @@
       badge: "UNESCO Masterpiece",
       rating: "5.0 (33 ulasan)",
       stock: 2,
-      image: "assets/products/keris-kamardikan-madura.jpg"
+      image: "assets/images/products/keris-kamardikan-madura.jpg"
     },
     {
       id: "anyaman-rotan-katingan",
@@ -239,7 +239,7 @@
       badge: "Forest Friendly",
       rating: "4.9 (29 ulasan)",
       stock: 9,
-      image: "assets/products/anyaman-rotan-katingan.jpg"
+      image: "assets/images/products/anyaman-rotan-katingan.jpg"
     },
     {
       id: "kopi-gayo-honey-organik",
@@ -259,7 +259,7 @@
       badge: "Fair Trade Specialty",
       rating: "4.9 (88 ulasan)",
       stock: 50,
-      image: "assets/products/kopi-gayo-honey-organik.jpg"
+      image: "assets/images/products/kopi-gayo-honey-organik.jpg"
     },
     {
       id: "kain-ulos-ragidup",
@@ -279,7 +279,7 @@
       badge: "Wastra Pusaka Batak",
       rating: "4.9 (35 ulasan)",
       stock: 5,
-      image: "assets/products/kain-ulos-ragidup.jpg"
+      image: "assets/images/products/kain-ulos-ragidup.jpg"
     },
     {
       id: "batik-mega-mendung-cirebon",
@@ -299,7 +299,7 @@
       badge: "Masterpiece Pesisir",
       rating: "5.0 (47 ulasan)",
       stock: 4,
-      image: "assets/products/batik-mega-mendung-cirebon.jpg"
+      image: "assets/images/products/batik-mega-mendung-cirebon.jpg"
     },
     {
       id: "tenun-ikat-sikka",
@@ -319,7 +319,7 @@
       badge: "Indikasi Geografis",
       rating: "4.9 (42 ulasan)",
       stock: 7,
-      image: "assets/products/tenun-ikat-sikka.jpg"
+      image: "assets/images/products/tenun-ikat-sikka.jpg"
     },
     {
       id: "kipas-cendana-bali",
@@ -339,7 +339,7 @@
       badge: "Aromatik Alami",
       rating: "4.8 (31 ulasan)",
       stock: 15,
-      image: "assets/products/kipas-cendana-bali.jpg"
+      image: "assets/images/products/kipas-cendana-bali.jpg"
     },
     {
       id: "perak-celuk-bali",
@@ -359,7 +359,7 @@
       badge: "Masterpiece Filigri",
       rating: "5.0 (29 ulasan)",
       stock: 8,
-      image: "assets/products/perak-celuk-bali.jpg"
+      image: "assets/images/products/perak-celuk-bali.jpg"
     },
     {
       id: "tenun-troso-jepara",
@@ -379,7 +379,7 @@
       badge: "Kriya Kontemporer",
       rating: "4.8 (64 ulasan)",
       stock: 22,
-      image: "assets/products/tenun-troso-jepara.jpg"
+      image: "assets/images/products/tenun-troso-jepara.jpg"
     },
     {
       id: "kain-sasirangan-banjar",
@@ -399,7 +399,7 @@
       badge: "Warisan Banjar",
       rating: "4.9 (33 ulasan)",
       stock: 11,
-      image: "assets/products/kain-sasirangan-banjar.jpg"
+      image: "assets/images/products/kain-sasirangan-banjar.jpg"
     },
     {
       id: "tenun-sutra-sengkang",
@@ -419,7 +419,7 @@
       badge: "Sutra Murni Nusantara",
       rating: "4.9 (27 ulasan)",
       stock: 9,
-      image: "assets/products/tenun-sutra-sengkang.jpg"
+      image: "assets/images/products/tenun-sutra-sengkang.jpg"
     },
     {
       id: "kotak-sirih-minahasa",
@@ -439,7 +439,7 @@
       badge: "Kriya Kayu Minahasa",
       rating: "4.7 (18 ulasan)",
       stock: 14,
-      image: "assets/products/kotak-sirih-minahasa.jpg"
+      image: "assets/images/products/kotak-sirih-minahasa.jpg"
     },
     {
       id: "tenun-ikat-tanimbar",
@@ -459,7 +459,7 @@
       badge: "Pusaka Kepulauan",
       rating: "4.9 (22 ulasan)",
       stock: 6,
-      image: "assets/products/tenun-ikat-tanimbar.jpg"
+      image: "assets/images/products/tenun-ikat-tanimbar.jpg"
     },
     {
       id: "mutiara-laut-lombok",
@@ -479,7 +479,7 @@
       badge: "South Sea Pearl Grade A",
       rating: "5.0 (41 ulasan)",
       stock: 5,
-      image: "assets/products/mutiara-laut-lombok.jpg"
+      image: "assets/images/products/mutiara-laut-lombok.jpg"
     },
     {
       id: "topeng-cirebon-klana",
@@ -499,7 +499,7 @@
       badge: "Karya Seni Teater Adat",
       rating: "4.9 (16 ulasan)",
       stock: 7,
-      image: "assets/products/topeng-cirebon-klana.jpg"
+      image: "assets/images/products/topeng-cirebon-klana.jpg"
     },
     {
       id: "guci-kasongan-jogja",
@@ -519,7 +519,7 @@
       badge: "Kriya Tanah Kasongan",
       rating: "4.8 (37 ulasan)",
       stock: 18,
-      image: "assets/products/guci-kasongan-jogja.jpg"
+      image: "assets/images/products/guci-kasongan-jogja.jpg"
     },
     {
       id: "kain-cual-babel",
@@ -539,7 +539,7 @@
       badge: "Wastra Langka Melayu",
       rating: "5.0 (14 ulasan)",
       stock: 3,
-      image: "assets/products/kain-cual-babel.jpg"
+      image: "assets/images/products/kain-cual-babel.jpg"
     },
     {
       id: "tenun-toraja-sadan",
@@ -559,7 +559,7 @@
       badge: "Pusaka Adat Toraja",
       rating: "4.9 (39 ulasan)",
       stock: 8,
-      image: "assets/products/tenun-toraja-sadan.jpg"
+      image: "assets/images/products/tenun-toraja-sadan.jpg"
     },
     {
       id: "tas-anyaman-purun",
@@ -579,7 +579,7 @@
       badge: "Eco-Friendly Lahan Gambut",
       rating: "4.8 (56 ulasan)",
       stock: 25,
-      image: "assets/products/tas-anyaman-purun.jpg"
+      image: "assets/images/products/tas-anyaman-purun.jpg"
     },
     {
       id: "wayang-golek-sunda",
@@ -599,7 +599,7 @@
       badge: "Seni Karakter Budaya",
       rating: "4.8 (36 ulasan)",
       stock: 10,
-      image: "assets/products/wayang-golek-sunda.jpg"
+      image: "assets/images/products/wayang-golek-sunda.jpg"
     },
     {
       id: "miniatur-pinisi-bulukumba",
@@ -619,7 +619,7 @@
       badge: "UNESCO Maritime Heritage",
       rating: "4.9 (34 ulasan)",
       stock: 8,
-      image: "assets/products/miniatur-pinisi-bulukumba.jpg"
+      image: "assets/images/products/miniatur-pinisi-bulukumba.jpg"
     },
     {
       id: "alat-canting-tembaga-batik",
@@ -639,7 +639,7 @@
       badge: "Perkakas Pusaka Batik",
       rating: "4.8 (49 ulasan)",
       stock: 30,
-      image: "assets/products/alat-canting-tembaga-batik.jpg"
+      image: "assets/images/products/alat-canting-tembaga-batik.jpg"
     },
     {
       id: "songket-palembang-lepus",
@@ -659,7 +659,7 @@
       badge: "Ratu Segala Kain",
       rating: "5.0 (28 ulasan)",
       stock: 3,
-      image: "assets/products/songket-palembang-lepus.jpg"
+      image: "assets/images/products/songket-palembang-lepus.jpg"
     },
     {
       id: "tenun-gringsing-bali",
@@ -679,7 +679,7 @@
       badge: "UNESCO Masterpiece",
       rating: "5.0 (21 ulasan)",
       stock: 2,
-      image: "assets/products/tenun-gringsing-bali.jpg"
+      image: "assets/images/products/tenun-gringsing-bali.jpg"
     },
     {
       id: "tenun-dayak-iban",
@@ -699,7 +699,7 @@
       badge: "Warisan Hutan Hujan",
       rating: "4.9 (17 ulasan)",
       stock: 5,
-      image: "assets/products/tenun-dayak-iban.jpg"
+      image: "assets/images/products/tenun-dayak-iban.jpg"
     }
   ];
 

@@ -787,8 +787,9 @@
             <!-- Kuliner Khas -->
             <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
               <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || '')}', '${prov.culinary ? (prov.culinary.name || '').replace(/'/g, "\\'") : 'Kuliner'}', '${prov.culinary ? (prov.culinary.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-                <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80')}" 
+                <img src="${fixImgPath((prov.culinary && (prov.culinary.photo || prov.culinary.image)) || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80')}" 
                      alt="${prov.culinary ? prov.culinary.name : 'Kuliner'}" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80';"
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-terracotta-300 border border-terracotta-400/30 backdrop-blur-md flex items-center gap-1.5">
@@ -815,8 +816,9 @@
             <!-- Pusaka Khas -->
             <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
               <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Pusaka Khas'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-                <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'assets/products/keris-kamardikan-madura.jpg')}" 
+                <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'assets/images/products/keris-kamardikan-madura.jpg')}" 
                      alt="${prov.weapon ? prov.weapon.name : 'Pusaka Khas'}" 
+                     onerror="this.onerror=null; this.src=fixImgPath('assets/images/products/keris-kamardikan-madura.jpg');"
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/30 backdrop-blur-md flex items-center gap-1.5">

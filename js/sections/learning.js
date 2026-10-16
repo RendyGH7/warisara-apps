@@ -707,7 +707,7 @@
       ];
 
       if (mood === 'happy') {
-        this.arenaMascotImg.src = '../assets/mascot/wari-happy.png';
+        this.arenaMascotImg.src = '../assets/images/mascot/wari-happy.png';
         this.arenaMascotImg.classList.remove('mascot-bounce');
         void this.arenaMascotImg.offsetWidth;
         this.arenaMascotImg.classList.add('mascot-bounce');
@@ -716,13 +716,13 @@
           this.arenaMascotQuote.textContent = customQuote || happyQuotes[Math.floor(Math.random() * happyQuotes.length)];
         }
       } else if (mood === 'thinking') {
-        this.arenaMascotImg.src = '../assets/mascot/wari-thinking.png';
+        this.arenaMascotImg.src = '../assets/images/mascot/wari-thinking.png';
         if (this.arenaMascotStatusText) this.arenaMascotStatusText.textContent = 'Mari Pelajari Bersama';
         if (this.arenaMascotQuote) {
           this.arenaMascotQuote.textContent = customQuote || thinkingQuotes[Math.floor(Math.random() * thinkingQuotes.length)];
         }
       } else {
-        this.arenaMascotImg.src = '../assets/mascot/wari-idle.png';
+        this.arenaMascotImg.src = '../assets/images/mascot/wari-idle.png';
         if (this.arenaMascotStatusText) this.arenaMascotStatusText.textContent = 'Siap Menemani';
         if (this.arenaMascotQuote) {
           this.arenaMascotQuote.textContent = customQuote || idleQuotes[this.currentIndex % idleQuotes.length];
@@ -964,13 +964,13 @@
 
       if (this.modalMascotImg && this.modalMascotSpeech) {
         if (pct >= 80) {
-          this.modalMascotImg.src = '../assets/mascot/wari-happy.png';
+          this.modalMascotImg.src = '../assets/images/mascot/wari-happy.png';
           this.modalMascotSpeech.textContent = `Wah, luar biasa! Anda berhasil meraih ${this.livePoints} poin dari maksimal 1.000 poin! Pengetahuan Anda tentang pusaka Nusantara sungguh membanggakan!`;
         } else if (pct >= 60) {
-          this.modalMascotImg.src = '../assets/mascot/wari-happy.png';
+          this.modalMascotImg.src = '../assets/images/mascot/wari-happy.png';
           this.modalMascotSpeech.textContent = `Kerja bagus! Anda mengantongi ${this.livePoints} poin dari target 1.000 poin. Terus perdalam kecintaan Anda pada warisan budaya leluhur!`;
         } else {
-          this.modalMascotImg.src = '../assets/mascot/wari-thinking.png';
+          this.modalMascotImg.src = '../assets/images/mascot/wari-thinking.png';
           this.modalMascotSpeech.textContent = `Awal penjelajahan yang baik! Anda mengumpulkan ${this.livePoints} poin. Jangan ragu mengulang kembali kuis untuk mengungkap kekayaan tradisi Nusantara!`;
         }
       }

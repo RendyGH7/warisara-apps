@@ -12,9 +12,9 @@
   const BASE = isInPages ? '../' : './';
 
   const IMGS = {
-    idle: BASE + 'assets/mascot/wari-idle-clean.png',
-    happy: BASE + 'assets/mascot/wari-happy-clean.png',
-    thinking: BASE + 'assets/mascot/wari-thinking.png',
+    idle: BASE + 'assets/images/mascot/wari-idle-clean.png',
+    happy: BASE + 'assets/images/mascot/wari-happy-clean.png',
+    thinking: BASE + 'assets/images/mascot/wari-thinking.png',
   };
 
   // Preload gambar maskot

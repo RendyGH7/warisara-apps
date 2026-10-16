@@ -212,7 +212,7 @@ window.WARISARA_PROVINCE_PANEL = {
     if (!this.wariSprite || !this.currentProvinceId) return;
 
     // Switch sprite to happy
-    this.wariSprite.src = "assets/mascot/wari-happy-clean.png";
+    this.wariSprite.src = "assets/images/mascot/wari-happy-clean.png";
     this.wariSprite.classList.add("modal-wari-bounce");
 
     // Play chime sound
@@ -228,7 +228,7 @@ window.WARISARA_PROVINCE_PANEL = {
     if (this.wariTimer) clearTimeout(this.wariTimer);
     this.wariTimer = setTimeout(() => {
       if (this.wariSprite) {
-        this.wariSprite.src = "assets/mascot/wari-idle-clean.png";
+        this.wariSprite.src = "assets/images/mascot/wari-idle-clean.png";
         this.wariSprite.classList.remove("modal-wari-bounce");
       }
     }, 2400);
@@ -421,7 +421,7 @@ window.WARISARA_PROVINCE_PANEL = {
       this.wariSpeech.textContent = `"${facts[0]}"`;
     }
     if (this.wariSprite) {
-      this.wariSprite.src = "assets/mascot/wari-idle-clean.png";
+      this.wariSprite.src = "assets/images/mascot/wari-idle-clean.png";
       this.wariSprite.classList.remove("modal-wari-bounce");
     }
 
