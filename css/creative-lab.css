@@ -55,7 +55,7 @@
 }
 
 .mode-tab-btn.active {
-  background: linear-gradient(135deg, rgba(201, 165, 103, 0.22) 0%, rgba(138, 88, 34, 0.14) 100%);
+  background: linear-gradient(135deg, rgba(201, 165, 103, 0.22) 0%, rgba(116, 66, 8, 0.14) 100%);
   border: 1.5px solid #C9A567;
   color: #FFFDF8;
   box-shadow: 0 8px 24px -6px rgba(201, 165, 103, 0.35), inset 0 0 16px rgba(201, 165, 103, 0.15);

@@ -183,7 +183,7 @@ window.WARISARA_PRELOADER = {
               <defs>
                 <radialGradient id="gununganGoldGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stop-color="#C9A567" stop-opacity="0.18" />
-                  <stop offset="100%" stop-color="#8A5822" stop-opacity="0.02" />
+                  <stop offset="100%" stop-color="#744208" stop-opacity="0.02" />
                 </radialGradient>
               </defs>
             </svg>
