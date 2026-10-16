@@ -317,3 +317,63 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7),
               0 0 20px rgba(201, 165, 103, 0.12);
 }
+
+/* Home Story Filter Tabs & Ripple */
+.home-story-filter-btn {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-story-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border-color: rgba(192, 106, 66, 0.4);
+}
+
+.home-story-filter-btn:active,
+.home-story-filter-btn.btn-press {
+  transform: scale(0.93) translateY(0);
+  transition-duration: 0.08s;
+}
+
+.home-story-filter-btn.active {
+  background: linear-gradient(135deg, #DDA07C 0%, #C06A42 50%, #A8512F 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #DDA07C !important;
+  box-shadow: 0 4px 18px rgba(192, 106, 66, 0.5), 0 0 25px rgba(192, 106, 66, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.home-story-filter-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(192, 106, 66, 0.65), 0 0 30px rgba(192, 106, 66, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+.home-story-filter-btn .home-filter-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: homeRippleAnim 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0%, rgba(192, 106, 66, 0.4) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+@keyframes homeRippleAnim {
+  0% {
+    transform: scale(0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
