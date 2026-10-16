@@ -1,8 +1,8 @@
 :root {
-  --nav-brown-gold: #8A5822;
-  --nav-brown-gold-hover: #9E672B;
-  --nav-brown-gold-border: #B57B3A;
-  --nav-brown-gold-glow: rgba(138, 88, 34, 0.4);
+  --nav-brown-gold: #744208;
+  --nav-brown-gold-hover: #8D520D;
+  --nav-brown-gold-border: #A25B07;
+  --nav-brown-gold-glow: rgba(116, 66, 8, 0.4);
   --nav-text-on-gold: #FFFBF5;
 }
 
@@ -102,32 +102,32 @@ body.modal-open .wari-companion {
 }
 
 #main-navbar.glass-nav.scrolled .brand-glass-badge {
-  background-color: rgba(138, 88, 34, 0.45);
-  border-color: rgba(181, 123, 58, 0.45);
-  box-shadow: 0 2px 8px rgba(138, 88, 34, 0.2);
+  background-color: rgba(116, 66, 8, 0.45);
+  border-color: rgba(162, 91, 7, 0.45);
+  box-shadow: 0 2px 8px rgba(116, 66, 8, 0.2);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 #main-navbar.glass-nav.scrolled .nav-active-pill {
-  background-color: rgba(138, 88, 34, 0.48);
-  border-color: rgba(181, 123, 58, 0.55);
-  box-shadow: 0 3px 10px rgba(138, 88, 34, 0.25);
+  background-color: rgba(116, 66, 8, 0.48);
+  border-color: rgba(162, 91, 7, 0.55);
+  box-shadow: 0 3px 10px rgba(116, 66, 8, 0.25);
 }
 
 #main-navbar.glass-nav.scrolled .btn-nav-icon,
 #main-navbar.glass-nav.scrolled .btn-nav-explore {
-  background-color: rgba(138, 88, 34, 0.45);
-  border-color: rgba(181, 123, 58, 0.45);
-  box-shadow: 0 2px 8px rgba(138, 88, 34, 0.2);
+  background-color: rgba(116, 66, 8, 0.45);
+  border-color: rgba(162, 91, 7, 0.45);
+  box-shadow: 0 2px 8px rgba(116, 66, 8, 0.2);
 }
 
 #main-navbar.glass-nav.scrolled:hover {
   background-color: rgba(10, 8, 6, 0.97);
   backdrop-filter: blur(28px) saturate(200%);
   -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border-color: rgba(181, 123, 58, 0.5);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92), 0 0 25px rgba(138, 88, 34, 0.25);
+  border-color: rgba(162, 91, 7, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92), 0 0 25px rgba(116, 66, 8, 0.25);
 }
 
 #main-navbar.glass-nav.scrolled:hover .brand-glass-badge,
