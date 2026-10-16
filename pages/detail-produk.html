@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="../css/wari-mascot.css?v=15" />
 </head>
 
-<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="detail-produk">
+<body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="ekonomi-kreatif">
 
   <!-- Main Navbar -->
   <header id="main-navbar"
@@ -146,7 +146,7 @@
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
       <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
       <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
-      <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
+      <a href="ekonomi-kreatif.html" class="nav-link active" data-page="ekonomi-kreatif">Produk Lokal</a>
       <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
@@ -199,7 +199,7 @@
         <span class="material-symbols-outlined text-base">handshake</span>
         <span>Pelestari</span>
       </a>
-      <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
+      <a href="ekonomi-kreatif.html" class="mobile-nav-link active py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
         <span class="material-symbols-outlined text-base">shopping_bag</span>
         <span>Produk Lokal</span>
       </a>
@@ -273,19 +273,8 @@
 
     <!-- Konten Detail Produk (Hanya Tampil Jika Sudah Login dengan Google) -->
     <div id="detail-product-content" class="w-full hidden">
-      <!-- Breadcrumb Nav -->
-      <div class="mb-6 flex items-center gap-2 text-xs text-surface/60 overflow-x-auto no-scrollbar">
-      <a href="../index.html" class="hover:text-brass-300 transition-colors">Beranda</a>
-      <span class="material-symbols-outlined text-[14px] text-surface/40">chevron_right</span>
-      <a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors">Produk Lokal</a>
-      <span class="material-symbols-outlined text-[14px] text-surface/40">chevron_right</span>
-      <span id="breadcrumb-category" class="text-surface/80">Kategori</span>
-      <span class="material-symbols-outlined text-[14px] text-surface/40">chevron_right</span>
-      <span id="breadcrumb-title" class="text-brass-300 font-semibold truncate max-w-[200px]">Detail Produk</span>
-    </div>
-
-    <!-- 2-Column Product Showcase Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+      <!-- 2-Column Product Showcase Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
       
       <!-- Kolom Kiri: Galeri Foto Produk -->
       <div class="lg:col-span-6 space-y-4">
@@ -686,8 +675,10 @@
       const titleEl = document.getElementById("detail-name");
       if (titleEl) titleEl.textContent = product.name;
 
-      document.getElementById("breadcrumb-category").textContent = product.category;
-      document.getElementById("breadcrumb-title").textContent = product.name;
+      const bcCategory = document.getElementById("breadcrumb-category");
+      if (bcCategory) bcCategory.textContent = product.category;
+      const bcTitle = document.getElementById("breadcrumb-title");
+      if (bcTitle) bcTitle.textContent = product.name;
 
       document.getElementById("detail-main-img").src = product.image;
       document.getElementById("detail-badge").textContent = product.badge || "Pilihan Kurator";

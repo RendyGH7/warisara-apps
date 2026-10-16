@@ -64,10 +64,12 @@ window.WARISARA_NAVBAR = {
 
     function determineCurrentPage() {
       const bodyPage = document.body.dataset.page;
+      if (bodyPage === "detail-produk") return "ekonomi-kreatif";
       if (bodyPage) return bodyPage;
       const path = window.location.pathname;
       const file = path.split("/").pop() || "index.html";
       const clean = file.replace(".html", "").toLowerCase();
+      if (clean === "detail-produk") return "ekonomi-kreatif";
       if (!clean || clean === "index") return "index";
       return clean;
     }
@@ -76,6 +78,7 @@ window.WARISARA_NAVBAR = {
       if (!href && !dataPage) return false;
       const cleanTarget = (targetId || "").replace(/^module-/, "");
       const cleanHref = href.replace(/^#module-/, "").replace(/^#/, "");
+      if (cleanTarget === "detail-produk" && (dataPage === "ekonomi-kreatif" || cleanHref === "ekonomi-kreatif")) return true;
       if (dataPage && (dataPage === targetId || dataPage === cleanTarget)) return true;
       if (targetId === "index" || targetId === "hero") {
         return (
