@@ -812,26 +812,26 @@
               </div>
             </div>
 
-            <!-- Senjata Tradisional -->
+            <!-- Pusaka Khas -->
             <div class="rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 flex flex-col">
-              <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Senjata Pusaka'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
-                <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80')}" 
-                     alt="${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}" 
+              <div class="relative h-48 sm:h-56 overflow-hidden bg-[#151310] group cursor-pointer" onclick="window.warisaraZoomImg('${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || '')}', '${prov.weapon ? (prov.weapon.name || '').replace(/'/g, "\\'") : 'Pusaka Khas'}', '${prov.weapon ? (prov.weapon.desc || '').replace(/'/g, "\\'") : ''}')" title="Klik untuk perbesar ilustrasi">
+                <img src="${fixImgPath((prov.weapon && (prov.weapon.photo || prov.weapon.image)) || 'assets/products/keris-kamardikan-madura.jpg')}" 
+                     alt="${prov.weapon ? prov.weapon.name : 'Pusaka Khas'}" 
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/30 backdrop-blur-md flex items-center gap-1.5">
                   <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l2 2M16 16l4 4M19 13l2 2"/></svg>
-                  <span>Senjata Khas & Pusaka</span>
+                  <span>Pusaka Khas</span>
                 </span>
                 <div class="absolute bottom-3 left-4 right-4">
                   <h4 class="font-display text-xl sm:text-2xl text-surface font-light drop-shadow">
-                    ${prov.weapon ? prov.weapon.name : 'Senjata Pusaka'}
+                    ${prov.weapon ? prov.weapon.name : 'Pusaka Khas'}
                   </h4>
                 </div>
               </div>
               <div class="p-5 flex-1 flex flex-col justify-between text-xs text-surface/80">
                 <p class="font-light leading-relaxed mb-4">
-                  ${prov.weapon ? prov.weapon.desc : 'Senjata pusaka berfilosofi tinggi yang melambangkan keberanian dan kehormatan adat.'}
+                  ${prov.weapon ? prov.weapon.desc : 'Pusaka adat berfilosofi luhur yang melambangkan keberanian, martabat, dan kearifan para leluhur nusantara.'}
                 </p>
                 <div class="p-3 rounded-xl bg-brass-500/10 border border-brass-500/20 text-[11px] text-brass-200">
                   <strong class="block mb-0.5 text-brass-300 font-semibold">Filosofi Pusaka:</strong>
