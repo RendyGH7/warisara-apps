@@ -577,17 +577,17 @@ Peran dan Pengetahuan Anda:
   function setupScrollPill(messagesEl) {
     let pillEl = null;
     messagesEl.addEventListener('scroll', () => {
+      const parentWrapper = messagesEl.parentElement || messagesEl;
       const distFromBottom = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight;
-      if (distFromBottom > 120) {
+      if (distFromBottom > 90) {
         if (!pillEl) {
           pillEl = document.createElement('button');
+          pillEl.type = 'button';
           pillEl.className = 'wari-scroll-btn';
-          pillEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px">arrow_downward</span> Pesan terbaru';
-          pillEl.style.position = 'sticky';
-          pillEl.style.bottom = '10px';
-          pillEl.style.alignSelf = 'center';
-          messagesEl.after(pillEl);
-          pillEl.addEventListener('click', () => {
+          pillEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px">arrow_downward</span><span>Pesan terbaru</span>';
+          parentWrapper.appendChild(pillEl);
+          pillEl.addEventListener('click', (e) => {
+            e.preventDefault();
             messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
           });
         }
@@ -840,14 +840,16 @@ Peran dan Pengetahuan Anda:
         <span>Halaman: <strong>${pageCtx.name}</strong></span>
       </div>
 
-      <!-- Area Pesan -->
-      <div id="wari-chat-messages" class="wari-chat-messages">
-        <!-- Pesan sambutan awal -->
-        <div class="wari-msg-row bot-msg">
-          <img src="${IMGS.happy}" class="wari-msg-avatar" alt="Wari" />
-          <div class="wari-msg-bubble">
-            ${renderMarkdownToHTML(pageCtx.welcome)}
-            <span class="wari-msg-time">${new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</span>
+      <!-- Area Pesan Wrapper -->
+      <div class="wari-messages-wrapper">
+        <div id="wari-chat-messages" class="wari-chat-messages">
+          <!-- Pesan sambutan awal -->
+          <div class="wari-msg-row bot-msg">
+            <img src="${IMGS.happy}" class="wari-msg-avatar" alt="Wari" />
+            <div class="wari-msg-bubble">
+              ${renderMarkdownToHTML(pageCtx.welcome)}
+              <span class="wari-msg-time">${new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
           </div>
         </div>
       </div>
