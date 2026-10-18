@@ -808,7 +808,7 @@ Peran dan Pengetahuan Anda:
 
     widgetEl.innerHTML = `
       <!-- Tooltip Sapaan -->
-      <div id="wari-ai-tooltip" class="wari-ai-tooltip" title="Klik untuk mengobrol dengan Wari">
+      <div id="wari-ai-tooltip" class="wari-ai-tooltip ${isTooltipDismissed ? 'hidden-tooltip user-dismissed' : 'anim-pop-in'}" title="Klik untuk mengobrol dengan Wari">
         <div class="wari-tooltip-top-bar">
           <span class="wari-tooltip-badge">Wari AI Pemandu</span>
           <button id="wari-tooltip-dismiss" class="wari-tooltip-dismiss" aria-label="Tutup pesan" title="Tutup komentar Wari">
@@ -832,13 +832,16 @@ Peran dan Pengetahuan Anda:
     `;
     document.body.appendChild(widgetEl);
 
-    // Jika user sebelumnya sudah menutup komentar Wari di sesi ini, langsung sembunyikan
+    // Jika user sebelumnya sudah menutup komentar Wari di sesi ini / sudah lewat 15 menit, sembunyikan
     if (isTooltipDismissed) {
       const initialTooltip = document.getElementById('wari-ai-tooltip');
       if (initialTooltip) {
         initialTooltip.classList.add('hidden-tooltip', 'user-dismissed');
         initialTooltip.style.display = 'none';
       }
+    } else {
+      // Jalankan timer 15 menit otomatis menghilang
+      startTooltipAutoDismissTimer();
     }
 
     // 2. Render Jendela Obrolan Mewah (Chat Window)
