@@ -1903,6 +1903,61 @@
 
         </div>
 
+        <!-- Aksara Nusantara Mini Teaser (from pages/belajar.html) -->
+        <div class="max-w-3xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-forest-500/25 bg-[#14120F]/90 shadow-xl space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
+            <div>
+              <div class="text-[10px] uppercase font-bold tracking-wider text-forest-300 flex items-center gap-1.5 mb-1">
+                <span class="material-symbols-outlined text-sm">edit_note</span>
+                <span>Cuplikan Aksara Tradisional Nusantara</span>
+              </div>
+              <h4 id="home-aksara-title" class="font-display text-xl text-surface font-light">
+                Aksara Jawa (Hanacaraka)
+              </h4>
+            </div>
+            <span id="home-aksara-region" class="px-2.5 py-1 rounded-full bg-forest-500/20 text-forest-200 border border-forest-500/30 text-[10px] font-mono uppercase font-bold self-start sm:self-auto">
+              Jawa Tengah & DI Yogyakarta
+            </span>
+          </div>
+
+          <!-- Aksara Selector Tabs -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button class="home-aksara-tab active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-forest-500/30 text-forest-200 border border-forest-400/50 transition-all shadow-sm cursor-pointer" data-aksara="jawa">
+              Aksara Jawa
+            </button>
+            <button class="home-aksara-tab px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-surface/70 border border-white/10 hover:text-white hover:bg-white/10 transition-all cursor-pointer" data-aksara="sunda">
+              Aksara Sunda
+            </button>
+            <button class="home-aksara-tab px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-surface/70 border border-white/10 hover:text-white hover:bg-white/10 transition-all cursor-pointer" data-aksara="batak">
+              Surat Batak
+            </button>
+            <button class="home-aksara-tab px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-surface/70 border border-white/10 hover:text-white hover:bg-white/10 transition-all cursor-pointer" data-aksara="lontara">
+              Aksara Lontara
+            </button>
+          </div>
+
+          <!-- Display Stage -->
+          <div class="p-6 rounded-2xl bg-black/40 border border-white/10 text-center space-y-3">
+            <div id="home-aksara-glyph" class="text-3xl sm:text-5xl text-brass-300 font-serif tracking-widest py-2 select-all">
+              ꦲ ꦤ ꦕ ꦫ ꦏ
+            </div>
+            <div id="home-aksara-latin" class="font-mono text-xs sm:text-sm text-surface/80 tracking-widest uppercase font-semibold">
+              Ha - Na - Ca - Ra - Ka
+            </div>
+            <p id="home-aksara-meaning" class="text-xs text-surface/65 font-light italic max-w-lg mx-auto">
+              "Ada dua utusan yang setia mengemban amanah kebenaran budi pekerti luhur."
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 text-xs">
+            <span class="text-surface/50 text-[11px]">Tersedia 8 varian aksara kepulauan</span>
+            <a href="pages/belajar.html" class="text-forest-300 hover:text-forest-200 font-semibold flex items-center gap-1 group">
+              <span>Buka Laboratorium Aksara Penuh</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -2202,6 +2257,7 @@
   <script src="js/sections/creative-lab.js?v=11"></script>
   <script src="js/sections/home-belajar.js?v=11"></script>
   <script src="js/sections/home-cerita.js?v=11"></script>
+  <script src="js/sections/home-sections.js?v=1"></script>
 
   <script src="js/main.js?v=11"></script>
   <script src="js/config.example.js"></script>
