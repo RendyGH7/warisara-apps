@@ -446,13 +446,49 @@ Peran dan Pengetahuan Anda:
   let triggerAvatar = null;
   let isOpen = false;
   let chatHistory = [];
-  let isThinking = false;
+  // Konfigurasi 15 Menit Otomatis Menghilang
+  const TOOLTIP_LIFETIME_MS = 15 * 60 * 1000; // 15 menit = 900.000 ms
+  let tooltipAutoDismissTimer = null;
   let isTooltipDismissed = false;
+
   try {
     if (sessionStorage.getItem('wari_tooltip_dismissed') === 'true') {
       isTooltipDismissed = true;
+    } else {
+      const shownAt = parseInt(sessionStorage.getItem('wari_tooltip_shown_at') || '0', 10);
+      if (shownAt > 0 && (Date.now() - shownAt >= TOOLTIP_LIFETIME_MS)) {
+        isTooltipDismissed = true;
+        sessionStorage.setItem('wari_tooltip_dismissed', 'true');
+      }
     }
   } catch (e) {}
+
+  function startTooltipAutoDismissTimer() {
+    if (tooltipAutoDismissTimer) {
+      clearTimeout(tooltipAutoDismissTimer);
+      tooltipAutoDismissTimer = null;
+    }
+    if (isTooltipDismissed) return;
+
+    let remainingMs = TOOLTIP_LIFETIME_MS;
+    try {
+      let shownAt = parseInt(sessionStorage.getItem('wari_tooltip_shown_at') || '0', 10);
+      if (!shownAt) {
+        shownAt = Date.now();
+        sessionStorage.setItem('wari_tooltip_shown_at', shownAt.toString());
+      }
+      const elapsed = Date.now() - shownAt;
+      if (elapsed >= TOOLTIP_LIFETIME_MS) {
+        dismissMascotTooltip();
+        return;
+      }
+      remainingMs = TOOLTIP_LIFETIME_MS - elapsed;
+    } catch (e) {}
+
+    tooltipAutoDismissTimer = setTimeout(() => {
+      dismissMascotTooltip();
+    }, remainingMs);
+  }
 
   function setMascotMood(mood) {
     const src = IMGS[mood] || IMGS.idle;
