@@ -34,8 +34,57 @@
   -webkit-backdrop-filter: blur(20px);
   cursor: pointer;
   transform-origin: calc(100% - 44px) 100%;
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   animation: wariTooltipFloat 4s ease-in-out infinite;
+}
+
+/* Animasi Muncul Bouncy & Spring (Pop-In) */
+.wari-ai-tooltip.anim-pop-in {
+  animation: wariTooltipPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             wariTooltipFloat 4s ease-in-out 0.55s infinite;
+}
+
+/* Animasi Menghilang Halus & Menyusut (Pop-Out) */
+.wari-ai-tooltip.anim-pop-out {
+  animation: wariTooltipPopOut 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  pointer-events: none !important;
+}
+
+@keyframes wariTooltipPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.45) translateY(24px) rotate(-3.5deg);
+    filter: blur(5px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-5px) rotate(1deg);
+    filter: blur(0);
+  }
+  85% {
+    transform: scale(0.98) translateY(1.5px) rotate(-0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes wariTooltipPopOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+    filter: blur(0);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-3px) rotate(-1deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.45) translateY(22px) rotate(4deg);
+    filter: blur(5px);
+  }
 }
 
 .wari-ai-tooltip:hover {
