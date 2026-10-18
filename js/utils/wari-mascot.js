@@ -1134,14 +1134,23 @@ Peran dan Pengetahuan Anda:
       if (typeof e.preventDefault === 'function') e.preventDefault();
       if (typeof e.stopPropagation === 'function') e.stopPropagation();
     }
+    if (tooltipAutoDismissTimer) {
+      clearTimeout(tooltipAutoDismissTimer);
+      tooltipAutoDismissTimer = null;
+    }
     isTooltipDismissed = true;
     try {
       sessionStorage.setItem('wari_tooltip_dismissed', 'true');
     } catch (err) {}
     const tooltipEl = document.getElementById('wari-ai-tooltip');
-    if (tooltipEl) {
-      tooltipEl.classList.add('hidden-tooltip', 'user-dismissed');
-      tooltipEl.style.display = 'none';
+    if (tooltipEl && !tooltipEl.classList.contains('hidden-tooltip')) {
+      tooltipEl.classList.remove('anim-pop-in');
+      tooltipEl.classList.add('anim-pop-out');
+      setTimeout(() => {
+        tooltipEl.classList.add('hidden-tooltip', 'user-dismissed');
+        tooltipEl.style.display = 'none';
+        tooltipEl.classList.remove('anim-pop-out');
+      }, 380);
     }
   }
 
@@ -1152,7 +1161,13 @@ Peran dan Pengetahuan Anda:
     }
     const tooltipEl = document.getElementById('wari-ai-tooltip');
     if (tooltipEl && !tooltipEl.classList.contains('hidden-tooltip')) {
-      tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
+      tooltipEl.classList.remove('anim-pop-in');
+      tooltipEl.classList.add('anim-pop-out');
+      setTimeout(() => {
+        tooltipEl.classList.add('hidden-tooltip', 'modal-suppressed');
+        tooltipEl.style.display = 'none';
+        tooltipEl.classList.remove('anim-pop-out');
+      }, 380);
     }
   }
 
@@ -1160,9 +1175,11 @@ Peran dan Pengetahuan Anda:
     if (isTooltipDismissed) return;
     if (isAnyModalOpen()) return;
     const tooltipEl = document.getElementById('wari-ai-tooltip');
-    if (tooltipEl && !isOpen && tooltipEl.classList.contains('hidden-tooltip')) {
-      tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed', 'user-dismissed');
+    if (tooltipEl && !isOpen && (tooltipEl.classList.contains('hidden-tooltip') || tooltipEl.style.display === 'none')) {
+      tooltipEl.classList.remove('hidden-tooltip', 'modal-suppressed', 'user-dismissed', 'anim-pop-out');
       tooltipEl.style.display = '';
+      tooltipEl.classList.add('anim-pop-in');
+      startTooltipAutoDismissTimer();
     }
   }
 
