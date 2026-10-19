@@ -883,17 +883,21 @@
             : `<span class="inline-flex items-center gap-1 text-[10px] font-medium text-forest-300 bg-black/60 px-2 py-0.5 rounded-full border border-forest-500/30 backdrop-blur-md shadow-sm">📜 WBTb</span>`;
 
           const illustrationSvg = (window.getMakerIllustrationSvg && window.getMakerIllustrationSvg(maker.id)) || "";
+          const photoPath = `../assets/images/Pelestari/${maker.provinceId}.jpg`;
 
           return `
             <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden ${isPlaying ? 'maker-card-playing' : ''}"
                      data-maker-id="${maker.id}" data-province-id="${maker.provinceId}">
               
-              <!-- Dedicated Craft Illustration Banner -->
-              <div class="relative w-full h-44 sm:h-48 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
-                <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-500 ease-out">
-                  ${illustrationSvg}
+              <!-- Dedicated Craft Illustration & Realistic Portrait Banner -->
+              <div class="relative w-full h-48 sm:h-52 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
+                <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                  <img src="${photoPath}" alt="${maker.name} - ${maker.role}" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <div class="w-full h-full" style="display: none;">
+                    ${illustrationSvg}
+                  </div>
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-black/10 to-transparent pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-black/15 to-transparent pointer-events-none"></div>
 
                 <!-- Floating Badges on Illustration -->
                 <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
@@ -921,10 +925,8 @@
                   <!-- Maestro Profile Header with Illustrated Avatar -->
                   <div class="flex items-start gap-3.5 mb-3">
                     <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all overflow-hidden relative">
-                      <span class="z-10">${initials}</span>
-                      <div class="absolute inset-0 opacity-30 mix-blend-overlay">
-                        ${illustrationSvg}
-                      </div>
+                      <img src="${photoPath}" alt="${maker.name}" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'" />
+                      <span class="absolute z-0 font-bold">${initials}</span>
                     </div>
                     <div class="flex-1 min-w-0">
                       <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
@@ -1108,10 +1110,14 @@
         const modalBanner = document.getElementById("modal-maker-illustration-banner");
         if (modalBanner) {
           const svg = (window.getMakerIllustrationSvg && window.getMakerIllustrationSvg(maker.id)) || "";
+          const photoPath = `../assets/images/Pelestari/${maker.provinceId}.jpg`;
           modalBanner.innerHTML = `
-            <div class="w-full h-full relative">
-              ${svg}
-              <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-transparent to-black/20 pointer-events-none"></div>
+            <div class="w-full h-full relative overflow-hidden bg-[#120F0D]">
+              <img src="${photoPath}" alt="${maker.name}" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+              <div class="w-full h-full" style="display: none;">
+                ${svg}
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-transparent to-black/30 pointer-events-none"></div>
               <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs z-10">
                 <span class="px-3 py-1 rounded-full bg-black/75 text-brass-300 font-semibold border border-brass-400/40 backdrop-blur-md shadow">
                   ✨ ${maker.craft}
