@@ -803,15 +803,21 @@
               <div class="w-8 h-8 rounded-xl bg-forest-500/20 border border-forest-500/30 flex items-center justify-center text-forest-300 flex-shrink-0 mt-0.5">
                 <span class="material-symbols-outlined text-base">person</span>
               </div>
-              <div class="min-w-0 flex-1 space-y-1">
-                <div class="flex items-center justify-between gap-2">
+              <div class="min-w-0 flex-1 space-y-1.5">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
                   <span class="text-[10px] font-bold uppercase tracking-wider text-forest-300 font-mono">Pesan Luhur Pelestari Tradisi</span>
                   <span class="text-[10px] text-surface/50 font-mono">${prov.maker.role}</span>
                 </div>
                 <p class="italic text-xs sm:text-sm text-surface/90 font-light leading-relaxed">
                   &ldquo;${prov.maker.quote}&rdquo;
                 </p>
-                <span class="text-xs font-semibold text-brass-300 block pt-0.5">— ${prov.maker.name}</span>
+                <div class="flex items-center justify-between gap-2 pt-1 flex-wrap">
+                  <span class="text-xs font-semibold text-brass-300">— ${prov.maker.name}</span>
+                  <a href="makers.html?provinsi=${prov.id}" class="inline-flex items-center gap-1 text-[11px] font-semibold text-brass-400 hover:text-brass-200 transition-colors">
+                    <span>Lihat di Halaman Pelestari</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                  </a>
+                </div>
               </div>
             </div>
           ` : ''}
