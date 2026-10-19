@@ -153,6 +153,79 @@
       border-color: rgba(201, 165, 103, 0.8) !important;
       box-shadow: 0 0 25px rgba(201, 165, 103, 0.25) !important;
     }
+    /* Floating Glassmorphism Deck Card & Island Pills (Matching Warisara Heritage Theme) */
+    .filter-deck-card {
+      position: relative;
+      background: rgba(22, 18, 14, 0.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201, 165, 103, 0.18);
+      border-radius: 20px;
+      box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.65), 
+                  0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .filter-deck-card:hover {
+      border-color: rgba(201, 165, 103, 0.28);
+    }
+    .filter-deck-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.45), rgba(230, 211, 167, 0.6), rgba(201, 165, 103, 0.45), transparent);
+      pointer-events: none;
+    }
+    .island-group-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 3px;
+      flex-shrink: 0;
+    }
+    .island-filter-pill {
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 9999px;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(246, 241, 231, 0.72);
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .island-filter-pill:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border-color: rgba(201, 165, 103, 0.3);
+      transform: translateY(-1px);
+    }
+    .island-filter-pill.active {
+      background: #C9A567 !important;
+      color: #120E0B !important;
+      font-weight: 600 !important;
+      border-color: #E2C58F !important;
+      box-shadow: 0 2px 10px rgba(201, 165, 103, 0.3) !important;
+    }
+    .island-filter-pill .pill-count {
+      font-size: 10px;
+      opacity: 0.55;
+      font-weight: 500;
+      margin-left: 1px;
+    }
+    .island-filter-pill.active .pill-count {
+      opacity: 0.85;
+      font-weight: 700;
+      color: #120E0B;
+    }
   </style>
 </head>
 
@@ -302,59 +375,90 @@
     </section>
 
     <!-- EXPLORATION TOOLBAR: LIVE SEARCH + 38 PROVINCES SELECTOR + ISLAND CHIPS -->
-    <section class="relative z-20 bg-[#151310] border-y border-white/10 py-4 px-4 sm:px-6 shadow-lg">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <!-- Live Search Input -->
-        <div class="relative flex-1 max-w-md">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-surface/40 text-lg pointer-events-none">search</span>
-          <input type="text" id="maker-search-input" placeholder="Cari maestro, kerajinan, bahan, atau provinsi..." class="w-full pl-10 pr-9 py-2 rounded-full bg-white/5 border border-white/15 focus:border-brass-400 text-surface placeholder:text-surface/40 text-xs focus:outline-none transition-all">
-          <button id="maker-clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm cursor-pointer" title="Bersihkan Pencarian">
-            <span class="material-symbols-outlined text-base">close</span>
-          </button>
-        </div>
+    <section class="filter-bar-section py-4 px-4 sm:px-6 bg-[#181512]">
+      <div class="max-w-6xl mx-auto">
+        <!-- Floating Glassmorphism Deck Card -->
+        <div class="filter-deck-card p-3 sm:p-4 rounded-2xl border border-brass-400/20 bg-[#16120E]/80 backdrop-blur-2xl shadow-xl space-y-3">
+          
+          <!-- Baris 1: Kolom Pencarian + Quick Selector 38 Provinsi + Reset -->
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+            <!-- Search Input -->
+            <div class="relative flex-1 max-w-full md:max-w-md">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/80 text-base pointer-events-none">search</span>
+              <input type="text" id="maker-search-input" placeholder="Cari maestro, kerajinan, bahan, atau provinsi..."
+                class="w-full pl-10 pr-9 py-2 text-xs rounded-full bg-black/40 border border-white/[0.08] text-surface placeholder:text-surface/35 focus:outline-none focus:border-brass-400/70 focus:bg-black/60 focus:ring-2 focus:ring-brass-400/15 transition-all shadow-inner" />
+              <button id="maker-clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm p-1 transition-colors cursor-pointer" title="Hapus pencarian">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
 
-        <!-- 38 Provinces Quick Selector Dropdown -->
-        <div class="flex items-center gap-2 flex-shrink-0">
-          <div class="relative w-full md:w-64">
-            <select id="maker-province-select" class="appearance-none w-full pl-3.5 pr-8 py-2 rounded-full bg-white/5 border border-white/15 hover:border-brass-400 focus:border-brass-400 text-surface text-xs focus:outline-none cursor-pointer truncate">
-              <option value="" class="bg-[#181512] text-surface">Pilih dari 38 Provinsi...</option>
-            </select>
-            <span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-surface/50 text-sm">expand_more</span>
+            <!-- Quick Selector 38 Provinsi & Reset -->
+            <div class="flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
+              <div class="relative w-full sm:w-64">
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/70 text-sm pointer-events-none">location_on</span>
+                <select id="maker-province-select" class="appearance-none w-full pl-9 pr-8 py-2 text-xs rounded-full bg-black/40 border border-white/[0.08] hover:border-brass-400/50 focus:border-brass-400/70 focus:bg-black/60 focus:ring-2 focus:ring-brass-400/15 text-surface focus:outline-none cursor-pointer truncate shadow-inner transition-all">
+                  <option value="" class="bg-[#181512] text-surface">Pilih dari 38 Provinsi Nusantara...</option>
+                </select>
+                <span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-surface/50 text-sm">unfold_more</span>
+              </div>
+
+              <!-- Quick Reset Button -->
+              <button id="maker-reset-btn" class="hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-brass-400/30 bg-brass-400/10 hover:bg-brass-400/25 text-brass-300 text-xs font-medium cursor-pointer transition-all whitespace-nowrap shadow-sm" title="Kembalikan Filter ke Awal">
+                <span class="material-symbols-outlined text-sm">restart_alt</span>
+                <span>Reset</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Quick Reset Button -->
-          <button id="maker-reset-btn" class="hidden text-xs text-brass-300 hover:text-brass-200 underline underline-offset-4 whitespace-nowrap py-1 px-1 cursor-pointer">
-            Reset
-          </button>
-        </div>
-      </div>
+          <!-- Baris 2: Navigasi Wilayah Berdasarkan Gugus Kepulauan -->
+          <div class="pt-2.5 border-t border-white/[0.06] flex items-center overflow-x-auto scrollbar-none">
+            <div id="maker-island-filters" class="flex items-center gap-1.5 flex-nowrap min-w-max py-0.5 w-full">
+              <!-- Tab Semua -->
+              <button class="maker-island-tab island-filter-pill active" data-island="all" title="Semua Wilayah Nusantara">
+                <span class="material-symbols-outlined text-xs">travel_explore</span>
+                <span>Semua</span>
+                <span class="pill-count">38</span>
+              </button>
 
-      <!-- Island Filter Chips Row -->
-      <div class="max-w-6xl mx-auto mt-2.5 overflow-x-auto pb-1 pt-0.5 scrollbar-none flex items-center gap-1.5 sm:gap-2 text-xs">
-        <button class="maker-island-tab active px-3.5 py-1.5 rounded-full border border-brass-400/40 bg-brass-400/20 text-brass-300 font-semibold whitespace-nowrap transition-all cursor-pointer" data-island="all">
-          Semua (38)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Sumatera">
-          Sumatera (10)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Jawa">
-          Jawa (6)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Bali & Nusa Tenggara">
-          Bali & Nusa Tenggara (3)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Kalimantan">
-          Kalimantan (5)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Sulawesi">
-          Sulawesi (6)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Maluku">
-          Maluku (2)
-        </button>
-        <button class="maker-island-tab px-3.5 py-1.5 rounded-full border border-white/10 hover:border-white/25 bg-white/5 text-surface/75 hover:text-surface font-medium whitespace-nowrap transition-all cursor-pointer" data-island="Papua">
-          Papua (6)
-        </button>
+              <div class="island-group-divider"></div>
+
+              <!-- 5 Pulau Utama -->
+              <button class="maker-island-tab island-filter-pill" data-island="Sumatera" title="Provinsi di Wilayah Sumatera">
+                <span>Sumatera</span>
+                <span class="pill-count">10</span>
+              </button>
+              <button class="maker-island-tab island-filter-pill" data-island="Jawa" title="Provinsi di Wilayah Jawa">
+                <span>Jawa</span>
+                <span class="pill-count">6</span>
+              </button>
+              <button class="maker-island-tab island-filter-pill" data-island="Kalimantan" title="Provinsi di Wilayah Kalimantan">
+                <span>Kalimantan</span>
+                <span class="pill-count">5</span>
+              </button>
+              <button class="maker-island-tab island-filter-pill" data-island="Sulawesi" title="Provinsi di Wilayah Sulawesi">
+                <span>Sulawesi</span>
+                <span class="pill-count">6</span>
+              </button>
+              <button class="maker-island-tab island-filter-pill" data-island="Papua" title="Provinsi di Wilayah Papua">
+                <span>Papua</span>
+                <span class="pill-count">6</span>
+              </button>
+
+              <div class="island-group-divider"></div>
+
+              <!-- Kepulauan Lainnya -->
+              <button class="maker-island-tab island-filter-pill" data-island="Bali & Nusa Tenggara" title="Provinsi di Wilayah Bali & Nusa Tenggara">
+                <span>Bali & NT</span>
+                <span class="pill-count">3</span>
+              </button>
+              <button class="maker-island-tab island-filter-pill" data-island="Maluku" title="Provinsi di Wilayah Maluku">
+                <span>Maluku</span>
+                <span class="pill-count">2</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -362,13 +466,8 @@
     <section class="py-10 px-4 sm:px-6 bg-[#181512] min-h-[60vh]">
       <div class="max-w-6xl mx-auto">
         <!-- Live Count Indicator -->
-        <div class="flex items-center justify-between text-xs text-surface/60 mb-6 px-1">
-          <div>
-            Menampilkan <strong id="makers-count-number" class="text-brass-300 font-semibold">38</strong> dari 38 Maestro Kebudayaan
-          </div>
-          <div id="makers-active-filter-label" class="text-surface/50 text-[11px] hidden sm:block">
-            Seluruh 38 Provinsi Nusantara
-          </div>
+        <div class="text-xs text-surface/60 mb-6 px-1">
+          Menampilkan <strong id="makers-count-number" class="text-brass-300 font-semibold">38</strong> dari 38 Maestro Kebudayaan
         </div>
 
         <!-- Empty State -->
@@ -410,6 +509,9 @@
 
         <!-- Modal Scrollable Content -->
         <div class="p-5 sm:p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-surface/85">
+          <!-- Dedicated Craft Illustration Banner -->
+          <div id="modal-maker-illustration-banner" class="w-full h-44 sm:h-52 rounded-2xl overflow-hidden relative bg-[#120F0D] border border-brass-400/25 shadow-lg"></div>
+
           <!-- Quote block -->
           <blockquote id="modal-maker-detail-quote" class="font-display italic text-base sm:text-lg text-brass-200 border-l-2 border-brass-400 pl-4 py-2 leading-relaxed bg-brass-400/5 rounded-r-xl">
             "Kutipan wejangan maestro."
@@ -624,6 +726,7 @@
 
   <script src="../data/products.js"></script>
   <script src="../data/makers.js"></script>
+  <script src="../data/maker-illustrations.js"></script>
   <script src="../js/utils/helpers.js"></script>
   <script src="../js/utils/page-transition.js?v=47"></script>
   <script src="../js/utils/lantern-cursor.js"></script>
@@ -637,7 +740,6 @@
       const gridEl = document.getElementById("makers-grid");
       const emptyStateEl = document.getElementById("makers-empty-state");
       const countEl = document.getElementById("makers-count-number");
-      const filterLabelEl = document.getElementById("makers-active-filter-label");
       const searchInput = document.getElementById("maker-search-input");
       const clearSearchBtn = document.getElementById("maker-clear-search");
       const provinceSelect = document.getElementById("maker-province-select");
@@ -752,17 +854,6 @@
 
         // Update Counter
         if (countEl) countEl.textContent = filtered.length;
-        if (filterLabelEl) {
-          let label = "Seluruh 38 Provinsi Nusantara";
-          if (selectedProvinceId) {
-            const p = makers.find(m => m.provinceId === selectedProvinceId);
-            label = p ? `Provinsi: ${p.provinceName}` : "Provinsi Terpilih";
-          } else if (selectedIsland !== "all") {
-            label = `Wilayah: ${selectedIsland}`;
-          }
-          if (searchQuery) label += ` • Kata Kunci: "${searchQuery}"`;
-          filterLabelEl.textContent = label;
-        }
 
         // Toggle Reset Button
         const hasActiveFilter = selectedIsland !== "all" || selectedProvinceId !== "" || searchQuery.length > 0;
@@ -788,87 +879,103 @@
           const initials = getInitials(maker.name);
           const isPlaying = activeSpeakingMakerId === maker.id;
           const statusBadge = maker.unescoOrStatus.includes("UNESCO")
-            ? `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-brass-300 bg-brass-400/10 px-2 py-0.5 rounded-full border border-brass-400/25">👑 UNESCO</span>`
-            : `<span class="inline-flex items-center gap-1 text-[10px] font-medium text-forest-300 bg-forest-500/10 px-2 py-0.5 rounded-full border border-forest-500/25">📜 WBTb</span>`;
+            ? `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-brass-300 bg-black/60 px-2 py-0.5 rounded-full border border-brass-400/30 backdrop-blur-md shadow-sm">👑 UNESCO</span>`
+            : `<span class="inline-flex items-center gap-1 text-[10px] font-medium text-forest-300 bg-black/60 px-2 py-0.5 rounded-full border border-forest-500/30 backdrop-blur-md shadow-sm">📜 WBTb</span>`;
+
+          const illustrationSvg = (window.getMakerIllustrationSvg && window.getMakerIllustrationSvg(maker.id)) || "";
 
           return `
-            <article class="glass-card p-5 sm:p-6 flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden ${isPlaying ? 'maker-card-playing' : ''}"
+            <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden ${isPlaying ? 'maker-card-playing' : ''}"
                      data-maker-id="${maker.id}" data-province-id="${maker.provinceId}">
               
-              <!-- Subtle card background flare -->
-              <div class="absolute -right-12 -top-12 w-32 h-32 bg-brass-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-brass-500/10 transition-colors"></div>
+              <!-- Dedicated Craft Illustration Banner -->
+              <div class="relative w-full h-44 sm:h-48 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
+                <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-500 ease-out">
+                  ${illustrationSvg}
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-black/10 to-transparent pointer-events-none"></div>
 
-              <div>
-                <!-- Top Badges Row -->
-                <div class="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
-                  <a href="jelajahi.html?provinsi=${maker.provinceId}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/15 text-brass-300 border border-brass-400/30 hover:bg-brass-400/25 transition-colors z-10" title="Jelajahi Kebudayaan ${maker.provinceName} di 38 Provinsi">
-                    <span class="material-symbols-outlined text-xs">location_on</span>
-                    <span>${maker.provinceName} • ${maker.island}</span>
+                <!-- Floating Badges on Illustration -->
+                <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
+                  <a href="jelajahi.html?provinsi=${maker.provinceId}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md hover:bg-brass-400/20 transition-colors" title="Jelajahi Kebudayaan ${maker.provinceName} di 38 Provinsi">
+                    <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
+                    <span>${maker.provinceName}</span>
                   </a>
                   ${statusBadge}
                 </div>
 
-                <!-- Maestro Profile Header -->
-                <div class="flex items-start gap-3.5 mb-3">
-                  <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all">
-                    ${initials}
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
-                      ${maker.name}
-                    </h3>
-                    <p class="text-xs text-brass-300 font-medium truncate mt-0.5">${maker.role}</p>
-                    <p class="text-[11px] text-surface/50 mt-0.5 flex items-center gap-1 truncate">
-                      <span>${maker.location}</span>
-                      <span>•</span>
-                      <span class="text-surface/70 font-mono">${maker.experience}</span>
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Keahlian Craft Badge -->
-                <div class="mb-3">
-                  <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-forest-500/15 text-forest-300 border border-forest-500/25">
+                <!-- Craft Signature Pill at bottom of illustration -->
+                <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] z-10">
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-black/75 text-surface/90 border border-white/15 backdrop-blur-md truncate max-w-[70%] shadow-sm">
                     ${maker.craft}
                   </span>
-                </div>
-
-                <!-- Wisdom Quote Box -->
-                <div class="relative pl-3 border-l-2 border-brass-400/60 py-1 mb-4 bg-white/[0.02] rounded-r-lg pr-2">
-                  <p class="text-xs text-surface/85 font-light italic leading-relaxed line-clamp-3">
-                    "${maker.quote}"
-                  </p>
-                </div>
-
-                <!-- Signature & Materials Preview -->
-                <div class="pt-3 border-t border-white/10 space-y-2 mb-4 text-xs">
-                  <div>
-                    <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">✨ Mahakarya Ikonik</span>
-                    <p class="text-[11px] text-surface/80 line-clamp-1 leading-snug">${maker.signature}</p>
-                  </div>
-                  <div>
-                    <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">🌿 Bahan Baku Tradisi</span>
-                    <p class="text-[11px] text-surface/60 line-clamp-1 leading-snug">${maker.materials}</p>
-                  </div>
+                  <span class="text-[10px] font-mono text-brass-300/90 bg-black/75 px-2 py-0.5 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
+                    ${maker.island}
+                  </span>
                 </div>
               </div>
 
-              <!-- Card Action Row -->
-              <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 mt-auto z-10">
-                <button class="btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full ${isPlaying ? 'bg-brass-400 text-ink font-bold' : 'bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold'} border border-brass-400/30 text-[11px] transition-all cursor-pointer"
-                        data-maker-id="${maker.id}" title="Dengarkan Petuah Suara">
-                  <span class="material-symbols-outlined text-sm">${isPlaying ? 'stop_circle' : 'volume_up'}</span>
-                  <span>${isPlaying ? 'Berhenti' : 'Petuah'}</span>
-                </button>
+              <!-- Card Body Content -->
+              <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <!-- Maestro Profile Header with Illustrated Avatar -->
+                  <div class="flex items-start gap-3.5 mb-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all overflow-hidden relative">
+                      <span class="z-10">${initials}</span>
+                      <div class="absolute inset-0 opacity-30 mix-blend-overlay">
+                        ${illustrationSvg}
+                      </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
+                        ${maker.name}
+                      </h3>
+                      <p class="text-xs text-brass-300 font-medium truncate mt-0.5">${maker.role}</p>
+                      <p class="text-[11px] text-surface/50 mt-0.5 flex items-center gap-1 truncate">
+                        <span>${maker.location}</span>
+                        <span>•</span>
+                        <span class="text-surface/70 font-mono">${maker.experience}</span>
+                      </p>
+                    </div>
+                  </div>
 
-                <div class="flex items-center gap-1.5">
-                  <a href="jelajahi.html?provinsi=${maker.provinceId}" class="p-1.5 rounded-full hover:bg-white/10 text-surface/60 hover:text-forest-300 transition-colors" title="Jelajahi Budaya ${maker.provinceName} di 38 Provinsi">
-                    <span class="material-symbols-outlined text-base">travel_explore</span>
-                  </a>
-                  <button class="btn-card-detail flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-[11px] font-semibold transition-colors cursor-pointer" data-maker-id="${maker.id}">
-                    <span>Kisah Lengkap</span>
-                    <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                  <!-- Wisdom Quote Box -->
+                  <div class="relative pl-3 border-l-2 border-brass-400/60 py-1 mb-4 bg-white/[0.02] rounded-r-lg pr-2">
+                    <p class="text-xs text-surface/85 font-light italic leading-relaxed line-clamp-3">
+                      "${maker.quote}"
+                    </p>
+                  </div>
+
+                  <!-- Signature & Materials Preview -->
+                  <div class="pt-3 border-t border-white/10 space-y-2 mb-4 text-xs">
+                    <div>
+                      <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">✨ Mahakarya Ikonik</span>
+                      <p class="text-[11px] text-surface/80 line-clamp-1 leading-snug">${maker.signature}</p>
+                    </div>
+                    <div>
+                      <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">🌿 Bahan Baku Tradisi</span>
+                      <p class="text-[11px] text-surface/60 line-clamp-1 leading-snug">${maker.materials}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Action Row -->
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 mt-auto z-10">
+                  <button class="btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full ${isPlaying ? 'bg-brass-400 text-ink font-bold' : 'bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold'} border border-brass-400/30 text-[11px] transition-all cursor-pointer"
+                          data-maker-id="${maker.id}" title="Dengarkan Petuah Suara">
+                    <span class="material-symbols-outlined text-sm">${isPlaying ? 'stop_circle' : 'volume_up'}</span>
+                    <span>${isPlaying ? 'Berhenti' : 'Petuah'}</span>
                   </button>
+
+                  <div class="flex items-center gap-1.5">
+                    <a href="jelajahi.html?provinsi=${maker.provinceId}" class="p-1.5 rounded-full hover:bg-white/10 text-surface/60 hover:text-forest-300 transition-colors" title="Jelajahi Budaya ${maker.provinceName} di 38 Provinsi">
+                      <span class="material-symbols-outlined text-base">travel_explore</span>
+                    </a>
+                    <button class="btn-card-detail flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-[11px] font-semibold transition-colors cursor-pointer" data-maker-id="${maker.id}">
+                      <span>Kisah Lengkap</span>
+                      <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
@@ -997,6 +1104,26 @@
         document.getElementById("modal-maker-detail-signature").textContent = maker.signature;
         document.getElementById("modal-maker-detail-materials").textContent = maker.materials;
 
+        // Render illustration banner in modal
+        const modalBanner = document.getElementById("modal-maker-illustration-banner");
+        if (modalBanner) {
+          const svg = (window.getMakerIllustrationSvg && window.getMakerIllustrationSvg(maker.id)) || "";
+          modalBanner.innerHTML = `
+            <div class="w-full h-full relative">
+              ${svg}
+              <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-transparent to-black/20 pointer-events-none"></div>
+              <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs z-10">
+                <span class="px-3 py-1 rounded-full bg-black/75 text-brass-300 font-semibold border border-brass-400/40 backdrop-blur-md shadow">
+                  ✨ ${maker.craft}
+                </span>
+                <span class="px-2.5 py-1 rounded-full bg-black/75 text-surface/90 font-mono text-[11px] border border-white/15 backdrop-blur-md shadow">
+                  ${maker.provinceName} • ${maker.island}
+                </span>
+              </div>
+            </div>
+          `;
+        }
+
         if (modalLinkProvince) {
           modalLinkProvince.href = `jelajahi.html?provinsi=${maker.provinceId}`;
         }
@@ -1068,13 +1195,8 @@
       // Island Tabs Handling
       islandTabs.forEach(tab => {
         tab.addEventListener("click", () => {
-          islandTabs.forEach(t => {
-            t.classList.remove("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-            t.classList.add("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-          });
-
-          tab.classList.add("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-          tab.classList.remove("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
+          islandTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
 
           selectedIsland = tab.dataset.island;
           selectedProvinceId = "";
@@ -1095,13 +1217,7 @@
               // Switch Island Tab to match province
               selectedIsland = m.island;
               islandTabs.forEach(t => {
-                if (t.dataset.island === m.island) {
-                  t.classList.add("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-                  t.classList.remove("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-                } else {
-                  t.classList.remove("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-                  t.classList.add("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-                }
+                t.classList.toggle("active", t.dataset.island === m.island);
               });
             }
           }
@@ -1132,13 +1248,7 @@
         if (provinceSelect) provinceSelect.value = "";
 
         islandTabs.forEach(t => {
-          if (t.dataset.island === "all") {
-            t.classList.add("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-            t.classList.remove("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-          } else {
-            t.classList.remove("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-            t.classList.add("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-          }
+          t.classList.toggle("active", t.dataset.island === "all");
         });
 
         renderMakers();
@@ -1166,13 +1276,7 @@
 
           // Update island tab styling
           islandTabs.forEach(t => {
-            if (t.dataset.island === targetMaker.island) {
-              t.classList.add("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-              t.classList.remove("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-            } else {
-              t.classList.remove("active", "border-brass-400/40", "bg-brass-400/20", "text-brass-300", "font-semibold");
-              t.classList.add("border-white/10", "bg-white/5", "text-surface/75", "font-medium");
-            }
+            t.classList.toggle("active", t.dataset.island === targetMaker.island);
           });
 
           // Update select

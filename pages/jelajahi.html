@@ -403,8 +403,15 @@
     </section>
 
     <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
-    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/55 backdrop-blur-md items-center justify-center p-2 sm:p-4 lg:p-6 overflow-y-auto overscroll-contain">
-      <div id="province-detail-modal" class="modal-container w-full max-w-6xl bg-[#14110E]/90 border border-brass-400/35 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh] backdrop-blur-2xl">
+    <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/60 backdrop-blur-md items-center justify-center p-3 pt-7 sm:p-5 sm:pt-8 lg:p-8 lg:pt-8 overflow-y-auto overscroll-contain">
+      <div class="relative w-full max-w-6xl my-auto pointer-events-none">
+        
+        <!-- Outside Close Button (Positioned outside popup box at top right) -->
+        <button class="province-modal-close-trigger pointer-events-auto absolute -top-4 right-1 sm:-top-5 sm:-right-2 lg:-top-5 lg:-right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-brass-500 text-surface/90 hover:text-ink border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 cursor-pointer" aria-label="Tutup Modal" title="Tutup">
+          <span class="material-symbols-outlined text-xl sm:text-2xl">close</span>
+        </button>
+
+        <div id="province-detail-modal" class="pointer-events-auto modal-container w-full bg-[#14110E]/90 border border-brass-400/35 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh] backdrop-blur-2xl">
         
         <!-- LEFT PANEL: VISUAL SHOWCASE & PROVINCE IDENTITY -->
         <div class="lg:w-[44%] w-full flex flex-col relative border-b lg:border-b-0 lg:border-r border-white/10 bg-[#100D0B]/85 flex-shrink-0">
@@ -429,9 +436,6 @@
                 </button>
                 <button id="modal-voice-greeting-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Dengarkan Sapaan Lokal">
                   <span class="material-symbols-outlined text-lg">volume_up</span>
-                </button>
-                <button class="province-modal-close-trigger lg:hidden p-2 rounded-full bg-black/50 hover:bg-white/20 text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" aria-label="Tutup">
-                  <span class="material-symbols-outlined text-lg">close</span>
                 </button>
               </div>
             </div>
@@ -486,20 +490,8 @@
         <!-- RIGHT PANEL: INFORMATION & ENCYCLOPEDIA PAVILION -->
         <div class="lg:w-[56%] w-full flex flex-col bg-[#14110E]/85 backdrop-blur-xl overflow-hidden flex-1 min-h-0">
           
-          <!-- Top Desktop Header Bar with Tabs & Close -->
-          <div class="px-5 py-3.5 bg-[#120F0D]/90 border-b border-white/10 flex items-center justify-between gap-3 flex-shrink-0">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-brass-400 animate-pulse"></span>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-300">Paviliun Ensiklopedia & Budaya</span>
-            </div>
-
-            <button class="province-modal-close-trigger hidden lg:flex p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors cursor-pointer" aria-label="Tutup">
-              <span class="material-symbols-outlined text-xl">close</span>
-            </button>
-          </div>
-
-          <!-- Navigation Tabs Bar -->
-          <div class="px-5 py-2.5 bg-[#100D0B]/90 border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
+          <!-- Navigation Tabs Bar (At the very top of right panel) -->
+          <div class="px-5 py-3 sm:py-3.5 bg-[#100D0B]/90 border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
             <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
               <span class="material-symbols-outlined text-sm">auto_stories</span>
               <span>Kisah & Identitas</span>
@@ -555,36 +547,37 @@
               </div>
             </div>
 
-          </div>
+            <!-- Bottom Navigation & CTA (At the very bottom of content, not fixed) -->
+            <div class="pt-5 mt-6 border-t border-white/10 flex items-center justify-between gap-3 text-xs flex-wrap">
+              <div class="flex items-center gap-2">
+                <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
+                  <span class="material-symbols-outlined text-sm">arrow_back</span>
+                  <span>Sebelumnya</span>
+                </button>
+                <button id="modal-nav-next" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
+                  <span>Selanjutnya</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+              </div>
 
-          <!-- Bottom Footer Navigation & CTA -->
-          <div class="p-3.5 px-5 border-t border-white/10 bg-[#120F0D] flex items-center justify-between gap-3 text-xs flex-shrink-0">
-            <div class="flex items-center gap-2">
-              <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
-                <span class="material-symbols-outlined text-sm">arrow_back</span>
-                <span>Sebelumnya</span>
-              </button>
-              <button id="modal-nav-next" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
-                <span>Selanjutnya</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </button>
+              <div class="flex items-center gap-3">
+                <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold text-xs">
+                  <span class="material-symbols-outlined text-sm">storefront</span>
+                  <span>Beli Produk</span>
+                </a>
+                <button class="province-modal-close-trigger px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors cursor-pointer">
+                  Tutup
+                </button>
+              </div>
             </div>
 
-            <div class="flex items-center gap-3">
-              <a href="ekonomi-kreatif.html" class="inline-flex items-center gap-1.5 text-brass-300 hover:text-brass-200 font-semibold text-xs">
-                <span class="material-symbols-outlined text-sm">storefront</span>
-                <span>Beli Produk</span>
-              </a>
-              <button class="province-modal-close-trigger px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors cursor-pointer">
-                Tutup
-              </button>
-            </div>
           </div>
 
         </div>
 
       </div>
     </div>
+  </div>
 
     <!-- PASPOR PENJELAJAH MODAL (PASSPORT BOOK 38 STEMPEL) -->
     <div id="passport-book-modal" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-5">
