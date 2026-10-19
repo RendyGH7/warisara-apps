@@ -1704,9 +1704,9 @@
       }
     });
 
-    // Check query param e.g. ?province=aceh or ?province=bali
+    // Check query param e.g. ?province=aceh or ?provinsi=aceh
     var urlParams = new URLSearchParams(window.location.search);
-    var provParam = urlParams.get('province');
+    var provParam = urlParams.get('province') || urlParams.get('provinsi');
     if (provParam && window.PROVINCES_DATA && window.PROVINCES_DATA[provParam]) {
       setTimeout(function () {
         openProvinceModal(provParam);
