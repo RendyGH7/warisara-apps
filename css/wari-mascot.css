@@ -1481,6 +1481,10 @@ body.page-entering-active .wari-ai-widget,
   .wari-ai-widget {
     bottom: 18px;
     right: 18px;
+    max-width: calc(100vw - 36px);
+  }
+  .wari-ai-tooltip {
+    max-width: min(260px, calc(100vw - 44px));
   }
   .wari-trigger-mascot-wrap {
     width: 68px;

@@ -1308,10 +1308,30 @@ Peran dan Pengetahuan Anda:
       isTooltipDismissed = false;
       try {
         sessionStorage.removeItem('wari_tooltip_dismissed');
+        sessionStorage.setItem('wari_tooltip_shown_at', Date.now().toString());
       } catch (e) {}
       showMascotTooltip();
     },
     dismissTooltip: dismissMascotTooltip,
+    setTooltipTimeout: function (minutes) {
+      if (typeof minutes === 'number' && minutes > 0) {
+        if (tooltipAutoDismissTimer) clearTimeout(tooltipAutoDismissTimer);
+        const ms = minutes * 60 * 1000;
+        tooltipAutoDismissTimer = setTimeout(() => {
+          dismissMascotTooltip();
+        }, ms);
+      }
+    },
+    getTooltipRemainingSeconds: function () {
+      try {
+        const shownAt = parseInt(sessionStorage.getItem('wari_tooltip_shown_at') || '0', 10);
+        if (!shownAt || isTooltipDismissed) return 0;
+        const elapsed = Date.now() - shownAt;
+        return Math.max(0, Math.round((TOOLTIP_LIFETIME_MS - elapsed) / 1000));
+      } catch (e) {
+        return 0;
+      }
+    },
     setMood: setMascotMood
   };
 
