@@ -418,3 +418,49 @@ body.modal-open #mobile-nav-drawer {
   background: rgba(201, 165, 103, 0.09);
   box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.22);
 }
+
+/* ==========================================================================
+   Creative Lab Studio Mobile Responsive Enhancements
+   ========================================================================== */
+@media (max-width: 640px) {
+  .studio-mode-switcher-container {
+    padding: 0.35rem !important;
+    gap: 0.35rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .mode-tab-btn {
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.72rem !important;
+    border-radius: 0.75rem !important;
+    min-height: 44px !important;
+  }
+
+  .mode-tab-btn .mode-icon-badge {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+
+  .motif-card-select {
+    padding: 0.5rem !important;
+    min-height: 44px !important;
+  }
+
+  .canting-layout-btn {
+    min-height: 42px !important;
+    padding: 0.45rem 0.6rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .studio-color-pill {
+    width: 2.15rem !important;
+    height: 2.15rem !important;
+  }
+
+  .studio-glass-panel,
+  .studio-glass-panel-accent {
+    padding: 1rem !important;
+    border-radius: 1.15rem !important;
+  }
+}
+
