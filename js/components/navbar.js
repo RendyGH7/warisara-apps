@@ -373,26 +373,60 @@ window.WARISARA_NAVBAR = {
       handleNavbarBackground();
     }
 
-    if (mobileMenuBtn && mobileNavDrawer) {
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
-        mobileNavDrawer.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
-      });
+    let mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
+    if (!mobileNavBackdrop && mobileNavDrawer) {
+      mobileNavBackdrop = document.createElement("div");
+      mobileNavBackdrop.id = "mobile-nav-backdrop";
+      mobileNavBackdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(mobileNavBackdrop);
     }
 
-    const closeMobileNav = () => {
-      if (mobileNavDrawer) {
-        mobileNavDrawer.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
-        mobileNavDrawer.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
-      }
+    const openMobileNav = () => {
+      if (!mobileNavDrawer) return;
+      mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+      mobileNavDrawer.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+      document.body.classList.add("mobile-nav-open");
     };
+
+    const closeMobileNav = () => {
+      if (!mobileNavDrawer) return;
+      mobileNavDrawer.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      mobileNavDrawer.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+      document.body.classList.remove("mobile-nav-open");
+    };
+
+    if (mobileMenuBtn && mobileNavDrawer) {
+      mobileMenuBtn.addEventListener("click", openMobileNav);
+    }
 
     if (mobileNavClose) {
       mobileNavClose.addEventListener("click", closeMobileNav);
     }
 
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.addEventListener("click", closeMobileNav);
+    }
+
+    document.addEventListener("click", (e) => {
+      if (
+        document.body.classList.contains("mobile-nav-open") &&
+        mobileNavDrawer &&
+        !mobileNavDrawer.contains(e.target) &&
+        mobileMenuBtn &&
+        !mobileMenuBtn.contains(e.target)
+      ) {
+        closeMobileNav();
+      }
+    });
+
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && mobileNavDrawer && mobileNavDrawer.classList.contains("translate-y-0")) {
+      if (e.key === "Escape" && document.body.classList.contains("mobile-nav-open")) {
+        closeMobileNav();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1280 && document.body.classList.contains("mobile-nav-open")) {
         closeMobileNav();
       }
     });

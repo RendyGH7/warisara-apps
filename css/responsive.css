@@ -1,3 +1,11 @@
+/* ==========================================================================
+   WARISARA — Comprehensive Responsive & Mobile UI/UX Design System
+   Optimasi Lengkap: Tata Letak, Proporsi, Tipografi, Kontrol Sentuh & Aksesibilitas
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Global Reset & Focus Guards
+   -------------------------------------------------------------------------- */
 :focus-visible:not(svg):not(svg *):not(.map-province-group):not(.map-province-path):not(.map-marker) {
   outline: 2px solid var(--color-brass-400);
   outline-offset: 3px;
@@ -10,12 +18,14 @@ svg, svg *, .map-province-group, .map-province-path, .map-marker {
 
 *, *::before, *::after {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
 html {
   overflow-x: clip;
   width: 100%;
   max-width: 100vw;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,8 +33,10 @@ body {
   overflow-y: visible;
   width: 100%;
   max-width: 100vw;
+  position: relative;
 }
 
+/* Safe-area insets untuk Notch iPhone & Navigasi Gestur Android */
 @supports (padding: max(0px)) {
   #main-navbar.glass-nav {
     top: max(0.75rem, env(safe-area-inset-top));
@@ -34,14 +46,94 @@ body {
     top: max(4.5rem, calc(env(safe-area-inset-top) + 3.75rem));
     padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
+
+  .wari-ai-widget {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+  }
   
   footer {
     padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   }
 }
 
+/* --------------------------------------------------------------------------
+   1. Mobile Nav Drawer & Dark Frosted Backdrop
+   -------------------------------------------------------------------------- */
+#mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 5, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 45;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.mobile-nav-open #mobile-nav-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.mobile-nav-open {
+  overflow: hidden !important;
+}
+
+#mobile-nav-drawer {
+  background: rgba(16, 13, 10, 0.96) !important;
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(201, 165, 103, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(201, 165, 103, 0.1) !important;
+  border-radius: 1.5rem !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+#mobile-nav-drawer .mobile-nav-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  touch-action: manipulation;
+}
+
+/* --------------------------------------------------------------------------
+   2. Mobile Province Dropdown Glass Styling
+   -------------------------------------------------------------------------- */
+.glass-select,
+#mobile-province-select {
+  background-color: rgba(22, 18, 14, 0.94) !important;
+  border: 1px solid rgba(201, 165, 103, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #FBF8F2 !important;
+  font-weight: 600;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23C9A567' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 1.25rem !important;
+  padding-right: 2.75rem !important;
+  min-height: 44px;
+  font-size: 0.8rem !important;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-select:focus,
+#mobile-province-select:focus {
+  border-color: #C9A567 !important;
+  box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.25), 0 6px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Small Mobile Devices (<= 480px) — Smartphone Portrait
+   -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
-  
+
+  /* Spacing & Container */
   .section-spacer {
     padding-top: 3.25rem !important;
     padding-bottom: 3.25rem !important;
@@ -50,114 +142,251 @@ body {
   .section-container {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
+  /* Fixed Glass Navbar on Small Phones */
   #main-navbar.glass-nav {
-    width: 95% !important;
-    padding: 0.45rem 0.75rem !important;
-    top: 0.65rem !important;
+    width: calc(100% - 1.25rem) !important;
+    padding: 0.4rem 0.75rem !important;
+    top: max(0.5rem, env(safe-area-inset-top)) !important;
   }
 
-  #hero-intro-block h1 {
-    font-size: 1.95rem !important;
-    line-height: 1.1 !important;
+  #main-navbar .navbar-brand-emblem {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+
+  #main-navbar .btn-nav-icon {
+    width: 2.15rem !important;
+    height: 2.15rem !important;
+  }
+
+  #mobile-menu-btn {
+    padding: 0.4rem !important;
+  }
+
+  /* Hero Section */
+  #hero {
+    min-height: 100svh !important;
+    padding-top: max(4.85rem, calc(env(safe-area-inset-top) + 4.25rem)) !important;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  #hero-intro-block h1#hero-title {
+    font-size: clamp(1.75rem, 8.5vw, 2.35rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.08em !important;
     margin-bottom: 0.15rem !important;
+    white-space: nowrap !important;
   }
 
-  #hero-intro-block p.font-display {
-    font-size: 0.95rem !important;
+  .hero-title-rule {
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .hero-title-rule-line {
+    width: 36px !important;
+  }
+
+  .hero-tagline-wrapper {
+    height: 1.45em !important;
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
     margin-bottom: 0.35rem !important;
   }
 
-  #hero-intro-block p.text-surface\/70 {
-    font-size: 0.75rem !important;
-    line-height: 1.45 !important;
-  }
-
   #hero-map-wrapper {
-    min-height: 280px !important;
-    padding: 0 !important;
+    min-height: 180px !important;
+    padding: 0.25rem 0 !important;
   }
 
   #map-container {
-    max-height: 52vh !important;
-    aspect-ratio: 982 / 410 !important;
+    max-height: 46svh !important;
+    aspect-ratio: 982 / 390 !important;
+    width: 100% !important;
   }
 
   .map-marker {
-    r: 4.5px !important;
-    stroke-width: 1.2px !important;
+    r: 4.8px !important;
+    stroke-width: 1.4px !important;
   }
 
-  #province-modal-overlay {
-    padding: 0 !important;
+  /* Section Headings & Category Badges */
+  h2.font-display {
+    font-size: clamp(1.55rem, 6.5vw, 2.15rem) !important;
+    line-height: 1.25 !important;
   }
 
-  #province-detail-modal {
-    min-height: 100vh !important;
-    max-height: none !important;
-    border-radius: 0 !important;
+  .section-container .max-w-3xl > div:first-child {
+    font-size: 0.65rem !important;
+    padding: 0.3rem 0.7rem !important;
+    letter-spacing: 0.04em !important;
+    max-width: 100% !important;
   }
 
-  #province-detail-modal .px-6 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  #province-detail-modal h2#modal-province-name {
-    font-size: 1.65rem !important;
-  }
-
-  #modal-province-statement {
-    font-size: 0.95rem !important;
-    line-height: 1.35 !important;
-  }
-
+  /* Cards & Glass Containers */
   .glass-card-light,
   .glass-card,
   .glass-panel {
-    padding: 1.25rem !important;
-    border-radius: 1rem !important;
+    padding: 1.15rem !important;
+    border-radius: 1.15rem !important;
   }
 
-  h2.font-display {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
+  /* Paspor Penjelajah Mini Teaser */
+  #module-jelajahi .glass-card:first-of-type {
+    padding: 1.15rem !important;
   }
 
-  .canvas-container {
-    max-width: 290px !important;
-    padding: 0.5rem !important;
+  #module-jelajahi .glass-card:first-of-type a {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 44px !important;
   }
 
-  #creative-canvas {
-    max-width: 270px !important;
-    max-height: 270px !important;
+  /* 4 Province Cards */
+  #module-jelajahi .grid.grid-cols-1 .relative.h-44 {
+    height: 11.5rem !important;
   }
 
-  .pattern-option-btn {
-    padding: 0.5rem 0.25rem !important;
-    font-size: 0.6875rem !important;
+  /* Makers Cards & Wisdom Audio */
+  .home-play-wisdom-btn {
+    min-height: 44px !important;
+    padding: 0.65rem 0.75rem !important;
   }
 
-  .color-btn {
-    width: 2rem !important;
-    height: 2rem !important;
+  #module-makers blockquote {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    padding-left: 0.65rem !important;
   }
 
-  .quiz-option-btn {
-    padding: 0.75rem !important;
+  /* Ekonomi Kreatif Product Cards */
+  #module-ekonomi-kreatif .relative.h-48 {
+    height: 12rem !important;
+  }
+
+  .home-chat-maker-btn {
+    min-height: 42px !important;
+    padding: 0.55rem 0.75rem !important;
     font-size: 0.75rem !important;
   }
 
+  /* Creative Lab Canvas Studio */
+  .lab-view-tab {
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.6875rem !important;
+    min-height: 38px !important;
+  }
+
+  #creative-canvas,
+  #creative-mockup-canvas {
+    max-width: 280px !important;
+    max-height: 280px !important;
+  }
+
+  .lab-motif-btn {
+    padding: 0.55rem 0.35rem !important;
+    font-size: 0.7rem !important;
+    min-height: 40px !important;
+  }
+
+  .lab-palette-btn {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  #lab-density-slider {
+    height: 8px !important;
+  }
+
+  #canvas-download-btn,
+  #module-creative-lab a.rounded-full {
+    min-height: 44px !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Mini Quiz Budaya */
+  #mini-quiz-card {
+    padding: 1.25rem !important;
+  }
+
+  #mini-quiz-card .flex.flex-wrap.items-center.justify-between {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  #mini-quiz-question-text {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .quiz-option-btn {
+    min-height: 48px !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  #mini-quiz-next-btn,
+  #mini-quiz-restart-btn {
+    min-height: 44px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Aksara Nusantara Widget */
+  .home-aksara-tab {
+    padding: 0.4rem 0.65rem !important;
+    font-size: 0.6875rem !important;
+    min-height: 36px !important;
+  }
+
+  #home-aksara-glyph {
+    font-size: clamp(1.85rem, 7vw, 2.65rem) !important;
+    word-break: break-all;
+  }
+
+  /* Cerita Module & In-Page Modal */
+  .home-story-filter-btn {
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.7rem !important;
+    min-height: 38px !important;
+  }
+
+  #home-story-modal-overlay > div {
+    max-height: 94vh !important;
+    border-radius: 1.25rem !important;
+  }
+
+  #home-story-prev-page,
+  #home-story-next-page,
+  #home-story-read-full-btn {
+    min-height: 42px !important;
+  }
+
+  #home-story-quote-toast {
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 5.5rem !important;
+    max-width: none !important;
+  }
+
+  /* Footer */
   footer {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
-    font-size: 0.6875rem !important;
+    padding-top: 2.75rem !important;
+    padding-bottom: 2rem !important;
+    font-size: 0.72rem !important;
   }
 
-  footer .flex-col {
-    gap: 0.75rem !important;
+  .app-download-btn {
+    width: 100% !important;
+    min-height: 48px !important;
   }
 
   footer .flex.items-center.gap-6 {
@@ -165,8 +394,30 @@ body {
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  /* Province Detail Modal Overlay on Mobile */
+  #province-modal-overlay {
+    padding: 0 !important;
+  }
+
+  #province-detail-modal {
+    min-height: 100vh !important;
+    border-radius: 0 !important;
+  }
+
+  #province-detail-modal header.sticky {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  #modal-province-name {
+    font-size: 1.65rem !important;
+  }
 }
 
+/* --------------------------------------------------------------------------
+   4. Medium Mobile & Phablet (481px - 640px)
+   -------------------------------------------------------------------------- */
 @media (min-width: 481px) and (max-width: 640px) {
   .section-spacer {
     padding-top: 3.75rem !important;
@@ -178,29 +429,36 @@ body {
     padding-right: 1.25rem !important;
   }
 
-  #hero-intro-block h1 {
-    font-size: 2.35rem !important;
+  #hero-intro-block h1#hero-title {
+    font-size: clamp(2.15rem, 6.5vw, 2.75rem) !important;
+    letter-spacing: 0.1em !important;
     margin-bottom: 0.2rem !important;
   }
 
   #map-container {
-    max-height: 58vh !important;
+    max-height: 54vh !important;
   }
 
   .map-marker {
     r: 4.2px !important;
   }
 
-  .canvas-container {
-    max-width: 340px !important;
-  }
-
-  #creative-canvas {
+  #creative-canvas,
+  #creative-mockup-canvas {
     max-width: 320px !important;
     max-height: 320px !important;
   }
+
+  .home-play-wisdom-btn,
+  .home-chat-maker-btn,
+  .quiz-option-btn {
+    min-height: 44px;
+  }
 }
 
+/* --------------------------------------------------------------------------
+   5. Tablet & Foldables (641px - 1024px)
+   -------------------------------------------------------------------------- */
 @media (min-width: 641px) and (max-width: 1024px) {
   .section-spacer {
     padding-top: 4.5rem !important;
@@ -208,17 +466,17 @@ body {
   }
 
   .section-container {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
   }
 
   #main-navbar.glass-nav {
     width: 90% !important;
-    max-width: 50rem !important;
+    max-width: 52rem !important;
   }
 
   #map-container {
-    max-height: 68vh !important;
+    max-height: 66vh !important;
     aspect-ratio: 982 / 390 !important;
   }
 
@@ -226,60 +484,17 @@ body {
     r: 3.8px !important;
   }
 
-  #featured-heritage-grid,
-  #makers-grid,
-  #products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1.25rem !important;
-  }
-
-  #province-detail-modal {
-    max-width: 100% !important;
-  }
-
-  #modal-heritage-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
-
-  .canvas-container {
-    max-width: 380px !important;
-  }
-
-  #creative-canvas {
+  #creative-canvas,
+  #creative-mockup-canvas {
     max-width: 360px !important;
     max-height: 360px !important;
   }
 }
 
-@media (min-width: 1025px) {
-  #map-container {
-    max-height: 78vh !important;
-    aspect-ratio: 982 / 390 !important;
-  }
-
-  .map-marker {
-    r: 3.5px !important;
-  }
-}
-
-@media (min-width: 1440px) {
-  .section-container {
-    max-width: 1440px !important;
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
-  }
-
-  #hero-map-wrapper {
-    max-width: 1440px !important;
-  }
-
-  #map-container {
-    max-height: 80vh !important;
-  }
-}
-
+/* --------------------------------------------------------------------------
+   6. Touchscreen & Coarse Pointer Optimizations
+   -------------------------------------------------------------------------- */
 @media (hover: none) and (pointer: coarse) {
-  
   .map-tooltip {
     display: none !important;
   }
@@ -293,17 +508,36 @@ body {
     cursor: pointer;
   }
 
+  /* Jaminan Ukuran Sentuh Minimal 44px Sesuai Pedoman Apple HIG & Material Design */
   .btn-primary,
   .btn-secondary,
   .btn-glass-gold,
   .btn-nav-explore,
   .pattern-option-btn,
   .color-btn,
-  .quiz-option-btn {
+  .quiz-option-btn,
+  .home-play-wisdom-btn,
+  .home-chat-maker-btn,
+  .lab-motif-btn,
+  .home-aksara-tab,
+  .home-story-filter-btn {
     min-height: 44px;
+  }
+
+  /* Micro-interaction Tap Scale */
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-glass-gold:active,
+  .quiz-option-btn:active,
+  .home-play-wisdom-btn:active,
+  .home-chat-maker-btn:active {
+    transform: scale(0.97);
   }
 }
 
+/* --------------------------------------------------------------------------
+   7. Reduced Motion Support (Aksesibilitas)
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
