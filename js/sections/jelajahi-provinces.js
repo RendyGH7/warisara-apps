@@ -673,17 +673,7 @@
             ${raw}
           </p>
 
-          <!-- Key Cultural Highlights Badges -->
-          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-400/10 border border-brass-400/25 text-brass-300 text-[11px] font-medium">
-              <span class="material-symbols-outlined text-sm">temple_buddhist</span>
-              <span>Akar Peradaban Nusantara</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-400/10 border border-brass-400/25 text-brass-300 text-[11px] font-medium">
-              <span class="material-symbols-outlined text-sm">auto_stories</span>
-              <span>Kearifan &amp; Tradisi Luhur</span>
-            </span>
-          </div>
+
 
           ${(prov.historyFull && prov.historyFull !== raw) ? `
             <!-- Smooth Expand Narrative -->
@@ -954,14 +944,46 @@
     var wariTipEl = document.getElementById('modal-wari-tip-text');
     if (wariTipEl) {
       var wariGreetings = {
-        'aceh': 'Di Aceh, kopi disaring berulang kali secara unik dengan saringan kain panjang (Kopi Tarik)! Rasanya gurih dan mantap!',
-        'sumatera-barat': 'Di Ranah Minang, rumah Gadang dirancang tahan gempa dengan tiang yang tidak ditanam ke tanah melainkan bertumpu pada batu sandi!',
-        'dki-jakarta': 'Ondel-ondel dulunya berfungsi sebagai penolak bala dan pelindung desa dari roh jahat lho!',
-        'jawa-barat': 'Alat musik Angklung dari Jawa Barat telah diakui UNESCO sebagai Karya Agung Warisan Budaya Lisan dan Takbenda Manusia sejak 2010!',
-        'bali': 'Sistem pengairan Subak di Bali bukan sekadar irigasi, tapi perwujudan filosofi Tri Hita Karana (harmoni manusia, alam, dan Tuhan)!',
-        'di-yogyakarta': 'Tahu nggak? Garis lurus imaginer menghubungkan Gunung Merapi, Tugu Pal Putih, Keraton Yogyakarta, dan Pantai Parangkusumo!'
+        'aceh': 'Eh lo tau gak, di Aceh Kopi Khop itu diminum pake gelas kebalik! Terus sedotannya diselipin di bawah bibir gelas biar ampas kopinya ngendap di dasar. Unik parah kan?',
+        'sumatera-utara': 'Gokil nih! Danau Toba tuh aslinya kaldera supervolcano purba raksasa yang letusannya 74.000 tahun lalu sempet bikin bumi ngalamin winter volkanik bertahun-tahun!',
+        'sumatera-barat': 'Fun fact gokil: Tiang Rumah Gadang Minang tuh sama sekali gak ditanam ke tanah ataupun pake paku besi, cuma ditaruh di atas batu ceper! Makanya pas gempa malah luwes goyang doang, anti roboh!',
+        'riau': 'Tau gak sih, Candi Muara Takus di Riau itu satu-satunya candi Buddha kuno di Sumatera yang full dibikin dari paduan tanah liat, batu sungai, dan batu pasir kuning! Langka abis di Nusantara!',
+        'kepulauan-riau': 'Pulau Penyengat di Kepri mungil banget, tapi Masjid Raya Sultan Riau di situ dindingnya beneran direkatkan pake putih telur ayam asli zaman baheula lho! Sampe sekarang masih kokoh bet!',
+        'jambi': 'Kawasan Candi Muaro Jambi tuh luasnya 8 kali lipat dari Borobudur lho, bro! Zaman abad ke-7 ini semacam "kampus internasional" tempat para biksu Asia belajar filsafat!',
+        'sumatera-selatan': 'Pempek Palembang aslinya dulu disebut "Kelesan"! Dinamain Pempek gara-gara dulunya banyak dijual sama encik-encik Tionghoa yang dipanggil "Apek". Lama-lama warga manggilnya "Pek, empek!" deh!',
+        'bengkulu': 'Bunga Rafflesia arnoldii di Bengkulu tuh parasit sejati: gak punya akar, daun, ataupun batang! Pas mekar cuma bertahan 5–7 hari sebelum akhirnya layu menghitam!',
+        'lampung': 'Kain Tapis Lampung zaman dulu disulam pake lelehan emas murni asli! Makin tebel sulaman emasnya, makin sultan kasta keluarga pemakainya di upacara adat!',
+        'bangka-belitung': 'Batu granit raksasa di pantai Belitung tuh usianya udah 200 juta tahun lebih dari era Dinosaurus (Zaman Trias)! Terbentuk dari magma beku jauh di bawah kerak bumi yang keangkat!',
+        'banten': 'Tau gak lu? Warga Baduy Dalam di Banten anti banget pake sabun, pasta gigi kimia, ataupun kendaraan bermotor! Kalo bepergian ke Jakarta puluhan kilometer pun mereka jalan kaki tanpa alas kaki sama sekali, beneran living eco-life!',
+        'dki-jakarta': 'Ondel-ondel Betawi aslinya punya nama kuno "Barongan" dan mukanya dulu sengaja dibikin serem buat nakut-nakutin wabah penyakit dan roh jahat, baru belakangan jadi ramah dan senyum!',
+        'jawa-barat': 'Desa Adat Ciptagelar di Sukabumi punya lumbung padi (Leuit) yang bisa nyimpen stok gabah awet sampe puluhan tahun tanpa busuk dan anti kutu berkat teknik sirkulasi bambu warisan karuhun!',
+        'jawa-tengah': 'Gamelan Jawa punya frekuensi laras Slendro & Pelog yang gak ada padanannya di tangga nada piano barat! Getarannya terbukti secara sains bikin gelombang otak jadi super rileks kayak meditasi!',
+        'di-yogyakarta': 'Kraton Yogya, Tugu Pal Putih, Gunung Merapi, dan Laut Selatan itu ngebentuk garis imajiner lurus 100% presisi dari utara ke selatan! Konsep kosmologi filosofis yang udah ada ratusan tahun!',
+        'jawa-timur': 'Api Biru (Blue Fire) di Kawah Ijen Banyuwangi itu fenomena super langka yang cuma ada DUA di dunia: satu di Jawa Timur, satunya lagi di Islandia! Asap gas belerangnya kebakar pas ketemu oksigen!',
+        'bali': 'Pas Hari Raya Nyepi di Bali, seluruh pulau gelap gulita total 24 jam sampe bandara internasional tutup! Efeknya, langit malam Bali jadi salah satu spot ngeliat Galaksi Bima Sakti (Milky Way) terbersih di dunia!',
+        'nusa-tenggara-barat': 'Madu Sumbawa tuh asalnya dari lebah hutan raksasa (Apis dorsata) yang bersarang di pohon-pohon raksasa setinggi 40 meter! Punya kadar air super rendah jadi gak bakal basi seumur hidup!',
+        'nusa-tenggara-timur': 'Danau Kelimutu di Flores punya tiga kawah danau yang warnanya bisa berubah-ubah sendiri dari biru, toska, hijau, sampe merah darah tanpa aba-aba gara-gara reaksi kimia gas mineral vulkanik di bawahnya!',
+        'kalimantan-barat': 'Tugu Khatulistiwa di Pontianak tuh titik nol derajat bumi! Pas momen Kulminasi Matahari (tiap Maret & September), bayangan lu bakal HILANG total pas siang bolong tepat di bawah terik matahari!',
+        'kalimantan-tengah': 'Di Kalteng ada ritual sakral "Tiwah", yaitu upacara kematian suku Dayak Ngaju yang biayanya bisa ratusan juta rupiah! Tulang belulang leluhur dibersihin dan dipindahin ke rumah kecil panggung bernama Sandung!',
+        'kalimantan-selatan': 'Pasar Terapung Lok Baintan udah eksis dari abad ke-14! Uniknya, sampe sekarang ibu-ibu pedagang jukung (perahu kayu) masih sering transaksi pake sistem barter hasil kebun tanpa uang kertas!',
+        'kalimantan-timur': 'Sungai Mahakam itu rumah bagi Pesut Mahakam, mamalia lumba-lumba air tawar langka berkepala bulat yang cuma tersisa puluhan ekor di alam liar dunia!',
+        'kalimantan-utara': 'Kaltara punya dataran tinggi Krayan yang bisa ngasilin "Garam Gunung"! Padahal jauh di pedalaman gunung dan gak ada laut, tapi air asin keluar dari sumur mata air alami purba jutaan tahun lalu!',
+        'sulawesi-utara': 'Tarsius di Hutan Tangkoko Sulut itu primata terkecil di dunia! Beratnya cuma seukuran genggaman tangan, matanya gak bisa noleh tapi lehernya bisa muter 180 derajat kayak burung hantu!',
+        'gorontalo': 'Lo bisa renang bareng Hiu Paus (Whale Shark) raksasa jinak di Desa Botubarani cuma beberapa meter dari bibir pantai! Gak perlu repot naik boat ke tengah samudra luas!',
+        'sulawesi-tengah': 'Lembah Bada di Poso punya puluhan patung megalitikum raksasa misterius berusia ribuan tahun mirip patung Moai di Pulau Paskah! Sampe sekarang asal-usul siapa pembuatnya masih jadi misteri ilmuwan!',
+        'sulawesi-barat': 'Perahu Sandeq suku Mandar adalah perahu layar cadik kayu tercepat di dunia tanpa mesin! Kecepatan layarnya bisa nembus 20-30 knot cuma modal hembusan angin laut!',
+        'sulawesi-selatan': 'Gak ada paku besi sama sekali di pembuatan Kapal Pinisi Bulukumba! Semua pasak dibikin dari kayu ulin keras, dan para Panrita Lopi (empu perahu) bikin kapal megah ini cuma pake insting leluhur tanpa cetak biru kertas!',
+        'sulawesi-tenggara': 'Layang-layang "Kaghati Kolope" di Pulau Muna udah berumur 4.000 tahun lebih dan dinobatkan sebagai layang-layang tertua di dunia, terbuat dari anyaman daun ubi hutan dan serat nanas!',
+        'maluku': 'Dulu di abad ke-17, segenggam buah pala dan cengkeh dari Kepulauan Banda Maluku harganya lebih mahal dari emas murni! Sampe-sampe Belanda rela nuker Pulau Manhattan (New York) sama Inggris demi pulau kecil di Banda!',
+        'maluku-utara': 'Batu bara dan rempah terbaik Kesultanan Ternate-Tidore dulu jadi magnet penjelajah dunia kayak Magellan dan Francis Drake berlayar ngelilingi bola bumi pertama kali!',
+        'papua': 'Danau Sentani punya ikan endemik hiu gergaji air tawar purba (Pristis microdon)! Sayangnya udah super langka, tapi motifnya abadi di lukisan kulit kayu Khombouw suku Asei!',
+        'papua-barat': 'Pegunungan Arfak punya Burung Pintar (Vogelkop Bowerbird) yang jantannya jago banget "dekorasi rumah"! Dia ngumpulin bunga warna-warni, buah, sampe sayap kumbang mengkilap rapi cuma buat ngegebet betinanya!',
+        'papua-selatan': 'Suku Korowai di Papua Selatan terkenal ahli ngebangun rumah panggung di pucuk pohon rimba setinggi 30 hingga 50 meter dari tanah buat ngehindar dari serangan binatang buas dan banjir rawa!',
+        'papua-tengah': 'Gletser salju abadi Puncak Carstensz Pyramid (Puncak Jaya) di Papua Tengah adalah satu-satunya salju tropis di wilayah khatulistiwa Pasifik! Fenomena alam yang ajaib banget!',
+        'papua-pegunungan': 'Lembah Baliem punya tradisi Mumi hitam berusia ratusan tahun (Mumi Kurulu)! Jenazah kepala perang diawetkan pake ramuan herbal alami dan pengasapan di dalam Honai selama berbulan-bulan!',
+        'papua-barat-daya': 'Raja Ampat itu episentrum segitiga terumbu karang dunia (Coral Triangle)! 75% dari seluruh spesies koral keras yang ada di planet bumi ini ngumpul di perairan Raja Ampat!'
       };
-      wariTipEl.textContent = wariGreetings[prov.id] || `Provinsi ${prov.name} menyimpan ribuan misteri adat dan keindahan yang membanggakan bangsa! Ayo jawab kuisnya dan kumpulkan stempel paspor!`;
+      wariTipEl.textContent = wariGreetings[prov.id] || `Tau gak sih, provinsi ${prov.name} punya segudang kearifan lokal unik yang jarang banget ke-expose publik!`;
     }
 
     // Switch to active tab (default: overview)
