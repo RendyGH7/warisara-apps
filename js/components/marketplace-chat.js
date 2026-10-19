@@ -219,10 +219,71 @@
             </a>
           </div>
 
-          <!-- Notice Alur Transaksi ala Facebook Marketplace -->
+          <!-- Commission Reference Header & Deal Agreement Component -->
+          <div id="chat-commission-context-header" class="hidden px-4 py-3 bg-gradient-to-r from-brass-900/30 via-black/40 to-forest-900/20 border-b border-brass-400/30 flex-col gap-2">
+            <div class="flex items-start justify-between gap-2">
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                  <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/30">Pesanan Kustom</span>
+                  <span id="chat-comm-craft-badge" class="px-2 py-0.5 rounded-full text-[9px] font-medium bg-white/10 text-surface/80">Kriya</span>
+                  <span id="chat-comm-status-badge" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Tahap Diskusi</span>
+                </div>
+                <h4 id="chat-comm-title" class="text-xs font-bold text-surface leading-tight truncate">Judul Brief Pesanan</h4>
+              </div>
+              <button type="button" id="chat-btn-toggle-deal-form" class="text-[10px] px-3 py-1.5 rounded-full bg-brass-400 text-ink font-bold hover:bg-brass-300 transition-all whitespace-nowrap shadow flex items-center gap-1 flex-shrink-0">
+                <span class="material-symbols-outlined text-xs">handshake</span>
+                <span id="chat-deal-btn-label">Sepakati Pesanan</span>
+              </button>
+            </div>
+
+            <!-- Mini Specs Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-surface/70 pt-1 border-t border-white/5">
+              <div class="truncate"><span class="text-surface/40">Anggaran:</span> <strong id="chat-comm-budget" class="text-brass-300 font-mono">-</strong></div>
+              <div class="truncate"><span class="text-surface/40">Tenggat:</span> <strong id="chat-comm-deadline" class="text-surface/90">-</strong></div>
+              <div class="truncate"><span class="text-surface/40">Warna:</span> <span id="chat-comm-color" class="text-surface/80">-</span></div>
+              <div class="truncate"><span class="text-surface/40">Daerah:</span> <span id="chat-comm-region" class="text-surface/80">-</span></div>
+            </div>
+
+            <!-- Deal Agreement Panel (Expandable) -->
+            <div id="chat-deal-form-panel" class="hidden mt-2 p-3 rounded-xl bg-black/85 border border-brass-400/50 space-y-2.5 shadow-xl">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                <div class="flex items-center gap-1.5 text-[11px] font-bold text-brass-300">
+                  <span class="material-symbols-outlined text-sm text-brass-400">verified</span>
+                  <span>Langkah 03: Sepakati Pesanan Langsung (Deal)</span>
+                </div>
+                <button type="button" id="chat-btn-close-deal-panel" class="text-surface/40 hover:text-surface text-xs">✕</button>
+              </div>
+              <p class="text-[10px] text-surface/70 leading-relaxed">
+                Konfirmasi harga final, estimasi waktu pengerjaan, dan skema pembayaran bersama rekan kriya. Setelah disepakati, status pesanan akan tercatat resmi sebagai <strong>Deal</strong>.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[10px]">
+                <div>
+                  <label class="block text-surface/70 font-semibold mb-0.5">Harga Final Disepakati (Rp) *</label>
+                  <input type="number" id="chat-deal-input-price" placeholder="Contoh: 1850000" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+                </div>
+                <div>
+                  <label class="block text-surface/70 font-semibold mb-0.5">Estimasi Durasi Pengerjaan *</label>
+                  <input type="text" id="chat-deal-input-duration" placeholder="Contoh: 18 Hari Kerja" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-surface/70 font-semibold mb-0.5 text-[10px]">Ketentuan Pengiriman & Pembayaran</label>
+                <input type="text" id="chat-deal-input-terms" placeholder="Contoh: DP 50% via transfer BCA, pelunasan sebelum kirim JNE Express" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+              </div>
+              <div class="flex items-center justify-end gap-2 pt-1">
+                <button type="button" id="chat-deal-btn-cancel" class="px-3 py-1 rounded-full text-[10px] text-surface/60 hover:text-surface transition-colors">Batal</button>
+                <button type="button" id="chat-deal-btn-submit" class="px-4 py-1.5 rounded-full bg-forest-500 hover:bg-forest-400 text-surface text-[11px] font-bold flex items-center gap-1 shadow-md transition-all">
+                  <span class="material-symbols-outlined text-xs">handshake</span>
+                  <span>Konfirmasi Kesepakatan (Deal)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notice Alur Transaksi Mandiri & Kesepakatan P2P -->
           <div class="mx-4 my-2 p-2.5 rounded-xl bg-forest-900/30 border border-forest-500/30 text-[11px] text-forest-200 flex items-start gap-2">
             <span class="material-symbols-outlined text-sm flex-shrink-0 mt-0.5 text-forest-300">handshake</span>
-            <span><strong>Kesepakatan Mandiri:</strong> Diskusikan pengiriman, foto detail, dan pembayaran (transfer/COD) langsung dengan penjual di ruang obrolan ini.</span>
+            <span><strong>Komunikasi Kriya P2P:</strong> Diskusikan spesifikasi karya, negosiasi harga, pengiriman, dan pembayaran langsung antar anggota komunitas di ruang obrolan ini.</span>
           </div>
 
           <!-- Messages Container -->
@@ -524,7 +585,7 @@
               </div>
             </div>
             <div class="text-[11px] text-brass-300/80 truncate mb-1">
-              🛍️ ${prod.name || "Diskusi Produk Lokal"}
+              ${th.commission ? `🎨 ${th.commission.title || "Pesanan Kriya Kustom"}` : `🛍️ ${prod.name || "Diskusi Produk Lokal"}`}
             </div>
             <p class="text-xs ${isUnread ? "text-surface font-semibold" : "text-surface/60 font-light"} truncate">
               ${lastMsg.text}
@@ -595,6 +656,322 @@
     } else {
       prodHeader.classList.add("hidden");
       prodHeader.classList.remove("flex");
+    }
+
+    // Set Commission Header & Deal Agreement Controls if exists
+    const commHeader = document.getElementById("chat-commission-context-header");
+    const dealPanel = document.getElementById("chat-deal-form-panel");
+    if (thread.commission && thread.commission.title) {
+      if (commHeader) {
+        commHeader.classList.remove("hidden");
+        commHeader.classList.add("flex");
+        document.getElementById("chat-comm-title").textContent = thread.commission.title;
+        document.getElementById("chat-comm-craft-badge").textContent = thread.commission.craftType || "Kriya";
+        document.getElementById("chat-comm-budget").textContent = thread.commission.budget || "-";
+        document.getElementById("chat-comm-deadline").textContent = thread.commission.deadline || "-";
+        document.getElementById("chat-comm-color").textContent = thread.commission.color || "-";
+        document.getElementById("chat-comm-region").textContent = thread.commission.region || "-";
+
+        // Ambil data commission master terkini dari store
+        const masterComm = window.WARISARA_COMMISSIONS ? window.WARISARA_COMMISSIONS.getById(thread.commission.id) : null;
+        if (masterComm) {
+          thread.commission.status = masterComm.status || thread.commission.status || "open";
+          thread.commission.agreedUsers = masterComm.agreedUsers || thread.commission.agreedUsers || [];
+          if (masterComm.dealInfo) {
+            thread.commission.dealPrice = masterComm.dealInfo.price || thread.commission.dealPrice;
+            thread.commission.dealDuration = masterComm.dealInfo.duration || thread.commission.dealDuration;
+            thread.commission.dealTerms = masterComm.dealInfo.terms || thread.commission.dealTerms;
+          }
+        }
+
+        thread.commission.agreedUsers = Array.isArray(thread.commission.agreedUsers) ? thread.commission.agreedUsers : [];
+
+        const myEmail = (currentUser ? currentUser.email : "").toLowerCase();
+        const p1Email = (thread.participant1 || "").toLowerCase();
+        const p2Email = (thread.participant2 || "").toLowerCase();
+        const otherEmail = (myEmail === p1Email) ? p2Email : p1Email;
+        const myName = (thread.participantNames && thread.participantNames[myEmail]) || (currentUser ? currentUser.name : "Anda");
+        const otherName = (thread.participantNames && thread.participantNames[otherEmail]) || "Rekan Diskusi";
+
+        const hasMyAgreed = thread.commission.agreedUsers.map(e => e.toLowerCase()).includes(myEmail);
+        const hasOtherAgreed = thread.commission.agreedUsers.map(e => e.toLowerCase()).includes(otherEmail);
+        const isBothAgreed = thread.commission.status === "agreed" || (hasMyAgreed && hasOtherAgreed);
+
+        const statusBadge = document.getElementById("chat-comm-status-badge");
+        const dealBtn = document.getElementById("chat-btn-toggle-deal-form");
+        const dealBtnLabel = document.getElementById("chat-deal-btn-label");
+
+        // 1. Status Badge: HANYA ADA 2 STATUS ("Masih Terbuka" atau "Sudah Deal")
+        if (statusBadge) {
+          if (isBothAgreed) {
+            statusBadge.textContent = "Sudah Deal";
+            statusBadge.className = "px-2 py-0.5 rounded-full text-[9px] font-bold bg-brass-400/20 text-brass-300 border border-brass-400/40";
+          } else {
+            statusBadge.textContent = "Masih Terbuka";
+            statusBadge.className = "px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+          }
+        }
+
+        // 2. Tombol Deal State
+        if (dealBtn && dealBtnLabel) {
+          if (isBothAgreed) {
+            dealBtnLabel.textContent = "Sudah Deal (Resmi)";
+            dealBtn.className = "text-[10px] px-3 py-1.5 rounded-full bg-brass-400/20 text-brass-300 border border-brass-400/40 font-bold whitespace-nowrap shadow flex items-center gap-1 flex-shrink-0 cursor-pointer";
+          } else if (hasMyAgreed && !hasOtherAgreed) {
+            dealBtnLabel.textContent = "Menunggu Lawan (1/2)";
+            dealBtn.className = "text-[10px] px-3 py-1.5 rounded-full bg-amber-500/25 text-amber-300 border border-amber-500/40 font-bold whitespace-nowrap shadow flex items-center gap-1 flex-shrink-0 cursor-pointer";
+          } else if (!hasMyAgreed && hasOtherAgreed) {
+            dealBtnLabel.textContent = "Konfirmasi Deal (1/2)";
+            dealBtn.className = "text-[10px] px-3 py-1.5 rounded-full bg-emerald-500 text-ink font-extrabold hover:bg-emerald-400 transition-all whitespace-nowrap shadow-lg flex items-center gap-1 flex-shrink-0 cursor-pointer animate-pulse";
+          } else {
+            dealBtnLabel.textContent = "Sepakati Pesanan (Deal)";
+            dealBtn.className = "text-[10px] px-3 py-1.5 rounded-full bg-brass-400 text-ink font-bold hover:bg-brass-300 transition-all whitespace-nowrap shadow flex items-center gap-1 flex-shrink-0 cursor-pointer";
+          }
+        }
+
+        // 3. Render Dinamis Isi Deal Panel
+        function renderDealPanelContent() {
+          if (!dealPanel) return;
+
+          let statusHtml = "";
+          if (isBothAgreed) {
+            statusHtml = `
+              <div class="p-3 rounded-xl bg-brass-400/10 border border-brass-400/30 text-xs text-brass-200 space-y-1">
+                <div class="flex items-center gap-1.5 font-bold text-brass-300">
+                  <span class="material-symbols-outlined text-sm">verified</span>
+                  <span>Kesepakatan Resmi Telah Tercapai (Sudah Deal)</span>
+                </div>
+                <p class="text-[11px] text-surface/75">Kedua belah pihak (${myName} dan ${otherName}) telah sama-sama mengklik tombol Deal.</p>
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-[11px]">
+                  <div><span class="text-surface/40">Harga Final:</span> <strong class="text-brass-300">${thread.commission.dealPrice || thread.commission.budget}</strong></div>
+                  <div><span class="text-surface/40">Durasi:</span> <span class="text-surface/90">${thread.commission.dealDuration || thread.commission.deadline}</span></div>
+                  <div class="col-span-2"><span class="text-surface/40">Ketentuan:</span> <span class="text-surface/80">${thread.commission.dealTerms || "Sesuai kesepakatan obrolan"}</span></div>
+                </div>
+              </div>
+              <div class="flex justify-end pt-1">
+                <button type="button" id="chat-deal-btn-cancel" class="px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-semibold">Tutup</button>
+              </div>
+            `;
+          } else if (hasMyAgreed && !hasOtherAgreed) {
+            statusHtml = `
+              <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 space-y-1.5">
+                <div class="flex items-center gap-1.5 font-bold text-amber-300">
+                  <span class="material-symbols-outlined text-sm">schedule</span>
+                  <span>Menunggu Konfirmasi dari ${otherName} (1/2 Pihak)</span>
+                </div>
+                <p class="text-[11px] text-surface/80 leading-relaxed">
+                  Anda telah mengklik tombol Deal dan menyetujui rincian pesanan ini. Status pesanan <strong>Masih Terbuka</strong> sampai <strong>${otherName}</strong> juga menekan tombol Deal dari pihak mereka.
+                </p>
+                <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 text-[11px] space-y-0.5">
+                  <div><span class="text-surface/40">Harga Final:</span> <strong class="text-brass-300">${thread.commission.dealPrice || "-"}</strong></div>
+                  <div><span class="text-surface/40">Estimasi Durasi:</span> <span class="text-surface/90">${thread.commission.dealDuration || "-"}</strong></div>
+                  <div><span class="text-surface/40">Ketentuan:</span> <span class="text-surface/80">${thread.commission.dealTerms || "-"}</strong></div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-1">
+                <button type="button" id="chat-deal-btn-revoke" class="text-[11px] text-red-300 hover:text-red-200 underline">Batalkan Persetujuan Saya</button>
+                <button type="button" id="chat-deal-btn-cancel" class="px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs">Tutup</button>
+              </div>
+            `;
+          } else if (!hasMyAgreed && hasOtherAgreed) {
+            statusHtml = `
+              <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-200 space-y-2">
+                <div class="flex items-center gap-1.5 font-bold text-emerald-300">
+                  <span class="material-symbols-outlined text-sm">handshake</span>
+                  <span>${otherName} Telah Mengklik Tombol Deal!</span>
+                </div>
+                <p class="text-[11px] text-surface/80 leading-relaxed">
+                  ${otherName} telah menyetujui kesepakatan pesanan kriya ini dengan rincian berikut. Untuk meresmikan status pesanan menjadi <strong>Sudah Deal</strong>, silakan klik tombol setujui di bawah:
+                </p>
+                <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 text-[11px] space-y-0.5">
+                  <div><span class="text-surface/40">Harga Final:</span> <strong class="text-brass-300">${thread.commission.dealPrice || thread.commission.budget}</strong></div>
+                  <div><span class="text-surface/40">Estimasi Durasi:</span> <span class="text-surface/90">${thread.commission.dealDuration || thread.commission.deadline}</span></div>
+                  <div><span class="text-surface/40">Ketentuan:</span> <span class="text-surface/80">${thread.commission.dealTerms || "Pembayaran langsung via transfer"}</span></div>
+                </div>
+              </div>
+              <div class="flex items-center justify-end gap-2 pt-1">
+                <button type="button" id="chat-deal-btn-cancel" class="px-3 py-1.5 rounded-full text-xs text-surface/60 hover:text-surface">Nanti Saja</button>
+                <button type="button" id="chat-deal-btn-submit" class="px-5 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-ink text-xs font-bold shadow-lg flex items-center gap-1.5 transition-all">
+                  <span class="material-symbols-outlined text-xs font-bold">check_circle</span>
+                  <span>Saya Setuju & Resmikan Deal</span>
+                </button>
+              </div>
+            `;
+          } else {
+            statusHtml = `
+              <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                <div class="flex items-center gap-1.5 text-xs font-bold text-brass-300">
+                  <span class="material-symbols-outlined text-sm text-brass-400">handshake</span>
+                  <span>Formulir Kesepakatan Pesanan (Deal)</span>
+                </div>
+                <button type="button" id="chat-btn-close-deal-panel" class="text-surface/40 hover:text-surface text-xs">✕</button>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-surface/75 space-y-1">
+                <div class="font-semibold text-brass-300">Aturan Konsensus Dua Pihak:</div>
+                <p class="leading-relaxed">Sistem baru akan mengidentifikasi pesanan ini <strong>Sudah Deal</strong> jika <strong>Anda dan ${otherName}</strong> sama-sama telah mengklik tombol Deal. Jika baru salah satu, status tetap <strong>Masih Terbuka</strong>.</p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[10px]">
+                <div>
+                  <label class="block text-surface/70 font-semibold mb-0.5">Harga Final Disepakati (Rp) *</label>
+                  <input type="number" id="chat-deal-input-price" value="${thread.commission.dealPrice ? parseInt(thread.commission.dealPrice.replace(/\D/g, '')) || '' : ''}" placeholder="Contoh: 1850000" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+                </div>
+                <div>
+                  <label class="block text-surface/70 font-semibold mb-0.5">Estimasi Durasi Pengerjaan *</label>
+                  <input type="text" id="chat-deal-input-duration" value="${thread.commission.dealDuration || thread.commission.deadline || ''}" placeholder="Contoh: 18 Hari Kerja" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-surface/70 font-semibold mb-0.5 text-[10px]">Ketentuan Pengiriman & Pembayaran</label>
+                <input type="text" id="chat-deal-input-terms" value="${thread.commission.dealTerms || ''}" placeholder="Contoh: DP 50% transfer BCA, pelunasan sebelum kirim ekspedisi" class="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-surface text-xs focus:outline-none focus:border-brass-400" />
+              </div>
+              <div class="flex items-center justify-end gap-2 pt-1">
+                <button type="button" id="chat-deal-btn-cancel" class="px-3 py-1 rounded-full text-[10px] text-surface/60 hover:text-surface transition-colors">Batal</button>
+                <button type="button" id="chat-deal-btn-submit" class="px-4 py-1.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-[11px] font-bold flex items-center gap-1 shadow-md transition-all">
+                  <span class="material-symbols-outlined text-xs font-bold">check</span>
+                  <span>Setujui Deal dari Pihak Saya</span>
+                </button>
+              </div>
+            `;
+          }
+
+          dealPanel.innerHTML = statusHtml;
+
+          // Event Listeners for Deal Panel
+          const closeBtn = document.getElementById("chat-btn-close-deal-panel");
+          const cancelBtn = document.getElementById("chat-deal-btn-cancel");
+          const revokeBtn = document.getElementById("chat-deal-btn-revoke");
+          const submitBtn = document.getElementById("chat-deal-btn-submit");
+
+          if (closeBtn) closeBtn.onclick = () => dealPanel.classList.add("hidden");
+          if (cancelBtn) cancelBtn.onclick = () => dealPanel.classList.add("hidden");
+
+          if (revokeBtn) {
+            revokeBtn.onclick = () => {
+              if (window.WARISARA_COMMISSIONS) {
+                window.WARISARA_COMMISSIONS.cancelDeal(thread.commission.id, myEmail);
+              }
+              thread.commission.agreedUsers = (thread.commission.agreedUsers || []).filter(e => e.toLowerCase() !== myEmail);
+              thread.commission.status = "open";
+
+              const now = new Date();
+              const timeStr = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+              thread.messages.push({
+                id: "msg_deal_revoke_" + Date.now(),
+                sender: "system",
+                text: `Persetujuan Deal dibatalkan oleh ${myName}. Status pesanan tetap Masih Terbuka.`,
+                time: timeStr,
+                timestamp: Date.now(),
+                isDealNotice: true
+              });
+              saveThreads(threads);
+              showConversationView(thread.id);
+            };
+          }
+
+          if (submitBtn) {
+            submitBtn.onclick = () => {
+              let formattedPrice = thread.commission.dealPrice;
+              let duration = thread.commission.dealDuration;
+              let terms = thread.commission.dealTerms;
+
+              const priceInput = document.getElementById("chat-deal-input-price");
+              const durationInput = document.getElementById("chat-deal-input-duration");
+              const termsInput = document.getElementById("chat-deal-input-terms");
+
+              if (priceInput && durationInput) {
+                const rawPrice = priceInput.value.trim();
+                duration = durationInput.value.trim();
+                terms = (termsInput && termsInput.value.trim()) || "Pembayaran langsung via transfer";
+
+                if (!rawPrice || !duration) {
+                  alert("Mohon isi nominal harga final yang disepakati dan estimasi durasi pengerjaan.");
+                  return;
+                }
+                formattedPrice = "Rp " + Number(rawPrice).toLocaleString("id-ID");
+              }
+
+              formattedPrice = formattedPrice || thread.commission.budget;
+              duration = duration || thread.commission.deadline || "Sesuai diskusi";
+              terms = terms || "Pembayaran langsung via transfer";
+
+              thread.commission.dealPrice = formattedPrice;
+              thread.commission.dealDuration = duration;
+              thread.commission.dealTerms = terms;
+
+              // Panggil confirmDeal di WARISARA_COMMISSIONS
+              let res = { isFinalDeal: false };
+              if (window.WARISARA_COMMISSIONS && typeof window.WARISARA_COMMISSIONS.confirmDeal === "function") {
+                res = window.WARISARA_COMMISSIONS.confirmDeal(thread.commission.id, myEmail, {
+                  price: formattedPrice,
+                  duration: duration,
+                  terms: terms
+                });
+              }
+
+              thread.commission.agreedUsers = thread.commission.agreedUsers || [];
+              if (!thread.commission.agreedUsers.map(e => e.toLowerCase()).includes(myEmail)) {
+                thread.commission.agreedUsers.push(myEmail);
+              }
+
+              const now = new Date();
+              const timeStr = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+
+              if (res.isFinalDeal) {
+                // KEDUA PIHAK SUDAH KLIK DEAL
+                thread.commission.status = "agreed";
+                const dealMsg = {
+                  id: "msg_deal_final_" + Date.now(),
+                  sender: "system",
+                  text: `KESEPAKATAN RESMI TERCAPAI (SUDAH DEAL)!\n\nKedua belah pihak (${myName} dan ${otherName}) telah sama-sama mengonfirmasi persetujuan tombol Deal.\n\n• Karya: ${thread.commission.title}\n• Harga Final: ${formattedPrice}\n• Estimasi Pengerjaan: ${duration}\n• Ketentuan: ${terms}\n\nPesanan kriya ini resmi berstatus SUDAH DEAL.`,
+                  time: timeStr,
+                  timestamp: Date.now(),
+                  isDealNotice: true
+                };
+                thread.messages.push(dealMsg);
+                if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
+                  window.WARISARA_AUTH.showToast("Kedua pihak telah sepakat! Status pesanan resmi menjadi Sudah Deal.");
+                }
+              } else {
+                // BARU SATU PIHAK YANG KLIK DEAL
+                thread.commission.status = "open";
+                const dealMsg = {
+                  id: "msg_deal_half_" + Date.now(),
+                  sender: "system",
+                  text: `PERSETUJUAN DEAL DIAJUKAN (1/2 PIHAK)\n\n• Disetujui oleh: ${myName}\n• Harga yang Disepakati: ${formattedPrice}\n• Estimasi Pengerjaan: ${duration}\n• Ketentuan: ${terms}\n\nStatus pesanan MASIH TERBUKA. Sistem baru akan mengidentifikasi pesanan ini SUDAH DEAL setelah ${otherName} juga mengklik tombol Deal.`,
+                  time: timeStr,
+                  timestamp: Date.now(),
+                  isDealNotice: true
+                };
+                thread.messages.push(dealMsg);
+                if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
+                  window.WARISARA_AUTH.showToast(`Persetujuan dicatat. Menunggu persetujuan dari ${otherName}.`);
+                }
+              }
+
+              thread.lastUpdate = Date.now();
+              saveThreads(threads);
+              showConversationView(thread.id);
+            };
+          }
+        }
+
+        renderDealPanelContent();
+
+        if (dealBtn) {
+          dealBtn.onclick = () => {
+            if (dealPanel) {
+              dealPanel.classList.toggle("hidden");
+              renderDealPanelContent();
+            }
+          };
+        }
+      }
+    } else {
+      if (commHeader) {
+        commHeader.classList.add("hidden");
+        commHeader.classList.remove("flex");
+      }
+      if (dealPanel) dealPanel.classList.add("hidden");
     }
 
     renderMessages(thread);
@@ -730,7 +1107,7 @@
 
     // Cek jika user mencoba chat produknya sendiri
     if (currentUser.email.toLowerCase() === sellerEmail.toLowerCase()) {
-      alert("Ini adalah produk yang Anda daftarkan sendiri. Silakan beralih ke akun pembeli untuk mengetes chat dengan penjual ini.");
+      alert("Ini adalah produk yang Anda daftarkan sendiri. Silakan beralih akun untuk menguji simulasi obrolan.");
       if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.switchAccountQuick === "function") {
         window.WARISARA_AUTH.switchAccountQuick();
       }
@@ -781,6 +1158,94 @@
       };
       threads.unshift(thread);
       saveThreads(threads);
+    }
+
+    activeThreadId = thread.id;
+    openChatDrawer();
+    showConversationView(thread.id);
+  }
+
+  // Buka room chat langsung untuk negosiasi Brief Commission
+  function openCommissionChat(commission, customInitialMessage) {
+    if (!commission) return;
+
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+      if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.openAuthModal === "function") {
+        window.WARISARA_AUTH.openAuthModal(() => openCommissionChat(commission, customInitialMessage));
+      }
+      return;
+    }
+
+    const creatorEmail = commission.creatorEmail || "pemesan@warisara.id";
+    const creatorName = commission.creatorName || "Pemesan Kriya Kustom";
+
+    // Cek jika pembuat brief menekan chat brief miliknya sendiri
+    if (currentUser.email.toLowerCase() === creatorEmail.toLowerCase()) {
+      if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
+        window.WARISARA_AUTH.showToast("Ini adalah brief yang Anda ajukan. Pengrajin lain akan menghubungi Anda melalui kotak masuk chat ini.");
+      }
+      openChatDrawer();
+      showThreadsListView();
+      return;
+    }
+
+    const threads = getStoredThreads();
+    const myEmail = currentUser.email.toLowerCase();
+    const otherEmail = creatorEmail.toLowerCase();
+
+    // Cari thread yang sudah ada terkait commission ini
+    let thread = threads.find(
+      (t) =>
+        ((t.participant1.toLowerCase() === myEmail && t.participant2.toLowerCase() === otherEmail) ||
+          (t.participant1.toLowerCase() === otherEmail && t.participant2.toLowerCase() === myEmail)) &&
+        t.commission &&
+        t.commission.id === commission.id
+    );
+
+    if (!thread) {
+      const threadId = `thread_comm_${Date.now()}`;
+      const defaultText = customInitialMessage ||
+        `Halo ${creatorName}, salam budaya! Saya melihat brief pesanan kustom Anda: "${commission.title}". Saya mampu mengerjakannya dengan bahan dan spesifikasi yang Anda harapkan (${commission.size || ""}, palet ${commission.color || ""}). Mari kita bicarakan kesepakatan pengerjaan dan estimasi biayanya!`;
+
+      thread = {
+        id: threadId,
+        participant1: currentUser.email,
+        participant2: creatorEmail,
+        participantNames: {
+          [currentUser.email]: currentUser.name,
+          [creatorEmail]: creatorName
+        },
+        commission: {
+          id: commission.id,
+          title: commission.title,
+          craftType: commission.craftType,
+          budget: commission.budgetDisplay || `Rp ${(commission.budgetMin || 0).toLocaleString("id-ID")}`,
+          region: commission.region,
+          deadline: commission.deadline,
+          color: commission.color,
+          size: commission.size,
+          description: commission.description,
+          status: commission.status || "open"
+        },
+        messages: [
+          {
+            id: "msg_comm_init_" + Date.now(),
+            sender: currentUser.email,
+            text: defaultText,
+            time: "Baru saja",
+            timestamp: Date.now()
+          }
+        ],
+        lastUpdate: Date.now()
+      };
+      threads.unshift(thread);
+      saveThreads(threads);
+
+      // Tingkatkan hitungan tawaran pada commission
+      if (window.WARISARA_COMMISSIONS && typeof window.WARISARA_COMMISSIONS.incrementOffer === "function") {
+        window.WARISARA_COMMISSIONS.incrementOffer(commission.id);
+      }
     }
 
     activeThreadId = thread.id;
@@ -843,6 +1308,7 @@
       }
     },
     openProductChat: openProductChat,
+    openCommissionChat: openCommissionChat,
     showConversation: showConversationView,
     updateNavbarBadge: updateNavbarChatBadge
   };
