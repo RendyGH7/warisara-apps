@@ -888,7 +888,6 @@
                   <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
                     Mahakarya Kriya &amp; Produk Otentik
                   </h4>
-                  <span class="text-[10px] text-surface/50 font-mono">Dibuat langsung oleh tangan terampil pengrajin lokal ${prov.name}</span>
                 </div>
               </div>
 
