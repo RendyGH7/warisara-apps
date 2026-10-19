@@ -16,6 +16,7 @@
       this.initMaestroWisdom();
       this.initProductChatTriggers();
       this.initAksaraTeaser();
+      this.initStatsCounter();
     },
 
     // 1. Sinkronisasi Mini Status Paspor di Section Jelajahi
@@ -200,6 +201,72 @@
           }
         });
       });
+    },
+
+    // 5. Animasi Menghitung Angka Statistik (0 sampai Angka Target)
+    initStatsCounter: function () {
+      const counters = document.querySelectorAll(".home-stat-counter");
+      const container = document.getElementById("home-stats-counter-bar") || document.querySelector("#module-jelajahi .bg-gradient-to-r");
+      if (!counters.length || !container) return;
+
+      let hasAnimated = false;
+
+      function formatNumber(num, separator) {
+        if (!separator) return num.toString();
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+      }
+
+      function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+      }
+
+      function startCounting() {
+        if (hasAnimated) return;
+        hasAnimated = true;
+
+        counters.forEach((el) => {
+          const target = parseInt(el.getAttribute("data-target"), 10) || 0;
+          const suffix = el.getAttribute("data-suffix") || "";
+          const separator = el.getAttribute("data-separator") || "";
+          const duration = 2200; // 2.2 detik untuk animasi yang halus dan memuaskan
+          let startTime = null;
+
+          function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutExpo(progress);
+            const currentVal = Math.floor(easedProgress * target);
+
+            el.textContent = formatNumber(currentVal, separator) + (progress === 1 ? suffix : "");
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              el.textContent = formatNumber(target, separator) + suffix;
+            }
+          }
+
+          requestAnimationFrame(animate);
+        });
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                startCounting();
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        observer.observe(container);
+      } else {
+        startCounting();
+      }
     }
   };
 

@@ -377,3 +377,12 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   }
 }
 
+/* Stats Counter Bar Numbers */
+.home-stat-counter {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+  display: inline-block;
+  will-change: contents;
+}
+
+
