@@ -37,6 +37,14 @@
     cantingIsPrinted: false,   
 
     activeView: "flat", 
+    viewMode: "2d", // "2d" | "3d"
+    mockupProduct: "dress", // "dress" | "totebag" | "shirt" | "scarf" | "cushion"
+    mockupFabric: "cotton", // "cotton" | "silk" | "linen" | "canvas"
+    mockupScale: 1.0,
+    mockupRotation: 0,
+    shadowIntensity: 1.0,
+    highlightIntensity: 1.0,
+    studioInspectorTab: "motif",
 
     seed: Math.floor(Math.random() * 1000000),
     authorName: "Rendy & Tim Warisara",
@@ -561,7 +569,8 @@
       ctx.drawImage(freehandCanvas, 0, 0);
 
       updateInfoDisplay();
-      if (StudioState.activeView !== "flat") {
+      updateLivePaletteDisplay();
+      if (StudioState.viewMode === "3d" || StudioState.activeView !== "flat") {
         updateMockupView();
       }
       return;
@@ -573,7 +582,10 @@
         renderWeaveTexture(ctx, w, h);
       }
       updateInfoDisplay();
-      updateMockupView();
+      updateLivePaletteDisplay();
+      if (StudioState.viewMode === "3d" || StudioState.activeView !== "flat") {
+        updateMockupView();
+      }
       return;
     }
 
@@ -589,8 +601,11 @@
     }
 
     updateInfoDisplay();
+    updateLivePaletteDisplay();
 
-    updateMockupView();
+    if (StudioState.viewMode === "3d" || StudioState.activeView !== "flat") {
+      updateMockupView();
+    }
   }
 
   function renderPrintedCustomFabric(targetCtx, w, h) {
@@ -1546,9 +1561,111 @@
     render();
   }
 
+  function getColorCulturalName(hex) {
+    if (!hex) return "Wastra Pusaka";
+    const h = hex.toUpperCase();
+    const map = {
+      "#16213A": "Indigo Nila",
+      "#233A5E": "Biru Samudra",
+      "#35578A": "Nila Terang",
+      "#6B8AB8": "Langit Cerbon",
+      "#1A1612": "Hitam Malam",
+      "#2A1E14": "Sogan Gelap",
+      "#744208": "Sogan Keraton",
+      "#A47E3F": "Cokelat Kuningan",
+      "#B8924E": "Kencana Mataram",
+      "#C9A567": "Emas Pusaka",
+      "#D8BD87": "Emas Muda",
+      "#E6D3A7": "Kuning Praba",
+      "#A8512F": "Merah Terracotta",
+      "#C06A42": "Merah Cabe",
+      "#DDA07C": "Kastuba Muda",
+      "#A32020": "Merah Lasem",
+      "#7A1C29": "Merah Marun",
+      "#240A10": "Merah Gelap",
+      "#1E2E24": "Hijau Lumut",
+      "#2E5C44": "Hijau Pesisir",
+      "#3F6350": "Pandan Wangi",
+      "#F6F1E7": "Katun Mori",
+      "#FBF8F2": "Krem Alami",
+      "#ECE4D4": "Blacu Halus",
+      "#FFFFFF": "Putih Sutra",
+      "#000000": "Wulung Hitam"
+    };
+    if (map[h]) return map[h];
+    // Approximation by hue
+    return "Aksen Nusantara";
+  }
+
+  function updateLivePaletteDisplay() {
+    const activeColors = [
+      { role: "Garis Canting", hex: StudioState.primaryColor, name: getColorCulturalName(StudioState.primaryColor) },
+      { role: "Isian Ornamen", hex: StudioState.secondaryColor, name: getColorCulturalName(StudioState.secondaryColor) },
+      { role: "Inti Roset", hex: StudioState.highlightColor, name: getColorCulturalName(StudioState.highlightColor) },
+      { role: "Dasar Kain", hex: StudioState.bgColor, name: getColorCulturalName(StudioState.bgColor) }
+    ];
+
+    // 1. Update di Tab 2 Inspector (Color tab)
+    const extractContainer = document.getElementById("active-palette-extract-container");
+    if (extractContainer) {
+      extractContainer.innerHTML = activeColors.map((c) => `
+        <div class="color-swatch-badge p-2 rounded-xl bg-white/[0.04] border border-white/10 flex items-center gap-2">
+          <span class="w-6 h-6 rounded-lg flex-shrink-0 shadow-sm border border-white/20" style="background-color: ${c.hex}"></span>
+          <div class="min-w-0">
+            <span class="text-[11px] font-semibold text-surface block truncate">${c.name}</span>
+            <span class="text-[9px] font-mono text-brass-300 block">${c.hex.toUpperCase()}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // 2. Update di bawah Kanvas Stage (Komposisi Warna Desain sesuai Gambar 1 & 3)
+    const stageBreakdown = document.getElementById("stage-palette-breakdown");
+    if (stageBreakdown) {
+      stageBreakdown.innerHTML = activeColors.map((c) => `
+        <div class="flex items-center gap-2 p-2 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="w-7 h-7 rounded-lg flex-shrink-0 shadow-sm border border-white/15" style="background-color: ${c.hex}"></span>
+          <div class="min-w-0">
+            <span class="text-[10px] text-surface/50 uppercase tracking-wider block font-medium truncate">${c.role}</span>
+            <span class="text-xs font-semibold text-surface block truncate">${c.name}</span>
+            <span class="text-[9px] font-mono text-brass-400 block">${c.hex.toUpperCase()}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+  }
+
+  function createScaledRotatedPattern(mCtx, sourceCanvas, scale, rotation) {
+    const s = Math.max(0.3, Math.min(3.0, scale || 1.0));
+    const pw = Math.round(sourceCanvas.width * s);
+    const ph = Math.round(sourceCanvas.height * s);
+
+    const pCanvas = document.createElement("canvas");
+    pCanvas.width = pw;
+    pCanvas.height = ph;
+    const pCtx = pCanvas.getContext("2d");
+
+    pCtx.save();
+    if (rotation && rotation !== 0) {
+      pCtx.translate(pw / 2, ph / 2);
+      pCtx.rotate((rotation * Math.PI) / 180);
+      pCtx.translate(-pw / 2, -ph / 2);
+    }
+    pCtx.drawImage(sourceCanvas, 0, 0, pw, ph);
+    pCtx.restore();
+
+    return mCtx.createPattern(pCanvas, "repeat");
+  }
+
   function updateMockupView() {
     const mockupCanvas = document.getElementById("mockup-preview-canvas");
-    if (!mockupCanvas || StudioState.activeView === "flat") return;
+    if (!mockupCanvas) return;
+
+    // Pastikan resolusi tajam
+    if (mockupCanvas.width !== 1200) {
+      mockupCanvas.width = 1200;
+      mockupCanvas.height = 1200;
+    }
 
     const mCtx = mockupCanvas.getContext("2d");
     const mw = mockupCanvas.width;
@@ -1556,148 +1673,1050 @@
 
     mCtx.clearRect(0, 0, mw, mh);
 
-    const pattern = mCtx.createPattern(canvas, "repeat");
+    // Buat pola berulang yang dapat di-scale dan di-rotate
+    const pattern = createScaledRotatedPattern(
+      mCtx,
+      canvas,
+      StudioState.mockupScale || 1.0,
+      StudioState.mockupRotation || 0
+    );
 
-    if (StudioState.activeView === "shirt") {
-      drawShirtMockup(mCtx, mw, mh, pattern);
-    } else if (StudioState.activeView === "scarf") {
-      drawScarfMockup(mCtx, mw, mh, pattern);
-    } else if (StudioState.activeView === "cushion") {
-      drawCushionMockup(mCtx, mw, mh, pattern);
+    const product = StudioState.mockupProduct || "dress";
+    const fabric = StudioState.mockupFabric || "cotton";
+    const shadowInt = StudioState.shadowIntensity || 1.0;
+    const highlightInt = StudioState.highlightIntensity || 1.0;
+
+    if (product === "dress") {
+      drawDressMockup(mCtx, mw, mh, pattern, fabric, shadowInt, highlightInt);
+    } else if (product === "totebag") {
+      drawToteBagMockup(mCtx, mw, mh, pattern, fabric, shadowInt, highlightInt);
+    } else if (product === "shirt") {
+      drawShirtMockup(mCtx, mw, mh, pattern, fabric, shadowInt, highlightInt);
+    } else if (product === "scarf") {
+      drawScarfMockup(mCtx, mw, mh, pattern, fabric, shadowInt, highlightInt);
+    } else if (product === "cushion") {
+      drawCushionMockup(mCtx, mw, mh, pattern, fabric, shadowInt, highlightInt);
     }
+
+    updateLivePaletteDisplay();
   }
 
-  function drawShirtMockup(mCtx, w, h, pattern) {
+  // =========================================================================
+  // 1. MOCKUP GAUN WASTRA NUSANTARA (MIDI BOHO DRESS - SESUAI GAMBAR 1)
+  // =========================================================================
+  function drawDressMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
+    // Studio Background Neutral Luxury
+    const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
+    bgGrad.addColorStop(0, "#221D18");
+    bgGrad.addColorStop(1, "#14110E");
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, w, h);
+
+    // Floor light reflection
+    const floorGrad = mCtx.createLinearGradient(0, h * 0.82, 0, h);
+    floorGrad.addColorStop(0, "rgba(0,0,0,0)");
+    floorGrad.addColorStop(1, "rgba(10,8,6,0.5)");
+    mCtx.fillStyle = floorGrad;
+    mCtx.fillRect(0, h * 0.82, w, h * 0.18);
+
+    const cx = w / 2;
+
+    // Ground Contact Shadow (Realistis di lantai bawah gaun)
+    const shadowGrad = mCtx.createRadialGradient(cx, h * 0.915, 20, cx, h * 0.915, w * 0.36);
+    shadowGrad.addColorStop(0, `rgba(0, 0, 0, ${0.75 * shadowInt})`);
+    shadowGrad.addColorStop(0.35, `rgba(0, 0, 0, ${0.4 * shadowInt})`);
+    shadowGrad.addColorStop(0.7, `rgba(0, 0, 0, ${0.12 * shadowInt})`);
+    shadowGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+    mCtx.fillStyle = shadowGrad;
     mCtx.beginPath();
-    mCtx.moveTo(w * 0.35, h * 0.15);
-    mCtx.lineTo(w * 0.2, h * 0.22);
-    mCtx.lineTo(w * 0.08, h * 0.48);
-    mCtx.lineTo(w * 0.22, h * 0.55);
-    mCtx.lineTo(w * 0.28, h * 0.42);
-    mCtx.lineTo(w * 0.26, h * 0.88);
-    mCtx.quadraticCurveTo(w * 0.5, h * 0.94, w * 0.74, h * 0.88);
-    mCtx.lineTo(w * 0.72, h * 0.42);
-    mCtx.lineTo(w * 0.78, h * 0.55);
-    mCtx.lineTo(w * 0.92, h * 0.48);
-    mCtx.lineTo(w * 0.8, h * 0.22);
-    mCtx.lineTo(w * 0.65, h * 0.15);
-    mCtx.quadraticCurveTo(w * 0.5, h * 0.22, w * 0.35, h * 0.15);
+    mCtx.ellipse(cx, h * 0.915, w * 0.33, h * 0.045, 0, 0, Math.PI * 2);
+    mCtx.fill();
+
+    // Inner Back Neckline (Tengkuk leher dalam dengan label Warisara)
+    mCtx.save();
+    mCtx.beginPath();
+    mCtx.moveTo(cx - w * 0.08, h * 0.13);
+    mCtx.quadraticCurveTo(cx, h * 0.18, cx + w * 0.08, h * 0.13);
+    mCtx.lineTo(cx, h * 0.245);
     mCtx.closePath();
+    mCtx.fillStyle = "#1E1A16";
+    mCtx.fill();
+    
+    // Label leher
+    mCtx.fillStyle = "rgba(201, 165, 103, 0.75)";
+    mCtx.font = `bold ${w * 0.012}px 'Fraunces', serif`;
+    mCtx.textAlign = "center";
+    mCtx.fillText("WARISARA NUSANTARA", cx, h * 0.165);
+    mCtx.restore();
+
+    // Path Gaun Wastra (Bodice, Flutter Sleeves, Smocked Waist, Flared Pleated Skirt)
+    function createDressPath(ctx) {
+      ctx.beginPath();
+      // Titik tengah V-neck
+      ctx.moveTo(cx, h * 0.245);
+      // Naik ke bahu kiri V-neck
+      ctx.lineTo(cx - w * 0.075, h * 0.13);
+      // Bahu kiri
+      ctx.quadraticCurveTo(cx - w * 0.13, h * 0.135, cx - w * 0.17, h * 0.155);
+      // Lengan lonceng / flutter kiri
+      ctx.bezierCurveTo(cx - w * 0.25, h * 0.18, cx - w * 0.33, h * 0.25, cx - w * 0.31, h * 0.34);
+      // Ujung bawah lengan bergelombang
+      ctx.quadraticCurveTo(cx - w * 0.24, h * 0.35, cx - w * 0.17, h * 0.31);
+      // Ketiak kiri ke pinggang
+      ctx.quadraticCurveTo(cx - w * 0.15, h * 0.34, cx - w * 0.125, h * 0.38);
+      // Pinggang karet kiri
+      ctx.lineTo(cx - w * 0.12, h * 0.44);
+      // Rok jatuh mengembang kiri
+      ctx.bezierCurveTo(cx - w * 0.16, h * 0.54, cx - w * 0.22, h * 0.68, cx - w * 0.28, h * 0.87);
+      
+      // Kelim bawah rok dengan 7 lekukan lipatan natural
+      const folds = 7;
+      const skirtLeft = cx - w * 0.28;
+      const skirtRight = cx + w * 0.28;
+      const foldW = (skirtRight - skirtLeft) / folds;
+      for (let i = 0; i < folds; i++) {
+        const p1x = skirtLeft + i * foldW;
+        const p2x = p1x + foldW;
+        const cpx = (p1x + p2x) / 2;
+        const cpy = (i % 2 === 0) ? h * 0.89 : h * 0.865;
+        ctx.quadraticCurveTo(cpx, cpy, p2x, (i % 2 === 0) ? h * 0.87 : h * 0.88);
+      }
+
+      // Rok jatuh kanan
+      ctx.bezierCurveTo(cx + w * 0.22, h * 0.68, cx + w * 0.16, h * 0.54, cx + w * 0.12, h * 0.44);
+      // Pinggang karet kanan
+      ctx.lineTo(cx + w * 0.125, h * 0.38);
+      // Ketiak kanan ke lengan
+      ctx.quadraticCurveTo(cx + w * 0.15, h * 0.34, cx + w * 0.17, h * 0.31);
+      // Ujung bawah lengan kanan
+      ctx.quadraticCurveTo(cx + w * 0.24, h * 0.35, cx + w * 0.31, h * 0.34);
+      // Lengan lonceng kanan
+      ctx.bezierCurveTo(cx + w * 0.33, h * 0.25, cx + w * 0.25, h * 0.18, cx + w * 0.17, h * 0.155);
+      // Bahu kanan
+      ctx.quadraticCurveTo(cx + w * 0.13, h * 0.135, cx + w * 0.075, h * 0.13);
+      // Turun ke V-neck kanan
+      ctx.lineTo(cx, h * 0.245);
+      ctx.closePath();
+    }
+
+    // Isi Gaun dengan Pola Batik
+    mCtx.save();
+    createDressPath(mCtx);
+    mCtx.clip();
 
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    const shadeGrad = mCtx.createLinearGradient(0, 0, w, 0);
-    shadeGrad.addColorStop(0, "rgba(0,0,0,0.45)");
-    shadeGrad.addColorStop(0.25, "rgba(255,255,255,0.1)");
-    shadeGrad.addColorStop(0.5, "rgba(0,0,0,0.15)");
-    shadeGrad.addColorStop(0.75, "rgba(255,255,255,0.15)");
-    shadeGrad.addColorStop(1, "rgba(0,0,0,0.5)");
-    mCtx.fillStyle = shadeGrad;
-    mCtx.fill();
+    // MULTI-PASS SHADING: Crease & Pleat Shadows (MULTIPLY)
+    mCtx.globalCompositeOperation = "multiply";
+    const sMult = shadowInt || 1.0;
 
-    mCtx.strokeStyle = "rgba(0,0,0,0.6)";
-    mCtx.lineWidth = 3;
-    mCtx.stroke();
-
-    mCtx.beginPath();
-    mCtx.moveTo(w * 0.5, h * 0.2);
-    mCtx.lineTo(w * 0.5, h * 0.9);
-    mCtx.strokeStyle = "rgba(0,0,0,0.5)";
-    mCtx.lineWidth = 4;
-    mCtx.stroke();
-
-    for (let b = 1; b <= 5; b++) {
-      const by = h * 0.22 + b * (h * 0.12);
+    // Bayangan vertikal lekukan rok (pleat fold troughs)
+    const skirtLeft = cx - w * 0.28;
+    const skirtRight = cx + w * 0.28;
+    const foldW = (skirtRight - skirtLeft) / 7;
+    for (let i = 0; i < 7; i++) {
+      const fx = skirtLeft + (i + 0.5) * foldW;
+      const fTopX = cx + ((i - 3) / 3) * (w * 0.1);
+      const troughGrad = mCtx.createLinearGradient(fTopX, h * 0.44, fx, h * 0.88);
+      if (i % 2 === 1) {
+        // Lembah lekukan gelap
+        troughGrad.addColorStop(0, `rgba(0, 0, 0, ${0.45 * sMult})`);
+        troughGrad.addColorStop(0.5, `rgba(0, 0, 0, ${0.55 * sMult})`);
+        troughGrad.addColorStop(1, `rgba(0, 0, 0, ${0.35 * sMult})`);
+      } else {
+        // Bayangan lembut lereng lipatan
+        troughGrad.addColorStop(0, `rgba(0, 0, 0, ${0.15 * sMult})`);
+        troughGrad.addColorStop(1, `rgba(0, 0, 0, ${0.2 * sMult})`);
+      }
+      mCtx.fillStyle = troughGrad;
       mCtx.beginPath();
-      mCtx.arc(w * 0.5, by, 5, 0, Math.PI * 2);
-      mCtx.fillStyle = "#E6D3A7";
+      mCtx.moveTo(fTopX - foldW * 0.35, h * 0.44);
+      mCtx.lineTo(fTopX + foldW * 0.35, h * 0.44);
+      mCtx.lineTo(fx + foldW * 0.45, h * 0.89);
+      mCtx.lineTo(fx - foldW * 0.45, h * 0.89);
+      mCtx.closePath();
       mCtx.fill();
-      mCtx.strokeStyle = "#1A1612";
-      mCtx.lineWidth = 1.5;
+    }
+
+    // Bayangan lekuk dada & sisi ketiak
+    const bodiceShadow = mCtx.createRadialGradient(cx, h * 0.32, w * 0.05, cx, h * 0.32, w * 0.22);
+    bodiceShadow.addColorStop(0, "rgba(0,0,0,0)");
+    bodiceShadow.addColorStop(0.7, `rgba(0,0,0,${0.25 * sMult})`);
+    bodiceShadow.addColorStop(1, `rgba(0,0,0,${0.6 * sMult})`);
+    mCtx.fillStyle = bodiceShadow;
+    mCtx.fillRect(0, 0, w, h);
+
+    // Bayangan jatuh di bawah ban pinggang
+    const waistDrop = mCtx.createLinearGradient(0, h * 0.44, 0, h * 0.50);
+    waistDrop.addColorStop(0, `rgba(0,0,0,${0.5 * sMult})`);
+    waistDrop.addColorStop(1, "rgba(0,0,0,0)");
+    mCtx.fillStyle = waistDrop;
+    mCtx.fillRect(cx - w * 0.16, h * 0.44, w * 0.32, h * 0.06);
+
+    // Bayangan lengan flutter
+    const leftSleeveShadow = mCtx.createLinearGradient(cx - w * 0.17, h * 0.2, cx - w * 0.31, h * 0.34);
+    leftSleeveShadow.addColorStop(0, "rgba(0,0,0,0)");
+    leftSleeveShadow.addColorStop(1, `rgba(0,0,0,${0.45 * sMult})`);
+    mCtx.fillStyle = leftSleeveShadow;
+    mCtx.fillRect(cx - w * 0.35, h * 0.15, w * 0.2, h * 0.22);
+
+    const rightSleeveShadow = mCtx.createLinearGradient(cx + w * 0.17, h * 0.2, cx + w * 0.31, h * 0.34);
+    rightSleeveShadow.addColorStop(0, "rgba(0,0,0,0)");
+    rightSleeveShadow.addColorStop(1, `rgba(0,0,0,${0.45 * sMult})`);
+    mCtx.fillStyle = rightSleeveShadow;
+    mCtx.fillRect(cx + w * 0.15, h * 0.15, w * 0.2, h * 0.22);
+
+    // MULTI-PASS LIGHTING: Specular Highlights & Sheen (SCREEN)
+    mCtx.globalCompositeOperation = "screen";
+    const hMult = highlightInt || 1.0;
+    const isSilk = fabric === "silk";
+    const hBoost = isSilk ? 1.6 : 1.0;
+
+    // Kilau cahaya puncak lipatan rok
+    for (let i = 0; i < 7; i += 2) {
+      const fx = skirtLeft + (i + 0.5) * foldW;
+      const fTopX = cx + ((i - 3) / 3) * (w * 0.09);
+      const crestGrad = mCtx.createLinearGradient(fTopX, h * 0.44, fx, h * 0.88);
+      crestGrad.addColorStop(0, `rgba(255, 255, 255, ${0.15 * hMult * hBoost})`);
+      crestGrad.addColorStop(0.5, `rgba(255, 255, 255, ${0.4 * hMult * hBoost})`);
+      crestGrad.addColorStop(1, `rgba(255, 255, 255, ${0.1 * hMult * hBoost})`);
+      mCtx.fillStyle = crestGrad;
+      mCtx.beginPath();
+      mCtx.moveTo(fTopX - foldW * 0.15, h * 0.44);
+      mCtx.lineTo(fTopX + foldW * 0.15, h * 0.44);
+      mCtx.lineTo(fx + foldW * 0.2, h * 0.88);
+      mCtx.lineTo(fx - foldW * 0.2, h * 0.88);
+      mCtx.closePath();
+      mCtx.fill();
+    }
+
+    // Kilau cahaya dada & bahu
+    const bustHighlight = mCtx.createRadialGradient(cx - w * 0.04, h * 0.28, 5, cx - w * 0.04, h * 0.28, w * 0.1);
+    bustHighlight.addColorStop(0, `rgba(255,255,255,${0.35 * hMult * hBoost})`);
+    bustHighlight.addColorStop(1, "rgba(255,255,255,0)");
+    mCtx.fillStyle = bustHighlight;
+    mCtx.fillRect(cx - w * 0.15, h * 0.2, w * 0.22, h * 0.18);
+
+    // Tekstur serat kain alami (Linen / Canvas Weave)
+    if (fabric === "linen" || fabric === "canvas") {
+      mCtx.globalCompositeOperation = "overlay";
+      mCtx.strokeStyle = "rgba(0,0,0,0.18)";
+      mCtx.lineWidth = 1;
+      const step = fabric === "canvas" ? 4 : 3;
+      for (let y = h * 0.12; y < h * 0.9; y += step) {
+        mCtx.beginPath();
+        mCtx.moveTo(cx - w * 0.35, y);
+        mCtx.lineTo(cx + w * 0.35, y);
+        mCtx.stroke();
+      }
+    }
+
+    mCtx.restore(); // Selesai clipping gaun
+
+    // DETAIL JAHITAN & AKSESORIS REALISTIS (Sesuai Gambar 1)
+    mCtx.save();
+    
+    // Garis tepi halus
+    createDressPath(mCtx);
+    mCtx.strokeStyle = "rgba(26, 22, 18, 0.45)";
+    mCtx.lineWidth = 1.5;
+    mCtx.stroke();
+
+    // Jahitan karet kerut pinggang (smocking elastic)
+    mCtx.strokeStyle = "rgba(26, 22, 18, 0.5)";
+    mCtx.lineWidth = 1.2;
+    for (let s = 0; s < 4; s++) {
+      const sy = h * 0.38 + s * (h * 0.018);
+      mCtx.beginPath();
+      mCtx.moveTo(cx - w * 0.123, sy);
+      mCtx.quadraticCurveTo(cx, sy + h * 0.005, cx + w * 0.123, sy);
       mCtx.stroke();
     }
 
+    // Topstitching V-neck
+    mCtx.strokeStyle = "rgba(201, 165, 103, 0.7)";
+    mCtx.lineWidth = 1.5;
     mCtx.beginPath();
-    mCtx.moveTo(w * 0.35, h * 0.15);
-    mCtx.lineTo(w * 0.5, h * 0.26);
-    mCtx.lineTo(w * 0.65, h * 0.15);
-    mCtx.strokeStyle = "rgba(0,0,0,0.7)";
-    mCtx.lineWidth = 3;
+    mCtx.moveTo(cx - w * 0.075, h * 0.13);
+    mCtx.lineTo(cx, h * 0.245);
+    mCtx.lineTo(cx + w * 0.075, h * 0.13);
+    mCtx.stroke();
+
+    // Tali serut leher (Braided Drawstrings) dengan manik kuningan
+    mCtx.strokeStyle = "#E6D3A7";
+    mCtx.lineWidth = 2.5;
+    // Tali kiri
+    mCtx.beginPath();
+    mCtx.moveTo(cx - 3, h * 0.245);
+    mCtx.quadraticCurveTo(cx - 16, h * 0.29, cx - 12, h * 0.34);
+    mCtx.stroke();
+    // Manik emas kiri
+    mCtx.fillStyle = "#C9A567";
+    mCtx.beginPath();
+    mCtx.arc(cx - 12, h * 0.345, 5, 0, Math.PI * 2);
+    mCtx.fill();
+    mCtx.strokeStyle = "#8A6427";
+    mCtx.lineWidth = 1.5;
+    mCtx.stroke();
+
+    // Tali kanan
+    mCtx.strokeStyle = "#E6D3A7";
+    mCtx.lineWidth = 2.5;
+    mCtx.beginPath();
+    mCtx.moveTo(cx + 3, h * 0.245);
+    mCtx.quadraticCurveTo(cx + 14, h * 0.28, cx + 10, h * 0.35);
+    mCtx.stroke();
+    // Manik emas kanan
+    mCtx.fillStyle = "#C9A567";
+    mCtx.beginPath();
+    mCtx.arc(cx + 10, h * 0.355, 5, 0, Math.PI * 2);
+    mCtx.fill();
+    mCtx.strokeStyle = "#8A6427";
+    mCtx.lineWidth = 1.5;
     mCtx.stroke();
 
     mCtx.restore();
   }
 
-  function drawScarfMockup(mCtx, w, h, pattern) {
+  // =========================================================================
+  // 2. MOCKUP TOTE BAG KRIYA KULIT & KANVAS (SESUAI GAMBAR REFERENSI 2)
+  // =========================================================================
+  function drawLeatherStraps(mCtx, w, h, cx, isBack) {
+    mCtx.save();
+    const strapW = 28;
+    const topArchY = h * 0.12;
+
+    // Tali Kiri
+    mCtx.beginPath();
+    mCtx.moveTo(cx - w * 0.14 - strapW / 2, h * 0.52);
+    mCtx.bezierCurveTo(cx - w * 0.16, h * 0.32, cx - w * 0.14, topArchY, cx - w * 0.10, topArchY);
+    mCtx.bezierCurveTo(cx - w * 0.08, topArchY, cx - w * 0.11, h * 0.32, cx - w * 0.14 + strapW / 2, h * 0.52);
+    mCtx.closePath();
+
+    const leatherGrad = mCtx.createLinearGradient(0, topArchY, 0, h * 0.52);
+    if (isBack) {
+      leatherGrad.addColorStop(0, "#4A240A");
+      leatherGrad.addColorStop(1, "#361A07");
+    } else {
+      leatherGrad.addColorStop(0, "#8B4513");
+      leatherGrad.addColorStop(0.5, "#A0522D");
+      leatherGrad.addColorStop(1, "#5C2E0B");
+    }
+    mCtx.fillStyle = leatherGrad;
+    mCtx.fill();
+
+    // Jahitan Tepi Tali Kulit (Depan saja)
+    if (!isBack) {
+      mCtx.strokeStyle = "rgba(230, 211, 167, 0.85)";
+      mCtx.lineWidth = 1.5;
+      mCtx.setLineDash([4, 3]);
+      mCtx.stroke();
+      mCtx.setLineDash([]);
+
+      // Patch Penguat Kulit & Rivet Logam di Tas
+      const leftAnchorX = cx - w * 0.14;
+      const anchorY = h * 0.48;
+      mCtx.fillStyle = "#6E350E";
+      mCtx.fillRect(leftAnchorX - strapW / 2 - 3, anchorY - 25, strapW + 6, 42);
+      mCtx.strokeStyle = "#E6D3A7";
+      mCtx.lineWidth = 1.5;
+      mCtx.setLineDash([3, 2]);
+      mCtx.strokeRect(leftAnchorX - strapW / 2 - 3, anchorY - 25, strapW + 6, 42);
+      // Jahitan X penguat
+      mCtx.beginPath();
+      mCtx.moveTo(leftAnchorX - strapW / 2 - 1, anchorY - 23);
+      mCtx.lineTo(leftAnchorX + strapW / 2 + 1, anchorY + 15);
+      mCtx.moveTo(leftAnchorX + strapW / 2 + 1, anchorY - 23);
+      mCtx.lineTo(leftAnchorX - strapW / 2 - 1, anchorY + 15);
+      mCtx.stroke();
+      mCtx.setLineDash([]);
+
+      // Rivet Logam Kuningan
+      mCtx.fillStyle = "#C9A567";
+      mCtx.beginPath();
+      mCtx.arc(leftAnchorX, anchorY - 5, 4.5, 0, Math.PI * 2);
+      mCtx.fill();
+      mCtx.strokeStyle = "#5C2E0B";
+      mCtx.lineWidth = 1;
+      mCtx.stroke();
+    }
+
+    // Tali Kanan
+    mCtx.beginPath();
+    mCtx.moveTo(cx + w * 0.14 - strapW / 2, h * 0.52);
+    mCtx.bezierCurveTo(cx + w * 0.11, h * 0.32, cx + w * 0.08, topArchY, cx + w * 0.10, topArchY);
+    mCtx.bezierCurveTo(cx + w * 0.14, topArchY, cx + w * 0.16, h * 0.32, cx + w * 0.14 + strapW / 2, h * 0.52);
+    mCtx.closePath();
+    mCtx.fillStyle = leatherGrad;
+    mCtx.fill();
+
+    if (!isBack) {
+      mCtx.strokeStyle = "rgba(230, 211, 167, 0.85)";
+      mCtx.lineWidth = 1.5;
+      mCtx.setLineDash([4, 3]);
+      mCtx.stroke();
+      mCtx.setLineDash([]);
+
+      const rightAnchorX = cx + w * 0.14;
+      const anchorY = h * 0.48;
+      mCtx.fillStyle = "#6E350E";
+      mCtx.fillRect(rightAnchorX - strapW / 2 - 3, anchorY - 25, strapW + 6, 42);
+      mCtx.strokeStyle = "#E6D3A7";
+      mCtx.lineWidth = 1.5;
+      mCtx.setLineDash([3, 2]);
+      mCtx.strokeRect(rightAnchorX - strapW / 2 - 3, anchorY - 25, strapW + 6, 42);
+      mCtx.beginPath();
+      mCtx.moveTo(rightAnchorX - strapW / 2 - 1, anchorY - 23);
+      mCtx.lineTo(rightAnchorX + strapW / 2 + 1, anchorY + 15);
+      mCtx.moveTo(rightAnchorX + strapW / 2 + 1, anchorY - 23);
+      mCtx.lineTo(rightAnchorX - strapW / 2 - 1, anchorY + 15);
+      mCtx.stroke();
+      mCtx.setLineDash([]);
+
+      // Rivet Logam Kuningan
+      mCtx.fillStyle = "#C9A567";
+      mCtx.beginPath();
+      mCtx.arc(rightAnchorX, anchorY - 5, 4.5, 0, Math.PI * 2);
+      mCtx.fill();
+      mCtx.strokeStyle = "#5C2E0B";
+      mCtx.lineWidth = 1;
+      mCtx.stroke();
+    }
+
+    mCtx.restore();
+  }
+
+  function drawLeatherBadge(mCtx, w, h, cx) {
+    mCtx.save();
+    const bw = 140;
+    const bh = 46;
+    const bx = cx - bw / 2;
+    const by = h * 0.505;
+
+    // Bayangan badge
+    mCtx.fillStyle = "rgba(0,0,0,0.45)";
+    drawRoundRect(mCtx, bx + 2, by + 4, bw, bh, 6);
+    mCtx.fill();
+
+    // Badan Kulit Badge
+    const badgeGrad = mCtx.createLinearGradient(0, by, 0, by + bh);
+    badgeGrad.addColorStop(0, "#8B4513");
+    badgeGrad.addColorStop(0.5, "#A0522D");
+    badgeGrad.addColorStop(1, "#5C2E0B");
+    mCtx.fillStyle = badgeGrad;
+    drawRoundRect(mCtx, bx, by, bw, bh, 5);
+    mCtx.fill();
+
+    // Jahitan Tepi Badge
+    mCtx.strokeStyle = "rgba(230, 211, 167, 0.85)";
+    mCtx.lineWidth = 1.2;
+    mCtx.setLineDash([3, 2]);
+    drawRoundRect(mCtx, bx + 3, by + 3, bw - 6, bh - 6, 3);
+    mCtx.stroke();
+    mCtx.setLineDash([]);
+
+    // Teks Embossed Deboss
+    mCtx.fillStyle = "#3D1E07";
+    mCtx.font = "bold 11px 'Fraunces', serif";
+    mCtx.textAlign = "center";
+    mCtx.fillText("WARISARA", cx, by + 21);
+
+    mCtx.font = "bold 7px 'Manrope', sans-serif";
+    mCtx.fillText("KARYA LOKAL INDONESIA", cx, by + 33);
+
+    mCtx.restore();
+  }
+
+  function drawToteBagMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
+    // Studio Background
+    const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
+    bgGrad.addColorStop(0, "#221D18");
+    bgGrad.addColorStop(1, "#14110E");
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, w, h);
+
+    const cx = w / 2;
+
+    // Ground Contact Shadow di bawah dasar tas
+    const shadowGrad = mCtx.createRadialGradient(cx, h * 0.885, 20, cx, h * 0.885, w * 0.34);
+    shadowGrad.addColorStop(0, `rgba(0, 0, 0, ${0.85 * shadowInt})`);
+    shadowGrad.addColorStop(0.35, `rgba(0, 0, 0, ${0.45 * shadowInt})`);
+    shadowGrad.addColorStop(0.7, `rgba(0, 0, 0, ${0.15 * shadowInt})`);
+    shadowGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+    mCtx.fillStyle = shadowGrad;
     mCtx.beginPath();
-    mCtx.moveTo(w * 0.2, h * 0.1);
-    mCtx.bezierCurveTo(w * 0.45, h * 0.08, w * 0.55, h * 0.18, w * 0.8, h * 0.12);
-    mCtx.bezierCurveTo(w * 0.88, h * 0.45, w * 0.75, h * 0.75, w * 0.78, h * 0.9);
-    mCtx.lineTo(w * 0.45, h * 0.9);
-    mCtx.bezierCurveTo(w * 0.42, h * 0.7, w * 0.18, h * 0.5, w * 0.2, h * 0.1);
-    mCtx.closePath();
+    mCtx.ellipse(cx, h * 0.885, w * 0.31, h * 0.05, 0, 0, Math.PI * 2);
+    mCtx.fill();
+
+    // 1. Tali Kulit Belakang (digambar sebelum badan tas)
+    drawLeatherStraps(mCtx, w, h, cx, true);
+
+    // 2. Siluet Badan Tote Bag
+    function createTotePath(ctx) {
+      ctx.beginPath();
+      const topW = w * 0.31;
+      const botW = w * 0.235;
+      const topY = h * 0.38;
+      const botY = h * 0.87;
+      const r = 26;
+
+      ctx.moveTo(cx - topW, topY);
+      ctx.quadraticCurveTo(cx, topY + 10, cx + topW, topY);
+      ctx.lineTo(cx + botW, botY - r);
+      ctx.quadraticCurveTo(cx + botW, botY, cx + botW - r, botY);
+      ctx.lineTo(cx - botW + r, botY);
+      ctx.quadraticCurveTo(cx - botW, botY, cx - botW, botY - r);
+      ctx.closePath();
+    }
+
+    // Isi Badan Tas dengan Motif Batik
+    mCtx.save();
+    createTotePath(mCtx);
+    mCtx.clip();
 
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
+    // Tekstur Anyaman Kanvas Kriya Tebal (Authentic Heavy Canvas Weave)
+    mCtx.globalCompositeOperation = "overlay";
+    mCtx.strokeStyle = "rgba(0,0,0,0.18)";
+    mCtx.lineWidth = 1;
+    for (let y = h * 0.36; y < h * 0.89; y += 4) {
+      mCtx.beginPath();
+      mCtx.moveTo(cx - w * 0.35, y);
+      mCtx.lineTo(cx + w * 0.35, y);
+      mCtx.stroke();
+    }
+
+    // Shading Bentuk Melengkung (Barrel 3D Shading - MULTIPLY)
+    mCtx.globalCompositeOperation = "multiply";
+    const sMult = shadowInt || 1.0;
+    const bodyShade = mCtx.createLinearGradient(cx - w * 0.31, 0, cx + w * 0.31, 0);
+    bodyShade.addColorStop(0, `rgba(0,0,0,${0.6 * sMult})`);
+    bodyShade.addColorStop(0.18, `rgba(0,0,0,${0.18 * sMult})`);
+    bodyShade.addColorStop(0.5, "rgba(0,0,0,0)");
+    bodyShade.addColorStop(0.82, `rgba(0,0,0,${0.25 * sMult})`);
+    bodyShade.addColorStop(1, `rgba(0,0,0,${0.65 * sMult})`);
+    mCtx.fillStyle = bodyShade;
+    mCtx.fillRect(cx - w * 0.35, h * 0.36, w * 0.7, h * 0.55);
+
+    // Bayangan Dasar Bawah
+    const botShade = mCtx.createLinearGradient(0, h * 0.76, 0, h * 0.87);
+    botShade.addColorStop(0, "rgba(0,0,0,0)");
+    botShade.addColorStop(1, `rgba(0,0,0,${0.5 * sMult})`);
+    mCtx.fillStyle = botShade;
+    mCtx.fillRect(cx - w * 0.35, h * 0.76, w * 0.7, h * 0.12);
+
+    // Highlight Pencahayaan (SCREEN)
+    mCtx.globalCompositeOperation = "screen";
+    const hMult = highlightInt || 1.0;
+    const bodyHigh = mCtx.createLinearGradient(cx - w * 0.18, 0, cx + w * 0.05, 0);
+    bodyHigh.addColorStop(0, `rgba(255,255,255,${0.25 * hMult})`);
+    bodyHigh.addColorStop(1, "rgba(255,255,255,0)");
+    mCtx.fillStyle = bodyHigh;
+    mCtx.fillRect(cx - w * 0.22, h * 0.38, w * 0.32, h * 0.5);
+
+    mCtx.restore(); // Selesai clip tas
+
+    // 3. Garis Tepi Kulit Bibir Tas (Top Rim Leather Binding)
+    mCtx.save();
+    mCtx.beginPath();
+    const topW = w * 0.31;
+    const topY = h * 0.38;
+    mCtx.moveTo(cx - topW - 2, topY - 3);
+    mCtx.quadraticCurveTo(cx, topY + 7, cx + topW + 2, topY - 3);
+    mCtx.lineTo(cx + topW + 2, topY + 7);
+    mCtx.quadraticCurveTo(cx, topY + 17, cx - topW - 2, topY + 7);
+    mCtx.closePath();
+    const rimGrad = mCtx.createLinearGradient(0, topY, 0, topY + 10);
+    rimGrad.addColorStop(0, "#8B4513");
+    rimGrad.addColorStop(0.5, "#A0522D");
+    rimGrad.addColorStop(1, "#5C2E0B");
+    mCtx.fillStyle = rimGrad;
+    mCtx.fill();
+    mCtx.strokeStyle = "rgba(230, 211, 167, 0.75)";
+    mCtx.lineWidth = 1.2;
+    mCtx.setLineDash([4, 3]);
+    mCtx.stroke();
+    mCtx.restore();
+
+    // 4. Tali Kulit Depan & Rivet Logam (Front Leather Straps)
+    drawLeatherStraps(mCtx, w, h, cx, false);
+
+    // 5. Badge Kulit Tengah "WARISARA KARYA LOKAL" (Sesuai Gambar 2)
+    drawLeatherBadge(mCtx, w, h, cx);
+
+    mCtx.restore();
+  }
+
+  // =========================================================================
+  // 3. MOCKUP KEMEJA BATIK PRIA MODERN FIT
+  // =========================================================================
+  function drawShirtMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
+    mCtx.save();
+
+    const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
+    bgGrad.addColorStop(0, "#221D18");
+    bgGrad.addColorStop(1, "#14110E");
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, w, h);
+
+    const cx = w / 2;
+
+    // Contact shadow
+    const shadowGrad = mCtx.createRadialGradient(cx, h * 0.90, 20, cx, h * 0.90, w * 0.35);
+    shadowGrad.addColorStop(0, `rgba(0,0,0,${0.7 * shadowInt})`);
+    shadowGrad.addColorStop(1, "rgba(0,0,0,0)");
+    mCtx.fillStyle = shadowGrad;
+    mCtx.beginPath();
+    mCtx.ellipse(cx, h * 0.90, w * 0.32, h * 0.045, 0, 0, Math.PI * 2);
+    mCtx.fill();
+
+    function createShirtPath(ctx) {
+      ctx.beginPath();
+      ctx.moveTo(cx - w * 0.12, h * 0.15);
+      ctx.lineTo(cx - w * 0.28, h * 0.21);
+      ctx.lineTo(cx - w * 0.38, h * 0.46);
+      ctx.lineTo(cx - w * 0.26, h * 0.52);
+      ctx.lineTo(cx - w * 0.22, h * 0.42);
+      ctx.lineTo(cx - w * 0.23, h * 0.86);
+      ctx.quadraticCurveTo(cx, h * 0.91, cx + w * 0.23, h * 0.86);
+      ctx.lineTo(cx + w * 0.22, h * 0.42);
+      ctx.lineTo(cx + w * 0.26, h * 0.52);
+      ctx.lineTo(cx + w * 0.38, h * 0.46);
+      ctx.lineTo(cx + w * 0.28, h * 0.21);
+      ctx.lineTo(cx + w * 0.12, h * 0.15);
+      ctx.quadraticCurveTo(cx, h * 0.20, cx - w * 0.12, h * 0.15);
+      ctx.closePath();
+    }
+
+    mCtx.save();
+    createShirtPath(mCtx);
+    mCtx.clip();
+
+    mCtx.fillStyle = pattern;
+    mCtx.fill();
+
+    // Multi-pass shadows (MULTIPLY)
+    mCtx.globalCompositeOperation = "multiply";
+    const sMult = shadowInt || 1.0;
+    const shirtShade = mCtx.createLinearGradient(cx - w * 0.25, 0, cx + w * 0.25, 0);
+    shirtShade.addColorStop(0, `rgba(0,0,0,${0.5 * sMult})`);
+    shirtShade.addColorStop(0.2, "rgba(0,0,0,0.1)");
+    shirtShade.addColorStop(0.5, "rgba(0,0,0,0)");
+    shirtShade.addColorStop(0.8, "rgba(0,0,0,0.15)");
+    shirtShade.addColorStop(1, `rgba(0,0,0,${0.55 * sMult})`);
+    mCtx.fillStyle = shirtShade;
+    mCtx.fillRect(0, 0, w, h);
+
+    // Highlights (SCREEN)
+    mCtx.globalCompositeOperation = "screen";
+    const hMult = highlightInt || 1.0;
+    const shirtHigh = mCtx.createRadialGradient(cx - w * 0.05, h * 0.35, 10, cx - w * 0.05, h * 0.35, w * 0.2);
+    shirtHigh.addColorStop(0, `rgba(255,255,255,${0.28 * hMult})`);
+    shirtHigh.addColorStop(1, "rgba(255,255,255,0)");
+    mCtx.fillStyle = shirtHigh;
+    mCtx.fillRect(0, 0, w, h);
+
+    mCtx.restore();
+
+    // Detail Kemeja: Placket Depan & Kancing Kayu
+    mCtx.save();
+    // Placket tengah
+    mCtx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    mCtx.fillRect(cx - 14, h * 0.18, 28, h * 0.70);
+    mCtx.strokeStyle = "rgba(201, 165, 103, 0.6)";
+    mCtx.lineWidth = 1.2;
+    mCtx.strokeRect(cx - 14, h * 0.18, 28, h * 0.70);
+
+    // 5 Kancing Mutiara / Kayu dengan 4 lubang jahitan
+    for (let b = 1; b <= 5; b++) {
+      const by = h * 0.24 + b * (h * 0.115);
+      mCtx.fillStyle = "#E6D3A7";
+      mCtx.beginPath();
+      mCtx.arc(cx, by, 6.5, 0, Math.PI * 2);
+      mCtx.fill();
+      mCtx.strokeStyle = "#8A6427";
+      mCtx.lineWidth = 1.5;
+      mCtx.stroke();
+
+      // Lubang jahitan kancing
+      mCtx.fillStyle = "#3D1E07";
+      mCtx.fillRect(cx - 2.5, by - 2.5, 1.5, 1.5);
+      mCtx.fillRect(cx + 1, by - 2.5, 1.5, 1.5);
+      mCtx.fillRect(cx - 2.5, by + 1, 1.5, 1.5);
+      mCtx.fillRect(cx + 1, by + 1, 1.5, 1.5);
+    }
+
+    // Kerah Kemeja (Collar points)
+    mCtx.beginPath();
+    mCtx.moveTo(cx - w * 0.12, h * 0.15);
+    mCtx.lineTo(cx - w * 0.04, h * 0.23);
+    mCtx.lineTo(cx, h * 0.18);
+    mCtx.lineTo(cx + w * 0.04, h * 0.23);
+    mCtx.lineTo(cx + w * 0.12, h * 0.15);
+    mCtx.strokeStyle = "rgba(26, 22, 18, 0.7)";
+    mCtx.lineWidth = 3;
+    mCtx.stroke();
+
+    // Saku Dada Kiri
+    mCtx.strokeStyle = "rgba(201, 165, 103, 0.65)";
+    mCtx.lineWidth = 1.5;
+    mCtx.setLineDash([3, 2]);
+    drawRoundRect(mCtx, cx - w * 0.18, h * 0.32, w * 0.08, h * 0.10, 4);
+    mCtx.stroke();
+    mCtx.setLineDash([]);
+
+    mCtx.restore();
+  }
+
+  // =========================================================================
+  // 4. MOCKUP SELENDANG SUTRA (SILK SCARF WITH GOLD FRINGES)
+  // =========================================================================
+  function drawScarfMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
+    mCtx.save();
+
+    const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
+    bgGrad.addColorStop(0, "#221D18");
+    bgGrad.addColorStop(1, "#14110E");
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, w, h);
+
+    function createScarfPath(ctx) {
+      ctx.beginPath();
+      ctx.moveTo(w * 0.22, h * 0.12);
+      ctx.bezierCurveTo(w * 0.45, h * 0.08, w * 0.62, h * 0.20, w * 0.78, h * 0.14);
+      ctx.bezierCurveTo(w * 0.88, h * 0.45, w * 0.75, h * 0.75, w * 0.76, h * 0.88);
+      ctx.lineTo(w * 0.42, h * 0.88);
+      ctx.bezierCurveTo(w * 0.40, h * 0.68, w * 0.18, h * 0.50, w * 0.22, h * 0.12);
+      ctx.closePath();
+    }
+
+    mCtx.save();
+    createScarfPath(mCtx);
+    mCtx.clip();
+
+    mCtx.fillStyle = pattern;
+    mCtx.fill();
+
+    // Kilau sutra elegan
+    mCtx.globalCompositeOperation = "screen";
+    const hMult = highlightInt || 1.0;
     const sheen = mCtx.createLinearGradient(0, 0, w, h);
-    sheen.addColorStop(0, "rgba(255,255,255,0.2)");
-    sheen.addColorStop(0.35, "rgba(0,0,0,0.3)");
-    sheen.addColorStop(0.65, "rgba(255,255,255,0.25)");
-    sheen.addColorStop(1, "rgba(0,0,0,0.4)");
+    sheen.addColorStop(0, `rgba(255,255,255,${0.35 * hMult})`);
+    sheen.addColorStop(0.35, "rgba(255,255,255,0)");
+    sheen.addColorStop(0.65, `rgba(255,255,255,${0.4 * hMult})`);
+    sheen.addColorStop(1, "rgba(255,255,255,0)");
     mCtx.fillStyle = sheen;
     mCtx.fill();
 
-    mCtx.strokeStyle = "rgba(0,0,0,0.5)";
-    mCtx.lineWidth = 2.5;
-    mCtx.stroke();
+    // Lekukan bayangan (MULTIPLY)
+    mCtx.globalCompositeOperation = "multiply";
+    const sMult = shadowInt || 1.0;
+    const scarfShadow = mCtx.createLinearGradient(w * 0.2, 0, w * 0.8, 0);
+    scarfShadow.addColorStop(0, `rgba(0,0,0,${0.4 * sMult})`);
+    scarfShadow.addColorStop(0.5, "rgba(0,0,0,0)");
+    scarfShadow.addColorStop(1, `rgba(0,0,0,${0.5 * sMult})`);
+    mCtx.fillStyle = scarfShadow;
+    mCtx.fillRect(0, 0, w, h);
 
-    for (let t = w * 0.46; t <= w * 0.76; t += 8) {
+    mCtx.restore();
+
+    // Rumbai / Rumbai Emas Selendang di Ujung Bawah
+    mCtx.strokeStyle = "#C9A567";
+    mCtx.lineWidth = 2.5;
+    for (let t = w * 0.43; t <= w * 0.75; t += 7) {
       mCtx.beginPath();
-      mCtx.moveTo(t, h * 0.9);
-      mCtx.lineTo(t, h * 0.95);
-      mCtx.strokeStyle = "#C9A567";
-      mCtx.lineWidth = 2;
+      mCtx.moveTo(t, h * 0.88);
+      mCtx.lineTo(t + (Math.sin(t) * 3), h * 0.94);
       mCtx.stroke();
     }
 
     mCtx.restore();
   }
 
-  function drawCushionMockup(mCtx, w, h, pattern) {
+  // =========================================================================
+  // 5. MOCKUP BANTAL INTERIOR DEKORASI (CUSHION WITH PIPING)
+  // =========================================================================
+  function drawCushionMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
+
+    const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
+    bgGrad.addColorStop(0, "#221D18");
+    bgGrad.addColorStop(1, "#14110E");
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, w, h);
+
     const cx = w / 2;
     const cy = h / 2;
     const r = w * 0.38;
 
+    // Contact shadow
+    const shadowGrad = mCtx.createRadialGradient(cx, cy + r * 0.92, 20, cx, cy + r * 0.92, r * 1.1);
+    shadowGrad.addColorStop(0, `rgba(0,0,0,${0.75 * shadowInt})`);
+    shadowGrad.addColorStop(1, "rgba(0,0,0,0)");
+    mCtx.fillStyle = shadowGrad;
     mCtx.beginPath();
-    mCtx.moveTo(cx - r * 0.9, cy - r * 0.9);
-    mCtx.quadraticCurveTo(cx, cy - r * 1.05, cx + r * 0.9, cy - r * 0.9);
-    mCtx.quadraticCurveTo(cx + r * 1.05, cy, cx + r * 0.9, cy + r * 0.9);
-    mCtx.quadraticCurveTo(cx, cy + r * 1.05, cx - r * 0.9, cy + r * 0.9);
-    mCtx.quadraticCurveTo(cx - r * 1.05, cy, cx - r * 0.9, cy - r * 0.9);
-    mCtx.closePath();
+    mCtx.ellipse(cx, cy + r * 0.92, r * 0.95, r * 0.15, 0, 0, Math.PI * 2);
+    mCtx.fill();
+
+    function createCushionPath(ctx) {
+      ctx.beginPath();
+      ctx.moveTo(cx - r * 0.9, cy - r * 0.9);
+      ctx.quadraticCurveTo(cx, cy - r * 1.05, cx + r * 0.9, cy - r * 0.9);
+      ctx.quadraticCurveTo(cx + r * 1.05, cy, cx + r * 0.9, cy + r * 0.9);
+      ctx.quadraticCurveTo(cx, cy + r * 1.05, cx - r * 0.9, cy + r * 0.9);
+      ctx.quadraticCurveTo(cx - r * 1.05, cy, cx - r * 0.9, cy - r * 0.9);
+      ctx.closePath();
+    }
+
+    mCtx.save();
+    createCushionPath(mCtx);
+    mCtx.clip();
 
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    const pillowShade = mCtx.createRadialGradient(cx, cy, r * 0.2, cx, cy, r * 1.05);
-    pillowShade.addColorStop(0, "rgba(255,255,255,0.25)");
-    pillowShade.addColorStop(0.7, "rgba(0,0,0,0.1)");
-    pillowShade.addColorStop(1, "rgba(0,0,0,0.6)");
+    // Shading cembung bantal (Radial Gradient - MULTIPLY)
+    mCtx.globalCompositeOperation = "multiply";
+    const sMult = shadowInt || 1.0;
+    const pillowShade = mCtx.createRadialGradient(cx, cy, r * 0.15, cx, cy, r * 1.05);
+    pillowShade.addColorStop(0, "rgba(0,0,0,0)");
+    pillowShade.addColorStop(0.7, `rgba(0,0,0,${0.25 * sMult})`);
+    pillowShade.addColorStop(1, `rgba(0,0,0,${0.7 * sMult})`);
     mCtx.fillStyle = pillowShade;
     mCtx.fill();
 
-    mCtx.strokeStyle = "rgba(0,0,0,0.5)";
-    mCtx.lineWidth = 3;
+    // Highlight cembung tengah (SCREEN)
+    mCtx.globalCompositeOperation = "screen";
+    const hMult = highlightInt || 1.0;
+    const pillowHigh = mCtx.createRadialGradient(cx - r * 0.2, cy - r * 0.2, 5, cx - r * 0.2, cy - r * 0.2, r * 0.6);
+    pillowHigh.addColorStop(0, `rgba(255,255,255,${0.35 * hMult})`);
+    pillowHigh.addColorStop(1, "rgba(255,255,255,0)");
+    mCtx.fillStyle = pillowHigh;
+    mCtx.fill();
+
+    mCtx.restore();
+
+    // Piped cording border (Tali bisban pinggir bantal)
+    mCtx.strokeStyle = "rgba(201, 165, 103, 0.75)";
+    mCtx.lineWidth = 4;
+    createCushionPath(mCtx);
+    mCtx.stroke();
+
+    // Kancing tuft tengah
+    mCtx.fillStyle = "#A47E3F";
+    mCtx.beginPath();
+    mCtx.arc(cx, cy, 7, 0, Math.PI * 2);
+    mCtx.fill();
+    mCtx.strokeStyle = "#2A1E14";
+    mCtx.lineWidth = 2;
     mCtx.stroke();
 
     mCtx.restore();
+  }
+
+  // =========================================================================
+  // 6. LEMBAR SPEK DESAIN FASHION & KRIYA / TECH PACK (SESUAI GAMBAR 1)
+  // =========================================================================
+  function exportFashionTechPack() {
+    const tWidth = 1600;
+    const tHeight = 1100;
+    const tCanvas = document.createElement("canvas");
+    tCanvas.width = tWidth;
+    tCanvas.height = tHeight;
+    const tCtx = tCanvas.getContext("2d");
+
+    // Latar Belakang Kartu Studio Bersih & Mewah (Warm Charcoal Board)
+    tCtx.fillStyle = "#181512";
+    tCtx.fillRect(0, 0, tWidth, tHeight);
+
+    // Frame Border Kuningan Halus
+    tCtx.strokeStyle = "rgba(201, 165, 103, 0.4)";
+    tCtx.lineWidth = 2;
+    tCtx.strokeRect(30, 30, tWidth - 60, tHeight - 60);
+
+    // HEADER TECH PACK
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 13px 'Manrope', sans-serif";
+    tCtx.fillText("WARISARA CREATIVE LAB STUDIO • TECHNICAL SPECIFICATION SHEET", 60, 75);
+
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "bold 28px 'Fraunces', serif";
+    const info = MOTIF_INFO[StudioState.motif] || MOTIF_INFO.kawung;
+    const prodName = {
+      dress: "Gaun Wastra Nusantara (Midi Boho Dress)",
+      totebag: "Tas Tote Bag Kriya Kulit (Canvas & Leather)",
+      shirt: "Kemeja Batik Pria (Modern Fit Shirt)",
+      scarf: "Selendang Sutra Alam (Silk Scarf)",
+      cushion: "Bantal Dekorasi Interior (Plush Cushion)"
+    }[StudioState.mockupProduct || "dress"];
+
+    tCtx.fillText(`${info.title.replace("Makna Filosofi ", "")} — ${prodName}`, 60, 115);
+
+    const hashString = `WRS-TECH-${StudioState.motif.toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
+    tCtx.fillStyle = "rgba(251, 248, 242, 0.5)";
+    tCtx.font = "12px 'Courier New', monospace";
+    tCtx.textAlign = "right";
+    tCtx.fillText(`Spec ID: #${hashString}`, tWidth - 60, 75);
+    tCtx.fillText(`Tanggal Terbit: ${new Date().toLocaleDateString("id-ID")}`, tWidth - 60, 95);
+    tCtx.textAlign = "left";
+
+    // Garis Pemisah Header
+    tCtx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+    tCtx.lineWidth = 1;
+    tCtx.beginPath();
+    tCtx.moveTo(60, 140);
+    tCtx.lineTo(tWidth - 60, 140);
+    tCtx.stroke();
+
+    // SISI KIRI: 2D PATTERN SWATCH + PALETTE TABLE (Sesuai Gambar 1)
+    // 1. Swatch Pola Datar 2D (360x360 px)
+    tCtx.save();
+    tCtx.strokeStyle = "rgba(201, 165, 103, 0.5)";
+    tCtx.lineWidth = 2;
+    tCtx.strokeRect(60, 170, 360, 360);
+    tCtx.drawImage(canvas, 60, 170, 360, 360);
+    tCtx.restore();
+
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "bold 13px 'Manrope', sans-serif";
+    tCtx.fillText("SAMPEL POLA SEAMLESS TILE (2D)", 60, 560);
+    tCtx.font = "11px 'Manrope', sans-serif";
+    tCtx.fillStyle = "rgba(251, 248, 242, 0.6)";
+    tCtx.fillText(`Grid Densitas: ${StudioState.density}x${StudioState.density} • Sudut: ${StudioState.rotation}° • Fraktal: ${StudioState.complexity}`, 60, 580);
+
+    // 2. Color Palette Table (Ekstraksi Warna Sesuai Gambar 1: Sunglow, Indigo, dsb)
+    const colorSwatches = [
+      { role: "Garis Canting", hex: StudioState.primaryColor, name: getColorCulturalName(StudioState.primaryColor) },
+      { role: "Isian Ornamen", hex: StudioState.secondaryColor, name: getColorCulturalName(StudioState.secondaryColor) },
+      { role: "Inti Roset", hex: StudioState.highlightColor, name: getColorCulturalName(StudioState.highlightColor) },
+      { role: "Dasar Kain", hex: StudioState.bgColor, name: getColorCulturalName(StudioState.bgColor) }
+    ];
+
+    let swatchY = 620;
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 12px 'Manrope', sans-serif";
+    tCtx.fillText("PALET WARNA PRODUKSI (COLOR FORMULATION)", 60, swatchY);
+
+    swatchY += 20;
+    colorSwatches.forEach((c) => {
+      // Kotak warna
+      tCtx.fillStyle = c.hex;
+      tCtx.fillRect(60, swatchY, 26, 26);
+      tCtx.strokeStyle = "rgba(255,255,255,0.2)";
+      tCtx.lineWidth = 1;
+      tCtx.strokeRect(60, swatchY, 26, 26);
+
+      // Label & Hex
+      tCtx.fillStyle = "#FAF6EE";
+      tCtx.font = "bold 12px 'Manrope', sans-serif";
+      tCtx.fillText(c.name, 98, swatchY + 13);
+      tCtx.fillStyle = "rgba(251, 248, 242, 0.55)";
+      tCtx.font = "10px 'Courier New', monospace";
+      tCtx.fillText(`${c.hex.toUpperCase()} • ${c.role}`, 98, swatchY + 24);
+
+      swatchY += 34;
+    });
+
+    // 3. Spesifikasi Bahan Tekstil (Sesuai Gambar 1: Fabric Spec)
+    const fabNames = {
+      cotton: { name: "Katun Mori Primissima Halus", comp: "100% Katun Organik Tropis", weave: "Plain Weave Ring-spun" },
+      silk: { name: "Sutra Alam ATBM Mahakarya", comp: "100% Pure Mulberry Silk", weave: "Lustrous Satin Weave" },
+      linen: { name: "Linen Rami Wastra Nusantara", comp: "70% Linen, 30% Katun Alami", weave: "Slub Organic Weave" },
+      canvas: { name: "Kanvas Kriya Tebal Premium", comp: "100% Heavy Duty Cotton Canvas", weave: "Dobby Heavy Weave" }
+    }[StudioState.mockupFabric || "cotton"];
+
+    let fabY = swatchY + 20;
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 12px 'Manrope', sans-serif";
+    tCtx.fillText("SPESIFIKASI MATERIAL KAIN (FABRIC SPEC)", 60, fabY);
+
+    fabY += 20;
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "bold 13px 'Manrope', sans-serif";
+    tCtx.fillText(fabNames.name, 60, fabY);
+    tCtx.fillStyle = "rgba(251, 248, 242, 0.65)";
+    tCtx.font = "11px 'Manrope', sans-serif";
+    tCtx.fillText(`Komposisi: ${fabNames.comp}`, 60, fabY + 18);
+    tCtx.fillText(`Anyaman Tekstil: ${fabNames.weave}`, 60, fabY + 34);
+
+    // SISI KANAN: LARGE 3D PHOTOREALISTIC MOCKUP (Sesuai Gambar 1 & 2)
+    const mockupCanvas = document.getElementById("mockup-preview-canvas");
+    if (mockupCanvas) {
+      tCtx.save();
+      // Frame Mockup
+      tCtx.strokeStyle = "rgba(201, 165, 103, 0.5)";
+      tCtx.lineWidth = 2;
+      tCtx.strokeRect(460, 170, 780, 780);
+      tCtx.drawImage(mockupCanvas, 460, 170, 780, 780);
+      tCtx.restore();
+    }
+
+    // KOLOM KANAN JAUH: FILOSOFI & DOKUMEN LEGAL
+    const colRightX = 1270;
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 12px 'Manrope', sans-serif";
+    tCtx.fillText("FILOSOFI & MAKNA BUDAYA", colRightX, 190);
+
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "12px 'Manrope', sans-serif";
+    wrapText(tCtx, info.desc, colRightX, 215, 270, 18);
+
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 12px 'Manrope', sans-serif";
+    tCtx.fillText("WILAYAH ASAL PUSAKA", colRightX, 360);
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "12px 'Manrope', sans-serif";
+    tCtx.fillText(info.origin, colRightX, 385);
+
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 12px 'Manrope', sans-serif";
+    tCtx.fillText("SIMBOLISME AGUNG", colRightX, 430);
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "12px 'Manrope', sans-serif";
+    wrapText(tCtx, info.symbolism, colRightX, 455, 270, 18);
+
+    // Stempel Verifikasi Warisara
+    tCtx.strokeStyle = "#C9A567";
+    tCtx.lineWidth = 2;
+    drawRoundRect(tCtx, colRightX, 810, 260, 130, 10);
+    tCtx.stroke();
+
+    tCtx.fillStyle = "#C9A567";
+    tCtx.font = "bold 11px 'Fraunces', serif";
+    tCtx.textAlign = "center";
+    tCtx.fillText("WARISARA DIGITAL HERITAGE LAB", colRightX + 130, 845);
+    tCtx.fillStyle = "#FAF6EE";
+    tCtx.font = "10px 'Manrope', sans-serif";
+    tCtx.fillText("Official Certified Digital Mockup", colRightX + 130, 870);
+    tCtx.font = "9px 'Courier New', monospace";
+    tCtx.fillText(`SEAL: #${hashString.slice(-8)}`, colRightX + 130, 895);
+    tCtx.fillText("Ready for Artisan Production", colRightX + 130, 915);
+    tCtx.textAlign = "left";
+
+    // FOOTER LEGAL
+    tCtx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+    tCtx.lineWidth = 1;
+    tCtx.beginPath();
+    tCtx.moveTo(60, 1020);
+    tCtx.lineTo(tWidth - 60, 1020);
+    tCtx.stroke();
+
+    tCtx.fillStyle = "rgba(251, 248, 242, 0.5)";
+    tCtx.font = "11px 'Manrope', sans-serif";
+    tCtx.fillText("© 2026 WARISARA — Dikembangkan untuk TECHTOPIA Vol. 2 (INTEGER#8). Hak Cipta Desain Digital Dilindungi.", 60, 1050);
+
+    // Unduh Otomatis File PNG
+    const link = document.createElement("a");
+    link.download = `WARISARA-TECHPACK-${StudioState.motif.toUpperCase()}-${(StudioState.mockupProduct || "DRESS").toUpperCase()}.png`;
+    link.href = tCanvas.toDataURL("image/png");
+    link.click();
   }
 
   function openCertificateModal() {
@@ -2104,7 +3123,43 @@
   }
 
   function bindDomEvents() {
-    
+    // 1. Studio 4-Tab Inspector Switcher (Motif, Warna, Canting, Mockup 3D)
+    document.querySelectorAll(".studio-nav-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetTab = tab.dataset.studioTab;
+        StudioState.studioInspectorTab = targetTab;
+
+        document.querySelectorAll(".studio-nav-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const tabMotif = document.getElementById("tab-content-motif");
+        const tabColor = document.getElementById("tab-content-color");
+        const tabCanting = document.getElementById("tab-content-canting");
+        const tabMockup = document.getElementById("tab-content-mockup");
+
+        if (tabMotif) tabMotif.classList.toggle("hidden", targetTab !== "motif");
+        if (tabColor) tabColor.classList.toggle("hidden", targetTab !== "color");
+        if (tabCanting) tabCanting.classList.toggle("hidden", targetTab !== "canting");
+        if (tabMockup) tabMockup.classList.toggle("hidden", targetTab !== "mockup");
+
+        if (targetTab === "canting") {
+          StudioState.currentMode = "canting";
+          canvas.style.cursor = "crosshair";
+        } else {
+          StudioState.currentMode = "generative";
+          canvas.style.cursor = "default";
+        }
+
+        if (targetTab === "mockup") {
+          switchViewMode("3d");
+        } else {
+          switchViewMode("2d");
+        }
+
+        render();
+      });
+    });
+
     document.querySelectorAll(".mode-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const prevMode = StudioState.currentMode;
@@ -2399,27 +3454,106 @@
       });
     });
 
-    document.querySelectorAll(".mockup-tab-btn").forEach((btn) => {
+    function switchViewMode(mode) {
+      StudioState.viewMode = mode;
+      StudioState.activeView = mode === "3d" ? "mockup" : "flat";
+
+      const btn2d = document.getElementById("toggle-view-2d");
+      const btn3d = document.getElementById("toggle-view-3d");
+      const flatView = document.getElementById("view-flat-canvas");
+      const mockupView = document.getElementById("view-mockup-wrapper");
+      const labelDownload = document.getElementById("label-download-hd");
+
+      if (btn2d && btn3d) {
+        btn2d.classList.toggle("active", mode === "2d");
+        btn3d.classList.toggle("active", mode === "3d");
+      }
+
+      if (flatView && mockupView) {
+        if (mode === "2d") {
+          flatView.classList.remove("hidden");
+          mockupView.classList.add("hidden");
+          if (labelDownload) labelDownload.textContent = "Unduh Pola HD";
+        } else {
+          flatView.classList.add("hidden");
+          mockupView.classList.remove("hidden");
+          if (labelDownload) labelDownload.textContent = "Unduh Mockup HD";
+          updateMockupView();
+        }
+      }
+    }
+
+    const btnToggle2d = document.getElementById("toggle-view-2d");
+    if (btnToggle2d) {
+      btnToggle2d.addEventListener("click", () => switchViewMode("2d"));
+    }
+    const btnToggle3d = document.getElementById("toggle-view-3d");
+    if (btnToggle3d) {
+      btnToggle3d.addEventListener("click", () => switchViewMode("3d"));
+    }
+
+    function setMockupProduct(product) {
+      StudioState.mockupProduct = product;
+      document.querySelectorAll("[data-mockup-product]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.mockupProduct === product);
+      });
+      if (StudioState.viewMode !== "3d") {
+        switchViewMode("3d");
+      } else {
+        updateMockupView();
+      }
+    }
+
+    document.querySelectorAll("[data-mockup-product]").forEach((btn) => {
+      btn.addEventListener("click", () => setMockupProduct(btn.dataset.mockupProduct));
+    });
+
+    document.querySelectorAll("[data-fabric]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".mockup-tab-btn").forEach((b) => b.classList.remove("active", "bg-brass-400/20", "text-brass-300"));
-        btn.classList.add("active", "bg-brass-400/20", "text-brass-300");
-        StudioState.activeView = btn.dataset.view;
-
-        const flatView = document.getElementById("view-flat-canvas");
-        const mockupView = document.getElementById("view-mockup-wrapper");
-
-        if (flatView && mockupView) {
-          if (StudioState.activeView === "flat") {
-            flatView.classList.remove("hidden");
-            mockupView.classList.add("hidden");
-          } else {
-            flatView.classList.add("hidden");
-            mockupView.classList.remove("hidden");
-            updateMockupView();
-          }
+        document.querySelectorAll("[data-fabric]").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        StudioState.mockupFabric = btn.dataset.fabric;
+        if (StudioState.viewMode === "3d") {
+          updateMockupView();
         }
       });
     });
+
+    bindSlider("slider-mockup-scale", "val-mockup-scale", (val) => {
+      StudioState.mockupScale = parseFloat(val);
+      if (StudioState.viewMode === "3d") updateMockupView();
+      return `${parseFloat(val).toFixed(1)}x`;
+    });
+
+    bindSlider("slider-mockup-rotation", "val-mockup-rotation", (val) => {
+      StudioState.mockupRotation = parseInt(val, 10);
+      if (StudioState.viewMode === "3d") updateMockupView();
+      return `${val}°`;
+    });
+
+    bindSlider("slider-shadow-intensity", "val-shadow-intensity", (val) => {
+      StudioState.shadowIntensity = parseFloat(val);
+      if (StudioState.viewMode === "3d") updateMockupView();
+      return `${Math.round(parseFloat(val) * 100)}%`;
+    });
+
+    bindSlider("slider-highlight-intensity", "val-highlight-intensity", (val) => {
+      StudioState.highlightIntensity = parseFloat(val);
+      if (StudioState.viewMode === "3d") updateMockupView();
+      return `${Math.round(parseFloat(val) * 100)}%`;
+    });
+
+    const btnQuickSwap = document.getElementById("btn-quick-swap-palette");
+    if (btnQuickSwap) {
+      btnQuickSwap.addEventListener("click", () => {
+        const temp = StudioState.primaryColor;
+        StudioState.primaryColor = StudioState.secondaryColor;
+        StudioState.secondaryColor = temp;
+        syncUiToState();
+        saveHistoryState();
+        render();
+      });
+    }
 
     const btnRandomize = document.getElementById("btn-randomize-pattern");
     if (btnRandomize) {
@@ -2435,10 +3569,21 @@
     if (btnDownloadHd) {
       btnDownloadHd.addEventListener("click", () => {
         const link = document.createElement("a");
-        link.download = `WARISARA-${StudioState.motif.toUpperCase()}-HD.png`;
-        link.href = canvas.toDataURL("image/png");
+        if (StudioState.viewMode === "3d") {
+          const mockupCanvas = document.getElementById("mockup-preview-canvas");
+          link.download = `WARISARA-MOCKUP-${StudioState.mockupProduct.toUpperCase()}-${StudioState.motif.toUpperCase()}.png`;
+          link.href = (mockupCanvas || canvas).toDataURL("image/png");
+        } else {
+          link.download = `WARISARA-POLA-${StudioState.motif.toUpperCase()}-HD.png`;
+          link.href = canvas.toDataURL("image/png");
+        }
         link.click();
       });
+    }
+
+    const btnDownloadTechpack = document.getElementById("btn-download-techpack");
+    if (btnDownloadTechpack) {
+      btnDownloadTechpack.addEventListener("click", exportFashionTechPack);
     }
 
     const btnDownloadSvg = document.getElementById("btn-download-svg");
@@ -2572,6 +3717,18 @@
     setSliderVal("slider-curviness", "val-curviness", StudioState.curviness, `${StudioState.curviness}x`);
     setSliderVal("slider-rotation", "val-rotation", StudioState.rotation, `${StudioState.rotation}°`);
     setSliderVal("slider-complexity", "val-complexity", StudioState.complexity, `Lvl ${StudioState.complexity}`);
+
+    setSliderVal("slider-mockup-scale", "val-mockup-scale", StudioState.mockupScale || 1.0, `${(StudioState.mockupScale || 1.0).toFixed(1)}x`);
+    setSliderVal("slider-mockup-rotation", "val-mockup-rotation", StudioState.mockupRotation || 0, `${StudioState.mockupRotation || 0}°`);
+    setSliderVal("slider-shadow-intensity", "val-shadow-intensity", StudioState.shadowIntensity || 1.0, `${Math.round((StudioState.shadowIntensity || 1.0) * 100)}%`);
+    setSliderVal("slider-highlight-intensity", "val-highlight-intensity", StudioState.highlightIntensity || 1.0, `${Math.round((StudioState.highlightIntensity || 1.0) * 100)}%`);
+
+    document.querySelectorAll("[data-mockup-product]").forEach((b) => {
+      b.classList.toggle("active", b.dataset.mockupProduct === (StudioState.mockupProduct || "dress"));
+    });
+    document.querySelectorAll("[data-fabric]").forEach((b) => {
+      b.classList.toggle("active", b.dataset.fabric === (StudioState.mockupFabric || "cotton"));
+    });
 
     setColorPickerVal("picker-primary", StudioState.primaryColor);
     setColorPickerVal("picker-secondary", StudioState.secondaryColor);

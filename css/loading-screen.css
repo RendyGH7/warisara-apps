@@ -77,8 +77,8 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.68;
-  filter: contrast(120%) brightness(82%) saturate(105%);
+  opacity: 0.78;
+  filter: contrast(118%) brightness(90%) saturate(108%);
   transform: scale(1.03);
   animation: cinematicSlowPan 24s ease-in-out infinite alternate;
 }
@@ -87,8 +87,8 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse at 50% 50%, rgba(5, 4, 3, 0.40) 0%, rgba(4, 3, 2, 0.72) 58%, rgba(2, 2, 1, 0.94) 100%),
-    linear-gradient(180deg, rgba(2, 2, 1, 0.65) 0%, transparent 22%, transparent 78%, rgba(2, 2, 1, 0.88) 100%);
+    radial-gradient(ellipse at 50% 50%, rgba(5, 4, 3, 0.30) 0%, rgba(4, 3, 2, 0.62) 58%, rgba(2, 2, 1, 0.86) 100%),
+    linear-gradient(180deg, rgba(2, 2, 1, 0.55) 0%, transparent 22%, transparent 78%, rgba(2, 2, 1, 0.80) 100%);
   pointer-events: none;
 }
 

@@ -533,9 +533,7 @@
           <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-3">
             Pasar Kriya & Produk Lokal Nusantara
           </h1>
-          <p class="text-xs sm:text-sm text-surface/70 max-w-2xl mx-auto font-light leading-relaxed mb-6">
-            Beli karya kriya otentik Nusantara siap kirim, atau ajukan <strong>Pesanan Kustom (Commission)</strong> langsung dengan rekan pengrajin di 38 provinsi.
-          </p>
+         
 
           <!-- Main Mode Switcher: Etalase Siap Beli vs Bursa Pesanan Kustom (Commission) -->
           <div class="inline-flex items-center p-1.5 rounded-full bg-black/60 border border-brass-400/30 backdrop-blur-md shadow-2xl gap-1.5">
@@ -545,7 +543,7 @@
             </button>
             <button id="view-mode-commission" type="button" class="px-5 sm:px-6 py-2 rounded-full text-surface/70 hover:text-surface font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 relative">
               <span class="material-symbols-outlined text-sm sm:text-base text-brass-400">palette</span>
-              <span>Pesanan Kustom (Commission)</span>
+              <span>Pesanan Kustom</span>
             </button>
           </div>
 
@@ -759,88 +757,81 @@
   <!-- WRAPPER MODE 2: BURSA PESANAN KUSTOM (COMMISSION) P2P TERBUKA -->
   <div id="commission-section-container" class="hidden w-full">
     <!-- 1. Explainer Banner 3 Langkah Interaktif Sesuai Alur Kerja -->
-    <section class="py-10 px-4 sm:px-6 bg-[#120F0D] border-b border-white/10 relative overflow-hidden">
+    <section class="py-6 sm:py-8 px-4 sm:px-6 bg-[#120F0D] border-b border-white/10 relative overflow-hidden">
       <!-- Glow ambient background -->
-      <div class="absolute top-0 right-1/4 w-80 h-80 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-forest-900/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-32 bg-brass-400/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="max-w-6xl mx-auto relative z-10">
-        <div class="text-center max-w-2xl mx-auto mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brass-400/10 text-brass-300 border border-brass-400/30 mb-2.5 shadow-sm">
-            <span class="material-symbols-outlined text-sm">handshake</span>
-            Bursa Kriya Kustom Terbuka
-          </span>
-          <h2 class="font-display text-2xl sm:text-3xl text-surface font-light leading-snug">
-            Wujudkan Kriya Tradisi Bersama Pengrajin
-          </h2>
-          <p class="text-xs sm:text-sm text-surface/65 font-light mt-1.5 leading-relaxed">
-            Ajukan pesanan kriya unik sesuai kebutuhan Anda, atau tawarkan keahlian tangan Anda untuk mengerjakan pesanan pengguna lain secara langsung.
-          </p>
+        <!-- Label Alur Kerja yang Halus & Minimalis -->
+        <div class="flex items-center justify-center gap-2 mb-4 text-[11px] font-mono tracking-widest uppercase text-brass-400/80">
+          <span class="w-6 h-px bg-brass-400/30"></span>
+          <span>Alur Pesanan Kustom</span>
+          <span class="w-6 h-px bg-brass-400/30"></span>
         </div>
 
         <!-- 3 Langkah Alur Kerja Otentik -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
           <!-- Step 01 -->
-          <div class="glass-card p-5 sm:p-6 rounded-2xl border border-white/10 relative overflow-hidden group hover:border-brass-400/50 hover:-translate-y-1 transition-all duration-300 bg-white/[0.02] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-9 h-9 rounded-xl bg-brass-400/15 text-brass-300 flex items-center justify-center font-display font-bold text-sm border border-brass-400/30 shadow-sm">
-                  01
-                </span>
-                <span class="material-symbols-outlined text-surface/30 group-hover:text-brass-300 transition-colors text-lg">palette</span>
+          <div class="group relative rounded-2xl p-5 sm:p-6 bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-brass-400/50 hover:bg-white/[0.05] hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brass-400/30 group-hover:via-brass-400/80 to-transparent transition-all duration-500"></div>
+            
+            <div class="flex items-center justify-between mb-3.5">
+              <span class="w-8 h-8 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 font-mono text-xs font-bold tracking-wider flex items-center justify-center shadow-inner group-hover:bg-brass-400/20 group-hover:border-brass-400/60 transition-all">
+                01
+              </span>
+              <div class="w-9 h-9 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-brass-400/80 group-hover:text-brass-300 group-hover:bg-brass-400/10 group-hover:border-brass-400/30 transition-all">
+                <span class="material-symbols-outlined text-lg">palette</span>
               </div>
-              <h3 class="font-display text-base text-surface font-semibold mb-1.5 group-hover:text-brass-300 transition-colors">
-                Pilih Jenis Karya
-              </h3>
-              <p class="text-xs text-surface/65 leading-relaxed font-light">
-                Tentukan kategori yang diinginkan: Batik, Tenun, Aksesori Etnik, Dekorasi Kayu, atau Kerajinan Khas Daerah.
-              </p>
             </div>
-            <div class="pt-3 mt-3 border-t border-white/5 text-[11px] text-surface/40 flex items-center gap-1 font-mono">
-              <span>Batik • Tenun • Aksesori • Ukir • Kriya</span>
-            </div>
+
+            <h3 class="font-display text-base font-semibold text-surface mb-2 group-hover:text-brass-200 transition-colors">
+              Pilih Jenis Karya
+            </h3>
+            <p class="text-xs sm:text-[13px] text-surface/65 font-light leading-relaxed">
+              Tentukan kategori kriya yang ingin dibuat, seperti batik, tenun, ukiran kayu, atau aksesori etnik.
+            </p>
           </div>
 
           <!-- Step 02 -->
-          <div class="glass-card p-5 sm:p-6 rounded-2xl border border-white/10 relative overflow-hidden group hover:border-forest-500/50 hover:-translate-y-1 transition-all duration-300 bg-white/[0.02] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-9 h-9 rounded-xl bg-forest-500/20 text-forest-300 flex items-center justify-center font-display font-bold text-sm border border-forest-500/30 shadow-sm">
-                  02
-                </span>
-                <span class="material-symbols-outlined text-surface/30 group-hover:text-forest-300 transition-colors text-lg">tune</span>
+          <div class="group relative rounded-2xl p-5 sm:p-6 bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-brass-400/50 hover:bg-white/[0.05] hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brass-400/30 group-hover:via-brass-400/80 to-transparent transition-all duration-500"></div>
+
+            <div class="flex items-center justify-between mb-3.5">
+              <span class="w-8 h-8 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 font-mono text-xs font-bold tracking-wider flex items-center justify-center shadow-inner group-hover:bg-brass-400/20 group-hover:border-brass-400/60 transition-all">
+                02
+              </span>
+              <div class="w-9 h-9 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-brass-400/80 group-hover:text-brass-300 group-hover:bg-brass-400/10 group-hover:border-brass-400/30 transition-all">
+                <span class="material-symbols-outlined text-lg">tune</span>
               </div>
-              <h3 class="font-display text-base text-surface font-semibold mb-1.5 group-hover:text-forest-300 transition-colors">
-                Buat Brief Pesanan
-              </h3>
-              <p class="text-xs text-surface/65 leading-relaxed font-light">
-                Tentukan target anggaran, warna, ukuran spesifik, daerah sentra asal pengrajin, dan batas waktu pengerjaan.
-              </p>
             </div>
-            <div class="pt-3 mt-3 border-t border-white/5 text-[11px] text-forest-300/60 flex items-center gap-1 font-mono">
-              <span>Anggaran • Warna • Ukuran • Daerah • Tenggat</span>
-            </div>
+
+            <h3 class="font-display text-base font-semibold text-surface mb-2 group-hover:text-brass-200 transition-colors">
+              Buat Brief Pesanan
+            </h3>
+            <p class="text-xs sm:text-[13px] text-surface/65 font-light leading-relaxed">
+              Tentukan target anggaran, warna, ukuran spesifik, sentra asal pengrajin, serta batas waktu pengerjaan.
+            </p>
           </div>
 
           <!-- Step 03 -->
-          <div class="glass-card p-5 sm:p-6 rounded-2xl border border-white/10 relative overflow-hidden group hover:border-terracotta-500/50 hover:-translate-y-1 transition-all duration-300 bg-white/[0.02] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-9 h-9 rounded-xl bg-terracotta-500/20 text-terracotta-300 flex items-center justify-center font-display font-bold text-sm border border-terracotta-500/30 shadow-sm">
-                  03
-                </span>
-                <span class="material-symbols-outlined text-surface/30 group-hover:text-terracotta-300 transition-colors text-lg">verified</span>
+          <div class="group relative rounded-2xl p-5 sm:p-6 bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-brass-400/50 hover:bg-white/[0.05] hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brass-400/30 group-hover:via-brass-400/80 to-transparent transition-all duration-500"></div>
+
+            <div class="flex items-center justify-between mb-3.5">
+              <span class="w-8 h-8 rounded-full bg-brass-400/10 border border-brass-400/30 text-brass-300 font-mono text-xs font-bold tracking-wider flex items-center justify-center shadow-inner group-hover:bg-brass-400/20 group-hover:border-brass-400/60 transition-all">
+                03
+              </span>
+              <div class="w-9 h-9 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-brass-400/80 group-hover:text-brass-300 group-hover:bg-brass-400/10 group-hover:border-brass-400/30 transition-all">
+                <span class="material-symbols-outlined text-lg">handshake</span>
               </div>
-              <h3 class="font-display text-base text-surface font-semibold mb-1.5 group-hover:text-terracotta-300 transition-colors">
-                Sepakati Pesanan (Deal)
-              </h3>
-              <p class="text-xs text-surface/65 leading-relaxed font-light">
-                Diskusikan detail karya, harga final, serta metode pengiriman langsung bersama pengrajin via ruang obrolan.
-              </p>
             </div>
-            <div class="pt-3 mt-3 border-t border-white/5 text-[11px] text-terracotta-300/60 flex items-center gap-1 font-mono">
-              <span>Obrolan P2P • Nota Rincian • Konfirmasi Deal</span>
-            </div>
+
+            <h3 class="font-display text-base font-semibold text-surface mb-2 group-hover:text-brass-200 transition-colors">
+              Sepakati Pesanan (Deal)
+            </h3>
+            <p class="text-xs sm:text-[13px] text-surface/65 font-light leading-relaxed">
+              Diskusikan detail langsung via obrolan, lalu resmikan pesanan saat kedua belah pihak telah sepakat.
+            </p>
           </div>
         </div>
       </div>
@@ -935,12 +926,6 @@
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-surface/50 mb-6 gap-2">
           <div class="flex items-center gap-2">
             <span>Menampilkan <strong id="comm-display-count" class="text-brass-300 font-bold">0</strong> Permintaan Kriya Kustom</span>
-            <span class="text-surface/30">•</span>
-            <span class="text-[11px] text-surface/40">Selaras 38 Provinsi</span>
-          </div>
-          <div class="text-[11px] font-mono text-surface/40 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Terbuka untuk kolaborasi langsung</span>
           </div>
         </div>
 
@@ -1279,6 +1264,128 @@
     </div>
   </div>
 
+  <!-- Modal Detail Pop-up: Rincian Lengkap Brief Pesanan Kriya Kustom -->
+  <div id="modal-detail-commission" class="hidden fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md items-center justify-center p-4 overflow-y-auto" style="display: none;">
+    <div class="relative w-full max-w-xl bg-[#191512] border border-brass-400/35 rounded-3xl p-6 sm:p-7 text-surface shadow-2xl my-auto animate-modal-enter max-h-[92vh] overflow-y-auto chat-scrollbar">
+      
+      <!-- Header: Pemesan & Status & Close -->
+      <div class="flex items-start justify-between pb-4 border-b border-white/10 gap-3 mb-5">
+        <div class="flex items-center gap-3 min-w-0">
+          <div id="modal-detail-comm-avatar" class="w-11 h-11 rounded-full bg-[#241F1A] border border-brass-400/40 text-brass-300 font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md">
+            SR
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <h4 id="modal-detail-comm-creator" class="text-sm font-semibold text-surface truncate">Siti Rahmawati</h4>
+              <span id="modal-detail-comm-badge-mine" class="hidden px-2 py-0.5 rounded-full bg-brass-400/20 text-brass-300 text-[9px] font-bold uppercase tracking-wider border border-brass-400/30">Anda</span>
+            </div>
+            <p id="modal-detail-comm-city" class="text-xs text-surface/50 truncate">Surabaya, Jawa Timur</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span id="modal-detail-comm-status-badge"></span>
+          <button id="btn-close-detail-comm-modal" type="button" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-surface/60 hover:text-surface transition-colors cursor-pointer" aria-label="Tutup">
+            <span class="material-symbols-outlined text-base">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="space-y-5">
+        <!-- Craft Type & Title -->
+        <div>
+          <span id="modal-detail-comm-craft" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brass-300 bg-brass-400/10 border border-brass-400/25 px-2.5 py-1 rounded-full mb-2">
+            <span id="modal-detail-comm-craft-icon" class="material-symbols-outlined text-sm text-brass-400">palette</span>
+            <span id="modal-detail-comm-craft-text">Batik</span>
+          </span>
+          <h3 id="modal-detail-comm-title" class="font-display text-lg sm:text-xl font-bold text-surface leading-snug">
+            Kain Panjang Batik Tulis Canting Halus Motif Sekar Jagad Pesisiran
+          </h3>
+        </div>
+
+        <!-- Spesifikasi Ringkas (Grid 2 Kolom Bersih) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">payments</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Anggaran Pemesan</span>
+              <strong id="modal-detail-comm-budget" class="text-xs font-mono text-brass-300 font-bold block truncate">Rp 800.000 - Rp 1.600.000</strong>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">schedule</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Tenggat Pengerjaan</span>
+              <span id="modal-detail-comm-deadline" class="text-xs font-semibold text-surface/90 block truncate">20 Hari Kerja</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">location_on</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Daerah Sentra Dicari</span>
+              <span id="modal-detail-comm-region" class="text-xs font-semibold text-surface/90 block truncate">DI Yogyakarta</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">forum</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Penawaran Masuk</span>
+              <span id="modal-detail-comm-offers" class="text-xs font-semibold text-surface/90 block truncate">3 Tawaran</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5 sm:col-span-2">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">palette</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Preferensi Warna</span>
+              <span id="modal-detail-comm-color" class="text-xs font-semibold text-surface/90 block">Soga Cokelat Klasik & Biru Babaran Alami</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-2.5 sm:col-span-2">
+            <span class="material-symbols-outlined text-lg text-brass-400 flex-shrink-0 mt-0.5">straighten</span>
+            <div class="min-w-0">
+              <span class="text-[10px] text-surface/50 block uppercase tracking-wider font-medium">Ukuran / Dimensi Karya</span>
+              <span id="modal-detail-comm-size" class="text-xs font-semibold text-surface/90 block">2.6 meter × 1.15 meter (Mori Primissima)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deskripsi Brief Lengkap -->
+        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-1.5">
+          <span class="text-[11px] font-bold text-brass-400 uppercase tracking-wider block">Deskripsi & Catatan Khusus Brief</span>
+          <p id="modal-detail-comm-desc" class="text-xs text-surface/80 font-light leading-relaxed whitespace-pre-line">
+            Request motif Sekar Jagad dengan goresan cecek dan klowong canting nol yang rapat dan rapi. Dikerjakan bolak-balik (tembus belakang) dengan malam tawon murni untuk busana wisuda tradisi.
+          </p>
+        </div>
+
+        <!-- Notice Transaksi & Negosiasi -->
+        <div class="p-3.5 rounded-2xl bg-brass-400/10 border border-brass-400/25 flex items-start gap-3">
+          <span class="material-symbols-outlined text-base text-brass-400 flex-shrink-0 mt-0.5">handshake</span>
+          <p class="text-[11px] text-surface/75 leading-relaxed font-light">
+            Diskusikan kesepakatan harga, bahan, dan pengiriman langsung via obrolan. Status pesanan resmi dinyatakan <strong class="text-brass-300 font-semibold">Deal</strong> setelah kedua pihak menekan tombol persetujuan di obrolan.
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="flex items-center justify-between pt-5 border-t border-white/10 mt-6 gap-3">
+        <button type="button" id="btn-cancel-detail-comm-modal" class="px-5 py-2.5 rounded-full border border-white/15 hover:border-white/30 text-surface/70 hover:text-surface text-xs font-semibold transition-colors cursor-pointer">
+          Tutup
+        </button>
+
+        <button type="button" id="btn-action-detail-comm-modal" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined text-sm">chat</span>
+          <span id="label-action-detail-comm-modal">Kirim Tawaran via Chat</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
   
   </main>
 
@@ -2162,9 +2269,13 @@
             if (commContainer) commContainer.classList.remove("hidden");
             if (viewCommBtn) {
               viewCommBtn.className = "px-5 sm:px-6 py-2 rounded-full bg-brass-400 text-ink font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 relative";
+              const commIcon = viewCommBtn.querySelector(".material-symbols-outlined");
+              if (commIcon) commIcon.className = "material-symbols-outlined text-sm sm:text-base text-ink";
             }
             if (viewCatalogBtn) {
               viewCatalogBtn.className = "px-5 sm:px-6 py-2 rounded-full text-surface/70 hover:text-surface font-semibold text-xs sm:text-sm transition-all flex items-center gap-2";
+              const catIcon = viewCatalogBtn.querySelector(".material-symbols-outlined");
+              if (catIcon) catIcon.className = "material-symbols-outlined text-sm sm:text-base text-brass-400";
             }
             renderCommissions();
           } else {
@@ -2172,9 +2283,13 @@
             if (catalogContainer) catalogContainer.classList.remove("hidden");
             if (viewCatalogBtn) {
               viewCatalogBtn.className = "px-5 sm:px-6 py-2 rounded-full bg-brass-400 text-ink font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2";
+              const catIcon = viewCatalogBtn.querySelector(".material-symbols-outlined");
+              if (catIcon) catIcon.className = "material-symbols-outlined text-sm sm:text-base text-ink";
             }
             if (viewCommBtn) {
               viewCommBtn.className = "px-5 sm:px-6 py-2 rounded-full text-surface/70 hover:text-surface font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 relative";
+              const commIcon = viewCommBtn.querySelector(".material-symbols-outlined");
+              if (commIcon) commIcon.className = "material-symbols-outlined text-sm sm:text-base text-brass-400";
             }
             render();
           }
@@ -2311,12 +2426,12 @@
 
             let statusBadge = "";
             if (c.status === "agreed") {
-              statusBadge = `<span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-brass-300 bg-brass-400/15 border border-brass-400/30 px-2.5 py-1 rounded-full shadow-sm">
+              statusBadge = `<span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-brass-300 bg-brass-400/15 border border-brass-400/30 px-2.5 py-0.5 rounded-full shadow-sm flex-shrink-0">
                 <span class="w-1.5 h-1.5 rounded-full bg-brass-400"></span>
                 <span>Sudah Deal</span>
               </span>`;
             } else {
-              statusBadge = `<span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-full shadow-sm">
+              statusBadge = `<span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 rounded-full shadow-sm flex-shrink-0">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 <span>Masih Terbuka</span>
               </span>`;
@@ -2331,13 +2446,31 @@
             };
             const icon = craftIcons[c.craftType] || "category";
 
+            // Format budget ringkas & rapi agar tidak terpotong canggung di kartu
+            let shortBudget = c.budgetDisplay || "";
+            if (c.budgetMin && c.budgetMax) {
+              const fmt = (n) => {
+                if (n >= 1000000) {
+                  const jt = n / 1000000;
+                  return (jt % 1 === 0 ? jt : jt.toFixed(1).replace(".", ",")) + " jt";
+                }
+                if (n >= 1000) return Math.round(n / 1000) + " rb";
+                return n.toLocaleString("id-ID");
+              };
+              shortBudget = `Rp ${fmt(c.budgetMin)} - ${fmt(c.budgetMax)}`;
+            } else if (c.budgetMin) {
+              shortBudget = `Rp ${(c.budgetMin).toLocaleString("id-ID")}`;
+            }
+
             return `
-              <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all hover:-translate-y-1 duration-300 relative overflow-hidden rounded-2xl p-5 bg-white/[0.02] border border-white/10 shadow-lg">
+              <article class="comm-card-item group cursor-pointer flex flex-col justify-between hover:border-brass-400/60 hover:bg-white/[0.04] transition-all hover:-translate-y-1 duration-300 relative rounded-2xl p-5 bg-white/[0.02] border border-white/10 shadow-lg"
+                       data-comm-id="${c.id}"
+                       title="Klik untuk melihat rincian brief lengkap">
                 <div>
                   <!-- Creator Info & Status -->
-                  <div class="flex items-center justify-between gap-3 mb-3.5">
+                  <div class="flex items-center justify-between gap-2.5 mb-3">
                     <div class="flex items-center gap-2.5 min-w-0">
-                      <div class="w-9 h-9 rounded-full bg-[#231E19] border border-brass-400/30 text-brass-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <div class="w-9 h-9 rounded-full bg-[#231E19] border border-brass-400/35 text-brass-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
                         ${initials}
                       </div>
                       <div class="min-w-0">
@@ -2355,7 +2488,7 @@
 
                   <!-- Craft Type & Title -->
                   <div class="mb-3">
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-brass-300/90 bg-brass-400/10 border border-brass-400/20 px-2 py-0.5 rounded-full mb-1.5">
+                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-brass-300/90 bg-brass-400/10 border border-brass-400/20 px-2.5 py-0.5 rounded-full mb-2">
                       <span class="material-symbols-outlined text-xs text-brass-400">${icon}</span>
                       <span>${c.craftType}</span>
                     </span>
@@ -2364,31 +2497,25 @@
                     </h3>
                   </div>
 
-                  <!-- Metric Strip (Anggaran, Tenggat, Daerah) -->
-                  <div class="grid grid-cols-3 gap-2 p-3 rounded-xl bg-black/40 border border-white/5 mb-3 text-center">
-                    <div class="border-r border-white/5 pr-1">
-                      <span class="text-[10px] text-surface/40 block">Anggaran</span>
-                      <strong class="text-xs text-brass-300 font-mono font-bold block truncate">${c.budgetDisplay || `Rp ${(c.budgetMin || 0).toLocaleString("id-ID")}`}</strong>
-                    </div>
-                    <div class="border-r border-white/5 px-1">
-                      <span class="text-[10px] text-surface/40 block">Tenggat</span>
-                      <span class="text-xs text-surface/80 font-medium block truncate">${c.deadline || "Fleksibel"}</span>
-                    </div>
-                    <div class="pl-1">
-                      <span class="text-[10px] text-surface/40 block">Daerah</span>
-                      <span class="text-xs text-surface/80 font-medium block truncate">${c.region || "Nusantara"}</span>
-                    </div>
+                  <!-- Key Info Chips (Rapi, Bersih, Tanpa Teks Terpotong) -->
+                  <div class="flex flex-wrap items-center gap-1.5 mb-3.5">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brass-400/10 border border-brass-400/25 text-brass-300 text-xs font-mono font-semibold" title="Anggaran: ${c.budgetDisplay || shortBudget}">
+                      <span class="material-symbols-outlined text-xs">payments</span>
+                      <span>${shortBudget}</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-surface/75 text-[11px]" title="Tenggat Waktu: ${c.deadline || 'Fleksibel'}">
+                      <span class="material-symbols-outlined text-xs text-surface/40">schedule</span>
+                      <span>${c.deadline || "Fleksibel"}</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-surface/75 text-[11px]" title="Lokasi Pengrajin: ${c.region || 'Nusantara'}">
+                      <span class="material-symbols-outlined text-xs text-surface/40">location_on</span>
+                      <span>${c.region || "Nusantara"}</span>
+                    </span>
                   </div>
 
-                  <!-- Color & Size details -->
-                  <div class="text-[11px] text-surface/60 space-y-0.5 mb-3 font-light">
-                    <div class="truncate"><span class="text-surface/40">Warna:</span> ${c.color || "Sesuai Diskusi"}</div>
-                    <div class="truncate"><span class="text-surface/40">Ukuran:</span> ${c.size || "Sesuai Standar"}</div>
-                  </div>
-
-                  <!-- Description Excerpt -->
+                  <!-- Description Excerpt (Simpel, Bersih, & Elegan) -->
                   <p class="text-xs text-surface/65 leading-relaxed font-light line-clamp-2 mb-4">
-                    ${c.description || "Permintaan kriya kustom Nusantara dengan bahan alami dan sentuhan tangan otentik."}
+                    ${c.description || "Permintaan karya kustom Nusantara dengan bahan alami dan sentuhan tangan otentik pengrajin lokal."}
                   </p>
                 </div>
 
@@ -2399,26 +2526,51 @@
                     <span>${c.offersCount || 0} Tawaran</span>
                   </div>
 
-                  ${isMine ? `
-                    <button type="button" class="btn-chat-comm px-4 py-2 rounded-full bg-brass-400/15 hover:bg-brass-400/25 text-brass-300 text-xs font-semibold border border-brass-400/30 transition-all flex items-center gap-1.5"
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="btn-detail-comm px-3 py-1.5 rounded-full border border-white/15 hover:border-brass-400/40 text-surface/80 hover:text-surface text-xs font-semibold transition-all cursor-pointer"
                             data-comm-id="${c.id}">
-                      <span>Buka Obrolan</span>
-                      <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                      <span>Detail</span>
                     </button>
-                  ` : `
-                    <button type="button" class="btn-chat-comm px-4 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
-                            data-comm-id="${c.id}">
-                      <span>Kirim Tawaran</span>
-                      <span class="material-symbols-outlined text-xs">chat</span>
-                    </button>
-                  `}
+
+                    ${isMine ? `
+                      <button type="button" class="btn-chat-comm px-3.5 py-1.5 rounded-full bg-brass-400/15 hover:bg-brass-400/25 text-brass-300 text-xs font-semibold border border-brass-400/30 transition-all flex items-center gap-1 cursor-pointer"
+                              data-comm-id="${c.id}">
+                        <span>Obrolan</span>
+                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                      </button>
+                    ` : `
+                      <button type="button" class="btn-chat-comm px-3.5 py-1.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold shadow-md transition-all flex items-center gap-1 cursor-pointer"
+                              data-comm-id="${c.id}">
+                        <span>Tawaran</span>
+                        <span class="material-symbols-outlined text-xs font-bold">chat</span>
+                      </button>
+                    `}
+                  </div>
                 </div>
               </article>
             `;
           }).join("");
 
+          // Event Listeners Kartu & Detail Pop-up
+          commGrid.querySelectorAll(".comm-card-item").forEach((card) => {
+            card.addEventListener("click", (e) => {
+              if (e.target.closest(".btn-chat-comm")) return;
+              const commId = card.dataset.commId;
+              openDetailModal(commId);
+            });
+          });
+
+          commGrid.querySelectorAll(".btn-detail-comm").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              const commId = btn.dataset.commId;
+              openDetailModal(commId);
+            });
+          });
+
           commGrid.querySelectorAll(".btn-chat-comm").forEach((btn) => {
-            btn.addEventListener("click", () => {
+            btn.addEventListener("click", (e) => {
+              e.stopPropagation();
               const commId = btn.dataset.commId;
               const comm = window.WARISARA_COMMISSIONS ? window.WARISARA_COMMISSIONS.getById(commId) : null;
               if (comm && window.WARISARA_CHAT && typeof window.WARISARA_CHAT.openCommissionChat === "function") {
@@ -2427,6 +2579,117 @@
             });
           });
         }
+
+        // Modal Detail Pop-up Handling
+        const detailModal = document.getElementById("modal-detail-commission");
+        const closeDetailBtn = document.getElementById("btn-close-detail-comm-modal");
+        const cancelDetailBtn = document.getElementById("btn-cancel-detail-comm-modal");
+        const actionDetailBtn = document.getElementById("btn-action-detail-comm-modal");
+        let activeDetailComm = null;
+
+        function openDetailModal(commId) {
+          const comm = window.WARISARA_COMMISSIONS ? window.WARISARA_COMMISSIONS.getById(commId) : null;
+          if (!comm || !detailModal) return;
+          activeDetailComm = comm;
+
+          const currentUser = window.WARISARA_AUTH ? window.WARISARA_AUTH.getUser() : null;
+          const myEmail = currentUser ? currentUser.email.toLowerCase() : "";
+          const isMine = myEmail && (comm.creatorEmail || "").toLowerCase() === myEmail;
+
+          const avatarEl = document.getElementById("modal-detail-comm-avatar");
+          const creatorEl = document.getElementById("modal-detail-comm-creator");
+          const cityEl = document.getElementById("modal-detail-comm-city");
+          const badgeMineEl = document.getElementById("modal-detail-comm-badge-mine");
+          const statusBadgeEl = document.getElementById("modal-detail-comm-status-badge");
+          const craftIconEl = document.getElementById("modal-detail-comm-craft-icon");
+          const craftTextEl = document.getElementById("modal-detail-comm-craft-text");
+          const titleEl = document.getElementById("modal-detail-comm-title");
+          const budgetEl = document.getElementById("modal-detail-comm-budget");
+          const deadlineEl = document.getElementById("modal-detail-comm-deadline");
+          const regionEl = document.getElementById("modal-detail-comm-region");
+          const offersEl = document.getElementById("modal-detail-comm-offers");
+          const colorEl = document.getElementById("modal-detail-comm-color");
+          const sizeEl = document.getElementById("modal-detail-comm-size");
+          const descEl = document.getElementById("modal-detail-comm-desc");
+          const actionLabelEl = document.getElementById("label-action-detail-comm-modal");
+
+          const initials = comm.creatorName ? comm.creatorName.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase() : "P";
+          if (avatarEl) avatarEl.textContent = initials;
+          if (creatorEl) creatorEl.textContent = comm.creatorName;
+          if (cityEl) cityEl.textContent = comm.creatorCity || comm.region;
+          if (badgeMineEl) badgeMineEl.classList.toggle("hidden", !isMine);
+
+          if (statusBadgeEl) {
+            if (comm.status === "agreed") {
+              statusBadgeEl.innerHTML = `<span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-brass-300 bg-brass-400/15 border border-brass-400/30 px-3 py-1 rounded-full shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-brass-400"></span>
+                <span>Sudah Deal</span>
+              </span>`;
+            } else {
+              statusBadgeEl.innerHTML = `<span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Masih Terbuka</span>
+              </span>`;
+            }
+          }
+
+          const craftIcons = {
+            "Batik": "palette",
+            "Tenun": "texture",
+            "Aksesori": "diamond",
+            "Dekorasi": "chair",
+            "Kerajinan Lain": "category"
+          };
+          if (craftIconEl) craftIconEl.textContent = craftIcons[comm.craftType] || "category";
+          if (craftTextEl) craftTextEl.textContent = comm.craftType;
+          if (titleEl) titleEl.textContent = comm.title;
+          if (budgetEl) budgetEl.textContent = comm.budgetDisplay || `Rp ${(comm.budgetMin || 0).toLocaleString("id-ID")}`;
+          if (deadlineEl) deadlineEl.textContent = comm.deadline || "Fleksibel";
+          if (regionEl) regionEl.textContent = comm.region || "Seluruh Indonesia";
+          if (offersEl) offersEl.textContent = `${comm.offersCount || 0} Tawaran Masuk`;
+          if (colorEl) colorEl.textContent = comm.color || "Sesuai Diskusi dengan Pengrajin";
+          if (sizeEl) sizeEl.textContent = comm.size || "Sesuai Standar Kriya";
+          if (descEl) descEl.textContent = comm.description || "Permintaan karya kustom Nusantara dengan bahan alami dan sentuhan otentik.";
+
+          if (actionLabelEl) {
+            actionLabelEl.textContent = isMine ? "Buka Obrolan Pesanan" : "Kirim Tawaran via Chat";
+          }
+
+          detailModal.classList.remove("hidden");
+          detailModal.style.display = "flex";
+        }
+
+        function closeDetailModal() {
+          if (detailModal) {
+            detailModal.classList.add("hidden");
+            detailModal.style.display = "none";
+          }
+          activeDetailComm = null;
+        }
+
+        if (closeDetailBtn) closeDetailBtn.addEventListener("click", closeDetailModal);
+        if (cancelDetailBtn) cancelDetailBtn.addEventListener("click", closeDetailModal);
+        if (detailModal) {
+          detailModal.addEventListener("click", (e) => {
+            if (e.target === detailModal) closeDetailModal();
+          });
+        }
+
+        if (actionDetailBtn) {
+          actionDetailBtn.addEventListener("click", () => {
+            if (activeDetailComm && window.WARISARA_CHAT && typeof window.WARISARA_CHAT.openCommissionChat === "function") {
+              const commToOpen = activeDetailComm;
+              closeDetailModal();
+              window.WARISARA_CHAT.openCommissionChat(commToOpen);
+            }
+          });
+        }
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && detailModal && detailModal.style.display === "flex") {
+            closeDetailModal();
+          }
+        });
 
         // Modal Create Commission Handling
         const commModal = document.getElementById("modal-create-commission");

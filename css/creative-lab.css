@@ -464,3 +464,90 @@ body.modal-open #mobile-nav-drawer {
   }
 }
 
+/* ==========================================================================
+   Creative Lab Studio 2.0: Photorealistic Mockup & Studio Tabs
+   ========================================================================== */
+
+.studio-nav-tab {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+  color: rgba(251, 248, 242, 0.65);
+}
+
+.studio-nav-tab:hover {
+  color: #FFFDF8;
+  background: rgba(201, 165, 103, 0.08);
+}
+
+.studio-nav-tab.active {
+  color: #120F0D;
+  background: #C9A567;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.35);
+}
+
+.view-toggle-btn {
+  transition: all 0.22s cubic-bezier(0.2, 1, 0.3, 1);
+  color: rgba(251, 248, 242, 0.7);
+}
+
+.view-toggle-btn:hover {
+  color: #FFFDF8;
+}
+
+.view-toggle-btn.active {
+  background: #C9A567;
+  color: #120F0D;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(201, 165, 103, 0.4);
+}
+
+.product-chip-btn {
+  transition: all 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(251, 248, 242, 0.75);
+}
+
+.product-chip-btn:hover {
+  border-color: rgba(201, 165, 103, 0.4);
+  background: rgba(201, 165, 103, 0.08);
+  color: #FBF8F2;
+  transform: translateY(-1px);
+}
+
+.product-chip-btn.active {
+  border-color: #C9A567;
+  background: linear-gradient(135deg, rgba(201, 165, 103, 0.25) 0%, rgba(164, 126, 63, 0.12) 100%);
+  color: #E6D3A7;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.25);
+}
+
+.fabric-card-btn {
+  transition: all 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.fabric-card-btn:hover {
+  border-color: rgba(201, 165, 103, 0.45);
+  background: rgba(201, 165, 103, 0.08);
+  transform: translateY(-2px);
+}
+
+.fabric-card-btn.active {
+  border-color: #C9A567;
+  background: linear-gradient(135deg, rgba(201, 165, 103, 0.2) 0%, rgba(116, 66, 8, 0.12) 100%);
+  box-shadow: 0 6px 16px rgba(201, 165, 103, 0.25);
+}
+
+.color-swatch-badge {
+  transition: all 0.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.color-swatch-badge:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+

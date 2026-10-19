@@ -195,7 +195,7 @@
             <span>Semua Percakapan</span>
           </button>
           <span id="chat-active-partner-title" class="text-surface/80 font-medium truncate max-w-[240px]">Daftar Kontak Penjual</span>
-          <span class="text-[10px] text-surface/50 font-mono">P2P Messenger</span>
+          <span class="text-[10px] text-surface/50 font-mono">Obrolan Kriya</span>
         </div>
 
         <!-- View 1: Threads List -->
@@ -283,7 +283,7 @@
           <!-- Notice Alur Transaksi Mandiri & Kesepakatan P2P -->
           <div class="mx-4 my-2 p-2.5 rounded-xl bg-forest-900/30 border border-forest-500/30 text-[11px] text-forest-200 flex items-start gap-2">
             <span class="material-symbols-outlined text-sm flex-shrink-0 mt-0.5 text-forest-300">handshake</span>
-            <span><strong>Komunikasi Kriya P2P:</strong> Diskusikan spesifikasi karya, negosiasi harga, pengiriman, dan pembayaran langsung antar anggota komunitas di ruang obrolan ini.</span>
+            <span><strong>Komunikasi Kriya Langsung:</strong> Diskusikan spesifikasi karya, negosiasi harga, pengiriman, dan pembayaran langsung antar anggota komunitas di ruang obrolan ini.</span>
           </div>
 
           <!-- Messages Container -->
