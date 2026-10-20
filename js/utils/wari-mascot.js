@@ -723,6 +723,9 @@ Peran dan Pengetahuan Anda:
     const q = queryText || chatInput.value.trim();
     if (!q || isThinking) return;
 
+    // Reset status scroll pill agar bisa muncul kembali jika user nantinya scroll ke atas
+    scrollPillDismissed = false;
+
     chatInput.value = '';
     chatInput.style.height = '42px';
     chatInput.style.overflowY = 'hidden';
