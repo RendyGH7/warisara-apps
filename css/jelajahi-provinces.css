@@ -1342,6 +1342,11 @@ body.modal-open {
   box-shadow: 0 2px 12px rgba(201, 165, 103, 0.35);
 }
 
+.modal-tab-btn.active .material-symbols-outlined,
+.modal-tab-btn.active span {
+  color: #120F0D !important;
+}
+
 /* Refined Reading Cards inside Modal */
 #tab-overview-content .p-4,
 #tab-history-content .p-4 {
