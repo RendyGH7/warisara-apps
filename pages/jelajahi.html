@@ -430,7 +430,19 @@
                 <div id="modal-stamp-status-badge"></div>
               </div>
 
-              <div class="flex items-center gap-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <!-- Dual Switcher: Landmark vs Pelestari -->
+                <div class="inline-flex items-center p-0.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[10px] shadow-lg">
+                  <button type="button" id="btn-hero-view-landmark" class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1 shadow-sm cursor-pointer" title="Lihat Foto Landmark Daerah">
+                    <span class="material-symbols-outlined text-[13px]">landscape</span>
+                    <span class="hidden sm:inline">Landmark</span>
+                  </button>
+                  <button type="button" id="btn-hero-view-maker" class="px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1 cursor-pointer" title="Lihat Maestro Pelestari">
+                    <span class="material-symbols-outlined text-[13px] text-brass-400">person</span>
+                    <span class="hidden sm:inline">Pelestari</span>
+                  </button>
+                </div>
+
                 <button id="modal-hero-zoom-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Perbesar Ilustrasi HD">
                   <span class="material-symbols-outlined text-lg">fullscreen</span>
                 </button>
@@ -479,10 +491,13 @@
 
           </div>
 
-          <!-- Single Iconic Landmark Hallmark Bar -->
-          <div class="px-5 py-2.5 bg-[#0E0C0A]/85 border-t border-white/10 flex items-center gap-2 text-xs flex-shrink-0">
-            <span class="material-symbols-outlined text-brass-400 text-sm flex-shrink-0">location_on</span>
-            <span id="illustration-caption-indicator" class="text-surface/85 text-xs font-light truncate">Landmark Ikonik</span>
+          <!-- Single Iconic Landmark / Pelestari Hallmark Bar -->
+          <div class="px-5 py-2.5 bg-[#0E0C0A]/85 border-t border-white/10 flex items-center justify-between text-xs flex-shrink-0">
+            <div class="flex items-center gap-2 min-w-0">
+              <span id="illustration-caption-icon" class="material-symbols-outlined text-brass-400 text-sm flex-shrink-0">location_on</span>
+              <span id="illustration-caption-indicator" class="text-surface/85 text-xs font-light truncate">Landmark Ikonik</span>
+            </div>
+            <span id="illustration-caption-mode-label" class="text-[10px] font-mono text-brass-400/80 bg-white/5 px-2 py-0.5 rounded border border-white/10 flex-shrink-0">Landmark</span>
           </div>
 
         </div>
@@ -494,11 +509,15 @@
           <div class="px-5 py-3 sm:py-3.5 bg-[#100D0B]/90 border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
             <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
               <span class="material-symbols-outlined text-sm">auto_stories</span>
-              <span>Kisah & Identitas</span>
+              <span>Kisah &amp; Identitas</span>
+            </button>
+            <button id="tab-btn-maker" data-tab="maker" class="modal-tab-btn">
+              <span class="material-symbols-outlined text-sm text-brass-400">person_celebration</span>
+              <span>Maestro Pelestari</span>
             </button>
             <button id="tab-btn-culinary-weapon" data-tab="culinary-weapon" class="modal-tab-btn">
               <span class="material-symbols-outlined text-sm">restaurant</span>
-              <span>Kuliner & Mahakarya</span>
+              <span>Kuliner &amp; Mahakarya</span>
             </button>
             <button id="tab-btn-quiz" data-tab="quiz" class="modal-tab-btn">
               <span class="material-symbols-outlined text-sm">quiz</span>
@@ -522,13 +541,20 @@
                   </p>
                 </div>
               </div>
+              
               <div id="tab-history-content"></div>
+
+              <!-- Spotlight Card: Maestro Pelestari Budaya Terpadu di Tab 1 -->
+              <div id="tab-overview-maker-spotlight" class="pt-1"></div>
             </div>
 
-            <!-- Tab 2: Kuliner & Mahakarya -->
+            <!-- Tab 2: Maestro Pelestari Budaya (Dedicated Comprehensive Pavilion) -->
+            <div id="tab-maker-content" class="tab-pane hidden space-y-6"></div>
+
+            <!-- Tab 3: Kuliner & Mahakarya -->
             <div id="tab-culinary-weapon-content" class="tab-pane hidden space-y-6"></div>
 
-            <!-- Tab 3: Kuis Kilat -->
+            <!-- Tab 4: Kuis Kilat -->
             <div id="tab-quiz-content" class="tab-pane hidden"></div>
 
             <!-- Wari Mascot Interactive Commentary -->
@@ -854,13 +880,15 @@
   <!-- Scripts -->
   <script src="../data/products.js"></script>
   <script src="../data/provinces.js?v=21"></script>
+  <script src="../data/maker-illustrations.js"></script>
+  <script src="../data/makers.js"></script>
   <script src="../js/utils/helpers.js?v=10"></script>
   <script src="../js/utils/page-transition.js?v=50"></script>
   <script src="../js/utils/lantern-cursor.js?v=10"></script>
   <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=10"></script>
-  <script src="../js/sections/jelajahi-provinces.js?v=50"></script>
+  <script src="../js/sections/jelajahi-provinces.js?v=51"></script>
   <script src="../js/utils/loading-screen.js?v=50"></script>
   <script src="../js/config.example.js"></script>
   <script src="../js/config.js"></script>
