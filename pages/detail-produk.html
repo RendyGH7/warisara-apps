@@ -411,42 +411,71 @@
       </div>
     </div>
 
-    <!-- Spesifikasi Budaya & Cerita Mendalam -->
-    <section class="py-8 border-t border-border-dark mb-16">
-      <div class="max-w-4xl mx-auto space-y-8">
-        <div>
-          <span class="glass-pill mb-2 inline-block">Nilai Adiluhung</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-light text-surface mb-3">Filosofi & Kisah di Balik Karya</h2>
-          <p id="detail-philosophy" class="font-display text-lg sm:text-xl text-brass-200/90 font-light italic leading-relaxed bg-white/[0.02] p-6 rounded-3xl border border-white/10">
-            "Filosofi produk"
+    <!-- Spesifikasi Budaya & Cerita Mendalam (Nilai Adiluhung Nusantara) -->
+    <!-- Spesifikasi Budaya & Filosofi Kriya (Clean & Modern) -->
+    <section class="py-12 border-t border-border-dark mb-16">
+      <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- Header Minimalis -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-2 border-b border-white/[0.06]">
+          <div>
+            <span class="text-[11px] font-mono tracking-widest text-brass-400 uppercase font-semibold block mb-1">
+              Nilai Adiluhung
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl text-surface font-light">
+              Filosofi & Kisah Karya
+            </h2>
+          </div>
+          <p class="text-xs text-surface/50 max-w-xs sm:text-right font-light leading-relaxed">
+            Makna kearifan lokal di balik setiap detail karya kriya.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10">
-            <span class="text-xs font-bold uppercase tracking-wider text-terracotta-400 block mb-2 flex items-center gap-2">
+        <!-- 1. Kutipan Filosofi (Clean & Airy) -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-brass-400/30 transition-colors">
+          <div class="flex items-start gap-3.5">
+            <span class="font-serif text-3xl sm:text-4xl text-brass-400/60 select-none leading-none flex-shrink-0">“</span>
+            <p id="detail-philosophy" class="font-display text-base sm:text-lg text-surface/90 font-light leading-relaxed italic pt-0.5">
+              Filosofi produk
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Tiga Spesifikasi Utama (Clean 3-Column Cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <!-- Material -->
+          <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.15] transition-all flex flex-col justify-start">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-terracotta-400 mb-2.5">
               <span class="material-symbols-outlined text-base">eco</span>
-              <span>Material & Bahan Baku Alami</span>
-            </span>
-            <p id="detail-material" class="text-sm text-surface/90 leading-relaxed font-medium"></p>
+              <span>Material Alami</span>
+            </div>
+            <p id="detail-material" class="text-xs sm:text-sm text-surface/80 leading-relaxed font-normal">
+            </p>
           </div>
 
-          <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10">
-            <span class="text-xs font-bold uppercase tracking-wider text-forest-400 block mb-2 flex items-center gap-2">
+          <!-- Teknik & Durasi -->
+          <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.15] transition-all flex flex-col justify-start">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brass-400 mb-2.5">
               <span class="material-symbols-outlined text-base">history</span>
-              <span>Durasi & Teknik Pembuatan</span>
-            </span>
-            <p id="detail-process" class="text-sm text-surface/90 leading-relaxed font-medium"></p>
+              <span>Teknik & Durasi</span>
+            </div>
+            <p id="detail-process" class="text-xs sm:text-sm text-surface/80 leading-relaxed font-normal">
+            </p>
           </div>
+
+          <!-- Dampak Sosial -->
+          <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.15] transition-all flex flex-col justify-start">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-forest-300 mb-2.5">
+              <span class="material-symbols-outlined text-base">groups</span>
+              <span>Dampak Sosial</span>
+            </div>
+            <p id="detail-impact" class="text-xs sm:text-sm text-surface/80 leading-relaxed font-normal">
+            </p>
+          </div>
+
         </div>
 
-        <div class="p-6 rounded-3xl bg-forest-900/30 border border-forest-500/30">
-          <span class="text-xs font-bold uppercase tracking-wider text-forest-300 block mb-2 flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">groups</span>
-            <span>Dampak Sosial Bagi Komunitas Pengrajin</span>
-          </span>
-          <p id="detail-impact" class="text-sm text-surface/90 leading-relaxed"></p>
-        </div>
       </div>
     </section>
 
@@ -696,7 +725,7 @@
       document.getElementById("seller-location").textContent = product.origin;
       document.getElementById("seller-avatar").textContent = (product.maker || "P").charAt(0).toUpperCase();
 
-      document.getElementById("detail-philosophy").textContent = `"${product.philosophy}"`;
+      document.getElementById("detail-philosophy").textContent = product.philosophy || "";
       document.getElementById("detail-material").textContent = product.material;
       document.getElementById("detail-process").textContent = product.process;
       document.getElementById("detail-impact").textContent = product.impact;
