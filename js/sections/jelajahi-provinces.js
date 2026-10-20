@@ -747,36 +747,14 @@
       };
     }
 
-    var nameEl = document.getElementById('modal-province-name');
-    if (nameEl) nameEl.textContent = prov.name;
-
     var islandEl = document.getElementById('modal-province-island');
     if (islandEl) islandEl.textContent = 'PULAU ' + prov.island.toUpperCase();
-
-    var capitalEl = document.getElementById('modal-province-capital');
-    if (capitalEl) capitalEl.textContent = prov.capital;
-
-    var estEl = document.getElementById('modal-province-established');
-    if (estEl) estEl.textContent = prov.established || '1945';
-
-    var foundersEl = document.getElementById('modal-province-founders');
-    if (foundersEl) foundersEl.textContent = prov.founders || 'Pahlawan & Tokoh Adat Daerah';
 
     var statementEl = document.getElementById('modal-province-statement');
     if (statementEl) statementEl.textContent = `"${prov.shortStatement}"`;
 
     // Stamp Status Badge
     updateModalStampBadge(provId);
-
-    // Sapaan Audio Trigger
-    var voiceBtn = document.getElementById('modal-voice-greeting-btn');
-    var greetingText = prov.language ? `${prov.language.greeting} (${prov.language.meaning})` : 'Selamat Datang!';
-    if (voiceBtn) {
-      voiceBtn.onclick = function (e) {
-        e.stopPropagation();
-        speakRegionalGreeting(prov.language ? prov.language.greeting : 'Halo Selamat Datang');
-      };
-    }
 
     // Helper: Format Sejarah Ringkas & Menarik (Storytelling, No duplicates, High Readability)
     function formatBiteSizedHistory(prov) {
