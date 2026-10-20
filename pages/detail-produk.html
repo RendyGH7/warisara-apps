@@ -322,35 +322,45 @@
 
       <!-- Kolom Kanan: Detail Informasi & Transaksi C2C -->
       <div class="lg:col-span-6 space-y-6">
-        <div>
-          <div class="flex items-center justify-between gap-4 mb-2">
-            <span id="detail-origin-chip" class="text-xs text-surface/60 font-medium flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm text-brass-400">location_on</span>
+          <!-- Metadata Atas: Asal Daerah & Rating -->
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <span id="detail-origin-chip" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-surface/80">
+              <span class="material-symbols-outlined text-[13px] text-brass-400">location_on</span>
               <span id="detail-origin-text">Asal Daerah</span>
             </span>
-            <span id="detail-rating-text" class="text-xs font-semibold text-brass-300 flex items-center gap-1">
-              ★ 4.9 (38 ulasan)
-            </span>
+
+            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-300">
+              <span class="material-symbols-outlined text-[13px] text-amber-400 fill-current">star</span>
+              <span id="detail-rating-text">4.8 (24 ulasan)</span>
+            </div>
           </div>
 
-          <h1 id="detail-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight mb-4">
+          <!-- Judul Produk -->
+          <h1 id="detail-name" class="font-serif text-3xl sm:text-4xl lg:text-[40px] font-bold text-surface tracking-tight leading-[1.2] mb-5">
             Nama Produk Lokal
           </h1>
 
-          <!-- Harga Fair Trade -->
-          <div class="p-5 rounded-3xl bg-brass-400/10 border border-brass-400/30 flex items-baseline justify-between mb-6">
+          <!-- Harga Pengrajin & Stok (Clean, Modern & Profesional) -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.025] border border-white/[0.08] flex items-center justify-between gap-4 mb-6 backdrop-blur-sm">
             <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-surface/60 block mb-1">Nilai Fair-Trade Pengrajin</span>
-              <div id="detail-price" class="font-display text-3xl sm:text-4xl text-brass-300 font-semibold tracking-tight">
-                Rp 0
+              <span class="text-[10px] font-mono uppercase tracking-widest text-surface/50 block mb-0.5">Harga Pengrajin</span>
+              <div class="flex items-baseline gap-1.5">
+                <span id="detail-price" class="font-serif text-3xl sm:text-4xl font-extrabold text-brass-300 tracking-tight">
+                  Rp 0
+                </span>
+                <span class="text-xs text-surface/40 font-mono">/ buah</span>
               </div>
             </div>
-            <div class="text-right">
-              <span id="detail-stock-badge" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-forest-900/50 text-forest-300 border border-forest-500/30 inline-flex items-center gap-1.5 mb-1">
+
+            <div class="text-right flex flex-col items-end gap-1.5">
+              <span id="detail-stock-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 <span>Stok Tersedia</span>
               </span>
-              <span class="text-[10px] text-surface/50 block">Tanpa biaya komisi platform</span>
+              <span class="text-[10px] text-surface/45 flex items-center gap-1 font-mono">
+                <span class="material-symbols-outlined text-[12px] text-brass-400/80">verified</span>
+                <span>Tanpa komisi platform</span>
+              </span>
             </div>
           </div>
 
@@ -741,7 +751,10 @@
       document.getElementById("detail-price").textContent = product.priceEstimate || ("Rp " + (product.price || 0).toLocaleString("id-ID"));
 
       if (product.rating) {
-        document.getElementById("detail-rating-text").textContent = `★ ${product.rating}`;
+        const ratingTextEl = document.getElementById("detail-rating-text");
+        if (ratingTextEl) {
+          ratingTextEl.textContent = String(product.rating).replace(/^[★\s]+/, "");
+        }
       }
 
       // Pisahkan nama pengrajin dan nama sanggar/sentra agar rapi ala profil C2C
