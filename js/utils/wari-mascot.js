@@ -344,11 +344,11 @@ Peran dan Pengetahuan Anda:
       parts: [{ text: userQuery }]
     });
 
-    // Daftar endpoint model yang kompatibel
+    // Daftar endpoint model yang kompatibel (v1beta dengan gemini-3.8-flash & fallback)
     const endpointsToTry = [
-      `https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`,
-      `https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`
     ];
 
     let lastError = null;
@@ -364,7 +364,8 @@ Peran dan Pengetahuan Anda:
         if (response.ok) {
           const data = await response.json();
           const parts = data.candidates?.[0]?.content?.parts || [];
-          const botReply = parts.map(p => p.text).filter(Boolean).join('\n\n');
+          const visibleParts = parts.filter(p => !p.thought && p.text);
+          const botReply = (visibleParts.length > 0 ? visibleParts : parts).map(p => p.text).filter(Boolean).join('\n\n');
           if (botReply && botReply.trim().length > 0) {
             return botReply;
           }
@@ -445,6 +446,7 @@ Peran dan Pengetahuan Anda:
   let headerAvatar = null;
   let triggerAvatar = null;
   let isOpen = false;
+  let isThinking = false;
   let chatHistory = [];
   // Konfigurasi 15 Menit Otomatis Menghilang
   const TOOLTIP_LIFETIME_MS = 15 * 60 * 1000; // 15 menit = 900.000 ms
