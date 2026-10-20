@@ -380,12 +380,14 @@
 
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <h3 id="seller-name" class="font-semibold text-sm sm:text-base text-surface truncate">Nama Pengrajin</h3>
+                  <h3 id="seller-name" class="font-bold text-sm sm:text-base text-surface truncate">Nama Pengrajin</h3>
                   <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                     <span class="material-symbols-outlined text-[11px]">verified</span>
                     <span>Terverifikasi</span>
                   </span>
                 </div>
+
+                <p id="seller-role" class="text-xs text-brass-300 font-medium truncate mt-0.5">Sentra Komunitas Pengrajin</p>
 
                 <div class="flex items-center gap-2 text-xs text-surface/60 mt-1 flex-wrap">
                   <span class="inline-flex items-center gap-1">
@@ -394,8 +396,7 @@
                   </span>
                   <span class="text-white/20">•</span>
                   <span class="inline-flex items-center gap-1 text-[11px] text-surface/40 font-mono">
-                    <span class="material-symbols-outlined text-xs">mail</span>
-                    <span id="seller-email" class="truncate">penjual@gmail.com</span>
+                    <span id="seller-email" class="truncate">@penjual</span>
                   </span>
                 </div>
               </div>
@@ -788,11 +789,23 @@
         document.getElementById("detail-rating-text").textContent = `★ ${product.rating}`;
       }
 
-      document.getElementById("seller-name").textContent = product.maker;
+      // Pisahkan nama pengrajin dan nama sanggar/sentra agar rapi ala profil C2C
+      const rawMaker = product.maker || "Pengrajin Nusantara";
+      const makerMatch = rawMaker.match(/^([^(]+)(?:\((.*)\))?/);
+      const cleanName = makerMatch ? makerMatch[1].trim() : rawMaker;
+      const community = makerMatch && makerMatch[2] ? makerMatch[2].trim() : "Komunitas Pengrajin Nusantara";
+
+      document.getElementById("seller-name").textContent = cleanName;
+      const sellerRoleEl = document.getElementById("seller-role");
+      if (sellerRoleEl) sellerRoleEl.textContent = community;
+
       const sellerMail = product.sellerEmail || "dewi.tenun@gmail.com";
-      document.getElementById("seller-email").textContent = sellerMail;
+      const handleName = sellerMail.split("@")[0];
+      const sellerMailEl = document.getElementById("seller-email");
+      if (sellerMailEl) sellerMailEl.textContent = "@" + handleName;
+
       document.getElementById("seller-location").textContent = product.origin;
-      document.getElementById("seller-avatar").textContent = (product.maker || "P").charAt(0).toUpperCase();
+      document.getElementById("seller-avatar").textContent = cleanName.charAt(0).toUpperCase();
 
       document.getElementById("detail-philosophy").textContent = product.philosophy || "";
       document.getElementById("detail-material").textContent = product.material;
