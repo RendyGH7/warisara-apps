@@ -1011,6 +1011,7 @@ Peran dan Pengetahuan Anda:
     if (clearBtn) {
       clearBtn.addEventListener('click', () => {
         chatHistory = [];
+        scrollPillDismissed = false;
         sessionStorage.removeItem('wari_chat_history');
         messagesContainer.innerHTML = '';
         // Tampilkan konfirmasi di UI tanpa menyimpannya ke sessionStorage
