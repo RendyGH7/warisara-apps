@@ -1055,114 +1055,155 @@
       } else {
         var isUnesco = maker.unescoOrStatus && maker.unescoOrStatus.includes('UNESCO');
         makerTabEl.innerHTML = `
-          <div class="space-y-6">
-            <!-- Hero Showcase Banner -->
-            <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-[#1c1815] via-[#14110e] to-black border border-brass-400/35 shadow-2xl relative">
-              <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-                <!-- Media Column (5 cols) -->
-                <div class="md:col-span-5 relative h-64 md:h-auto min-h-[260px] bg-[#120F0D] overflow-hidden group">
-                  <div id="maker-tab-visual-container" class="w-full h-full relative cursor-pointer" onclick="window.warisaraZoomImg('${makerPhoto}', '${(maker.name || '').replace(/'/g, "\\'")}', '${(maker.role || '').replace(/'/g, "\\'")}')" title="Klik perbesar foto">
-                    <img id="maker-tab-photo" src="${makerPhoto}" alt="${maker.name}" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('maker-tab-svg').style.display='block';" />
-                    <div id="maker-tab-svg" class="w-full h-full" style="display: none;">
-                      ${makerSvg}
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
-                  </div>
+          <div class="space-y-6 max-w-2xl mx-auto">
+            <!-- 1:1 Aspect Ratio Photo & Illustration Showcase -->
+            <div class="relative w-full max-w-[420px] mx-auto aspect-square rounded-3xl overflow-hidden bg-gradient-to-b from-[#1b1714] to-[#0e0c0a] border border-brass-400/35 shadow-2xl group">
+              <div id="maker-tab-visual-container" class="w-full h-full relative cursor-pointer" onclick="window.warisaraZoomImg('${makerPhoto}', '${(maker.name || '').replace(/'/g, "\\'")}', '${(maker.role || '').replace(/'/g, "\\'")}')" title="Klik untuk memperbesar gambar">
+                <img id="maker-tab-photo" src="${makerPhoto}" alt="${maker.name}" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('maker-tab-svg').style.display='block';" />
+                <div id="maker-tab-svg" class="w-full h-full flex items-center justify-center p-6 bg-gradient-to-b from-[#181412] to-black" style="display: none;">
+                  ${makerSvg}
+                </div>
+                <!-- Subtle bottom gradient vignette -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none"></div>
+              </div>
 
-                  <!-- Toggle Switcher on Media: Foto vs Ilustrasi SVG -->
-                  <div class="absolute top-3 left-3 z-10 flex items-center gap-1 bg-black/75 p-0.5 rounded-full border border-white/20 backdrop-blur-md text-[10px]">
-                    <button type="button" id="btn-maker-view-photo" class="px-2.5 py-0.5 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer">
-                      Foto Asli
-                    </button>
-                    <button type="button" id="btn-maker-view-svg" class="px-2.5 py-0.5 rounded-full text-surface/75 hover:text-white font-medium transition-all cursor-pointer">
-                      Ilustrasi Kriya
-                    </button>
-                  </div>
-
-                  <!-- Experience Pill -->
-                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] z-10">
-                    <span class="px-2.5 py-1 rounded-full bg-black/80 text-brass-300 font-mono font-bold border border-brass-400/40 backdrop-blur-md shadow">
-                      ⏳ ${maker.experience}
-                    </span>
-                    <span class="px-2.5 py-1 rounded-full bg-black/80 text-surface/85 font-mono text-[10px] border border-white/15 backdrop-blur-md">
-                      ${maker.location}
-                    </span>
-                  </div>
+              <!-- Top Controls: View Toggle & Zoom Button -->
+              <div class="absolute top-3.5 left-3.5 right-3.5 z-10 flex items-center justify-between pointer-events-none">
+                <div class="pointer-events-auto flex items-center gap-1 bg-black/80 p-1 rounded-full border border-white/20 backdrop-blur-md text-[11px] shadow-lg">
+                  <button type="button" id="btn-maker-view-photo" class="px-3 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer">
+                    Foto Asli
+                  </button>
+                  <button type="button" id="btn-maker-view-svg" class="px-3 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all cursor-pointer">
+                    Ilustrasi Kriya
+                  </button>
                 </div>
 
-                <!-- Narrative Column (7 cols) -->
-                <div class="md:col-span-7 p-5 sm:p-6 flex flex-col justify-between space-y-4">
-                  <div>
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/40 font-mono">
-                        <span class="material-symbols-outlined text-xs">workspace_premium</span>
-                        <span>Maestro Pelestari Budaya</span>
-                      </span>
-                      ${isUnesco ? `
-                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono flex items-center gap-1">
-                          <span>👑 UNESCO Intangible</span>
-                        </span>
-                      ` : `
-                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-forest-900/40 text-forest-300 border border-forest-500/30 font-mono">
-                          📜 WBTb Indonesia
-                        </span>
-                      `}
-                    </div>
+                <button type="button" class="pointer-events-auto w-8 h-8 rounded-full bg-black/80 hover:bg-black text-brass-300 border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer" onclick="window.warisaraZoomImg('${makerPhoto}', '${(maker.name || '').replace(/'/g, "\\'")}', '${(maker.role || '').replace(/'/g, "\\'")}')" title="Perbesar Tampilan">
+                  <span class="material-symbols-outlined text-sm">zoom_in</span>
+                </button>
+              </div>
 
-                    <h3 class="font-display text-2xl sm:text-3xl text-surface font-light leading-tight mb-1">
-                      ${maker.name}
-                    </h3>
-                    <p class="text-xs sm:text-sm font-semibold text-brass-300 mb-3">
-                      ${maker.role}
-                    </p>
-
-                    <p class="text-xs text-surface/80 font-light leading-relaxed mb-4">
-                      ${maker.story}
-                    </p>
-                  </div>
-
-                  <!-- Audio Petuah Box -->
-                  <div class="p-3.5 rounded-xl bg-black/50 border border-brass-400/25 flex items-center justify-between gap-3">
-                    <div class="min-w-0 flex-1">
-                      <span class="text-[9.5px] uppercase font-mono tracking-widest text-brass-400/80 font-bold block mb-0.5">Petuah Bijak Maestro</span>
-                      <p class="font-display italic text-xs text-brass-100 truncate font-light">
-                        &ldquo;${maker.quote}&rdquo;
-                      </p>
-                    </div>
-                    <button type="button" class="btn-play-maker-voice-tab px-3 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold text-xs flex items-center gap-1.5 transition-all shadow-md flex-shrink-0 cursor-pointer">
-                      <span class="material-symbols-outlined text-sm">volume_up</span>
-                      <span class="hidden sm:inline">Dengar Suara</span>
-                    </button>
-                  </div>
-                </div>
+              <!-- Bottom Overlay Badges -->
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 z-10 flex items-center justify-between text-xs gap-2">
+                <span class="px-3 py-1.5 rounded-full bg-black/85 text-brass-300 font-mono font-bold border border-brass-400/40 backdrop-blur-md shadow-md flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-xs text-brass-400">history_toggle_off</span>
+                  <span>${maker.experience}</span>
+                </span>
+                <span class="px-3 py-1.5 rounded-full bg-black/85 text-surface/90 font-mono text-[11px] border border-white/15 backdrop-blur-md shadow-md flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs text-surface/60">location_on</span>
+                  <span>${maker.location}</span>
+                </span>
               </div>
             </div>
 
-            <!-- Detail Spesifikasi Kriya -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-base text-brass-400">verified</span>
-                  <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">Tanda Tangan &amp; Karakteristik Kriya</h4>
+            <!-- Comprehensive Profile & Narrative (Below the 1:1 Frame) -->
+            <div class="space-y-4">
+              <!-- Title & Status Header Card -->
+              <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#1b1714] via-[#120f0d] to-black border border-brass-400/30 shadow-xl space-y-3">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/40 font-mono">
+                    <span class="material-symbols-outlined text-xs">workspace_premium</span>
+                    <span>Maestro Pelestari Budaya Nusantara</span>
+                  </span>
+                  ${isUnesco ? `
+                    <span class="px-3 py-1 rounded-full text-[10.5px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono flex items-center gap-1.5 shadow-sm">
+                      <span class="material-symbols-outlined text-xs text-amber-400">grade</span>
+                      <span>UNESCO Intangible Cultural Heritage</span>
+                    </span>
+                  ` : `
+                    <span class="px-3 py-1 rounded-full text-[10.5px] font-bold bg-forest-900/40 text-forest-300 border border-forest-500/30 font-mono flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-xs text-forest-400">verified</span>
+                      <span>Warisan Budaya Takbenda (WBTb) Indonesia</span>
+                    </span>
+                  `}
                 </div>
-                <p class="text-xs text-surface/85 font-light leading-relaxed">
-                  ${maker.signature}
-                </p>
-                <div class="p-3 rounded-xl bg-brass-400/10 border border-brass-400/20 text-[11px] text-brass-200 font-light">
-                  Dikerjakan dengan ketelitian tangan (*handmade*) turun-temurun tanpa mesin massal untuk menjaga kesakralan karya.
+
+                <div>
+                  <h3 class="font-display text-2xl sm:text-3xl text-brass-100 font-semibold tracking-wide leading-tight">
+                    ${maker.name}
+                  </h3>
+                  <p class="text-sm sm:text-base font-serif italic text-brass-300/90 mt-1">
+                    ${maker.role}
+                  </p>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap pt-1 text-xs">
+                  <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-surface/80 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs text-brass-400">palette</span>
+                    <span class="font-medium text-surface/90">${maker.craft}</span>
+                  </span>
+                  <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-surface/80 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs text-brass-400">public</span>
+                    <span class="font-medium text-surface/90">Provinsi ${maker.provinceName || prov.name}</span>
+                  </span>
                 </div>
               </div>
 
-              <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-base text-forest-400">eco</span>
-                  <h4 class="text-xs font-bold uppercase tracking-wider text-forest-300 font-mono">Material Alami &amp; Ekologi Budaya</h4>
+              <!-- Wisdom Quote & Voice Player -->
+              <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-brass-950/50 via-[#181410] to-transparent border border-brass-400/35 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden group">
+                <div class="absolute -top-10 -right-10 w-28 h-28 bg-brass-400/10 rounded-full blur-xl pointer-events-none"></div>
+                <div class="min-w-0 flex-1 space-y-1.5">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-brass-400 text-base">format_quote</span>
+                    <span class="text-[10px] uppercase font-mono tracking-widest text-brass-400/90 font-bold">Filosofi &amp; Petuah Bijak</span>
+                  </div>
+                  <p class="font-display italic text-base sm:text-lg text-brass-100 leading-snug font-light">
+                    &ldquo;${maker.quote}&rdquo;
+                  </p>
                 </div>
-                <p class="text-xs text-surface/85 font-light leading-relaxed">
-                  ${maker.materials}
+                <button type="button" class="btn-play-maker-voice-tab px-4 py-2.5 rounded-full bg-gradient-to-r from-brass-400 to-brass-300 hover:from-brass-300 hover:to-brass-200 text-ink font-bold text-xs flex items-center gap-2 transition-all shadow-lg flex-shrink-0 cursor-pointer hover:shadow-brass-400/25">
+                  <span class="material-symbols-outlined text-base">volume_up</span>
+                  <span>Dengar Petuah Suara</span>
+                </button>
+              </div>
+
+              <!-- Full Dedication & Story Block -->
+              <div class="p-5 sm:p-6 rounded-2xl bg-white/[0.025] border border-white/10 shadow-lg space-y-3">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-base text-brass-400">auto_stories</span>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">
+                    Dedikasi &amp; Jejak Pelestarian Budaya
+                  </h4>
+                </div>
+                <p class="text-sm sm:text-[15px] text-surface/90 font-light leading-relaxed text-justify sm:text-left">
+                  ${maker.story}
                 </p>
-                <div class="p-3 rounded-xl bg-forest-900/20 border border-forest-500/20 text-[11px] text-forest-200 font-light">
-                  Bersumber dari keanekaragaman hayati lokal yang dirawat dengan prinsip kearifan ekologis adat setempat.
+              </div>
+
+              <!-- Dual Specification Cards: Karakteristik & Material -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Card 1: Tanda Tangan & Karakteristik Kriya -->
+                <div class="p-5 rounded-2xl bg-white/[0.025] border border-white/10 space-y-3 flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-base text-brass-400">verified</span>
+                      <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">Tanda Tangan &amp; Karakteristik Kriya</h4>
+                    </div>
+                    <p class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed">
+                      ${maker.signature}
+                    </p>
+                  </div>
+                  <div class="p-3 rounded-xl bg-brass-400/10 border border-brass-400/20 text-[11px] text-brass-200/95 font-light flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm text-brass-400 flex-shrink-0">handyman</span>
+                    <span>Dikerjakan tangan murni (100% *handmade*) tanpa mesin massal.</span>
+                  </div>
+                </div>
+
+                <!-- Card 2: Material Alami & Ekologi Budaya -->
+                <div class="p-5 rounded-2xl bg-white/[0.025] border border-white/10 space-y-3 flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-base text-forest-400">eco</span>
+                      <h4 class="text-xs font-bold uppercase tracking-wider text-forest-300 font-mono">Material Alami &amp; Ekologi Budaya</h4>
+                    </div>
+                    <p class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed">
+                      ${maker.materials}
+                    </p>
+                  </div>
+                  <div class="p-3 rounded-xl bg-forest-900/20 border border-forest-500/20 text-[11px] text-forest-200/95 font-light flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm text-forest-400 flex-shrink-0">nature_people</span>
+                    <span>Bahan alami lestari dari keanekaragaman flora & fauna lokal Nusantara.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1180,15 +1221,15 @@
             e.stopPropagation();
             photoEl.style.display = 'block';
             svgEl.style.display = 'none';
-            btnPhoto.className = 'px-2.5 py-0.5 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer';
-            btnSvg.className = 'px-2.5 py-0.5 rounded-full text-surface/75 hover:text-white font-medium transition-all cursor-pointer';
+            btnPhoto.className = 'px-3 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer';
+            btnSvg.className = 'px-3 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all cursor-pointer';
           };
           btnSvg.onclick = function (e) {
             e.stopPropagation();
             photoEl.style.display = 'none';
-            svgEl.style.display = 'block';
-            btnSvg.className = 'px-2.5 py-0.5 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer';
-            btnPhoto.className = 'px-2.5 py-0.5 rounded-full text-surface/75 hover:text-white font-medium transition-all cursor-pointer';
+            svgEl.style.display = 'flex';
+            btnSvg.className = 'px-3 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all shadow-sm cursor-pointer';
+            btnPhoto.className = 'px-3 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all cursor-pointer';
           };
         }
 
