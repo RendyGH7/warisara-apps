@@ -354,27 +354,71 @@
             </div>
           </div>
 
-          <!-- Kartu Profil Penjual (Seller Profile Card) -->
-          <div class="p-4 sm:p-5 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-brass-400/30 transition-all mb-6">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-3">
-                <div id="seller-avatar" class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-base flex items-center justify-center shadow-lg">
+          <!-- Kartu Profil Penjual (Clean User-to-User C2C Profile) -->
+          <div class="p-5 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:border-brass-400/30 transition-all mb-6">
+            
+            <!-- Header Kartu: Label C2C + Status Online -->
+            <div class="flex items-center justify-between text-[11px] text-surface/50 mb-3.5 pb-2.5 border-b border-white/[0.06]">
+              <span class="font-mono uppercase tracking-wider text-brass-400/90 font-semibold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[13px]">person</span>
+                <span>Profil Penjual (User ke User)</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Aktif Sekarang</span>
+              </span>
+            </div>
+
+            <!-- Identitas Penjual -->
+            <div class="flex items-start gap-3.5">
+              <div class="relative flex-shrink-0">
+                <div id="seller-avatar" class="w-12 h-12 rounded-full bg-gradient-to-tr from-brass-600 via-amber-500 to-yellow-400 text-ink font-bold text-base flex items-center justify-center shadow-md ring-2 ring-white/10">
                   P
                 </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 id="seller-name" class="font-display text-base font-semibold text-surface">Nama Pengrajin</h3>
-                    <span class="seller-verified-badge">Terverifikasi</span>
-                  </div>
-                  <p id="seller-email" class="text-xs text-brass-300 font-mono">penjual@gmail.com</p>
-                  <p id="seller-location" class="text-[11px] text-surface/50 mt-0.5">Lokasi Sentra Produksi</p>
+                <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#151310]" title="Online"></span>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 id="seller-name" class="font-semibold text-sm sm:text-base text-surface truncate">Nama Pengrajin</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                    <span class="material-symbols-outlined text-[11px]">verified</span>
+                    <span>Terverifikasi</span>
+                  </span>
+                </div>
+
+                <div class="flex items-center gap-2 text-xs text-surface/60 mt-1 flex-wrap">
+                  <span class="inline-flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
+                    <span id="seller-location" class="truncate">Lokasi Sentra Produksi</span>
+                  </span>
+                  <span class="text-white/20">•</span>
+                  <span class="inline-flex items-center gap-1 text-[11px] text-surface/40 font-mono">
+                    <span class="material-symbols-outlined text-xs">mail</span>
+                    <span id="seller-email" class="truncate">penjual@gmail.com</span>
+                  </span>
                 </div>
               </div>
             </div>
-            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-surface/60">
-              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-amber-400">bolt</span> Waktu Respon: <strong>&lt; 15 menit</strong></span>
-              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-brass-400">local_shipping</span> Pengiriman: <strong>Seluruh Indonesia (COD / Kurir)</strong></span>
+
+            <!-- Quick Trust Metrics Row -->
+            <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-white/[0.06] text-[11px]">
+              <div class="p-2 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm text-amber-400">bolt</span>
+                <div class="leading-tight">
+                  <span class="text-surface/50 text-[10px] block font-mono">RESPON CHAT</span>
+                  <span class="font-semibold text-surface/90">&lt; 15 menit</span>
+                </div>
+              </div>
+              <div class="p-2 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm text-brass-400">handshake</span>
+                <div class="leading-tight">
+                  <span class="text-surface/50 text-[10px] block font-mono">TRANSAKSI</span>
+                  <span class="font-semibold text-surface/90">Langsung / C2C</span>
+                </div>
+              </div>
             </div>
+
           </div>
 
           <!-- Tombol CTA Utama: Chat Penjual Langsung (Facebook Marketplace Style) -->
@@ -382,7 +426,7 @@
             <button id="btn-detail-chat-seller"
                     class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-brass-600 via-brass-400 to-brass-600 hover:brightness-110 text-ink font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-3 shadow-xl hover:shadow-brass-400/30 transition-all cursor-pointer select-none">
               <span class="material-symbols-outlined text-xl">chat</span>
-              <span>Chat Penjual</span>
+              <span>Chat Penjual Langsung</span>
             </button>
 
             <div class="grid grid-cols-2 gap-3">
@@ -399,12 +443,37 @@
             </div>
           </div>
 
-          <!-- Panduan Alur Transaksi Marketplace Facebook Style -->
-          <div class="mt-6 p-4 rounded-2xl bg-forest-900/20 border border-forest-500/20 text-xs text-surface/80 flex items-start gap-3">
-            <span class="material-symbols-outlined text-forest-300 text-lg flex-shrink-0 mt-0.5">info</span>
-            <div class="leading-relaxed">
-              <strong class="text-surface block mb-1 font-semibold">Alur Transaksi Personal:</strong>
-              Klik <strong>"Chat Penjual"</strong> untuk memulai ruang obrolan dengan pemilik karya ini. Anda dapat menanyakan kesiapan barang, mendiskusikan foto detail, dan menyepakati pengiriman (COD atau transfer mandiri).
+          <!-- Peringatan Keamanan & Anti-Penipuan User-to-User (Jangan TF Duluan) -->
+          <div class="mt-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                <span class="material-symbols-outlined text-lg">shield</span>
+              </div>
+              <div class="flex-1 space-y-2 leading-relaxed">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <h4 class="font-bold text-amber-300 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                    <span>Panduan Transaksi Aman (C2C)</span>
+                  </h4>
+                  <span class="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/35">
+                    ⚠️ Waspada Penipuan
+                  </span>
+                </div>
+                
+                <p class="text-surface/90 text-xs leading-relaxed">
+                  <strong class="text-amber-200 font-semibold underline decoration-amber-400/50">JANGAN transfer uang duluan</strong> ke rekening pribadi penjual sebelum memastikan keaslian barang atau bertemu langsung. Sistem WARISARA menghubungkan sesama pengguna secara langsung.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-amber-500/20 text-[11px] text-surface/80">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs text-emerald-400">check_circle</span>
+                    <span>Utamakan <strong>COD / Bayar di Tempat</strong></span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs text-emerald-400">check_circle</span>
+                    <span>Minta video asli produk via chat</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
