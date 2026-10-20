@@ -421,34 +421,40 @@
             <!-- Subtle lighting gradients that keep photo vividly visible & text legible -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25 pointer-events-none"></div>
 
-            <!-- Top Action Header on Illustration -->
-            <div class="relative z-10 flex items-center justify-between gap-2">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span id="modal-province-island" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-lg">
-                  PULAU
-                </span>
-                <div id="modal-stamp-status-badge"></div>
+            <!-- Top Action Header on Illustration: Unified, Single-Row Luxury Design -->
+            <div class="relative z-10 flex items-center justify-between gap-2.5 w-full flex-nowrap">
+              <!-- Left: Clean Island Region Pill -->
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-brass-300 text-[10px] font-bold tracking-wider uppercase shadow-xl flex-shrink-0">
+                <span class="material-symbols-outlined text-[13px] text-brass-400">explore</span>
+                <span id="modal-province-island">PULAU</span>
               </div>
 
-              <div class="flex items-center gap-1.5 flex-wrap">
+              <!-- Right: Unified Capsule Toolbar (Switcher + Quick Actions in 1 Sleek Bar) -->
+              <div class="inline-flex items-center p-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 shadow-xl flex-shrink-0">
                 <!-- Dual Switcher: Landmark vs Pelestari -->
-                <div class="inline-flex items-center p-0.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[10px] shadow-lg">
-                  <button type="button" id="btn-hero-view-landmark" class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1 shadow-sm cursor-pointer" title="Lihat Foto Landmark Daerah">
+                <div class="flex items-center p-0.5 rounded-full bg-white/5">
+                  <button type="button" id="btn-hero-view-landmark" class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer text-[11px]" title="Lihat Foto Landmark Daerah">
                     <span class="material-symbols-outlined text-[13px]">landscape</span>
                     <span class="hidden sm:inline">Landmark</span>
                   </button>
-                  <button type="button" id="btn-hero-view-maker" class="px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1 cursor-pointer" title="Lihat Maestro Pelestari">
+                  <button type="button" id="btn-hero-view-maker" class="px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1.5 cursor-pointer text-[11px]" title="Lihat Maestro Pelestari">
                     <span class="material-symbols-outlined text-[13px] text-brass-400">person</span>
                     <span class="hidden sm:inline">Pelestari</span>
                   </button>
                 </div>
 
-                <button id="modal-hero-zoom-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Perbesar Ilustrasi HD">
-                  <span class="material-symbols-outlined text-lg">fullscreen</span>
-                </button>
-                <button id="modal-voice-greeting-btn" class="p-2 rounded-full bg-black/50 hover:bg-brass-400 hover:text-ink text-surface/90 border border-white/20 backdrop-blur-md transition-all shadow-lg cursor-pointer" title="Dengarkan Sapaan Lokal">
-                  <span class="material-symbols-outlined text-lg">volume_up</span>
-                </button>
+                <!-- Divider -->
+                <div class="w-px h-3.5 bg-white/20 mx-1"></div>
+
+                <!-- Quick Action Icons -->
+                <div class="flex items-center gap-0.5 pr-0.5">
+                  <button type="button" id="modal-voice-greeting-btn" class="w-7 h-7 rounded-full hover:bg-brass-400 hover:text-ink text-surface/90 flex items-center justify-center transition-all cursor-pointer" title="Dengarkan Sapaan Lokal">
+                    <span class="material-symbols-outlined text-base">volume_up</span>
+                  </button>
+                  <button type="button" id="modal-hero-zoom-btn" class="w-7 h-7 rounded-full hover:bg-brass-400 hover:text-ink text-surface/90 flex items-center justify-center transition-all cursor-pointer" title="Perbesar Layar Penuh (HD)">
+                    <span class="material-symbols-outlined text-base">fullscreen</span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -461,28 +467,28 @@
               <div class="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs bg-black/20 hover:bg-black/30 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all">
                 <div class="flex items-center gap-2.5">
                   <div class="w-7 h-7 rounded-xl bg-brass-400/25 border border-brass-400/40 flex items-center justify-center text-brass-200 flex-shrink-0 shadow-sm backdrop-blur-sm">
-                    <span class="material-symbols-outlined text-[14px]">location_city</span>
+                    <span id="modal-meta-icon-1" class="material-symbols-outlined text-[14px]">location_city</span>
                   </div>
                   <div class="min-w-0">
-                    <span class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Ibu Kota</span>
+                    <span id="modal-meta-label-1" class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Ibu Kota</span>
                     <strong id="modal-province-capital" class="text-white font-semibold text-xs sm:text-sm truncate block drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">-</strong>
                   </div>
                 </div>
                 <div class="flex items-center gap-2.5">
                   <div class="w-7 h-7 rounded-xl bg-brass-400/25 border border-brass-400/40 flex items-center justify-center text-brass-200 flex-shrink-0 shadow-sm backdrop-blur-sm">
-                    <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                    <span id="modal-meta-icon-2" class="material-symbols-outlined text-[14px]">calendar_today</span>
                   </div>
                   <div class="min-w-0">
-                    <span class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Berdiri</span>
+                    <span id="modal-meta-label-2" class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Berdiri</span>
                     <strong id="modal-province-established" class="text-white font-semibold text-xs sm:text-sm truncate block drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">-</strong>
                   </div>
                 </div>
                 <div class="col-span-2 pt-2.5 border-t border-white/15 flex items-center gap-2.5">
                   <div class="w-7 h-7 rounded-xl bg-brass-400/25 border border-brass-400/40 flex items-center justify-center text-brass-200 flex-shrink-0 shadow-sm backdrop-blur-sm">
-                    <span class="material-symbols-outlined text-[14px]">military_tech</span>
+                    <span id="modal-meta-icon-3" class="material-symbols-outlined text-[14px]">military_tech</span>
                   </div>
                   <div class="min-w-0 flex-1">
-                    <span class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Tokoh / Pendiri</span>
+                    <span id="modal-meta-label-3" class="text-brass-300/90 text-[9.5px] block uppercase font-mono font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Tokoh / Pendiri</span>
                     <strong id="modal-province-founders" class="text-white/95 font-medium text-xs sm:text-[13px] truncate block drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">-</strong>
                   </div>
                 </div>
@@ -492,12 +498,15 @@
           </div>
 
           <!-- Single Iconic Landmark / Pelestari Hallmark Bar -->
-          <div class="px-5 py-2.5 bg-[#0E0C0A]/85 border-t border-white/10 flex items-center justify-between text-xs flex-shrink-0">
+          <div class="px-5 py-2.5 bg-[#0E0C0A]/90 border-t border-white/10 flex items-center justify-between gap-3 text-xs flex-shrink-0">
             <div class="flex items-center gap-2 min-w-0">
               <span id="illustration-caption-icon" class="material-symbols-outlined text-brass-400 text-sm flex-shrink-0">location_on</span>
               <span id="illustration-caption-indicator" class="text-surface/85 text-xs font-light truncate">Landmark Ikonik</span>
             </div>
-            <span id="illustration-caption-mode-label" class="text-[10px] font-mono text-brass-400/80 bg-white/5 px-2 py-0.5 rounded border border-white/10 flex-shrink-0">Landmark</span>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span id="illustration-caption-mode-label" class="hidden sm:inline-block text-[10px] font-mono text-brass-400/80 bg-white/5 px-2 py-0.5 rounded border border-white/10">Landmark</span>
+              <div id="modal-stamp-status-badge"></div>
+            </div>
           </div>
 
         </div>
@@ -888,7 +897,7 @@
   <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js?v=10"></script>
-  <script src="../js/sections/jelajahi-provinces.js?v=55"></script>
+  <script src="../js/sections/jelajahi-provinces.js?v=56"></script>
   <script src="../js/utils/loading-screen.js?v=50"></script>
   <script src="../js/config.example.js"></script>
   <script src="../js/config.js"></script>

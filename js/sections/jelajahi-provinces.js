@@ -617,54 +617,114 @@
     var heroZoomBtn = document.getElementById('modal-hero-zoom-btn');
     var indicator = document.getElementById('illustration-caption-indicator');
 
+    var nameEl = document.getElementById('modal-province-name');
+    var capitalEl = document.getElementById('modal-province-capital');
+    var estEl = document.getElementById('modal-province-established');
+    var foundersEl = document.getElementById('modal-province-founders');
+    var metaIcon1 = document.getElementById('modal-meta-icon-1');
+    var metaLabel1 = document.getElementById('modal-meta-label-1');
+    var metaIcon2 = document.getElementById('modal-meta-icon-2');
+    var metaLabel2 = document.getElementById('modal-meta-label-2');
+    var metaIcon3 = document.getElementById('modal-meta-icon-3');
+    var metaLabel3 = document.getElementById('modal-meta-label-3');
+    var voiceBtn = document.getElementById('modal-voice-greeting-btn');
+
     function applyHeroMode(mode) {
       if (mode === 'maker' && maker) {
         if (heroBanner) {
-          heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url(' + makerPhoto + ')';
+          heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%), url(' + makerPhoto + ')';
         }
         if (indicator) {
           indicator.textContent = maker.name + ' — ' + maker.role + ' (' + maker.craft + ')';
         }
         if (modeLabel) modeLabel.textContent = 'Maestro Pelestari';
         if (captionIcon) captionIcon.textContent = 'person';
+
+        // Update Title & Metadata Card to Pelestari Information
+        if (nameEl) {
+          nameEl.innerHTML = `<span class="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-brass-300 block mb-1">Maestro Pelestari ${prov.name}</span>${maker.name}`;
+        }
+        if (metaIcon1) metaIcon1.textContent = 'palette';
+        if (metaLabel1) metaLabel1.textContent = 'Keahlian / Kriya';
+        if (capitalEl) capitalEl.textContent = maker.role || maker.craft;
+
+        if (metaIcon2) metaIcon2.textContent = 'history_edu';
+        if (metaLabel2) metaLabel2.textContent = 'Dedikasi';
+        if (estEl) estEl.textContent = maker.experience || 'Puluhan Tahun Berkarya';
+
+        if (metaIcon3) metaIcon3.textContent = 'verified';
+        if (metaLabel3) metaLabel3.textContent = 'Mahakarya Utama';
+        if (foundersEl) foundersEl.textContent = maker.signature || maker.craft;
+
         if (heroZoomBtn) {
           heroZoomBtn.onclick = function (e) {
             e.stopPropagation();
             openCustomLightbox(makerPhoto, maker.name, maker.role + ' • ' + maker.craft);
           };
         }
+        if (voiceBtn) {
+          voiceBtn.title = 'Dengarkan Petuah Maestro (' + maker.name + ')';
+          voiceBtn.onclick = function (e) {
+            e.stopPropagation();
+            speakRegionalGreeting(maker.quoteAudio || maker.quote || (prov.language ? prov.language.greeting : 'Selamat Datang'));
+          };
+        }
         if (btnViewMaker) {
-          btnViewMaker.className = 'px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1 shadow-sm cursor-pointer';
+          btnViewMaker.className = 'px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer text-[11px]';
           var mIcon = btnViewMaker.querySelector('span:first-child');
           if (mIcon) mIcon.className = 'material-symbols-outlined text-[13px] text-ink';
         }
         if (btnViewLandmark) {
-          btnViewLandmark.className = 'px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1 cursor-pointer';
+          btnViewLandmark.className = 'px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1.5 cursor-pointer text-[11px]';
           var lIcon = btnViewLandmark.querySelector('span:first-child');
           if (lIcon) lIcon.className = 'material-symbols-outlined text-[13px] text-brass-400';
         }
       } else {
         if (heroBanner) {
-          heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%), url(' + coverImg + ')';
+          heroBanner.style.backgroundImage = 'linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.45) 100%), url(' + coverImg + ')';
         }
         if (indicator) {
           indicator.textContent = landmarkCaption;
         }
         if (modeLabel) modeLabel.textContent = 'Landmark';
         if (captionIcon) captionIcon.textContent = 'location_on';
+
+        // Update Title & Metadata Card to Province Landmark Information
+        if (nameEl) {
+          nameEl.textContent = prov.name;
+        }
+        if (metaIcon1) metaIcon1.textContent = 'location_city';
+        if (metaLabel1) metaLabel1.textContent = 'Ibu Kota';
+        if (capitalEl) capitalEl.textContent = prov.capital;
+
+        if (metaIcon2) metaIcon2.textContent = 'calendar_today';
+        if (metaLabel2) metaLabel2.textContent = 'Berdiri';
+        if (estEl) estEl.textContent = prov.established || '1945';
+
+        if (metaIcon3) metaIcon3.textContent = 'military_tech';
+        if (metaLabel3) metaLabel3.textContent = 'Tokoh / Pendiri';
+        if (foundersEl) foundersEl.textContent = prov.founders || 'Pahlawan & Tokoh Adat Daerah';
+
         if (heroZoomBtn) {
           heroZoomBtn.onclick = function (e) {
             e.stopPropagation();
             openCustomLightbox(coverImg, prov.name, landmarkCaption);
           };
         }
+        if (voiceBtn) {
+          voiceBtn.title = 'Dengarkan Sapaan Lokal (' + prov.name + ')';
+          voiceBtn.onclick = function (e) {
+            e.stopPropagation();
+            speakRegionalGreeting(prov.language ? prov.language.greeting : 'Halo Selamat Datang');
+          };
+        }
         if (btnViewLandmark) {
-          btnViewLandmark.className = 'px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1 shadow-sm cursor-pointer';
+          btnViewLandmark.className = 'px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer text-[11px]';
           var lIcon = btnViewLandmark.querySelector('span:first-child');
           if (lIcon) lIcon.className = 'material-symbols-outlined text-[13px] text-ink';
         }
         if (btnViewMaker) {
-          btnViewMaker.className = 'px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1 cursor-pointer';
+          btnViewMaker.className = 'px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium transition-all flex items-center gap-1.5 cursor-pointer text-[11px]';
           var mIcon = btnViewMaker.querySelector('span:first-child');
           if (mIcon) mIcon.className = 'material-symbols-outlined text-[13px] text-brass-400';
         }
@@ -1403,11 +1463,12 @@
     if (!badge) return;
     var stamped = isProvinceStamped(provId);
     if (stamped) {
-      badge.className = 'px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brass-400/25 text-brass-300 border border-brass-400/50 flex items-center gap-1.5 shadow-[0_0_15px_rgba(201,165,103,0.3)]';
-      badge.innerHTML = '<span class="material-symbols-outlined text-sm">verified</span><span>Stempel Emas Diperoleh</span>';
+      badge.className = 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/40 flex items-center gap-1 shadow-sm flex-shrink-0';
+      badge.innerHTML = '<span class="material-symbols-outlined text-[13px] text-brass-400">verified</span><span>Stempel Emas</span>';
+      badge.onclick = null;
     } else {
-      badge.className = 'px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-surface/70 border border-white/20 flex items-center gap-1.5 cursor-pointer hover:bg-brass-400/20 hover:text-brass-300 transition-colors';
-      badge.innerHTML = '<span class="material-symbols-outlined text-sm">assignment_turned_in</span><span>Jawab Kuis untuk Cap</span>';
+      badge.className = 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/10 text-surface/75 border border-white/20 flex items-center gap-1 cursor-pointer hover:bg-brass-400/20 hover:text-brass-300 transition-colors flex-shrink-0';
+      badge.innerHTML = '<span class="material-symbols-outlined text-[13px]">assignment_turned_in</span><span>Kuis &amp; Cap</span>';
       badge.onclick = function () {
         switchModalTab('quiz');
       };
