@@ -584,13 +584,23 @@
   border: 1px solid transparent;
 }
 
+.modal-tab-btn .material-symbols-outlined {
+  font-size: 17px;
+  line-height: 1;
+  color: rgba(246, 241, 231, 0.75);
+}
+
 .modal-tab-btn:hover {
   color: #F6F1E7;
   background: rgba(255, 255, 255, 0.06);
 }
 
+.modal-tab-btn:hover .material-symbols-outlined {
+  color: #F6F1E7;
+}
+
 .modal-tab-btn.active {
-  color: #1A1612;
+  color: #120F0D !important;
   background: #C9A567;
   border-color: #E6D3A7;
   box-shadow: 0 4px 15px rgba(201, 165, 103, 0.4);
@@ -598,7 +608,8 @@
 
 .modal-tab-btn.active .material-symbols-outlined,
 .modal-tab-btn.active span {
-  color: #1A1612 !important;
+  color: #120F0D !important;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24 !important;
 }
 
 /* Quiz Option Buttons */
@@ -1345,6 +1356,7 @@ body.modal-open {
 .modal-tab-btn.active .material-symbols-outlined,
 .modal-tab-btn.active span {
   color: #120F0D !important;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24 !important;
 }
 
 /* Refined Reading Cards inside Modal */
