@@ -596,6 +596,11 @@
   box-shadow: 0 4px 15px rgba(201, 165, 103, 0.4);
 }
 
+.modal-tab-btn.active .material-symbols-outlined,
+.modal-tab-btn.active span {
+  color: #1A1612 !important;
+}
+
 /* Quiz Option Buttons */
 .quiz-option-btn {
   width: 100%;
