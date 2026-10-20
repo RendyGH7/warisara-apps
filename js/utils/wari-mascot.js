@@ -612,9 +612,25 @@ Peran dan Pengetahuan Anda:
   }
 
   // ── ANIMASI: Scroll-to-bottom pill ──
+  let scrollPillDismissed = false;
+
   function setupScrollPill(messagesEl) {
     let pillEl = null;
+
+    function removePill() {
+      if (pillEl) {
+        pillEl.remove();
+        pillEl = null;
+      }
+    }
+
     messagesEl.addEventListener('scroll', () => {
+      // Jika user sudah mengklik tombol ini, jangan munculkan lagi sampai user mengirim pesan baru
+      if (scrollPillDismissed) {
+        removePill();
+        return;
+      }
+
       const parentWrapper = messagesEl.parentElement || messagesEl;
       const distFromBottom = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight;
       if (distFromBottom > 90) {
@@ -626,11 +642,14 @@ Peran dan Pengetahuan Anda:
           parentWrapper.appendChild(pillEl);
           pillEl.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
+            scrollPillDismissed = true;
+            removePill();
             messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
           });
         }
       } else {
-        if (pillEl) { pillEl.remove(); pillEl = null; }
+        removePill();
       }
     });
   }
