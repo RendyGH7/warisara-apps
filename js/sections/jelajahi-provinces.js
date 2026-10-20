@@ -1166,52 +1166,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Matching Authentic Crafts in WARISARA -->
-            ${matchingProducts.length ? `
-              <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base text-brass-400">shopping_bag</span>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 font-mono">Karya Kriya Terkait di Pasar Seni</h4>
-                  </div>
-                  <span class="text-[10px] text-surface/50 font-mono">${matchingProducts.length} Produk Terkurasi</span>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  ${matchingProducts.slice(0, 2).map(function (mp) {
-                    var pImg = fixImgPath(mp.image);
-                    return `
-                      <div class="p-3 rounded-xl bg-black/40 border border-white/10 hover:border-brass-400/40 transition-all flex items-center justify-between gap-3">
-                        <div class="flex items-center gap-3 min-w-0">
-                          <img src="${pImg}" alt="${mp.name}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-white/10" />
-                          <div class="min-w-0">
-                            <h5 class="text-xs font-medium text-surface truncate">${mp.name}</h5>
-                            <span class="text-xs font-mono font-bold text-brass-300 block">${mp.priceEstimate || ('Rp ' + (mp.price || 0).toLocaleString('id-ID'))}</span>
-                          </div>
-                        </div>
-                        <a href="detail-produk.html?id=${mp.id}" class="px-3 py-1.5 rounded-full bg-brass-400/20 hover:bg-brass-400 hover:text-ink text-brass-300 text-[11px] font-bold uppercase tracking-wider flex-shrink-0 transition-colors">
-                          Lihat
-                        </a>
-                      </div>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
-            ` : ''}
-
-            <!-- Global Pelestari Link Footer -->
-            <div class="p-4 rounded-2xl bg-brass-500/10 border border-brass-400/25 flex items-center justify-between flex-wrap gap-3">
-              <div class="flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-brass-400 text-lg">diversity_3</span>
-                <p class="text-xs text-surface/80">
-                  Ingin berkenalan dengan seluruh 38 Maestro Kebudayaan Nusantara?
-                </p>
-              </div>
-              <a href="makers.html?provinsi=${maker.provinceId}" class="px-4 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-1.5 shadow-md">
-                <span>Buka Galeri 38 Pelestari</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
           </div>
         `;
 
