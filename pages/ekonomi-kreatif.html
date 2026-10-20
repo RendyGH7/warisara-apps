@@ -957,69 +957,146 @@
 </main>
 
   <!-- Modal "+ Jual Produk Lokal" (Bagi Pengguna yang Ingin Menjadi Penjual) -->
-  <div id="sell-product-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md items-center justify-center p-4" style="display: none;">
-    <div class="w-full max-w-xl bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh] animate-modal-enter my-auto">
-      <div class="p-6 border-b border-border-dark flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-brass-400/20 border border-brass-400/30 text-brass-300 flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">storefront</span>
+  <div id="sell-product-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md items-center justify-center p-3 sm:p-4" style="display: none;">
+    <div class="w-full max-w-xl bg-[#161311] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh] animate-modal-enter my-auto">
+      
+      <!-- Header Modal -->
+      <div class="px-6 py-4 sm:py-5 border-b border-white/[0.08] flex items-center justify-between bg-gradient-to-r from-brass-600/10 via-amber-500/5 to-transparent">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-brass-600 to-amber-400 text-ink flex items-center justify-center shadow-lg shadow-amber-950/40 flex-shrink-0">
+            <span class="material-symbols-outlined text-2xl font-bold">storefront</span>
           </div>
           <div>
-            <h3 class="font-display text-xl font-bold text-surface">Jual Karya / Produk Lokal</h3>
-            <p class="text-xs text-surface/60">Pasang iklan kriya Anda, pembeli akan menghubungi Anda via chat</p>
+            <h3 class="font-display text-lg sm:text-xl font-bold text-surface">Jual Karya & Produk Kriya</h3>
+            <p class="text-xs text-surface/60">Pasang iklan kriya Anda, terhubung langsung dengan pembeli</p>
           </div>
         </div>
-        <button id="sell-modal-close" class="p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors" type="button">
+        <button id="sell-modal-close" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-surface/70 hover:text-surface flex items-center justify-center transition-colors cursor-pointer" type="button">
           <span class="material-symbols-outlined text-lg">close</span>
         </button>
       </div>
 
-      <form id="sell-product-form" class="p-6 overflow-y-auto space-y-4 text-xs">
-        <!-- Info Penjual Aktif -->
-        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <span class="text-surface/60">Penjual:</span>
-            <strong id="sell-form-user-name" class="text-surface font-semibold">...</strong>
-            <span id="sell-form-user-email" class="text-brass-300 font-mono text-[11px]">(...)</span>
+      <form id="sell-product-form" class="p-5 sm:p-6 overflow-y-auto space-y-4 text-xs">
+        
+        <!-- Info Profil Penjual (Clean & Modern, Tanpa tulisan Terverifikasi) -->
+        <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
+          <div class="flex items-center gap-3 min-w-0">
+            <div id="sell-form-user-avatar" class="w-9 h-9 rounded-full bg-gradient-to-tr from-brass-600 via-amber-500 to-yellow-300 text-ink font-bold text-sm flex items-center justify-center shadow-sm flex-shrink-0">
+              R
+            </div>
+            <div class="min-w-0">
+              <span id="sell-form-user-name" class="font-bold text-surface text-sm truncate block">Nama Pengguna</span>
+              <p id="sell-form-user-email" class="text-[11px] text-brass-400/80 font-mono truncate mt-0.5">@pengguna</p>
+            </div>
           </div>
-          <span class="text-[10px] text-forest-300 font-bold uppercase">Terverifikasi</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Penjual Aktif</span>
+          </span>
         </div>
 
+        <!-- Section: Foto Karya (Upload Foto Sendiri atau Pilih Preset Kriya) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="block text-surface/80 font-semibold text-xs">Foto Karya Kriya *</label>
+            <span class="text-[10px] text-surface/40">Upload foto atau pilih kriya khas</span>
+          </div>
+
+          <!-- Preview & Upload Box -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+            <!-- Box Preview Utama -->
+            <div class="sm:col-span-5 relative rounded-2xl overflow-hidden aspect-[4/3] bg-black/40 border border-white/10 group flex items-center justify-center shadow-inner">
+              <img id="sell-preview-img" src="../assets/images/products/syal-tenun-sumba.jpg" alt="Preview Karya" class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
+                <span id="sell-preview-label" class="text-[10px] font-mono text-white/90 truncate">Tenun Ikat Sumba</span>
+              </div>
+            </div>
+
+            <!-- Upload File & Preset Options -->
+            <div class="sm:col-span-7 flex flex-col justify-between h-full gap-2.5">
+              <!-- Upload Button -->
+              <label for="sell-file-input" class="w-full p-2.5 rounded-xl border border-dashed border-brass-400/50 hover:border-brass-400 bg-brass-400/5 hover:bg-brass-400/10 flex items-center justify-center gap-2 text-brass-300 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-base">cloud_upload</span>
+                <span class="font-medium text-xs">Unggah Foto dari Perangkat</span>
+                <input type="file" id="sell-file-input" accept="image/*" class="hidden" />
+              </label>
+
+              <!-- Presets Kriya Nusantara Otentik -->
+              <div>
+                <span class="text-[10px] text-surface/50 font-mono uppercase tracking-wider block mb-1.5">Atau Pilih Foto Kriya:</span>
+                <div class="grid grid-cols-4 gap-1.5" id="sell-presets-container">
+                  <button type="button" class="sell-preset-btn ring-2 ring-brass-400 rounded-lg overflow-hidden aspect-square border border-brass-400 relative group transition-all cursor-pointer" data-img="../assets/images/products/syal-tenun-sumba.jpg" data-label="Tenun Ikat Sumba">
+                    <img src="../assets/images/products/syal-tenun-sumba.jpg" class="w-full h-full object-cover" alt="Tenun Sumba" />
+                  </button>
+                  <button type="button" class="sell-preset-btn rounded-lg overflow-hidden aspect-square border border-white/10 hover:border-brass-400/60 relative group transition-all cursor-pointer" data-img="../assets/images/products/vas-banyumulek.jpg" data-label="Gerabah Lombok">
+                    <img src="../assets/images/products/vas-banyumulek.jpg" class="w-full h-full object-cover" alt="Gerabah Banyumulek" />
+                  </button>
+                  <button type="button" class="sell-preset-btn rounded-lg overflow-hidden aspect-square border border-white/10 hover:border-brass-400/60 relative group transition-all cursor-pointer" data-img="../assets/images/products/lampu-tumang.jpg" data-label="Tembaga Tumang">
+                    <img src="../assets/images/products/lampu-tumang.jpg" class="w-full h-full object-cover" alt="Tembaga Tumang" />
+                  </button>
+                  <button type="button" class="sell-preset-btn rounded-lg overflow-hidden aspect-square border border-white/10 hover:border-brass-400/60 relative group transition-all cursor-pointer" data-img="../assets/images/products/topeng-kayu-bobung.jpg" data-label="Ukiran Kayu">
+                    <img src="../assets/images/products/topeng-kayu-bobung.jpg" class="w-full h-full object-cover" alt="Ukiran Bobung" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Hidden input storing selected photo URL / base64 -->
+          <input type="hidden" id="sell-selected-photo" value="../assets/images/products/syal-tenun-sumba.jpg" />
+        </div>
+
+        <!-- Nama Karya -->
         <div>
-          <label class="block text-surface/70 font-semibold mb-1">Nama Karya / Produk *</label>
-          <input id="sell-input-name" type="text" placeholder="Contoh: Selendang Tenun Gedogan Pewarna Indigo" required
-                 class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+          <label class="block text-surface/80 font-semibold mb-1">Nama Karya / Produk *</label>
+          <input id="sell-input-name" type="text" placeholder="Misal: Selendang Tenun Gedogan Pewarna Alami" required
+                 class="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all" />
         </div>
 
+        <!-- Kategori & Harga -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-surface/70 font-semibold mb-1">Kategori *</label>
-            <select id="sell-input-category" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400">
-              <option value="Wastra Adat">Wastra Adat</option>
+            <label class="block text-surface/80 font-semibold mb-1">Kategori Kriya *</label>
+            <select id="sell-input-category" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 cursor-pointer">
+              <option value="Wastra Adat">Wastra Adat (Tenun & Batik)</option>
               <option value="Keramik & Gerabah">Keramik & Gerabah</option>
               <option value="Anyaman Alami">Anyaman Alami</option>
-              <option value="Kriya Kayu & Aksesoris">Kriya Kayu & Aksesoris</option>
-              <option value="Kriya Logam">Kriya Logam</option>
+              <option value="Kriya Kayu & Aksesoris">Kriya Kayu & Ukiran</option>
+              <option value="Kriya Logam">Kriya Logam & Tembaga</option>
               <option value="Kuliner Tradisi & Hasil Bumi">Kuliner & Hasil Bumi</option>
               <option value="Aksesoris & Perhiasan Etnik">Aksesoris & Perhiasan</option>
             </select>
           </div>
+          
           <div>
-            <label class="block text-surface/70 font-semibold mb-1">Harga (Rupiah) *</label>
-            <input id="sell-input-price" type="number" placeholder="Contoh: 450000" min="10000" required
-                   class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-surface/80 font-semibold">Harga *</label>
+              <span class="text-[10px] text-surface/40 font-mono">Bebas Biaya Admin</span>
+            </div>
+            <div class="relative">
+              <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400 font-bold font-mono text-xs">Rp</span>
+              <input id="sell-input-price" type="text" inputmode="numeric" placeholder="350.000" required
+                     class="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-surface font-semibold placeholder:text-surface/30 focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all" />
+            </div>
+            <!-- Quick Price Chips -->
+            <div class="flex items-center gap-1.5 mt-1.5 flex-wrap">
+              <button type="button" class="price-chip px-2 py-0.5 rounded-md bg-white/5 hover:bg-brass-400/20 text-surface/60 hover:text-brass-300 text-[10px] font-mono transition-colors cursor-pointer" data-val="150000">150rb</button>
+              <button type="button" class="price-chip px-2 py-0.5 rounded-md bg-white/5 hover:bg-brass-400/20 text-surface/60 hover:text-brass-300 text-[10px] font-mono transition-colors cursor-pointer" data-val="350000">350rb</button>
+              <button type="button" class="price-chip px-2 py-0.5 rounded-md bg-white/5 hover:bg-brass-400/20 text-surface/60 hover:text-brass-300 text-[10px] font-mono transition-colors cursor-pointer" data-val="750000">750rb</button>
+              <button type="button" class="price-chip px-2 py-0.5 rounded-md bg-white/5 hover:bg-brass-400/20 text-surface/60 hover:text-brass-300 text-[10px] font-mono transition-colors cursor-pointer" data-val="1500000">1,5jt</button>
+            </div>
           </div>
         </div>
 
+        <!-- Asal Daerah & Wilayah Pulau -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-surface/70 font-semibold mb-1">Kota / Asal Sentra *</label>
+            <label class="block text-surface/80 font-semibold mb-1">Kota / Daerah Asal *</label>
             <input id="sell-input-origin" type="text" placeholder="Contoh: Kasongan, Bantul" required
-                   class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all" />
           </div>
           <div>
-            <label class="block text-surface/70 font-semibold mb-1">Wilayah Pulau *</label>
-            <select id="sell-input-island" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400">
+            <label class="block text-surface/80 font-semibold mb-1">Wilayah Pulau *</label>
+            <select id="sell-input-island" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#1c1814] border border-white/10 text-surface focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 cursor-pointer">
               <option value="Jawa">Jawa</option>
               <option value="Sumatera">Sumatera</option>
               <option value="Bali & Nusa Tenggara">Bali & Nusa Tenggara</option>
@@ -1030,47 +1107,27 @@
           </div>
         </div>
 
+        <!-- Deskripsi / Bahan & Cerita Kriya (Simpel & Opsional) -->
         <div>
-          <label class="block text-surface/70 font-semibold mb-1">Material & Bahan Alami</label>
-          <input id="sell-input-material" type="text" placeholder="Contoh: Serat Kulit Kayu & Pewarna Alami Tanpa Sintetis"
-                 class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400" />
+          <label class="block text-surface/80 font-semibold mb-1">
+            Cerita Bahan / Keunikan Kriya <span class="text-surface/40 font-normal">(Opsional)</span>
+          </label>
+          <textarea id="sell-input-story" rows="2" placeholder="Ceritakan bahan alami atau makna karya ini agar pembeli semakin tertarik..."
+                    class="w-full px-3.5 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400 focus:ring-1 focus:ring-brass-400/30 transition-all resize-none"></textarea>
         </div>
 
-        <div>
-          <label class="block text-surface/70 font-semibold mb-1">Filosofi & Makna Kultural Singkat</label>
-          <textarea id="sell-input-philosophy" rows="2" placeholder="Ceritakan makna atau doa di balik karya ini..."
-                    class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-surface placeholder:text-surface/30 focus:outline-none focus:border-brass-400"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-surface/70 font-semibold mb-1">Pilih Foto Ilustrasi Karya</label>
-          <div class="grid grid-cols-4 gap-2">
-            <label class="cursor-pointer border border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
-              <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80" checked class="sr-only" />
-              <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
-              <span class="absolute inset-0 bg-brass-400/20 group-hover:bg-brass-400/40 transition-colors"></span>
-            </label>
-            <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
-              <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80" class="sr-only" />
-              <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
-            </label>
-            <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
-              <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=800&q=80" class="sr-only" />
-              <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
-            </label>
-            <label class="cursor-pointer border border-white/10 hover:border-brass-400 rounded-xl overflow-hidden aspect-video block relative group">
-              <input type="radio" name="sell_photo" value="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" class="sr-only" />
-              <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" />
-            </label>
+        <!-- Footer Tombol -->
+        <div class="pt-3 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-1.5 text-[11px] text-surface/50">
+            <span class="material-symbols-outlined text-sm text-emerald-400">lock_outline</span>
+            <span>Bebas komisi platform • Pembeli menghubungi via chat</span>
           </div>
-        </div>
-
-        <div class="pt-4 border-t border-border-dark flex items-center justify-between">
-          <span class="text-[11px] text-surface/50">Tanpa biaya pendaftaran & komisi</span>
-          <button type="submit" class="px-6 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider transition-all shadow-lg">
-            Tayangkan Karya ke Etalase
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brass-600 via-brass-400 to-brass-600 hover:brightness-110 text-ink text-xs font-bold uppercase tracking-wider transition-all shadow-lg shadow-brass-900/30 flex items-center justify-center gap-2 cursor-pointer select-none">
+            <span class="material-symbols-outlined text-base">send</span>
+            <span>Tayangkan Iklan Sekarang</span>
           </button>
         </div>
+
       </form>
     </div>
   </div>
@@ -1981,8 +2038,15 @@
 
         const nameEl = document.getElementById("sell-form-user-name");
         const emailEl = document.getElementById("sell-form-user-email");
+        const avatarEl = document.getElementById("sell-form-user-avatar");
         if (nameEl) nameEl.textContent = user.name;
-        if (emailEl) emailEl.textContent = user.email;
+        if (emailEl) {
+          const handle = user.email ? "@" + user.email.split("@")[0] : "@penjual";
+          emailEl.textContent = handle;
+        }
+        if (avatarEl) {
+          avatarEl.textContent = user.name ? user.name.charAt(0).toUpperCase() : "U";
+        }
 
         const modal = document.getElementById("sell-product-modal");
         if (modal) {
@@ -2028,6 +2092,74 @@
         });
       }
 
+      // Handler Preset Foto Kriya & Upload Foto dari Perangkat
+      const presetButtons = document.querySelectorAll(".sell-preset-btn");
+      const previewImg = document.getElementById("sell-preview-img");
+      const previewLabel = document.getElementById("sell-preview-label");
+      const photoInputHidden = document.getElementById("sell-selected-photo");
+      const fileInput = document.getElementById("sell-file-input");
+
+      presetButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          presetButtons.forEach((b) => {
+            b.classList.remove("ring-2", "ring-brass-400", "border-brass-400");
+            b.classList.add("border-white/10");
+          });
+          btn.classList.remove("border-white/10");
+          btn.classList.add("ring-2", "ring-brass-400", "border-brass-400");
+
+          const imgUrl = btn.dataset.img;
+          const label = btn.dataset.label;
+          if (previewImg) previewImg.src = imgUrl;
+          if (previewLabel) previewLabel.textContent = label;
+          if (photoInputHidden) photoInputHidden.value = imgUrl;
+        });
+      });
+
+      if (fileInput) {
+        fileInput.addEventListener("change", (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+              const result = evt.target.result;
+              if (previewImg) previewImg.src = result;
+              if (previewLabel) previewLabel.textContent = file.name.substring(0, 16) + (file.name.length > 16 ? "..." : "");
+              if (photoInputHidden) photoInputHidden.value = result;
+
+              presetButtons.forEach((b) => {
+                b.classList.remove("ring-2", "ring-brass-400", "border-brass-400");
+                b.classList.add("border-white/10");
+              });
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      // Format input harga otomatis dengan pemisah ribuan Rupiah
+      const priceInput = document.getElementById("sell-input-price");
+      if (priceInput) {
+        priceInput.addEventListener("input", (e) => {
+          const cleanVal = e.target.value.replace(/\D/g, "");
+          if (cleanVal) {
+            e.target.value = parseInt(cleanVal, 10).toLocaleString("id-ID");
+          } else {
+            e.target.value = "";
+          }
+        });
+      }
+
+      // Quick Price Chips
+      document.querySelectorAll(".price-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const val = parseInt(chip.dataset.val, 10);
+          if (priceInput && !isNaN(val)) {
+            priceInput.value = val.toLocaleString("id-ID");
+          }
+        });
+      });
+
       if (sellForm) {
         sellForm.addEventListener("submit", (e) => {
           e.preventDefault();
@@ -2036,12 +2168,14 @@
 
           const name = document.getElementById("sell-input-name").value.trim();
           const cat = document.getElementById("sell-input-category").value;
-          const price = parseInt(document.getElementById("sell-input-price").value) || 100000;
+          const rawPriceStr = document.getElementById("sell-input-price").value.replace(/\D/g, "");
+          const price = parseInt(rawPriceStr, 10) || 100000;
           const origin = document.getElementById("sell-input-origin").value.trim();
           const island = document.getElementById("sell-input-island").value;
-          const material = document.getElementById("sell-input-material").value.trim() || "Bahan alami lokal Indonesia";
-          const phil = document.getElementById("sell-input-philosophy").value.trim() || "Karya kriya otentik dari sentra kerajinan Nusantara.";
-          const selectedPhoto = document.querySelector("input[name='sell_photo']:checked")?.value || "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80";
+          const story = (document.getElementById("sell-input-story")?.value || "").trim();
+          const material = story || "Bahan alami lokal Nusantara";
+          const phil = story || "Karya kriya otentik dari sentra kerajinan Nusantara.";
+          const selectedPhoto = document.getElementById("sell-selected-photo")?.value || "../assets/images/products/syal-tenun-sumba.jpg";
 
           const newProd = {
             id: "user-prod-" + Date.now(),
@@ -2068,6 +2202,11 @@
           window.WARISARA_PRODUCTS.addCustomProduct(newProd);
           closeSellModal();
           sellForm.reset();
+
+          // Reset preview
+          if (previewImg) previewImg.src = "../assets/images/products/syal-tenun-sumba.jpg";
+          if (previewLabel) previewLabel.textContent = "Tenun Ikat Sumba";
+          if (photoInputHidden) photoInputHidden.value = "../assets/images/products/syal-tenun-sumba.jpg";
 
           if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
             window.WARISARA_AUTH.showToast(`Iklan "${name}" berhasil ditayangkan ke pasar!`);
