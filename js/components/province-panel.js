@@ -477,7 +477,12 @@ window.WARISARA_PROVINCE_PANEL = {
     window.scrollTo(0, 0);
 
     this.isOpen = true;
-    this.modalOverlay.classList.add("active");
+    const container = this.modalElement || this.modalOverlay.querySelector(".modal-container, .relative") || this.modalOverlay.firstElementChild;
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+      window.WARISARA_POPUP.open(this.modalOverlay, container);
+    } else {
+      this.modalOverlay.classList.add("active");
+    }
     this.modalOverlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("province-modal-open", "modal-open");
     document.body.style.overflow = "hidden";
@@ -495,19 +500,29 @@ window.WARISARA_PROVINCE_PANEL = {
     if (!this.modalOverlay || !this.isOpen) return;
 
     this.isOpen = false;
-    this.modalOverlay.classList.remove("active");
     this.modalOverlay.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("province-modal-open", "modal-open");
-    document.body.style.overflow = "";
 
-    // Restore navbar
-    const navbar = document.getElementById("main-navbar");
-    if (navbar) navbar.classList.remove("navbar-hidden");
+    const container = this.modalElement || this.modalOverlay.querySelector(".modal-container, .relative") || this.modalOverlay.firstElementChild;
+    const finish = () => {
+      document.body.classList.remove("province-modal-open", "modal-open");
+      document.body.style.overflow = "";
 
-    if (resetMap && window.WARISARA_HERO_MAP) {
-      setTimeout(() => {
-        window.WARISARA_HERO_MAP.resetView();
-      }, 100);
+      // Restore navbar
+      const navbar = document.getElementById("main-navbar");
+      if (navbar) navbar.classList.remove("navbar-hidden");
+
+      if (resetMap && window.WARISARA_HERO_MAP) {
+        setTimeout(() => {
+          window.WARISARA_HERO_MAP.resetView();
+        }, 100);
+      }
+    };
+
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+      window.WARISARA_POPUP.close(this.modalOverlay, container, finish);
+    } else {
+      this.modalOverlay.classList.remove("active");
+      finish();
     }
   }
 };
