@@ -408,7 +408,7 @@
     loginAs(accounts[0]);
   }
 
-  function openGoogleAuthModal(mode = "login", callback) {
+  function openGoogleAuthModal(mode = "login", callback, triggerEl) {
     activeModalMode = mode;
     let modal = document.getElementById("google-auth-modal");
     if (!modal) {
@@ -417,20 +417,34 @@
     }
 
     if (modal) {
-      modal.classList.remove("hidden");
-      modal.style.display = "flex";
-      document.body.style.overflow = "hidden";
       switchModalTab(mode);
       renderAccountLists(callback);
+
+      const card = modal.querySelector(".auth-modal-dialog, .relative") || modal.firstElementChild;
+      if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+        window.WARISARA_POPUP.open(modal, card, triggerEl);
+      } else {
+        modal.classList.remove("hidden");
+        modal.style.display = "flex";
+      }
+      document.body.style.overflow = "hidden";
     }
   }
 
   function closeAuthModal() {
     const modal = document.getElementById("google-auth-modal");
     if (modal) {
-      modal.classList.add("hidden");
-      modal.style.display = "none";
-      document.body.style.overflow = "";
+      const card = modal.querySelector(".auth-modal-dialog, .relative") || modal.firstElementChild;
+      const finish = () => {
+        document.body.style.overflow = "";
+      };
+      if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+        window.WARISARA_POPUP.close(modal, card, finish);
+      } else {
+        modal.classList.add("hidden");
+        modal.style.display = "none";
+        finish();
+      }
     }
   }
 

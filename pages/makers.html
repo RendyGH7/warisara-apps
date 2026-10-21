@@ -991,7 +991,7 @@
             if (e.target.closest("a") || e.target.closest(".btn-card-audio")) return;
             const id = card.dataset.makerId;
             const item = makers.find(m => m.id === id);
-            if (item) openModal(item);
+            if (item) openModal(item, card);
           });
         });
 
@@ -1017,7 +1017,7 @@
             e.stopPropagation();
             const id = btn.dataset.makerId;
             const item = makers.find(m => m.id === id);
-            if (item) openModal(item);
+            if (item) openModal(item, btn);
           });
         });
       }
@@ -1096,7 +1096,7 @@
       }
 
       // Modal Functions
-      function openModal(maker) {
+      function openModal(maker, triggerEl) {
         document.getElementById("modal-maker-detail-name").textContent = maker.name;
         document.getElementById("modal-maker-detail-island").textContent = `${maker.provinceName} • ${maker.island}`;
         document.getElementById("modal-maker-detail-status").textContent = maker.unescoOrStatus;
@@ -1143,16 +1143,29 @@
         wisdomIcon.textContent = "volume_up";
         if (wisdomWave) wisdomWave.classList.remove("flex"), wisdomWave.classList.add("hidden");
 
-        modalOverlay.classList.remove("hidden");
-        modalOverlay.classList.add("active");
+        const container = modalOverlay.querySelector(".modal-container, #maker-detail-modal, .relative") || modalOverlay.firstElementChild;
+        if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+          window.WARISARA_POPUP.open(modalOverlay, container, triggerEl);
+        } else {
+          modalOverlay.classList.remove("hidden");
+          modalOverlay.classList.add("active");
+        }
         document.body.style.overflow = "hidden";
       }
 
       function closeModal() {
         stopSpeaking();
-        modalOverlay.classList.remove("active");
-        modalOverlay.classList.add("hidden");
-        document.body.style.overflow = "";
+        const container = modalOverlay.querySelector(".modal-container, #maker-detail-modal, .relative") || modalOverlay.firstElementChild;
+        const finish = function () {
+          document.body.style.overflow = "";
+        };
+        if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+          window.WARISARA_POPUP.close(modalOverlay, container, finish);
+        } else {
+          modalOverlay.classList.remove("active");
+          modalOverlay.classList.add("hidden");
+          finish();
+        }
       }
 
       // Modal Listeners

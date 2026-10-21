@@ -284,15 +284,15 @@
           this.playQuoteSound(story.quote, story.title);
         });
 
-        card.querySelector(".btn-open-preview").addEventListener("click", () => {
-          this.openModal(story);
+        card.querySelector(".btn-open-preview").addEventListener("click", (e) => {
+          this.openModal(story, e.currentTarget || e.target || card);
         });
 
         this.gridContainer.appendChild(card);
       });
     },
 
-    openModal: function (story) {
+    openModal: function (story, triggerEl) {
       this.activeStory = story;
       this.activePage = 1;
 
@@ -305,15 +305,30 @@
 
       this.updatePageContent();
 
-      this.modalOverlay.classList.remove("hidden");
+      var container = this.modalOverlay.querySelector('.modal-container, .relative') || this.modalOverlay.firstElementChild;
+      if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+        window.WARISARA_POPUP.open(this.modalOverlay, container, triggerEl);
+      } else {
+        this.modalOverlay.classList.remove("hidden");
+        this.modalOverlay.classList.add("active");
+      }
       document.body.classList.add("overflow-hidden");
     },
 
     closeModal: function () {
       if (!this.modalOverlay) return;
-      this.modalOverlay.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      var container = this.modalOverlay.querySelector('.modal-container, .relative') || this.modalOverlay.firstElementChild;
+      var finish = () => {
+        document.body.classList.remove("overflow-hidden");
+        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      };
+      if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+        window.WARISARA_POPUP.close(this.modalOverlay, container, finish);
+      } else {
+        this.modalOverlay.classList.remove("active");
+        this.modalOverlay.classList.add("hidden");
+        finish();
+      }
     },
 
     setPage: function (pageNumber) {
