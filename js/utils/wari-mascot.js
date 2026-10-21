@@ -348,7 +348,10 @@ Peran dan Pengetahuan Anda:
     const endpointsToTry = [
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`,
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`
     ];
 
     let lastError = null;
@@ -1355,6 +1358,17 @@ Peran dan Pengetahuan Anda:
         return Math.max(0, Math.round((TOOLTIP_LIFETIME_MS - elapsed) / 1000));
       } catch (e) {
         return 0;
+      }
+    },
+    react: function (type) {
+      if (type === 'correct' || type === 'celebrate') {
+        setMascotMood('happy');
+        setTimeout(() => setMascotMood('idle'), 2500);
+      } else if (type === 'wrong') {
+        setMascotMood('thinking');
+        setTimeout(() => setMascotMood('idle'), 2500);
+      } else {
+        setMascotMood(type || 'idle');
       }
     },
     setMood: setMascotMood
