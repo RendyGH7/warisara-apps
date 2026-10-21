@@ -3,11 +3,12 @@
    ========================================================================== */
 
 /* Modal Overlays display rules */
-.modal-overlay.active {
+.modal-overlay.active,
+.modal-overlay.modal-closing {
   display: flex !important;
 }
 
-.modal-overlay.hidden {
+.modal-overlay.hidden:not(.active):not(.modal-closing) {
   display: none !important;
 }
 
@@ -894,6 +895,7 @@
 
 /* ==========================================================================
    ULTRA-SMOOTH MODAL OPEN & CLOSE MOTION (PAVILION ENSIKLOPEDIA & BUDAYA)
+   Animasi zoom-in langsung dari titik klik / kartu asal, dan shrink fade-out saat ditutup
    ========================================================================== */
 #province-modal-overlay {
   overscroll-behavior: contain;
@@ -912,12 +914,12 @@
 }
 
 #province-modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  background-color: rgba(6, 4, 3, 0.52);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background-color: rgba(6, 4, 3, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
   transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
               background-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -925,31 +927,95 @@
               visibility 0s linear 0s;
 }
 
-/* Phase 1 of close: keep overlay fully visible while the panel exits */
 #province-modal-overlay.modal-closing {
   pointer-events: none !important;
   visibility: visible !important;
-  opacity: 1 !important;
-  background-color: rgba(6, 4, 3, 0.52) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
+  opacity: 0 !important;
+  background-color: rgba(6, 4, 3, 0) !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+  transition: opacity 320ms cubic-bezier(0.4, 0, 0.8, 1),
+              background-color 320ms cubic-bezier(0.4, 0, 0.8, 1),
+              backdrop-filter 320ms cubic-bezier(0.4, 0, 0.8, 1),
+              -webkit-backdrop-filter 320ms cubic-bezier(0.4, 0, 0.8, 1) !important;
 }
 
-/* Modal Container Physics — Spring entrance, elegant retreat */
+/* Modal Container Physics — Mengembang mulus dari koordinat kartu yang diklik */
 #province-detail-modal {
-  transform: translateY(36px) scale(0.92);
+  transform: scale(0.18);
   opacity: 0;
-  filter: blur(8px);
-  background: rgba(18, 15, 12, 0.92);
+  filter: blur(10px);
+  background: rgba(18, 15, 12, 0.94);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(201, 165, 103, 0.35);
   box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(201, 165, 103, 0.12);
-  transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 380ms cubic-bezier(0.16, 1, 0.3, 1),
-              filter 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 320ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity, filter;
   position: relative;
+}
+
+#province-modal-overlay.active #province-detail-modal {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+#province-modal-overlay.modal-closing #province-detail-modal {
+  transform: scale(0.2) !important;
+  opacity: 0 !important;
+  filter: blur(8px) !important;
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.8, 1),
+              opacity 260ms cubic-bezier(0.4, 0, 0.8, 1),
+              filter 260ms ease !important;
+  animation: none !important;
+}
+
+/* Close Button Entrance/Exit */
+.province-modal-close-trigger {
+  opacity: 0;
+  transform: scale(0.6) rotate(-45deg);
+  transition: opacity 300ms 140ms ease, transform 320ms 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+#province-modal-overlay.active .province-modal-close-trigger {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+#province-modal-overlay.modal-closing .province-modal-close-trigger {
+  opacity: 0;
+  transform: scale(0.6) rotate(45deg);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Passport & Compass Modal Zoom & Fade Transitions */
+.passport-book-modal,
+.compass-modal-card {
+  transform: scale(0.18);
+  opacity: 0;
+  filter: blur(10px);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 300ms ease;
+  will-change: transform, opacity, filter;
+}
+
+#passport-book-modal.active .passport-book-modal,
+#compass-randomizer-modal.active .compass-modal-card {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+#passport-book-modal.modal-closing .passport-book-modal,
+#compass-randomizer-modal.modal-closing .compass-modal-card {
+  transform: scale(0.2) !important;
+  opacity: 0 !important;
+  filter: blur(8px) !important;
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.8, 1),
+              opacity 240ms ease,
+              filter 240ms ease !important;
 }
 
 /* Golden shimmer line sweeps across the top of the modal when it opens */
@@ -968,50 +1034,8 @@
   border-radius: 2px 2px 0 0;
 }
 
-#province-modal-overlay.active #province-detail-modal {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  filter: blur(0px);
-}
-
-/* Trigger the golden shimmer sweep when modal is opened */
 #province-modal-overlay.active #province-detail-modal::before {
   animation: modalGoldShimmer 0.75s 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes modalGoldShimmer {
-  0%   { left: -100%; opacity: 0; }
-  5%   { opacity: 1; }
-  80%  { opacity: 0.8; }
-  100% { left: 100%; opacity: 0; }
-}
-/* ===================================================
-   MODAL CLOSE: PHASED DRAMATIC EXIT
-   Panel drops + blurs first, then backdrop fades
-   =================================================== */
-
-/* Phase 1: Inner modal panel drops and dissolves */
-#province-modal-overlay.modal-closing #province-detail-modal {
-  animation: modalPanelExit 320ms cubic-bezier(0.4, 0, 0.8, 1) forwards !important;
-  transition: none !important;
-}
-
-@keyframes modalPanelExit {
-  0%   {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    filter: blur(0px);
-  }
-  20%  {
-    transform: translateY(-6px) scale(1.015);
-    opacity: 1;
-    filter: blur(0px);
-  }
-  100% {
-    transform: translateY(55px) scale(0.91);
-    opacity: 0;
-    filter: blur(12px);
-  }
 }
 
 /* Staggered Children Animation */

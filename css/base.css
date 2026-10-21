@@ -207,33 +207,53 @@ textarea {
 }
 
 .modal-overlay {
-  display: none !important;
-  position: fixed !important;
-  inset: 0 !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 9999 !important;
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 1rem !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-  transition: opacity 0.28s ease, visibility 0.28s ease !important;
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 340ms cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 340ms;
+}
+
+.modal-overlay.active,
+.modal-overlay.modal-closing {
+  display: flex !important;
 }
 
 .modal-overlay.active {
-  display: flex !important;
   opacity: 1 !important;
   pointer-events: auto !important;
   visibility: visible !important;
+  transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0s;
+}
+
+.modal-overlay.modal-closing {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.8, 1),
+              backdrop-filter 300ms ease,
+              -webkit-backdrop-filter 300ms ease !important;
 }
 
 .warisara-lantern-cursor {
