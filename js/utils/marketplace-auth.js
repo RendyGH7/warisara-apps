@@ -516,7 +516,7 @@
   function createAuthModalDOM() {
     const div = document.createElement("div");
     div.id = "google-auth-modal";
-    div.className = "hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md items-center justify-center p-4";
+    div.className = "modal-overlay hidden fixed inset-0 z-[99999] bg-black/20 backdrop-blur-md items-center justify-center p-4";
     div.style.display = "none";
     div.innerHTML = `
       <div class="auth-modal-dialog w-full max-w-md bg-[#181512] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
