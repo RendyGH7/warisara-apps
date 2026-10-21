@@ -9,7 +9,11 @@
       this.filterTheme = 'all';
       this.searchQuery = '';
       this.fontSize = 15; 
-      this.savedBookmarks = JSON.parse(localStorage.getItem('warisara_story_bookmarks') || '[]');
+      try {
+        this.savedBookmarks = JSON.parse(localStorage.getItem('warisara_story_bookmarks') || '[]');
+      } catch (e) {
+        this.savedBookmarks = [];
+      }
     }
 
     init() {

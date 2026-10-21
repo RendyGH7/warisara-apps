@@ -3064,7 +3064,12 @@
     const countBadge = document.getElementById("saved-gallery-count");
     if (!galleryGrid) return;
 
-    const saved = JSON.parse(localStorage.getItem("warisara_creative_gallery") || "[]");
+    let saved = [];
+    try {
+      saved = JSON.parse(localStorage.getItem("warisara_creative_gallery") || "[]");
+    } catch (e) {
+      saved = [];
+    }
     if (countBadge) countBadge.textContent = `${saved.length} Karya`;
 
     if (saved.length === 0) {

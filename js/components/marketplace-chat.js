@@ -1296,6 +1296,22 @@
     });
   }
 
+  function openChatWithSeller(sellerEmail, productId, productName) {
+    let product = null;
+    if (window.WARISARA_PRODUCTS && typeof window.WARISARA_PRODUCTS.getById === "function") {
+      product = window.WARISARA_PRODUCTS.getById(productId);
+    }
+    if (!product) {
+      product = {
+        id: productId,
+        name: productName || "Produk Kriya",
+        sellerEmail: sellerEmail || "dewi.tenun@gmail.com",
+        priceEstimate: ""
+      };
+    }
+    openProductChat(product);
+  }
+
   // Expose API Global
   window.WARISARA_CHAT = {
     openDrawer: openChatDrawer,
@@ -1308,10 +1324,12 @@
       }
     },
     openProductChat: openProductChat,
+    openChatWithSeller: openChatWithSeller,
     openCommissionChat: openCommissionChat,
     showConversation: showConversationView,
     updateNavbarBadge: updateNavbarChatBadge
   };
+  window.WARISARA_MARKETPLACE_CHAT = window.WARISARA_CHAT;
 
   document.addEventListener("DOMContentLoaded", () => {
     initChatDrawerDOM();
