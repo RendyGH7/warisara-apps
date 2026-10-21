@@ -1607,23 +1607,20 @@
 
   function closeProvinceModal() {
     var modalOverlay = document.getElementById('province-modal-overlay');
-    if (!modalOverlay || isProvinceModalClosing) return;
-    if (!modalOverlay.classList.contains('active')) return;
+    if (!modalOverlay || !modalOverlay.classList.contains('active') || isProvinceModalClosing) return;
 
     isProvinceModalClosing = true;
 
-    // Phase 1: Animate the inner modal panel out (scale down + slide + blur)
-    modalOverlay.classList.remove('active');
-    modalOverlay.classList.add('modal-closing');
+    // Stop audio voice if playing
+    if (activeAudioVoice) {
+      activeAudioVoice.pause();
+      activeAudioVoice.currentTime = 0;
+      activeAudioVoice = null;
+    }
 
-    // Phase 2: After panel animation completes, fade out the overlay backdrop
-    setTimeout(function () {
-      modalOverlay.classList.add('modal-closing-backdrop');
-    }, 180);
-
-    // Phase 3: Fully hide after all animations complete (500ms total)
-    setTimeout(function () {
-      modalOverlay.classList.remove('modal-closing', 'modal-closing-backdrop');
+    var modalContainer = document.getElementById('province-detail-modal');
+    var finishClose = function () {
+      modalOverlay.classList.remove('modal-closing', 'modal-closing-backdrop', 'active');
       modalOverlay.classList.add('hidden');
       modalOverlay.style.display = 'none';
 
@@ -1648,7 +1645,15 @@
       }
 
       isProvinceModalClosing = false;
-    }, 500);
+    };
+
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+      window.WARISARA_POPUP.close(modalOverlay, modalContainer, finishClose);
+    } else {
+      modalOverlay.classList.remove('active');
+      modalOverlay.classList.add('modal-closing');
+      setTimeout(finishClose, 320);
+    }
   }
 
   // --- LIGHTBOX VIEWER ---
