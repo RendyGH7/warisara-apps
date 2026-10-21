@@ -571,15 +571,16 @@
         }, 600);
 
         // Open modal after a short delay so the animation is visible
+        var clickPoint = { clientX: e.clientX, clientY: e.clientY, target: card };
         setTimeout(function () {
-          openProvinceModal(id);
+          openProvinceModal(id, clickPoint);
         }, 120);
       });
     });
   }
 
   // --- PROVINCE DETAIL MODAL (HIGH-END PAVILION) ---
-  function openProvinceModal(provId) {
+  function openProvinceModal(provId, triggerSource) {
     var prov = window.PROVINCES_DATA ? window.PROVINCES_DATA[provId] : null;
     if (!prov) return;
     activeProvinceId = provId;
@@ -1406,20 +1407,20 @@
     // Switch to active tab (default: overview)
     switchModalTab(currentModalTab || 'overview');
 
-    // Show modal overlay with smooth spring animation
-    modalOverlay.classList.remove('hidden', 'modal-closing');
-    modalOverlay.style.display = 'flex';
+    // Show modal overlay with smooth spring animation from click origin
+    var modalContainer = document.getElementById('province-detail-modal');
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open && !modalOverlay.classList.contains('active')) {
+      window.WARISARA_POPUP.open(modalOverlay, modalContainer, triggerSource);
+    } else {
+      modalOverlay.classList.remove('hidden', 'modal-closing');
+      modalOverlay.style.display = 'flex';
+      modalOverlay.classList.add('active');
+    }
 
-    // Double requestAnimationFrame ensures that CSS transitions trigger smoothly without snap
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        modalOverlay.classList.add('active');
-        document.documentElement.classList.add('province-modal-open', 'modal-open');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.classList.add('province-modal-open', 'modal-open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
+    document.documentElement.classList.add('province-modal-open', 'modal-open');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.classList.add('province-modal-open', 'modal-open');
+    document.body.style.overflow = 'hidden';
 
     // Hide mascot comment / tooltip while modal is open
     if (window.WariMascot && window.WariMascot.hideTooltip) {
@@ -1651,7 +1652,7 @@
   }
 
   // --- LIGHTBOX VIEWER ---
-  function openCustomLightbox(url, title, caption) {
+  function openCustomLightbox(url, title, caption, triggerEl) {
     var lightbox = document.getElementById('gallery-lightbox-modal');
     if (!lightbox) return;
 
@@ -1669,9 +1670,14 @@
     if (prevBtn) prevBtn.style.display = 'none';
     if (nextBtn) nextBtn.style.display = 'none';
 
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('active');
-    lightbox.style.display = 'flex';
+    var container = lightbox.querySelector('.relative') || lightbox.firstElementChild;
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+      window.WARISARA_POPUP.open(lightbox, container, triggerEl);
+    } else {
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('active');
+      lightbox.style.display = 'flex';
+    }
     document.documentElement.classList.add('modal-open', 'lightbox-open');
     document.body.classList.add('modal-open', 'lightbox-open');
 
@@ -1681,7 +1687,7 @@
   }
   window.warisaraZoomImg = openCustomLightbox;
 
-  function openLightbox(index) {
+  function openLightbox(index, triggerEl) {
     if (!activeGalleryList || activeGalleryList.length === 0) return;
     activeGalleryIndex = index;
     var lightbox = document.getElementById('gallery-lightbox-modal');
@@ -1693,9 +1699,14 @@
     if (nextBtn) nextBtn.style.display = '';
 
     updateLightboxImage();
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('active');
-    lightbox.style.display = 'flex';
+    var container = lightbox.querySelector('.relative') || lightbox.firstElementChild;
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+      window.WARISARA_POPUP.open(lightbox, container, triggerEl);
+    } else {
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('active');
+      lightbox.style.display = 'flex';
+    }
     document.documentElement.classList.add('modal-open', 'lightbox-open');
     document.body.classList.add('modal-open', 'lightbox-open');
 
@@ -1721,10 +1732,9 @@
 
   function closeLightbox() {
     var lightbox = document.getElementById('gallery-lightbox-modal');
-    if (lightbox) {
-      lightbox.classList.remove('active');
-      lightbox.classList.add('hidden');
-      lightbox.style.display = 'none';
+    if (!lightbox) return;
+    var container = lightbox.querySelector('.relative') || lightbox.firstElementChild;
+    var finish = function () {
       document.documentElement.classList.remove('lightbox-open');
       document.body.classList.remove('lightbox-open');
 
@@ -1736,6 +1746,14 @@
           window.WariMascot.showTooltip();
         }
       }
+    };
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+      window.WARISARA_POPUP.close(lightbox, container, finish);
+    } else {
+      lightbox.classList.remove('active');
+      lightbox.classList.add('hidden');
+      lightbox.style.display = 'none';
+      finish();
     }
   }
 
@@ -1792,8 +1810,13 @@
       });
     }
 
-    modal.classList.remove('hidden');
-    modal.classList.add('active');
+    var passportCard = modal.querySelector('.passport-book-modal') || modal.firstElementChild;
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+      window.WARISARA_POPUP.open(modal, passportCard);
+    } else {
+      modal.classList.remove('hidden');
+      modal.classList.add('active');
+    }
     document.documentElement.classList.add('modal-open', 'passport-modal-open');
     document.body.classList.add('modal-open', 'passport-modal-open');
     document.documentElement.style.overflow = 'hidden';
@@ -1806,9 +1829,9 @@
 
   function closePassportModal() {
     var modal = document.getElementById('passport-book-modal');
-    if (modal) {
-      modal.classList.remove('active');
-      modal.classList.add('hidden');
+    if (!modal) return;
+    var passportCard = modal.querySelector('.passport-book-modal') || modal.firstElementChild;
+    var finish = function () {
       document.documentElement.classList.remove('passport-modal-open');
       document.body.classList.remove('passport-modal-open');
 
@@ -1821,6 +1844,13 @@
           window.WariMascot.showTooltip();
         }
       }
+    };
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+      window.WARISARA_POPUP.close(modal, passportCard, finish);
+    } else {
+      modal.classList.remove('active');
+      modal.classList.add('hidden');
+      finish();
     }
   }
 
@@ -1829,8 +1859,13 @@
   function openCompassModal() {
     var modal = document.getElementById('compass-randomizer-modal');
     if (!modal) return;
-    modal.classList.remove('hidden');
-    modal.classList.add('active');
+    var compassCard = modal.querySelector('.compass-modal-card') || modal.firstElementChild;
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.open) {
+      window.WARISARA_POPUP.open(modal, compassCard);
+    } else {
+      modal.classList.remove('hidden');
+      modal.classList.add('active');
+    }
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     document.documentElement.style.overflow = 'hidden';
@@ -1843,9 +1878,9 @@
 
   function closeCompassModal() {
     var modal = document.getElementById('compass-randomizer-modal');
-    if (modal) {
-      modal.classList.remove('active');
-      modal.classList.add('hidden');
+    if (!modal) return;
+    var compassCard = modal.querySelector('.compass-modal-card') || modal.firstElementChild;
+    var finish = function () {
       if (!document.getElementById('province-modal-overlay').classList.contains('active')) {
         document.documentElement.classList.remove('modal-open');
         document.body.classList.remove('modal-open');
@@ -1855,6 +1890,13 @@
           window.WariMascot.showTooltip();
         }
       }
+    };
+    if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
+      window.WARISARA_POPUP.close(modal, compassCard, finish);
+    } else {
+      modal.classList.remove('active');
+      modal.classList.add('hidden');
+      finish();
     }
   }
 
