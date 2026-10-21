@@ -917,9 +917,9 @@
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  background-color: rgba(6, 4, 3, 0.65) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background-color: rgba(10, 8, 6, 0.22) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
   transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
               background-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -1082,9 +1082,9 @@
 /* The overlay itself fades ONLY during backdrop phase */
 #province-modal-overlay.modal-closing:not(.modal-closing-backdrop) {
   opacity: 1 !important;
-  background-color: rgba(6, 4, 3, 0.88) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  background-color: rgba(10, 8, 6, 0.22) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
 }
 
 html.province-modal-open,

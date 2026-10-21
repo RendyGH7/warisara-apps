@@ -458,7 +458,9 @@ body.hero-animated #hero-map-wrapper {
   z-index: 1000 !important;
   opacity: 0;
   pointer-events: none;
-  background-color: #0c0907;
+  background-color: rgba(10, 8, 6, 0.22) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
   overflow-y: auto;
   overflow-x: hidden;
   transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -470,6 +472,9 @@ body.hero-animated #hero-map-wrapper {
 #province-modal-overlay.active {
   opacity: 1;
   pointer-events: auto;
+  background-color: rgba(10, 8, 6, 0.22) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
 }
 
 #province-detail-modal {

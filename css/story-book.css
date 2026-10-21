@@ -141,9 +141,9 @@
   height: 100vh !important;
   max-height: 100vh !important;
   z-index: 99999 !important;
-  background: radial-gradient(ellipse at 50% 40%, #1A1108 0%, #080604 100%);
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
+  background: rgba(10, 8, 6, 0.25) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
   overflow: hidden !important;
   overscroll-behavior: none !important;
   touch-action: none !important;
