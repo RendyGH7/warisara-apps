@@ -843,11 +843,14 @@
               text: `Lihat kriya otentik Nusantara "${product.name}" di WARISARA.`,
               url: window.location.href
             }).catch(() => {});
-          } else {
-            navigator.clipboard.writeText(window.location.href);
-            if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
-              window.WARISARA_AUTH.showToast("Tautan produk berhasil disalin!");
-            }
+          } else if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(window.location.href)
+              .then(() => {
+                if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
+                  window.WARISARA_AUTH.showToast("Tautan produk berhasil disalin!");
+                }
+              })
+              .catch(() => {});
           }
         });
       }
