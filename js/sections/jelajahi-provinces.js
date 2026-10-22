@@ -1046,7 +1046,7 @@
             <!-- Quick Action Links -->
             <div class="flex items-center justify-between pt-3 border-t border-white/10 flex-wrap gap-2">
               <button type="button" class="btn-switch-to-maker-tab inline-flex items-center gap-1.5 text-xs text-brass-300 hover:text-brass-100 font-semibold transition-colors cursor-pointer">
-                <span class="material-symbols-outlined text-sm text-brass-400">person_celebration</span>
+                <span class="material-symbols-outlined text-sm text-brass-400">person_pin</span>
                 <span>Buka Tab Maestro Selengkapnya</span>
                 <span class="material-symbols-outlined text-xs">arrow_forward</span>
               </button>
@@ -2327,14 +2327,20 @@
 
     if (mode === "makers") {
       if (btnMaker) {
-        btnMaker.className = "view-switch-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+        btnMaker.className = "view-switch-btn active px-4 sm:px-5 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
         var iconM = btnMaker.querySelector(".material-symbols-outlined");
-        if (iconM) iconM.className = "material-symbols-outlined text-base text-ink";
+        if (iconM) {
+          iconM.className = "material-symbols-outlined text-base text-ink";
+          iconM.textContent = "person_pin";
+        }
       }
       if (btnProv) {
-        btnProv.className = "view-switch-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
+        btnProv.className = "view-switch-btn px-4 sm:px-5 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
         var iconP = btnProv.querySelector(".material-symbols-outlined");
-        if (iconP) iconP.className = "material-symbols-outlined text-base text-brass-400";
+        if (iconP) {
+          iconP.className = "material-symbols-outlined text-base text-brass-400";
+          iconP.textContent = "travel_explore";
+        }
       }
 
       if (titleEl) titleEl.textContent = "Para Penjaga Tradisi 38 Provinsi";
@@ -2354,18 +2360,24 @@
       renderMakersGrid();
     } else {
       if (btnProv) {
-        btnProv.className = "view-switch-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+        btnProv.className = "view-switch-btn active px-4 sm:px-5 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
         var iconP = btnProv.querySelector(".material-symbols-outlined");
-        if (iconP) iconP.className = "material-symbols-outlined text-base text-ink";
+        if (iconP) {
+          iconP.className = "material-symbols-outlined text-base text-ink";
+          iconP.textContent = "travel_explore";
+        }
       }
       if (btnMaker) {
-        btnMaker.className = "view-switch-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
+        btnMaker.className = "view-switch-btn px-4 sm:px-5 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
         var iconM = btnMaker.querySelector(".material-symbols-outlined");
-        if (iconM) iconM.className = "material-symbols-outlined text-base text-brass-400";
+        if (iconM) {
+          iconM.className = "material-symbols-outlined text-base text-brass-400";
+          iconM.textContent = "person_pin";
+        }
       }
 
       if (titleEl) titleEl.textContent = "38 Provinsi Nusantara";
-      if (descEl) descEl.textContent = "Ensiklopedia terpadu kebudayaan, sejarah, pusaka, kuliner, dan pesona adat dari Sabang hingga Merauke.";
+      if (descEl) descEl.textContent = "Eksplorasi ragam pusaka, adat istiadat, kuliner otentik, dan pesona kepulauan dari Sabang hingga Merauke dalam ensiklopedia budaya interaktif.";
 
       if (provHero) provHero.classList.remove("hidden");
       if (makerHero) makerHero.classList.add("hidden");

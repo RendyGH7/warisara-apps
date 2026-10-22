@@ -30,17 +30,17 @@
 /* Luxury Filter Bar & Deck Card (Statis - Tidak Mengikuti Scroll) */
 .filter-bar-section {
   position: relative;
-  background: #181512;
+  background: #151310;
 }
 
 .filter-deck-card {
   position: relative;
-  background: rgba(22, 18, 14, 0.78);
+  background: rgba(20, 16, 13, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(201, 165, 103, 0.18);
-  border-radius: 20px;
-  box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.65), 
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 
               0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -63,16 +63,16 @@
 /* Island Group Dividers */
 .island-group-divider {
   width: 1px;
-  height: 16px;
+  height: 18px;
   background: rgba(255, 255, 255, 0.1);
-  margin: 0 3px;
+  margin: 0 4px;
   flex-shrink: 0;
 }
 
 /* Island Filter Pill */
 .island-filter-pill {
-  padding: 5px 12px;
-  font-size: 11px;
+  padding: 6px 13px;
+  font-size: 11.5px;
   font-weight: 500;
   border-radius: 9999px;
   white-space: nowrap;
@@ -81,9 +81,9 @@
   align-items: center;
   gap: 5px;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(246, 241, 231, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(246, 241, 231, 0.75);
   user-select: none;
   flex-shrink: 0;
 }
@@ -91,23 +91,23 @@
 .island-filter-pill:hover:not(.active) {
   background: rgba(255, 255, 255, 0.08);
   color: #FFFFFF;
-  border-color: rgba(201, 165, 103, 0.3);
+  border-color: rgba(201, 165, 103, 0.35);
   transform: translateY(-1px);
 }
 
 .island-filter-pill.active {
-  background: #C9A567 !important;
+  background: linear-gradient(135deg, #D4B276, #C9A567) !important;
   color: #120E0B !important;
   font-weight: 600 !important;
-  border-color: #E2C58F !important;
-  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.3) !important;
+  border-color: #E6D3A7 !important;
+  box-shadow: 0 4px 14px rgba(201, 165, 103, 0.35) !important;
 }
 
 .island-filter-pill .pill-count {
   font-size: 10px;
-  opacity: 0.55;
+  opacity: 0.6;
   font-weight: 500;
-  margin-left: 1px;
+  margin-left: 2px;
 }
 
 .island-filter-pill.active .pill-count {
@@ -118,21 +118,21 @@
 
 /* Segmented Control for Status */
 .segmented-status-box {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 3px;
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
 }
 
 .segmented-status-btn {
-  padding: 4px 11px;
+  padding: 5px 12px;
   border-radius: 9999px;
   font-size: 11px;
   font-weight: 500;
-  color: rgba(246, 241, 231, 0.65);
+  color: rgba(246, 241, 231, 0.7);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
@@ -149,11 +149,11 @@
 }
 
 .segmented-status-btn.active {
-  background: #C9A567 !important;
+  background: linear-gradient(135deg, #D4B276, #C9A567) !important;
   color: #120E0B !important;
   font-weight: 600 !important;
-  border-color: #E2C58F !important;
-  box-shadow: 0 2px 8px rgba(201, 165, 103, 0.25);
+  border-color: #E6D3A7 !important;
+  box-shadow: 0 2px 10px rgba(201, 165, 103, 0.3);
 }
 
 .status-badge-count {
@@ -166,11 +166,20 @@
 
 /* Passport Widget in Hero */
 .passport-hero-widget {
-  background: linear-gradient(135deg, rgba(26, 22, 18, 0.95), rgba(35, 29, 23, 0.9));
-  border: 1px solid rgba(201, 165, 103, 0.35);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(201, 165, 103, 0.15);
+  background: linear-gradient(135deg, rgba(28, 22, 17, 0.9), rgba(20, 16, 12, 0.94));
+  border: 1px solid rgba(201, 165, 103, 0.28);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.8), 0 0 24px rgba(201, 165, 103, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   position: relative;
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.passport-hero-widget:hover {
+  border-color: rgba(201, 165, 103, 0.4);
+  box-shadow: 0 24px 52px -12px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 165, 103, 0.18);
 }
 
 .passport-hero-widget::before {
