@@ -2316,7 +2316,6 @@
     var btnProv = document.getElementById("btn-view-provinces");
     var btnMaker = document.getElementById("btn-view-makers");
     var titleEl = document.getElementById("jelajahi-main-title");
-    var descEl = document.getElementById("jelajahi-main-desc");
     var provHero = document.getElementById("provinces-hero-container");
     var makerHero = document.getElementById("makers-hero-container");
     var provControls = document.getElementById("provinces-filter-controls");
@@ -2344,7 +2343,6 @@
       }
 
       if (titleEl) titleEl.textContent = "Para Penjaga Tradisi 38 Provinsi";
-      if (descEl) descEl.textContent = "Mengenal sosok-sosok maestro adat, empu tosan aji, penenun ulos & songket, pemahat asmat, hingga perajin noken dari 38 provinsi di Indonesia yang merawat nyala peradaban leluhur.";
 
       if (provHero) provHero.classList.add("hidden");
       if (makerHero) makerHero.classList.remove("hidden");
@@ -2377,7 +2375,6 @@
       }
 
       if (titleEl) titleEl.textContent = "38 Provinsi Nusantara";
-      if (descEl) descEl.textContent = "Eksplorasi ragam pusaka, adat istiadat, kuliner otentik, dan pesona kepulauan dari Sabang hingga Merauke dalam ensiklopedia budaya interaktif.";
 
       if (provHero) provHero.classList.remove("hidden");
       if (makerHero) makerHero.classList.add("hidden");
