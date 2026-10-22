@@ -103,7 +103,7 @@ window.WARISARA_PAGE_CONNECTOR = {
       "login.html": "#module-warisan",
       "makers.html": "#module-makers",
       "ekonomi-kreatif.html": "#module-ekonomi-kreatif",
-      "heritage-modern.html": "#module-heritage-modern",
+      "heritage-modern.html": "#module-creative-lab",
       "creative-lab.html": "#module-creative-lab",
       "belajar.html": "#module-belajar",
       "cerita.html": "#module-cerita"

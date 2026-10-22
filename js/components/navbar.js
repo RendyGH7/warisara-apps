@@ -436,7 +436,6 @@ window.WARISARA_NAVBAR = {
       { id: "module-jelajahi", target: "jelajahi" },
       { id: "module-makers", target: "jelajahi" },
       { id: "module-ekonomi-kreatif", target: "ekonomi-kreatif" },
-      { id: "module-heritage-modern", target: "heritage-modern" },
       { id: "module-creative-lab", target: "creative-lab" },
       { id: "module-belajar", target: "belajar" },
       { id: "module-cerita", target: "cerita" }
