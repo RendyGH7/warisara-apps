@@ -155,7 +155,17 @@ html.chat-drawer-open .wari-ai-widget *,
 body.chat-drawer-open #wari-chat-window,
 body.chat-drawer-open .wari-chat-window,
 html.chat-drawer-open #wari-chat-window,
-html.chat-drawer-open .wari-chat-window {
+html.chat-drawer-open .wari-chat-window,
+body.province-modal-open #wari-chat-window,
+body.province-modal-open .wari-chat-window,
+body.province-modal-open #wari-ai-widget,
+body.province-modal-open .wari-ai-widget,
+body.modal-open #wari-chat-window,
+body.modal-open .wari-chat-window,
+body.modal-open #wari-ai-widget,
+body.modal-open .wari-ai-widget,
+html.province-modal-open #wari-chat-window,
+html.province-modal-open #wari-ai-widget {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;

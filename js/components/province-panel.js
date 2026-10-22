@@ -496,6 +496,11 @@ window.WARISARA_PROVINCE_PANEL = {
     if (mobileDrawer) {
       mobileDrawer.classList.add("opacity-0", "pointer-events-none");
     }
+
+    // Pastikan jendela chat Wari tertutup saat modal provinsi dibuka
+    if (window.WARISARA_MASCOT && typeof window.WARISARA_MASCOT.closeChat === "function") {
+      window.WARISARA_MASCOT.closeChat();
+    }
   },
 
   closePanel: function (resetMap = true) {
