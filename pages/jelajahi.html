@@ -145,10 +145,8 @@
       aria-label="Navigasi Utama">
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
-      <a href="jelajahi.html" class="nav-link active" data-page="jelajahi">38 Provinsi</a>
-      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="jelajahi.html" class="nav-link active" data-page="jelajahi">38 Provinsi &amp; Pelestari</a>
       <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
-      <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
       <a href="cerita.html" class="nav-link" data-page="cerita">Cerita</a>
@@ -189,31 +187,23 @@
       </a>
       <a href="jelajahi.html" class="mobile-nav-link active py-2 px-3 rounded-lg bg-brass-400/20 text-brass-300 font-semibold flex items-center gap-2.5" data-page="jelajahi">
         <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
-        <span>02. Jelajahi 38 Provinsi</span>
-      </a>
-      <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
-        <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
-        <span>03. Profil Pelestari Budaya</span>
+        <span>02. 38 Provinsi &amp; Pelestari</span>
       </a>
       <a href="ekonomi-kreatif.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="ekonomi-kreatif">
         <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
-        <span>04. Ekonomi Kreatif & Produk</span>
-      </a>
-      <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
-        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
-        <span>06. Heritage × Modern</span>
+        <span>03. Ekonomi Kreatif &amp; Produk</span>
       </a>
       <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
         <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
-        <span>07. Creative Lab Canvas</span>
+        <span>04. Creative Lab Canvas</span>
       </a>
       <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
         <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
-        <span>08. Pusat Belajar & Kuis</span>
+        <span>05. Pusat Belajar &amp; Kuis</span>
       </a>
       <a href="cerita.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="cerita">
         <span class="material-symbols-outlined text-sm text-terracotta-400">auto_stories</span>
-        <span>09. Cerita yang Diwariskan</span>
+        <span>06. Cerita yang Diwariskan</span>
       </a>
     </div>
     <a href="../index.html" class="mobile-nav-link btn-nav-explore justify-center w-full py-2.5">
@@ -225,7 +215,7 @@
   <main id="page-content" class="page-module-main">
     
     <!-- Hero Section -->
-    <section class="relative pt-36 sm:pt-44 pb-14 sm:pb-18 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
+    <section class="relative pt-36 sm:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
       <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
         <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-brass-900/30 rounded-full blur-3xl"></div>
@@ -233,14 +223,28 @@
       </div>
 
       <div class="max-w-5xl mx-auto text-center relative z-10">
-        <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-5">
+        
+        <!-- LUXURY DUAL VIEW SWITCHER: PROVINSI VS MAESTRO PELESTARI -->
+        <div class="inline-flex items-center p-1.5 rounded-full bg-black/60 border border-brass-400/30 backdrop-blur-xl shadow-2xl mb-6">
+          <button id="btn-view-provinces" class="view-switch-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer">
+            <span class="material-symbols-outlined text-base">travel_explore</span>
+            <span>38 Provinsi Nusantara</span>
+          </button>
+          <button id="btn-view-makers" class="view-switch-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+            <span class="material-symbols-outlined text-base text-brass-400">person_celebration</span>
+            <span>38 Maestro Pelestari</span>
+          </button>
+        </div>
+
+        <h1 id="jelajahi-main-title" class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-3">
           38 Provinsi Nusantara
         </h1>
+        <p id="jelajahi-main-desc" class="text-xs sm:text-base text-surface/75 max-w-2xl mx-auto leading-relaxed font-light mb-8">
+          Ensiklopedia terpadu kebudayaan, sejarah, pusaka, kuliner, dan pesona adat dari Sabang hingga Merauke.
+        </p>
 
-        <!-- Stats Counter -->
-    
-        <!-- PASSPORT & COMPASS HERO WIDGET -->
-        <div class="passport-hero-widget p-5 sm:p-6 rounded-3xl max-w-3xl mx-auto text-left flex flex-col md:flex-row items-center justify-between gap-5">
+        <!-- 1. PASSPORT & COMPASS HERO WIDGET (PROVINCES MODE) -->
+        <div id="provinces-hero-container" class="passport-hero-widget p-5 sm:p-6 rounded-3xl max-w-3xl mx-auto text-left flex flex-col md:flex-row items-center justify-between gap-5">
           <div class="flex-1 w-full">
             <div class="flex items-center justify-between mb-2">
               <div class="flex items-center gap-2">
@@ -268,14 +272,38 @@
           </div>
 
           <div class="flex items-center gap-2.5 w-full md:w-auto justify-end flex-shrink-0">
-            <button class="open-passport-trigger px-4 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-transform hover:scale-105 shadow-lg flex items-center gap-2">
+            <button class="open-passport-trigger px-4 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-transform hover:scale-105 shadow-lg flex items-center gap-2 cursor-pointer">
               <span class="material-symbols-outlined text-sm">auto_stories</span>
               <span>Buka Paspor</span>
             </button>
-            <button class="open-compass-trigger px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-medium border border-white/15 transition-transform hover:scale-105 flex items-center gap-2">
+            <button class="open-compass-trigger px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-xs font-medium border border-white/15 transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer">
               <span class="material-symbols-outlined text-sm text-brass-400">explore</span>
               <span>Kompas Budaya</span>
             </button>
+          </div>
+        </div>
+
+        <!-- 2. MAKERS 4 STATS COUNTER BAR (MAKERS MODE) -->
+        <div id="makers-hero-container" class="hidden grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-brass-400/30 transition-colors">
+            <div class="text-2xl sm:text-3xl font-display font-semibold text-brass-300 mb-0.5">38</div>
+            <div class="text-[11px] font-bold text-surface/90 uppercase tracking-wider">Maestro Terdata</div>
+            <div class="text-[10px] text-surface/50 mt-0.5">Lengkap 38 Provinsi 1:1</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-forest-400/30 transition-colors">
+            <div class="text-2xl sm:text-3xl font-display font-semibold text-forest-300 mb-0.5">7</div>
+            <div class="text-[11px] font-bold text-surface/90 uppercase tracking-wider">Gugus Kepulauan</div>
+            <div class="text-[10px] text-surface/50 mt-0.5">Sabang hingga Merauke</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-terracotta-400/30 transition-colors">
+            <div class="text-2xl sm:text-3xl font-display font-semibold text-terracotta-300 mb-0.5">1,400+</div>
+            <div class="text-[11px] font-bold text-surface/90 uppercase tracking-wider">Tahun Pengabdian</div>
+            <div class="text-[10px] text-surface/50 mt-0.5">Akumulasi Tempa Hidup</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-indigo-400/30 transition-colors">
+            <div class="text-2xl sm:text-3xl font-display font-semibold text-indigo-300 mb-0.5">100%</div>
+            <div class="text-[11px] font-bold text-surface/90 uppercase tracking-wider">Living Heritage</div>
+            <div class="text-[10px] text-surface/50 mt-0.5">WBTb &amp; UNESCO Terkurasi</div>
           </div>
         </div>
 
@@ -288,20 +316,20 @@
         <!-- Floating Glassmorphism Deck Card -->
         <div class="filter-deck-card p-3 sm:p-4 rounded-2xl border border-brass-400/20 bg-[#16120E]/80 backdrop-blur-2xl shadow-xl space-y-3">
           
-          <!-- Baris 1: Kolom Pencarian + Filter Status Paspor -->
+          <!-- Baris 1: Kolom Pencarian + Filter Status Paspor / Selector 38 Maestro -->
           <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-            <!-- Search Input -->
+            <!-- Search Input (Dinamis: Provinsi vs Maestro) -->
             <div class="relative flex-1 max-w-full md:max-w-md">
               <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/80 text-base pointer-events-none">search</span>
               <input id="province-search-input" type="text" placeholder="Cari provinsi, ibukota, tradisi, kuliner, wisata..."
                 class="w-full pl-10 pr-9 py-2 text-xs rounded-full bg-black/40 border border-white/[0.08] text-surface placeholder:text-surface/35 focus:outline-none focus:border-brass-400/70 focus:bg-black/60 focus:ring-2 focus:ring-brass-400/15 transition-all shadow-inner" />
-              <button id="search-clear-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm p-1 transition-colors" title="Hapus pencarian">
+              <button id="search-clear-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-surface/40 hover:text-surface text-sm p-1 transition-colors cursor-pointer" title="Hapus pencarian">
                 <span class="material-symbols-outlined text-sm">close</span>
               </button>
             </div>
 
-            <!-- Status Paspor Segmented Control -->
-            <div class="flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
+            <!-- Kontrol 1: Status Paspor (Muncul saat Mode Provinsi Aktif) -->
+            <div id="provinces-filter-controls" class="flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
               <span class="text-[11px] text-surface/50 font-medium items-center gap-1.5 hidden sm:inline-flex">
                 <span class="material-symbols-outlined text-xs text-brass-400/80">verified_user</span>
                 <span>Status Paspor:</span>
@@ -321,9 +349,27 @@
                 </button>
               </div>
             </div>
+
+            <!-- Kontrol 2: Dropdown 38 Provinsi & Reset (Muncul saat Mode Pelestari Aktif) -->
+            <div id="makers-filter-controls" class="hidden flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
+              <div class="relative w-full sm:w-64">
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/70 text-sm pointer-events-none">location_on</span>
+                <select id="maker-province-select" class="appearance-none w-full pl-9 pr-8 py-2 text-xs rounded-full bg-black/40 border border-white/[0.08] hover:border-brass-400/50 focus:border-brass-400/70 focus:bg-black/60 focus:ring-2 focus:ring-brass-400/15 text-surface focus:outline-none cursor-pointer truncate shadow-inner transition-all">
+                  <option value="" class="bg-[#181512] text-surface">Pilih dari 38 Provinsi Nusantara...</option>
+                </select>
+                <span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-surface/50 text-sm">unfold_more</span>
+              </div>
+
+              <!-- Quick Reset Button -->
+              <button id="maker-reset-btn" class="hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-brass-400/30 bg-brass-400/10 hover:bg-brass-400/25 text-brass-300 text-xs font-medium cursor-pointer transition-all whitespace-nowrap shadow-sm" title="Kembalikan Filter ke Awal">
+                <span class="material-symbols-outlined text-sm">restart_alt</span>
+                <span>Reset</span>
+              </button>
+            </div>
+
           </div>
 
-          <!-- Baris 2: Navigasi Wilayah Berdasarkan Pulau Nusantara -->
+          <!-- Baris 2: Navigasi Wilayah Berdasarkan Pulau Nusantara (Universal: Sinkron Provinsi & Maestro) -->
           <div class="pt-2.5 border-t border-white/[0.06] flex items-center overflow-x-auto no-scrollbar">
             <div id="island-filters" class="flex items-center gap-1.5 flex-nowrap min-w-max py-0.5 w-full">
               
@@ -377,8 +423,8 @@
       </div>
     </section>
 
-    <!-- PROVINCES GRID SECTION -->
-    <section class="py-10 px-4 sm:px-6 lg:px-8 bg-[#181512] min-h-[60vh]">
+    <!-- VIEW 1: PROVINCES GRID SECTION -->
+    <section id="provinces-view-container" class="py-10 px-4 sm:px-6 lg:px-8 bg-[#181512] min-h-[60vh]">
       <div class="max-w-6xl mx-auto">
         <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between px-1">
           <span>Menampilkan <strong id="visible-count" class="text-brass-300">38</strong> dari 38 Provinsi Nusantara</span>
@@ -397,13 +443,42 @@
       </div>
     </section>
 
+    <!-- VIEW 2: MAKERS GRID SECTION (TERINTEGRASI 100% DARI HALAMAN PELESTARI) -->
+    <section id="makers-view-container" class="hidden py-10 px-4 sm:px-6 lg:px-8 bg-[#181512] min-h-[60vh]">
+      <div class="max-w-6xl mx-auto">
+        <!-- Live Count Indicator -->
+        <div class="text-xs text-surface/60 mb-6 px-1 flex items-center justify-between">
+          <span>Menampilkan <strong id="makers-count-number" class="text-brass-300 font-semibold">38</strong> dari 38 Maestro Kebudayaan</span>
+          <span class="text-[11px] text-surface/40 font-mono hidden sm:inline">1 Provinsi : 1 Maestro Penjaga Tradisi</span>
+        </div>
+
+        <!-- Empty State -->
+        <div id="makers-empty-state" class="hidden text-center py-20 px-4 bg-white/[0.02] border border-white/10 rounded-3xl">
+          <span class="material-symbols-outlined text-4xl text-brass-400 mb-3">person_search</span>
+          <h3 class="font-display text-2xl text-surface font-light mb-1">Maestro Tidak Ditemukan</h3>
+          <p class="text-xs text-surface/60 max-w-md mx-auto mb-5 leading-relaxed">
+            Tidak ada data pengrajin atau provinsi yang cocok dengan kata kunci pencarian Anda. Silakan coba kata kunci lain atau reset filter.
+          </p>
+          <button id="btn-empty-reset" class="px-5 py-2 rounded-full bg-brass-400 text-ink text-xs font-bold hover:bg-brass-300 transition-colors cursor-pointer">
+            Lihat Semua 38 Maestro
+          </button>
+        </div>
+
+        <!-- Dynamic Grid of 38 Artisans -->
+        <div id="makers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected dynamically by jelajahi-provinces.js -->
+        </div>
+      </div>
+    </section>
+
+
     <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
     <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/20 backdrop-blur-md items-center justify-center p-3 pt-7 sm:p-5 sm:pt-8 lg:p-8 lg:pt-8 overflow-y-auto overscroll-contain">
       <div class="relative w-full max-w-6xl my-auto pointer-events-none">
         
         <!-- Outside Close Button (Positioned outside popup box at top right) -->
-        <button class="province-modal-close-trigger pointer-events-auto absolute -top-4 right-1 sm:-top-5 sm:-right-2 lg:-top-5 lg:-right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-brass-500 text-surface/90 hover:text-ink border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 cursor-pointer" aria-label="Tutup Modal" title="Tutup">
-          <span class="material-symbols-outlined text-xl sm:text-2xl">close</span>
+        <button onclick="window.closeProvinceModal ? window.closeProvinceModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeProvinceModal && window.WARISARA_JELAJAHI.closeProvinceModal())" class="group province-modal-close-trigger pointer-events-auto absolute -top-4 right-1 sm:-top-5 sm:-right-2 lg:-top-5 lg:-right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Modal" title="Tutup">
+          <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
         </button>
 
         <div id="province-detail-modal" class="pointer-events-auto modal-container w-full bg-[#14110E]/90 border border-brass-400/35 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh] backdrop-blur-2xl">
@@ -499,7 +574,6 @@
               <span id="illustration-caption-indicator" class="text-surface/85 text-xs font-light truncate">Landmark Ikonik</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-              <span id="illustration-caption-mode-label" class="hidden sm:inline-block text-[10px] font-mono text-brass-400/80 bg-white/5 px-2 py-0.5 rounded border border-white/10">Landmark</span>
               <div id="modal-stamp-status-badge"></div>
             </div>
           </div>
@@ -595,7 +669,7 @@
                   <span class="material-symbols-outlined text-sm">storefront</span>
                   <span>Beli Produk</span>
                 </a>
-                <button class="province-modal-close-trigger px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors cursor-pointer">
+                <button onclick="window.closeProvinceModal ? window.closeProvinceModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeProvinceModal && window.WARISARA_JELAJAHI.closeProvinceModal())" class="province-modal-close-trigger px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface font-semibold transition-colors cursor-pointer">
                   Tutup
                 </button>
               </div>
@@ -624,8 +698,8 @@
               <h3 class="font-display text-2xl font-light text-surface">Paspor Penjelajah Nusantara</h3>
             </div>
           </div>
-          <button class="close-passport-trigger p-2 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
-            <span class="material-symbols-outlined text-xl">close</span>
+          <button onclick="window.closePassportModal ? window.closePassportModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closePassportModal && window.WARISARA_JELAJAHI.closePassportModal())" class="group close-passport-trigger warisara-modal-close-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Paspor" title="Tutup">
+            <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
           </button>
         </div>
 
@@ -663,7 +737,7 @@
         <!-- Passport Footer -->
         <div class="p-4 px-6 border-t border-border-dark bg-[#120F0D] flex items-center justify-between text-xs">
           <span class="text-surface/50 text-[11px]">Progres disimpan permanen di perangkat Anda.</span>
-          <button class="close-passport-trigger px-5 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold transition-colors">
+          <button onclick="window.closePassportModal ? window.closePassportModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closePassportModal && window.WARISARA_JELAJAHI.closePassportModal())" class="close-passport-trigger px-5 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold transition-colors cursor-pointer">
             Tutup Paspor
           </button>
         </div>
@@ -676,8 +750,8 @@
       <div class="w-full max-w-md bg-[#161310] border border-brass-400/40 rounded-3xl overflow-hidden shadow-2xl p-6 text-center">
         <div class="flex items-center justify-between mb-4">
           <span class="text-[10px] font-bold uppercase tracking-wider text-brass-400">Destinasi Tak Terduga</span>
-          <button class="close-compass-trigger p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface">
-            <span class="material-symbols-outlined text-lg">close</span>
+          <button onclick="window.closeCompassModal ? window.closeCompassModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeCompassModal && window.WARISARA_JELAJAHI.closeCompassModal())" class="group close-compass-trigger warisara-modal-close-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Kompas" title="Tutup">
+            <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
           </button>
         </div>
 
@@ -709,8 +783,8 @@
     <div id="gallery-lightbox-modal" class="modal-overlay hidden fixed inset-0 z-[1100] bg-black/25 backdrop-blur-md items-center justify-center p-4">
       <div class="relative w-full max-w-4xl flex flex-col items-center">
         <!-- Close button -->
-        <button class="close-lightbox-trigger absolute -top-12 right-0 p-2 text-surface hover:text-brass-300 transition-colors">
-          <span class="material-symbols-outlined text-2xl">close</span>
+        <button onclick="window.closeLightbox ? window.closeLightbox() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeLightbox && window.WARISARA_JELAJAHI.closeLightbox())" class="group close-lightbox-trigger warisara-modal-close-btn absolute -top-12 right-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Galeri" title="Tutup">
+          <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
         </button>
 
         <!-- Main Image -->
@@ -769,10 +843,10 @@
           <ul class="space-y-2 text-xs font-light text-surface/70">
             <li><a href="../index.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Peta Jelajah Nusantara</a></li>
             <li><a href="jelajahi.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Ensiklopedia 38 Provinsi</a></li>
-            <li><a href="makers.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Profil Maestro Pelestari</a></li>
+            <li><a href="jelajahi.html?view=pelestari" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Profil Maestro Pelestari</a></li>
             <li><a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pasar Ekonomi Kreatif</a></li>
             <li><a href="creative-lab.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Creative Lab Canvas</a></li>
-            <li><a href="belajar.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pusat Belajar & Kuis</a></li>
+            <li><a href="belajar.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pusat Belajar &amp; Kuis</a></li>
           </ul>
         </div>
 
@@ -829,7 +903,7 @@
         <div class="flex items-center gap-6">
           <a href="../index.html" class="hover:text-brass-300 transition-colors">Beranda</a>
           <a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors">Produk UMKM</a>
-          <a href="makers.html" class="hover:text-brass-300 transition-colors">Pelestari</a>
+          <a href="jelajahi.html?view=pelestari" class="hover:text-brass-300 transition-colors">Pelestari</a>
           <button id="scroll-to-top-btn" class="hover:text-brass-300 transition-colors flex items-center gap-1 cursor-pointer" title="Kembali ke Atas">
             <span>Ke Atas</span>
             <span class="material-symbols-outlined text-xs">arrow_upward</span>
@@ -854,9 +928,12 @@
           var storeEl = btn.querySelector('.font-display');
           var storeText = storeEl ? storeEl.textContent : 'App Store';
           var modal = document.createElement('div');
-          modal.className = 'fixed inset-0 z-[1200] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4';
+          modal.className = 'fixed inset-0 z-[1200] bg-black/40 backdrop-blur-md flex items-center justify-center p-4';
           modal.innerHTML = `
-            <div class="bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="relative bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+              <button class="modal-pwa-close-btn warisara-modal-close-btn group absolute -top-3.5 -right-3.5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup" title="Tutup">
+                <span class="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
+              </button>
               <div class="w-12 h-12 rounded-2xl bg-brass-400/20 text-brass-300 border border-brass-400/30 flex items-center justify-center mx-auto mb-3">
                 <span class="material-symbols-outlined text-2xl">install_mobile</span>
               </div>
@@ -874,7 +951,7 @@
             </div>
           `;
           document.body.appendChild(modal);
-          modal.querySelector('button').onclick = function () { modal.remove(); };
+          modal.querySelectorAll('button').forEach(function(b) { b.onclick = function () { modal.remove(); }; });
           modal.onclick = function (ev) { if (ev.target === modal) modal.remove(); };
         });
       });

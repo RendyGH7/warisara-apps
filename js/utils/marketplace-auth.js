@@ -535,8 +535,8 @@
               <p class="text-xs text-surface/60">Akses Eksklusif Pasar Produk Lokal & Budaya</p>
             </div>
           </div>
-          <button id="auth-modal-close" class="p-1.5 rounded-full hover:bg-white/10 text-surface/70 hover:text-surface transition-colors">
-            <span class="material-symbols-outlined text-lg">close</span>
+          <button id="auth-modal-close" class="warisara-modal-close-btn group w-9 h-9 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer flex-shrink-0" aria-label="Tutup" title="Tutup">
+            <span class="material-symbols-outlined text-lg transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
           </button>
         </div>
 

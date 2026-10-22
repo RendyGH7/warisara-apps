@@ -147,9 +147,8 @@
       <span id="nav-active-pill" class="nav-active-pill" aria-hidden="true"></span>
       <a href="../index.html" class="nav-link" data-page="index">Peta Jelajah</a>
       <a href="jelajahi.html" class="nav-link" data-page="jelajahi">38 Provinsi</a>
-      <a href="makers.html" class="nav-link" data-page="makers">Pelestari</a>
+      <a href="jelajahi.html?view=pelestari" class="nav-link" data-page="makers">Pelestari</a>
       <a href="ekonomi-kreatif.html" class="nav-link" data-page="ekonomi-kreatif">Produk Lokal</a>
-      <a href="heritage-modern.html" class="nav-link" data-page="heritage-modern">Heritage × Modern</a>
       <a href="creative-lab.html" class="nav-link" data-page="creative-lab">Creative Lab</a>
       <a href="belajar.html" class="nav-link" data-page="belajar">Belajar</a>
       <a href="cerita.html" class="nav-link active" data-page="cerita">Cerita</a>
@@ -192,7 +191,7 @@
         <span class="material-symbols-outlined text-sm text-brass-400">travel_explore</span>
         <span>02. Jelajahi 38 Provinsi</span>
       </a>
-      <a href="makers.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
+      <a href="jelajahi.html?view=pelestari" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="makers">
         <span class="material-symbols-outlined text-sm text-forest-400">person_pin</span>
         <span>03. Profil Pelestari Budaya</span>
       </a>
@@ -200,13 +199,9 @@
         <span class="material-symbols-outlined text-sm text-brass-400">storefront</span>
         <span>04. Ekonomi Kreatif & Produk</span>
       </a>
-      <a href="heritage-modern.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="heritage-modern">
-        <span class="material-symbols-outlined text-sm text-indigo-400">auto_fix_high</span>
-        <span>05. Heritage × Modern</span>
-      </a>
       <a href="creative-lab.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="creative-lab">
         <span class="material-symbols-outlined text-sm text-brass-400">palette</span>
-        <span>06. Creative Lab Canvas</span>
+        <span>05. Creative Lab Canvas</span>
       </a>
       <a href="belajar.html" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2.5" data-page="belajar">
         <span class="material-symbols-outlined text-sm text-indigo-400">school</span>
@@ -356,8 +351,8 @@
 
         <div class="book-stage-container relative">
           
-          <button id="btn-close-book-modal" class="book-top-close-btn" aria-label="Tutup Buku" title="Tutup Buku (Esc)">
-            <span class="material-symbols-outlined text-base">close</span>
+          <button id="btn-close-book-modal" class="book-top-close-btn warisara-modal-close-btn group" aria-label="Tutup Buku" title="Tutup Buku (Esc)">
+            <span class="material-symbols-outlined text-base transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
           </button>
 
           <div id="book-opening-stage" class="book-opening-stage"></div>
@@ -409,7 +404,7 @@
           <ul class="space-y-2 text-xs font-light text-surface/70">
             <li><a href="../index.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Peta Jelajah Nusantara</a></li>
             <li><a href="jelajahi.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Ensiklopedia 38 Provinsi</a></li>
-            <li><a href="makers.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Profil Maestro Pelestari</a></li>
+            <li><a href="jelajahi.html?view=pelestari" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Profil Maestro Pelestari</a></li>
             <li><a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pasar Ekonomi Kreatif</a></li>
             <li><a href="creative-lab.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Creative Lab Canvas</a></li>
             <li><a href="belajar.html" class="hover:text-brass-300 transition-colors flex items-center gap-1.5"><span class="text-brass-400/50">›</span> Pusat Belajar & Kuis</a></li>
@@ -469,7 +464,7 @@
         <div class="flex items-center gap-6">
           <a href="../index.html" class="hover:text-brass-300 transition-colors">Beranda</a>
           <a href="ekonomi-kreatif.html" class="hover:text-brass-300 transition-colors">Produk UMKM</a>
-          <a href="makers.html" class="hover:text-brass-300 transition-colors">Pelestari</a>
+          <a href="jelajahi.html?view=pelestari" class="hover:text-brass-300 transition-colors">Pelestari</a>
           <button id="scroll-to-top-btn" class="hover:text-brass-300 transition-colors flex items-center gap-1 cursor-pointer" title="Kembali ke Atas">
             <span>Ke Atas</span>
             <span class="material-symbols-outlined text-xs">arrow_upward</span>
@@ -494,9 +489,12 @@
           var storeEl = btn.querySelector('.font-display');
           var storeText = storeEl ? storeEl.textContent : 'App Store';
           var modal = document.createElement('div');
-          modal.className = 'fixed inset-0 z-[1200] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4';
+          modal.className = 'fixed inset-0 z-[1200] bg-black/40 backdrop-blur-md flex items-center justify-center p-4';
           modal.innerHTML = `
-            <div class="bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="relative bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+              <button class="modal-pwa-close-btn warisara-modal-close-btn group absolute -top-3.5 -right-3.5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup" title="Tutup">
+                <span class="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
+              </button>
               <div class="w-12 h-12 rounded-2xl bg-brass-400/20 text-brass-300 border border-brass-400/30 flex items-center justify-center mx-auto mb-3">
                 <span class="material-symbols-outlined text-2xl">install_mobile</span>
               </div>
@@ -514,7 +512,7 @@
             </div>
           `;
           document.body.appendChild(modal);
-          modal.querySelector('button').onclick = function () { modal.remove(); };
+          modal.querySelectorAll('button').forEach(function(b) { b.onclick = function () { modal.remove(); }; });
           modal.onclick = function (ev) { if (ev.target === modal) modal.remove(); };
         });
       });

@@ -24,6 +24,7 @@
   }
 
   // --- AUDIO SYNTHESIZER (Web Audio API) ---
+  var activeAudioVoice = null;
   var audioCtx = null;
   function getAudioContext() {
     if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
@@ -643,7 +644,7 @@
 
         // Update Title & Metadata Card to Pelestari Information
         if (nameEl) {
-          nameEl.innerHTML = `<span class="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-brass-300 block mb-1">Maestro Pelestari ${prov.name}</span>${maker.name}`;
+          nameEl.textContent = maker.name;
         }
         if (metaIcon1) metaIcon1.textContent = 'palette';
         if (metaLabel1) metaLabel1.textContent = 'Keahlian / Kriya';
@@ -1607,44 +1608,61 @@
 
   function closeProvinceModal() {
     var modalOverlay = document.getElementById('province-modal-overlay');
-    if (!modalOverlay || !modalOverlay.classList.contains('active') || isProvinceModalClosing) return;
+    if (!modalOverlay || isProvinceModalClosing) return;
+    if (modalOverlay.classList.contains('hidden') && !modalOverlay.classList.contains('active')) return;
 
     isProvinceModalClosing = true;
 
-    // Stop audio voice if playing
-    if (activeAudioVoice) {
-      activeAudioVoice.pause();
-      activeAudioVoice.currentTime = 0;
-      activeAudioVoice = null;
+    // Safety timeout ensures the closing flag is never stuck
+    setTimeout(function () {
+      isProvinceModalClosing = false;
+    }, 450);
+
+    // Stop audio voice if playing safely
+    try {
+      if (typeof activeAudioVoice !== 'undefined' && activeAudioVoice) {
+        activeAudioVoice.pause();
+        activeAudioVoice.currentTime = 0;
+        activeAudioVoice = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    } catch (audioErr) {
+      console.warn('Audio cleanup warning:', audioErr);
     }
 
     var modalContainer = document.getElementById('province-detail-modal');
     var finishClose = function () {
-      modalOverlay.classList.remove('modal-closing', 'modal-closing-backdrop', 'active');
-      modalOverlay.classList.add('hidden');
-      modalOverlay.style.display = 'none';
+      try {
+        modalOverlay.classList.remove('modal-closing', 'modal-closing-backdrop', 'active');
+        modalOverlay.classList.add('hidden');
+        modalOverlay.style.display = 'none';
 
-      document.documentElement.classList.remove('province-modal-open', 'modal-open');
-      document.documentElement.style.overflow = '';
-      document.body.classList.remove('province-modal-open', 'modal-open');
-      document.body.style.overflow = '';
+        document.documentElement.classList.remove('province-modal-open', 'modal-open');
+        document.documentElement.style.overflow = '';
+        document.body.classList.remove('province-modal-open', 'modal-open');
+        document.body.style.overflow = '';
 
-      // Instantly restore exact scroll position where user was
-      if (typeof savedProvinceScrollY === 'number') {
-        window.scrollTo(0, savedProvinceScrollY);
-        requestAnimationFrame(function () {
+        // Instantly restore exact scroll position where user was
+        if (typeof savedProvinceScrollY === 'number') {
           window.scrollTo(0, savedProvinceScrollY);
-        });
+          requestAnimationFrame(function () {
+            window.scrollTo(0, savedProvinceScrollY);
+          });
+        }
+
+        var navbar = document.getElementById('main-navbar');
+        if (navbar) navbar.classList.remove('navbar-hidden');
+
+        if (window.WariMascot && window.WariMascot.showTooltip) {
+          window.WariMascot.showTooltip();
+        }
+      } catch (finishErr) {
+        console.error('Error during modal finishClose:', finishErr);
+      } finally {
+        isProvinceModalClosing = false;
       }
-
-      var navbar = document.getElementById('main-navbar');
-      if (navbar) navbar.classList.remove('navbar-hidden');
-
-      if (window.WariMascot && window.WariMascot.showTooltip) {
-        window.WariMascot.showTooltip();
-      }
-
-      isProvinceModalClosing = false;
     };
 
     if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
@@ -1980,12 +1998,411 @@
     openProvinceModal(keys[newIndex]);
   }
 
+  // =========================================================================
+  // --- INTEGRASI PELESTARI (MAKERS) KE JELAJAHI 38 PROVINSI ---
+  // =========================================================================
+  var currentViewMode = 'provinces'; // 'provinces' | 'makers'
+  var selectedMakerProvinceId = '';
+  var activeSpeakingMakerId = null;
+
+  var islandOrderList = [
+    "Sumatera",
+    "Jawa",
+    "Bali & Nusa Tenggara",
+    "Kalimantan",
+    "Sulawesi",
+    "Maluku",
+    "Papua"
+  ];
+
+  function getMakerInitials(name) {
+    if (!name) return "MP";
+    var clean = name.replace(/^(Tgk\.|Nai|Mpu|Ki|Ompu|Datu|Mama|Wa|Bapak|Ibu|Daeng|Tuanku)\s+/i, "");
+    var parts = clean.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return clean.substring(0, 2).toUpperCase();
+  }
+
+  function populateMakerProvinceSelect() {
+    var sel = document.getElementById("maker-province-select");
+    if (!sel || !window.MAKERS_DATA) return;
+    sel.innerHTML = '<option value="" class="bg-[#181512] text-surface">Pilih dari 38 Provinsi Nusantara...</option>';
+    var makers = window.MAKERS_DATA;
+    islandOrderList.forEach(function (island) {
+      var islandMakers = makers.filter(function (m) { return m.island === island; });
+      if (islandMakers.length > 0) {
+        var optgroup = document.createElement("optgroup");
+        optgroup.label = island + " (" + islandMakers.length + " Provinsi)";
+        optgroup.className = "bg-[#181512] text-brass-300 font-semibold";
+        islandMakers.forEach(function (m) {
+          var option = document.createElement("option");
+          option.value = m.provinceId;
+          option.textContent = m.provinceName + " — " + m.name + " (" + m.craft + ")";
+          option.className = "bg-[#181512] text-surface font-normal";
+          optgroup.appendChild(option);
+        });
+        sel.appendChild(optgroup);
+      }
+    });
+  }
+
+  function renderMakersGrid() {
+    var gridEl = document.getElementById("makers-grid");
+    var emptyEl = document.getElementById("makers-empty-state");
+    var countEl = document.getElementById("makers-count-number");
+    var resetBtn = document.getElementById("maker-reset-btn");
+    if (!gridEl || !window.MAKERS_DATA) return;
+
+    var makers = window.MAKERS_DATA;
+    var query = currentSearchQuery.trim().toLowerCase();
+
+    var filtered = makers.filter(function (m) {
+      // Island Match
+      if (currentIsland !== "all" && m.island.toLowerCase() !== currentIsland.toLowerCase()) {
+        return false;
+      }
+      // Province Match
+      if (selectedMakerProvinceId && m.provinceId !== selectedMakerProvinceId) {
+        return false;
+      }
+      // Search Query Match
+      if (query) {
+        var searchable = [
+          m.name,
+          m.provinceName,
+          m.island,
+          m.craft,
+          m.role,
+          m.location,
+          m.signature,
+          m.materials,
+          m.quote
+        ].join(" ").toLowerCase();
+        if (searchable.indexOf(query) === -1) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    if (countEl) countEl.textContent = filtered.length;
+
+    var hasActiveFilter = currentIsland !== "all" || selectedMakerProvinceId !== "" || query.length > 0;
+    if (resetBtn) {
+      if (hasActiveFilter) resetBtn.classList.remove("hidden");
+      else resetBtn.classList.add("hidden");
+    }
+
+    if (filtered.length === 0) {
+      gridEl.innerHTML = "";
+      if (emptyEl) emptyEl.classList.remove("hidden");
+      return;
+    }
+    if (emptyEl) emptyEl.classList.add("hidden");
+
+    gridEl.innerHTML = filtered.map(function (maker) {
+      var initials = getMakerInitials(maker.name);
+      var isPlaying = activeSpeakingMakerId === maker.id;
+      var statusBadge = (maker.unescoOrStatus && maker.unescoOrStatus.includes("UNESCO"))
+        ? '<span class="inline-flex items-center gap-1 text-[10px] font-bold text-brass-300 bg-black/60 px-2 py-0.5 rounded-full border border-brass-400/30 backdrop-blur-md shadow-sm">👑 UNESCO</span>'
+        : '<span class="inline-flex items-center gap-1 text-[10px] font-medium text-forest-300 bg-black/60 px-2 py-0.5 rounded-full border border-forest-500/30 backdrop-blur-md shadow-sm">📜 WBTb</span>';
+
+      var illustrationSvg = (window.getMakerIllustrationSvg && window.getMakerIllustrationSvg(maker.id)) || "";
+      var photoPath = fixImgPath('assets/images/Pelestari/' + maker.provinceId + '.jpg');
+
+      return `
+        <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden ${isPlaying ? 'maker-card-playing' : ''}"
+                 data-maker-id="${maker.id}" data-province-id="${maker.provinceId}">
+          
+          <!-- Banner Ilustrasi & Potret Realistis Maestro -->
+          <div class="relative w-full h-48 sm:h-52 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
+            <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
+              <img src="${photoPath}" alt="${maker.name} - ${maker.role}" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+              <div class="w-full h-full" style="display: none;">
+                ${illustrationSvg}
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-black/15 to-transparent pointer-events-none"></div>
+
+            <!-- Floating Badges on Illustration -->
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
+              <button type="button" class="btn-maker-province-pill inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md hover:bg-brass-400/20 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Buka Pavilion Kebudayaan ${maker.provinceName}">
+                <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
+                <span>${maker.provinceName}</span>
+              </button>
+              ${statusBadge}
+            </div>
+
+            <!-- Craft Signature Pill at bottom of illustration -->
+            <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] z-10">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-black/75 text-surface/90 border border-white/15 backdrop-blur-md truncate max-w-[70%] shadow-sm">
+                ${maker.craft}
+              </span>
+              <span class="text-[10px] font-mono text-brass-300/90 bg-black/75 px-2 py-0.5 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
+                ${maker.island}
+              </span>
+            </div>
+          </div>
+
+          <!-- Card Body Content -->
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <!-- Maestro Profile Header with Illustrated Avatar -->
+              <div class="flex items-start gap-3.5 mb-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all overflow-hidden relative">
+                  <img src="${photoPath}" alt="${maker.name}" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'" />
+                  <span class="absolute z-0 font-bold">${initials}</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
+                    ${maker.name}
+                  </h3>
+                  <p class="text-xs text-brass-300 font-medium truncate mt-0.5">${maker.role}</p>
+                  <p class="text-[11px] text-surface/50 mt-0.5 flex items-center gap-1 truncate">
+                    <span>${maker.location}</span>
+                    <span>•</span>
+                    <span class="text-surface/70 font-mono">${maker.experience}</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Wisdom Quote Box -->
+              <div class="relative pl-3 border-l-2 border-brass-400/60 py-1 mb-4 bg-white/[0.02] rounded-r-lg pr-2">
+                <p class="text-xs text-surface/85 font-light italic leading-relaxed line-clamp-3">
+                  "${maker.quote}"
+                </p>
+              </div>
+
+              <!-- Signature & Materials Preview -->
+              <div class="pt-3 border-t border-white/10 space-y-2 mb-4 text-xs">
+                <div>
+                  <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">✨ Mahakarya Ikonik</span>
+                  <p class="text-[11px] text-surface/80 line-clamp-1 leading-snug">${maker.signature}</p>
+                </div>
+                <div>
+                  <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">🌿 Bahan Baku Tradisi</span>
+                  <p class="text-[11px] text-surface/60 line-clamp-1 leading-snug">${maker.materials}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 mt-auto z-10">
+              <button class="btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full ${isPlaying ? 'bg-brass-400 text-ink font-bold' : 'bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold'} border border-brass-400/30 text-[11px] transition-all cursor-pointer"
+                      data-maker-id="${maker.id}" title="Dengarkan Petuah Suara">
+                <span class="material-symbols-outlined text-sm">${isPlaying ? 'stop_circle' : 'volume_up'}</span>
+                <span>${isPlaying ? 'Berhenti' : 'Petuah'}</span>
+              </button>
+
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="btn-card-open-pavilion p-1.5 rounded-full hover:bg-white/10 text-surface/60 hover:text-forest-300 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Jelajahi Kebudayaan ${maker.provinceName}">
+                  <span class="material-symbols-outlined text-base">travel_explore</span>
+                </button>
+                <button class="btn-card-detail flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-[11px] font-semibold transition-colors cursor-pointer" data-maker-id="${maker.id}" data-prov-id="${maker.provinceId}">
+                  <span>Kisah Lengkap</span>
+                  <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    // Wire Card Events
+    gridEl.querySelectorAll(".glass-card").forEach(function (card) {
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("button") || e.target.closest("a")) return;
+        var provId = card.getAttribute("data-province-id");
+        if (provId) {
+          openProvinceModal(provId);
+          setTimeout(function () {
+            switchModalTab("maker");
+            if (window._warisaraApplyHeroMode) window._warisaraApplyHeroMode("maker");
+          }, 150);
+        }
+      });
+    });
+
+    gridEl.querySelectorAll(".btn-card-audio").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var id = btn.getAttribute("data-maker-id");
+        var item = (window.MAKERS_DATA || []).find(function (m) { return m.id === id; });
+        if (!item) return;
+
+        if (activeSpeakingMakerId === id) {
+          stopSpeakingMakerWisdom();
+        } else {
+          speakMakerWisdomWithId(item.quoteAudio || item.quote, id);
+        }
+      });
+    });
+
+    gridEl.querySelectorAll(".btn-card-detail, .btn-maker-province-pill, .btn-card-open-pavilion").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var provId = btn.getAttribute("data-prov-id");
+        if (provId) {
+          openProvinceModal(provId);
+          setTimeout(function () {
+            switchModalTab("maker");
+            if (window._warisaraApplyHeroMode) window._warisaraApplyHeroMode("maker");
+          }, 150);
+        }
+      });
+    });
+  }
+
+  function speakMakerWisdomWithId(text, makerId) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    var utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+    utterance.pitch = 0.95;
+
+    utterance.onstart = function () {
+      activeSpeakingMakerId = makerId;
+      updateMakerAudioStates();
+    };
+    utterance.onend = function () {
+      activeSpeakingMakerId = null;
+      updateMakerAudioStates();
+    };
+    utterance.onerror = function () {
+      activeSpeakingMakerId = null;
+      updateMakerAudioStates();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function stopSpeakingMakerWisdom() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    activeSpeakingMakerId = null;
+    updateMakerAudioStates();
+  }
+
+  function updateMakerAudioStates() {
+    var gridEl = document.getElementById("makers-grid");
+    if (!gridEl) return;
+    gridEl.querySelectorAll(".btn-card-audio").forEach(function (btn) {
+      var id = btn.getAttribute("data-maker-id");
+      var isPlaying = activeSpeakingMakerId === id;
+      var icon = btn.querySelector(".material-symbols-outlined");
+      var text = btn.querySelector("span:not(.material-symbols-outlined)");
+
+      if (isPlaying) {
+        btn.className = "btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brass-400 text-ink font-bold border border-brass-400 text-[11px] transition-all cursor-pointer";
+        if (icon) icon.textContent = "stop_circle";
+        if (text) text.textContent = "Berhenti";
+        btn.closest(".glass-card")?.classList.add("maker-card-playing");
+      } else {
+        btn.className = "btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold border border-brass-400/30 text-[11px] transition-all cursor-pointer";
+        if (icon) icon.textContent = "volume_up";
+        if (text) text.textContent = "Petuah";
+        btn.closest(".glass-card")?.classList.remove("maker-card-playing");
+      }
+    });
+  }
+
+  function switchViewMode(mode) {
+    currentViewMode = mode;
+    var btnProv = document.getElementById("btn-view-provinces");
+    var btnMaker = document.getElementById("btn-view-makers");
+    var titleEl = document.getElementById("jelajahi-main-title");
+    var descEl = document.getElementById("jelajahi-main-desc");
+    var provHero = document.getElementById("provinces-hero-container");
+    var makerHero = document.getElementById("makers-hero-container");
+    var provControls = document.getElementById("provinces-filter-controls");
+    var makerControls = document.getElementById("makers-filter-controls");
+    var provView = document.getElementById("provinces-view-container");
+    var makerView = document.getElementById("makers-view-container");
+    var searchInput = document.getElementById("province-search-input");
+
+    if (mode === "makers") {
+      if (btnMaker) {
+        btnMaker.className = "view-switch-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+        var iconM = btnMaker.querySelector(".material-symbols-outlined");
+        if (iconM) iconM.className = "material-symbols-outlined text-base text-ink";
+      }
+      if (btnProv) {
+        btnProv.className = "view-switch-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
+        var iconP = btnProv.querySelector(".material-symbols-outlined");
+        if (iconP) iconP.className = "material-symbols-outlined text-base text-brass-400";
+      }
+
+      if (titleEl) titleEl.textContent = "Para Penjaga Tradisi 38 Provinsi";
+      if (descEl) descEl.textContent = "Mengenal sosok-sosok maestro adat, empu tosan aji, penenun ulos & songket, pemahat asmat, hingga perajin noken dari 38 provinsi di Indonesia yang merawat nyala peradaban leluhur.";
+
+      if (provHero) provHero.classList.add("hidden");
+      if (makerHero) makerHero.classList.remove("hidden");
+
+      if (provControls) provControls.classList.add("hidden");
+      if (makerControls) makerControls.classList.remove("hidden");
+
+      if (provView) provView.classList.add("hidden");
+      if (makerView) makerView.classList.remove("hidden");
+
+      if (searchInput) searchInput.placeholder = "Cari maestro, kerajinan, peran, bahan, atau provinsi...";
+
+      renderMakersGrid();
+    } else {
+      if (btnProv) {
+        btnProv.className = "view-switch-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+        var iconP = btnProv.querySelector(".material-symbols-outlined");
+        if (iconP) iconP.className = "material-symbols-outlined text-base text-ink";
+      }
+      if (btnMaker) {
+        btnMaker.className = "view-switch-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all flex items-center gap-2 cursor-pointer";
+        var iconM = btnMaker.querySelector(".material-symbols-outlined");
+        if (iconM) iconM.className = "material-symbols-outlined text-base text-brass-400";
+      }
+
+      if (titleEl) titleEl.textContent = "38 Provinsi Nusantara";
+      if (descEl) descEl.textContent = "Ensiklopedia terpadu kebudayaan, sejarah, pusaka, kuliner, dan pesona adat dari Sabang hingga Merauke.";
+
+      if (provHero) provHero.classList.remove("hidden");
+      if (makerHero) makerHero.classList.add("hidden");
+
+      if (provControls) provControls.classList.remove("hidden");
+      if (makerControls) makerControls.classList.add("hidden");
+
+      if (provView) provView.classList.remove("hidden");
+      if (makerView) makerView.classList.add("hidden");
+
+      if (searchInput) searchInput.placeholder = "Cari provinsi, ibukota, tradisi, kuliner, wisata...";
+
+      renderProvincesGrid();
+    }
+  }
+
   // --- INITIALIZATION ---
   function init() {
     updatePassportUI();
     renderProvincesGrid();
+    populateMakerProvinceSelect();
 
-    // Event Search
+    // Wire Dual View Switchers
+    var btnViewProvinces = document.getElementById("btn-view-provinces");
+    var btnViewMakers = document.getElementById("btn-view-makers");
+    if (btnViewProvinces) {
+      btnViewProvinces.addEventListener("click", function () {
+        switchViewMode("provinces");
+      });
+    }
+    if (btnViewMakers) {
+      btnViewMakers.addEventListener("click", function () {
+        switchViewMode("makers");
+      });
+    }
+
+    // Event Search (Universal)
     var searchInput = document.getElementById('province-search-input');
     var clearSearchBtn = document.getElementById('search-clear-btn');
     if (searchInput) {
@@ -1998,7 +2415,11 @@
             clearSearchBtn.classList.add('hidden');
           }
         }
-        renderProvincesGrid();
+        if (currentViewMode === 'makers') {
+          renderMakersGrid();
+        } else {
+          renderProvincesGrid();
+        }
       });
     }
 
@@ -2007,9 +2428,62 @@
         if (searchInput) searchInput.value = '';
         currentSearchQuery = '';
         clearSearchBtn.classList.add('hidden');
-        renderProvincesGrid();
+        if (currentViewMode === 'makers') {
+          renderMakersGrid();
+        } else {
+          renderProvincesGrid();
+        }
       });
     }
+
+    // Event Maker Province Select Dropdown
+    var makerSelect = document.getElementById("maker-province-select");
+    if (makerSelect) {
+      makerSelect.addEventListener("change", function (e) {
+        selectedMakerProvinceId = e.target.value;
+        if (selectedMakerProvinceId) {
+          var m = (window.MAKERS_DATA || []).find(function (item) { return item.provinceId === selectedMakerProvinceId; });
+          if (m) {
+            currentIsland = m.island;
+            var islandBtns = document.querySelectorAll('.island-btn');
+            islandBtns.forEach(function (t) {
+              t.classList.toggle('active', t.getAttribute('data-island').toLowerCase() === m.island.toLowerCase());
+            });
+          }
+        }
+        renderMakersGrid();
+
+        if (selectedMakerProvinceId) {
+          setTimeout(function () {
+            var card = document.querySelector('#makers-grid [data-province-id="' + selectedMakerProvinceId + '"]');
+            if (card) {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              card.classList.add('maker-card-highlighted');
+              setTimeout(function () { card.classList.remove('maker-card-highlighted'); }, 4000);
+            }
+          }, 100);
+        }
+      });
+    }
+
+    // Maker Reset Buttons
+    var makerResetBtn = document.getElementById("maker-reset-btn");
+    var emptyResetBtn = document.getElementById("btn-empty-reset");
+    function resetMakerFilters() {
+      currentIsland = 'all';
+      selectedMakerProvinceId = '';
+      currentSearchQuery = '';
+      if (searchInput) searchInput.value = '';
+      if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
+      if (makerSelect) makerSelect.value = '';
+      var islandBtns = document.querySelectorAll('.island-btn');
+      islandBtns.forEach(function (t) {
+        t.classList.toggle('active', t.getAttribute('data-island') === 'all');
+      });
+      renderMakersGrid();
+    }
+    if (makerResetBtn) makerResetBtn.addEventListener("click", resetMakerFilters);
+    if (emptyResetBtn) emptyResetBtn.addEventListener("click", resetMakerFilters);
 
     // Event Island Filters
     var islandBtns = document.querySelectorAll('.island-btn');
@@ -2020,7 +2494,13 @@
         });
         btn.classList.add('active');
         currentIsland = btn.getAttribute('data-island');
-        renderProvincesGrid();
+        if (currentViewMode === 'makers') {
+          selectedMakerProvinceId = '';
+          if (makerSelect) makerSelect.value = '';
+          renderMakersGrid();
+        } else {
+          renderProvincesGrid();
+        }
       });
     });
 
@@ -2140,9 +2620,12 @@
         playSound('success');
         
         var modal = document.createElement('div');
-        modal.className = 'fixed inset-0 z-[1200] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4';
+        modal.className = 'fixed inset-0 z-[1200] bg-black/40 backdrop-blur-md flex items-center justify-center p-4';
         modal.innerHTML = `
-          <div class="bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+          <div class="relative bg-[#181512] border border-brass-400/40 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <button class="modal-pwa-close-btn warisara-modal-close-btn group absolute -top-3.5 -right-3.5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup" title="Tutup">
+              <span class="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
+            </button>
             <div class="w-12 h-12 rounded-2xl bg-brass-400/20 text-brass-300 border border-brass-400/30 flex items-center justify-center mx-auto mb-3">
               <span class="material-symbols-outlined text-2xl">install_mobile</span>
             </div>
@@ -2160,7 +2643,7 @@
           </div>
         `;
         document.body.appendChild(modal);
-        modal.querySelector('button').onclick = function () { modal.remove(); };
+        modal.querySelectorAll('button').forEach(function(b) { b.onclick = function () { modal.remove(); }; });
         modal.onclick = function (ev) { if (ev.target === modal) modal.remove(); };
       });
     });
@@ -2181,10 +2664,25 @@
       }
     });
 
-    // Check query param e.g. ?province=aceh or ?provinsi=aceh
+    // Check query param e.g. ?province=aceh or ?provinsi=aceh, ?view=pelestari, ?maker=maker-aceh
     var urlParams = new URLSearchParams(window.location.search);
     var provParam = urlParams.get('province') || urlParams.get('provinsi');
-    if (provParam && window.PROVINCES_DATA && window.PROVINCES_DATA[provParam]) {
+    var viewParam = urlParams.get('view');
+    var makerParam = urlParams.get('maker');
+
+    if (viewParam === 'pelestari' || viewParam === 'makers' || makerParam) {
+      switchViewMode('makers');
+      if (makerParam) {
+        setTimeout(function () {
+          var card = document.querySelector('#makers-grid [data-maker-id="' + makerParam + '"]');
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('maker-card-highlighted');
+            setTimeout(function () { card.classList.remove('maker-card-highlighted'); }, 4000);
+          }
+        }, 400);
+      }
+    } else if (provParam && window.PROVINCES_DATA && window.PROVINCES_DATA[provParam]) {
       setTimeout(function () {
         openProvinceModal(provParam);
       }, 300);
@@ -2192,14 +2690,22 @@
 
     window.addEventListener('warisara_auth_changed', function () {
       updatePassportUI();
-      renderProvincesGrid();
+      if (currentViewMode === 'makers') {
+        renderMakersGrid();
+      } else {
+        renderProvincesGrid();
+      }
     });
 
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
-        renderProvincesGrid();
+        if (currentViewMode === 'makers') {
+          renderMakersGrid();
+        } else {
+          renderProvincesGrid();
+        }
       }, 150);
     });
   }
@@ -2207,11 +2713,21 @@
   // Expose global API
   window.WARISARA_JELAJAHI = {
     init: init,
+    switchViewMode: switchViewMode,
     openProvinceModal: openProvinceModal,
+    closeProvinceModal: closeProvinceModal,
     openPassportModal: openPassportModal,
+    closePassportModal: closePassportModal,
     openCompassModal: openCompassModal,
+    closeCompassModal: closeCompassModal,
+    closeLightbox: closeLightbox,
     stampProvince: stampProvince
   };
+
+  window.closeProvinceModal = closeProvinceModal;
+  window.closePassportModal = closePassportModal;
+  window.closeCompassModal = closeCompassModal;
+  window.closeLightbox = closeLightbox;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

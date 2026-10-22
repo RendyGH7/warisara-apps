@@ -320,7 +320,9 @@
       var container = this.modalOverlay.querySelector('.modal-container, .relative') || this.modalOverlay.firstElementChild;
       var finish = () => {
         document.body.classList.remove("overflow-hidden");
-        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        try {
+          if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        } catch (e) {}
       };
       if (window.WARISARA_POPUP && window.WARISARA_POPUP.close) {
         window.WARISARA_POPUP.close(this.modalOverlay, container, finish);

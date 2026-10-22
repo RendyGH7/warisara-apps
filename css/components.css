@@ -211,9 +211,9 @@
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background: rgba(10, 8, 6, 0.22) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   align-items: center;
   justify-content: center;
   padding: 1rem;
@@ -227,17 +227,21 @@
 }
 
 .modal-overlay.active,
-.modal-overlay.modal-closing {
+.modal-overlay.modal-closing,
+.modal-overlay.flex:not(.hidden),
+.modal-overlay[style*="display: flex"]:not(.hidden) {
   display: flex !important;
 }
 
-.modal-overlay.active {
+.modal-overlay.active,
+.modal-overlay.flex:not(.hidden),
+.modal-overlay[style*="display: flex"]:not(.hidden) {
   opacity: 1 !important;
   pointer-events: auto !important;
   visibility: visible !important;
-  background: rgba(10, 8, 6, 0.22) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
               -webkit-backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -279,6 +283,178 @@
   transition: transform 300ms cubic-bezier(0.4, 0, 0.8, 1),
               opacity 260ms ease,
               filter 260ms ease !important;
+}
+
+/* ==========================================================================
+   WARISARA UNIVERSAL MODAL CLOSE BUTTON (FOTO 1 SPECIFICATION)
+   Desain bulat elegan bertema Nusantara: border emas brass, latar gelap #181512,
+   dan saat dihover berubah merah membara dengan ikon X yang memutar 180 derajat.
+   ========================================================================== */
+.warisara-modal-close-btn,
+.province-modal-close-trigger,
+#province-modal-close-btn,
+#modal-maker-close,
+.close-compass-trigger,
+.close-lightbox-trigger,
+.modal-close-outside,
+.book-top-close-btn,
+#home-story-modal-close,
+#sell-modal-close,
+#btn-close-commission-modal,
+#btn-close-detail-comm-modal,
+#btn-result-close,
+#cert-modal-close-btn,
+.modal-close-external-btn,
+#auth-modal-close,
+#chat-drawer-close-btn,
+.close-passport-trigger,
+.modal-pwa-close-btn,
+.modal-close-icon-btn,
+.modal-close-btn {
+  width: 2.25rem !important; /* 36px */
+  height: 2.25rem !important;
+  border-radius: 9999px !important;
+  background-color: #181512 !important;
+  border: 1px solid rgba(201, 165, 103, 0.4) !important;
+  color: rgba(247, 245, 240, 0.9) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  z-index: 50 !important;
+  padding: 0 !important;
+  transition: all 280ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@media (min-width: 640px) {
+  .warisara-modal-close-btn,
+  .province-modal-close-trigger,
+  #modal-maker-close,
+  .modal-close-outside,
+  #cert-modal-close-btn,
+  .modal-close-external-btn {
+    width: 2.5rem !important; /* 40px */
+    height: 2.5rem !important;
+  }
+}
+
+.warisara-modal-close-btn:hover,
+.province-modal-close-trigger:hover,
+#province-modal-close-btn:hover,
+#modal-maker-close:hover,
+.close-compass-trigger:hover,
+.close-lightbox-trigger:hover,
+.modal-close-outside:hover,
+.book-top-close-btn:hover,
+#home-story-modal-close:hover,
+#sell-modal-close:hover,
+#btn-close-commission-modal:hover,
+#btn-close-detail-comm-modal:hover,
+#btn-result-close:hover,
+#cert-modal-close-btn:hover,
+.modal-close-external-btn:hover,
+#auth-modal-close:hover,
+#chat-drawer-close-btn:hover,
+#picker-btn-close:hover,
+.modal-close-icon-btn:hover,
+.modal-close-btn:hover {
+  background-color: #DC2626 !important; /* Vivid Crimson Red */
+  border-color: #EF4444 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.12) !important;
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.75), 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.warisara-modal-close-btn span,
+.warisara-modal-close-btn .material-symbols-outlined,
+.province-modal-close-trigger span,
+.province-modal-close-trigger .material-symbols-outlined,
+#province-modal-close-btn span,
+#province-modal-close-btn .material-symbols-outlined,
+#modal-maker-close span,
+#modal-maker-close .material-symbols-outlined,
+.close-compass-trigger span,
+.close-compass-trigger .material-symbols-outlined,
+.close-lightbox-trigger span,
+.close-lightbox-trigger .material-symbols-outlined,
+.modal-close-outside span,
+.modal-close-outside .material-symbols-outlined,
+.book-top-close-btn span,
+.book-top-close-btn .material-symbols-outlined,
+#home-story-modal-close span,
+#home-story-modal-close .material-symbols-outlined,
+#sell-modal-close span,
+#sell-modal-close .material-symbols-outlined,
+#btn-close-commission-modal span,
+#btn-close-commission-modal .material-symbols-outlined,
+#btn-close-detail-comm-modal span,
+#btn-close-detail-comm-modal .material-symbols-outlined,
+#btn-result-close span,
+#btn-result-close .material-symbols-outlined,
+#cert-modal-close-btn span,
+#cert-modal-close-btn .material-symbols-outlined,
+.modal-close-external-btn span,
+.modal-close-external-btn .material-symbols-outlined,
+#auth-modal-close span,
+#auth-modal-close .material-symbols-outlined,
+#chat-drawer-close-btn span,
+#chat-drawer-close-btn .material-symbols-outlined,
+#picker-btn-close span,
+#picker-btn-close .material-symbols-outlined,
+.modal-close-icon-btn span,
+.modal-close-icon-btn .material-symbols-outlined,
+.modal-close-btn span,
+.modal-close-btn .material-symbols-outlined {
+  display: inline-block !important;
+  font-size: 1.25rem !important; /* 20px */
+  line-height: 1 !important;
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease !important;
+}
+
+.warisara-modal-close-btn:hover span,
+.warisara-modal-close-btn:hover .material-symbols-outlined,
+.province-modal-close-trigger:hover span,
+.province-modal-close-trigger:hover .material-symbols-outlined,
+#province-modal-close-btn:hover span,
+#province-modal-close-btn:hover .material-symbols-outlined,
+#modal-maker-close:hover span,
+#modal-maker-close:hover .material-symbols-outlined,
+.close-compass-trigger:hover span,
+.close-compass-trigger:hover .material-symbols-outlined,
+.close-lightbox-trigger:hover span,
+.close-lightbox-trigger:hover .material-symbols-outlined,
+.modal-close-outside:hover span,
+.modal-close-outside:hover .material-symbols-outlined,
+.book-top-close-btn:hover span,
+.book-top-close-btn:hover .material-symbols-outlined,
+#home-story-modal-close:hover span,
+#home-story-modal-close:hover .material-symbols-outlined,
+#sell-modal-close:hover span,
+#sell-modal-close:hover .material-symbols-outlined,
+#btn-close-commission-modal:hover span,
+#btn-close-commission-modal:hover .material-symbols-outlined,
+#btn-close-detail-comm-modal:hover span,
+#btn-close-detail-comm-modal:hover .material-symbols-outlined,
+#btn-result-close:hover span,
+#btn-result-close:hover .material-symbols-outlined,
+#cert-modal-close-btn:hover span,
+#cert-modal-close-btn:hover .material-symbols-outlined,
+.modal-close-external-btn:hover span,
+.modal-close-external-btn:hover .material-symbols-outlined,
+#auth-modal-close:hover span,
+#auth-modal-close:hover .material-symbols-outlined,
+#chat-drawer-close-btn:hover span,
+#chat-drawer-close-btn:hover .material-symbols-outlined,
+#picker-btn-close:hover span,
+#picker-btn-close:hover .material-symbols-outlined,
+.modal-close-icon-btn:hover span,
+.modal-close-icon-btn:hover .material-symbols-outlined,
+.modal-close-btn:hover span,
+.modal-close-btn:hover .material-symbols-outlined {
+  transform: rotate(180deg) !important;
+  color: #FFFFFF !important;
 }
 
 /* ==========================================================================

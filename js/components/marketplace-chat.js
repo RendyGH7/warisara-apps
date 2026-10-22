@@ -180,8 +180,8 @@
             <span class="material-symbols-outlined text-sm">swap_horiz</span>
             <span class="hidden sm:inline text-[11px] font-bold">Ganti Akun</span>
           </button>
-          <button id="chat-drawer-close-btn" class="p-2 rounded-xl hover:bg-white/10 text-surface/70 hover:text-surface transition-colors" aria-label="Tutup Chat">
-            <span class="material-symbols-outlined text-lg">close</span>
+          <button id="chat-drawer-close-btn" class="warisara-modal-close-btn group w-9 h-9 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer flex-shrink-0" aria-label="Tutup Chat" title="Tutup Chat">
+            <span class="material-symbols-outlined text-lg transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
           </button>
         </div>
       </div>

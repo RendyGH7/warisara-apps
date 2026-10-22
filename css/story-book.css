@@ -141,9 +141,9 @@
   height: 100vh !important;
   max-height: 100vh !important;
   z-index: 99999 !important;
-  background: rgba(10, 8, 6, 0.25) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   overflow: hidden !important;
   overscroll-behavior: none !important;
   touch-action: none !important;
@@ -311,12 +311,25 @@ html.book-modal-open {
   cursor: pointer;
 }
 
+.book-top-close-btn span,
+.book-top-close-btn .material-symbols-outlined {
+  display: inline-block;
+  font-size: 1.25rem !important;
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease !important;
+}
+
 .book-top-close-btn:hover {
-  background: rgba(239, 68, 68, 0.3);
-  border-color: rgba(239, 68, 68, 0.7);
-  color: #FCA5A5;
-  transform: scale(1.1);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9), 0 0 25px rgba(239, 68, 68, 0.4);
+  background: #DC2626 !important;
+  border-color: #EF4444 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.75), 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.book-top-close-btn:hover span,
+.book-top-close-btn:hover .material-symbols-outlined {
+  transform: rotate(180deg) !important;
+  color: #FFFFFF !important;
 }
 
 .book-close-btn {

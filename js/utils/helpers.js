@@ -66,6 +66,7 @@ window.WARISARA_POPUP = {
     }
 
     // Persiapkan overlay di dalam DOM
+    overlay._isClosing = false;
     overlay.classList.remove('hidden', 'modal-closing', 'closing', 'modal-closing-backdrop');
     overlay.style.display = 'flex';
     overlay.style.visibility = 'visible';
@@ -116,6 +117,9 @@ window.WARISARA_POPUP = {
     if (!overlay) return;
     if (overlay._isClosing) return;
     overlay._isClosing = true;
+    setTimeout(function () {
+      overlay._isClosing = false;
+    }, 450);
 
     if (typeof container === 'string') container = overlay.querySelector(container);
     if (!container) {
@@ -157,7 +161,11 @@ window.WARISARA_POPUP = {
       }
 
       if (typeof callback === 'function') {
-        callback();
+        try {
+          callback();
+        } catch (cbErr) {
+          console.error('Error in popup close callback:', cbErr);
+        }
       }
     }, 320);
   }

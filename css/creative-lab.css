@@ -393,12 +393,25 @@ body.modal-open #mobile-nav-drawer {
   transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.modal-close-external-btn span,
+.modal-close-external-btn .material-symbols-outlined {
+  display: inline-block;
+  font-size: 1.25rem !important;
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease !important;
+}
+
 .modal-close-external-btn:hover {
-  background: #C9A567;
-  color: #120F0D;
-  border-color: #FFF0D0;
-  transform: scale(1.15) rotate(90deg);
-  box-shadow: 0 12px 32px rgba(201, 165, 103, 0.6), 0 0 24px rgba(230, 211, 167, 0.5);
+  background: #DC2626 !important;
+  color: #FFFFFF !important;
+  border-color: #EF4444 !important;
+  transform: scale(1.12) !important;
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.75), 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.modal-close-external-btn:hover span,
+.modal-close-external-btn:hover .material-symbols-outlined {
+  transform: rotate(180deg) !important;
+  color: #FFFFFF !important;
 }
 
 .modal-input-field {

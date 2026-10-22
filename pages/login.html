@@ -1179,7 +1179,7 @@
   </main>
 
   <!-- ================= POP-UP MODAL GOOGLE AUTH (FITUR DARI GOOGLE-AUTH PAGE) ================= -->
-  <div id="google-picker-modal" class="hidden fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md overflow-y-auto p-4 flex justify-center items-center">
+  <div id="google-picker-modal" class="modal-overlay hidden fixed inset-0 z-[99999] bg-black/20 backdrop-blur-md overflow-y-auto p-4 flex justify-center items-center">
     <div class="relative w-full max-w-md bg-[#202124] border border-white/10 rounded-3xl overflow-hidden shadow-2xl animate-modal-enter my-auto text-[#e8eaed]">
       
       <!-- Loading bar Google -->
@@ -1187,11 +1187,11 @@
         <div class="absolute inset-y-0 w-1/3 bg-[#8ab4f8] animate-googleSlide"></div>
       </div>
 
-      <!-- Tombol Tutup Pop-up -->
+      <!-- Tombol Tutup Pop-up (Foto 1 Standard) -->
       <button id="picker-btn-close" type="button" 
-              class="absolute top-4 right-4 text-surface/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors z-10" 
-              aria-label="Tutup Pop-up">
-        <span class="material-symbols-outlined text-lg">close</span>
+              class="warisara-modal-close-btn group absolute top-4 right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer z-10" 
+              aria-label="Tutup Pop-up" title="Tutup">
+        <span class="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
       </button>
 
       <!-- Panel Utama Pilihan Akun -->

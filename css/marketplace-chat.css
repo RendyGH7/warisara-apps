@@ -39,9 +39,9 @@ body.chat-drawer-open #mobile-nav-drawer {
   justify-content: center !important;
   padding: 1rem !important;
   margin: 0 !important;
-  background: rgba(10, 8, 6, 0.22) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   overflow-y: auto !important;
   pointer-events: auto !important;
 }

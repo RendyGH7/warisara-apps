@@ -108,7 +108,8 @@
 3. 💬 **C2C Marketplace & Chat Facebook-Style**: Transaksi personal langsung dengan pengrajin lokal tanpa perantara dan tanpa potongan biaya.
 4. 📖 **[Cerita Rakyat Nusantara](cerita.html)**: Kisah lisan berilustrasi dan narasi suara yang sarat nilai budi pekerti.
 5. 🎯 **[Pusat Belajar](belajar.html)**: Modul interaktif dan kuis budaya untuk menguji pengetahuan warisan adiluhung bangsa.
-6. 🎨 **[Heritage × Modern](heritage-modern.html)** & **[Creative Lab](creative-lab.html)**: Ruang inovasi kolaboratif seni tradisi dan kanvas kreasi.`
+6. 🎨 **[Creative Lab](creative-lab.html)**: Ruang inovasi kolaboratif seni tradisi dan studio kreasi wastra.
+7. 👑 **[38 Maestro Pelestari](jelajahi.html?view=pelestari)**: Direktori dan petuah audio 38 maestro penjaga tradisi luhur Nusantara.`
     },
     {
       keywords: ['cara beli', 'beli produk', 'transaksi', 'chat penjual', 'order', 'pesan'],

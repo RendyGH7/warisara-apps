@@ -217,9 +217,9 @@ textarea {
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background: rgba(10, 8, 6, 0.22) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   align-items: center;
   justify-content: center;
   padding: 1rem;
@@ -233,17 +233,21 @@ textarea {
 }
 
 .modal-overlay.active,
-.modal-overlay.modal-closing {
+.modal-overlay.modal-closing,
+.modal-overlay.flex:not(.hidden),
+.modal-overlay[style*="display: flex"]:not(.hidden) {
   display: flex !important;
 }
 
-.modal-overlay.active {
+.modal-overlay.active,
+.modal-overlay.flex:not(.hidden),
+.modal-overlay[style*="display: flex"]:not(.hidden) {
   opacity: 1 !important;
   pointer-events: auto !important;
   visibility: visible !important;
-  background: rgba(10, 8, 6, 0.22) !important;
-  backdrop-filter: blur(10px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  background: rgba(8, 6, 4, 0.14) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
   transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
               -webkit-backdrop-filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
