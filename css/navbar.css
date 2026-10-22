@@ -483,24 +483,24 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   gap: 0.5rem;
   padding: 0.22rem 0.65rem 0.22rem 0.22rem;
   border-radius: 9999px;
-  background: rgba(26, 22, 18, 0.96);
-  border: 1px solid rgba(201, 165, 103, 0.32);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #FBF8F2;
   cursor: pointer;
-  transition: all 0.22s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   white-space: nowrap;
 }
 
 .nav-profile-btn:hover {
-  background: rgba(36, 30, 24, 1);
-  border-color: #C9A567;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(201, 165, 103, 0.45);
   box-shadow: 0 4px 14px rgba(201, 165, 103, 0.2);
   transform: translateY(-1px);
 }
 
 .nav-profile-dropdown.is-open .nav-profile-btn {
-  background: rgba(36, 30, 24, 1);
+  background: rgba(255, 255, 255, 0.1);
   border-color: #C9A567;
   box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.25);
 }
@@ -512,38 +512,39 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
 
 .nav-profile-avatar {
   position: relative;
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.85rem;
+  height: 1.85rem;
   border-radius: 9999px;
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
 
 /* Badge Notifikasi Chat di Profil Navbar */
 .nav-profile-unread-badge {
   position: absolute;
-  top: -0.32rem;
-  right: -0.32rem;
-  min-width: 1.1rem;
-  height: 1.1rem;
-  padding: 0 0.25rem;
+  top: -0.22rem;
+  right: -0.22rem;
+  min-width: 1.05rem;
+  height: 1.05rem;
+  padding: 0 0.2rem;
   border-radius: 9999px;
-  background-color: #C9A567 !important;
-  color: #1A1612 !important;
-  font-size: 0.62rem !important;
+  background: linear-gradient(135deg, #DFBE88, #BA9252) !important;
+  color: #14110E !important;
+  font-size: 0.6rem !important;
   font-weight: 800 !important;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid #14100D !important;
-  box-shadow: 0 0 10px rgba(201, 165, 103, 0.75), 0 2px 5px rgba(0,0,0,0.5);
+  border: 2px solid #14100D !important;
+  box-shadow: 0 0 10px rgba(201, 165, 103, 0.75), 0 2px 4px rgba(0,0,0,0.5);
   z-index: 10;
   pointer-events: none;
   animation: chatBadgePulse 2s infinite ease-in-out;
