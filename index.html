@@ -565,7 +565,7 @@
     class="fixed inset-0 z-[1000] opacity-0 pointer-events-none bg-[#0D0A08] overflow-y-auto"
     aria-hidden="true">
     <div id="province-detail-modal"
-      class="relative w-full min-h-screen text-surface flex flex-col bg-[#0D0A08] modal-batik-texture pb-16"
+      class="relative w-full min-h-screen text-surface flex flex-col bg-[#0D0A08] modal-batik-texture pb-36 sm:pb-48"
       role="dialog" aria-modal="true" aria-labelledby="modal-province-name">
 
       <!-- Ambient glow orbs in background -->
@@ -827,17 +827,17 @@
           <!-- TAB 1: MAHAKARYA & TRADISI WBTB -->
           <div id="tab-heritage" class="province-tab-content space-y-6">
             
-            <!-- Highlight Masterpiece Card -->
-            <div class="rounded-2xl bg-gradient-to-r from-brass-900/35 via-white/[0.02] to-transparent border border-brass-500/30 p-5 flex items-center gap-4 shadow-sm">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brass-500/25 to-terracotta-500/15 border border-brass-400/40 flex items-center justify-center text-brass-300 shadow-inner flex-shrink-0">
-                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+            <!-- Highlight Masterpiece Card (High-contrast, clearly elevated) -->
+            <div class="rounded-2xl bg-gradient-to-r from-[#241C14] via-[#18130E] to-[#120E0A] border border-brass-400/40 p-4 sm:p-5 flex items-center gap-4 shadow-xl">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brass-500/30 to-terracotta-500/20 border border-brass-400/50 flex items-center justify-center text-brass-300 shadow-inner flex-shrink-0">
+                <span class="material-symbols-outlined text-2xl text-brass-300">auto_awesome</span>
               </div>
               <div class="min-w-0 flex-1">
                 <div class="text-[10px] sm:text-[11px] uppercase font-bold tracking-widest text-brass-400 mb-1 flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-brass-400 animate-pulse"></span>
                   Mahakarya Khas Wilayah
                 </div>
-                <div id="modal-craft-highlight" class="text-sm sm:text-base text-surface font-medium leading-relaxed">
+                <div id="modal-craft-highlight" class="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-sm">
                   Kain Ulap Doyo motif Naga Berenang berpewarna getah kayu ubar.
                 </div>
               </div>
@@ -960,6 +960,28 @@
           </div>
 
         </section>
+
+        <!-- BOTTOM ACTION FOOTER: Complete Exploration Gateway & Scroll to Top -->
+        <div class="pt-8 pb-12 mt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-2 text-xs text-surface/70">
+            <span class="material-symbols-outlined text-brass-400 text-sm">verified_user</span>
+            <span>Arsip budaya terverifikasi resmi WARISARA</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a id="modal-bottom-explore-btn" href="pages/jelajahi.html"
+              class="px-5 py-2.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-all shadow-md flex items-center gap-2 cursor-pointer">
+              <span class="material-symbols-outlined text-sm font-bold">auto_stories</span>
+              <span>Buka Seluruh Warisan di Halaman Provinsi</span>
+            </a>
+            <button id="modal-scroll-top-btn" onclick="document.getElementById('province-modal-overlay').scrollTo({top:0, behavior:'smooth'})"
+              class="px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-surface text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer"
+              title="Kembali ke atas">
+              <span class="material-symbols-outlined text-sm">arrow_upward</span>
+              <span class="hidden sm:inline">Ke Atas</span>
+            </button>
+          </div>
+        </div>
 
       </main>
 

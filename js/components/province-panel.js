@@ -444,28 +444,35 @@ window.WARISARA_PROVINCE_PANEL = {
       if (btnSpan) btnSpan.textContent = `Buka Ensiklopedia ${province.name} Lengkap`;
     }
 
+    const bottomExploreBtn = document.getElementById("modal-bottom-explore-btn");
+    if (bottomExploreBtn && province.id) {
+      bottomExploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
+      const bottomBtnSpan = bottomExploreBtn.querySelector("span:not(.material-symbols-outlined)");
+      if (bottomBtnSpan) bottomBtnSpan.textContent = `Buka Seluruh Warisan ${province.name} di Halaman Provinsi`;
+    }
+
     const directLabBtn = document.getElementById("modal-btn-direct-lab");
     if (directLabBtn) {
       directLabBtn.href = `pages/creative-lab.html`;
     }
 
-    // Populate Heritage List
+    // Populate Heritage List (High contrast, clearly visible cards with ample contrast)
     if (heritageListEl && province.heritage) {
       heritageListEl.innerHTML = "";
       province.heritage.forEach((item, idx) => {
         const card = document.createElement("div");
-        card.className = "bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-brass-400/50 p-5 rounded-2xl transition-all duration-200 flex flex-col justify-between group shadow-sm hover:-translate-y-1";
+        card.className = "bg-[#18130F] hover:bg-[#221B15] border border-white/20 hover:border-brass-400/70 p-5 sm:p-6 rounded-2xl transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1";
         card.innerHTML = `
           <div>
             <div class="flex items-center justify-between mb-3">
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/15 text-terracotta-300 border border-terracotta-500/25">
+              <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brass-400/20 text-brass-300 border border-brass-400/35">
                 ${window.WARISARA_UTILS ? window.WARISARA_UTILS.escapeHtml(item.category) : item.category}
               </span>
-              <span class="text-[10px] text-surface/40 font-mono">#0${idx + 1}</span>
+              <span class="text-[10px] text-brass-400/80 font-mono font-semibold">#0${idx + 1}</span>
             </div>
-            <h4 class="font-display text-lg font-medium text-surface group-hover:text-brass-200 transition-colors leading-snug mb-2">${window.WARISARA_UTILS ? window.WARISARA_UTILS.escapeHtml(item.name) : item.name}</h4>
+            <h4 class="font-display text-lg sm:text-xl font-medium text-white group-hover:text-brass-200 transition-colors leading-snug mb-2">${window.WARISARA_UTILS ? window.WARISARA_UTILS.escapeHtml(item.name) : item.name}</h4>
           </div>
-          <p class="text-xs text-surface/75 leading-relaxed font-light mt-2 border-t border-white/[0.06] pt-2.5">${window.WARISARA_UTILS ? window.WARISARA_UTILS.escapeHtml(item.desc) : item.desc}</p>
+          <p class="text-xs sm:text-[13px] text-surface/90 leading-relaxed font-light mt-3 border-t border-white/10 pt-3">${window.WARISARA_UTILS ? window.WARISARA_UTILS.escapeHtml(item.desc) : item.desc}</p>
         `;
         heritageListEl.appendChild(card);
       });
