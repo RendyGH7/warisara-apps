@@ -14,8 +14,13 @@ window.WARISARA_PROVINCE_PANEL = {
   wariSpeech: null,
   isOpen: false,
   currentProvinceId: null,
+  currentProvince: null,
+  currentMaker: null,
+  currentHeroView: "landmark",
   currentFactIndex: 0,
   wariTimer: null,
+  btnToggleLandmark: null,
+  btnToggleMaker: null,
 
   // Regional & Province Greetings Dictionary
   greetings: {
@@ -127,6 +132,8 @@ window.WARISARA_PROVINCE_PANEL = {
     this.wariNextFactBtn = document.getElementById("modal-wari-next-fact-btn");
     this.wariSprite = document.getElementById("modal-wari-sprite");
     this.wariSpeech = document.getElementById("modal-wari-speech");
+    this.btnToggleLandmark = document.getElementById("modal-toggle-view-landmark");
+    this.btnToggleMaker = document.getElementById("modal-toggle-view-maker");
 
     if (this.closeBtn) {
       this.closeBtn.addEventListener("click", () => this.closePanel());
@@ -161,6 +168,14 @@ window.WARISARA_PROVINCE_PANEL = {
 
     if (this.wariNextFactBtn) {
       this.wariNextFactBtn.addEventListener("click", () => this.interactWithWari());
+    }
+
+    // Dual View Switcher (Landmark vs Pelestari)
+    if (this.btnToggleLandmark) {
+      this.btnToggleLandmark.addEventListener("click", () => this.switchHeroView("landmark"));
+    }
+    if (this.btnToggleMaker) {
+      this.btnToggleMaker.addEventListener("click", () => this.switchHeroView("maker"));
     }
 
     // Setup Tabs
@@ -206,6 +221,63 @@ window.WARISARA_PROVINCE_PANEL = {
         panel.classList.add("hidden");
       }
     });
+  },
+
+  switchHeroView: function (mode) {
+    this.currentHeroView = mode;
+    const btnLandmark = document.getElementById("modal-toggle-view-landmark");
+    const btnMaker = document.getElementById("modal-toggle-view-maker");
+    const illustrationImg = document.getElementById("modal-province-illustration");
+    const tagIcon = document.getElementById("modal-illustration-tag-icon");
+    const tagText = document.getElementById("modal-illustration-tag-text");
+    const categoryEl = document.getElementById("modal-illustration-category");
+    const captionEl = document.getElementById("modal-illustration-caption");
+    const subtextEl = document.getElementById("modal-illustration-subtext");
+
+    const province = this.currentProvince;
+    const maker = this.currentMaker;
+    if (!province) return;
+
+    if (mode === "maker") {
+      if (btnMaker) {
+        btnMaker.className = "px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold text-[10.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer";
+      }
+      if (btnLandmark) {
+        btnLandmark.className = "px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium text-[10.5px] transition-all flex items-center gap-1 cursor-pointer";
+      }
+      if (illustrationImg) {
+        illustrationImg.src = `assets/images/Pelestari/${province.id}.jpg`;
+        illustrationImg.alt = maker ? `Foto Maestro ${maker.name}` : `Foto Maestro Pelestari`;
+      }
+      if (tagIcon) tagIcon.textContent = "person";
+      if (tagText) tagText.textContent = "Sosok Penjaga Tradisi";
+      if (categoryEl) categoryEl.textContent = "Maestro Pelestari Kebudayaan";
+      if (captionEl) captionEl.textContent = maker ? maker.name : "Penjaga Tradisi Nusantara";
+      if (subtextEl) {
+        subtextEl.textContent = maker ? `${maker.role} • ${maker.experience || 'Pelestari Aktif'}` : `Mendedikasikan hidup menjaga tradisi leluhur di ${province.name}.`;
+      }
+    } else {
+      if (btnLandmark) {
+        btnLandmark.className = "px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold text-[10.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer";
+      }
+      if (btnMaker) {
+        btnMaker.className = "px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium text-[10.5px] transition-all flex items-center gap-1 cursor-pointer";
+      }
+      const illusUrl = this.getIllustrationForProvince(province);
+      if (illustrationImg) {
+        illustrationImg.src = illusUrl;
+        illustrationImg.alt = `Ilustrasi Pusaka ${province.name}`;
+      }
+      if (tagIcon) tagIcon.textContent = "landscape";
+      if (tagText) tagText.textContent = "Pusaka & Alam Nusantara";
+      if (categoryEl) categoryEl.textContent = "Mahakarya Ikonik Wilayah";
+      if (captionEl) {
+        captionEl.textContent = province.craftHighlight ? province.craftHighlight.split("motif")[0].trim() : `Pusaka Budaya ${province.name}`;
+      }
+      if (subtextEl) {
+        subtextEl.textContent = province.craftHighlight ? `Karya kriya otentik bernilai sakral dari ${province.name}.` : "Mahakarya luhur bangsa Indonesia yang dirawat lestari.";
+      }
+    }
   },
 
   interactWithWari: function () {
@@ -355,6 +427,17 @@ window.WARISARA_PROVINCE_PANEL = {
     this.currentProvinceId = province.id;
     this.currentFactIndex = 0;
 
+    // Lookup Maker from 38 MAKERS_DATA repository or province.maker
+    let maker = null;
+    if (window.MAKERS_DATA && Array.isArray(window.MAKERS_DATA)) {
+      maker = window.MAKERS_DATA.find((m) => m.provinceId === province.id);
+    }
+    if (!maker && province.maker) {
+      maker = province.maker;
+    }
+    this.currentProvince = province;
+    this.currentMaker = maker;
+
     // Elements
     const nameEl = document.getElementById("modal-province-name");
     const topBarProvName = document.getElementById("top-bar-prov-name");
@@ -370,15 +453,8 @@ window.WARISARA_PROVINCE_PANEL = {
     const wisdomFulltext = document.getElementById("modal-wisdom-fulltext");
     const craftHighlightEl = document.getElementById("modal-craft-highlight");
     const heritageListEl = document.getElementById("modal-heritage-list");
-    const makerCardEl = document.getElementById("modal-maker-card");
-    const makerNameEl = document.getElementById("modal-maker-name");
-    const makerRoleEl = document.getElementById("modal-maker-role");
-    const makerQuoteEl = document.getElementById("modal-maker-quote");
-    const illustrationImg = document.getElementById("modal-province-illustration");
-    const illustrationCaption = document.getElementById("modal-illustration-caption");
-    const illustrationSubtext = document.getElementById("modal-illustration-subtext");
 
-    // Populate data
+    // Populate Basic Province Data
     if (nameEl) nameEl.textContent = province.name;
     if (topBarProvName) topBarProvName.textContent = province.name;
     if (labProvName) labProvName.textContent = province.name;
@@ -404,18 +480,39 @@ window.WARISARA_PROVINCE_PANEL = {
 
     if (craftHighlightEl) craftHighlightEl.textContent = province.craftHighlight || "";
 
-    // Illustration (Clean, specific, and no text duplication with the left statement)
-    const illusUrl = this.getIllustrationForProvince(province);
-    if (illustrationImg) {
-      illustrationImg.src = illusUrl;
-      illustrationImg.alt = `Ilustrasi Pusaka ${province.name}`;
+    // SPOTLIGHT MAESTRO PELESTARI (Hero Left Column)
+    const spotlightAvatar = document.getElementById("modal-maker-avatar");
+    const spotlightExp = document.getElementById("modal-maker-experience");
+    const spotlightName = document.getElementById("modal-maker-spotlight-name");
+    const spotlightRole = document.getElementById("modal-maker-spotlight-role");
+    const spotlightQuote = document.getElementById("modal-maker-spotlight-quote");
+    const spotlightLink = document.getElementById("modal-maker-link");
+
+    if (spotlightAvatar) {
+      spotlightAvatar.src = `assets/images/Pelestari/${province.id}.jpg`;
+      spotlightAvatar.alt = maker ? `Foto ${maker.name}` : "Foto Pelestari";
     }
-    if (illustrationCaption) {
-      illustrationCaption.textContent = province.craftHighlight ? province.craftHighlight.split("motif")[0].trim() : `Pusaka Budaya ${province.name}`;
+    if (spotlightExp) {
+      spotlightExp.textContent = maker && maker.experience ? maker.experience : "Pelestari Generasi Aktif";
     }
-    if (illustrationSubtext) {
-      illustrationSubtext.textContent = province.craftHighlight ? `Karya kriya otentik bernilai sakral dari ${province.name}.` : "Mahakarya luhur bangsa Indonesia yang dirawat lestari.";
+    if (spotlightName) {
+      spotlightName.textContent = maker ? maker.name : (province.maker ? province.maker.name : "Penjaga Tradisi");
     }
+    if (spotlightRole) {
+      const locationText = maker && maker.location ? maker.location.split(",")[0].trim() : province.capital || province.name;
+      const roleText = maker ? `${maker.role} • ${locationText}` : (province.craftHighlight || "Kriya Nusantara");
+      spotlightRole.textContent = roleText;
+    }
+    if (spotlightQuote) {
+      const quoteText = maker && maker.quote ? maker.quote : (province.shortStatement || "Merawat pusaka leluhur dengan ketulusan jiwa.");
+      spotlightQuote.textContent = `"${quoteText}"`;
+    }
+    if (spotlightLink) {
+      spotlightLink.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}&view=pelestari`;
+    }
+
+    // Switch Right Showcase back to Landmark mode initially
+    this.switchHeroView("landmark");
 
     // Wari Greeting & Fun Fact
     const facts = this.getTriviaForProvince(province.id);
@@ -427,28 +524,50 @@ window.WARISARA_PROVINCE_PANEL = {
       this.wariSprite.classList.remove("modal-wari-bounce");
     }
 
-    // Maker
-    if (province.maker && (province.maker.name || province.maker.quote)) {
-      if (makerCardEl) makerCardEl.style.display = "";
-      if (makerNameEl) makerNameEl.textContent = province.maker.name || "";
-      if (makerRoleEl) makerRoleEl.textContent = province.maker.role || "";
-      if (makerQuoteEl) makerQuoteEl.textContent = `"${province.maker.quote || ""}"`;
-    } else if (makerCardEl) {
-      makerCardEl.style.display = "none";
+    // TAB 3: POPULATE FULL MAESTRO SHOWCASE
+    const tabMakerPhoto = document.getElementById("modal-tab-maker-photo");
+    const tabMakerExpText = document.getElementById("modal-tab-maker-exp-text");
+    const tabMakerName = document.getElementById("modal-maker-name");
+    const tabMakerRole = document.getElementById("modal-maker-role");
+    const tabMakerQuote = document.getElementById("modal-maker-quote");
+    const tabMakerStory = document.getElementById("modal-tab-maker-story");
+    const tabMakerProfileBtn = document.getElementById("modal-tab-maker-profile-btn");
+
+    if (tabMakerPhoto) {
+      tabMakerPhoto.src = `assets/images/Pelestari/${province.id}.jpg`;
+      tabMakerPhoto.alt = maker ? `Foto Maestro ${maker.name}` : "Foto Maestro Pelestari";
+    }
+    if (tabMakerExpText) {
+      tabMakerExpText.textContent = maker && maker.experience ? maker.experience : "Pelestari Generasi Aktif";
+    }
+    if (tabMakerName) {
+      tabMakerName.textContent = maker ? maker.name : (province.maker ? province.maker.name : "Sosok Penjaga Tradisi");
+    }
+    if (tabMakerRole) {
+      tabMakerRole.textContent = maker ? `${maker.role} • ${maker.location || province.name}` : (province.craftHighlight || "Maestro Kebudayaan");
+    }
+    if (tabMakerQuote) {
+      tabMakerQuote.textContent = maker && maker.quote ? `"${maker.quote}"` : `"${province.shortStatement || ''}"`;
+    }
+    if (tabMakerStory) {
+      tabMakerStory.textContent = maker && maker.story ? maker.story : (province.shortDescription || "Mendedikasikan hidup merawat pusaka luhur leluhur demi masa depan kebudayaan Nusantara.");
+    }
+    if (tabMakerProfileBtn) {
+      tabMakerProfileBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}&view=pelestari`;
     }
 
-    // Direct CTAs
+    // Direct CTAs: Terhubung Langsung ke Pages Jelajahi (38 Provinsi & Pelestari)
     if (this.exploreBtn && province.id) {
       this.exploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
       const btnSpan = this.exploreBtn.querySelector("span:not(.material-symbols-outlined)");
-      if (btnSpan) btnSpan.textContent = `Buka Ensiklopedia ${province.name} Lengkap`;
+      if (btnSpan) btnSpan.textContent = `Buka 38 Provinsi & Pelestari Lengkap`;
     }
 
     const bottomExploreBtn = document.getElementById("modal-bottom-explore-btn");
     if (bottomExploreBtn && province.id) {
       bottomExploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
       const bottomBtnSpan = bottomExploreBtn.querySelector("span:not(.material-symbols-outlined)");
-      if (bottomBtnSpan) bottomBtnSpan.textContent = `Buka Seluruh Warisan ${province.name} di Halaman Provinsi`;
+      if (bottomBtnSpan) bottomBtnSpan.textContent = `Buka Seluruh Warisan & Pelestari ${province.name} di Halaman Jelajahi`;
     }
 
     const directLabBtn = document.getElementById("modal-btn-direct-lab");

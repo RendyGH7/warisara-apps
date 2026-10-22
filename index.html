@@ -972,29 +972,56 @@
             </div>
           </div>
 
-          <!-- TAB 3: SUARA PENJAGA TRADISI -->
+          <!-- TAB 3: SUARA PENJAGA TRADISI (MAESTRO PELESTARI LENGKAP) -->
           <div id="tab-maker" class="province-tab-content hidden space-y-6">
             <div id="modal-maker-card"
-              class="rounded-3xl bg-gradient-to-br from-forest-950/30 via-white/[0.02] to-transparent border border-forest-500/30 p-6 sm:p-8 relative overflow-hidden">
-              <div class="flex items-center gap-2 mb-3 text-forest-400 text-xs font-semibold uppercase tracking-wider">
-                <span class="material-symbols-outlined text-base">record_voice_over</span>
-                <span>Kesaksian Sang Empu / Maestro Pengrajin</span>
-              </div>
-
-              <blockquote id="modal-maker-quote"
-                class="font-display italic text-lg sm:text-2xl text-surface/95 mb-6 leading-relaxed border-l-2 border-forest-400 pl-4 py-1">
-                "Kutipan inspiratif dari pengrajin atau narasumber adat."
-              </blockquote>
-
-              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-4">
-                <div>
-                  <div id="modal-maker-name" class="font-display text-base font-semibold text-brass-300">Nama Pengrajin</div>
-                  <div id="modal-maker-role" class="text-xs text-surface/60">Profesi / Keahlian Tradisional</div>
+              class="rounded-3xl bg-gradient-to-br from-[#1F1812] via-[#16120E] to-[#100D0A] border border-brass-400/40 p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                <!-- Foto Maestro & Pengalaman -->
+                <div class="md:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
+                  <div class="relative">
+                    <img id="modal-tab-maker-photo"
+                      src="assets/images/Pelestari/kalimantan-timur.jpg"
+                      alt="Foto Maestro Pelestari"
+                      class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover object-center ring-2 ring-brass-400/60 shadow-2xl" />
+                    <span class="absolute -bottom-2 right-2 px-2.5 py-0.5 rounded-full bg-emerald-500 text-stone-950 font-bold text-[10px] uppercase tracking-wider shadow">
+                      Aktif Melestarikan
+                    </span>
+                  </div>
+                  <div>
+                    <span id="modal-tab-maker-exp-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-400/15 border border-brass-400/35 text-brass-300 text-[11px] font-mono font-semibold">
+                      <span class="material-symbols-outlined text-xs text-brass-400">verified</span>
+                      <span id="modal-tab-maker-exp-text">36 Tahun Menenun</span>
+                    </span>
+                  </div>
                 </div>
 
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-forest-400 animate-pulse"></span>
-                  <span class="text-xs text-forest-300 font-mono">Pelestari Generasi Aktif</span>
+                <!-- Detail Maestro & Petuah Luhur -->
+                <div class="md:col-span-8 space-y-4">
+                  <div class="flex items-center justify-between gap-3 flex-wrap">
+                    <div>
+                      <div class="text-[10px] uppercase font-bold tracking-widest text-brass-400 mb-1">Empu & Maestro Kebudayaan</div>
+                      <h3 id="modal-maker-name" class="font-display text-2xl sm:text-3xl font-medium text-white">Nama Pengrajin</h3>
+                      <p id="modal-maker-role" class="text-xs sm:text-sm text-brass-300/90 font-light">Profesi / Keahlian Tradisional</p>
+                    </div>
+                  </div>
+
+                  <blockquote id="modal-maker-quote"
+                    class="font-display italic text-base sm:text-lg text-surface/95 leading-relaxed border-l-2 border-brass-400/70 pl-4 py-1">
+                    "Kutipan inspiratif dari pengrajin atau narasumber adat."
+                  </blockquote>
+
+                  <p id="modal-tab-maker-story" class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed">
+                    Mendedikasikan hidupnya untuk merawat teknik kerajinan tradisional dan membina generasi muda agar warisan leluhur tetap abadi.
+                  </p>
+
+                  <div class="pt-2 flex flex-wrap items-center gap-3">
+                    <a id="modal-tab-maker-profile-btn" href="pages/jelajahi.html"
+                      class="px-5 py-2.5 rounded-full bg-brass-400 text-stone-950 font-bold text-xs uppercase tracking-wider hover:bg-brass-300 transition-all flex items-center gap-2 shadow-md">
+                      <span>Buka Profil Lengkap di 38 Pelestari</span>
+                      <span class="material-symbols-outlined text-sm">north_east</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
