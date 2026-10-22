@@ -230,14 +230,15 @@ body.mobile-nav-open {
     max-height: none !important;
     aspect-ratio: 982 / 390 !important;
     overflow: visible !important;
-    transform: scale(1.06) !important;
+    transform: scale(1.15) !important;
     transform-origin: center center !important;
+    margin: 0.5rem 0 !important;
   }
 
   .map-marker {
-    r: 6px !important;
-    stroke-width: 1.5px !important;
-    filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.95)) !important;
+    r: 6.5px !important;
+    stroke-width: 1.6px !important;
+    filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.95)) !important;
   }
 
   /* Section Headings & Category Badges */
