@@ -642,11 +642,11 @@
       <!-- 2. MAIN IMMERSIVE CONTENT CONTAINER -->
       <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8 w-full flex-1 space-y-8">
 
-        <!-- HERO SPLIT SECTION: Left Typography & Stats, Right Authentic Cultural Illustration -->
+        <!-- HERO SPLIT SECTION: Left Typography, Pelestari Spotlight & Stats, Right Authentic Cultural Dual View -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           <!-- Left Info Column (7 Cols on desktop) -->
-          <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
             
             <div class="space-y-4">
               <!-- Clean Cultural Badges Row -->
@@ -670,20 +670,66 @@
                 Kalimantan Timur
               </h1>
 
-              <!-- Clean Cultural Statement Card (Bebas dari duplikasi teks, elegan & adiluhung) -->
-              <div class="rounded-2xl bg-gradient-to-br from-brass-500/[0.08] via-white/[0.02] to-transparent border border-brass-500/25 p-4 sm:p-5 relative overflow-hidden shadow-lg space-y-2.5">
+              <!-- Clean 1-Line Cultural Soul Quote (Bebas dari teks panjang yang melelahkan) -->
+              <div class="border-l-2 border-brass-400/80 pl-3.5 py-1">
                 <blockquote id="modal-province-statement"
                   class="font-display italic text-base sm:text-lg text-brass-200 font-light leading-relaxed">
                   "Pusat prasasti tertua, peradaban IKN, dan surga Derawan."
                 </blockquote>
-                <p id="modal-province-desc"
-                  class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed border-t border-white/[0.08] pt-2.5">
-                  Bumi Etam yang melestarikan serat daun liar Doyo menjadi kain tenun purba dan kepiawaian meronce manik-manik Ulap Doyo.
+                <p id="modal-province-desc" class="hidden"></p>
+              </div>
+
+              <!-- SPOTLIGHT MAESTRO PELESTARI (Menampilkan Sosok Nyata Penjaga Tradisi — Selaras 38 Provinsi & Pelestari) -->
+              <div id="modal-maker-spotlight"
+                class="rounded-2xl bg-gradient-to-r from-[#241B13] via-[#1A1410] to-[#120E0B] border border-brass-400/40 hover:border-brass-400/70 p-4 sm:p-4.5 shadow-xl transition-all duration-300 group">
+                <div class="flex items-center gap-3.5 sm:gap-4">
+                  <!-- Avatar Pelestari Otentik -->
+                  <div class="relative flex-shrink-0">
+                    <img id="modal-maker-avatar"
+                      src="assets/images/Pelestari/kalimantan-timur.jpg"
+                      alt="Foto Maestro Pelestari"
+                      class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover object-center ring-2 ring-brass-400/60 shadow-lg group-hover:scale-105 transition-transform duration-300" />
+                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-[#1A1410] flex items-center justify-center text-[9px] text-white" title="Pelestari Aktif">✓</span>
+                  </div>
+
+                  <!-- Info Pelestari -->
+                  <div class="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
+                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                      <div class="flex items-center gap-1.5">
+                        <span class="px-2 py-0.5 rounded-full bg-brass-400/20 text-brass-300 border border-brass-400/35 text-[9.5px] font-bold uppercase tracking-wider">
+                          Sosok Pelestari
+                        </span>
+                        <span id="modal-maker-experience" class="text-[10px] sm:text-[11px] text-surface/60 font-mono">
+                          36 Tahun Menganyam
+                        </span>
+                      </div>
+
+                      <a id="modal-maker-link" href="pages/jelajahi.html"
+                        class="text-[11px] text-brass-300/90 hover:text-white font-medium flex items-center gap-0.5 transition-colors group-hover:translate-x-0.5">
+                        <span>Profil</span>
+                        <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                      </a>
+                    </div>
+
+                    <h3 id="modal-maker-spotlight-name" class="font-display text-base sm:text-lg font-semibold text-white tracking-tight truncate">
+                      Mama Lilis Anyaman
+                    </h3>
+
+                    <p id="modal-maker-spotlight-role" class="text-xs text-brass-300/90 font-light truncate">
+                      Pengrajin Anyaman Rotan Alami • Palangka Raya
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Petuah Singkat Pelestari -->
+                <p id="modal-maker-spotlight-quote"
+                  class="mt-2.5 pt-2.5 border-t border-white/10 text-xs text-surface/85 italic font-light leading-relaxed line-clamp-2">
+                  "Rotan dari belantara hutan adalah urat nadi kehidupan kami yang kami anyam menjadi doa perlindungan keluarga."
                 </p>
               </div>
 
-              <!-- Sleek 3-Pillar Meta Strip (Ringkas, informatif, dan tidak mengulang data) -->
-              <div class="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 px-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs">
+              <!-- Sleek 3-Pillar Meta Strip (Ringkas, informatif, dan mudah dipindai tanpa teks berlebihan) -->
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-2 py-2.5 px-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-brass-400 text-sm">location_city</span>
                   <span class="text-surface/50 text-[11px]">Ibu Kota:</span>
@@ -705,12 +751,12 @@
 
             </div>
 
-            <!-- Primary Action Gateway: Penghubung Langsung ke Pages Provinsi -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <!-- Primary Action Gateway: Penghubung Langsung ke Pages 38 Provinsi & Pelestari -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <a id="modal-btn-explore-heritage" href="pages/jelajahi.html"
                 class="flex-1 px-6 py-3.5 rounded-full text-stone-950 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2.5 shadow-lg cursor-pointer">
-                <span class="material-symbols-outlined text-base font-bold">menu_book</span>
-                <span>Buka Ensiklopedia Provinsi Lengkap</span>
+                <span class="material-symbols-outlined text-base font-bold">explore</span>
+                <span>Buka 38 Provinsi & Pelestari Lengkap</span>
                 <span class="material-symbols-outlined text-base">north_east</span>
               </a>
 
@@ -723,34 +769,55 @@
 
           </div>
 
-          <!-- Right Column: Thematic Cultural Illustration (5 Cols on desktop) -->
+          <!-- Right Column: Thematic Cultural Showcase with Dual View (5 Cols on desktop) -->
           <div class="lg:col-span-5 flex flex-col">
-            <div class="relative w-full h-full min-h-[300px] sm:min-h-[400px] rounded-3xl overflow-hidden border border-brass-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group flex flex-col justify-end p-6 bg-[#16120E]">
+            <div id="modal-illustration-card"
+              class="relative w-full h-full min-h-[340px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-brass-500/35 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group flex flex-col justify-between p-5 sm:p-6 bg-[#16120E]">
               
               <!-- Illustration Image -->
               <img id="modal-province-illustration"
                 src="assets/images/provinces/kalimantan-timur-cover.jpg"
                 alt="Ilustrasi Budaya Provinsi"
-                class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+                class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-out" />
               
               <!-- Subtle dark gradient vignette -->
               <div class="absolute inset-0 bg-gradient-to-t from-[#0C0907] via-black/40 to-black/20 pointer-events-none"></div>
 
-              <!-- Top Image Badge -->
-              <div class="relative z-10 self-start mb-auto">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-wider text-brass-300 shadow-md">
-                  <span class="material-symbols-outlined text-xs text-brass-400">auto_awesome</span>
-                  <span>Pusaka Budaya Nusantara</span>
+              <!-- Top Image Header: Dynamic Tag & Dual View Switcher (Selaras dengan Halaman Jelajahi) -->
+              <div class="relative z-10 flex items-center justify-between gap-2 w-full">
+                <!-- Left: Dynamic Badge -->
+                <span id="modal-illustration-tag"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-wider text-brass-300 shadow-md">
+                  <span id="modal-illustration-tag-icon" class="material-symbols-outlined text-xs text-brass-400">landscape</span>
+                  <span id="modal-illustration-tag-text">Pusaka & Alam Nusantara</span>
                 </span>
+
+                <!-- Right: Dual Switcher (Landmark vs Pelestari) -->
+                <div class="inline-flex items-center p-0.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-md">
+                  <button type="button" id="modal-toggle-view-landmark"
+                    class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold text-[10.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer"
+                    title="Lihat Pusaka & Alam Daerah">
+                    <span class="material-symbols-outlined text-[13px]">landscape</span>
+                    <span>Pusaka</span>
+                  </button>
+                  <button type="button" id="modal-toggle-view-maker"
+                    class="px-2.5 py-1 rounded-full text-surface/80 hover:text-white font-medium text-[10.5px] transition-all flex items-center gap-1 cursor-pointer"
+                    title="Lihat Sosok Maestro Pelestari">
+                    <span class="material-symbols-outlined text-[13px] text-brass-400">person</span>
+                    <span>Pelestari</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Bottom Content Overlay (Bersih, relevan, tidak mengulang kutipan) -->
-              <div class="relative z-10 space-y-1.5 mt-auto pt-6">
-                <div class="text-[10px] uppercase font-bold tracking-widest text-brass-400">Mahakarya Ikonik Wilayah</div>
+              <!-- Bottom Content Overlay -->
+              <div class="relative z-10 space-y-1.5 mt-auto pt-8">
+                <div id="modal-illustration-category" class="text-[10px] uppercase font-bold tracking-widest text-brass-400">
+                  Mahakarya Ikonik Wilayah
+                </div>
                 <h3 id="modal-illustration-caption" class="font-display text-lg sm:text-xl font-medium text-white leading-tight drop-shadow">
                   Kain Ulap Doyo
                 </h3>
-                <p id="modal-illustration-subtext" class="text-xs text-surface/80 font-light leading-relaxed drop-shadow line-clamp-2">
+                <p id="modal-illustration-subtext" class="text-xs text-surface/85 font-light leading-relaxed drop-shadow line-clamp-2">
                   Karya kerajinan otentik bernilai sakral warisan leluhur.
                 </p>
               </div>
