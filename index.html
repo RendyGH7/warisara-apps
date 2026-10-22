@@ -295,14 +295,6 @@
         <span class="hero-tagline-phrase" data-tagline="3">Budaya · Seni · Kearifan Lokal</span>
         <span class="hero-tagline-phrase" data-tagline="4">Warisan Leluhur untuk Generasi Mendatang</span>
       </div>
-
-      <div class="mt-1 max-w-sm mx-auto sm:hidden">
-        <label for="mobile-province-select" class="sr-only">Pilih Wilayah Provinsi</label>
-        <select id="mobile-province-select"
-          class="w-full px-4 py-2 rounded-xl glass-select text-surface text-xs focus:outline-none">
-          <option value="" disabled selected>Pilih Provinsi (38 Wilayah)...</option>
-        </select>
-      </div>
     </div>
 
     <div id="hero-map-wrapper"
@@ -1156,121 +1148,121 @@
             </div>
           </div>
 
-          <!-- 4 Curated Province Representative Cards (1 per major zone) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <!-- 4 Curated Province Representative Cards (2 per row on mobile, 4 on desktop) -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mb-10">
             
             <!-- Aceh (Sumatera) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <div class="relative h-44 overflow-hidden">
+              <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/aceh-cover.jpg" alt="Aceh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/30 to-transparent"></div>
-                <div class="absolute top-3 left-3">
-                  <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Sumatera</span>
+                <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
+                  <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Sumatera</span>
                 </div>
-                <div class="absolute bottom-2.5 left-3 right-3 flex items-baseline justify-between">
-                  <h3 class="font-display text-xl font-normal text-surface drop-shadow">Aceh</h3>
-                  <span class="text-[11px] text-surface/80 font-mono">Banda Aceh</span>
+                <div class="absolute bottom-1.5 left-2 right-2 sm:bottom-2.5 sm:left-3 sm:right-3 flex items-baseline justify-between">
+                  <h3 class="font-display text-sm sm:text-xl font-normal text-surface drop-shadow">Aceh</h3>
+                  <span class="text-[9px] sm:text-[11px] text-surface/80 font-mono">Banda Aceh</span>
                 </div>
               </div>
-              <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                <p class="text-xs text-surface/75 font-light leading-relaxed italic">
+              <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed italic line-clamp-2">
                   "Serambi Mekkah dengan pusaka Rencong Meucugek, seni Tari Saman, dan keteguhan marwah."
                 </p>
-                <div class="space-y-1.5 pt-2 border-t border-white/10 text-[11px] text-surface/65 font-light">
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span>Krong Bade</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Pusaka:</span> <span>Rencong Meucugek</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span>Saman Gayo</span></div>
+                <div class="space-y-1 sm:space-y-1.5 pt-1.5 sm:pt-2 border-t border-white/10 text-[9px] sm:text-[11px] text-surface/65 font-light">
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span class="truncate ml-1">Krong Bade</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Pusaka:</span> <span class="truncate ml-1">Rencong</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span class="truncate ml-1">Saman</span></div>
                 </div>
-                <a href="pages/jelajahi.html" class="pt-2 text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
-                  <span>Pelajari Detail Provinsi</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <a href="pages/jelajahi.html" class="pt-1 sm:pt-2 text-[10px] sm:text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
+                  <span>Pelajari Detail</span>
+                  <span class="material-symbols-outlined text-xs sm:text-sm">arrow_forward</span>
                 </a>
               </div>
             </div>
 
             <!-- DI Yogyakarta (Jawa) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <div class="relative h-44 overflow-hidden">
+              <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/di-yogyakarta-cover.jpg" alt="DI Yogyakarta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/30 to-transparent"></div>
-                <div class="absolute top-3 left-3">
-                  <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Jawa</span>
+                <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
+                  <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Jawa</span>
                 </div>
-                <div class="absolute bottom-2.5 left-3 right-3 flex items-baseline justify-between">
-                  <h3 class="font-display text-xl font-normal text-surface drop-shadow">DI Yogyakarta</h3>
-                  <span class="text-[11px] text-surface/80 font-mono">Yogyakarta</span>
+                <div class="absolute bottom-1.5 left-2 right-2 sm:bottom-2.5 sm:left-3 sm:right-3 flex items-baseline justify-between">
+                  <h3 class="font-display text-sm sm:text-xl font-normal text-surface drop-shadow">DI Yogyakarta</h3>
+                  <span class="text-[9px] sm:text-[11px] text-surface/80 font-mono">Jogja</span>
                 </div>
               </div>
-              <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                <p class="text-xs text-surface/75 font-light leading-relaxed italic">
-                  "Pusat peradaban Mataram Islam, batik tulis keraton, tosan aji, dan filosofi Hamemayu Hayuning Bawana."
+              <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed italic line-clamp-2">
+                  "Pusat peradaban Mataram Islam, batik tulis keraton, tosan aji, dan filosofi luhur."
                 </p>
-                <div class="space-y-1.5 pt-2 border-t border-white/10 text-[11px] text-surface/65 font-light">
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span>Bangsal Kencono</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Pusaka:</span> <span>Keris Mataram</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span>Bedhaya Ketawang</span></div>
+                <div class="space-y-1 sm:space-y-1.5 pt-1.5 sm:pt-2 border-t border-white/10 text-[9px] sm:text-[11px] text-surface/65 font-light">
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span class="truncate ml-1">Bangsal Kencono</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Pusaka:</span> <span class="truncate ml-1">Keris Mataram</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span class="truncate ml-1">Bedhaya</span></div>
                 </div>
-                <a href="pages/jelajahi.html" class="pt-2 text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
-                  <span>Pelajari Detail Provinsi</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <a href="pages/jelajahi.html" class="pt-1 sm:pt-2 text-[10px] sm:text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
+                  <span>Pelajari Detail</span>
+                  <span class="material-symbols-outlined text-xs sm:text-sm">arrow_forward</span>
                 </a>
               </div>
             </div>
 
             <!-- Bali (Bali & Nusa Tenggara) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <div class="relative h-44 overflow-hidden">
+              <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/bali-cover.jpg" alt="Bali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/30 to-transparent"></div>
-                <div class="absolute top-3 left-3">
-                  <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Bali & NT</span>
+                <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
+                  <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Bali & NT</span>
                 </div>
-                <div class="absolute bottom-2.5 left-3 right-3 flex items-baseline justify-between">
-                  <h3 class="font-display text-xl font-normal text-surface drop-shadow">Bali</h3>
-                  <span class="text-[11px] text-surface/80 font-mono">Denpasar</span>
+                <div class="absolute bottom-1.5 left-2 right-2 sm:bottom-2.5 sm:left-3 sm:right-3 flex items-baseline justify-between">
+                  <h3 class="font-display text-sm sm:text-xl font-normal text-surface drop-shadow">Bali</h3>
+                  <span class="text-[9px] sm:text-[11px] text-surface/80 font-mono">Denpasar</span>
                 </div>
               </div>
-              <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                <p class="text-xs text-surface/75 font-light leading-relaxed italic">
-                  "Pulau Dewata berlandaskan keselarasan Tri Hita Karana, tenun sakral Endek, dan seni ukir adiluhung."
+              <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed italic line-clamp-2">
+                  "Pulau Dewata berlandaskan keselarasan Tri Hita Karana, tenun sakral Endek, dan seni ukir."
                 </p>
-                <div class="space-y-1.5 pt-2 border-t border-white/10 text-[11px] text-surface/65 font-light">
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span>Gapura Candi Bentar</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Wastra:</span> <span>Tenun Endek & Gringsing</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span>Kecak & Legong</span></div>
+                <div class="space-y-1 sm:space-y-1.5 pt-1.5 sm:pt-2 border-t border-white/10 text-[9px] sm:text-[11px] text-surface/65 font-light">
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span class="truncate ml-1">Candi Bentar</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Wastra:</span> <span class="truncate ml-1">Endek & Gringsing</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span class="truncate ml-1">Kecak & Legong</span></div>
                 </div>
-                <a href="pages/jelajahi.html" class="pt-2 text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
-                  <span>Pelajari Detail Provinsi</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <a href="pages/jelajahi.html" class="pt-1 sm:pt-2 text-[10px] sm:text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
+                  <span>Pelajari Detail</span>
+                  <span class="material-symbols-outlined text-xs sm:text-sm">arrow_forward</span>
                 </a>
               </div>
             </div>
 
             <!-- Papua (Maluku & Papua) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <div class="relative h-44 overflow-hidden">
+              <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/papua-cover.jpg" alt="Papua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/30 to-transparent"></div>
-                <div class="absolute top-3 left-3">
-                  <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Maluku & Papua</span>
+                <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
+                  <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-brass-500/80 backdrop-blur-md text-ink">Maluku & Papua</span>
                 </div>
-                <div class="absolute bottom-2.5 left-3 right-3 flex items-baseline justify-between">
-                  <h3 class="font-display text-xl font-normal text-surface drop-shadow">Papua</h3>
-                  <span class="text-[11px] text-surface/80 font-mono">Jayapura</span>
+                <div class="absolute bottom-1.5 left-2 right-2 sm:bottom-2.5 sm:left-3 sm:right-3 flex items-baseline justify-between">
+                  <h3 class="font-display text-sm sm:text-xl font-normal text-surface drop-shadow">Papua</h3>
+                  <span class="text-[9px] sm:text-[11px] text-surface/80 font-mono">Jayapura</span>
                 </div>
               </div>
-              <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                <p class="text-xs text-surface/75 font-light leading-relaxed italic">
-                  "Bumi Cendrawasih kaya kearifan rimba, arsitektur Honai, anyaman Noken UNESCO, dan ritme Tifa nan magis."
+              <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed italic line-clamp-2">
+                  "Bumi Cendrawasih kaya kearifan rimba, arsitektur Honai, anyaman Noken UNESCO, dan ritme Tifa."
                 </p>
-                <div class="space-y-1.5 pt-2 border-t border-white/10 text-[11px] text-surface/65 font-light">
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span>Honai Adat</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Kriya:</span> <span>Noken Serat Anggrek</span></div>
-                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span>Tari Sajojo & Yospan</span></div>
+                <div class="space-y-1 sm:space-y-1.5 pt-1.5 sm:pt-2 border-t border-white/10 text-[9px] sm:text-[11px] text-surface/65 font-light">
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Rumah:</span> <span class="truncate ml-1">Honai Adat</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Kriya:</span> <span class="truncate ml-1">Noken Anggrek</span></div>
+                  <div class="flex items-center justify-between"><span class="text-brass-300 font-medium">Tari:</span> <span class="truncate ml-1">Sajojo & Yospan</span></div>
                 </div>
-                <a href="pages/jelajahi.html" class="pt-2 text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
-                  <span>Pelajari Detail Provinsi</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <a href="pages/jelajahi.html" class="pt-1 sm:pt-2 text-[10px] sm:text-xs text-brass-400 hover:text-brass-300 font-semibold flex items-center justify-between group-hover:translate-x-0.5 transition-transform">
+                  <span>Pelajari Detail</span>
+                  <span class="material-symbols-outlined text-xs sm:text-sm">arrow_forward</span>
                 </a>
               </div>
             </div>
@@ -1462,8 +1454,8 @@
           </div>
         </div>
 
-        <!-- Shared Bottom Stats Bar & Dynamic Direct CTA -->
-        <div class="bg-gradient-to-r from-brass-600/15 via-terracotta-600/10 to-transparent border border-brass-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Shared Bottom Stats Bar & Dynamic Direct CTA (Borderless Organic Flow) -->
+        <div class="border-t border-brass-500/20 pt-8 pb-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div id="home-stats-counter-bar" class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center md:text-left w-full md:w-auto">
             <div>
               <div class="home-stat-counter font-display text-2xl sm:text-3xl font-bold text-brass-300" data-target="38" data-suffix="">0</div>
@@ -1503,42 +1495,42 @@
           </h2>
         </div>
 
-        <!-- 4 Real Product Cards with Photo, Rating, and Quick Actions -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <!-- 4 Real Product Cards with Photo, Rating, and Quick Actions (2 per row on mobile) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mb-10">
           
           <!-- Syal Tenun Sumba -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1">
-            <div class="relative h-48 overflow-hidden bg-black/40">
+            <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/syal-tenun-sumba.jpg" alt="Syal Tenun Sabana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute top-2.5 left-2.5">
-                <span class="px-2.5 py-0.5 rounded text-[9px] font-bold uppercase bg-forest-600/90 backdrop-blur-md text-white border border-forest-400/40">Eco & Slow Fashion</span>
+              <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
+                <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[9px] font-bold uppercase bg-forest-600/90 backdrop-blur-md text-white border border-forest-400/40">Eco Fashion</span>
               </div>
-              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] text-amber-300 font-mono flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px] text-amber-400">star</span>
-                <span>4.9 (38)</span>
+              <div class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] sm:text-[10px] text-amber-300 font-mono flex items-center gap-0.5 sm:gap-1">
+                <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-amber-400">star</span>
+                <span>4.9</span>
               </div>
             </div>
-            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
               <div>
-                <h4 class="font-display text-base font-semibold text-surface group-hover:text-brass-300 transition-colors mb-0.5">Syal Tenun Sabana Alami</h4>
-                <p class="text-[11px] text-surface/60 mb-2">Sumba Timur, NTT • Mama Rambu</p>
-                <p class="text-xs text-surface/75 font-light leading-relaxed line-clamp-2">Ditenun tangan 40 hari dengan 4 kali proses celup alami akar mengkudu liar.</p>
+                <h4 class="font-display text-xs sm:text-base font-semibold text-surface group-hover:text-brass-300 transition-colors mb-0.5 truncate">Syal Tenun Sabana</h4>
+                <p class="text-[9px] sm:text-[11px] text-surface/60 mb-1 sm:mb-2 truncate">Sumba Timur • Mama Rambu</p>
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed line-clamp-2">Ditenun tangan 40 hari dengan 4 kali proses celup alami akar mengkudu liar.</p>
               </div>
-              <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="pt-2 sm:pt-3 border-t border-white/10 space-y-1.5 sm:space-y-2.5">
                 <div class="flex items-baseline justify-between">
-                  <span class="text-xs font-mono font-bold text-brass-300">Rp 850.000</span>
-                  <span class="text-[10px] text-forest-300">100% Pengrajin</span>
+                  <span class="text-[11px] sm:text-xs font-mono font-bold text-brass-300">Rp 850.000</span>
+                  <span class="text-[8px] sm:text-[10px] text-forest-300 truncate ml-1">Pengrajin</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <button class="home-chat-maker-btn flex-1 py-1.5 px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <button class="home-chat-maker-btn flex-1 py-1 px-1.5 sm:py-1.5 sm:px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[9px] sm:text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
                     data-product-id="syal-tenun-sumba"
                     data-seller="dewi.tenun@gmail.com"
                     data-product-name="Syal Tenun Sabana Pewarna Alami">
-                    <span class="material-symbols-outlined text-xs text-brass-400">chat</span>
-                    <span>Tanya Pengrajin</span>
+                    <span class="material-symbols-outlined text-[10px] sm:text-xs text-brass-400">chat</span>
+                    <span class="truncate">Tanya</span>
                   </button>
-                  <a href="pages/ekonomi-kreatif.html" class="p-1.5 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink transition-colors" title="Lihat di Pasar">
-                    <span class="material-symbols-outlined text-sm">north_east</span>
+                  <a href="pages/ekonomi-kreatif.html" class="p-1 sm:p-1.5 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink transition-colors flex-shrink-0" title="Lihat di Pasar">
+                    <span class="material-symbols-outlined text-xs sm:text-sm">north_east</span>
                   </a>
                 </div>
               </div>
@@ -1547,37 +1539,37 @@
 
           <!-- Vas Kendi Maling -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-terracotta-400/60 transition-all duration-300 hover:-translate-y-1">
-            <div class="relative h-48 overflow-hidden bg-black/40">
+            <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/vas-banyumulek.jpg" alt="Vas Terracotta Kendi Maling" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute top-2.5 left-2.5">
-                <span class="px-2.5 py-0.5 rounded text-[9px] font-bold uppercase bg-terracotta-600/90 backdrop-blur-md text-white border border-terracotta-400/40">Kriya Tanah Liat</span>
+              <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
+                <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[9px] font-bold uppercase bg-terracotta-600/90 backdrop-blur-md text-white border border-terracotta-400/40">Tanah Liat</span>
               </div>
-              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] text-amber-300 font-mono flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px] text-amber-400">star</span>
-                <span>4.8 (24)</span>
+              <div class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] sm:text-[10px] text-amber-300 font-mono flex items-center gap-0.5 sm:gap-1">
+                <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-amber-400">star</span>
+                <span>4.8</span>
               </div>
             </div>
-            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
               <div>
-                <h4 class="font-display text-base font-semibold text-surface group-hover:text-terracotta-300 transition-colors mb-0.5">Vas Kendi Maling Gerabah</h4>
-                <p class="text-[11px] text-surface/60 mb-2">Lombok Barat, NTB • Inaq Nuraini</p>
-                <p class="text-xs text-surface/75 font-light leading-relaxed line-clamp-2">Diisi air dari bawah tanpa tumpah, simbol kejujuran batin lebih utama dari rupa.</p>
+                <h4 class="font-display text-xs sm:text-base font-semibold text-surface group-hover:text-terracotta-300 transition-colors mb-0.5 truncate">Vas Kendi Maling</h4>
+                <p class="text-[9px] sm:text-[11px] text-surface/60 mb-1 sm:mb-2 truncate">Lombok • Inaq Nuraini</p>
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed line-clamp-2">Diisi air dari bawah tanpa tumpah, simbol kejujuran batin lebih utama dari rupa.</p>
               </div>
-              <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="pt-2 sm:pt-3 border-t border-white/10 space-y-1.5 sm:space-y-2.5">
                 <div class="flex items-baseline justify-between">
-                  <span class="text-xs font-mono font-bold text-terracotta-300">Rp 320.000</span>
-                  <span class="text-[10px] text-terracotta-300">Gerabah Putar</span>
+                  <span class="text-[11px] sm:text-xs font-mono font-bold text-terracotta-300">Rp 320.000</span>
+                  <span class="text-[8px] sm:text-[10px] text-terracotta-300 truncate ml-1">Gerabah</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <button class="home-chat-maker-btn flex-1 py-1.5 px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <button class="home-chat-maker-btn flex-1 py-1 px-1.5 sm:py-1.5 sm:px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[9px] sm:text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
                     data-product-id="vas-banyumulek"
                     data-seller="nuraini.gerabah@gmail.com"
                     data-product-name="Vas Terracotta Kendi Maling Banyumulek">
-                    <span class="material-symbols-outlined text-xs text-terracotta-400">chat</span>
-                    <span>Tanya Pengrajin</span>
+                    <span class="material-symbols-outlined text-[10px] sm:text-xs text-terracotta-400">chat</span>
+                    <span class="truncate">Tanya</span>
                   </button>
-                  <a href="pages/ekonomi-kreatif.html" class="p-1.5 rounded-lg bg-terracotta-500 hover:bg-terracotta-400 text-white transition-colors" title="Lihat di Pasar">
-                    <span class="material-symbols-outlined text-sm">north_east</span>
+                  <a href="pages/ekonomi-kreatif.html" class="p-1 sm:p-1.5 rounded-lg bg-terracotta-500 hover:bg-terracotta-400 text-white transition-colors flex-shrink-0" title="Lihat di Pasar">
+                    <span class="material-symbols-outlined text-xs sm:text-sm">north_east</span>
                   </a>
                 </div>
               </div>
@@ -1586,37 +1578,37 @@
 
           <!-- Batik Tulis Jogja Parang -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1">
-            <div class="relative h-48 overflow-hidden bg-black/40">
+            <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/batik-tulis-jogja-parang.jpg" alt="Batik Tulis Parang Barong" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute top-2.5 left-2.5">
-                <span class="px-2.5 py-0.5 rounded text-[9px] font-bold uppercase bg-brass-600/90 backdrop-blur-md text-ink border border-brass-400/40">Wastra Klasik</span>
+              <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
+                <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[9px] font-bold uppercase bg-brass-600/90 backdrop-blur-md text-ink border border-brass-400/40">Wastra</span>
               </div>
-              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] text-amber-300 font-mono flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px] text-amber-400">star</span>
-                <span>5.0 (42)</span>
+              <div class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] sm:text-[10px] text-amber-300 font-mono flex items-center gap-0.5 sm:gap-1">
+                <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-amber-400">star</span>
+                <span>5.0</span>
               </div>
             </div>
-            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
               <div>
-                <h4 class="font-display text-base font-semibold text-surface group-hover:text-brass-300 transition-colors mb-0.5">Batik Tulis Parang Barong</h4>
-                <p class="text-[11px] text-surface/60 mb-2">DI Yogyakarta • Sekar Mataram</p>
-                <p class="text-xs text-surface/75 font-light leading-relaxed line-clamp-2">Sutra alam canting tembaga halus dengan 3 bulan perendaman soga alami keraton.</p>
+                <h4 class="font-display text-xs sm:text-base font-semibold text-surface group-hover:text-brass-300 transition-colors mb-0.5 truncate">Batik Parang Barong</h4>
+                <p class="text-[9px] sm:text-[11px] text-surface/60 mb-1 sm:mb-2 truncate">Jogja • Sekar Mataram</p>
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed line-clamp-2">Sutra alam canting tembaga halus dengan 3 bulan perendaman soga alami keraton.</p>
               </div>
-              <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="pt-2 sm:pt-3 border-t border-white/10 space-y-1.5 sm:space-y-2.5">
                 <div class="flex items-baseline justify-between">
-                  <span class="text-xs font-mono font-bold text-brass-300">Rp 1.450.000</span>
-                  <span class="text-[10px] text-brass-300">Sutra Alami</span>
+                  <span class="text-[11px] sm:text-xs font-mono font-bold text-brass-300">Rp 1.450.000</span>
+                  <span class="text-[8px] sm:text-[10px] text-brass-300 truncate ml-1">Sutra</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <button class="home-chat-maker-btn flex-1 py-1.5 px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <button class="home-chat-maker-btn flex-1 py-1 px-1.5 sm:py-1.5 sm:px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[9px] sm:text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
                     data-product-id="batik-tulis-parang-jogja"
                     data-seller="sekar.mataram@gmail.com"
                     data-product-name="Batik Tulis Parang Barong Sutra">
-                    <span class="material-symbols-outlined text-xs text-brass-400">chat</span>
-                    <span>Tanya Pengrajin</span>
+                    <span class="material-symbols-outlined text-[10px] sm:text-xs text-brass-400">chat</span>
+                    <span class="truncate">Tanya</span>
                   </button>
-                  <a href="pages/ekonomi-kreatif.html" class="p-1.5 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink transition-colors" title="Lihat di Pasar">
-                    <span class="material-symbols-outlined text-sm">north_east</span>
+                  <a href="pages/ekonomi-kreatif.html" class="p-1 sm:p-1.5 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink transition-colors flex-shrink-0" title="Lihat di Pasar">
+                    <span class="material-symbols-outlined text-xs sm:text-sm">north_east</span>
                   </a>
                 </div>
               </div>
@@ -1625,37 +1617,37 @@
 
           <!-- Noken Wamena -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-400/60 transition-all duration-300 hover:-translate-y-1">
-            <div class="relative h-48 overflow-hidden bg-black/40">
+            <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/noken-wamena.jpg" alt="Tas Anyaman Noken Papua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute top-2.5 left-2.5">
-                <span class="px-2.5 py-0.5 rounded text-[9px] font-bold uppercase bg-indigo-600/90 backdrop-blur-md text-white border border-indigo-400/40">UNESCO Safeguarding</span>
+              <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
+                <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded text-[8px] sm:text-[9px] font-bold uppercase bg-indigo-600/90 backdrop-blur-md text-white border border-indigo-400/40">UNESCO</span>
               </div>
-              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] text-amber-300 font-mono flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px] text-amber-400">star</span>
-                <span>4.9 (56)</span>
+              <div class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] sm:text-[10px] text-amber-300 font-mono flex items-center gap-0.5 sm:gap-1">
+                <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-amber-400">star</span>
+                <span>4.9</span>
               </div>
             </div>
-            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
               <div>
-                <h4 class="font-display text-base font-semibold text-surface group-hover:text-indigo-300 transition-colors mb-0.5">Noken Anyaman Anggrek</h4>
-                <p class="text-[11px] text-surface/60 mb-2">Wamena, Papua • Mama Maria</p>
-                <p class="text-xs text-surface/75 font-light leading-relaxed line-clamp-2">Anyaman serat kulit kayu dan anggrek hutan, lambang rahim ibu & persaudaraan.</p>
+                <h4 class="font-display text-xs sm:text-base font-semibold text-surface group-hover:text-indigo-300 transition-colors mb-0.5 truncate">Noken Anggrek</h4>
+                <p class="text-[9px] sm:text-[11px] text-surface/60 mb-1 sm:mb-2 truncate">Papua • Mama Maria</p>
+                <p class="text-[10px] sm:text-xs text-surface/75 font-light leading-snug sm:leading-relaxed line-clamp-2">Anyaman serat kulit kayu dan anggrek hutan, lambang rahim ibu & persaudaraan.</p>
               </div>
-              <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="pt-2 sm:pt-3 border-t border-white/10 space-y-1.5 sm:space-y-2.5">
                 <div class="flex items-baseline justify-between">
-                  <span class="text-xs font-mono font-bold text-indigo-300">Rp 275.000</span>
-                  <span class="text-[10px] text-indigo-300">Serat Hutan</span>
+                  <span class="text-[11px] sm:text-xs font-mono font-bold text-indigo-300">Rp 275.000</span>
+                  <span class="text-[8px] sm:text-[10px] text-indigo-300 truncate ml-1">Serat Kayu</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <button class="home-chat-maker-btn flex-1 py-1.5 px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <button class="home-chat-maker-btn flex-1 py-1 px-1.5 sm:py-1.5 sm:px-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-[9px] sm:text-[11px] text-surface font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer"
                     data-product-id="noken-wamena"
                     data-seller="maria.wetipo@gmail.com"
                     data-product-name="Tas Anyaman Noken Serat Anggrek">
-                    <span class="material-symbols-outlined text-xs text-indigo-400">chat</span>
-                    <span>Tanya Pengrajin</span>
+                    <span class="material-symbols-outlined text-[10px] sm:text-xs text-indigo-400">chat</span>
+                    <span class="truncate">Tanya</span>
                   </button>
-                  <a href="pages/ekonomi-kreatif.html" class="p-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white transition-colors" title="Lihat di Pasar">
-                    <span class="material-symbols-outlined text-sm">north_east</span>
+                  <a href="pages/ekonomi-kreatif.html" class="p-1 sm:p-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white transition-colors flex-shrink-0" title="Lihat di Pasar">
+                    <span class="material-symbols-outlined text-xs sm:text-sm">north_east</span>
                   </a>
                 </div>
               </div>

@@ -170,14 +170,26 @@ body.mobile-nav-open {
   /* Hero Section */
   #hero {
     min-height: 100svh !important;
-    padding-top: max(4.85rem, calc(env(safe-area-inset-top) + 4.25rem)) !important;
-    padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
+    min-height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+    padding-top: max(4.5rem, calc(env(safe-area-inset-top) + 3.75rem)) !important;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    overflow-x: clip !important;
+  }
+
+  #hero-intro-block {
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
   }
 
   #hero-intro-block h1#hero-title {
-    font-size: clamp(1.75rem, 8.5vw, 2.35rem) !important;
+    font-size: clamp(1.85rem, 8.8vw, 2.45rem) !important;
     line-height: 1.15 !important;
     letter-spacing: 0.08em !important;
     margin-bottom: 0.15rem !important;
@@ -196,23 +208,36 @@ body.mobile-nav-open {
   .hero-tagline-wrapper {
     height: 1.45em !important;
     font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
-    margin-bottom: 0.35rem !important;
+    margin-bottom: 0.2rem !important;
   }
 
   #hero-map-wrapper {
-    min-height: 180px !important;
-    padding: 0.25rem 0 !important;
+    flex: 0 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 200px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
   }
 
   #map-container {
-    max-height: 46svh !important;
-    aspect-ratio: 982 / 390 !important;
     width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    aspect-ratio: 982 / 390 !important;
+    overflow: visible !important;
+    transform: scale(1.06) !important;
+    transform-origin: center center !important;
   }
 
   .map-marker {
-    r: 4.8px !important;
-    stroke-width: 1.4px !important;
+    r: 6px !important;
+    stroke-width: 1.5px !important;
+    filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.95)) !important;
   }
 
   /* Section Headings & Category Badges */
