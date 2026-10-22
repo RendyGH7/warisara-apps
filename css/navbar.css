@@ -1,9 +1,9 @@
 :root {
-  --nav-brown-gold: #744208;
-  --nav-brown-gold-hover: #8D520D;
-  --nav-brown-gold-border: #A25B07;
-  --nav-brown-gold-glow: rgba(116, 66, 8, 0.4);
-  --nav-text-on-gold: #FFFBF5;
+  --nav-brown-gold: #8A5D19;
+  --nav-brown-gold-hover: #A47228;
+  --nav-brown-gold-border: rgba(223, 190, 136, 0.45);
+  --nav-brown-gold-glow: rgba(184, 137, 62, 0.35);
+  --nav-text-on-gold: #FFFDF8;
 }
 
 #main-navbar.glass-nav {
@@ -20,12 +20,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: rgba(12, 10, 8, 0.92);
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65);
+  padding: 0.45rem 1rem;
+  background: rgba(14, 11, 8, 0.88);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.09);
   
   transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.6s ease,
@@ -77,23 +77,51 @@ body.modal-open .wari-companion {
 @media (min-width: 640px) {
   #main-navbar.glass-nav {
     top: 1.25rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.45rem 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  #main-navbar.glass-nav {
+    padding: 0.45rem 1.5rem;
+  }
+
+  /* 3-Column Layout: Perfect Center Alignment */
+  #main-navbar.glass-nav > a:first-child {
+    flex: 1 0 0%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  #main-navbar.glass-nav > #desktop-nav-menu {
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  #main-navbar.glass-nav > div:last-child {
+    flex: 1 0 0%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
   }
 }
 
 #main-navbar.glass-nav.scrolled {
-  background-color: rgba(14, 11, 8, 0.18);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(14, 11, 8, 0.65);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 #main-navbar.glass-nav.scrolled .brand-glass-badge,
 #main-navbar.glass-nav.scrolled #desktop-nav-menu,
 #main-navbar.glass-nav.scrolled .btn-nav-icon,
 #main-navbar.glass-nav.scrolled .btn-nav-explore {
-  opacity: 0.5;
+  opacity: 0.88;
   transition: opacity 280ms cubic-bezier(0.2, 1, 0.3, 1),
               background-color 280ms ease,
               border-color 280ms ease,
@@ -105,32 +133,32 @@ body.modal-open .wari-companion {
 }
 
 #main-navbar.glass-nav.scrolled .brand-glass-badge {
-  background-color: rgba(116, 66, 8, 0.45);
-  border-color: rgba(162, 91, 7, 0.45);
-  box-shadow: 0 2px 8px rgba(116, 66, 8, 0.2);
+  background-color: rgba(138, 93, 25, 0.45);
+  border-color: rgba(201, 165, 103, 0.35);
+  box-shadow: 0 2px 8px rgba(138, 93, 25, 0.2);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 #main-navbar.glass-nav.scrolled .nav-active-pill {
-  background-color: rgba(116, 66, 8, 0.48);
-  border-color: rgba(162, 91, 7, 0.55);
-  box-shadow: 0 3px 10px rgba(116, 66, 8, 0.25);
+  background: linear-gradient(135deg, rgba(184, 137, 62, 0.85) 0%, rgba(131, 91, 31, 0.85) 100%);
+  border-color: rgba(255, 222, 168, 0.35);
+  box-shadow: 0 3px 12px rgba(184, 137, 62, 0.25);
 }
 
 #main-navbar.glass-nav.scrolled .btn-nav-icon,
 #main-navbar.glass-nav.scrolled .btn-nav-explore {
-  background-color: rgba(116, 66, 8, 0.45);
-  border-color: rgba(162, 91, 7, 0.45);
-  box-shadow: 0 2px 8px rgba(116, 66, 8, 0.2);
+  background-color: rgba(138, 93, 25, 0.45);
+  border-color: rgba(201, 165, 103, 0.35);
+  box-shadow: 0 2px 8px rgba(138, 93, 25, 0.2);
 }
 
 #main-navbar.glass-nav.scrolled:hover {
-  background-color: rgba(10, 8, 6, 0.97);
+  background: rgba(12, 10, 8, 0.94);
   backdrop-filter: blur(28px) saturate(200%);
   -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border-color: rgba(162, 91, 7, 0.5);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92), 0 0 25px rgba(116, 66, 8, 0.25);
+  border-color: rgba(201, 165, 103, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.88), 0 0 25px rgba(184, 137, 62, 0.2);
 }
 
 #main-navbar.glass-nav.scrolled:hover .brand-glass-badge,
@@ -148,9 +176,9 @@ body.modal-open .wari-companion {
 }
 
 #main-navbar.glass-nav.scrolled:hover .nav-active-pill {
-  background-color: var(--nav-brown-gold);
-  border-color: var(--nav-brown-gold-border);
-  box-shadow: 0 4px 14px var(--nav-brown-gold-glow);
+  background: linear-gradient(135deg, #B8893E 0%, #8A5D19 100%);
+  border-color: rgba(255, 222, 168, 0.45);
+  box-shadow: 0 4px 16px rgba(184, 137, 62, 0.35);
 }
 
 #main-navbar.glass-nav.scrolled:hover .btn-nav-icon,
@@ -178,6 +206,14 @@ body.modal-open .wari-companion {
   position: relative;
   display: flex;
   align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .nav-active-pill {
@@ -186,9 +222,9 @@ body.modal-open .wari-companion {
   left: 0;
   height: 100%;
   width: 0;
-  background-color: var(--nav-brown-gold);
-  border: 1px solid var(--nav-brown-gold-border);
-  box-shadow: 0 4px 14px var(--nav-brown-gold-glow);
+  background: linear-gradient(135deg, #B8893E 0%, #8A5D19 100%);
+  border: 1px solid rgba(255, 222, 168, 0.45);
+  box-shadow: 0 4px 16px rgba(184, 137, 62, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   border-radius: 9999px;
   pointer-events: none;
   z-index: 1;
@@ -196,11 +232,11 @@ body.modal-open .wari-companion {
   visibility: hidden;
   transform: translate3d(0, 0, 0);
   
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.28s ease,
-              background-color 280ms ease,
+  transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.22s ease,
+              background 280ms ease,
               border-color 280ms ease,
               box-shadow 280ms ease;
   will-change: transform, width;
@@ -209,16 +245,17 @@ body.modal-open .wari-companion {
 .nav-link {
   position: relative;
   z-index: 2;
-  padding: 0.35rem 0.5rem;
+  padding: 0.4rem 0.82rem;
   border-radius: 9999px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.71rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  color: rgba(245, 240, 230, 0.72);
+  font-size: 0.76rem;
+  font-weight: 550;
+  letter-spacing: 0.015em;
   background-color: transparent !important;
   border: 1px solid transparent;
   text-decoration: none;
-  transition: color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+  transition: color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.15s ease;
   user-select: none;
   white-space: nowrap;
@@ -226,29 +263,30 @@ body.modal-open .wari-companion {
 
 @media (min-width: 1280px) {
   .nav-link {
-    padding: 0.38rem 0.64rem;
-    font-size: 0.75rem;
+    padding: 0.42rem 0.88rem;
+    font-size: 0.76rem;
   }
 }
 
 @media (min-width: 1440px) {
   .nav-link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.79rem;
+    padding: 0.45rem 1.05rem;
+    font-size: 0.8rem;
   }
 }
 
 .nav-link:hover:not(.active) {
   color: #FFFFFF;
-  background-color: rgba(255, 255, 255, 0.09) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .nav-link.active {
-  color: var(--nav-text-on-gold) !important;
+  color: #FFFDF8 !important;
   font-weight: 700 !important;
   background-color: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .nav-link:active {
