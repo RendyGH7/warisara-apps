@@ -547,3 +547,90 @@ body.mobile-nav-open {
     scroll-behavior: auto !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. Cross-Device UI/UX & Universal Ergonomics (Mobile, Tablet, Desktop)
+   -------------------------------------------------------------------------- */
+/* Segmented Tabs & Dual-view Pill Switchers across all screen widths */
+.home-view-tab-btn,
+.view-switch-btn {
+  white-space: nowrap;
+  touch-action: manipulation;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 480px) {
+  .home-view-tab-btn,
+  .view-switch-btn {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: clamp(0.7rem, 2.9vw, 0.8rem) !important;
+    gap: 0.35rem !important;
+  }
+  
+  .home-view-tab-btn span.material-symbols-outlined,
+  .view-switch-btn span.material-symbols-outlined {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-view-tab-btn,
+  .view-switch-btn {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    font-size: 0.68rem !important;
+  }
+}
+
+/* Modal and Drawer max heights & smooth touch scroll */
+.modal-overlay,
+#province-modal-overlay,
+#home-story-modal-overlay,
+#chat-modal,
+#checkout-modal {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Ensure images never exceed their bounding container */
+img, picture, video, canvas, svg {
+  max-width: 100%;
+}
+
+/* Readable typography minimums for accessibility & all age groups */
+body, p, li, span, button, input, select, textarea {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* High contrast & smooth interaction on keyboard / screen readers */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-brass-400, #C9A567) !important;
+  outline-offset: 2px !important;
+}
+
+/* Tablet Layout Ergonomics (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .glass-card {
+    padding: 1.35rem;
+  }
+}
+
+/* Large Screens & Desktop Ergonomics (>= 1440px) */
+@media (min-width: 1440px) {
+  .section-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

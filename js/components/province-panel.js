@@ -386,7 +386,9 @@ window.WARISARA_PROVINCE_PANEL = {
     const islandLabel = `PULAU ${(province.island || "").toUpperCase()}`;
     if (islandTextEl) islandTextEl.textContent = islandLabel;
     if (topBarIsland) topBarIsland.textContent = islandLabel;
-    if (quickStatIsland) quickStatIsland.textContent = islandLabel;
+    if (quickStatIsland) {
+      quickStatIsland.textContent = province.craftHighlight ? province.craftHighlight.split("motif")[0].trim() : (province.island ? "Pusaka " + province.island : "Kriya Nusantara");
+    }
 
     if (capitalEl) capitalEl.textContent = province.capital || "";
     if (quickStatCapital) quickStatCapital.textContent = province.capital || "";
@@ -402,17 +404,17 @@ window.WARISARA_PROVINCE_PANEL = {
 
     if (craftHighlightEl) craftHighlightEl.textContent = province.craftHighlight || "";
 
-    // Illustration
+    // Illustration (Clean, specific, and no text duplication with the left statement)
     const illusUrl = this.getIllustrationForProvince(province);
     if (illustrationImg) {
       illustrationImg.src = illusUrl;
       illustrationImg.alt = `Ilustrasi Pusaka ${province.name}`;
     }
     if (illustrationCaption) {
-      illustrationCaption.textContent = province.craftHighlight ? province.craftHighlight.split(" ")[0] + " & Pusaka " + province.name : `Pusaka Budaya ${province.name}`;
+      illustrationCaption.textContent = province.craftHighlight ? province.craftHighlight.split("motif")[0].trim() : `Pusaka Budaya ${province.name}`;
     }
     if (illustrationSubtext) {
-      illustrationSubtext.textContent = province.shortStatement || "Mahakarya luhur bangsa Indonesia.";
+      illustrationSubtext.textContent = province.craftHighlight ? `Karya kriya otentik bernilai sakral dari ${province.name}.` : "Mahakarya luhur bangsa Indonesia yang dirawat lestari.";
     }
 
     // Wari Greeting & Fun Fact
@@ -439,7 +441,7 @@ window.WARISARA_PROVINCE_PANEL = {
     if (this.exploreBtn && province.id) {
       this.exploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
       const btnSpan = this.exploreBtn.querySelector("span:not(.material-symbols-outlined)");
-      if (btnSpan) btnSpan.textContent = `Jelajahi Arsip ${province.name}`;
+      if (btnSpan) btnSpan.textContent = `Buka Ensiklopedia ${province.name} Lengkap`;
     }
 
     const directLabBtn = document.getElementById("modal-btn-direct-lab");

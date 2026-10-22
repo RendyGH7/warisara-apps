@@ -646,10 +646,10 @@
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           <!-- Left Info Column (7 Cols on desktop) -->
-          <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
             
-            <div class="space-y-3.5">
-              <!-- Badges Row -->
+            <div class="space-y-4">
+              <!-- Clean Cultural Badges Row -->
               <div class="flex items-center gap-2 flex-wrap">
                 <span id="modal-province-island"
                   class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-500/15 border border-brass-500/35 text-[11px] font-bold uppercase tracking-wider text-brass-300 shadow-sm">
@@ -657,78 +657,67 @@
                   <span id="modal-province-island-text">PULAU KALIMANTAN</span>
                 </span>
 
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[11px] font-medium text-surface/80">
-                  <span class="material-symbols-outlined text-xs text-terracotta-400">location_on</span>
-                  <span>Ibu Kota: <strong id="modal-province-capital" class="text-surface font-semibold">Samarinda</strong></span>
-                </span>
-
                 <span id="modal-province-greeting"
-                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-terracotta-500/15 to-brass-500/15 border border-terracotta-500/30 text-[11px] font-bold text-terracotta-300">
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-terracotta-500/15 to-brass-500/15 border border-terracotta-500/30 text-[11px] font-bold text-terracotta-300 shadow-sm">
                   <span class="material-symbols-outlined text-xs">record_voice_over</span>
                   <span id="modal-province-greeting-text">Ruhui Rahayu!</span>
                 </span>
               </div>
 
-              <!-- Main Title -->
+              <!-- Main Title with Refined Typography -->
               <h1 id="modal-province-name"
-                class="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-white tracking-tight leading-none drop-shadow-sm">
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight drop-shadow-sm">
                 Kalimantan Timur
               </h1>
 
-              <!-- Philosophical Statement & Summary Card -->
-              <div class="rounded-2xl bg-gradient-to-br from-brass-500/[0.08] via-white/[0.02] to-transparent border border-brass-500/25 p-5 sm:p-6 relative overflow-hidden shadow-lg">
-                <div class="flex items-start gap-3.5">
-                  <span class="material-symbols-outlined text-3xl text-brass-400/80 flex-shrink-0 mt-0.5 select-none">format_quote</span>
-                  <div class="space-y-2 flex-1 min-w-0">
-                    <blockquote id="modal-province-statement"
-                      class="font-display italic text-base sm:text-xl text-brass-100 font-normal leading-relaxed">
-                      "Mutiara serat Doyo Dayak Benuaq dan kriya manik-manik Borneo."
-                    </blockquote>
-                    <p id="modal-province-desc"
-                      class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed border-t border-white/[0.08] pt-2.5">
-                      Bumi Etam yang melestarikan serat daun liar Doyo menjadi kain tenun purba dan kepiawaian meronce manik-manik Ulap Doyo.
-                    </p>
-                  </div>
+              <!-- Clean Cultural Statement Card (Bebas dari duplikasi teks, elegan & adiluhung) -->
+              <div class="rounded-2xl bg-gradient-to-br from-brass-500/[0.08] via-white/[0.02] to-transparent border border-brass-500/25 p-4 sm:p-5 relative overflow-hidden shadow-lg space-y-2.5">
+                <blockquote id="modal-province-statement"
+                  class="font-display italic text-base sm:text-lg text-brass-200 font-light leading-relaxed">
+                  "Pusat prasasti tertua, peradaban IKN, dan surga Derawan."
+                </blockquote>
+                <p id="modal-province-desc"
+                  class="text-xs sm:text-sm text-surface/80 font-light leading-relaxed border-t border-white/[0.08] pt-2.5">
+                  Bumi Etam yang melestarikan serat daun liar Doyo menjadi kain tenun purba dan kepiawaian meronce manik-manik Ulap Doyo.
+                </p>
+              </div>
+
+              <!-- Sleek 3-Pillar Meta Strip (Ringkas, informatif, dan tidak mengulang data) -->
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 px-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-brass-400 text-sm">location_city</span>
+                  <span class="text-surface/50 text-[11px]">Ibu Kota:</span>
+                  <strong id="modal-province-capital" class="text-white font-semibold">Samarinda</strong>
+                </div>
+                <span class="text-white/20 hidden sm:inline">•</span>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-brass-400 text-sm">verified</span>
+                  <span class="text-surface/50 text-[11px]">Warisan Budaya:</span>
+                  <strong class="text-brass-300 font-semibold">WBTb Terdaftar</strong>
+                </div>
+                <span class="text-white/20 hidden sm:inline">•</span>
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="material-symbols-outlined text-brass-400 text-sm">dry_cleaning</span>
+                  <span class="text-surface/50 text-[11px]">Kriya Khas:</span>
+                  <strong id="quick-stat-island" class="text-white font-semibold truncate max-w-[170px]">Kain Tenun Doyo</strong>
                 </div>
               </div>
 
             </div>
 
-            <!-- Quick Stats Bar (4 Highlights) -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-                <div class="text-[9px] uppercase font-bold tracking-wider text-brass-400 mb-0.5">Ibu Kota</div>
-                <div id="quick-stat-capital" class="text-xs sm:text-sm text-surface font-semibold truncate">Samarinda</div>
-              </div>
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-                <div class="text-[9px] uppercase font-bold tracking-wider text-brass-400 mb-0.5">Pusaka Terdata</div>
-                <div class="text-xs sm:text-sm text-surface font-semibold">3 Warisan WBTb</div>
-              </div>
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-                <div class="text-[9px] uppercase font-bold tracking-wider text-brass-400 mb-0.5">Wilayah Gugus</div>
-                <div id="quick-stat-island" class="text-xs sm:text-sm text-surface font-semibold truncate">Borneo Timur</div>
-              </div>
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-                <div class="text-[9px] uppercase font-bold tracking-wider text-brass-400 mb-0.5">Akses Pustaka</div>
-                <div class="text-xs sm:text-sm text-terracotta-300 font-semibold flex items-center gap-1">
-                  <span>Terverifikasi</span>
-                  <span class="material-symbols-outlined text-xs">verified</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Primary CTAs -->
-            <div class="flex flex-wrap items-center gap-3 pt-2">
+            <!-- Primary Action Gateway: Penghubung Langsung ke Pages Provinsi -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <a id="modal-btn-explore-heritage" href="pages/jelajahi.html"
-                class="px-6 py-3 rounded-full text-stone-950 text-xs font-bold tracking-wider uppercase transition-all duration-200 hover:scale-102 flex items-center justify-center gap-2 shadow-lg">
-                <span>Jelajahi Arsip Provinsi Ini</span>
+                class="flex-1 px-6 py-3.5 rounded-full text-stone-950 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2.5 shadow-lg cursor-pointer">
+                <span class="material-symbols-outlined text-base font-bold">menu_book</span>
+                <span>Buka Ensiklopedia Provinsi Lengkap</span>
                 <span class="material-symbols-outlined text-base">north_east</span>
               </a>
 
               <a id="modal-btn-to-creative-lab" href="pages/creative-lab.html"
-                class="px-5 py-3 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-surface text-xs font-semibold tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2">
+                class="px-5 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-surface text-xs font-semibold tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
                 <span class="material-symbols-outlined text-base text-brass-400">palette</span>
-                <span>Kreasi di Creative Lab</span>
+                <span>Kreasi Motif</span>
               </a>
             </div>
 
@@ -736,7 +725,7 @@
 
           <!-- Right Column: Thematic Cultural Illustration (5 Cols on desktop) -->
           <div class="lg:col-span-5 flex flex-col">
-            <div class="relative w-full h-full min-h-[320px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-brass-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group flex flex-col justify-end p-6 bg-[#16120E]">
+            <div class="relative w-full h-full min-h-[300px] sm:min-h-[400px] rounded-3xl overflow-hidden border border-brass-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group flex flex-col justify-end p-6 bg-[#16120E]">
               
               <!-- Illustration Image -->
               <img id="modal-province-illustration"
@@ -749,20 +738,20 @@
 
               <!-- Top Image Badge -->
               <div class="relative z-10 self-start mb-auto">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-wider text-white shadow-md">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-wider text-brass-300 shadow-md">
                   <span class="material-symbols-outlined text-xs text-brass-400">auto_awesome</span>
-                  <span>Ilustrasi Pusaka Budaya</span>
+                  <span>Pusaka Budaya Nusantara</span>
                 </span>
               </div>
 
-              <!-- Bottom Content Overlay -->
-              <div class="relative z-10 space-y-2 mt-auto pt-8">
-                <div class="text-[10px] uppercase font-bold tracking-widest text-brass-300">Mahakarya Ikonik Wilayah</div>
+              <!-- Bottom Content Overlay (Bersih, relevan, tidak mengulang kutipan) -->
+              <div class="relative z-10 space-y-1.5 mt-auto pt-6">
+                <div class="text-[10px] uppercase font-bold tracking-widest text-brass-400">Mahakarya Ikonik Wilayah</div>
                 <h3 id="modal-illustration-caption" class="font-display text-lg sm:text-xl font-medium text-white leading-tight drop-shadow">
-                  Kain Ulap Doyo & Musik Sampe
+                  Kain Ulap Doyo
                 </h3>
-                <p id="modal-illustration-subtext" class="text-xs text-white/80 font-light leading-relaxed drop-shadow line-clamp-2">
-                  Karya kerajinan otentik bernilai sakral yang diwariskan dari generasi ke generasi.
+                <p id="modal-illustration-subtext" class="text-xs text-surface/80 font-light leading-relaxed drop-shadow line-clamp-2">
+                  Karya kerajinan otentik bernilai sakral warisan leluhur.
                 </p>
               </div>
 
@@ -771,60 +760,41 @@
 
         </section>
 
-        <!-- 3. INTERACTIVE MASCOT COMPANION SECTION: "BERSAMA WARI" -->
-        <section class="rounded-3xl bg-gradient-to-r from-[#211A13] via-[#1A140F] to-[#14100D] border border-brass-500/35 p-5 sm:p-6 shadow-xl relative overflow-hidden">
-          <div class="absolute -right-16 -top-16 w-56 h-56 bg-brass-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- 3. INTERACTIVE MASCOT COMPANION SECTION: "BERSAMA WARI" (Clean & Streamlined) -->
+        <section class="rounded-2xl bg-gradient-to-r from-[#1C1612] via-[#16120E] to-[#120E0B] border border-brass-500/25 p-4 sm:p-5 shadow-lg relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-48 h-48 bg-brass-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 relative z-10">
-            
-            <!-- Mascot Interactive Character Avatar -->
+          <div class="flex items-center gap-4 relative z-10">
+            <!-- Mascot Avatar -->
             <div id="modal-wari-trigger" class="flex-shrink-0 cursor-pointer group text-center" title="Klik Wari untuk mendengar fakta unik!">
-              <div class="relative inline-block">
-                <img id="modal-wari-sprite"
-                  src="assets/images/mascot/wari-idle-clean.png"
-                  alt="Wari Si Pemandu Budaya"
-                  class="w-24 h-24 sm:w-28 sm:h-28 object-contain modal-wari-float transition-transform group-hover:scale-110 drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]" />
-                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-brass-500 text-[#140F0A] text-[9px] font-bold uppercase tracking-wider shadow whitespace-nowrap group-hover:scale-105 transition-transform">
-                  Klik Aku!
-                </span>
-              </div>
+              <img id="modal-wari-sprite"
+                src="assets/images/mascot/wari-idle-clean.png"
+                alt="Wari Si Pemandu Budaya"
+                class="w-16 h-16 sm:w-20 sm:h-20 object-contain modal-wari-float transition-transform group-hover:scale-105 drop-shadow-md" />
             </div>
 
             <!-- Speech Bubble -->
-            <div class="flex-1 space-y-2 text-center sm:text-left">
-              <div class="flex items-center justify-center sm:justify-between flex-wrap gap-2">
+            <div class="flex-1 space-y-1.5 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
                 <div class="flex items-center gap-2">
-                  <span class="px-2.5 py-0.5 rounded-full bg-brass-500/20 text-brass-300 border border-brass-500/30 text-[10px] font-bold uppercase tracking-wider">
+                  <span class="px-2 py-0.5 rounded-full bg-brass-500/20 text-brass-300 border border-brass-500/30 text-[10px] font-bold uppercase tracking-wider">
                     Pemandu Budaya Warisara
                   </span>
-                  <h3 class="font-display text-base font-semibold text-white">Catatan Edukasi Wari</h3>
+                  <h3 class="font-display text-sm sm:text-base font-semibold text-white">Catatan Edukasi Wari</h3>
                 </div>
 
                 <button id="modal-wari-next-fact-btn"
-                  class="px-3 py-1 rounded-full bg-white/[0.06] hover:bg-brass-500/20 border border-white/10 hover:border-brass-400/40 text-surface/80 hover:text-white text-xs font-medium flex items-center gap-1.5 transition-all">
+                  class="px-3 py-1 rounded-full bg-white/[0.06] hover:bg-brass-500/20 border border-white/10 hover:border-brass-400/40 text-surface/80 hover:text-white text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer">
                   <span class="material-symbols-outlined text-xs text-brass-400">lightbulb</span>
                   <span>Fakta Unik Lainnya</span>
                 </button>
               </div>
 
               <!-- Speech text -->
-              <p id="modal-wari-speech" class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed border-l-2 sm:border-l-0 sm:pl-0 pl-3 border-brass-400/60 italic sm:not-italic">
+              <p id="modal-wari-speech" class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed italic">
                 "Halo Sahabat Budaya! Aku Wari. Tahukah kamu bahwa Kain Ulap Doyo ditenun dari serat daun liar Doyo yang hanya tumbuh di pedalaman Kutai Barat?"
               </p>
-
-              <div class="flex items-center justify-center sm:justify-start gap-4 text-[11px] text-surface/60 pt-1">
-                <span class="flex items-center gap-1">
-                  <span class="material-symbols-outlined text-xs text-brass-400">touch_app</span>
-                  <span>Klik maskot untuk reaksi gembira</span>
-                </span>
-                <span class="text-surface/30">•</span>
-                <span class="flex items-center gap-1">
-                  <span class="material-symbols-outlined text-xs text-brass-400">music_note</span>
-                  <span>Suara gong interaktif</span>
-                </span>
-              </div>
             </div>
-
           </div>
         </section>
 
