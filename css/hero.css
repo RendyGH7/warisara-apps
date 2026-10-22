@@ -605,3 +605,16 @@ body.hero-animated #hero-map-wrapper {
   color: #FFFFFF !important;
 }
 
+/* Sembunyikan Floating Mascot Widget saat Province Modal aktif agar tidak bentrok */
+body.province-modal-open #wari-ai-widget,
+body.province-modal-open .wari-ai-widget,
+body.modal-open #wari-ai-widget,
+body.modal-open .wari-ai-widget {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0.7) translateY(20px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+
