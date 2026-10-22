@@ -434,7 +434,7 @@ window.WARISARA_NAVBAR = {
     const core10Sections = [
       { id: "hero", target: "hero" },
       { id: "module-jelajahi", target: "jelajahi" },
-      { id: "module-makers", target: "makers" },
+      { id: "module-makers", target: "jelajahi" },
       { id: "module-ekonomi-kreatif", target: "ekonomi-kreatif" },
       { id: "module-heritage-modern", target: "heritage-modern" },
       { id: "module-creative-lab", target: "creative-lab" },

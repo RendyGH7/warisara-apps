@@ -258,7 +258,8 @@ body.mobile-nav-open {
     padding: 0.65rem 0.75rem !important;
   }
 
-  #module-makers blockquote {
+  #module-makers blockquote,
+  #home-view-makers blockquote {
     font-size: 0.82rem !important;
     line-height: 1.45 !important;
     padding-left: 0.65rem !important;

@@ -12,11 +12,97 @@
 
   const WARISARA_HOME_SECTIONS = {
     init: function () {
+      this.initHomeModuleJelajahiTabs();
       this.initPassportTeaser();
       this.initMaestroWisdom();
       this.initProductChatTriggers();
       this.initAksaraTeaser();
       this.initStatsCounter();
+    },
+
+    // 0. Segmented Dual View Tabs (38 Provinsi vs Para Penjaga Tradisi)
+    initHomeModuleJelajahiTabs: function () {
+      const btnProvinces = document.getElementById("home-tab-btn-provinces");
+      const btnMakers = document.getElementById("home-tab-btn-makers");
+      const iconProvinces = document.getElementById("home-tab-icon-provinces");
+      const iconMakers = document.getElementById("home-tab-icon-makers");
+      const headerProvinces = document.getElementById("home-jelajahi-header-provinces");
+      const headerMakers = document.getElementById("home-jelajahi-header-makers");
+      const viewProvinces = document.getElementById("home-view-provinces");
+      const viewMakers = document.getElementById("home-view-makers");
+      const ctaBtn = document.getElementById("home-jelajahi-cta-btn");
+      const ctaText = document.getElementById("home-jelajahi-cta-text");
+      const ctaIcon = document.getElementById("home-jelajahi-cta-icon");
+
+      if (!btnProvinces || !btnMakers || !viewProvinces || !viewMakers) return;
+
+      const setActiveTab = (tab) => {
+        if (tab === "makers") {
+          // Tombol aktif & inaktif
+          btnMakers.className = "home-view-tab-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+          btnProvinces.className = "home-view-tab-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all duration-300 flex items-center gap-2 cursor-pointer";
+
+          if (iconMakers) iconMakers.className = "material-symbols-outlined text-base";
+          if (iconProvinces) iconProvinces.className = "material-symbols-outlined text-base text-brass-400";
+
+          // Header
+          if (headerProvinces) headerProvinces.classList.add("hidden");
+          if (headerMakers) headerMakers.classList.remove("hidden");
+
+          // Views
+          viewProvinces.classList.add("hidden");
+          viewMakers.classList.remove("hidden");
+
+          // Dynamic CTA
+          if (ctaBtn && ctaText && ctaIcon) {
+            ctaBtn.href = "pages/jelajahi.html?view=pelestari";
+            ctaText.textContent = "Kenali Seluruh Maestro & Komunitas Pelestari";
+            ctaIcon.textContent = "record_voice_over";
+          }
+        } else {
+          // Tombol aktif & inaktif
+          btnProvinces.className = "home-view-tab-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
+          btnMakers.className = "home-view-tab-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all duration-300 flex items-center gap-2 cursor-pointer";
+
+          if (iconProvinces) iconProvinces.className = "material-symbols-outlined text-base";
+          if (iconMakers) iconMakers.className = "material-symbols-outlined text-base text-brass-400";
+
+          // Header
+          if (headerMakers) headerMakers.classList.add("hidden");
+          if (headerProvinces) headerProvinces.classList.remove("hidden");
+
+          // Views
+          viewMakers.classList.add("hidden");
+          viewProvinces.classList.remove("hidden");
+
+          // Dynamic CTA
+          if (ctaBtn && ctaText && ctaIcon) {
+            ctaBtn.href = "pages/jelajahi.html";
+            ctaText.textContent = "Buka Direktori 38 Provinsi Lengkap";
+            ctaIcon.textContent = "arrow_forward";
+          }
+        }
+      };
+
+      btnProvinces.addEventListener("click", function (e) {
+        e.preventDefault();
+        setActiveTab("provinces");
+      });
+
+      btnMakers.addEventListener("click", function (e) {
+        e.preventDefault();
+        setActiveTab("makers");
+      });
+
+      // Deteksi jika pengguna membuka URL dengan hash #module-makers atau #makers
+      const checkInitialHash = () => {
+        const hash = (window.location.hash || "").toLowerCase();
+        if (hash === "#module-makers" || hash === "#makers" || hash.includes("maker") || hash.includes("pelestari")) {
+          setActiveTab("makers");
+        }
+      };
+      checkInitialHash();
+      window.addEventListener("hashchange", checkInitialHash);
     },
 
     // 1. Sinkronisasi Mini Status Paspor di Section Jelajahi
