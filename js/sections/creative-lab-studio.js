@@ -3211,6 +3211,8 @@
     document.querySelectorAll(".studio-nav-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         const targetTab = tab.dataset.studioTab;
+        const prevTab = StudioState.studioInspectorTab || "motif";
+        if (prevTab === targetTab) return;
         StudioState.studioInspectorTab = targetTab;
 
         document.querySelectorAll(".studio-nav-tab").forEach((t) => t.classList.remove("active"));
@@ -3226,12 +3228,70 @@
         if (tabCanting) tabCanting.classList.toggle("hidden", targetTab !== "canting");
         if (tabMockup) tabMockup.classList.toggle("hidden", targetTab !== "mockup");
 
+        const isFromTemplateToCanting = (prevTab === "motif" || prevTab === "color") && targetTab === "canting";
+        const isFromCantingToTemplate = prevTab === "canting" && (targetTab === "motif" || targetTab === "color");
+
         if (targetTab === "canting") {
           StudioState.currentMode = "canting";
-          canvas.style.cursor = "crosshair";
-        } else {
+          StudioState.cantingIsPrinted = false;
+          StudioState.activeView = "flat";
+
+          // 1. Reset total kanvas canting bebas menjadi putih murni tanpa residu template
+          if (freehandCtx && freehandCanvas) {
+            freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
+          }
+          historyStack.length = 0;
+          redoStack.length = 0;
+
+          // Sembunyikan tab mockup cetak jika belum dicetak
+          const mockupTabs = document.getElementById("mockup-tabs-container");
+          if (mockupTabs) mockupTabs.classList.add("hidden");
+
+          const flatView = document.getElementById("view-flat-canvas");
+          const mockupView = document.getElementById("view-mockup-wrapper");
+          if (flatView) flatView.classList.remove("hidden");
+          if (mockupView) mockupView.classList.add("hidden");
+
+          // Reset alat canting ke canting tulis orisinil
+          StudioState.cantingTool = "canting";
+          document.querySelectorAll(".canting-tool-btn").forEach((b) => {
+            const isCanting = b.dataset.tool === "canting";
+            b.classList.toggle("active", isCanting);
+            b.classList.toggle("bg-brass-400/20", isCanting);
+            b.classList.toggle("text-brass-300", isCanting);
+          });
+          updateCanvasCursor();
+          updatePrintButtonState();
+
+          if (isFromTemplateToCanting) {
+            showStudioToast("Mode Canting Bebas: Kanvas putih bersih di-reset siap digambar!", "draw");
+          }
+        } else if (targetTab === "motif" || targetTab === "color") {
           StudioState.currentMode = "generative";
-          canvas.style.cursor = "default";
+          StudioState.cantingIsPrinted = false;
+          StudioState.activeView = "flat";
+          if (canvas) canvas.style.cursor = "default";
+
+          const flatView = document.getElementById("view-flat-canvas");
+          const mockupView = document.getElementById("view-mockup-wrapper");
+          if (flatView) flatView.classList.remove("hidden");
+          if (mockupView) mockupView.classList.add("hidden");
+
+          // 2. Jika berpindah dari Canting Bebas ke Template -> Reset total ke template default bersih
+          if (isFromCantingToTemplate) {
+            if (freehandCtx && freehandCanvas) {
+              freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
+            }
+            historyStack.length = 0;
+            redoStack.length = 0;
+
+            const defaultPreset = PRESETS[0];
+            if (defaultPreset) {
+              Object.assign(StudioState, defaultPreset);
+            }
+            syncUiToState();
+            showStudioToast("Mode Template Wastra: Kanvas di-reset ke template awal!", "auto_awesome");
+          }
         }
 
         if (targetTab === "mockup") {
@@ -3240,6 +3300,7 @@
           switchViewMode("2d");
         }
 
+        saveHistoryState();
         render();
       });
     });
