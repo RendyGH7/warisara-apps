@@ -717,8 +717,8 @@ select:focus-visible {
    - Suppresses mobile image zoom lag and cursor halos
    ========================================================================== */
 
-@media (max-width: 768px), (hover: none), (pointer: coarse) {
-  /* Fast, snappy transition for all interactive cards on mobile */
+@media (hover: none) and (pointer: coarse) {
+  /* Fast, snappy transition for all interactive cards on mobile touch */
   .glass-card,
   .glass-card-light,
   .home-story-card,
