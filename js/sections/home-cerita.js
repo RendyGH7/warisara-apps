@@ -216,13 +216,13 @@
 
       filtered.forEach((story) => {
         const card = document.createElement("div");
-        card.className = "glass-card rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 hover:border-terracotta-400/50 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group shadow-xl bg-[#16120F]";
+        card.className = "home-story-card glass-card rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 md:hover:border-terracotta-400/50 transition-all duration-200 md:duration-300 md:hover:-translate-y-1.5 flex flex-col justify-between group shadow-xl bg-[#16120F] cursor-pointer select-none touch-manipulation";
 
         card.innerHTML = `
           <div>
             <!-- Cover image header with badges -->
-            <div class="relative w-full h-28 sm:h-52 overflow-hidden bg-black/60">
-              <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+            <div class="relative w-full h-28 sm:h-52 overflow-hidden bg-black/60 pointer-events-none">
+              <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-500 ease-out" />
               <div class="absolute inset-0 bg-gradient-to-t from-[#16120F] via-black/30 to-black/20 pointer-events-none"></div>
 
               <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
@@ -255,23 +255,30 @@
 
           <!-- Card Actions -->
           <div class="p-2.5 pt-0 sm:p-5 sm:pt-0 border-t border-white/5 flex items-center justify-between gap-1 sm:gap-2">
-            <button type="button" class="btn-play-quote flex-1 py-1.5 px-2 sm:py-2 sm:px-3 rounded-full bg-white/[0.05] hover:bg-terracotta-500/20 border border-white/10 hover:border-terracotta-400/40 text-surface/80 hover:text-white text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 transition-colors" title="Dengarkan Petuah Hikayat">
+            <button type="button" class="btn-play-quote flex-1 py-1.5 px-2 sm:py-2 sm:px-3 rounded-full bg-white/[0.05] hover:bg-terracotta-500/20 active:bg-terracotta-500/30 active:scale-95 border border-white/10 hover:border-terracotta-400/40 text-surface/80 hover:text-white text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 transition-all duration-150 touch-manipulation" title="Dengarkan Petuah Hikayat">
               <span class="material-symbols-outlined text-[12px] sm:text-sm text-terracotta-400">volume_up</span>
               <span class="truncate">Petuah</span>
             </button>
 
-            <button type="button" class="btn-open-preview flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-transform hover:scale-102 shadow-md">
+            <button type="button" class="btn-open-preview flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 active:scale-95 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-all duration-150 shadow-md touch-manipulation">
               <span class="truncate">Cuplikan</span>
               <span class="material-symbols-outlined text-[12px] sm:text-sm">menu_book</span>
             </button>
           </div>
         `;
 
-        card.querySelector(".btn-play-quote").addEventListener("click", () => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest(".btn-play-quote")) return;
+          this.openModal(story, card);
+        });
+
+        card.querySelector(".btn-play-quote").addEventListener("click", (e) => {
+          e.stopPropagation();
           this.playQuoteSound(story.quote, story.title);
         });
 
         card.querySelector(".btn-open-preview").addEventListener("click", (e) => {
+          e.stopPropagation();
           this.openModal(story, e.currentTarget || e.target || card);
         });
 
