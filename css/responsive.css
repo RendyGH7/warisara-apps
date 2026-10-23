@@ -260,7 +260,18 @@ body.mobile-nav-open {
   .btn-island-chip {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    padding: 0.35rem 0.75rem !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
+
+  #mobile-province-select {
+    min-height: 44px !important;
+    font-size: 0.82rem !important;
+  }
+
 
   h2.font-display {
     font-size: clamp(1.55rem, 6.5vw, 2.15rem) !important;
@@ -530,13 +541,15 @@ body.mobile-nav-open {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .section-spacer {
-    padding-top: 4.5rem !important;
-    padding-bottom: 4.5rem !important;
+    padding-top: 4.25rem !important;
+    padding-bottom: 4.25rem !important;
   }
 
   .section-container {
     padding-left: 1.75rem !important;
     padding-right: 1.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   #main-navbar.glass-nav {
@@ -544,13 +557,41 @@ body.mobile-nav-open {
     max-width: 52rem !important;
   }
 
+  #hero {
+    min-height: auto !important;
+    padding-top: 5.25rem !important;
+    padding-bottom: 2rem !important;
+    gap: 1rem !important;
+  }
+
   #map-container {
-    max-height: 66vh !important;
+    max-height: 52vh !important;
     aspect-ratio: 982 / 390 !important;
   }
 
   .map-marker {
-    r: 3.8px !important;
+    r: 4.2px !important;
+  }
+
+  /* Balanced tablet grid reflow */
+  .grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  #home-stories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  .glass-card {
+    padding: 1.25rem;
+  }
+
+  .glass-card.overflow-hidden,
+  .glass-card[class*="overflow-hidden"],
+  .home-story-card {
+    padding: 0 !important;
   }
 
   #creative-canvas,

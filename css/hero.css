@@ -629,3 +629,83 @@ body.modal-open .wari-ai-widget {
   user-select: none;
 }
 
+/* ==========================================================================
+   HERO MAP INTERACTIVE CONTROLS (ISLAND CHIPS, SELECTOR, RESET BTN)
+   ========================================================================== */
+
+#hero-map-reset-btn {
+  background: rgba(18, 14, 11, 0.88);
+  border: 1px solid rgba(201, 165, 103, 0.45);
+  color: #E6D3A7;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(201, 165, 103, 0.2);
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#hero-map-reset-btn:hover {
+  background: rgba(28, 22, 17, 0.96);
+  border-color: rgba(201, 165, 103, 0.75);
+  color: #FFFFFF;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.85), 0 0 16px rgba(201, 165, 103, 0.3);
+  transform: translateY(-1px);
+}
+
+#hero-map-reset-btn:active {
+  transform: scale(0.96);
+}
+
+.island-jump-chips {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.island-jump-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-island-chip {
+  transition: all 180ms ease;
+  user-select: none;
+}
+
+.btn-island-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: rgba(201, 165, 103, 0.35);
+}
+
+.btn-island-chip.active {
+  background: rgba(201, 165, 103, 0.22) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(201, 165, 103, 0.7) !important;
+  box-shadow: 0 0 14px -2px rgba(201, 165, 103, 0.4);
+}
+
+.btn-island-chip:active {
+  transform: scale(0.95);
+}
+
+#mobile-province-select {
+  background-color: rgba(20, 16, 13, 0.94);
+  border: 1px solid rgba(201, 165, 103, 0.45);
+  color: #FBF8F2;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#mobile-province-select:focus {
+  border-color: #C9A567;
+  box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.25), 0 8px 24px -4px rgba(0, 0, 0, 0.7);
+}
+
+#mobile-province-select option {
+  background-color: #1a1511;
+  color: #FBF8F2;
+  padding: 8px 12px;
+}
+
+

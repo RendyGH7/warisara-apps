@@ -239,30 +239,25 @@
             </div>
 
             <!-- Body Content -->
-            <div class="p-2.5 sm:p-5 space-y-2 sm:space-y-3.5">
-              <p class="text-[9.5px] sm:text-xs text-surface/80 font-light leading-snug sm:leading-relaxed line-clamp-2">${story.summary}</p>
-
-              <!-- Moral Lore Quote -->
-              <div class="p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-0.5 sm:space-y-1">
-                <div class="text-[7.5px] sm:text-[9px] uppercase font-bold tracking-widest text-terracotta-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[10px] sm:text-xs">format_quote</span>
-                  <span>Falsafah Luhur</span>
-                </div>
-                <p class="text-[8.5px] sm:text-[11px] text-surface/85 italic leading-snug sm:leading-relaxed line-clamp-2">"${story.quote}"</p>
+            <div class="p-3 sm:p-5 space-y-2">
+              <p class="text-[10px] sm:text-xs text-surface/80 font-light leading-snug sm:leading-relaxed line-clamp-2">${story.summary}</p>
+              <div class="flex items-center gap-1.5 text-[9px] sm:text-[11px] text-brass-300/80 font-medium pt-0.5">
+                <span class="material-symbols-outlined text-xs text-terracotta-400">auto_stories</span>
+                <span>Falsafah Tradisi</span>
               </div>
             </div>
           </div>
 
           <!-- Card Actions -->
-          <div class="p-2.5 pt-0 sm:p-5 sm:pt-0 border-t border-white/5 flex items-center justify-between gap-1 sm:gap-2">
-            <button type="button" class="btn-play-quote flex-1 py-1.5 px-2 sm:py-2 sm:px-3 rounded-full bg-white/[0.05] hover:bg-terracotta-500/20 active:bg-terracotta-500/30 active:scale-95 border border-white/10 hover:border-terracotta-400/40 text-surface/80 hover:text-white text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 transition-all duration-150 touch-manipulation" title="Dengarkan Petuah Hikayat">
+          <div class="p-3 pt-0 sm:p-5 sm:pt-0 border-t border-white/5 flex items-center justify-between gap-1.5 sm:gap-2">
+            <button type="button" class="btn-play-quote flex-1 py-1.5 px-2 sm:py-2 sm:px-3 rounded-full bg-white/[0.05] hover:bg-terracotta-500/20 active:bg-terracotta-500/30 active:scale-95 border border-white/10 hover:border-terracotta-400/40 text-surface/80 hover:text-white text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 transition-all duration-150 touch-manipulation cursor-pointer" title="Dengarkan Petuah Hikayat">
               <span class="material-symbols-outlined text-[12px] sm:text-sm text-terracotta-400">volume_up</span>
               <span class="truncate">Petuah</span>
             </button>
 
-            <button type="button" class="btn-open-preview flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 active:scale-95 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-all duration-150 shadow-md touch-manipulation">
-              <span class="truncate">Cuplikan</span>
-              <span class="material-symbols-outlined text-[12px] sm:text-sm">menu_book</span>
+            <button type="button" class="btn-open-preview flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 active:scale-95 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-all duration-150 shadow-md touch-manipulation cursor-pointer">
+              <span class="truncate">Baca</span>
+              <span class="material-symbols-outlined text-[12px] sm:text-sm">arrow_forward</span>
             </button>
           </div>
         `;
