@@ -21,9 +21,73 @@ window.WARISARA_HERO_MAP = {
     if (!this.svgMap) return;
 
     this.populateMobileDropdown();
+    this.bindIslandChips();
+    this.bindResetButton();
     this.bindMapEvents();
 
     this.startTaglineCycle();
+  },
+
+  islandBounds: {
+    "all": [0, 18, 982, 390],
+    "Sumatera": [10, 30, 270, 250],
+    "Jawa": [210, 275, 240, 120],
+    "Bali & Nusa Tenggara": [410, 310, 220, 100],
+    "Kalimantan": [310, 80, 240, 190],
+    "Sulawesi": [490, 90, 190, 200],
+    "Maluku & Papua": [670, 100, 310, 250]
+  },
+
+  bindIslandChips: function () {
+    const chips = document.querySelectorAll(".btn-island-chip");
+    if (!chips.length) return;
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const island = chip.dataset.island;
+        if (island) {
+          this.zoomToIsland(island);
+        }
+      });
+    });
+  },
+
+  bindResetButton: function () {
+    const resetBtn = document.getElementById("hero-map-reset-btn");
+    if (!resetBtn) return;
+
+    resetBtn.addEventListener("click", () => {
+      this.resetView();
+    });
+  },
+
+  zoomToIsland: function (islandKey) {
+    const bounds = this.islandBounds[islandKey] || this.islandBounds["all"];
+    this.animateViewBox(bounds[0], bounds[1], bounds[2], bounds[3], 520, () => {
+      this.isZoomed = islandKey !== "all";
+      this.updateResetButton(this.isZoomed);
+    });
+
+    document.querySelectorAll(".btn-island-chip").forEach((btn) => {
+      const match = btn.dataset.island === islandKey;
+      btn.classList.toggle("active", match);
+      btn.classList.toggle("bg-brass-400/20", match);
+      btn.classList.toggle("text-brass-200", match);
+      btn.classList.toggle("border-brass-400/40", match);
+      btn.classList.toggle("bg-white/5", !match);
+      btn.classList.toggle("text-surface/75", !match);
+      btn.classList.toggle("border-white/10", !match);
+    });
+  },
+
+  updateResetButton: function (visible) {
+    const btn = document.getElementById("hero-map-reset-btn");
+    if (!btn) return;
+    if (visible) {
+      btn.classList.remove("hidden");
+    } else {
+      btn.classList.add("hidden");
+    }
   },
 
   startTaglineCycle: function () {
