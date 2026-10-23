@@ -3559,17 +3559,43 @@
       }
     });
 
-    // 3. Populate Kamus Pigmen Alami Nusantara Quick-Chips
-    const pigmentContainer = document.getElementById("pigment-quick-chips");
+    // 3. Segmented Target Role Buttons (Pengganti Dropdown Native yang Kaku)
     const targetRoleSelect = document.getElementById("select-target-role");
+    const roleTargetButtons = document.querySelectorAll(".target-role-btn");
+    roleTargetButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const val = btn.dataset.roleVal;
+        if (targetRoleSelect) targetRoleSelect.value = val;
+        roleTargetButtons.forEach((b) => {
+          const isActive = b === btn;
+          b.classList.toggle("active", isActive);
+          b.classList.toggle("bg-brass-400", isActive);
+          b.classList.toggle("text-ink", isActive);
+          b.classList.toggle("font-bold", isActive);
+          b.classList.toggle("shadow-sm", isActive);
+          b.classList.toggle("bg-white/5", !isActive);
+          b.classList.toggle("text-surface/75", !isActive);
+          b.classList.toggle("border-white/5", !isActive);
+          b.classList.toggle("border-transparent", isActive);
+        });
+      });
+    });
 
+    // Populate Kamus Pigmen Alami Nusantara (2-Kolom Terstruktur & Teks Lengkap)
+    const pigmentContainer = document.getElementById("pigment-quick-chips");
     if (pigmentContainer) {
       pigmentContainer.innerHTML = NUSANTARA_PIGMENTS.map((p) => `
         <button type="button" data-pigment-hex="${p.hex}" data-pigment-name="${p.name}"
-                class="pigment-chip p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-brass-400/40 flex items-center gap-1.5 transition-all text-left group cursor-pointer"
+                class="pigment-chip p-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-brass-400/50 flex items-center gap-2 transition-all text-left group cursor-pointer"
                 title="${p.name} (${p.hex}) — ${p.origin}">
-          <span class="w-3 h-3 rounded-full flex-shrink-0 shadow-sm border border-white/20 group-hover:scale-110 transition-transform" style="background-color: ${p.hex}"></span>
-          <span class="text-[9px] text-surface/75 group-hover:text-brass-300 font-medium truncate">${p.name}</span>
+          <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 shadow-sm border border-white/25 group-hover:scale-110 transition-transform" style="background-color: ${p.hex}"></span>
+          <div class="min-w-0 flex-1">
+            <div class="text-[10px] font-semibold text-surface group-hover:text-brass-300 truncate leading-snug">${p.name}</div>
+            <div class="text-[8.5px] font-mono text-brass-400/80 flex items-center justify-between">
+              <span>${p.hex}</span>
+              <span class="text-[8px] text-surface/40 font-sans truncate ml-1">${p.origin.split(" ")[0]}</span>
+            </div>
+          </div>
         </button>
       `).join("");
 
@@ -3587,7 +3613,8 @@
           syncUiToState();
           saveHistoryState();
           render();
-          showStudioToast(`Pigmen ${name} (${hex}) diterapkan ke ${targetRole.toUpperCase()}`);
+          const roleLabel = targetRole === "primary" ? "Garis Canting" : (targetRole === "secondary" ? "Isian Ornamen" : (targetRole === "highlight" ? "Inti Roset" : "Dasar Kain"));
+          showStudioToast(`Pigmen ${name} (${hex}) diterapkan ke ${roleLabel}`);
         });
       });
     }

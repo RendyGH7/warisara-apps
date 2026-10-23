@@ -247,15 +247,11 @@
         <!-- Kolom Kiri: Studio Inspector (4 Tab Bersih & Intuitif) -->
         <div class="lg:col-span-5 space-y-4 studio-scroll max-h-[1100px] lg:overflow-y-auto lg:pr-2">
 
-          <!-- 4 Tab Navigasi Studio Bersih & Modern -->
-          <div class="studio-nav-container p-1.5 rounded-2xl bg-[#14110E] border border-white/10 grid grid-cols-4 gap-1 shadow-lg">
+          <!-- 3 Tab Navigasi Studio: Motif & Warna, Canting, Mockup 3D -->
+          <div class="studio-nav-container p-1.5 rounded-2xl bg-[#14110E] border border-white/10 grid grid-cols-3 gap-1 shadow-lg">
             <button type="button" data-studio-tab="motif" class="studio-nav-tab active py-2.5 px-2 rounded-xl text-xs font-semibold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-base">category</span>
-              <span class="text-[11px] truncate">Motif</span>
-            </button>
-            <button type="button" data-studio-tab="color" class="studio-nav-tab py-2.5 px-2 rounded-xl text-xs font-semibold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all cursor-pointer">
               <span class="material-symbols-outlined text-base">palette</span>
-              <span class="text-[11px] truncate">Warna</span>
+              <span class="text-[11px] truncate font-bold">Motif & Warna</span>
             </button>
             <button type="button" data-studio-tab="canting" class="studio-nav-tab py-2.5 px-2 rounded-xl text-xs font-semibold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all cursor-pointer">
               <span class="material-symbols-outlined text-base">draw</span>
@@ -267,202 +263,229 @@
             </button>
           </div>
 
-          <!-- TAB 1: MOTIF & PARAMETER POLA -->
+          <!-- BAGIAN UTAMA: MOTIF & WARNA (2 KOTAK RINGKAS & ERGONOMIS) -->
           <div id="tab-content-motif" class="space-y-4">
-            <div class="studio-glass-panel p-5">
-              <div class="flex items-center justify-between mb-3">
+
+            <!-- KOTAK 1: RANCANG MOTIF & STRUKTUR POLA -->
+            <div class="studio-glass-panel p-4 space-y-3.5">
+              <!-- Header Kotak 1 -->
+              <div class="flex items-center justify-between pb-2 border-b border-white/10">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-sm">shape_line</span>
-                  <span>01 • Pilih 10 Dasar Motif Pusaka</span>
+                  <span>Kotak 1 • Rancang Motif & Pola Wastra</span>
                 </span>
-                <span class="text-[10px] text-surface/50 font-mono">10 Pusaka</span>
+                <span class="text-[9.5px] px-2 py-0.5 rounded-full bg-brass-400/15 text-brass-300 font-mono">10 Pusaka</span>
               </div>
-              
-              <div class="grid grid-cols-2 gap-2">
-                <button data-motif="kawung" class="motif-card-select active text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-brass-300">Batik Kawung</div>
-                  <div class="text-[10px] text-surface/60">Empat Arah Semesta</div>
-                </button>
-                <button data-motif="parang" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Parang Rusak</div>
-                  <div class="text-[10px] text-surface/60">Ombak Kesatria</div>
-                </button>
-                <button data-motif="megamendung" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Megamendung</div>
-                  <div class="text-[10px] text-surface/60">Awan Cirebon 5 Tingkat</div>
-                </button>
-                <button data-motif="truntum" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Batik Truntum</div>
-                  <div class="text-[10px] text-surface/60">Bintang Kuntum Melati</div>
-                </button>
-                <button data-motif="sekarjagad" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Sekar Jagad</div>
-                  <div class="text-[10px] text-surface/60">Kepulauan Bunga</div>
-                </button>
-                <button data-motif="ceplok" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Ceplok Kesatrian</div>
-                  <div class="text-[10px] text-surface/60">Mandala 8 Penjuru</div>
-                </button>
-                <button data-motif="songket" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Songket Minang</div>
-                  <div class="text-[10px] text-surface/60">Saik Kalam & Pucuk Rebung</div>
-                </button>
-                <button data-motif="ikat_toraja" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Ikat Toraja</div>
-                  <div class="text-[10px] text-surface/60">Tanduk Pa'teddong</div>
-                </button>
-                <button data-motif="pesisir_flora" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Buketan Pesisir</div>
-                  <div class="text-[10px] text-surface/60">Sulur Teratai Lasem</div>
-                </button>
-                <button data-motif="garuda_lereng" class="motif-card-select text-left p-2.5 rounded-xl cursor-pointer">
-                  <div class="font-semibold text-xs text-surface/90">Lereng Gurdo</div>
-                  <div class="text-[10px] text-surface/60">Sayap Lar Garuda</div>
-                </button>
+
+              <!-- Pilihan 10 Motif Pusaka (Ringkas dengan Scroll Halus) -->
+              <div class="space-y-1.5">
+                <span class="text-[10px] font-semibold text-surface/75 block">Pilih Ragam Hias Motif:</span>
+                <div class="grid grid-cols-2 gap-1.5 max-h-36 overflow-y-auto studio-scroll pr-1">
+                  <button data-motif="kawung" class="motif-card-select active text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-brass-300 truncate">Batik Kawung</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Empat Arah Semesta</div>
+                  </button>
+                  <button data-motif="parang" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Parang Rusak</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Ombak Kesatria</div>
+                  </button>
+                  <button data-motif="megamendung" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Megamendung</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Awan Cirebon 5 Tingkat</div>
+                  </button>
+                  <button data-motif="truntum" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Batik Truntum</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Bintang Kuntum Melati</div>
+                  </button>
+                  <button data-motif="sekarjagad" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Sekar Jagad</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Kepulauan Bunga</div>
+                  </button>
+                  <button data-motif="ceplok" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Ceplok Kesatrian</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Mandala 8 Penjuru</div>
+                  </button>
+                  <button data-motif="songket" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Songket Minang</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Pucuk Rebung Emas</div>
+                  </button>
+                  <button data-motif="ikat_toraja" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Ikat Toraja</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Tanduk Pa'teddong</div>
+                  </button>
+                  <button data-motif="pesisir_flora" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Buketan Pesisir</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Sulur Teratai Lasem</div>
+                  </button>
+                  <button data-motif="garuda_lereng" class="motif-card-select text-left p-2 rounded-xl cursor-pointer">
+                    <div class="font-semibold text-xs text-surface/90 truncate">Lereng Gurdo</div>
+                    <div class="text-[9.5px] text-surface/60 truncate">Sayap Lar Garuda</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tata Letak Pola (Ringkas) -->
+              <div class="space-y-1.5 pt-1.5 border-t border-white/5">
+                <span class="text-[10px] font-semibold text-surface/75 block">Tata Letak & Simetri:</span>
+                <div class="grid grid-cols-5 gap-1 text-[10px]">
+                  <button data-layout="grid" class="layout-btn active p-1.5 rounded-lg border border-white/10 hover:border-white/20 bg-brass-400/20 text-brass-300 font-semibold transition-all cursor-pointer truncate" title="Matriks Tegak">
+                    Matriks
+                  </button>
+                  <button data-layout="brick" class="layout-btn p-1.5 rounded-lg border border-white/10 hover:border-white/20 text-surface/75 font-semibold transition-all cursor-pointer truncate" title="Bata Seling">
+                    Bata
+                  </button>
+                  <button data-layout="diagonal" class="layout-btn p-1.5 rounded-lg border border-white/10 hover:border-white/20 text-surface/75 font-semibold transition-all cursor-pointer truncate" title="Lereng Diagonal 45°">
+                    Lereng
+                  </button>
+                  <button data-layout="radial" class="layout-btn p-1.5 rounded-lg border border-white/10 hover:border-white/20 text-surface/75 font-semibold transition-all cursor-pointer truncate" title="Mandala Radial">
+                    Mandala
+                  </button>
+                  <button data-layout="organic" class="layout-btn p-1.5 rounded-lg border border-white/10 hover:border-white/20 text-surface/75 font-semibold transition-all cursor-pointer truncate" title="Organik Pesisir">
+                    Organik
+                  </button>
+                </div>
+              </div>
+
+              <!-- Parameter Dimensi & Fraktal (Compact 2-Column Grid) -->
+              <div class="space-y-2 pt-1.5 border-t border-white/5">
+                <span class="text-[10px] font-semibold text-surface/75 block">Parameter Dimensi & Fraktal:</span>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <div class="flex items-center justify-between text-[10.5px] mb-1">
+                      <span class="text-surface/80">Kerapatan Grid</span>
+                      <span id="val-density" class="font-mono text-brass-300 font-bold">4x4</span>
+                    </div>
+                    <input id="slider-density" type="range" min="2" max="10" value="4" step="1" class="studio-slider cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between text-[10.5px] mb-1">
+                      <span class="text-surface/80">Ketebalan Garis</span>
+                      <span id="val-thickness" class="font-mono text-brass-300 font-bold">2.5px</span>
+                    </div>
+                    <input id="slider-thickness" type="range" min="1" max="7" value="2.5" step="0.5" class="studio-slider cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between text-[10.5px] mb-1">
+                      <span class="text-surface/80">Kelengkungan</span>
+                      <span id="val-curviness" class="font-mono text-brass-300 font-bold">1.0x</span>
+                    </div>
+                    <input id="slider-curviness" type="range" min="0.5" max="1.8" value="1.0" step="0.1" class="studio-slider cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between text-[10.5px] mb-1">
+                      <span class="text-surface/80">Sudut Rotasi</span>
+                      <span id="val-rotation" class="font-mono text-brass-300 font-bold">0°</span>
+                    </div>
+                    <input id="slider-rotation" type="range" min="0" max="360" value="0" step="15" class="studio-slider cursor-pointer" />
+                  </div>
+                </div>
+
+                <div class="pt-1.5 border-t border-white/5 flex items-center justify-between gap-2 text-[10px] text-surface/80">
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input id="toggle-crackle" type="checkbox" class="accent-brass-400 rounded cursor-pointer" />
+                    <span>Retakan Malam</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input id="toggle-weave" type="checkbox" checked class="accent-brass-400 rounded cursor-pointer" />
+                    <span>Serat Mori</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input id="toggle-flip" type="checkbox" class="accent-brass-400 rounded cursor-pointer" />
+                    <span>Selang-seling</span>
+                  </label>
+                </div>
               </div>
             </div>
 
-            <div class="studio-glass-panel p-5">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 block mb-3 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">grid_view</span>
-                <span>02 • Tata Letak & Simetri Pola</span>
-              </span>
-              <div class="grid grid-cols-3 gap-2">
-                <button data-layout="grid" class="layout-btn active p-2 rounded-xl border border-white/10 hover:border-white/20 bg-brass-400/20 text-brass-300 text-xs font-semibold transition-all cursor-pointer">
-                  Matriks Tegak
-                </button>
-                <button data-layout="brick" class="layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold transition-all cursor-pointer">
-                  Bata Seling
-                </button>
-                <button data-layout="diagonal" class="layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold transition-all cursor-pointer">
-                  Lereng 45°
-                </button>
-                <button data-layout="radial" class="layout-btn p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold transition-all cursor-pointer">
-                  Mandala Pusat
-                </button>
-                <button data-layout="organic" class="layout-btn col-span-2 p-2 rounded-xl border border-white/10 hover:border-white/20 text-surface/75 text-xs font-semibold transition-all cursor-pointer">
-                  Sebaran Organik Pesisir
-                </button>
-              </div>
-            </div>
-
-            <div class="studio-glass-panel p-5 space-y-4">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 block mb-1 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">tune</span>
-                <span>03 • Parameter Dimensi & Fraktal</span>
-              </span>
-
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-surface/80">Kerapatan Pola (Densitas Grid)</span>
-                  <span id="val-density" class="font-mono text-brass-300 font-bold">4x4</span>
-                </div>
-                <input id="slider-density" type="range" min="2" max="10" value="4" step="1" class="studio-slider cursor-pointer" />
-              </div>
-
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-surface/80">Ketebalan Garis Canting Malam</span>
-                  <span id="val-thickness" class="font-mono text-brass-300 font-bold">2.5px</span>
-                </div>
-                <input id="slider-thickness" type="range" min="1" max="7" value="2.5" step="0.5" class="studio-slider cursor-pointer" />
-              </div>
-
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-surface/80">Kelengkungan Daun / Gelombang</span>
-                  <span id="val-curviness" class="font-mono text-brass-300 font-bold">1.0x</span>
-                </div>
-                <input id="slider-curviness" type="range" min="0.5" max="1.8" value="1.0" step="0.1" class="studio-slider cursor-pointer" />
-              </div>
-
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-surface/80">Sudut Putaran Rotasi</span>
-                  <span id="val-rotation" class="font-mono text-brass-300 font-bold">0°</span>
-                </div>
-                <input id="slider-rotation" type="range" min="0" max="360" value="0" step="15" class="studio-slider cursor-pointer" />
-              </div>
-
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-surface/80">Tingkat Lapisan Detail (Kompleksitas)</span>
-                  <span id="val-complexity" class="font-mono text-brass-300 font-bold">Lvl 3</span>
-                </div>
-                <input id="slider-complexity" type="range" min="1" max="5" value="3" step="1" class="studio-slider cursor-pointer" />
-              </div>
-
-              <div class="pt-2 border-t border-white/10 grid grid-cols-2 gap-3 text-xs text-surface/80">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input id="toggle-crackle" type="checkbox" class="accent-brass-400 rounded cursor-pointer" />
-                  <span>Retakan Malam</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input id="toggle-weave" type="checkbox" checked class="accent-brass-400 rounded cursor-pointer" />
-                  <span>Serat Kain Mori</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer col-span-2">
-                  <input id="toggle-flip" type="checkbox" class="accent-brass-400 rounded cursor-pointer" />
-                  <span>Rotasi Selang-seling (Checkerboard)</span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 2: PEWARNAAN & PALET (MASTER COLOR STUDIO - 3 FITUR MENJADI 1) -->
-          <div id="tab-content-color" class="space-y-4 hidden">
-            <div class="studio-glass-panel p-4 sm:p-5 space-y-4">
-              <!-- Header Palet Master -->
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-brass-400 flex items-center gap-1.5">
+            <!-- KOTAK 2: KOMPOSISI & PEWARNAAN WASTRA -->
+            <div class="studio-glass-panel p-3.5 sm:p-4 space-y-3">
+              <!-- Header Kotak 2 -->
+              <div class="flex items-center justify-between pb-1.5 border-b border-white/10">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-sm">palette</span>
-                  <span>Komposisi & Pewarnaan Wastra</span>
+                  <span>Kotak 2 • Komposisi & Pewarnaan Wastra</span>
                 </span>
-                <button id="btn-quick-swap-palette" class="text-[11px] text-brass-300 hover:text-brass-200 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-brass-400/40 transition-colors cursor-pointer" title="Tukar Posisi Warna Secara Melingkar">
+                <button id="btn-quick-swap-palette" class="text-[10px] text-brass-300 hover:text-brass-200 flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 hover:border-brass-400/40 transition-colors cursor-pointer" title="Tukar Posisi Warna Secara Melingkar">
                   <span class="material-symbols-outlined text-xs">sync_alt</span>
                   <span>Tukar Posisi</span>
                 </button>
               </div>
 
-              <!-- 4 Kartu Warna Interaktif Utama (Menggabungkan Role, Nama Budaya, Hex, dan Color Picker Langsung) -->
-              <div id="master-color-cards-grid" class="grid grid-cols-2 gap-2.5">
+              <!-- 4 Kartu Warna Interaktif Utama (Menggabungkan Color Picker & Input Hex Terpadu) -->
+              <div id="master-color-cards-grid" class="grid grid-cols-2 gap-2">
                 <!-- 1. Garis Canting -->
-                <div class="color-role-card p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2.5 transition-all group relative">
-                  <input id="picker-primary" type="color" value="#16213A" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0 flex-shrink-0" title="Klik untuk ubah warna" />
+                <div class="color-role-card p-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2 transition-all group relative">
+                  <div class="relative flex-shrink-0 cursor-pointer" title="Klik untuk pilih warna visual">
+                    <input id="picker-primary" type="color" value="#16213A" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0 opacity-0 absolute inset-0 z-10" />
+                    <span id="custom-preview-primary" class="w-7 h-7 rounded-lg flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform" style="background-color: #16213A">
+                      <span class="material-symbols-outlined text-[11px] text-white/80 drop-shadow">colorize</span>
+                    </span>
+                  </div>
                   <div class="min-w-0 flex-1">
-                    <div class="text-[9.5px] uppercase tracking-wider text-surface/50 font-medium truncate">Garis Canting</div>
+                    <div class="text-[9px] uppercase tracking-wider text-surface/50 font-semibold truncate">Garis Canting</div>
                     <span id="label-name-primary" class="text-xs font-semibold text-surface block truncate group-hover:text-brass-300 transition-colors">Emas Pusaka</span>
-                    <span id="label-hex-primary" class="text-[10px] font-mono text-brass-400 block font-medium">#16213A</span>
+                    <div class="flex items-center gap-1 mt-0.5">
+                      <input id="custom-hex-primary" type="text" value="#16213A" maxlength="7"
+                             class="w-full bg-black/40 px-1.5 py-0.5 rounded text-[10px] font-mono text-brass-300 border border-white/10 focus:border-brass-400 focus:outline-none uppercase font-bold tracking-wider" title="Ketik Hex & Tekan Enter" />
+                      <span id="label-hex-primary" class="hidden">#16213A</span>
+                    </div>
                   </div>
                 </div>
 
                 <!-- 2. Isian Ornamen -->
-                <div class="color-role-card p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2.5 transition-all group relative">
-                  <input id="picker-secondary" type="color" value="#C9A567" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0 flex-shrink-0" title="Klik untuk ubah warna" />
+                <div class="color-role-card p-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2 transition-all group relative">
+                  <div class="relative flex-shrink-0 cursor-pointer" title="Klik untuk pilih warna visual">
+                    <input id="picker-secondary" type="color" value="#C9A567" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0 opacity-0 absolute inset-0 z-10" />
+                    <span id="custom-preview-secondary" class="w-7 h-7 rounded-lg flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform" style="background-color: #C9A567">
+                      <span class="material-symbols-outlined text-[11px] text-ink/80 drop-shadow">colorize</span>
+                    </span>
+                  </div>
                   <div class="min-w-0 flex-1">
-                    <div class="text-[9.5px] uppercase tracking-wider text-surface/50 font-medium truncate">Isian Ornamen</div>
+                    <div class="text-[9px] uppercase tracking-wider text-surface/50 font-semibold truncate">Isian Ornamen</div>
                     <span id="label-name-secondary" class="text-xs font-semibold text-surface block truncate group-hover:text-brass-300 transition-colors">Merah Marun</span>
-                    <span id="label-hex-secondary" class="text-[10px] font-mono text-brass-400 block font-medium">#C9A567</span>
+                    <div class="flex items-center gap-1 mt-0.5">
+                      <input id="custom-hex-secondary" type="text" value="#C9A567" maxlength="7"
+                             class="w-full bg-black/40 px-1.5 py-0.5 rounded text-[10px] font-mono text-brass-300 border border-white/10 focus:border-brass-400 focus:outline-none uppercase font-bold tracking-wider" title="Ketik Hex & Tekan Enter" />
+                      <span id="label-hex-secondary" class="hidden">#C9A567</span>
+                    </div>
                   </div>
                 </div>
 
                 <!-- 3. Inti Roset -->
-                <div class="color-role-card p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2.5 transition-all group relative">
-                  <input id="picker-highlight" type="color" value="#A8512F" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0 flex-shrink-0" title="Klik untuk ubah warna" />
+                <div class="color-role-card p-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2 transition-all group relative">
+                  <div class="relative flex-shrink-0 cursor-pointer" title="Klik untuk pilih warna visual">
+                    <input id="picker-highlight" type="color" value="#A8512F" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0 opacity-0 absolute inset-0 z-10" />
+                    <span id="custom-preview-highlight" class="w-7 h-7 rounded-lg flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform" style="background-color: #A8512F">
+                      <span class="material-symbols-outlined text-[11px] text-white/80 drop-shadow">colorize</span>
+                    </span>
+                  </div>
                   <div class="min-w-0 flex-1">
-                    <div class="text-[9.5px] uppercase tracking-wider text-surface/50 font-medium truncate">Inti Roset</div>
+                    <div class="text-[9px] uppercase tracking-wider text-surface/50 font-semibold truncate">Inti Roset</div>
                     <span id="label-name-highlight" class="text-xs font-semibold text-surface block truncate group-hover:text-brass-300 transition-colors">Kuning Praba</span>
-                    <span id="label-hex-highlight" class="text-[10px] font-mono text-brass-400 block font-medium">#A8512F</span>
+                    <div class="flex items-center gap-1 mt-0.5">
+                      <input id="custom-hex-highlight" type="text" value="#A8512F" maxlength="7"
+                             class="w-full bg-black/40 px-1.5 py-0.5 rounded text-[10px] font-mono text-brass-300 border border-white/10 focus:border-brass-400 focus:outline-none uppercase font-bold tracking-wider" title="Ketik Hex & Tekan Enter" />
+                      <span id="label-hex-highlight" class="hidden">#A8512F</span>
+                    </div>
                   </div>
                 </div>
 
                 <!-- 4. Dasar Kain -->
-                <div class="color-role-card p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2.5 transition-all group relative">
-                  <input id="picker-bg" type="color" value="#F6F1E7" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0 flex-shrink-0" title="Klik untuk ubah warna" />
+                <div class="color-role-card p-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-brass-400/50 flex items-center gap-2 transition-all group relative">
+                  <div class="relative flex-shrink-0 cursor-pointer" title="Klik untuk pilih warna visual">
+                    <input id="picker-bg" type="color" value="#F6F1E7" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0 opacity-0 absolute inset-0 z-10" />
+                    <span id="custom-preview-bg" class="w-7 h-7 rounded-lg flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform" style="background-color: #F6F1E7">
+                      <span class="material-symbols-outlined text-[11px] text-ink/80 drop-shadow">colorize</span>
+                    </span>
+                  </div>
                   <div class="min-w-0 flex-1">
-                    <div class="text-[9.5px] uppercase tracking-wider text-surface/50 font-medium truncate">Dasar Kain</div>
+                    <div class="text-[9px] uppercase tracking-wider text-surface/50 font-semibold truncate">Dasar Kain</div>
                     <span id="label-name-bg" class="text-xs font-semibold text-surface block truncate group-hover:text-brass-300 transition-colors">Katun Mori</span>
-                    <span id="label-hex-bg" class="text-[10px] font-mono text-brass-400 block font-medium">#F6F1E7</span>
+                    <div class="flex items-center gap-1 mt-0.5">
+                      <input id="custom-hex-bg" type="text" value="#F6F1E7" maxlength="7"
+                             class="w-full bg-black/40 px-1.5 py-0.5 rounded text-[10px] font-mono text-brass-300 border border-white/10 focus:border-brass-400 focus:outline-none uppercase font-bold tracking-wider" title="Ketik Hex & Tekan Enter" />
+                      <span id="label-hex-bg" class="hidden">#F6F1E7</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -470,209 +493,165 @@
               <!-- Baris Ekstraksi Warna Dinamis untuk kompatibilitas JS -->
               <div id="active-palette-extract-container" class="hidden"></div>
 
-              <!-- Preset Palet Wastra Nusantara (Terintegrasi Langsung) -->
-              <div class="pt-3 border-t border-white/10 space-y-2.5">
-                <span class="text-[10.5px] font-bold uppercase tracking-wider text-surface/60 block flex items-center gap-1.5">
+              <!-- Preset Palet Wastra Nusantara (Ringkas dengan Scroll Halus) -->
+              <div class="pt-2 border-t border-white/10 space-y-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-surface/60 block flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-xs text-brass-400">auto_awesome</span>
                   <span>Preset Palet Wastra Nusantara</span>
                 </span>
 
-                <div class="grid grid-cols-2 gap-2">
-                  <!-- 1. Keraton Sogan (4 Warna Lengkap) -->
-                  <button data-palette-idx="0" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#1A1612] shadow-sm border border-white/20" title="Garis Canting: #1A1612"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#A47E3F] shadow-sm border border-white/20" title="Isian Ornamen: #A47E3F"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#A8512F] shadow-sm border border-white/20" title="Inti Roset: #A8512F"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#F6F1E7] shadow-sm border border-white/20" title="Dasar Kain: #F6F1E7"></span>
+                <div class="grid grid-cols-2 gap-1.5 max-h-32 overflow-y-auto studio-scroll pr-1">
+                  <!-- 1. Keraton Sogan -->
+                  <button data-palette-idx="0" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#1A1612] shadow-sm border border-white/20" title="Garis Canting: #1A1612"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#A47E3F] shadow-sm border border-white/20" title="Isian Ornamen: #A47E3F"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#A8512F] shadow-sm border border-white/20" title="Inti Roset: #A8512F"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#F6F1E7] shadow-sm border border-white/20" title="Dasar Kain: #F6F1E7"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Keraton Sogan</div>
-                    <div class="text-[10px] text-surface/50 truncate">Yogyakarta & Solo</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Keraton Sogan</div>
+                    <div class="text-[9px] text-surface/50 truncate">Yogyakarta & Solo</div>
                   </button>
 
-                  <!-- 2. Pesisir Lasem (4 Warna Lengkap) -->
-                  <button data-palette-idx="1" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#A32020] shadow-sm border border-white/20" title="Garis Canting: #A32020"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#2E5C44] shadow-sm border border-white/20" title="Isian Ornamen: #2E5C44"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Inti Roset: #C9A567"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#FBF8F2] shadow-sm border border-white/20" title="Dasar Kain: #FBF8F2"></span>
+                  <!-- 2. Pesisir Lasem -->
+                  <button data-palette-idx="1" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#A32020] shadow-sm border border-white/20" title="Garis Canting: #A32020"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#2E5C44] shadow-sm border border-white/20" title="Isian Ornamen: #2E5C44"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Inti Roset: #C9A567"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#FBF8F2] shadow-sm border border-white/20" title="Dasar Kain: #FBF8F2"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Pesisir Lasem</div>
-                    <div class="text-[10px] text-surface/50 truncate">Merah Cabe & Teratai</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Pesisir Lasem</div>
+                    <div class="text-[9px] text-surface/50 truncate">Merah Cabe & Teratai</div>
                   </button>
 
-                  <!-- 3. Songket Emas (4 Warna Lengkap) -->
-                  <button data-palette-idx="2" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Garis Canting: #C9A567"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#7A1C29] shadow-sm border border-white/20" title="Isian Ornamen: #7A1C29"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#E6D3A7] shadow-sm border border-white/20" title="Inti Roset: #E6D3A7"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#240A10] shadow-sm border border-white/20" title="Dasar Kain: #240A10"></span>
+                  <!-- 3. Songket Emas -->
+                  <button data-palette-idx="2" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Garis Canting: #C9A567"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#7A1C29] shadow-sm border border-white/20" title="Isian Ornamen: #7A1C29"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#E6D3A7] shadow-sm border border-white/20" title="Inti Roset: #E6D3A7"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#240A10] shadow-sm border border-white/20" title="Dasar Kain: #240A10"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Songket Emas</div>
-                    <div class="text-[10px] text-surface/50 truncate">Palembang & Minang</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Songket Emas</div>
+                    <div class="text-[9px] text-surface/50 truncate">Palembang & Minang</div>
                   </button>
 
-                  <!-- 4. Indigo Nila (4 Warna Lengkap) -->
-                  <button data-palette-idx="3" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#16213A] shadow-sm border border-white/20" title="Garis Canting: #16213A"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#35578A] shadow-sm border border-white/20" title="Isian Ornamen: #35578A"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#6B8AB8] shadow-sm border border-white/20" title="Inti Roset: #6B8AB8"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#F4EDE1] shadow-sm border border-white/20" title="Dasar Kain: #F4EDE1"></span>
+                  <!-- 4. Indigo Nila -->
+                  <button data-palette-idx="3" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#16213A] shadow-sm border border-white/20" title="Garis Canting: #16213A"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#35578A] shadow-sm border border-white/20" title="Isian Ornamen: #35578A"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#6B8AB8] shadow-sm border border-white/20" title="Inti Roset: #6B8AB8"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#F4EDE1] shadow-sm border border-white/20" title="Dasar Kain: #F4EDE1"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Indigo Nila</div>
-                    <div class="text-[10px] text-surface/50 truncate">Biru Alami Pekalongan</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Indigo Nila</div>
+                    <div class="text-[9px] text-surface/50 truncate">Biru Alami Pekalongan</div>
                   </button>
 
-                  <!-- 5. Hitam Keraton & Kencana (4 Warna Lengkap) -->
-                  <button data-palette-idx="4" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#E6D3A7] shadow-sm border border-white/20" title="Garis Canting: #E6D3A7"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Isian Ornamen: #C9A567"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#C06A42] shadow-sm border border-white/20" title="Inti Roset: #C06A42"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#151310] shadow-sm border border-white/20" title="Dasar Kain: #151310"></span>
+                  <!-- 5. Hitam Keraton & Kencana -->
+                  <button data-palette-idx="4" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#E6D3A7] shadow-sm border border-white/20" title="Garis Canting: #E6D3A7"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#C9A567] shadow-sm border border-white/20" title="Isian Ornamen: #C9A567"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#C06A42] shadow-sm border border-white/20" title="Inti Roset: #C06A42"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#151310] shadow-sm border border-white/20" title="Dasar Kain: #151310"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Hitam Keraton</div>
-                    <div class="text-[10px] text-surface/50 truncate">Praba, Emas & Wulung</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Hitam Keraton</div>
+                    <div class="text-[9px] text-surface/50 truncate">Praba & Wulung</div>
                   </button>
 
-                  <!-- 6. Toraja Pa'teddong (4 Warna Lengkap) -->
-                  <button data-palette-idx="5" class="palette-btn p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
-                    <div class="flex items-center gap-1.5 mb-1.5">
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#8C2D19] shadow-sm border border-white/20" title="Garis Canting: #8C2D19"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#D49B4B] shadow-sm border border-white/20" title="Isian Ornamen: #D49B4B"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#ECE4D4] shadow-sm border border-white/20" title="Inti Roset: #ECE4D4"></span>
-                      <span class="w-3.5 h-3.5 rounded-full bg-[#181413] shadow-sm border border-white/20" title="Dasar Kain: #181413"></span>
+                  <!-- 6. Toraja Pa'teddong -->
+                  <button data-palette-idx="5" class="palette-btn p-2 rounded-xl bg-white/5 border border-white/10 hover:border-brass-400 text-left transition-all cursor-pointer group">
+                    <div class="flex items-center gap-1 mb-1">
+                      <span class="w-3 h-3 rounded-full bg-[#8C2D19] shadow-sm border border-white/20" title="Garis Canting: #8C2D19"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#D49B4B] shadow-sm border border-white/20" title="Isian Ornamen: #D49B4B"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#ECE4D4] shadow-sm border border-white/20" title="Inti Roset: #ECE4D4"></span>
+                      <span class="w-3 h-3 rounded-full bg-[#181413] shadow-sm border border-white/20" title="Dasar Kain: #181413"></span>
                     </div>
-                    <div class="text-xs font-semibold text-surface group-hover:text-brass-300 transition-colors">Toraja Wastra</div>
-                    <div class="text-[10px] text-surface/50 truncate">Merah Tanah & Arang</div>
+                    <div class="text-[11px] font-semibold text-surface group-hover:text-brass-300 transition-colors">Toraja Wastra</div>
+                    <div class="text-[9px] text-surface/50 truncate">Merah Tanah & Arang</div>
                   </button>
                 </div>
               </div>
 
-              <!-- FITUR KUSTOMISASI KODE PALET & RACIKAN WARNA MANDIRI (100% PERSIS KODE USER) -->
-              <div class="pt-4 border-t border-white/10 space-y-3.5">
-                <div class="flex items-center justify-between">
-                  <span class="text-[11px] font-bold uppercase tracking-wider text-brass-400 flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-sm">tune</span>
-                    <span>Racik & Kostum Warna Mandiri</span>
-                  </span>
-                  <span class="text-[9.5px] px-2 py-0.5 rounded-full bg-brass-400/15 text-brass-300 font-mono border border-brass-400/30">100% Akurat</span>
-                </div>
-
-                <p class="text-[10px] text-surface/60 font-light leading-relaxed">
-                  Kombinasikan warna sesuka Anda dengan mengetikkan kode Hex palet secara langsung atau memilih dari kamus pigmen wastra Nusantara di bawah.
-                </p>
-
-                <!-- 1. Input Multi-Kode Palet Cepat (String 4 Kode Hex Sekaligus) -->
-                <div class="space-y-1.5 p-3 rounded-xl bg-black/40 border border-white/10">
-                  <label class="text-[10px] font-semibold text-surface/75 flex items-center justify-between">
-                    <span>Masukkan Kode Palet Lengkap (4 Warna Hex):</span>
-                    <span class="text-[9px] text-surface/40 font-mono">Format: #HEX1, #HEX2, #HEX3, #HEX4</span>
-                  </label>
+              <!-- Racik Warna Mandiri & Kamus Pigmen Nusantara -->
+              <div class="pt-2 border-t border-white/10 space-y-2.5">
+                <!-- Input Multi-Kode Palet Cepat -->
+                <div class="p-2.5 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
+                  <div class="flex items-center justify-between text-[10px]">
+                    <span class="font-bold text-surface/85 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-xs text-brass-400">tune</span>
+                      <span>Racik 4 Kode Hex Sekaligus:</span>
+                    </span>
+                    <span class="text-[8.5px] px-1.5 py-0.5 rounded bg-brass-400/15 text-brass-300 font-mono border border-brass-400/20">100% Akurat</span>
+                  </div>
                   <div class="flex items-center gap-1.5">
-                    <div class="relative flex-1">
-                      <input id="input-multi-hex-palette" type="text"
-                             placeholder="#1A1612, #A47E3F, #A8512F, #F6F1E7"
-                             class="w-full pl-3 pr-3 py-1.5 text-xs font-mono rounded-lg bg-white/5 border border-white/15 text-brass-300 placeholder:text-surface/30 focus:outline-none focus:border-brass-400 transition-colors" />
-                    </div>
-                    <button id="btn-apply-multi-hex" type="button" class="px-3 py-1.5 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold transition-all shadow-md flex items-center gap-1 cursor-pointer flex-shrink-0">
+                    <input id="input-multi-hex-palette" type="text"
+                           placeholder="#16213A, #C9A567, #A8512F, #F6F1E7"
+                           class="w-full px-2.5 py-1 text-[11px] font-mono rounded-lg bg-white/5 border border-white/15 text-brass-300 placeholder:text-surface/30 focus:outline-none focus:border-brass-400 transition-colors" />
+                    <button id="btn-apply-multi-hex" type="button" class="px-3 py-1 rounded-lg bg-brass-400 hover:bg-brass-300 text-ink text-[11px] font-bold transition-all shadow-md flex items-center gap-1 cursor-pointer flex-shrink-0">
                       <span class="material-symbols-outlined text-xs">colorize</span>
                       <span>Terapkan</span>
                     </button>
                   </div>
                 </div>
 
-                <!-- 2. Empat Input Hex Individual untuk Tiap Peran Wastra -->
-                <div class="space-y-2">
-                  <div class="text-[10px] font-semibold text-surface/75 flex items-center justify-between">
-                    <span>Edit Kode Hex Per-Elemen:</span>
-                    <span class="text-[9px] text-brass-300/80">Ketik Hex & Tekan Enter / Tab</span>
-                  </div>
-                  <div class="grid grid-cols-2 gap-2">
-                    <!-- Input 1: Garis Canting -->
-                    <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-2">
-                      <span id="custom-preview-primary" class="w-5 h-5 rounded-md flex-shrink-0 border border-white/20 shadow-sm transition-colors" style="background-color: #1A1612"></span>
-                      <div class="flex-1 min-w-0">
-                        <span class="text-[8.5px] uppercase text-surface/50 font-medium block truncate">Garis Canting</span>
-                        <input id="custom-hex-primary" type="text" value="#1A1612" maxlength="7"
-                               class="w-full bg-transparent text-[11px] font-mono text-brass-300 focus:outline-none uppercase font-bold" />
-                      </div>
-                    </div>
-
-                    <!-- Input 2: Isian Ornamen -->
-                    <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-2">
-                      <span id="custom-preview-secondary" class="w-5 h-5 rounded-md flex-shrink-0 border border-white/20 shadow-sm transition-colors" style="background-color: #A47E3F"></span>
-                      <div class="flex-1 min-w-0">
-                        <span class="text-[8.5px] uppercase text-surface/50 font-medium block truncate">Isian Ornamen</span>
-                        <input id="custom-hex-secondary" type="text" value="#A47E3F" maxlength="7"
-                               class="w-full bg-transparent text-[11px] font-mono text-brass-300 focus:outline-none uppercase font-bold" />
-                      </div>
-                    </div>
-
-                    <!-- Input 3: Inti Roset -->
-                    <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-2">
-                      <span id="custom-preview-highlight" class="w-5 h-5 rounded-md flex-shrink-0 border border-white/20 shadow-sm transition-colors" style="background-color: #A8512F"></span>
-                      <div class="flex-1 min-w-0">
-                        <span class="text-[8.5px] uppercase text-surface/50 font-medium block truncate">Inti Roset</span>
-                        <input id="custom-hex-highlight" type="text" value="#A8512F" maxlength="7"
-                               class="w-full bg-transparent text-[11px] font-mono text-brass-300 focus:outline-none uppercase font-bold" />
-                      </div>
-                    </div>
-
-                    <!-- Input 4: Dasar Kain -->
-                    <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-2">
-                      <span id="custom-preview-bg" class="w-5 h-5 rounded-md flex-shrink-0 border border-white/20 shadow-sm transition-colors" style="background-color: #F6F1E7"></span>
-                      <div class="flex-1 min-w-0">
-                        <span class="text-[8.5px] uppercase text-surface/50 font-medium block truncate">Dasar Kain</span>
-                        <input id="custom-hex-bg" type="text" value="#F6F1E7" maxlength="7"
-                               class="w-full bg-transparent text-[11px] font-mono text-brass-300 focus:outline-none uppercase font-bold" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 3. Kamus Pigmen Tradisional Nusantara (Quick Swatches) -->
-                <div class="space-y-2 pt-2 border-t border-white/5">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-semibold text-surface/75 flex items-center gap-1">
+                <!-- Kamus Pigmen Alami Tradisional Nusantara -->
+                <div class="space-y-1.5 pt-1 border-t border-white/5">
+                  <div class="flex items-center justify-between text-[10px]">
+                    <span class="font-bold uppercase tracking-wider text-surface/80 flex items-center gap-1">
                       <span class="material-symbols-outlined text-xs text-brass-400">library_books</span>
                       <span>Kamus Pigmen Alami Nusantara:</span>
                     </span>
-                    <!-- Target Slot Selector -->
-                    <div class="flex items-center gap-1 text-[9px]">
-                      <span class="text-surface/40">Isi Ke:</span>
-                      <select id="select-target-role" class="bg-black/50 border border-white/10 text-brass-300 rounded px-1.5 py-0.5 text-[9.5px] focus:outline-none cursor-pointer">
-                        <option value="primary">Garis Canting</option>
-                        <option value="secondary">Isian Ornamen</option>
-                        <option value="highlight">Inti Roset</option>
-                        <option value="bg">Dasar Kain</option>
-                      </select>
-                    </div>
+                    <span class="text-[9px] text-brass-400/80 font-mono">30 Warna Alami</span>
                   </div>
 
-                  <!-- Chips Pigmen Terkenal Nusantara -->
-                  <div id="pigment-quick-chips" class="grid grid-cols-4 gap-1.5 max-h-36 overflow-y-auto pr-1">
+                  <!-- Segmented Target Role Selector (Modern & Sesuai Tema Nusantara) -->
+                  <div class="p-1 rounded-xl bg-black/50 border border-white/10 flex items-center gap-1" id="role-target-buttons-group">
+                    <button type="button" data-role-val="primary" class="target-role-btn active flex-1 py-1 px-1 rounded-lg text-[9.5px] font-semibold text-center transition-all cursor-pointer bg-brass-400 text-ink font-bold shadow-sm">
+                      Garis
+                    </button>
+                    <button type="button" data-role-val="secondary" class="target-role-btn flex-1 py-1 px-1 rounded-lg text-[9.5px] font-semibold text-center transition-all cursor-pointer bg-white/5 hover:bg-white/10 text-surface/75 hover:text-white border border-white/5">
+                      Isian
+                    </button>
+                    <button type="button" data-role-val="highlight" class="target-role-btn flex-1 py-1 px-1 rounded-lg text-[9.5px] font-semibold text-center transition-all cursor-pointer bg-white/5 hover:bg-white/10 text-surface/75 hover:text-white border border-white/5">
+                      Roset
+                    </button>
+                    <button type="button" data-role-val="bg" class="target-role-btn flex-1 py-1 px-1 rounded-lg text-[9.5px] font-semibold text-center transition-all cursor-pointer bg-white/5 hover:bg-white/10 text-surface/75 hover:text-white border border-white/5">
+                      Kain
+                    </button>
+                  </div>
+                  <select id="select-target-role" class="hidden">
+                    <option value="primary" selected>Garis Canting</option>
+                    <option value="secondary">Isian Ornamen</option>
+                    <option value="highlight">Inti Roset</option>
+                    <option value="bg">Dasar Kain</option>
+                  </select>
+
+                  <!-- Pigment Chips Grid in 2 Columns (Teks Lengkap & Tidak Terpotong) -->
+                  <div id="pigment-quick-chips" class="grid grid-cols-2 gap-1.5 max-h-36 overflow-y-auto studio-scroll pr-1">
                     <!-- Injected dynamically by JS -->
                   </div>
                 </div>
 
-                <!-- 4. Tombol Aksi Tambahan: Salin Kode & Harmonisasi Acak -->
-                <div class="flex items-center gap-2 pt-1">
-                  <button id="btn-copy-palette-code" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-surface/90 hover:text-white font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer" title="Salin 4 Kode Hex">
+                <!-- Tombol Salin & Harmonisasi -->
+                <div class="flex items-center gap-2 pt-1 border-t border-white/5">
+                  <button id="btn-copy-palette-code" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[10.5px] text-surface/90 hover:text-white font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer" title="Salin 4 Kode Hex">
                     <span class="material-symbols-outlined text-xs text-brass-400">content_copy</span>
                     <span>Salin Kode Palet</span>
                   </button>
-                  <button id="btn-harmonize-palette" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-white/5 hover:bg-brass-400/20 border border-white/10 hover:border-brass-400/40 text-[11px] text-brass-300 font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer" title="Sesuaikan Kontras & Nilai Estetika Emas Wastra">
-                    <span class="material-symbols-outlined text-xs">auto_fix_high</span>
+                  <button id="btn-harmonize-palette" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-brass-400/10 hover:bg-brass-400/20 border border-brass-400/30 hover:border-brass-400/50 text-[10.5px] text-brass-300 font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer" title="Sesuaikan Kontras & Nilai Estetika Emas Wastra">
+                    <span class="material-symbols-outlined text-xs text-brass-400">auto_fix_high</span>
                     <span>Harmonisasi</span>
                   </button>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- TAB 2 CONTAINER CADANGAN UNTUK KOMPATIBILITAS JS -->
+          <div id="tab-content-color" class="hidden"></div>
 
           <!-- TAB 3: CANTING TULIS MANUAL -->
           <div id="tab-content-canting" class="space-y-4 hidden">
@@ -1358,7 +1337,7 @@
   <script src="../js/components/marketplace-chat.js"></script>
   <script src="../js/components/navbar.js"></script>
   <script src="../js/utils/loading-screen.js?v=31"></script>
-  <script src="../js/sections/creative-lab-studio.js?v=61"></script>
+  <script src="../js/sections/creative-lab-studio.js?v=63"></script>
   <script src="../js/config.example.js"></script>
   <script src="../js/config.js"></script>
   <script src="../js/utils/wari-mascot.js?v=53"></script>
