@@ -37,9 +37,9 @@
     cantingIsPrinted: false,   
 
     activeView: "flat", 
-    viewMode: "2d", // "2d" | "3d"
-    mockupProduct: "dress", // "dress" | "totebag" | "shirt" | "scarf" | "cushion"
-    mockupFabric: "cotton", // "cotton" | "silk" | "linen" | "canvas"
+    viewMode: "2d", 
+    mockupProduct: "dress", 
+    mockupFabric: "cotton", 
     mockupScale: 1.0,
     mockupRotation: 0,
     shadowIntensity: 1.0,
@@ -1659,7 +1659,6 @@
       { id: "bg", role: "Dasar Kain", hex: StudioState.bgColor, name: getColorCulturalName(StudioState.bgColor) }
     ];
 
-    // 1. Update Master Unified Cards di Tab 2
     activeColors.forEach((c) => {
       const nameEl = document.getElementById(`label-name-${c.id}`);
       const hexEl = document.getElementById(`label-hex-${c.id}`);
@@ -1670,7 +1669,6 @@
         pickerEl.value = c.hex;
       }
 
-      // Update Individual Custom Hex Inputs & Preview Swatches
       const customHexInput = document.getElementById(`custom-hex-${c.id}`);
       const customPreview = document.getElementById(`custom-preview-${c.id}`);
       if (customHexInput && document.activeElement !== customHexInput) {
@@ -1681,13 +1679,11 @@
       }
     });
 
-    // Update Multi-Hex String Input
     const multiHexInput = document.getElementById("input-multi-hex-palette");
     if (multiHexInput && document.activeElement !== multiHexInput) {
       multiHexInput.value = `${StudioState.primaryColor.toUpperCase()}, ${StudioState.secondaryColor.toUpperCase()}, ${StudioState.highlightColor.toUpperCase()}, ${StudioState.bgColor.toUpperCase()}`;
     }
 
-    // Fallback extractContainer jika ada
     const extractContainer = document.getElementById("active-palette-extract-container");
     if (extractContainer) {
       extractContainer.innerHTML = activeColors.map((c) => `
@@ -1701,7 +1697,6 @@
       `).join("");
     }
 
-    // 2. Update di bawah Kanvas Stage sebagai 4 Micro Dot Swatches yang rapih & elegan
     const stageBreakdown = document.getElementById("stage-palette-breakdown");
     if (stageBreakdown) {
       stageBreakdown.innerHTML = activeColors.map((c) => `
@@ -1776,18 +1771,15 @@
     updateLivePaletteDisplay();
   }
 
-  // 1. MOCKUP GAUN WASTRA NUSANTARA (MIDI BOHO DRESS - SESUAI GAMBAR 1)
   function drawDressMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
-    // Studio Background Neutral Luxury
     const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
     bgGrad.addColorStop(0, "#221D18");
     bgGrad.addColorStop(1, "#14110E");
     mCtx.fillStyle = bgGrad;
     mCtx.fillRect(0, 0, w, h);
 
-    // Floor light reflection
     const floorGrad = mCtx.createLinearGradient(0, h * 0.82, 0, h);
     floorGrad.addColorStop(0, "rgba(0,0,0,0)");
     floorGrad.addColorStop(1, "rgba(10,8,6,0.5)");
@@ -1796,7 +1788,6 @@
 
     const cx = w / 2;
 
-    // Ground Contact Shadow (Realistis di lantai bawah gaun)
     const shadowGrad = mCtx.createRadialGradient(cx, h * 0.915, 20, cx, h * 0.915, w * 0.36);
     shadowGrad.addColorStop(0, `rgba(0, 0, 0, ${0.75 * shadowInt})`);
     shadowGrad.addColorStop(0.35, `rgba(0, 0, 0, ${0.4 * shadowInt})`);
@@ -1807,7 +1798,6 @@
     mCtx.ellipse(cx, h * 0.915, w * 0.33, h * 0.045, 0, 0, Math.PI * 2);
     mCtx.fill();
 
-    // Inner Back Neckline (Tengkuk leher dalam dengan label Warisara)
     mCtx.save();
     mCtx.beginPath();
     mCtx.moveTo(cx - w * 0.08, h * 0.13);
@@ -1817,34 +1807,31 @@
     mCtx.fillStyle = "#1E1A16";
     mCtx.fill();
 
-    // Label leher
     mCtx.fillStyle = "rgba(201, 165, 103, 0.75)";
     mCtx.font = `bold ${w * 0.012}px 'Fraunces', serif`;
     mCtx.textAlign = "center";
     mCtx.fillText("WARISARA NUSANTARA", cx, h * 0.165);
     mCtx.restore();
 
-    // Path Gaun Wastra (Bodice, Flutter Sleeves, Smocked Waist, Flared Pleated Skirt)
     function createDressPath(ctx) {
       ctx.beginPath();
-      // Titik tengah V-neck
+
       ctx.moveTo(cx, h * 0.245);
-      // Naik ke bahu kiri V-neck
+
       ctx.lineTo(cx - w * 0.075, h * 0.13);
-      // Bahu kiri
+
       ctx.quadraticCurveTo(cx - w * 0.13, h * 0.135, cx - w * 0.17, h * 0.155);
-      // Lengan lonceng / flutter kiri
+
       ctx.bezierCurveTo(cx - w * 0.25, h * 0.18, cx - w * 0.33, h * 0.25, cx - w * 0.31, h * 0.34);
-      // Ujung bawah lengan bergelombang
+
       ctx.quadraticCurveTo(cx - w * 0.24, h * 0.35, cx - w * 0.17, h * 0.31);
-      // Ketiak kiri ke pinggang
+
       ctx.quadraticCurveTo(cx - w * 0.15, h * 0.34, cx - w * 0.125, h * 0.38);
-      // Pinggang karet kiri
+
       ctx.lineTo(cx - w * 0.12, h * 0.44);
-      // Rok jatuh mengembang kiri
+
       ctx.bezierCurveTo(cx - w * 0.16, h * 0.54, cx - w * 0.22, h * 0.68, cx - w * 0.28, h * 0.87);
 
-      // Kelim bawah rok dengan 7 lekukan lipatan natural
       const folds = 7;
       const skirtLeft = cx - w * 0.28;
       const skirtRight = cx + w * 0.28;
@@ -1857,24 +1844,22 @@
         ctx.quadraticCurveTo(cpx, cpy, p2x, (i % 2 === 0) ? h * 0.87 : h * 0.88);
       }
 
-      // Rok jatuh kanan
       ctx.bezierCurveTo(cx + w * 0.22, h * 0.68, cx + w * 0.16, h * 0.54, cx + w * 0.12, h * 0.44);
-      // Pinggang karet kanan
+
       ctx.lineTo(cx + w * 0.125, h * 0.38);
-      // Ketiak kanan ke lengan
+
       ctx.quadraticCurveTo(cx + w * 0.15, h * 0.34, cx + w * 0.17, h * 0.31);
-      // Ujung bawah lengan kanan
+
       ctx.quadraticCurveTo(cx + w * 0.24, h * 0.35, cx + w * 0.31, h * 0.34);
-      // Lengan lonceng kanan
+
       ctx.bezierCurveTo(cx + w * 0.33, h * 0.25, cx + w * 0.25, h * 0.18, cx + w * 0.17, h * 0.155);
-      // Bahu kanan
+
       ctx.quadraticCurveTo(cx + w * 0.13, h * 0.135, cx + w * 0.075, h * 0.13);
-      // Turun ke V-neck kanan
+
       ctx.lineTo(cx, h * 0.245);
       ctx.closePath();
     }
 
-    // Isi Gaun dengan Pola Batik
     mCtx.save();
     createDressPath(mCtx);
     mCtx.clip();
@@ -1882,11 +1867,9 @@
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    // MULTI-PASS SHADING: Crease & Pleat Shadows (MULTIPLY)
     mCtx.globalCompositeOperation = "multiply";
     const sMult = shadowInt || 1.0;
 
-    // Bayangan vertikal lekukan rok (pleat fold troughs)
     const skirtLeft = cx - w * 0.28;
     const skirtRight = cx + w * 0.28;
     const foldW = (skirtRight - skirtLeft) / 7;
@@ -1895,12 +1878,12 @@
       const fTopX = cx + ((i - 3) / 3) * (w * 0.1);
       const troughGrad = mCtx.createLinearGradient(fTopX, h * 0.44, fx, h * 0.88);
       if (i % 2 === 1) {
-        // Lembah lekukan gelap
+
         troughGrad.addColorStop(0, `rgba(0, 0, 0, ${0.45 * sMult})`);
         troughGrad.addColorStop(0.5, `rgba(0, 0, 0, ${0.55 * sMult})`);
         troughGrad.addColorStop(1, `rgba(0, 0, 0, ${0.35 * sMult})`);
       } else {
-        // Bayangan lembut lereng lipatan
+
         troughGrad.addColorStop(0, `rgba(0, 0, 0, ${0.15 * sMult})`);
         troughGrad.addColorStop(1, `rgba(0, 0, 0, ${0.2 * sMult})`);
       }
@@ -1914,7 +1897,6 @@
       mCtx.fill();
     }
 
-    // Bayangan lekuk dada & sisi ketiak
     const bodiceShadow = mCtx.createRadialGradient(cx, h * 0.32, w * 0.05, cx, h * 0.32, w * 0.22);
     bodiceShadow.addColorStop(0, "rgba(0,0,0,0)");
     bodiceShadow.addColorStop(0.7, `rgba(0,0,0,${0.25 * sMult})`);
@@ -1922,14 +1904,12 @@
     mCtx.fillStyle = bodiceShadow;
     mCtx.fillRect(0, 0, w, h);
 
-    // Bayangan jatuh di bawah ban pinggang
     const waistDrop = mCtx.createLinearGradient(0, h * 0.44, 0, h * 0.50);
     waistDrop.addColorStop(0, `rgba(0,0,0,${0.5 * sMult})`);
     waistDrop.addColorStop(1, "rgba(0,0,0,0)");
     mCtx.fillStyle = waistDrop;
     mCtx.fillRect(cx - w * 0.16, h * 0.44, w * 0.32, h * 0.06);
 
-    // Bayangan lengan flutter
     const leftSleeveShadow = mCtx.createLinearGradient(cx - w * 0.17, h * 0.2, cx - w * 0.31, h * 0.34);
     leftSleeveShadow.addColorStop(0, "rgba(0,0,0,0)");
     leftSleeveShadow.addColorStop(1, `rgba(0,0,0,${0.45 * sMult})`);
@@ -1942,13 +1922,11 @@
     mCtx.fillStyle = rightSleeveShadow;
     mCtx.fillRect(cx + w * 0.15, h * 0.15, w * 0.2, h * 0.22);
 
-    // MULTI-PASS LIGHTING: Specular Highlights & Sheen (SCREEN)
     mCtx.globalCompositeOperation = "screen";
     const hMult = highlightInt || 1.0;
     const isSilk = fabric === "silk";
     const hBoost = isSilk ? 1.6 : 1.0;
 
-    // Kilau cahaya puncak lipatan rok
     for (let i = 0; i < 7; i += 2) {
       const fx = skirtLeft + (i + 0.5) * foldW;
       const fTopX = cx + ((i - 3) / 3) * (w * 0.09);
@@ -1966,14 +1944,12 @@
       mCtx.fill();
     }
 
-    // Kilau cahaya dada & bahu
     const bustHighlight = mCtx.createRadialGradient(cx - w * 0.04, h * 0.28, 5, cx - w * 0.04, h * 0.28, w * 0.1);
     bustHighlight.addColorStop(0, `rgba(255,255,255,${0.35 * hMult * hBoost})`);
     bustHighlight.addColorStop(1, "rgba(255,255,255,0)");
     mCtx.fillStyle = bustHighlight;
     mCtx.fillRect(cx - w * 0.15, h * 0.2, w * 0.22, h * 0.18);
 
-    // Tekstur serat kain alami (Linen / Canvas Weave)
     if (fabric === "linen" || fabric === "canvas") {
       mCtx.globalCompositeOperation = "overlay";
       mCtx.strokeStyle = "rgba(0,0,0,0.18)";
@@ -1987,18 +1963,15 @@
       }
     }
 
-    mCtx.restore(); // Selesai clipping gaun
+    mCtx.restore(); 
 
-    // DETAIL JAHITAN & AKSESORIS REALISTIS (Sesuai Gambar 1)
     mCtx.save();
 
-    // Garis tepi halus
     createDressPath(mCtx);
     mCtx.strokeStyle = "rgba(26, 22, 18, 0.45)";
     mCtx.lineWidth = 1.5;
     mCtx.stroke();
 
-    // Jahitan karet kerut pinggang (smocking elastic)
     mCtx.strokeStyle = "rgba(26, 22, 18, 0.5)";
     mCtx.lineWidth = 1.2;
     for (let s = 0; s < 4; s++) {
@@ -2009,7 +1982,6 @@
       mCtx.stroke();
     }
 
-    // Topstitching V-neck
     mCtx.strokeStyle = "rgba(201, 165, 103, 0.7)";
     mCtx.lineWidth = 1.5;
     mCtx.beginPath();
@@ -2018,15 +1990,14 @@
     mCtx.lineTo(cx + w * 0.075, h * 0.13);
     mCtx.stroke();
 
-    // Tali serut leher (Braided Drawstrings) dengan manik kuningan
     mCtx.strokeStyle = "#E6D3A7";
     mCtx.lineWidth = 2.5;
-    // Tali kiri
+
     mCtx.beginPath();
     mCtx.moveTo(cx - 3, h * 0.245);
     mCtx.quadraticCurveTo(cx - 16, h * 0.29, cx - 12, h * 0.34);
     mCtx.stroke();
-    // Manik emas kiri
+
     mCtx.fillStyle = "#C9A567";
     mCtx.beginPath();
     mCtx.arc(cx - 12, h * 0.345, 5, 0, Math.PI * 2);
@@ -2035,14 +2006,13 @@
     mCtx.lineWidth = 1.5;
     mCtx.stroke();
 
-    // Tali kanan
     mCtx.strokeStyle = "#E6D3A7";
     mCtx.lineWidth = 2.5;
     mCtx.beginPath();
     mCtx.moveTo(cx + 3, h * 0.245);
     mCtx.quadraticCurveTo(cx + 14, h * 0.28, cx + 10, h * 0.35);
     mCtx.stroke();
-    // Manik emas kanan
+
     mCtx.fillStyle = "#C9A567";
     mCtx.beginPath();
     mCtx.arc(cx + 10, h * 0.355, 5, 0, Math.PI * 2);
@@ -2054,13 +2024,11 @@
     mCtx.restore();
   }
 
-  // 2. MOCKUP TOTE BAG KRIYA KULIT & KANVAS (SESUAI GAMBAR REFERENSI 2)
   function drawLeatherStraps(mCtx, w, h, cx, isBack) {
     mCtx.save();
     const strapW = 28;
     const topArchY = h * 0.12;
 
-    // Tali Kiri
     mCtx.beginPath();
     mCtx.moveTo(cx - w * 0.14 - strapW / 2, h * 0.52);
     mCtx.bezierCurveTo(cx - w * 0.16, h * 0.32, cx - w * 0.14, topArchY, cx - w * 0.10, topArchY);
@@ -2079,7 +2047,6 @@
     mCtx.fillStyle = leatherGrad;
     mCtx.fill();
 
-    // Jahitan Tepi Tali Kulit (Depan saja)
     if (!isBack) {
       mCtx.strokeStyle = "rgba(230, 211, 167, 0.85)";
       mCtx.lineWidth = 1.5;
@@ -2087,7 +2054,6 @@
       mCtx.stroke();
       mCtx.setLineDash([]);
 
-      // Patch Penguat Kulit & Rivet Logam di Tas
       const leftAnchorX = cx - w * 0.14;
       const anchorY = h * 0.48;
       mCtx.fillStyle = "#6E350E";
@@ -2096,7 +2062,7 @@
       mCtx.lineWidth = 1.5;
       mCtx.setLineDash([3, 2]);
       mCtx.strokeRect(leftAnchorX - strapW / 2 - 3, anchorY - 25, strapW + 6, 42);
-      // Jahitan X penguat
+
       mCtx.beginPath();
       mCtx.moveTo(leftAnchorX - strapW / 2 - 1, anchorY - 23);
       mCtx.lineTo(leftAnchorX + strapW / 2 + 1, anchorY + 15);
@@ -2105,7 +2071,6 @@
       mCtx.stroke();
       mCtx.setLineDash([]);
 
-      // Rivet Logam Kuningan
       mCtx.fillStyle = "#C9A567";
       mCtx.beginPath();
       mCtx.arc(leftAnchorX, anchorY - 5, 4.5, 0, Math.PI * 2);
@@ -2115,7 +2080,6 @@
       mCtx.stroke();
     }
 
-    // Tali Kanan
     mCtx.beginPath();
     mCtx.moveTo(cx + w * 0.14 - strapW / 2, h * 0.52);
     mCtx.bezierCurveTo(cx + w * 0.11, h * 0.32, cx + w * 0.08, topArchY, cx + w * 0.10, topArchY);
@@ -2147,7 +2111,6 @@
       mCtx.stroke();
       mCtx.setLineDash([]);
 
-      // Rivet Logam Kuningan
       mCtx.fillStyle = "#C9A567";
       mCtx.beginPath();
       mCtx.arc(rightAnchorX, anchorY - 5, 4.5, 0, Math.PI * 2);
@@ -2167,12 +2130,10 @@
     const bx = cx - bw / 2;
     const by = h * 0.505;
 
-    // Bayangan badge
     mCtx.fillStyle = "rgba(0,0,0,0.45)";
     drawRoundRect(mCtx, bx + 2, by + 4, bw, bh, 6);
     mCtx.fill();
 
-    // Badan Kulit Badge
     const badgeGrad = mCtx.createLinearGradient(0, by, 0, by + bh);
     badgeGrad.addColorStop(0, "#8B4513");
     badgeGrad.addColorStop(0.5, "#A0522D");
@@ -2181,7 +2142,6 @@
     drawRoundRect(mCtx, bx, by, bw, bh, 5);
     mCtx.fill();
 
-    // Jahitan Tepi Badge
     mCtx.strokeStyle = "rgba(230, 211, 167, 0.85)";
     mCtx.lineWidth = 1.2;
     mCtx.setLineDash([3, 2]);
@@ -2189,7 +2149,6 @@
     mCtx.stroke();
     mCtx.setLineDash([]);
 
-    // Teks Embossed Deboss
     mCtx.fillStyle = "#3D1E07";
     mCtx.font = "bold 11px 'Fraunces', serif";
     mCtx.textAlign = "center";
@@ -2204,7 +2163,6 @@
   function drawToteBagMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
-    // Studio Background
     const bgGrad = mCtx.createRadialGradient(w / 2, h * 0.45, w * 0.1, w / 2, h * 0.5, w * 0.7);
     bgGrad.addColorStop(0, "#221D18");
     bgGrad.addColorStop(1, "#14110E");
@@ -2213,7 +2171,6 @@
 
     const cx = w / 2;
 
-    // Ground Contact Shadow di bawah dasar tas
     const shadowGrad = mCtx.createRadialGradient(cx, h * 0.885, 20, cx, h * 0.885, w * 0.34);
     shadowGrad.addColorStop(0, `rgba(0, 0, 0, ${0.85 * shadowInt})`);
     shadowGrad.addColorStop(0.35, `rgba(0, 0, 0, ${0.45 * shadowInt})`);
@@ -2224,10 +2181,8 @@
     mCtx.ellipse(cx, h * 0.885, w * 0.31, h * 0.05, 0, 0, Math.PI * 2);
     mCtx.fill();
 
-    // 1. Tali Kulit Belakang (digambar sebelum badan tas)
     drawLeatherStraps(mCtx, w, h, cx, true);
 
-    // 2. Siluet Badan Tote Bag
     function createTotePath(ctx) {
       ctx.beginPath();
       const topW = w * 0.31;
@@ -2245,7 +2200,6 @@
       ctx.closePath();
     }
 
-    // Isi Badan Tas dengan Motif Batik
     mCtx.save();
     createTotePath(mCtx);
     mCtx.clip();
@@ -2253,7 +2207,6 @@
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    // Tekstur Anyaman Kanvas Kriya Tebal (Authentic Heavy Canvas Weave)
     mCtx.globalCompositeOperation = "overlay";
     mCtx.strokeStyle = "rgba(0,0,0,0.18)";
     mCtx.lineWidth = 1;
@@ -2264,7 +2217,6 @@
       mCtx.stroke();
     }
 
-    // Shading Bentuk Melengkung (Barrel 3D Shading - MULTIPLY)
     mCtx.globalCompositeOperation = "multiply";
     const sMult = shadowInt || 1.0;
     const bodyShade = mCtx.createLinearGradient(cx - w * 0.31, 0, cx + w * 0.31, 0);
@@ -2276,14 +2228,12 @@
     mCtx.fillStyle = bodyShade;
     mCtx.fillRect(cx - w * 0.35, h * 0.36, w * 0.7, h * 0.55);
 
-    // Bayangan Dasar Bawah
     const botShade = mCtx.createLinearGradient(0, h * 0.76, 0, h * 0.87);
     botShade.addColorStop(0, "rgba(0,0,0,0)");
     botShade.addColorStop(1, `rgba(0,0,0,${0.5 * sMult})`);
     mCtx.fillStyle = botShade;
     mCtx.fillRect(cx - w * 0.35, h * 0.76, w * 0.7, h * 0.12);
 
-    // Highlight Pencahayaan (SCREEN)
     mCtx.globalCompositeOperation = "screen";
     const hMult = highlightInt || 1.0;
     const bodyHigh = mCtx.createLinearGradient(cx - w * 0.18, 0, cx + w * 0.05, 0);
@@ -2292,9 +2242,8 @@
     mCtx.fillStyle = bodyHigh;
     mCtx.fillRect(cx - w * 0.22, h * 0.38, w * 0.32, h * 0.5);
 
-    mCtx.restore(); // Selesai clip tas
+    mCtx.restore(); 
 
-    // 3. Garis Tepi Kulit Bibir Tas (Top Rim Leather Binding)
     mCtx.save();
     mCtx.beginPath();
     const topW = w * 0.31;
@@ -2316,16 +2265,13 @@
     mCtx.stroke();
     mCtx.restore();
 
-    // 4. Tali Kulit Depan & Rivet Logam (Front Leather Straps)
     drawLeatherStraps(mCtx, w, h, cx, false);
 
-    // 5. Badge Kulit Tengah "WARISARA KARYA LOKAL" (Sesuai Gambar 2)
     drawLeatherBadge(mCtx, w, h, cx);
 
     mCtx.restore();
   }
 
-  // 3. MOCKUP KEMEJA BATIK PRIA MODERN FIT
   function drawShirtMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2337,7 +2283,6 @@
 
     const cx = w / 2;
 
-    // Contact shadow
     const shadowGrad = mCtx.createRadialGradient(cx, h * 0.90, 20, cx, h * 0.90, w * 0.35);
     shadowGrad.addColorStop(0, `rgba(0,0,0,${0.7 * shadowInt})`);
     shadowGrad.addColorStop(1, "rgba(0,0,0,0)");
@@ -2371,7 +2316,6 @@
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    // Multi-pass shadows (MULTIPLY)
     mCtx.globalCompositeOperation = "multiply";
     const sMult = shadowInt || 1.0;
     const shirtShade = mCtx.createLinearGradient(cx - w * 0.25, 0, cx + w * 0.25, 0);
@@ -2383,7 +2327,6 @@
     mCtx.fillStyle = shirtShade;
     mCtx.fillRect(0, 0, w, h);
 
-    // Highlights (SCREEN)
     mCtx.globalCompositeOperation = "screen";
     const hMult = highlightInt || 1.0;
     const shirtHigh = mCtx.createRadialGradient(cx - w * 0.05, h * 0.35, 10, cx - w * 0.05, h * 0.35, w * 0.2);
@@ -2394,16 +2337,14 @@
 
     mCtx.restore();
 
-    // Detail Kemeja: Placket Depan & Kancing Kayu
     mCtx.save();
-    // Placket tengah
+
     mCtx.fillStyle = "rgba(0, 0, 0, 0.25)";
     mCtx.fillRect(cx - 14, h * 0.18, 28, h * 0.70);
     mCtx.strokeStyle = "rgba(201, 165, 103, 0.6)";
     mCtx.lineWidth = 1.2;
     mCtx.strokeRect(cx - 14, h * 0.18, 28, h * 0.70);
 
-    // 5 Kancing Mutiara / Kayu dengan 4 lubang jahitan
     for (let b = 1; b <= 5; b++) {
       const by = h * 0.24 + b * (h * 0.115);
       mCtx.fillStyle = "#E6D3A7";
@@ -2414,7 +2355,6 @@
       mCtx.lineWidth = 1.5;
       mCtx.stroke();
 
-      // Lubang jahitan kancing
       mCtx.fillStyle = "#3D1E07";
       mCtx.fillRect(cx - 2.5, by - 2.5, 1.5, 1.5);
       mCtx.fillRect(cx + 1, by - 2.5, 1.5, 1.5);
@@ -2422,7 +2362,6 @@
       mCtx.fillRect(cx + 1, by + 1, 1.5, 1.5);
     }
 
-    // Kerah Kemeja (Collar points)
     mCtx.beginPath();
     mCtx.moveTo(cx - w * 0.12, h * 0.15);
     mCtx.lineTo(cx - w * 0.04, h * 0.23);
@@ -2433,7 +2372,6 @@
     mCtx.lineWidth = 3;
     mCtx.stroke();
 
-    // Saku Dada Kiri
     mCtx.strokeStyle = "rgba(201, 165, 103, 0.65)";
     mCtx.lineWidth = 1.5;
     mCtx.setLineDash([3, 2]);
@@ -2444,7 +2382,6 @@
     mCtx.restore();
   }
 
-  // 4. MOCKUP SELENDANG SUTRA (SILK SCARF WITH GOLD FRINGES)
   function drawScarfMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2471,7 +2408,6 @@
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    // Kilau sutra elegan
     mCtx.globalCompositeOperation = "screen";
     const hMult = highlightInt || 1.0;
     const sheen = mCtx.createLinearGradient(0, 0, w, h);
@@ -2482,7 +2418,6 @@
     mCtx.fillStyle = sheen;
     mCtx.fill();
 
-    // Lekukan bayangan (MULTIPLY)
     mCtx.globalCompositeOperation = "multiply";
     const sMult = shadowInt || 1.0;
     const scarfShadow = mCtx.createLinearGradient(w * 0.2, 0, w * 0.8, 0);
@@ -2494,7 +2429,6 @@
 
     mCtx.restore();
 
-    // Rumbai / Rumbai Emas Selendang di Ujung Bawah
     mCtx.strokeStyle = "#C9A567";
     mCtx.lineWidth = 2.5;
     for (let t = w * 0.43; t <= w * 0.75; t += 7) {
@@ -2507,7 +2441,6 @@
     mCtx.restore();
   }
 
-  // 5. MOCKUP BANTAL INTERIOR DEKORASI (CUSHION WITH PIPING)
   function drawCushionMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2521,7 +2454,6 @@
     const cy = h / 2;
     const r = w * 0.38;
 
-    // Contact shadow
     const shadowGrad = mCtx.createRadialGradient(cx, cy + r * 0.92, 20, cx, cy + r * 0.92, r * 1.1);
     shadowGrad.addColorStop(0, `rgba(0,0,0,${0.75 * shadowInt})`);
     shadowGrad.addColorStop(1, "rgba(0,0,0,0)");
@@ -2547,7 +2479,6 @@
     mCtx.fillStyle = pattern;
     mCtx.fill();
 
-    // Shading cembung bantal (Radial Gradient - MULTIPLY)
     mCtx.globalCompositeOperation = "multiply";
     const sMult = shadowInt || 1.0;
     const pillowShade = mCtx.createRadialGradient(cx, cy, r * 0.15, cx, cy, r * 1.05);
@@ -2557,7 +2488,6 @@
     mCtx.fillStyle = pillowShade;
     mCtx.fill();
 
-    // Highlight cembung tengah (SCREEN)
     mCtx.globalCompositeOperation = "screen";
     const hMult = highlightInt || 1.0;
     const pillowHigh = mCtx.createRadialGradient(cx - r * 0.2, cy - r * 0.2, 5, cx - r * 0.2, cy - r * 0.2, r * 0.6);
@@ -2568,13 +2498,11 @@
 
     mCtx.restore();
 
-    // Piped cording border (Tali bisban pinggir bantal)
     mCtx.strokeStyle = "rgba(201, 165, 103, 0.75)";
     mCtx.lineWidth = 4;
     createCushionPath(mCtx);
     mCtx.stroke();
 
-    // Kancing tuft tengah
     mCtx.fillStyle = "#A47E3F";
     mCtx.beginPath();
     mCtx.arc(cx, cy, 7, 0, Math.PI * 2);
@@ -2586,7 +2514,6 @@
     mCtx.restore();
   }
 
-  // 6. LEMBAR SPEK DESAIN FASHION & KRIYA / TECH PACK (SESUAI GAMBAR 1)
   function exportFashionTechPack() {
     const tWidth = 1600;
     const tHeight = 1100;
@@ -2595,16 +2522,13 @@
     tCanvas.height = tHeight;
     const tCtx = tCanvas.getContext("2d");
 
-    // Latar Belakang Kartu Studio Bersih & Mewah (Warm Charcoal Board)
     tCtx.fillStyle = "#181512";
     tCtx.fillRect(0, 0, tWidth, tHeight);
 
-    // Frame Border Kuningan Halus
     tCtx.strokeStyle = "rgba(201, 165, 103, 0.4)";
     tCtx.lineWidth = 2;
     tCtx.strokeRect(30, 30, tWidth - 60, tHeight - 60);
 
-    // HEADER TECH PACK
     tCtx.fillStyle = "#C9A567";
     tCtx.font = "bold 13px 'Manrope', sans-serif";
     tCtx.fillText("WARISARA CREATIVE LAB STUDIO • TECHNICAL SPECIFICATION SHEET", 60, 75);
@@ -2630,7 +2554,6 @@
     tCtx.fillText(`Tanggal Terbit: ${new Date().toLocaleDateString("id-ID")}`, tWidth - 60, 95);
     tCtx.textAlign = "left";
 
-    // Garis Pemisah Header
     tCtx.strokeStyle = "rgba(255, 255, 255, 0.1)";
     tCtx.lineWidth = 1;
     tCtx.beginPath();
@@ -2638,8 +2561,6 @@
     tCtx.lineTo(tWidth - 60, 140);
     tCtx.stroke();
 
-    // SISI KIRI: 2D PATTERN SWATCH + PALETTE TABLE (Sesuai Gambar 1)
-    // 1. Swatch Pola Datar 2D (360x360 px)
     tCtx.save();
     tCtx.strokeStyle = "rgba(201, 165, 103, 0.5)";
     tCtx.lineWidth = 2;
@@ -2654,7 +2575,6 @@
     tCtx.fillStyle = "rgba(251, 248, 242, 0.6)";
     tCtx.fillText(`Grid Densitas: ${StudioState.density}x${StudioState.density} • Sudut: ${StudioState.rotation}° • Fraktal: ${StudioState.complexity}`, 60, 580);
 
-    // 2. Color Palette Table (Ekstraksi Warna Sesuai Gambar 1: Sunglow, Indigo, dsb)
     const colorSwatches = [
       { role: "Garis Canting", hex: StudioState.primaryColor, name: getColorCulturalName(StudioState.primaryColor) },
       { role: "Isian Ornamen", hex: StudioState.secondaryColor, name: getColorCulturalName(StudioState.secondaryColor) },
@@ -2669,14 +2589,13 @@
 
     swatchY += 20;
     colorSwatches.forEach((c) => {
-      // Kotak warna
+
       tCtx.fillStyle = c.hex;
       tCtx.fillRect(60, swatchY, 26, 26);
       tCtx.strokeStyle = "rgba(255,255,255,0.2)";
       tCtx.lineWidth = 1;
       tCtx.strokeRect(60, swatchY, 26, 26);
 
-      // Label & Hex
       tCtx.fillStyle = "#FAF6EE";
       tCtx.font = "bold 12px 'Manrope', sans-serif";
       tCtx.fillText(c.name, 98, swatchY + 13);
@@ -2687,7 +2606,6 @@
       swatchY += 34;
     });
 
-    // 3. Spesifikasi Bahan Tekstil (Sesuai Gambar 1: Fabric Spec)
     const fabNames = {
       cotton: { name: "Katun Mori Primissima Halus", comp: "100% Katun Organik Tropis", weave: "Plain Weave Ring-spun" },
       silk: { name: "Sutra Alam ATBM Mahakarya", comp: "100% Pure Mulberry Silk", weave: "Lustrous Satin Weave" },
@@ -2709,11 +2627,10 @@
     tCtx.fillText(`Komposisi: ${fabNames.comp}`, 60, fabY + 18);
     tCtx.fillText(`Anyaman Tekstil: ${fabNames.weave}`, 60, fabY + 34);
 
-    // SISI KANAN: LARGE 3D PHOTOREALISTIC MOCKUP (Sesuai Gambar 1 & 2)
     const mockupCanvas = document.getElementById("mockup-preview-canvas");
     if (mockupCanvas) {
       tCtx.save();
-      // Frame Mockup
+
       tCtx.strokeStyle = "rgba(201, 165, 103, 0.5)";
       tCtx.lineWidth = 2;
       tCtx.strokeRect(460, 170, 780, 780);
@@ -2721,7 +2638,6 @@
       tCtx.restore();
     }
 
-    // KOLOM KANAN JAUH: FILOSOFI & DOKUMEN LEGAL
     const colRightX = 1270;
     tCtx.fillStyle = "#C9A567";
     tCtx.font = "bold 12px 'Manrope', sans-serif";
@@ -2745,7 +2661,6 @@
     tCtx.font = "12px 'Manrope', sans-serif";
     wrapText(tCtx, info.symbolism, colRightX, 455, 270, 18);
 
-    // Stempel Verifikasi Warisara
     tCtx.strokeStyle = "#C9A567";
     tCtx.lineWidth = 2;
     drawRoundRect(tCtx, colRightX, 810, 260, 130, 10);
@@ -2763,7 +2678,6 @@
     tCtx.fillText("Ready for Artisan Production", colRightX + 130, 915);
     tCtx.textAlign = "left";
 
-    // FOOTER LEGAL
     tCtx.strokeStyle = "rgba(255, 255, 255, 0.1)";
     tCtx.lineWidth = 1;
     tCtx.beginPath();
@@ -2775,7 +2689,6 @@
     tCtx.font = "11px 'Manrope', sans-serif";
     tCtx.fillText("© 2026 WARISARA — Dikembangkan untuk TECHTOPIA Vol. 2 (INTEGER#8). Hak Cipta Desain Digital Dilindungi.", 60, 1050);
 
-    // Unduh Otomatis File PNG
     const link = document.createElement("a");
     link.download = `WARISARA-TECHPACK-${StudioState.motif.toUpperCase()}-${(StudioState.mockupProduct || "DRESS").toUpperCase()}.png`;
     link.href = tCanvas.toDataURL("image/png");
@@ -3191,7 +3104,7 @@
   }
 
   function bindDomEvents() {
-    // 1. Studio 4-Tab Inspector Switcher (Motif, Warna, Canting, Mockup 3D)
+
     document.querySelectorAll(".studio-nav-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         const targetTab = tab.dataset.studioTab;
@@ -3220,14 +3133,12 @@
           StudioState.cantingIsPrinted = false;
           StudioState.activeView = "flat";
 
-          // 1. Reset total kanvas canting bebas menjadi putih murni tanpa residu template
           if (freehandCtx && freehandCanvas) {
             freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
           }
           historyStack.length = 0;
           redoStack.length = 0;
 
-          // Sembunyikan tab mockup cetak jika belum dicetak
           const mockupTabs = document.getElementById("mockup-tabs-container");
           if (mockupTabs) mockupTabs.classList.add("hidden");
 
@@ -3236,7 +3147,6 @@
           if (flatView) flatView.classList.remove("hidden");
           if (mockupView) mockupView.classList.add("hidden");
 
-          // Reset alat canting ke canting tulis orisinil
           StudioState.cantingTool = "canting";
           document.querySelectorAll(".canting-tool-btn").forEach((b) => {
             const isCanting = b.dataset.tool === "canting";
@@ -3261,7 +3171,6 @@
           if (flatView) flatView.classList.remove("hidden");
           if (mockupView) mockupView.classList.add("hidden");
 
-          // 2. Jika berpindah dari Canting Bebas ke Template -> Reset total ke template default bersih
           if (isFromCantingToTemplate) {
             if (freehandCtx && freehandCanvas) {
               freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
@@ -3426,8 +3335,6 @@
     bindColorInput("picker-highlight", (val) => { StudioState.highlightColor = val; });
     bindColorInput("picker-bg", (val) => { StudioState.bgColor = val; });
 
-    // FITUR KOSTUMISASI WARNA MANDIRI & RACIKAN USER (100% PERSIS KODE USER)
-
     function showStudioToast(msg, icon = "colorize") {
       let toast = document.getElementById("studio-live-toast");
       if (!toast) {
@@ -3457,7 +3364,6 @@
       return null;
     }
 
-    // 1. Multi-Hex input parser & apply (Mendukung 1, 2, 3, atau 4 kode hex sekaligus)
     function applyMultiHexPalette(inputStr) {
       if (!inputStr || !inputStr.trim()) return;
       const rawTokens = inputStr.split(/[,;\s]+/).filter(Boolean);
@@ -3497,7 +3403,6 @@
       });
     }
 
-    // 2. Individual Hex inputs for each role
     const customRoleInputs = [
       { id: "primary", prop: "primaryColor" },
       { id: "secondary", prop: "secondaryColor" },
@@ -3541,7 +3446,6 @@
       }
     });
 
-    // 3. Segmented Target Role Buttons (Pengganti Dropdown Native yang Kaku)
     const targetRoleSelect = document.getElementById("select-target-role");
     const roleTargetButtons = document.querySelectorAll(".target-role-btn");
     roleTargetButtons.forEach((btn) => {
@@ -3563,7 +3467,6 @@
       });
     });
 
-    // Populate Kamus Pigmen Alami Nusantara (2-Kolom Terstruktur & Teks Lengkap)
     const pigmentContainer = document.getElementById("pigment-quick-chips");
     if (pigmentContainer) {
       pigmentContainer.innerHTML = NUSANTARA_PIGMENTS.map((p) => `
@@ -3601,7 +3504,6 @@
       });
     }
 
-    // 4. Salin Kode Palet
     const btnCopyPalette = document.getElementById("btn-copy-palette-code");
     if (btnCopyPalette) {
       btnCopyPalette.addEventListener("click", () => {
@@ -3618,7 +3520,6 @@
       });
     }
 
-    // 5. Harmonisasi Warna Palet (Golden Ratio & Kontras Tradisional Wastra)
     const btnHarmonize = document.getElementById("btn-harmonize-palette");
     if (btnHarmonize) {
       btnHarmonize.addEventListener("click", () => {

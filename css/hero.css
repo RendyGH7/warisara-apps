@@ -523,7 +523,6 @@ body.hero-animated #hero-map-wrapper {
   }
 }
 
-/* Wari Mascot Animations inside Province View */
 .modal-wari-bounce {
   animation: wariHop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
@@ -545,7 +544,6 @@ body.hero-animated #hero-map-wrapper {
   100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* Tab Active Styles */
 .province-tab-btn.active {
   background: rgba(201, 165, 103, 0.16) !important;
   border-color: rgba(201, 165, 103, 0.45) !important;
@@ -605,7 +603,6 @@ body.hero-animated #hero-map-wrapper {
   color: #FFFFFF !important;
 }
 
-/* Sembunyikan Floating Mascot Widget saat Province Modal aktif agar tidak bentrok */
 body.province-modal-open #wari-ai-widget,
 body.province-modal-open .wari-ai-widget,
 body.modal-open #wari-ai-widget,
@@ -617,7 +614,6 @@ body.modal-open .wari-ai-widget {
   transition: opacity 0.25s ease, transform 0.25s ease !important;
 }
 
-/* Spotlight Maestro Pelestari Card */
 #modal-maker-spotlight {
   background: linear-gradient(135deg, rgba(34, 25, 18, 0.96) 0%, rgba(24, 18, 14, 0.94) 50%, rgba(18, 14, 11, 0.96) 100%);
   box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(201, 165, 103, 0.2);

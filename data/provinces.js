@@ -1,10 +1,3 @@
-/**
- * WARISARA - DATA ENSIKLOPEDIA 38 PROVINSI INDONESIA (EDISI ULTIMATE LENGKAP & OTENTIK)
- * Mencakup 38 Provinsi dengan Makanan Khas Autentik, Pusaka Khas,
- * Wisata Unggulan, Berita Hot, Sapaan Bahasa Daerah, Pendiri/Tokoh, Sejarah Singkat, dan Kuis Edukasi.
- * Seluruh data Makanan Khas & Pusaka Khas telah divalidasi otentik, unik, dan menggunakan aset gambar terverifikasi aktif.
- */
-
 (function() {
   var data = {
   "aceh": {

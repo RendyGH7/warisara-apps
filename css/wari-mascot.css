@@ -1,6 +1,3 @@
-/* WARISARA — Wari AI Chatbot & Companion Design System | Pemandu Budaya Nusantara Cerdas & Mewah (Glassmorphism & Gold Heritage) */
-
-/* --- Floating Mascot Trigger (Pojok Kanan Bawah) --- */
 .wari-ai-widget {
   position: fixed;
   bottom: 24px;
@@ -18,7 +15,6 @@
   pointer-events: auto;
 }
 
-/* Tooltip / Balon Sapaan Melayang */
 .wari-ai-tooltip {
   position: relative;
   background: rgba(18, 14, 11, 0.96);
@@ -35,13 +31,11 @@
   animation: wariTooltipFloat 4s ease-in-out infinite;
 }
 
-/* Animasi Muncul Bouncy & Spring (Pop-In) */
 .wari-ai-tooltip.anim-pop-in {
   animation: wariTooltipPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
              wariTooltipFloat 4s ease-in-out 0.55s infinite;
 }
 
-/* Animasi Menghilang Halus & Menyusut (Pop-Out) */
 .wari-ai-tooltip.anim-pop-out {
   animation: wariTooltipPopOut 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
   pointer-events: none !important;
@@ -128,7 +122,6 @@ html.province-modal-open .wari-ai-tooltip {
   animation: none !important;
 }
 
-/* Ketika chat marketplace sedang dibuka: Wari diletakkan di belakang chat & tidak bisa diklik */
 body.chat-drawer-open #wari-ai-widget,
 body.chat-drawer-open .wari-ai-widget,
 html.chat-drawer-open #wari-ai-widget,
@@ -169,7 +162,6 @@ html.province-modal-open #wari-ai-widget {
   pointer-events: none !important;
 }
 
-/* SEMBUNYIKAN SI WARI AI SECARA TOTAL SAAT TRANSISI HALAMAN & PRELOADER */
 html.preloader-active #wari-ai-widget,
 body.preloader-active #wari-ai-widget,
 html.preloader-active .wari-ai-widget,
@@ -273,7 +265,6 @@ body.page-entering-active .wari-ai-widget,
   margin: 0;
 }
 
-/* Panah Tooltip (diselaraskan presisi tepat di atas kepala & blangkon Si Wari) */
 .wari-ai-tooltip::after {
   content: '';
   position: absolute;
@@ -287,7 +278,6 @@ body.page-entering-active .wari-ai-widget,
   transform: rotate(45deg);
 }
 
-/* Tombol Trigger Avatar Maskot */
 .wari-ai-trigger {
   position: relative;
   background: transparent;
@@ -383,7 +373,6 @@ body.page-entering-active .wari-ai-widget,
   white-space: nowrap;
 }
 
-/* --- Luxury Chat Window Container --- */
 .wari-chat-window {
   position: fixed;
   bottom: 24px;
@@ -413,7 +402,6 @@ body.page-entering-active .wari-ai-widget,
   transform: scale(0.92) translateY(24px);
 }
 
-/* Chat Header */
 .wari-chat-header {
   display: flex;
   align-items: center;
@@ -556,7 +544,6 @@ body.page-entering-active .wari-ai-widget,
   color: #FFFFFF !important;
 }
 
-/* Page Context Sub-bar */
 .wari-page-context-bar {
   display: flex;
   align-items: center;
@@ -569,7 +556,6 @@ body.page-entering-active .wari-ai-widget,
   font-family: 'Manrope', sans-serif;
 }
 
-/* Messages Wrapper (allows floating scroll pill without layout shift or text cut-off) */
 .wari-messages-wrapper {
   position: relative;
   flex: 1;
@@ -580,7 +566,6 @@ body.page-entering-active .wari-ai-widget,
   z-index: 1;
 }
 
-/* Chat Messages Scroll Container */
 .wari-chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -610,7 +595,6 @@ body.page-entering-active .wari-ai-widget,
   background: rgba(201, 165, 103, 0.5);
 }
 
-/* Message Rows */
 .wari-msg-row {
   display: flex;
   gap: 10px;
@@ -668,7 +652,6 @@ body.page-entering-active .wari-ai-widget,
   text-align: right;
 }
 
-/* Markdown formatting inside bot bubble */
 .wari-msg-bubble p {
   margin: 0 0 8px 0;
 }
@@ -714,7 +697,6 @@ body.page-entering-active .wari-ai-widget,
   transform: translateY(-1px);
 }
 
-/* Typing Indicator */
 .wari-typing-indicator {
   display: flex;
   align-items: center;
@@ -739,7 +721,6 @@ body.page-entering-active .wari-ai-widget,
 .wari-typing-dot:nth-child(1) { animation-delay: -0.32s; }
 .wari-typing-dot:nth-child(2) { animation-delay: -0.16s; }
 
-/* Suggested Prompt Chips */
 .wari-prompt-chips {
   display: flex;
   gap: 6px;
@@ -776,7 +757,6 @@ body.page-entering-active .wari-ai-widget,
   transform: translateY(-1px);
 }
 
-/* Chat Input Bar - Luxury Refined Capsule */
 .wari-chat-input-bar {
   display: flex;
   align-items: flex-end;
@@ -899,7 +879,6 @@ body.page-entering-active .wari-ai-widget,
   transform: scale(0.95);
 }
 
-/* Settings Modal */
 .wari-api-modal {
   position: absolute;
   inset: 0;
@@ -965,9 +944,6 @@ body.page-entering-active .wari-ai-widget,
   justify-content: flex-end;
 }
 
-/* ANIMATIONS — Enhanced Delightful Chatbot Experience */
-
-/* Core Mascot & Balon Komentar Float - Selaras & Harmonis (Tempo 4s) */
 @keyframes wariHaloBreathe {
   0%, 100% { transform: translate(-50%, -50%) scale(0.88); opacity: 0.35; }
   50%       { transform: translate(-50%, -50%) scale(1.18); opacity: 0.65; }
@@ -1008,7 +984,6 @@ body.page-entering-active .wari-ai-widget,
   50%       { opacity: 0.45; transform: scale(1.25); }
 }
 
-/* ── Bot message bubble: spring pop from left ── */
 @keyframes wariBotBubbleIn {
   0%   { opacity: 0; transform: translateX(-18px) scale(0.88); }
   60%  { opacity: 1; transform: translateX(4px) scale(1.03); }
@@ -1016,7 +991,6 @@ body.page-entering-active .wari-ai-widget,
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
-/* ── User message bubble: spring pop from right ── */
 @keyframes wariUserBubbleIn {
   0%   { opacity: 0; transform: translateX(18px) scale(0.88); }
   60%  { opacity: 1; transform: translateX(-4px) scale(1.03); }
@@ -1024,7 +998,6 @@ body.page-entering-active .wari-ai-widget,
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
-/* ── Typing wave dots ── */
 @keyframes wariTypingWave {
   0%, 60%, 100% {
     transform: translateY(0) scale(0.85);
@@ -1039,33 +1012,28 @@ body.page-entering-active .wari-ai-widget,
   }
 }
 
-/* ── Ripple effect on send button ── */
 @keyframes wariSendRipple {
   0%   { transform: scale(0.5); opacity: 0.6; }
   100% { transform: scale(2.8); opacity: 0; }
 }
 
-/* ── Chat window entrance ── */
 @keyframes wariChatWindowIn {
   0%   { opacity: 0; transform: scale(0.88) translateY(32px); }
   70%  { opacity: 1; transform: scale(1.02) translateY(-4px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ── Floating ambient orb in chat background ── */
 @keyframes wariOrbFloat {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.08; }
   33%       { transform: translate(14px, -20px) scale(1.15); opacity: 0.12; }
   66%       { transform: translate(-10px, -10px) scale(0.9); opacity: 0.06; }
 }
 
-/* ── Shimmer sweep across header ── */
 @keyframes wariHeaderShimmer {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
-/* ── Emoji / reaction pop ── */
 @keyframes wariReactionPop {
   0%   { opacity: 0; transform: translateY(0) scale(0.4) rotate(-15deg); }
   40%  { opacity: 1; transform: translateY(-22px) scale(1.3) rotate(8deg); }
@@ -1073,19 +1041,16 @@ body.page-entering-active .wari-ai-widget,
   100% { opacity: 0; transform: translateY(-54px) scale(0.8) rotate(0deg); }
 }
 
-/* ── Particle burst (on message send) ── */
 @keyframes wariParticleBurst {
   0%   { transform: translate(0, 0) scale(1); opacity: 1; }
   100% { transform: var(--particle-end) scale(0.2); opacity: 0; }
 }
 
-/* ── Chip entrance stagger ── */
 @keyframes wariChipSlideIn {
   0%   { opacity: 0; transform: translateX(-12px) scale(0.9); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
-/* ── Bot avatar wiggle on new message ── */
 @keyframes wariAvatarWiggle {
   0%, 100% { transform: rotate(0deg); }
   20%       { transform: rotate(-10deg) scale(1.15); }
@@ -1094,15 +1059,11 @@ body.page-entering-active .wari-ai-widget,
   80%       { transform: rotate(4deg); }
 }
 
-/* ── Pulse ring around status dot ── */
 @keyframes wariStatusRing {
   0%   { transform: scale(1); opacity: 0.6; }
   100% { transform: scale(2.4); opacity: 0; }
 }
 
-/* ═══════════════════════════════════════════════════════ | OPEN & CLOSE CHAT WINDOW — Animasi Dedikasi | ═══════════════════════════════════════════════════════ */
-
-/* ── Keyframe: Chat window BUKA — Spring bounce dari pojok bawah ── */
 @keyframes wariWindowOpen {
   0%   {
     opacity: 0;
@@ -1129,7 +1090,6 @@ body.page-entering-active .wari-ai-widget,
   }
 }
 
-/* ── Keyframe: Chat window TUTUP — Snap collapse ke pojok bawah ── */
 @keyframes wariWindowClose {
   0%   {
     opacity: 1;
@@ -1147,14 +1107,12 @@ body.page-entering-active .wari-ai-widget,
   }
 }
 
-/* ── Keyframe: Cincin emas meledak saat buka ── */
 @keyframes wariRingExpand {
   0%   { transform: scale(0.5); opacity: 0.8; }
   60%  { opacity: 0.4; }
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* ── Keyframe: Maskot wave goodbye saat tutup ── */
 @keyframes wariWaveGoodbye {
   0%   { transform: rotate(0deg) scale(1); }
   15%  { transform: rotate(-15deg) scale(1.1); }
@@ -1165,23 +1123,19 @@ body.page-entering-active .wari-ai-widget,
   100% { transform: rotate(0deg) scale(1); }
 }
 
-/* ── State: chat window OPENING ── */
 .wari-chat-window.wari-opening {
   animation: wariWindowOpen 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
-/* ── State: chat window CLOSING ── */
 .wari-chat-window.wari-closing {
   animation: wariWindowClose 0.38s cubic-bezier(0.55, 0, 1, 0.45) both !important;
   pointer-events: none;
 }
 
-/* ── Mascot wave state ── */
 .wari-ai-trigger.wari-wave .wari-trigger-mascot {
   animation: wariWaveGoodbye 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
 }
 
-/* ── Close button: hover rotate ── */
 .wari-btn-close {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, border-color 0.2s ease !important;
 }
@@ -1189,7 +1143,6 @@ body.page-entering-active .wari-ai-widget,
   transform: rotate(90deg) scale(1.1) !important;
 }
 
-/* ── Header shimmer strip ── */
 .wari-chat-header::before {
   content: '';
   position: absolute;
@@ -1206,7 +1159,6 @@ body.page-entering-active .wari-ai-widget,
   border-radius: inherit;
 }
 
-/* ── Floating ambient orbs ── */
 .wari-chat-window::before,
 .wari-chat-window::after {
   content: '';
@@ -1236,7 +1188,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariOrbFloat 12s ease-in-out infinite reverse;
 }
 
-/* ── Message rows z-index above orbs ── */
 .wari-chat-messages,
 .wari-prompt-chips,
 .wari-chat-input-bar,
@@ -1245,7 +1196,6 @@ body.page-entering-active .wari-ai-widget,
   z-index: 1;
 }
 
-/* ── Enhanced message bubble animation ── */
 .wari-msg-row {
   display: flex;
   gap: 10px;
@@ -1260,12 +1210,10 @@ body.page-entering-active .wari-ai-widget,
   animation: wariUserBubbleIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ── Bot avatar wiggle on arrival ── */
 .wari-msg-row.bot-msg .wari-msg-avatar {
   animation: wariAvatarWiggle 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-/* ── Glowing border on user bubble hover ── */
 .wari-msg-row.user-msg .wari-msg-bubble {
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
@@ -1274,14 +1222,12 @@ body.page-entering-active .wari-ai-widget,
   border-color: rgba(201, 165, 103, 0.7);
 }
 
-/* ── Glowing bot bubble hover ── */
 .wari-msg-row.bot-msg .wari-msg-bubble:hover {
   background: rgba(255, 255, 255, 0.07);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   transition: all 0.25s ease;
 }
 
-/* ── Enhanced typing indicator: wave ── */
 .wari-typing-indicator {
   display: flex;
   align-items: center;
@@ -1296,7 +1242,6 @@ body.page-entering-active .wari-ai-widget,
   overflow: hidden;
 }
 
-/* Shimmer sweep on typing indicator */
 .wari-typing-indicator::after {
   content: '';
   position: absolute;
@@ -1321,7 +1266,6 @@ body.page-entering-active .wari-ai-widget,
 .wari-typing-dot:nth-child(2) { animation-delay: 0.18s; }
 .wari-typing-dot:nth-child(3) { animation-delay: 0.36s; }
 
-/* ── Status dot pulsing ring ── */
 .wari-status-dot::after {
   content: '';
   position: absolute;
@@ -1331,7 +1275,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariStatusRing 2s ease-out infinite;
 }
 
-/* ── Send button ripple container ── */
 .wari-send-btn {
   position: relative;
   overflow: hidden;
@@ -1349,7 +1292,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariSendRipple 0.5s ease-out forwards;
 }
 
-/* ── Chip stagger entrance ── */
 .wari-chip {
   animation: wariChipSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -1361,13 +1303,11 @@ body.page-entering-active .wari-ai-widget,
 .wari-chip:nth-child(6) { animation-delay: 0.3s; }
 .wari-chip:nth-child(7) { animation-delay: 0.35s; }
 
-/* Chip active press */
 .wari-chip:active {
   transform: scale(0.93) translateY(0) !important;
   background: rgba(201, 165, 103, 0.25) !important;
 }
 
-/* ── Emoji Reaction bubble ── */
 .wari-emoji-reaction {
   position: absolute;
   font-size: 20px;
@@ -1377,7 +1317,6 @@ body.page-entering-active .wari-ai-widget,
   user-select: none;
 }
 
-/* ── Particle burst on message send ── */
 .wari-particle {
   position: fixed;
   width: 6px;
@@ -1388,7 +1327,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariParticleBurst 0.7s ease-out forwards;
 }
 
-/* ── Scroll-to-bottom pill ── */
 @keyframes wariScrollPillIn {
   from {
     opacity: 0;
@@ -1439,7 +1377,6 @@ body.page-entering-active .wari-ai-widget,
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── Gold border glow on chat window when active ── */
 .wari-chat-window.wari-window-active {
   border-color: rgba(201, 165, 103, 0.6);
   box-shadow:
@@ -1449,7 +1386,6 @@ body.page-entering-active .wari-ai-widget,
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* ── Input focus glow ring animation ── */
 @keyframes wariInputGlow {
   0%, 100% { box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.18), 0 4px 14px rgba(0,0,0,0.4); }
   50%       { box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.32), 0 4px 18px rgba(201,165,103,0.15); }
@@ -1461,7 +1397,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariInputGlow 2.5s ease infinite;
 }
 
-/* ── "Wari is thinking" text shimmer ── */
 .wari-thinking-text {
   font-size: 11px;
   color: rgba(251, 248, 242, 0.6);
@@ -1477,7 +1412,6 @@ body.page-entering-active .wari-ai-widget,
   z-index: 1;
 }
 
-/* ── Mascot avatar entrance on trigger click ── */
 @keyframes wariBounceIn {
   0%   { transform: scale(0.6) rotate(-10deg); opacity: 0; }
   60%  { transform: scale(1.15) rotate(3deg); opacity: 1; }
@@ -1485,12 +1419,10 @@ body.page-entering-active .wari-ai-widget,
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-/* ── Wari trigger: excited state ── */
 .wari-ai-trigger.wari-excited .wari-trigger-mascot {
   animation: wariBounceIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ── Chat header name glow on open ── */
 @keyframes wariNameGlow {
   0%, 100% { text-shadow: none; }
   50%       { text-shadow: 0 0 18px rgba(201,165,103,0.45); }
@@ -1500,7 +1432,6 @@ body.page-entering-active .wari-ai-widget,
   animation: wariNameGlow 3s ease-in-out infinite;
 }
 
-/* ── Responsive adjustments ── */
 @media (max-width: 768px) {
   .wari-ai-widget {
     bottom: max(16px, env(safe-area-inset-bottom)) !important;

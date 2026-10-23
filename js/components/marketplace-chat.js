@@ -1,16 +1,9 @@
-/**
- * WARISARA — Sistem Chat Marketplace C2C (ala Facebook Marketplace)
- * Menghubungkan Pembeli (Email A) dan Penjual (Email B) secara langsung
- * untuk transaksi personal, tanya jawab produk, dan kesepakatan mandiri.
- */
-
 (function () {
   const THREADS_STORAGE_KEY = "warisara_chat_threads";
   let activeThreadId = null;
   let chatDrawerEl = null;
   let chatBackdropEl = null;
 
-  // Percakapan demo awal antara Email A (Rendy) dan Email B (Dewi)
   function getInitialThreads() {
     return [
       {
@@ -106,11 +99,11 @@
       osc.type = "sine";
       const now = ctx.currentTime;
       if (isIncoming) {
-        osc.frequency.setValueAtTime(587.33, now); // D5
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.12); // A5
+        osc.frequency.setValueAtTime(587.33, now); 
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.12); 
       } else {
-        osc.frequency.setValueAtTime(659.25, now); // E5
-        osc.frequency.exponentialRampToValueAtTime(523.25, now + 0.1); // C5
+        osc.frequency.setValueAtTime(659.25, now); 
+        osc.frequency.exponentialRampToValueAtTime(523.25, now + 0.1); 
       }
       gain.gain.setValueAtTime(0.08, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
@@ -136,7 +129,6 @@
   function initChatDrawerDOM() {
     if (document.getElementById("warisara-chat-drawer")) return;
 
-    // Backdrop overlay: menempatkan seluruh konten HTML halaman di latar belakang
     if (!document.getElementById("warisara-chat-backdrop")) {
       const backdrop = document.createElement("div");
       backdrop.id = "warisara-chat-backdrop";
@@ -409,11 +401,9 @@
       chatBackdropEl.classList.remove("opacity-100", "pointer-events-auto");
     }
 
-    // Kembalikan status chat drawer open
     document.body.classList.remove("chat-drawer-open");
     document.documentElement.classList.remove("chat-drawer-open");
 
-    // Pulihkan Wari widget
     const wariWidget = document.getElementById("wari-ai-widget");
     if (wariWidget) {
       wariWidget.classList.remove("chat-suppressed");
@@ -430,7 +420,6 @@
       wariChatWindow.style.removeProperty("display");
     }
 
-    // Tampilkan kembali navbar
     const navbar = document.getElementById("main-navbar");
     if (navbar) navbar.style.display = "";
     const mobileDrawer = document.getElementById("mobile-nav-drawer");
@@ -621,7 +610,6 @@
     const partnerEmail = thread.participant1.toLowerCase() === myEmail ? thread.participant2 : thread.participant1;
     const partnerName = (thread.participantNames && thread.participantNames[partnerEmail]) || partnerEmail.split("@")[0];
 
-    // Tandai thread ini sebagai sudah dibaca untuk akun aktif
     if (myEmail) {
       if (!thread.readBy) thread.readBy = {};
       thread.readBy[myEmail] = true;
@@ -633,7 +621,6 @@
       titleEl.innerHTML = `<span class="text-brass-300 font-bold">${partnerName}</span> <span class="text-[10px] text-surface/40 font-mono">(${partnerEmail})</span>`;
     }
 
-    // Set Product Header if exists
     const prodHeader = document.getElementById("chat-product-context-header");
     if (thread.product && thread.product.name) {
       prodHeader.classList.remove("hidden");
@@ -650,7 +637,6 @@
       prodHeader.classList.remove("flex");
     }
 
-    // Set Commission Header & Deal Agreement Controls if exists
     const commHeader = document.getElementById("chat-commission-context-header");
     const dealPanel = document.getElementById("chat-deal-form-panel");
     if (thread.commission && thread.commission.title) {
@@ -664,7 +650,6 @@
         document.getElementById("chat-comm-color").textContent = thread.commission.color || "-";
         document.getElementById("chat-comm-region").textContent = thread.commission.region || "-";
 
-        // Ambil data commission master terkini dari store
         const masterComm = window.WARISARA_COMMISSIONS ? window.WARISARA_COMMISSIONS.getById(thread.commission.id) : null;
         if (masterComm) {
           thread.commission.status = masterComm.status || thread.commission.status || "open";
@@ -693,7 +678,6 @@
         const dealBtn = document.getElementById("chat-btn-toggle-deal-form");
         const dealBtnLabel = document.getElementById("chat-deal-btn-label");
 
-        // 1. Status Badge: HANYA ADA 2 STATUS ("Masih Terbuka" atau "Sudah Deal")
         if (statusBadge) {
           if (isBothAgreed) {
             statusBadge.textContent = "Sudah Deal";
@@ -704,7 +688,6 @@
           }
         }
 
-        // 2. Tombol Deal State
         if (dealBtn && dealBtnLabel) {
           if (isBothAgreed) {
             dealBtnLabel.textContent = "Sudah Deal (Resmi)";
@@ -721,7 +704,6 @@
           }
         }
 
-        // 3. Render Dinamis Isi Deal Panel
         function renderDealPanelContent() {
           if (!dealPanel) return;
 
@@ -828,7 +810,6 @@
 
           dealPanel.innerHTML = statusHtml;
 
-          // Event Listeners for Deal Panel
           const closeBtn = document.getElementById("chat-btn-close-deal-panel");
           const cancelBtn = document.getElementById("chat-deal-btn-cancel");
           const revokeBtn = document.getElementById("chat-deal-btn-revoke");
@@ -890,7 +871,6 @@
               thread.commission.dealDuration = duration;
               thread.commission.dealTerms = terms;
 
-              // Panggil confirmDeal di WARISARA_COMMISSIONS
               let res = { isFinalDeal: false };
               if (window.WARISARA_COMMISSIONS && typeof window.WARISARA_COMMISSIONS.confirmDeal === "function") {
                 res = window.WARISARA_COMMISSIONS.confirmDeal(thread.commission.id, myEmail, {
@@ -909,7 +889,7 @@
               const timeStr = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
 
               if (res.isFinalDeal) {
-                // KEDUA PIHAK SUDAH KLIK DEAL
+
                 thread.commission.status = "agreed";
                 const dealMsg = {
                   id: "msg_deal_final_" + Date.now(),
@@ -924,7 +904,7 @@
                   window.WARISARA_AUTH.showToast("Kedua pihak telah sepakat! Status pesanan resmi menjadi Sudah Deal.");
                 }
               } else {
-                // BARU SATU PIHAK YANG KLIK DEAL
+
                 thread.commission.status = "open";
                 const dealMsg = {
                   id: "msg_deal_half_" + Date.now(),
@@ -1018,7 +998,6 @@
     playChatChime(false);
     renderMessages(thread);
 
-    // Auto-reply cerdas jika user chat ke penjual demo
     const partnerEmail = thread.participant1.toLowerCase() === currentUser.email.toLowerCase() ? thread.participant2 : thread.participant1;
     simulatePartnerReply(thread, partnerEmail, text);
   }
@@ -1042,7 +1021,6 @@
         typingIndicator.classList.remove("flex");
       }
 
-      // Generate dynamic response
       let replyText = `Halo kak ${getCurrentUser().name}! Terima kasih sudah bertanya mengenai karya kami. `;
       const lower = userMsg.toLowerCase();
       if (lower.includes("ready") || lower.includes("ada") || lower.includes("stok")) {
@@ -1082,7 +1060,6 @@
     }, 1800);
   }
 
-  // Buka room chat langsung untuk produk tertentu
   function openProductChat(product) {
     if (!product) return;
 
@@ -1097,7 +1074,6 @@
     const sellerEmail = product.sellerEmail || "dewi.tenun@gmail.com";
     const sellerName = product.maker || "Penjual Produk Lokal";
 
-    // Cek jika user mencoba chat produknya sendiri
     if (currentUser.email.toLowerCase() === sellerEmail.toLowerCase()) {
       alert("Ini adalah produk yang Anda daftarkan sendiri. Silakan beralih akun untuk menguji simulasi obrolan.");
       if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.switchAccountQuick === "function") {
@@ -1110,7 +1086,6 @@
     const myEmail = currentUser.email.toLowerCase();
     const otherEmail = sellerEmail.toLowerCase();
 
-    // Cari thread yang sudah ada dengan penjual ini untuk produk ini
     let thread = threads.find(
       (t) =>
         ((t.participant1.toLowerCase() === myEmail && t.participant2.toLowerCase() === otherEmail) ||
@@ -1120,7 +1095,7 @@
     );
 
     if (!thread) {
-      // Buat thread baru
+
       const threadId = `thread_${Date.now()}`;
       thread = {
         id: threadId,
@@ -1157,7 +1132,6 @@
     showConversationView(thread.id);
   }
 
-  // Buka room chat langsung untuk negosiasi Brief Commission
   function openCommissionChat(commission, customInitialMessage) {
     if (!commission) return;
 
@@ -1172,7 +1146,6 @@
     const creatorEmail = commission.creatorEmail || "pemesan@warisara.id";
     const creatorName = commission.creatorName || "Pemesan Kriya Kustom";
 
-    // Cek jika pembuat brief menekan chat brief miliknya sendiri
     if (currentUser.email.toLowerCase() === creatorEmail.toLowerCase()) {
       if (window.WARISARA_AUTH && typeof window.WARISARA_AUTH.showToast === "function") {
         window.WARISARA_AUTH.showToast("Ini adalah brief yang Anda ajukan. Pengrajin lain akan menghubungi Anda melalui kotak masuk chat ini.");
@@ -1186,7 +1159,6 @@
     const myEmail = currentUser.email.toLowerCase();
     const otherEmail = creatorEmail.toLowerCase();
 
-    // Cari thread yang sudah ada terkait commission ini
     let thread = threads.find(
       (t) =>
         ((t.participant1.toLowerCase() === myEmail && t.participant2.toLowerCase() === otherEmail) ||
@@ -1234,7 +1206,6 @@
       threads.unshift(thread);
       saveThreads(threads);
 
-      // Tingkatkan hitungan tawaran pada commission
       if (window.WARISARA_COMMISSIONS && typeof window.WARISARA_COMMISSIONS.incrementOffer === "function") {
         window.WARISARA_COMMISSIONS.incrementOffer(commission.id);
       }
@@ -1248,7 +1219,6 @@
   function updateNavbarChatBadge() {
     const count = getUnreadCount();
 
-    // 1. Tanda Notifikasi di Tombol Profile Avatar Navbar (#nav-profile-trigger)
     const profileBadges = document.querySelectorAll("#nav-profile-chat-badge, .nav-profile-unread-badge");
     profileBadges.forEach((b) => {
       if (count > 0) {
@@ -1261,7 +1231,6 @@
       }
     });
 
-    // 2. Tanda Notifikasi di Pop-up Profile Menu (#nav-profile-menu)
     const dropdownBadges = document.querySelectorAll("#nav-dropdown-chat-badge, .nav-dropdown-chat-badge");
     dropdownBadges.forEach((b) => {
       if (count > 0) {
@@ -1274,7 +1243,6 @@
       }
     });
 
-    // 3. Tanda Notifikasi legacy
     const badges = document.querySelectorAll(".nav-chat-badge");
     badges.forEach((b) => {
       if (count > 0) {
@@ -1304,7 +1272,6 @@
     openProductChat(product);
   }
 
-  // Expose API Global
   window.WARISARA_CHAT = {
     openDrawer: openChatDrawer,
     closeDrawer: closeChatDrawer,
@@ -1327,7 +1294,6 @@
     initChatDrawerDOM();
     updateNavbarChatBadge();
 
-    // Listener tombol buka chat di navbar atau tombol umum
     document.addEventListener("click", (e) => {
       const btn = e.target.closest(".nav-chat-trigger, #nav-chat-toggle-btn");
       if (btn) {

@@ -1,5 +1,5 @@
 window.STORIES_DATA = [
-  
+
   {
     id: "legenda-pinisi",
     title: "Pelayaran Sawerigading & Lahirnya Perahu Pinisi",

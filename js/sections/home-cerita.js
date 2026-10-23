@@ -1,8 +1,3 @@
-/**
- * WARISARA — Cerita yang Diwariskan Preview Showcase (30% Cuplikan Fitur)
- * Mengelola kartu cerita pilihan, pemutar kutipan audio, dan modal lembaran mini pada index.html
- */
-
 (function () {
   "use strict";
 
@@ -171,7 +166,7 @@
 
         if (this.audioCtx) {
           const now = this.audioCtx.currentTime;
-          // Melodi genta mistis Nusantara (chime pembuka kisah)
+
           [440, 554.37, 659.25, 880].forEach((f, idx) => {
             const osc = this.audioCtx.createOscillator();
             const gain = this.audioCtx.createGain();
@@ -187,7 +182,6 @@
           });
         }
 
-        // Tampilkan toast petuah
         if (this.quoteToast && this.quoteToastText) {
           this.quoteToastText.innerHTML = `<strong>${storyTitle}:</strong> "${quoteText}"`;
           this.quoteToast.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
@@ -200,7 +194,6 @@
           }, 6000);
         }
 
-        // Jika SpeechSynthesis tersedia dalam bahasa Indonesia
         if ("speechSynthesis" in window) {
           window.speechSynthesis.cancel();
           const utterance = new SpeechSynthesisUtterance(quoteText);

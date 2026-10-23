@@ -1,12 +1,3 @@
-/**
- * WARISARA — Home Page Interactive Micro-Features (Sections Companion)
- * Mengelola interaktivitas cuplikan modul di index.html:
- * - Sinkronisasi mini status Paspor Penjelajah (38 Provinsi)
- * - Pemutar petuah lisan audio maestro penjaga tradisi
- * - Trigger chat langsung produk pengrajin UMKM
- * - Eksplorasi interaktif cuplikan Aksara Nusantara
- */
-
 (function () {
   "use strict";
 
@@ -20,7 +11,6 @@
       this.initStatsCounter();
     },
 
-    // 0. Segmented Dual View Tabs (38 Provinsi vs Para Penjaga Tradisi)
     initHomeModuleJelajahiTabs: function () {
       const btnProvinces = document.getElementById("home-tab-btn-provinces");
       const btnMakers = document.getElementById("home-tab-btn-makers");
@@ -86,7 +76,6 @@
         setActiveTab("makers");
       });
 
-      // Deteksi jika pengguna membuka URL dengan hash #module-makers atau #makers
       const checkInitialHash = () => {
         const hash = (window.location.hash || "").toLowerCase();
         if (hash === "#module-makers" || hash === "#makers" || hash.includes("maker") || hash.includes("pelestari")) {
@@ -97,7 +86,6 @@
       window.addEventListener("hashchange", checkInitialHash);
     },
 
-    // 1. Sinkronisasi Mini Status Paspor di Section Jelajahi
     initPassportTeaser: function () {
       const countEl = document.getElementById("home-passport-count");
       const percentEl = document.getElementById("home-passport-percent");
@@ -140,7 +128,6 @@
       }
     },
 
-    // 2. Pemutar Petuah Lisan Maestro di Section Makers
     initMaestroWisdom: function () {
       const btns = document.querySelectorAll(".home-play-wisdom-btn");
       const toast = document.getElementById("home-story-quote-toast");
@@ -152,7 +139,6 @@
           const name = btn.getAttribute("data-name") || "Maestro";
           const quote = btn.getAttribute("data-quote") || "";
 
-          // Tampilkan Toast
           if (toast && toastText) {
             toastText.innerHTML = `<strong>${name}:</strong> "${quote}"`;
             toast.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
@@ -164,7 +150,6 @@
             }, 6000);
           }
 
-          // Audio Speech Synthesis Lisan
           if ("speechSynthesis" in window && quote) {
             try {
               window.speechSynthesis.cancel();
@@ -173,7 +158,6 @@
               utterance.rate = 0.9;
               utterance.pitch = 0.95;
 
-              // Cari suara bahasa Indonesia jika ada
               const voices = window.speechSynthesis.getVoices();
               const idVoice = voices.find((v) => v.lang.includes("id") || v.lang.includes("ID"));
               if (idVoice) utterance.voice = idVoice;
@@ -184,7 +168,6 @@
             }
           }
 
-          // Efek visual tombol aktif sesaat
           const originalText = btn.innerHTML;
           btn.innerHTML = `
             <span class="material-symbols-outlined text-sm animate-pulse text-amber-300">graphic_eq</span>
@@ -197,7 +180,6 @@
       });
     },
 
-    // 3. Tombol Tanya Pengrajin Langsung Buka Chat C2C di Section Ekonomi Kreatif
     initProductChatTriggers: function () {
       const chatBtns = document.querySelectorAll(".home-chat-maker-btn");
       chatBtns.forEach((btn) => {
@@ -210,14 +192,13 @@
           if (window.WARISARA_MARKETPLACE_CHAT && typeof window.WARISARA_MARKETPLACE_CHAT.openChatWithSeller === "function") {
             window.WARISARA_MARKETPLACE_CHAT.openChatWithSeller(sellerEmail, productId, productName);
           } else {
-            // Fallback buka halaman pasar langsung
+
             window.location.href = `pages/ekonomi-kreatif.html?chat=${productId}`;
           }
         });
       });
     },
 
-    // 4. Eksplorasi Cuplikan Aksara Nusantara di Section Belajar
     initAksaraTeaser: function () {
       const aksaraData = {
         jawa: {
@@ -281,7 +262,6 @@
       });
     },
 
-    // 5. Animasi Menghitung Angka Statistik (0 sampai Angka Target)
     initStatsCounter: function () {
       const counters = document.querySelectorAll(".home-stat-counter");
       const container = document.getElementById("home-stats-counter-bar") || document.querySelector("#module-jelajahi .bg-gradient-to-r");
@@ -306,7 +286,7 @@
           const target = parseInt(el.getAttribute("data-target"), 10) || 0;
           const suffix = el.getAttribute("data-suffix") || "";
           const separator = el.getAttribute("data-separator") || "";
-          const duration = 2200; // 2.2 detik untuk animasi yang halus dan memuaskan
+          const duration = 2200; 
           let startTime = null;
 
           function animate(currentTime) {

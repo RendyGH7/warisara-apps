@@ -531,7 +531,6 @@ window.WARISARA_NAVBAR = {
     setTimeout(syncInitialPill, 120);
     setTimeout(syncInitialPill, 300);
 
-    // WARISARA NAVBAR AUTH & PROFILE WIDGET
     function initNavbarAuth() {
       const actionsContainer = document.querySelector("#main-navbar .flex.items-center.gap-2") ||
                                document.querySelector("#main-navbar .flex-shrink-0:last-child");
@@ -801,7 +800,6 @@ window.WARISARA_NAVBAR = {
         }
       }
 
-      // Tutup dropdown jika klik di luar atau tekan Escape
       document.addEventListener("click", (e) => {
         const dropdownEl = document.getElementById("nav-profile-dropdown");
         if (dropdownEl && dropdownEl.classList.contains("is-open")) {

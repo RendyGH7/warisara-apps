@@ -22,7 +22,6 @@ window.WARISARA_PROVINCE_PANEL = {
   btnToggleLandmark: null,
   btnToggleMaker: null,
 
-  // Regional & Province Greetings Dictionary
   greetings: {
     "aceh": "Saleum Teuka! (Selamat Datang)",
     "sumatera-utara": "Horas! Mejuah-juah! Njuah-njuah!",
@@ -64,7 +63,6 @@ window.WARISARA_PROVINCE_PANEL = {
     "papua-barat-daya": "Raja Ampat Permata Lautan! Tabea!"
   },
 
-  // Wari's Cultural Trivia Bank
   trivia: {
     "kalimantan-timur": [
       "Kain tenun Ulap Doyo dibuat dari serat daun liar Doyo yang kuat dan dipintal dengan tangan oleh wanita Dayak Benuaq secara turun-temurun!",
@@ -104,7 +102,6 @@ window.WARISARA_PROVINCE_PANEL = {
     ]
   },
 
-  // Regional Illustration Fallback Directory
   getIllustrationForProvince: function (province) {
     if (!province) return "assets/images/hero/bg-hero-batik-hd.jpg";
     if (province.tourism && (province.tourism.photo || province.tourism.image)) {
@@ -170,7 +167,6 @@ window.WARISARA_PROVINCE_PANEL = {
       this.wariNextFactBtn.addEventListener("click", () => this.interactWithWari());
     }
 
-    // Dual View Switcher (Landmark vs Pelestari)
     if (this.btnToggleLandmark) {
       this.btnToggleLandmark.addEventListener("click", () => this.switchHeroView("landmark"));
     }
@@ -339,7 +335,7 @@ window.WARISARA_PROVINCE_PANEL = {
           osc.stop(now + 2.5);
         });
       } else {
-        // Cheerful gamelan chime
+
         const notes = [392, 466.16, 587.33];
         notes.forEach((freq, i) => {
           const osc = ctx.createOscillator();
@@ -421,7 +417,6 @@ window.WARISARA_PROVINCE_PANEL = {
     this.currentProvinceId = province.id;
     this.currentFactIndex = 0;
 
-    // Lookup Maker from 38 MAKERS_DATA repository or province.maker
     let maker = null;
     if (window.MAKERS_DATA && Array.isArray(window.MAKERS_DATA)) {
       maker = window.MAKERS_DATA.find((m) => m.provinceId === province.id);
@@ -432,7 +427,6 @@ window.WARISARA_PROVINCE_PANEL = {
     this.currentProvince = province;
     this.currentMaker = maker;
 
-    // Elements
     const nameEl = document.getElementById("modal-province-name");
     const topBarProvName = document.getElementById("top-bar-prov-name");
     const topBarIsland = document.getElementById("top-bar-island");
@@ -448,7 +442,6 @@ window.WARISARA_PROVINCE_PANEL = {
     const craftHighlightEl = document.getElementById("modal-craft-highlight");
     const heritageListEl = document.getElementById("modal-heritage-list");
 
-    // Populate Basic Province Data
     if (nameEl) nameEl.textContent = province.name;
     if (topBarProvName) topBarProvName.textContent = province.name;
     if (labProvName) labProvName.textContent = province.name;
@@ -474,7 +467,6 @@ window.WARISARA_PROVINCE_PANEL = {
 
     if (craftHighlightEl) craftHighlightEl.textContent = province.craftHighlight || "";
 
-    // SPOTLIGHT MAESTRO PELESTARI (Hero Left Column)
     const spotlightAvatar = document.getElementById("modal-maker-avatar");
     const spotlightExp = document.getElementById("modal-maker-experience");
     const spotlightName = document.getElementById("modal-maker-spotlight-name");
@@ -505,10 +497,8 @@ window.WARISARA_PROVINCE_PANEL = {
       spotlightLink.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}&view=pelestari`;
     }
 
-    // Switch Right Showcase back to Landmark mode initially
     this.switchHeroView("landmark");
 
-    // Wari Greeting & Fun Fact
     const facts = this.getTriviaForProvince(province.id);
     if (this.wariSpeech) {
       this.wariSpeech.textContent = `"${facts[0]}"`;
@@ -518,7 +508,6 @@ window.WARISARA_PROVINCE_PANEL = {
       this.wariSprite.classList.remove("modal-wari-bounce");
     }
 
-    // TAB 3: POPULATE FULL MAESTRO SHOWCASE
     const tabMakerPhoto = document.getElementById("modal-tab-maker-photo");
     const tabMakerExpText = document.getElementById("modal-tab-maker-exp-text");
     const tabMakerName = document.getElementById("modal-maker-name");
@@ -550,7 +539,6 @@ window.WARISARA_PROVINCE_PANEL = {
       tabMakerProfileBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}&view=pelestari`;
     }
 
-    // Direct CTAs: Terhubung Langsung ke Pages Jelajahi (38 Provinsi & Pelestari)
     if (this.exploreBtn && province.id) {
       this.exploreBtn.href = `pages/jelajahi.html?province=${encodeURIComponent(province.id)}`;
       const btnSpan = this.exploreBtn.querySelector("span:not(.material-symbols-outlined)");
@@ -569,7 +557,6 @@ window.WARISARA_PROVINCE_PANEL = {
       directLabBtn.href = `pages/creative-lab.html`;
     }
 
-    // Populate Heritage List (High contrast, clearly visible cards with ample contrast)
     if (heritageListEl && province.heritage) {
       heritageListEl.innerHTML = "";
       province.heritage.forEach((item, idx) => {
@@ -591,10 +578,8 @@ window.WARISARA_PROVINCE_PANEL = {
       });
     }
 
-    // Reset to Tab 1
     this.switchTab("tab-heritage");
 
-    // Scroll back to top
     if (this.modalOverlay) this.modalOverlay.scrollTop = 0;
     window.scrollTo(0, 0);
 
@@ -609,7 +594,6 @@ window.WARISARA_PROVINCE_PANEL = {
     document.body.classList.add("province-modal-open", "modal-open");
     document.body.style.overflow = "hidden";
 
-    // Hide navbar and mobile drawer
     const navbar = document.getElementById("main-navbar");
     if (navbar) navbar.classList.add("navbar-hidden");
     const mobileDrawer = document.getElementById("mobile-nav-drawer");
@@ -617,7 +601,6 @@ window.WARISARA_PROVINCE_PANEL = {
       mobileDrawer.classList.add("opacity-0", "pointer-events-none");
     }
 
-    // Pastikan jendela chat Wari tertutup saat modal provinsi dibuka
     if (window.WARISARA_MASCOT && typeof window.WARISARA_MASCOT.closeChat === "function") {
       window.WARISARA_MASCOT.closeChat();
     }
@@ -634,7 +617,6 @@ window.WARISARA_PROVINCE_PANEL = {
       document.body.classList.remove("province-modal-open", "modal-open");
       document.body.style.overflow = "";
 
-      // Restore navbar
       const navbar = document.getElementById("main-navbar");
       if (navbar) navbar.classList.remove("navbar-hidden");
 

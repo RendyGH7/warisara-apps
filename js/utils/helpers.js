@@ -25,11 +25,6 @@ window.WARISARA_UTILS = {
   }
 };
 
-/**
- * WARISARA UNIVERSAL POPUP ANIMATION ENGINE
- * Animasi fade in & fade out dinamis yang memicu pembesaran (zoom/expand) modal
- * langsung dari titik/elemen yang diklik pengguna, serta mengecil kembali ke titik asal saat ditutup.
- */
 window.WARISARA_POPUP = {
   lastTrigger: { x: window.innerWidth / 2, y: window.innerHeight / 2, element: null, time: 0 },
 

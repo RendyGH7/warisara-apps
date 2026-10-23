@@ -1,8 +1,3 @@
-/**
- * WARISARA — Mini Belajar & Kuis Budaya Demo (30% Cuplikan Fitur)
- * Menampilkan demo interaktif 3 soal terpilih dari Pusat Belajar untuk index.html
- */
-
 (function () {
   "use strict";
 

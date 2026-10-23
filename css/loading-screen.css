@@ -6,8 +6,8 @@ body.preloader-active {
   touch-action: none !important;
   -ms-touch-action: none !important;
   overscroll-behavior: none !important;
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE / Edge */
+  scrollbar-width: none !important; 
+  -ms-overflow-style: none !important; 
 }
 
 html.preloader-active::-webkit-scrollbar,
@@ -51,7 +51,6 @@ body.preloader-active *::-webkit-scrollbar {
   filter: blur(4px);
 }
 
-/* Sembunyikan Si Wari AI secara total saat preloader aktif */
 html.preloader-active #wari-ai-widget,
 body.preloader-active #wari-ai-widget,
 #warisara-preloader:not(.preloader-hidden) ~ #wari-ai-widget,
@@ -210,7 +209,6 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   animation: sealLevitate 3.4s ease-in-out infinite alternate;
 }
 
-/* Ambient core glow di belakang emblem monogram (dikurangi sedikit lagi agar sangat lembut) */
 .preloader-seal-logo-wrap::before {
   content: '';
   position: absolute;
@@ -224,7 +222,6 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   animation: emblemAuraPulse 3.6s ease-in-out infinite alternate;
 }
 
-/* Emblem monogram atas: diberi animasi berputar 360deg halus dan cahaya dikurangi sedikit */
 .preloader-emblem-logo {
   width: 100%;
   height: 100%;
@@ -249,12 +246,10 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   width: 100%;
 }
 
-/* Efek cahaya/aura di belakang tulisan logo dihilangkan sesuai permintaan */
 .preloader-text-brand-wrap::before {
   display: none !important;
 }
 
-/* Tulisan logo: sedikit saja lebih besar, tanpa efek cahaya (glow) */
 .preloader-text-logo {
   height: clamp(68px, 10.8vw, 98px);
   width: auto;
@@ -322,7 +317,6 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   z-index: 5;
 }
 
-/* Garis pembatas: sedikit lebih ramping dan ujung-ujungnya dibuat tajam lancip */
 .preloader-ribbon-line {
   height: 2.5px;
   width: clamp(85px, 14vw, 132px);
@@ -337,7 +331,6 @@ body:has(#warisara-preloader:not(.preloader-hidden)) #wari-ai-widget {
   clip-path: polygon(0% 50%, 8px 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 8px 100%);
 }
 
-/* Permata diamond: sedikit saja lebih kecil, benar-benar sedikit saja */
 .preloader-ribbon-diamond {
   display: inline-flex;
   align-items: center;

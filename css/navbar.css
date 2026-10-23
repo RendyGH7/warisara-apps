@@ -86,7 +86,6 @@ body.modal-open .wari-companion {
     padding: 0.45rem 1.5rem;
   }
 
-  /* 3-Column Layout: Perfect Center Alignment */
   #main-navbar.glass-nav > a:first-child {
     flex: 1 0 0%;
     display: flex;
@@ -407,7 +406,6 @@ body.modal-open .wari-companion {
   box-shadow: 0 4px 12px var(--nav-brown-gold-glow);
 }
 
-/* WARISARA NAVBAR LOGO INTERACTIVE SPIN (HOVER SPIN & CLICK SPIN BACK) */
 .nav-brand-logo-interactive,
 #main-navbar a[aria-label*="WARISARA"] img,
 a[aria-label="WARISARA Beranda"] img,
@@ -420,7 +418,6 @@ a[aria-label="WARISARA Beranda"] img,
   cursor: pointer;
 }
 
-/* Saat di-hover: logo memutar searah jarum jam (360deg) dengan glow emas */
 #main-navbar a[aria-label*="WARISARA"]:hover img,
 a[aria-label="WARISARA Beranda"]:hover img,
 .nav-brand-logo-interactive:hover {
@@ -429,7 +426,6 @@ a[aria-label="WARISARA Beranda"]:hover img,
           drop-shadow(0 0 24px rgba(201, 165, 103, 0.45)) !important;
 }
 
-/* Saat di-klik: logo memutar balik (counter-clockwise) kembali ke posisi semula */
 #main-navbar a[aria-label*="WARISARA"] img.spin-back,
 a[aria-label="WARISARA Beranda"] img.spin-back,
 .nav-brand-logo-interactive.spin-back {
@@ -451,7 +447,6 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   }
 }
 
-/* WARISARA LUXURY NAVBAR AUTH & PROFILE WIDGET */
 .nav-auth-wrapper {
   position: relative;
   display: inline-flex;
@@ -524,7 +519,6 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.25);
 }
 
-/* Sembunyikan tombol chat standalone di luar profil sesuai permintaan user */
 #nav-chat-toggle-btn {
   display: none !important;
 }
@@ -545,7 +539,6 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Badge Notifikasi Chat di Profil Navbar */
 .nav-profile-unread-badge {
   position: absolute;
   top: -0.22rem;
@@ -677,7 +670,6 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   color: #fecdd3;
 }
 
-/* WARISARA GOOGLE AUTH MODAL ENHANCEMENTS */
 .auth-modal-dialog {
   animation: authModalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;

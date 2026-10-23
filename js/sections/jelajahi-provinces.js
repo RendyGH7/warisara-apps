@@ -1,9 +1,3 @@
-/**
- * WARISARA - LOGIKA INTERAKTIF 38 PROVINSI & PASPOR PENJELAJAH NUSANTARA
- * Mengatur interaktivitas: Ensiklopedia Mendalam, 3-5+ Foto Realistis, Kuis Kilat,
- * Berita Hot, Audio Sapaan, Kompas Budaya Acak, dan Paspor Digital.
- */
-
 (function () {
   'use strict';
 
@@ -91,7 +85,7 @@
         oscT.stop(now + 0.04);
       }
     } catch (e) {
-      // Audio fallback fail-safe
+
     }
   }
 
@@ -141,7 +135,7 @@
       particles.forEach(function (p) {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.45; // gravity
+        p.vy += 0.45; 
         p.rotation += p.rSpeed;
         p.opacity = Math.max(0, 1 - elapsed / 2200);
 
@@ -268,7 +262,6 @@
     var pIsland = (prov.island || '').toLowerCase().trim();
     var pId = (prov.id || '').toLowerCase().trim();
 
-    // 1. Exact match pada field province
     var directMatches = all.filter(function (p) {
       if (!p.province) return false;
       var provStr = p.province.toLowerCase().trim();
@@ -276,14 +269,12 @@
     });
     if (directMatches.length > 0) return directMatches;
 
-    // 2. Match pada origin atau nama/filosofi
     var originMatches = all.filter(function (p) {
       var orig = (p.origin || '').toLowerCase();
       return orig.indexOf(pName) !== -1 || orig.indexOf(pId) !== -1;
     });
     if (originMatches.length > 0) return originMatches;
 
-    // 3. Match pada pulau / regional
     var islandMatches = all.filter(function (p) {
       if (!p.island) return false;
       var isl = p.island.toLowerCase();
@@ -302,18 +293,15 @@
 
     var provinces = Object.values(window.PROVINCES_DATA);
 
-    // Filter
     var filtered = provinces.filter(function (prov) {
-      // Filter Pulau
+
       var matchIsland = currentIsland === 'all' || prov.island.toLowerCase() === currentIsland.toLowerCase();
 
-      // Filter Status Paspor
       var isStamped = isProvinceStamped(prov.id);
       var matchStatus = true;
       if (currentStatus === 'stamped') matchStatus = isStamped;
       if (currentStatus === 'unstamped') matchStatus = !isStamped;
 
-      // Filter Search
       var q = currentSearchQuery.toLowerCase().trim();
       var matchQuery = !q ||
         prov.name.toLowerCase().indexOf(q) !== -1 ||
@@ -328,7 +316,6 @@
       return matchIsland && matchStatus && matchQuery;
     });
 
-    // Sort
     filtered.sort(function (a, b) {
       if (currentSort === 'name') return a.name.localeCompare(b.name, 'id');
       if (currentSort === 'year') return parseInt(a.established || 1945) - parseInt(b.established || 1945);
@@ -346,12 +333,11 @@
 
     if (emptyEl) emptyEl.classList.add('hidden');
 
-    // Staggered column count based on viewport (2 columns on mobile for compact layout)
     function getStaggeredColCount() {
       var w = window.innerWidth;
       if (w >= 1280) return 4;
       if (w >= 1024) return 3;
-      return 2; // Always 2 columns on mobile & tablet
+      return 2; 
     }
 
     var colCount = getStaggeredColCount();
@@ -359,7 +345,6 @@
       colCount = Math.max(1, filtered.length);
     }
 
-    // Algoritma Penyeimbang Tinggi Kolom (Atas & Bawah Sejajar Rata, Tengah Tetap Berantakan/Asimetris)
     function getBalancedAspectMatrix(totalCards, countCols) {
       var aspectHeights = {
         'pcu-aspect-cinematic': 350,
@@ -384,7 +369,7 @@
       var targetHeight = maxCards * 430;
 
       var colAspects = [];
-      // Variasi rasio baris pertama agar awal kolom tampak asimetris dan dinamis, tetapi baseline atas tetap rata:
+
       var startAspects = ['pcu-aspect-portrait', 'pcu-aspect-golden', 'pcu-aspect-square', 'pcu-aspect-portrait'];
 
       for (var c = 0; c < countCols; c++) {
@@ -401,13 +386,13 @@
           if (idx === 0) {
             chosen = startAspects[c % startAspects.length];
           } else if (idx === numC - 1) {
-            // Kartu terakhir: pilih rasio yang menutup selisih tinggi dengan kolom lain agar bawah rata rapih
+
             var remaining = targetHeight - curH;
             chosen = aspectKeys.reduce(function (prev, curr) {
               return Math.abs(aspectHeights[curr] - remaining) < Math.abs(aspectHeights[prev] - remaining) ? curr : prev;
             });
           } else {
-            // Kartu tengah: pilih rasio bervariasi agar tetap berantakan/tidak sejajar kaku secara horizontal
+
             var neededForRest = (targetHeight - curH) / (numC - idx);
             var prevAsp = asps[asps.length - 1];
             var candidates = aspectKeys.filter(function (k) { return k !== prevAsp; });
@@ -425,7 +410,7 @@
     }
 
     if (filtered.length === 1) {
-      // Single card centered
+
       var prov = filtered[0];
       var isStamped = isProvinceStamped(prov.id);
       var rawCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
@@ -533,14 +518,13 @@
       }).join('');
     }
 
-    // Attach click triggers to open modal with elegant ripple + glow effect
     gridEl.querySelectorAll('.province-card-ultimate').forEach(function (card) {
       card.addEventListener('click', function (e) {
         var id = card.getAttribute('data-prov-id');
 
         var ripple = document.createElement('span');
         ripple.className = 'pcu-click-ripple';
-        // Position ripple at click point relative to card
+
         var rect = card.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
@@ -548,16 +532,13 @@
         ripple.style.top = y + 'px';
         card.appendChild(ripple);
 
-        // Add click-active class for gold-glow flash
         card.classList.add('pcu-card-clicked');
 
-        // Remove after animation completes
         setTimeout(function () {
           ripple.remove();
           card.classList.remove('pcu-card-clicked');
         }, 600);
 
-        // Open modal after a short delay so the animation is visible
         var clickPoint = { clientX: e.clientX, clientY: e.clientY, target: card };
         setTimeout(function () {
           openProvinceModal(id, clickPoint);
@@ -574,12 +555,10 @@
     var modalOverlay = document.getElementById('province-modal-overlay');
     if (!modalOverlay) return;
 
-    // Save scroll position before modal locks the page, ONLY if opening fresh (not when switching with prev/next)
     if (!modalOverlay.classList.contains('active')) {
       savedProvinceScrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
     }
 
-    // Setup Dedicated Iconic Illustration for Province
     var heroBanner = document.getElementById('modal-hero-banner');
     var rawModalCover = (prov.tourism && (prov.tourism.photo || prov.tourism.image)) || 
                         (prov.gallery && prov.gallery[0] && prov.gallery[0].url) || 
@@ -589,14 +568,12 @@
     var landmarkCaption = (prov.tourism && prov.tourism.name) ? prov.tourism.name : prov.name;
     var matchingProducts = getMatchingProductsForProvince(prov);
 
-    // Resolve Maestro Pelestari for this Province
     var maker = (window.MAKERS_DATA || []).find(function (m) {
       return m.provinceId === provId || m.provinceId === prov.id;
     });
     var makerPhoto = maker ? fixImgPath('assets/images/Pelestari/' + maker.provinceId + '.jpg') : coverImg;
     var makerSvg = (maker && window.getMakerIllustrationSvg) ? window.getMakerIllustrationSvg(maker.id) : '';
 
-    // Dual View Switcher (Landmark vs Pelestari)
     var btnViewLandmark = document.getElementById('btn-hero-view-landmark');
     var btnViewMaker = document.getElementById('btn-hero-view-maker');
     var modeLabel = document.getElementById('illustration-caption-mode-label');
@@ -627,7 +604,6 @@
         if (modeLabel) modeLabel.textContent = 'Maestro Pelestari';
         if (captionIcon) captionIcon.textContent = 'person';
 
-        // Update Title & Metadata Card to Pelestari Information
         if (nameEl) {
           nameEl.textContent = maker.name;
         }
@@ -676,7 +652,6 @@
         if (modeLabel) modeLabel.textContent = 'Landmark';
         if (captionIcon) captionIcon.textContent = 'location_on';
 
-        // Update Title & Metadata Card to Province Landmark Information
         if (nameEl) {
           nameEl.textContent = prov.name;
         }
@@ -740,10 +715,8 @@
     var statementEl = document.getElementById('modal-province-statement');
     if (statementEl) statementEl.textContent = `"${prov.shortStatement}"`;
 
-    // Stamp Status Badge
     updateModalStampBadge(provId);
 
-    // Helper: Format Sejarah Ringkas & Menarik (Storytelling, No duplicates, High Readability)
     function formatBiteSizedHistory(prov) {
       var raw = (prov.historyBrief || prov.shortDescription || '').trim();
       if (!raw) return '';
@@ -783,7 +756,6 @@
       `;
     }
 
-    // Render Tab 1: Kisah & Identitas (Bite-sized, clean, modular, high readability)
     var historyEl = document.getElementById('tab-history-content');
     if (historyEl) {
       historyEl.innerHTML = `
@@ -880,7 +852,6 @@
         </div>
       `;
 
-      // Wire accordion expand narrative button
       var toggleNarrativeBtn = document.getElementById('toggle-history-narrative-btn');
       var narrativeBox = document.getElementById('history-full-narrative');
       if (toggleNarrativeBtn && narrativeBox) {
@@ -891,7 +862,6 @@
         });
       }
 
-      // Wire card voice play button
       var cardVoiceBtn = document.getElementById('card-voice-play-btn');
       if (cardVoiceBtn && prov.language) {
         cardVoiceBtn.addEventListener('click', function (e) {
@@ -901,7 +871,6 @@
       }
     }
 
-    // Helper: Suara Petuah Bijak Maestro
     function speakMakerWisdom(quoteText) {
       if (!window.speechSynthesis) {
         alert(quoteText);
@@ -915,7 +884,6 @@
       window.speechSynthesis.speak(utter);
     }
 
-    // Render Spotlight Maestro Pelestari di Tab 1 (Kisah & Identitas)
     var makerSpotlightEl = document.getElementById('tab-overview-maker-spotlight');
     if (makerSpotlightEl) {
       if (!maker) {
@@ -1067,7 +1035,6 @@
       }
     }
 
-    // Render Tab 2: Maestro Pelestari Budaya (Dedicated Comprehensive Pavilion)
     var makerTabEl = document.getElementById('tab-maker-content');
     if (makerTabEl) {
       if (!maker) {
@@ -1214,7 +1181,6 @@
       }
     }
 
-    // Render Tab 3: Kuliner, Senjata Pusaka & Mahakarya Kriya
     var culinaryWeaponEl = document.getElementById('tab-culinary-weapon-content');
     if (culinaryWeaponEl) {
       culinaryWeaponEl.innerHTML = `

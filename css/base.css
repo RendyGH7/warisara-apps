@@ -32,14 +32,13 @@ body {
   min-height: 100vh;
   overflow-x: clip;
   overflow-y: visible;
-  scrollbar-width: none !important; /* Hapus scrollbar ganda di sisi kiri pada body */
+  scrollbar-width: none !important; 
   -ms-overflow-style: none !important;
   background-color: var(--color-hero-bg, #0E0C0A);
   color: var(--color-surface, #FBF8F2);
   cursor: url('../assets/images/cursor/lantern-default.svg') 4 4, auto;
 }
 
-/* Pastikan elemen body tidak merender scrollbar terpisah */
 body::-webkit-scrollbar {
   display: none !important;
   width: 0 !important;
@@ -67,7 +66,6 @@ body.preloader-active *::-webkit-scrollbar {
   height: 0 !important;
 }
 
-/* WARISARA LUXURY CUSTOM SCROLLBAR (GLOBAL VIEWPORT) */
 html::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -100,7 +98,6 @@ html::-webkit-scrollbar-corner {
   background: #0E0C0A;
 }
 
-/* WARISARA LUXURY DARK SELECT & DROPDOWN STYLING | Memastikan popup menu select selalu bertema gelap dengan teks terbaca jelas */
 select {
   color-scheme: dark;
   background-color: #1A1612;

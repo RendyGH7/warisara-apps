@@ -1,6 +1,3 @@
-/* WARISARA - JELAJAHI 38 PROVINSI (EDISI ULTIMATE ENSIKLOPEDIA & PASPOR) */
-
-/* Modal Overlays display rules */
 .modal-overlay.active,
 .modal-overlay.modal-closing {
   display: flex !important;
@@ -10,7 +7,6 @@
   display: none !important;
 }
 
-/* Strict Scrollbar Killer for all browsers & platforms */
 .no-scrollbar::-webkit-scrollbar,
 #island-filters::-webkit-scrollbar {
   display: none !important;
@@ -25,7 +21,6 @@
   scrollbar-width: none !important;
 }
 
-/* Luxury Filter Bar & Deck Card (Statis - Tidak Mengikuti Scroll) */
 .filter-bar-section {
   position: relative;
   background: #151310;
@@ -58,7 +53,6 @@
   pointer-events: none;
 }
 
-/* Island Group Dividers */
 .island-group-divider {
   width: 1px;
   height: 18px;
@@ -67,7 +61,6 @@
   flex-shrink: 0;
 }
 
-/* Island Filter Pill */
 .island-filter-pill {
   padding: 6px 13px;
   font-size: 11.5px;
@@ -114,7 +107,6 @@
   color: #120E0B;
 }
 
-/* Segmented Control for Status */
 .segmented-status-box {
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -162,7 +154,6 @@
   font-weight: 600;
 }
 
-/* Passport Widget in Hero */
 .passport-hero-widget {
   background: linear-gradient(135deg, rgba(28, 22, 17, 0.9), rgba(20, 16, 12, 0.94));
   border: 1px solid rgba(201, 165, 103, 0.28);
@@ -190,7 +181,6 @@
   background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, #C9A567, transparent);
 }
 
-/* MODERN MINIMALIST PROVINCE CARDS (GLASSMORPHISM & STAGGERED MASONRY) */
 .provinces-staggered-container {
   display: flex;
   gap: 1.25rem;
@@ -206,7 +196,6 @@
   min-width: 0;
 }
 
-/* Kolom sejajar di atas & bawah, tetapi kartu di dalam tetap dinamis dan asimetris */
 .provinces-staggered-col {
   padding-top: 0;
 }
@@ -227,7 +216,6 @@
   cursor: pointer;
 }
 
-/* Card hover animation: card lifts up with luxury golden ambient shadow; NO IMAGE ZOOM */
 .province-card-ultimate:hover {
   transform: translateY(-8px);
   border-color: rgba(201, 165, 103, 0.65);
@@ -238,34 +226,32 @@
   z-index: 10;
 }
 
-/* Dynamic Aspect Ratio Photo Viewport — Asymmetric & Free yet Crisp and Tidy */
 .province-card-cover {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1; /* Fallback baseline */
+  aspect-ratio: 1 / 1; 
   overflow: hidden;
   background: #0E0C0A;
   flex-shrink: 0;
 }
 
-/* Asymmetric Ratios for Editorial Waterfall Masonry */
 .province-card-cover.pcu-aspect-portrait {
-  aspect-ratio: 3 / 4; /* Tall landmark ~1.33 */
+  aspect-ratio: 3 / 4; 
 }
 .province-card-cover.pcu-aspect-golden {
-  aspect-ratio: 4 / 5; /* Elegant vertical ~1.25 */
+  aspect-ratio: 4 / 5; 
 }
 .province-card-cover.pcu-aspect-square {
-  aspect-ratio: 1 / 1; /* Balanced standard 1.0 */
+  aspect-ratio: 1 / 1; 
 }
 .province-card-cover.pcu-aspect-landscape {
-  aspect-ratio: 4 / 3; /* Compact wide ~0.75 */
+  aspect-ratio: 4 / 3; 
 }
 .province-card-cover.pcu-aspect-grand {
-  aspect-ratio: 5 / 7; /* Grand vertical ~1.4 */
+  aspect-ratio: 5 / 7; 
 }
 .province-card-cover.pcu-aspect-cinematic {
-  aspect-ratio: 16 / 11; /* Wide panoramic ~0.69 */
+  aspect-ratio: 16 / 11; 
 }
 
 .province-card-cover img {
@@ -274,16 +260,14 @@
   object-fit: cover;
   transition: filter 0.4s ease;
   filter: brightness(0.92) saturate(1.02);
-  transform: none !important; /* NO ZOOM */
+  transform: none !important; 
 }
 
-/* On card hover: do NOT zoom the photo; gently lift luminance */
 .province-card-ultimate:hover .province-card-cover img {
-  transform: none !important; /* NO ZOOM */
+  transform: none !important; 
   filter: brightness(1.03) saturate(1.12);
 }
 
-/* Photo overlay vignette */
 .province-card-cover-overlay {
   position: absolute;
   inset: 0;
@@ -301,7 +285,6 @@
   opacity: 0.8;
 }
 
-/* Gold shimmer sweep layer — elegant light refraction on hover */
 .pcu-card-shimmer {
   position: absolute;
   inset: 0;
@@ -333,7 +316,6 @@
   100% { background-position: -40% 0; opacity: 0; }
 }
 
-/* Top Row */
 .pcu-top-row {
   position: absolute;
   top: 14px;
@@ -382,7 +364,6 @@
   box-shadow: 0 0 12px rgba(201,165,103,0.25);
 }
 
-/* Content Panel Below 1:1 Photo — soft frosted look, clarifies on hover */
 .pcu-glass-panel {
   position: relative;
   z-index: 5;
@@ -401,7 +382,6 @@
   transition: background 0.35s ease, border-color 0.3s ease;
 }
 
-/* Default (Unhovered): Crisp text with subdued opacity (no blur), lights up on hover */
 .pcu-capital-label,
 .pcu-name,
 .pcu-chips-row,
@@ -436,7 +416,6 @@
   margin: 0;
 }
 
-/* Chips row — neat multi-item flow */
 .pcu-chips-row {
   display: flex;
   align-items: center;
@@ -465,7 +444,6 @@
   transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* CTA Row */
 .pcu-cta-row {
   display: flex;
   align-items: center;
@@ -485,7 +463,6 @@
   color: rgba(201, 165, 103, 0.6);
 }
 
-/* ===== HOVER STATE: CRYSTAL CLEAR, LUMINESCENT & RAZOR-SHARP ===== */
 .province-card-ultimate:hover .pcu-glass-panel {
   background: linear-gradient(
     180deg,
@@ -529,8 +506,6 @@
   color: #FFF;
 }
 
-/* ===== CLICK: FULL-CARD FLASH BLOOM ===== */
-/* Ripple expands from click origin inside the card */
 .pcu-click-ripple {
   position: absolute;
   border-radius: 50%;
@@ -556,7 +531,6 @@
   100% { transform: translate(-50%, -50%) scale(80); opacity: 0; }
 }
 
-/* White flash overlay on the whole card at click moment */
 .province-card-ultimate.pcu-card-clicked {
   border-color: rgba(230, 211, 167, 0.9) !important;
   box-shadow:
@@ -574,7 +548,6 @@
   100% { filter: brightness(1.0) saturate(1.0); }
 }
 
-/* Modal Tabs */
 .modal-tab-btn {
   padding: 10px 16px;
   font-size: 12px;
@@ -618,7 +591,6 @@
   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24 !important;
 }
 
-/* Quiz Option Buttons */
 .quiz-option-btn {
   width: 100%;
   text-align: left;
@@ -662,7 +634,6 @@
   40%, 80% { transform: translateX(6px); }
 }
 
-/* Passport Book Modal */
 .passport-book-modal {
   background: #14120F;
   border: 1px solid rgba(201, 165, 103, 0.35);
@@ -724,7 +695,6 @@
   color: rgba(255, 255, 255, 0.25);
 }
 
-/* Cultural Compass Widget */
 .compass-dial-outer {
   width: 220px;
   height: 220px;
@@ -784,7 +754,6 @@
   position: absolute;
 }
 
-/* Gallery Lightbox */
 .gallery-thumb-card {
   position: relative;
   border-radius: 1rem;
@@ -813,7 +782,6 @@
   transform: scale(1.1);
 }
 
-/* Confetti Layer */
 #confetti-canvas-layer {
   position: fixed;
   inset: 0;
@@ -823,7 +791,6 @@
   z-index: 9999;
 }
 
-/* Hot News Glowing Badge */
 .hot-badge-pulse {
   animation: pulseHot 2s infinite ease-in-out;
 }
@@ -837,11 +804,6 @@
   }
 }
 
-/* ===== PROVINCE CARD BODY (deprecated, kept for compat) ===== */
-
-/* ===== MODAL CONTENT POLISH ===== */
-
-/* Modal overview content sections */
 #tab-history-content .space-y-5 > div,
 #tab-overview-content .space-y-5 > div {
   transition: border-color 0.2s ease;
@@ -852,13 +814,11 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Heritage WBTB grid item polish */
 #tab-history-content .grid .p-3\.5:hover {
   border-color: rgba(201, 165, 103, 0.3);
   background: rgba(255, 255, 255, 0.04);
 }
 
-/* Common phrases display */
 .common-phrase-row {
   display: flex;
   align-items: baseline;
@@ -884,7 +844,6 @@
   font-style: italic;
 }
 
-/* Province modal container refined scroll */
 .modal-container,
 .modal-scroll-pane {
   scrollbar-width: thin;
@@ -898,7 +857,6 @@
   overscroll-behavior: contain;
 }
 
-/* ULTRA-SMOOTH MODAL OPEN & CLOSE MOTION (PAVILION ENSIKLOPEDIA & BUDAYA) | Animasi zoom-in langsung dari titik klik / kartu asal, dan shrink fade-out saat ditutup */
 #province-modal-overlay {
   overscroll-behavior: contain;
   opacity: 0;
@@ -942,7 +900,6 @@
               -webkit-backdrop-filter 320ms cubic-bezier(0.4, 0, 0.8, 1) !important;
 }
 
-/* Modal Container Physics — Mengembang mulus dari koordinat kartu yang diklik */
 #province-detail-modal {
   transform: scale(0.18);
   opacity: 0;
@@ -975,7 +932,6 @@
   animation: none !important;
 }
 
-/* Close Button Entrance/Exit & Interactive Hover Effects */
 .province-modal-close-trigger {
   opacity: 0;
   transform: scale(0.6) rotate(-45deg);
@@ -986,7 +942,7 @@
   transform: scale(1) rotate(0deg);
 }
 #province-modal-overlay.active .province-modal-close-trigger:hover {
-  background-color: #DC2626 !important; /* Vivid Crimson Red */
+  background-color: #DC2626 !important; 
   border-color: #EF4444 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 25px rgba(220, 38, 38, 0.75), 0 4px 15px rgba(0, 0, 0, 0.6) !important;
@@ -1008,7 +964,6 @@
   transition: opacity 200ms ease, transform 200ms ease;
 }
 
-/* Passport & Compass Modal Zoom & Fade Transitions */
 .passport-book-modal,
 .compass-modal-card {
   transform: scale(0.18);
@@ -1037,7 +992,6 @@
               filter 240ms ease !important;
 }
 
-/* Golden shimmer line sweeps across the top of the modal when it opens */
 #province-detail-modal::before {
   content: '';
   position: absolute;
@@ -1057,7 +1011,6 @@
   animation: modalGoldShimmer 0.75s 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Staggered Children Animation */
 #province-modal-overlay.active .modal-stagger-1 {
   animation: modalStaggerIn 400ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -1085,7 +1038,6 @@
   }
 }
 
-/* Phase 2 (modal-closing-backdrop): Overlay fades out with golden vignette flash */
 #province-modal-overlay.modal-closing-backdrop {
   opacity: 0 !important;
   background-color: rgba(6, 4, 3, 0) !important;
@@ -1098,7 +1050,6 @@
               -webkit-backdrop-filter 320ms ease-in !important;
 }
 
-/* The overlay itself fades ONLY during backdrop phase */
 #province-modal-overlay.modal-closing:not(.modal-closing-backdrop) {
   opacity: 1 !important;
   background-color: rgba(8, 6, 4, 0.14) !important;
@@ -1143,13 +1094,11 @@ body.modal-open {
   background: rgba(201, 165, 103, 0.8);
 }
 
-/* Modal hero title refinement */
 #modal-province-name {
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95);
   letter-spacing: -0.015em;
 }
 
-/* Soundwave Audio Playing Animation */
 .audio-equalizer-wave {
   display: inline-flex;
   align-items: center;
@@ -1175,7 +1124,6 @@ body.modal-open {
   100% { transform: scaleY(1); }
 }
 
-/* Bite-Sized History Milestone styling */
 .history-milestone-item {
   position: relative;
   transition: all 0.25s ease;
@@ -1187,7 +1135,6 @@ body.modal-open {
   background: rgba(255, 255, 255, 0.04);
 }
 
-/* Expandable narrative box */
 .history-full-narrative {
   max-height: 0;
   opacity: 0;
@@ -1212,7 +1159,6 @@ body.modal-open {
   transform: rotate(180deg);
 }
 
-/* WBTB & Kriya refined badges */
 .wbtb-badge-card {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1224,12 +1170,10 @@ body.modal-open {
   background: rgba(255, 255, 255, 0.045);
 }
 
-/* Province grid section better spacing */
 #provinces-grid {
   gap: 1.25rem;
 }
 
-/* Smooth card entrance animation */
 .province-card-ultimate {
   animation: cardFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -1245,7 +1189,6 @@ body.modal-open {
   }
 }
 
-/* Stagger the card entrance */
 .province-card-ultimate:nth-child(1) { animation-delay: 0.02s; }
 .province-card-ultimate:nth-child(2) { animation-delay: 0.06s; }
 .province-card-ultimate:nth-child(3) { animation-delay: 0.10s; }
@@ -1254,19 +1197,16 @@ body.modal-open {
 .province-card-ultimate:nth-child(6) { animation-delay: 0.22s; }
 .province-card-ultimate:nth-child(n+7) { animation-delay: 0.26s; }
 
-/* Culinary/weapon photo section enhanced */
 #tab-culinary-weapon-content .rounded-2xl .relative.group {
   overflow: hidden;
 }
 
-/* Gallery section heading */
 #tab-gallery-content .space-y-4 > p {
   color: rgba(246, 241, 231, 0.6);
   font-style: italic;
   font-size: 11px;
 }
 
-/* Province card island badge */
 .province-card-ultimate .island-badge {
   display: inline-flex;
   align-items: center;
@@ -1282,7 +1222,6 @@ body.modal-open {
   backdrop-filter: blur(6px);
 }
 
-/* Empty state improved */
 #provinces-empty-state {
   padding: 5rem 1rem;
 }
@@ -1293,7 +1232,6 @@ body.modal-open {
   opacity: 0.25;
 }
 
-/* Filter bar top shimmer line */
 .filter-bar-section::before {
   content: '';
   display: block;
@@ -1301,21 +1239,17 @@ body.modal-open {
   background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.25), transparent);
 }
 
-/* 2-COLUMN LUXURY PAVILION DETAIL MODAL */
-
 #province-detail-modal {
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(201, 165, 103, 0.12);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Modal Hero Banner inside Left Panel */
 #modal-hero-banner {
   background-size: cover;
   background-position: center;
   transition: background-image 0.35s ease-in-out;
 }
 
-/* Quick Illustration Switcher Chips */
 #modal-illustration-chips {
   overflow: visible;
 }
@@ -1363,7 +1297,6 @@ body.modal-open {
   stroke: #120F0D;
 }
 
-/* Right Panel Tabs */
 .modal-tab-btn {
   padding: 8px 16px;
   font-size: 11px;
@@ -1400,7 +1333,6 @@ body.modal-open {
   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24 !important;
 }
 
-/* Refined Reading Cards inside Modal */
 #tab-overview-content .p-4,
 #tab-history-content .p-4 {
   background: rgba(255, 255, 255, 0.025);
@@ -1408,7 +1340,6 @@ body.modal-open {
   border-radius: 1rem;
 }
 
-/* Responsive adjustment for small screens */
 @media (max-width: 1023px) {
   #province-detail-modal {
     max-height: 94vh;
@@ -1420,7 +1351,6 @@ body.modal-open {
   }
 }
 
-/* Pelestari (Makers) Integrated Styles */
 @keyframes soundWave {
   0%, 100% { height: 4px; }
   50% { height: 16px; }
@@ -1439,7 +1369,6 @@ body.modal-open {
   box-shadow: 0 0 25px rgba(201, 165, 103, 0.25) !important;
 }
 
-/* 2-Column Mobile Staggered Grid Optimizations (<640px) */
 @media (max-width: 640px) {
   .provinces-staggered-container {
     gap: 0.65rem !important;

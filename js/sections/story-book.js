@@ -71,7 +71,6 @@
             btn.classList.add('btn-press');
             setTimeout(() => btn.classList.remove('btn-press'), 220);
 
-            // Correctly toggle active and inactive classes
             this.themeFilterBtns.forEach((b) => {
               b.classList.remove('active', 'bg-brass-400', 'text-ink');
               b.classList.add('bg-white/5', 'border-white/10', 'text-surface/80');
@@ -531,7 +530,7 @@
 
       if (this.openingStage && this.activeStory) {
         const pageToClose = this.currentPageIdx;
-        // 1. Render stage ALREADY in open state (isOpen = true) so it matches current open tome 1:1
+
         this.openingStage.innerHTML = this.renderOpeningStageMarkup(this.activeStory, pageToClose, true);
         const flightWrapper = this.openingStage.querySelector('.opening-flight-wrapper');
         const casingEl = this.openingStage.querySelector('.opening-stage-casing');
@@ -541,11 +540,9 @@
           flightWrapper.style.transform = 'translate3d(0px, 0px, 0px) scale(1) rotateY(0deg) rotateX(0deg)';
         }
 
-        // 2. Seamless swap: show openingStage and immediately hide bookCasing with zero ghost fade
         this.openingStage.classList.add('active');
         if (this.bookCasing) this.bookCasing.classList.add('is-hidden-immediate');
 
-        // 3. Smooth natural breathing pause before majestic cover fold
         setTimeout(() => {
           if (window.WARISARA_STORY_AUDIO) {
             window.WARISARA_STORY_AUDIO.playBookClose();
@@ -556,14 +553,12 @@
           }
         }, 100);
 
-        // 4. Solid cover settle/impact when the cover fully reaches closed state
         setTimeout(() => {
           if (casingEl) {
             casingEl.classList.add('is-impact');
           }
         }, 1220);
 
-        // 5. Smooth flight back to the shelf slot (only once the book is solidly closed)
         setTimeout(() => {
           if (this.activeCardElement && flightWrapper) {
             const cardBox = this.activeCardElement.querySelector('.book-3d-card') || this.activeCardElement;
@@ -589,9 +584,8 @@
           }
         }, 1350);
 
-        // 6. Touchdown on shelf: SEAMLESS HANDOFF (ZERO DISAPPEAR / REAPPEAR GAP)
         setTimeout(() => {
-          // Immediately reveal the real card on shelf at opacity 1 underneath the landing book
+
           if (this.activeCardElement) {
             this.activeCardElement.classList.add('book-landed');
             this.activeCardElement.classList.remove('book-launching');
@@ -600,7 +594,6 @@
             } catch (e) {}
           }
 
-          // Clean up stage and modal on the next animation frame for a 100% gapless handoff
           requestAnimationFrame(() => {
             if (this.bookModal) {
               this.bookModal.classList.remove('active', 'modal-closing-backdrop');
@@ -622,7 +615,6 @@
               this.bookCasing.classList.remove('is-hidden', 'is-hidden-immediate');
             }
 
-            // Remove temporary landed override so normal hover animations work
             if (this.activeCardElement) {
               this.activeCardElement.classList.remove('book-landed');
             }

@@ -432,7 +432,6 @@ body.modal-open #mobile-nav-drawer {
   box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.22);
 }
 
-/* Creative Lab Studio Mobile Responsive Enhancements */
 @media (max-width: 640px) {
   .studio-mode-switcher-container {
     padding: 0.35rem !important;
@@ -474,8 +473,6 @@ body.modal-open #mobile-nav-drawer {
     border-radius: 1.15rem !important;
   }
 }
-
-/* Creative Lab Studio 2.0: Photorealistic Mockup & Studio Tabs */
 
 .studio-nav-tab {
   position: relative;

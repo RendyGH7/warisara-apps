@@ -1,9 +1,3 @@
-/**
- * WARISARA — Creative Lab Studio Mini Showcase (30% Cuplikan Fitur)
- * Mengelola kanvas generatif, pilihan motif adiluhung, kerapatan fraktal,
- * dan simulasi mockup produk (kemeja & scarf) langsung pada index.html
- */
-
 (function () {
   "use strict";
 
@@ -49,7 +43,7 @@
     currentPaletteKey: "sogan",
     currentDensity: 4,
     currentStrokeWidth: 2.5,
-    activeView: "flat", // "flat" | "shirt" | "scarf"
+    activeView: "flat", 
 
     init: function () {
       this.canvas = document.getElementById("creative-canvas");
@@ -90,7 +84,6 @@
         });
       });
 
-      // Swap Colors Button (Tukar Warna Dasar Kain dengan Garis Canting)
       const btnSwap = document.getElementById("lab-btn-swap-colors");
       if (btnSwap) {
         btnSwap.addEventListener("click", () => {
@@ -121,7 +114,6 @@
         });
       }
 
-      // View tabs (Flat vs Shirt vs Scarf)
       const viewTabs = document.querySelectorAll(".lab-view-tab");
       viewTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
@@ -295,7 +287,6 @@
       this.ctx.lineTo(x + size * 0.7, y);
       this.ctx.stroke();
 
-      // Mlinjon belah ketupat
       const half = size / 2;
       this.ctx.beginPath();
       this.ctx.arc(x + half, y + half, size / 5.5, 0, Math.PI * 2);
@@ -308,7 +299,6 @@
       const half = size / 2;
       this.ctx.strokeStyle = pal.primary;
 
-      // Lapisan awan bergradasi
       [0.9, 0.65, 0.4].forEach((scale, idx) => {
         this.ctx.beginPath();
         this.ctx.moveTo(cx - half * 0.8 * scale, cy);
@@ -341,7 +331,6 @@
       const half = size / 2;
       this.ctx.strokeStyle = pal.primary;
 
-      // Belah ketupat pucuk rebung
       this.ctx.beginPath();
       this.ctx.moveTo(x + half, y + 4);
       this.ctx.lineTo(x + size - 4, y + half);
@@ -350,7 +339,6 @@
       this.ctx.closePath();
       this.ctx.stroke();
 
-      // Bintang dalam benang emas
       this.ctx.beginPath();
       this.ctx.moveTo(x + half, y + 8);
       this.ctx.lineTo(x + half, y + size - 8);
@@ -390,7 +378,6 @@
 
       mCtx.clearRect(0, 0, mw, mh);
 
-      // Background backdrop studio
       mCtx.fillStyle = "#14110E";
       mCtx.fillRect(0, 0, mw, mh);
 
@@ -406,7 +393,6 @@
     drawShirtMockup: function (mCtx, w, h, pattern) {
       mCtx.save();
 
-      // Siluet Kemeja Pria Batik
       mCtx.beginPath();
       mCtx.moveTo(w * 0.35, h * 0.15);
       mCtx.lineTo(w * 0.2, h * 0.22);
@@ -426,7 +412,6 @@
       mCtx.fillStyle = pattern;
       mCtx.fill();
 
-      // Shading realistis lipatan kain
       const shadeGrad = mCtx.createLinearGradient(0, 0, w, 0);
       shadeGrad.addColorStop(0, "rgba(0,0,0,0.45)");
       shadeGrad.addColorStop(0.25, "rgba(255,255,255,0.12)");
@@ -440,7 +425,6 @@
       mCtx.lineWidth = 2.5;
       mCtx.stroke();
 
-      // Garis kancing tengah
       mCtx.beginPath();
       mCtx.moveTo(w * 0.5, h * 0.2);
       mCtx.lineTo(w * 0.5, h * 0.9);
@@ -448,7 +432,6 @@
       mCtx.lineWidth = 3;
       mCtx.stroke();
 
-      // Kancing kerang emas
       for (let b = 1; b <= 5; b++) {
         const by = h * 0.22 + b * (h * 0.12);
         mCtx.beginPath();
@@ -460,7 +443,6 @@
         mCtx.stroke();
       }
 
-      // Kerah kemeja
       mCtx.beginPath();
       mCtx.moveTo(w * 0.35, h * 0.15);
       mCtx.lineTo(w * 0.5, h * 0.26);
@@ -475,7 +457,6 @@
     drawScarfMockup: function (mCtx, w, h, pattern) {
       mCtx.save();
 
-      // Siluet Selendang / Scarf Sutra Melengkung Indah
       mCtx.beginPath();
       mCtx.moveTo(w * 0.2, h * 0.1);
       mCtx.bezierCurveTo(w * 0.45, h * 0.08, w * 0.55, h * 0.18, w * 0.8, h * 0.12);
@@ -487,7 +468,6 @@
       mCtx.fillStyle = pattern;
       mCtx.fill();
 
-      // Kilau sutra (sheen)
       const sheen = mCtx.createLinearGradient(0, 0, w, h);
       sheen.addColorStop(0, "rgba(255,255,255,0.25)");
       sheen.addColorStop(0.35, "rgba(0,0,0,0.3)");
@@ -500,7 +480,6 @@
       mCtx.lineWidth = 2;
       mCtx.stroke();
 
-      // Rumbai emas ujung selendang
       for (let f = 0; f < 12; f++) {
         const fx = w * 0.45 + f * ((w * 0.78 - w * 0.45) / 12);
         mCtx.beginPath();

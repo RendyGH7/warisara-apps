@@ -2016,7 +2016,6 @@ html.book-modal-open {
   overflow: visible;
 }
 
-/* STORY FILTER TABS & INTERACTIVE CLICK EFFECTS */
 .story-filter-btn {
   position: relative;
   overflow: hidden;
@@ -2045,7 +2044,7 @@ html.book-modal-open {
   background: linear-gradient(135deg, #F3E3C3 0%, #D1AD6C 45%, #B58F49 100%) !important;
   color: #1A1612 !important;
   border-color: #E2C792 !important;
-  /* Bersih, rapi, dan tidak meluber keluar */
+
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(201, 165, 103, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   font-weight: 700;
   transform: translateY(-0.5px);

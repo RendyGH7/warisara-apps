@@ -1,11 +1,5 @@
-/**
- * WARISARA — Katalog Produk Lokal & Kriya Nusantara
- * Produk lokal otentik terkurasi Nusantara dengan ilustrasi kriya asli
- * Terintegrasi dengan sistem C2C Marketplace & Chat Facebook-Style
- */
-
 (function () {
-  // Helper resolver path gambar agar fleksibel baik di root index.html maupun di /pages/
+
   function resolveProductImg(url) {
     if (!url) return '';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
@@ -19,7 +13,6 @@
     }
   }
 
-  // 14 Produk Kriya Otentik Nusantara (Setiap produk memiliki ilustrasi AI unik di assets/images/products/)
   const featuredProducts = [
     {
       id: "syal-tenun-sumba",
@@ -903,7 +896,6 @@
     }
   ];
 
-  // Helper untuk membaca custom produk yang ditambahkan oleh user via form "+ Jual Produk"
   function getUserProductsFromStorage() {
     try {
       const stored = localStorage.getItem("warisara_user_products");
@@ -935,7 +927,7 @@
       const userItems = getUserProductsFromStorage();
       userItems.unshift(prod);
       localStorage.setItem("warisara_user_products", JSON.stringify(userItems));
-      // Trigger event agar tampilan re-render
+
       window.dispatchEvent(new CustomEvent("warisara_products_updated", { detail: prod }));
       return true;
     } catch (e) {
@@ -944,7 +936,6 @@
     }
   }
 
-  // Expose global API
   window.PRODUCTS_DATA = getAllProducts();
   window.WARISARA_PRODUCTS = {
     getAll: getAllProducts,

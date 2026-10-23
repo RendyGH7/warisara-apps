@@ -1,13 +1,6 @@
-/**
- * WARISARA — Wari AI Chatbot & Companion System
- * Pemandu Cerdas Budaya Nusantara & Navigasi Web Terintegrasi
- * Mendukung Gemini API (Live Generative AI) + Comprehensive Offline Cultural Knowledge Base
- */
-
 (function () {
   'use strict';
 
-  // Path resolver otomatis agar aset selalu tepat di root maupun di /pages/
   const isInPages = window.location.pathname.includes('/pages/');
   const BASE = isInPages ? '../' : './';
 
@@ -22,7 +15,6 @@
     img.src = src;
   });
 
-  // Konteks Halaman & Sapaan Pintar
   function getCurrentPageContext() {
     const path = window.location.pathname.toLowerCase();
     if (path.includes('ekonomi-kreatif')) {
@@ -97,7 +89,6 @@
     };
   }
 
-  // Ensiklopedia Budaya & Panduan Web Komprehensif (Offline Knowledge Engine)
   const CULTURAL_KNOWLEDGE = [
     {
       keywords: ['fitur', 'web', 'warisara', 'tentang', 'menu', 'halaman', 'apa saja'],
@@ -247,11 +238,9 @@ Ada lagi yang ingin kamu ketahui seputar budaya Indonesia, Sobat?`
     }
   ];
 
-  // Fungsi fallback pencarian cerdas berbasis intent & bobot kata kunci
   function searchLocalKnowledge(query) {
     const q = query.toLowerCase().trim();
 
-    // 1. Cek kecocokan langsung
     for (const item of CULTURAL_KNOWLEDGE) {
       for (const kw of item.keywords) {
         if (q.includes(kw)) {
@@ -260,7 +249,6 @@ Ada lagi yang ingin kamu ketahui seputar budaya Indonesia, Sobat?`
       }
     }
 
-    // 2. Cek produk kriya spesifik dari window.WARISARA_PRODUCTS
     if (window.WARISARA_PRODUCTS && typeof window.WARISARA_PRODUCTS.getAll === 'function') {
       const allProds = window.WARISARA_PRODUCTS.getAll();
       for (const p of allProds) {
@@ -281,7 +269,6 @@ Ada lagi yang ingin kamu ketahui seputar budaya Indonesia, Sobat?`
       }
     }
 
-    // 3. Fallback umum bernuansa budaya yang berwawasan luas
     return `Pertanyaan yang sangat menarik tentang *"Budaya Nusantara"*! ✨
 
 Indonesia memiliki lebih dari **1.340 suku bangsa**, **718 bahasa daerah**, dan ribuan seni kriya tradisi yang diwariskan turun-temurun. 
@@ -294,12 +281,10 @@ Beberapa hal menarik yang bisa kamu eksplorasi:
 Silakan ajukan pertanyaan lebih spesifik, Wari siap menjabarkannya dengan senang hati! 😊`;
   }
 
-  // Mengambil kunci API dari file konfigurasi lokal window.WARISARA_CONFIG (js/config.js)
   function getGeminiApiKey() {
     return (window.WARISARA_CONFIG && window.WARISARA_CONFIG.GEMINI_API_KEY) ? window.WARISARA_CONFIG.GEMINI_API_KEY.trim() : '';
   }
 
-  // Engine Panggilan ke Google Gemini API (dengan multi-model fallback & format respons cerdas)
   async function callGeminiAPI(apiKey, promptHistory, userQuery) {
     const context = getCurrentPageContext();
     const systemPrompt = `Anda adalah Si Wari, maskot dan pemandu cerdas resmi web WARISARA (Warisan Rasa Kita).
@@ -316,10 +301,8 @@ Peran dan Pengetahuan Anda:
 4. Gaya bicara: Hangat, santun, cerdas, berbudaya, menggunakan bahasa Indonesia yang baik, ramah dengan sentuhan emoji khas budaya, menyapa pengunjung dengan sebutan "Sobat Warisara".
 5. Gunakan format markdown yang rapi (bold, bullet points). Jika merekomendasikan halaman web, sertakan tautan markdown seperti [Etalase Produk](ekonomi-kreatif.html) atau [Peta 38 Provinsi](jelajahi.html).`;
 
-    // Bentuk payload contents
     const contents = [];
 
-    // Sisipkan instruksi sistem pada pesan awal
     contents.push({
       role: 'user',
       parts: [{ text: systemPrompt }]
@@ -329,7 +312,6 @@ Peran dan Pengetahuan Anda:
       parts: [{ text: 'Siap! Saya Si Wari, pemandu budaya Nusantara yang cerdas, ramah, dan siap mendampingi Sobat Warisara dengan wawasan budaya terlengkap.' }]
     });
 
-    // Sisipkan riwayat obrolan terakhir (max 6 pesan)
     const recentHistory = promptHistory.slice(-6);
     for (const msg of recentHistory) {
       contents.push({
@@ -338,13 +320,11 @@ Peran dan Pengetahuan Anda:
       });
     }
 
-    // Tambahkan pertanyaan pengguna saat ini
     contents.push({
       role: 'user',
       parts: [{ text: userQuery }]
     });
 
-    // Daftar endpoint model yang kompatibel (v1beta dengan gemini-3.8-flash & fallback)
     const endpointsToTry = [
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`,
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
@@ -384,7 +364,6 @@ Peran dan Pengetahuan Anda:
     throw lastError || new Error('Gagal menghubungi Gemini API pada semua model.');
   }
 
-  // Konverter teks sederhana ke HTML (mendukung link internal, bold, list)
   function renderMarkdownToHTML(text) {
     if (!text) return '';
     let html = text
@@ -392,13 +371,10 @@ Peran dan Pengetahuan Anda:
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    // Format Bold: **teks**
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-    // Format Italic: *teks*
     html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
 
-    // Format Link: [Teks Link](url)
     html = html.replace(/\[(.*?)\]\((.*?)\)/g, function (match, linkText, url) {
       let resolvedUrl = url;
       if (!url.startsWith('http') && !url.startsWith('#')) {
@@ -407,7 +383,6 @@ Peran dan Pengetahuan Anda:
       return `<a href="${resolvedUrl}" class="wari-inline-link">${linkText} <span class="material-symbols-outlined text-[13px]">arrow_outward</span></a>`;
     });
 
-    // Format Bullet points
     const lines = html.split('\n');
     let inList = false;
     let result = [];
@@ -450,8 +425,8 @@ Peran dan Pengetahuan Anda:
   let isOpen = false;
   let isThinking = false;
   let chatHistory = [];
-  // Konfigurasi 15 Menit Otomatis Menghilang
-  const TOOLTIP_LIFETIME_MS = 15 * 60 * 1000; // 15 menit = 900.000 ms
+
+  const TOOLTIP_LIFETIME_MS = 15 * 60 * 1000; 
   let tooltipAutoDismissTimer = null;
   let isTooltipDismissed = false;
 
@@ -532,7 +507,6 @@ Peran dan Pengetahuan Anda:
     if (saveHistory) {
       chatHistory.push({ sender, text, time });
 
-      // Simpan ke sessionStorage agar riwayat bertahan selama sesi penjelajahan
       try {
         sessionStorage.setItem('wari_chat_history', JSON.stringify(chatHistory.slice(-20)));
       } catch (e) {}
@@ -560,7 +534,6 @@ Peran dan Pengetahuan Anda:
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
-  // ── ANIMASI: Particle burst on message send ──
   function spawnParticles(originEl) {
     if (!originEl) return;
     const rect = originEl.getBoundingClientRect();
@@ -588,7 +561,6 @@ Peran dan Pengetahuan Anda:
     }
   }
 
-  // ── ANIMASI: Ripple on send button ──
   function spawnSendRipple(btn) {
     if (!btn) return;
     const r = document.createElement('span');
@@ -597,7 +569,6 @@ Peran dan Pengetahuan Anda:
     setTimeout(() => r.remove(), 550);
   }
 
-  // ── ANIMASI: Emoji reaction pop on bot reply ──
   const REACTION_EMOJIS = ['✨', '🌺', '🏺', '🌿', '💛', '🎉', '🇮🇩', '🎨'];
   function spawnEmojiReaction(container) {
     if (!container) return;
@@ -613,7 +584,6 @@ Peran dan Pengetahuan Anda:
     setTimeout(() => emoji.remove(), 950);
   }
 
-  // ── ANIMASI: Scroll-to-bottom pill ──
   let scrollPillDismissed = false;
 
   function setupScrollPill(messagesEl) {
@@ -627,7 +597,7 @@ Peran dan Pengetahuan Anda:
     }
 
     messagesEl.addEventListener('scroll', () => {
-      // Jika user sudah mengklik tombol ini, jangan munculkan lagi sampai user mengirim pesan baru
+
       if (scrollPillDismissed) {
         removePill();
         return;
@@ -656,7 +626,6 @@ Peran dan Pengetahuan Anda:
     });
   }
 
-  // ── ANIMASI: Halo burst saat chatbot dibuka ──
   function spawnOpenHalo() {
     const trigBtn = document.getElementById('wari-ai-trigger');
     if (!trigBtn) return;
@@ -664,7 +633,6 @@ Peran dan Pengetahuan Anda:
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
 
-    // 3 cincin emas yang menyebar
     for (let i = 0; i < 3; i++) {
       const ring = document.createElement('div');
       ring.className = 'wari-open-ring';
@@ -687,7 +655,6 @@ Peran dan Pengetahuan Anda:
       setTimeout(() => ring.remove(), 800 + i * 80);
     }
 
-    // Percikan partikel emas yang lebih banyak & berwarna-warni
     const colors = ['#C9A567','#F4D98B','#FBF8F2','#E8CA8C','#B88B42'];
     for (let i = 0; i < 18; i++) {
       const p = document.createElement('div');
@@ -724,29 +691,26 @@ Peran dan Pengetahuan Anda:
     const q = queryText || chatInput.value.trim();
     if (!q || isThinking) return;
 
-    // Reset status scroll pill agar bisa muncul kembali jika user nantinya scroll ke atas
     scrollPillDismissed = false;
 
     chatInput.value = '';
     chatInput.style.height = '42px';
     chatInput.style.overflowY = 'hidden';
 
-    // 1. Tampilkan pesan pengguna
     appendMessage('user', q);
 
-    // 2. Indikator berpikir
     showTypingIndicator();
 
     const apiKey = getGeminiApiKey();
 
     try {
       if (apiKey && apiKey.length > 10) {
-        // Panggil Live Gemini API
+
         const answer = await callGeminiAPI(apiKey, chatHistory, q);
         hideTypingIndicator();
         setMascotMood('happy');
         appendMessage('bot', answer);
-        // Emoji reaction pop on bot reply
+
         setTimeout(() => spawnEmojiReaction(messagesContainer), 120);
       } else {
         hideTypingIndicator();
@@ -774,13 +738,13 @@ Peran dan Pengetahuan Anda:
     isOpen = typeof forceState === 'boolean' ? forceState : !isOpen;
 
     if (isOpen && !wasOpen) {
-      // ── OPEN: spring in dari pojok bawah kanan ──
+
       chatWindowEl.classList.remove('hidden', 'wari-closing');
       chatWindowEl.classList.add('wari-opening');
       const tooltipEl = document.getElementById('wari-ai-tooltip');
       if (tooltipEl) tooltipEl.classList.add('hidden-tooltip');
       setMascotMood('happy');
-      // Halo burst di sekitar trigger
+
       spawnOpenHalo();
       setTimeout(() => {
         chatWindowEl.classList.remove('wari-opening');
@@ -788,11 +752,11 @@ Peran dan Pengetahuan Anda:
         if (chatInput) chatInput.focus();
       }, 520);
     } else if (!isOpen && wasOpen) {
-      // ── CLOSE: collapse shrink ke arah trigger ──
+
       chatWindowEl.classList.remove('wari-opening', 'wari-window-active');
       chatWindowEl.classList.add('wari-closing');
       setMascotMood('idle');
-      // Mascot wave saat close
+
       const trigBtn = document.getElementById('wari-ai-trigger');
       if (trigBtn) {
         trigBtn.classList.add('wari-wave');
@@ -806,17 +770,15 @@ Peran dan Pengetahuan Anda:
   }
 
   function buildMascotChatbotUI() {
-    // Hindari duplikasi jika sudah terpasang
+
     if (document.getElementById('wari-ai-widget')) return;
 
     const pageCtx = getCurrentPageContext();
 
-    // 1. Render Floating Widget (Pojok Bawah Kanan)
     widgetEl = document.createElement('div');
     widgetEl.id = 'wari-ai-widget';
     widgetEl.className = 'wari-ai-widget';
 
-    // Sembunyikan secara instan jika halaman sedang dalam transisi atau preloader
     const isTransitioningNow = (
       document.documentElement.classList.contains('preloader-active') ||
       document.documentElement.classList.contains('page-transitioning-in') ||
@@ -857,7 +819,6 @@ Peran dan Pengetahuan Anda:
     `;
     document.body.appendChild(widgetEl);
 
-    // Jika user sebelumnya sudah menutup komentar Wari di sesi ini / sudah lewat 15 menit, sembunyikan
     if (isTooltipDismissed) {
       const initialTooltip = document.getElementById('wari-ai-tooltip');
       if (initialTooltip) {
@@ -865,11 +826,10 @@ Peran dan Pengetahuan Anda:
         initialTooltip.style.display = 'none';
       }
     } else {
-      // Jalankan timer 15 menit otomatis menghilang
+
       startTooltipAutoDismissTimer();
     }
 
-    // 2. Render Jendela Obrolan Mewah (Chat Window)
     chatWindowEl = document.createElement('div');
     chatWindowEl.id = 'wari-chat-window';
     chatWindowEl.className = 'wari-chat-window hidden';
@@ -944,25 +904,23 @@ Peran dan Pengetahuan Anda:
     `;
     document.body.appendChild(chatWindowEl);
 
-    // Ambil referensi elemen
     messagesContainer = document.getElementById('wari-chat-messages');
     chatInput = document.getElementById('wari-chat-input');
     headerAvatar = document.getElementById('wari-header-avatar');
     triggerAvatar = document.getElementById('wari-trigger-mascot');
 
-    // Restore riwayat chat sesi sebelumnya jika ada
     try {
       const stored = sessionStorage.getItem('wari_chat_history');
       if (stored) {
         const hist = JSON.parse(stored);
         if (Array.isArray(hist) && hist.length > 0) {
-          // Bersihkan jika ada pesan sistem 'Riwayat obrolan telah dibersihkan' yang sebelumnya tidak sengaja tersimpan
+
           chatHistory = hist.filter((m) => m && m.text && !m.text.includes('Riwayat obrolan telah dibersihkan'));
           if (chatHistory.length > 0) {
-            // Render ulang riwayat yang tersimpan tanpa menduplikasi data ke array
+
             messagesContainer.innerHTML = '';
             chatHistory.forEach((m) => renderMessageDOM(m.sender, m.text, m.time));
-            // Perbarui storage dengan riwayat bersih
+
             sessionStorage.setItem('wari_chat_history', JSON.stringify(chatHistory.slice(-20)));
           } else {
             sessionStorage.removeItem('wari_chat_history');
@@ -978,11 +936,10 @@ Peran dan Pengetahuan Anda:
     const chatForm = document.getElementById('wari-chat-form');
     const voiceBtn = document.getElementById('wari-btn-voice');
 
-    // ── Buka/Tutup Chat + animasi excited mascot ──
     if (triggerBtn) {
       triggerBtn.addEventListener('click', () => {
         if (!isOpen) {
-          // OPEN: mascot excited jump
+
           triggerBtn.classList.add('wari-excited');
           setTimeout(() => triggerBtn.classList.remove('wari-excited'), 700);
         }
@@ -1007,22 +964,19 @@ Peran dan Pengetahuan Anda:
     });
     if (closeBtn) closeBtn.addEventListener('click', () => toggleChatWindow(false));
 
-    // Clear Riwayat
     if (clearBtn) {
       clearBtn.addEventListener('click', () => {
         chatHistory = [];
         scrollPillDismissed = false;
         sessionStorage.removeItem('wari_chat_history');
         messagesContainer.innerHTML = '';
-        // Tampilkan konfirmasi di UI tanpa menyimpannya ke sessionStorage
+
         renderMessageDOM('bot', `Riwayat obrolan telah dibersihkan! Ada hal lain yang ingin Sobat tanyakan tentang budaya Nusantara? 🌿✨`);
       });
     }
 
-    // Setup scroll-to-bottom pill
     setupScrollPill(messagesContainer);
 
-    // ── Submit Chat Form + ripple & particle ──
     const sendBtn = document.getElementById('wari-btn-send');
     if (chatForm) {
       chatForm.addEventListener('submit', (e) => {
@@ -1033,7 +987,6 @@ Peran dan Pengetahuan Anda:
       });
     }
 
-    // Auto-resize textarea & submit on Enter
     if (chatInput) {
       chatInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -1057,7 +1010,6 @@ Peran dan Pengetahuan Anda:
       });
     }
 
-    // Prompt Chips Click + particle
     document.querySelectorAll('.wari-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         const prompt = chip.dataset.prompt;
@@ -1068,7 +1020,6 @@ Peran dan Pengetahuan Anda:
       });
     });
 
-    // Voice Input (Web Speech Recognition)
     if (voiceBtn) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
@@ -1278,7 +1229,7 @@ Peran dan Pengetahuan Anda:
     try {
       const observer = new MutationObserver((mutations) => {
         if (isUpdating) return;
-        // Abaikan mutasi jika semuanya berasal dari internal widget Wari atau preloader
+
         const hasExternal = mutations.some((m) => {
           const t = m.target;
           if (!t || !t.closest) return false;
@@ -1310,11 +1261,9 @@ Peran dan Pengetahuan Anda:
     window.addEventListener('modal:open', hideMascotTooltip);
     window.addEventListener('modal:close', showMascotTooltip);
 
-    // Initial check via rAF
     scheduleSync();
   }
 
-  // Global API Wari
   window.WariMascot = {
     openChat: function (optionalQuestion) {
       toggleChatWindow(true);
@@ -1370,7 +1319,6 @@ Peran dan Pengetahuan Anda:
     setMood: setMascotMood
   };
 
-  // Inisialisasi otomatis setelah DOM siap
   function initWari() {
     buildMascotChatbotUI();
     initModalWatcher();

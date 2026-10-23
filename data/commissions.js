@@ -1,17 +1,8 @@
-/**
- * WARISARA — Data & Manajemen Bursa Pesanan Kustom (Commission) Kriya Nusantara
- * Sistem P2P terbuka bagi seluruh anggota komunitas:
- * - 01. Pilih jenis karya (Batik, Tenun, Aksesori, Dekorasi/Ukiran, Kerajinan Lain)
- * - 02. Buat brief pesanan (Anggaran, warna, ukuran, daerah, tenggat waktu)
- * - 03. Sepakati pesanan (Harga final, waktu pengerjaan, pengiriman, pembayaran via chat langsung)
- */
-
 (function () {
   "use strict";
 
   const STORAGE_KEY = "warisara_commissions";
 
-  // Data demo awal bursa commission yang kaya, otentik, dan realistis
   const INITIAL_COMMISSIONS = [
     {
       id: "comm_tenun_sumba",
@@ -29,7 +20,7 @@
       provinceId: "nusa-tenggara-timur",
       deadline: "25 Hari Kerja",
       description: "Mencari pengrajin yang menguasai teknik tenun gedogan asli Sumba dengan benang katun pintal tangan. Motif kuda melambangkan keteguhan jiwa, untuk keperluan mahar adat keluarga. Tanpa pewarna kimia.",
-      status: "open", // "open" | "negotiating" | "agreed"
+      status: "open", 
       offersCount: 2,
       createdAt: Date.now() - 3600000 * 18,
       dealInfo: null
@@ -128,7 +119,7 @@
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Normalisasi status hanya ada 2: "open" (Masih Terbuka) atau "agreed" (Sudah Deal)
+
           parsed.forEach((c) => {
             if (c.status !== "agreed") {
               c.status = "open";
@@ -143,7 +134,7 @@
     } catch (e) {
       console.warn("Gagal memuat bursa commission dari localStorage:", e);
     }
-    // Simpan data default pertama kali
+
     saveCommissions(INITIAL_COMMISSIONS);
     return INITIAL_COMMISSIONS;
   }
@@ -210,7 +201,6 @@
     return null;
   }
 
-  // Sistem Konsensus Dua Pihak (Dual Confirmation Deal)
   function confirmCommissionDeal(id, userEmail, dealData = {}) {
     const list = getAllCommissions();
     const target = list.find((c) => c.id === id);
@@ -230,7 +220,6 @@
       };
     }
 
-    // Sistem hanya mengidentifikasi commision SUDAH DEAL jika kedua belah pihak sudah klik Deal
     const isBothAgreed = target.agreedUsers.length >= 2;
 
     if (isBothAgreed) {
@@ -241,7 +230,7 @@
         finalAgreedBy: [...target.agreedUsers]
       };
     } else {
-      target.status = "open"; // Tetap masih terbuka sampai kedua belah pihak menyetujui
+      target.status = "open"; 
     }
 
     saveCommissions(list);
@@ -290,7 +279,6 @@
     return true;
   }
 
-  // Global API
   window.WARISARA_COMMISSIONS = {
     getAll: getAllCommissions,
     getById: getCommissionById,

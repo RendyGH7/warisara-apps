@@ -109,7 +109,6 @@ window.WARISARA_PRELOADER = {
       }
     } catch (e) {}
 
-    // Jika reload terdeteksi, bersihkan aktivitas (kecuali 3 data penting) dan hapus flag intro
     if (isReload) {
       if (typeof window.WARISARA_RESET_REFRESH === "function") {
         window.WARISARA_RESET_REFRESH();
@@ -123,7 +122,6 @@ window.WARISARA_PRELOADER = {
 
     const hasPlayedBefore = sessionStorage.getItem("warisara_intro_played") === "true";
 
-    // Hanya lewati loading screen jika BUKAN reload dan sudah pernah diputar pada sesi navigasi normal
     if (hasPlayedBefore && !isReload) {
       this.unlockScroll();
       document.body.classList.add("hero-animated");

@@ -1,4 +1,3 @@
-// Selalu kembalikan posisi scroll ke hero/awal saat reload atau navigasi
 if ('scrollRestoration' in history) {
   try {
     history.scrollRestoration = 'manual';
@@ -6,13 +5,9 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-// Utilitas Global: Pembersihan Aktivitas saat Refresh dengan 3 Pengecualian (Whitelist)
 window.WARISARA_RESET_REFRESH = function () {
   try {
-    // 1. Data yang DIKECUALIKAN / DIPERTAHANKAN (Whitelist):
-    // - Pengecualian 1: Desain Creative Lab (warisara_creative_gallery)
-    // - Pengecualian 2: Akun Google login & produk listing user (warisara_active_user, warisara_user_products)
-    // - Pengecualian 3: Skor kuis tertinggi & statistik belajar (warisara_quiz_learning_stats, warisara_quiz_progress, warisara_quiz_seen_ids)
+
     const preserved = {};
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
@@ -21,15 +16,12 @@ window.WARISARA_RESET_REFRESH = function () {
       }
     }
 
-    // 2. Bersihkan aktivitas non-aplikasi lain di localStorage
     localStorage.clear();
 
-    // 3. Pulihkan kembali semua data warisara pengguna
     Object.keys(preserved).forEach(function (key) {
       localStorage.setItem(key, preserved[key]);
     });
 
-    // 4. Bersihkan sessionStorage agar loading screen selalu diputar dari awal
     sessionStorage.removeItem('warisara_intro_played');
     sessionStorage.removeItem('warisara_page_transition');
   } catch (err) {
@@ -83,7 +75,6 @@ window.WARISARA_TRANSITION = {
       forceScrollToHero();
     });
 
-    // Tangkap shortcut refresh keyboard (Ctrl+R, F5, Cmd+R)
     window.addEventListener('keydown', (e) => {
       const isCtrlR = (e.ctrlKey || e.metaKey) && (e.key === 'r' || e.key === 'R' || e.code === 'KeyR');
       const isF5 = e.key === 'F5' || e.code === 'F5';
@@ -200,9 +191,6 @@ window.WARISARA_TRANSITION = {
         </div>
       `;
 
-      // Jika halaman dibuka dari proses transisi:
-      // Sembunyikan logo/loader (veil-exit-only) agar animasi transisi HANYA MUNCUL 1 KALI (pada saat berpindah).
-      // Halaman tujuan hanya membuka tirai dengan dissolve yang sangat halus dan mewah.
       if (wasTransitioning) {
         veil.classList.add("veil-exit-only");
         veil.style.transition = "none";
@@ -231,16 +219,9 @@ window.WARISARA_TRANSITION = {
     }
   },
 
-  /**
-   * Halaman baru dimuat dari proses transisi:
-   * – Layar tetap tertutup tirai gelap (tanpa menampilkan logo/loader ulang sehingga TIDAK dobel).
-   * – Menambahkan kelas animasi masuk halus (page-entering-active) pada konten halaman tujuan.
-   * – Membuka/melarutkan tirai keluar (veil-exiting) secara ultra-smooth.
-   */
   _handleIncomingPage: function () {
     try { sessionStorage.removeItem("warisara_page_transition"); } catch (e) {}
 
-    // Pastikan Si Wari AI tersembunyi saat halaman baru sedang masuk di balik tirai
     const wariWidget = document.getElementById("wari-ai-widget");
     if (wariWidget) {
       wariWidget.classList.add("transition-hidden");
@@ -260,22 +241,18 @@ window.WARISARA_TRANSITION = {
     this.veilEl.style.visibility = "visible";
     void this.veilEl.offsetHeight;
 
-    // Pasang animasi masuk halus pada konten halaman tujuan
     if (document.body) {
       document.body.classList.add("page-entering-active");
     }
 
-    // Jeda kecil (60ms) agar browser selesai menyusun layout halaman baru di balik tirai
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setTimeout(() => {
           if (!this.veilEl) return;
 
-          // Aktifkan kembali CSS transition untuk animasi dissolve keluar yang ultra-smooth
           this.veilEl.style.transition = "";
           this.veilEl.classList.add("veil-exiting");
 
-          // Setelah durasi transisi dissolve selesai (900ms), bersihkan kelas dan status
           setTimeout(() => {
             if (this.veilEl) {
               this.veilEl.classList.remove("active", "veil-exiting", "veil-exit-only");
@@ -291,7 +268,6 @@ window.WARISARA_TRANSITION = {
             }
             this.isTransitioning = false;
 
-            // Munculkan kembali Si Wari AI setelah transisi halaman selesai 100%
             const wari = document.getElementById("wari-ai-widget");
             if (wari) {
               wari.classList.remove("transition-hidden");
@@ -303,16 +279,10 @@ window.WARISARA_TRANSITION = {
     });
   },
 
-  /**
-   * Navigasi keluar:
-   * – Menampilkan SATU-SATUNYA animasi transisi lengkap dengan logo berputar dan laser sweep.
-   * – Durasi dibuat 780ms agar terasa sinematik, anggun, mewah, dan tidak terburu-buru.
-   */
   navigateTo: function (url) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
 
-    // Sembunyikan Si Wari AI secara instan saat transisi halaman dimulai
     document.documentElement.classList.add("page-transitioning");
     if (document.body) {
       document.body.classList.add("page-transitioning");
@@ -327,14 +297,12 @@ window.WARISARA_TRANSITION = {
 
     try { sessionStorage.setItem("warisara_page_transition", "true"); } catch (e) {}
 
-    // Pastikan konten logo dan loader terlihat untuk animasi transisi satu-satunya ini
     this.veilEl.classList.remove("veil-exit-only", "veil-exiting");
     this.veilEl.style.transition = "";
     this.veilEl.style.opacity = "";
     this.veilEl.style.visibility = "";
     this.veilEl.classList.add("active");
 
-    // Durasi dibuat sedikit lebih lama (780ms) untuk transisi yang smooth dan stabil
     setTimeout(() => {
       window.location.href = url;
     }, 780);
@@ -364,7 +332,6 @@ window.WARISARA_TRANSITION = {
         } catch (err) { return; }
       }
 
-      // Cegah navigasi ulang jika user mengklik link yang mengarah ke halaman yang sedang dibuka
       try {
         const urlObj = new URL(href, window.location.href);
         if (

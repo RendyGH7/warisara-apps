@@ -1,8 +1,3 @@
-/**
- * WARISARA — Data Resmi 38 Pelestari & Maestro Budaya Nusantara
- * Selaras 100% dengan Direktori 38 Provinsi di data/provinces.js
- */
-
 window.MAKERS_DATA = [
   {
     "id": "maker-aceh",

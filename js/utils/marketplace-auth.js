@@ -1,15 +1,8 @@
-/**
- * WARISARA — Sistem Autentikasi Terintegrasi & Database Pengguna Nusantara
- * Mendukung Registrasi Manual, Login Manual, Google Sign-In Asli,
- * Validasi Ketat, Bebas Duplikasi Akun Demo, dan Isolasi Data Berbasis Email.
- */
-
 (function () {
   const ACTIVE_USER_KEY = "warisara_active_user";
   const USERS_DB_KEY = "warisara_users_db";
   const LEGACY_CUSTOM_KEY = "warisara_custom_google_accounts";
 
-  // 2 Akun Demo Bawaan Resmi (TIDAK PERNAH DIDUPLIKASI)
   const DEFAULT_PRESET_USERS = [
     {
       id: "google-rendy",
@@ -36,7 +29,7 @@
   ];
 
   let currentUser = null;
-  let activeModalMode = "login"; // "login" | "register"
+  let activeModalMode = "login"; 
 
   function getCleanUsersDB() {
     let list = [];
@@ -49,12 +42,10 @@
       list = [];
     }
 
-    // Bersihkan akun Joko jika masih tersimpan di cache localStorage
     list = list.filter(
       (u) => u && u.email !== "joko.tembaga@gmail.com" && u.id !== "google-joko"
     );
 
-    // Gabungkan dengan data warisara_custom_google_accounts lama jika ada
     try {
       const legacyRaw = localStorage.getItem(LEGACY_CUSTOM_KEY);
       if (legacyRaw) {
@@ -67,10 +58,8 @@
       }
     } catch (e) {}
 
-    // Selalu pastikan 2 preset akun default tersedia
     const combined = [...list, ...DEFAULT_PRESET_USERS];
 
-    // Deduplikasi mutlak berdasarkan email.toLowerCase().trim()
     const unique = [];
     const seen = new Set();
     for (let i = 0; i < combined.length; i++) {
@@ -89,7 +78,6 @@
       }
     }
 
-    // Bersihkan legacy key dan simpan DB yang sudah bersih
     try {
       localStorage.removeItem(LEGACY_CUSTOM_KEY);
       localStorage.setItem(USERS_DB_KEY, JSON.stringify(unique));
@@ -189,7 +177,6 @@
       return { success: false, message: "Konfirmasi kata sandi tidak cocok dengan kata sandi." };
     }
 
-    // CEK APAKAH EMAIL SUDAH TERDAFTAR (MUTLAK DITOLAK JIKA DUPLIKAT)
     const existing = findUserByEmail(cleanEmail);
     if (existing) {
       return {
@@ -254,7 +241,6 @@
       };
     }
 
-    // Periksa kecocokan kata sandi
     if (user.password && user.password !== pass) {
       return {
         success: false,
@@ -287,7 +273,6 @@
       return existing;
     }
 
-    // Jika akun baru dari Google
     const rawName = targetEmail.split("@")[0].replace(/[\._]/g, " ");
     const formattedName = rawName.replace(/\b\w/g, (c) => c.toUpperCase());
     const newAccount = {
@@ -317,7 +302,7 @@
 
     const existing = findUserByEmail(rawEmail);
     if (existing) {
-      // Jika sudah ada akun dengan email ini, langsung masuk saja
+
       saveActiveUser(existing);
       return {
         success: true,
@@ -372,7 +357,7 @@
       const key = getUserStorageKey(baseKey);
       const val = localStorage.getItem(key);
       if (val !== null) return JSON.parse(val);
-      // Fallback data umum jika belum login
+
       const baseVal = localStorage.getItem(baseKey);
       return baseVal !== null ? JSON.parse(baseVal) : defaultVal;
     } catch (e) {
@@ -589,11 +574,9 @@
     }, 3500);
   }
 
-  // Bersihkan data awal & muat user aktif
   getCleanUsersDB();
   loadActiveUser();
 
-  // Expose API Global
   window.WARISARA_AUTH = {
     getUser: function () {
       return currentUser;

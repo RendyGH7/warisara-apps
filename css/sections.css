@@ -318,7 +318,6 @@ body:not(.preloader-active) .scroll-reveal.revealed {
               0 0 20px rgba(201, 165, 103, 0.12);
 }
 
-/* Home Story Filter Tabs & Ripple */
 .home-story-filter-btn {
   position: relative;
   overflow: hidden;
@@ -377,7 +376,6 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   }
 }
 
-/* Stats Counter Bar Numbers */
 .home-stat-counter {
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.015em;

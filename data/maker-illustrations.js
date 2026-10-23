@@ -1,14 +1,8 @@
-/**
- * WARISARA — Koleksi 38 Ilustrasi Kriya Otentik Pelestari Budaya Nusantara
- * Didedikasikan khusus untuk 38 Maestro Kebudayaan di 38 Provinsi Indonesia.
- * Format: Vector SVG Responsive (100% scalable, dark luxury heritage palette).
- */
-
 (function () {
   "use strict";
 
   const illustrations = {
-    // 01. ACEH: Tgk. Hasballah — Besalen Pandai Besi & Bilah Rencong Meucugek
+
     "maker-aceh": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -61,7 +55,6 @@
       </svg>
     `,
 
-    // 02. SUMATERA UTARA: Nai Martua Simanjuntak — Tenun Ulos Gedogan Batak
     "maker-sumatera-utara": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -112,7 +105,6 @@
       </svg>
     `,
 
-    // 03. SUMATERA BARAT: Uni Rosma — Songket Balapak Pandai Sikek & Kaluak Paku
     "maker-sumatera-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -149,7 +141,6 @@
       </svg>
     `,
 
-    // 04. RIAU: Datok Al-Jufri — Tenun Siak Melayu Corak Pucuk Rebung
     "maker-riau": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -184,7 +175,6 @@
       </svg>
     `,
 
-    // 05. KEPULAUAN RIAU: Mak Minah — Tudung Manto Daik Lingga & Kelingan
     "maker-kepulauan-riau": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -220,7 +210,6 @@
       </svg>
     `,
 
-    // 06. JAMBI: Nyai Halimah — Batik Batanghari & Pewarna Kayu Sepang
     "maker-jambi": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -256,7 +245,6 @@
       </svg>
     `,
 
-    // 07. SUMATERA SELATAN: Zainal Arifin — Songket Lepus Bintang Berantai
     "maker-sumatera-selatan": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -299,7 +287,6 @@
       </svg>
     `,
 
-    // 08. BANGKA BELITUNG: Nek Selamah — Kain Cual Tenun Ikat Bangka
     "maker-bangka-belitung": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -333,7 +320,6 @@
       </svg>
     `,
 
-    // 09. BENGKULU: Ibu Rusmiati — Batik Besurek & Bunga Rafflesia
     "maker-bengkulu": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -380,7 +366,6 @@
       </svg>
     `,
 
-    // 10. LAMPUNG: Ibu Rosilawati — Kain Tapis Inuh Kapal Jung Melinting
     "maker-lampung": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -417,7 +402,6 @@
       </svg>
     `,
 
-    // 11. DKI JAKARTA: Bang Udin — Maestro Ondel-Ondel & Kembang Kelapa Betawi
     "maker-dki-jakarta": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -464,7 +448,6 @@
       </svg>
     `,
 
-    // 12. JAWA BARAT: Abah Asep — Maestro Wayang Golek Parahyangan Sunda
     "maker-jawa-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -499,7 +482,6 @@
       </svg>
     `,
 
-    // 13. BANTEN: Kang Jaro Karman — Golok Ciomas & Anyaman Koja Baduy
     "maker-banten": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -537,7 +519,6 @@
       </svg>
     `,
 
-    // 14. JAWA TENGAH: Empu Subandi — Keris Luk & Tosan Aji Surakarta
     "maker-jawa-tengah": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -578,7 +559,6 @@
       </svg>
     `,
 
-    // 15. DI YOGYAKARTA: Ibu Mursidah — Batik Tulis Nitik & Keraton Kasultanan
     "maker-di-yogyakarta": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -614,7 +594,6 @@
       </svg>
     `,
 
-    // 16. JAWA TIMUR: Ki Mulyono — Pembuat Topeng Malangan & Gamelan Gong
     "maker-jawa-timur": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -646,7 +625,6 @@
       </svg>
     `,
 
-    // 17. BALI: I Made Sura — Maestro Ukir Kayu Cendana & Arca Kamasan
     "maker-bali": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -681,7 +659,6 @@
       </svg>
     `,
 
-    // 18. NUSA TENGGARA BARAT: Amaq Nurhasanah — Gerabah Bumi Sasak Banyumulek
     "maker-nusa-tenggara-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -717,7 +694,6 @@
       </svg>
     `,
 
-    // 19. NUSA TENGGARA TIMUR: Mama Maria — Tenun Ikat Sumba & Kuda Sandelwood
     "maker-nusa-tenggara-timur": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -762,7 +738,6 @@
       </svg>
     `,
 
-    // 20. KALIMANTAN BARAT: Nek Lawing — Tenun Ikat Dayak Iban / Sungkit Ensarun
     "maker-kalimantan-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -790,7 +765,6 @@
       </svg>
     `,
 
-    // 21. KALIMANTAN TENGAH: Amang Junaidi — Anyaman Rotan Tingang Dayak Ngaju
     "maker-kalimantan-tengah": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -820,7 +794,6 @@
       </svg>
     `,
 
-    // 22. KALIMANTAN SELATAN: Acil Aminah — Kain Sasirangan Tradisional Banjar
     "maker-kalimantan-selatan": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -849,7 +822,6 @@
       </svg>
     `,
 
-    // 23. KALIMANTAN TIMUR: Ding Lawing — Kriya Manik Dayak Kenyah & Serat Ulap Doyo
     "maker-kalimantan-timur": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -884,7 +856,6 @@
       </svg>
     `,
 
-    // 24. KALIMANTAN UTARA: Usun Bilung — Topi Saung Daun Lalis & Manik Lundayeh
     "maker-kalimantan-utara": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -912,7 +883,6 @@
       </svg>
     `,
 
-    // 25. SULAWESI UTARA: Ibu Meity — Wastra Tenun Bentenan Minahasa
     "maker-sulawesi-utara": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -940,7 +910,6 @@
       </svg>
     `,
 
-    // 26. GORONTALO: Ibu Maryam — Sulaman Kerawang Karawo Ikonik Gorontalo
     "maker-gorontalo": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -983,7 +952,6 @@
       </svg>
     `,
 
-    // 27. SULAWESI TENGAH: Mama Martina — Kain Kulit Kayu Fuya & Batu Ike Lore
     "maker-sulawesi-tengah": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1014,7 +982,6 @@
       </svg>
     `,
 
-    // 28. SULAWESI BARAT: Ibu Subaedah — Tenun Saqbe Mandar Sutra Corak Sureq
     "maker-sulawesi-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1049,7 +1016,6 @@
       </svg>
     `,
 
-    // 29. SULAWESI SELATAN: Haji Syahrir — Maestro Pembuat Kapal Pinisi Bulukumba
     "maker-sulawesi-selatan": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1080,7 +1046,6 @@
       </svg>
     `,
 
-    // 30. SULAWESI TENGGARA: Ibu Wa Ode Rusna — Tenun Buton Masiri & Kerajinan Perak Muna
     "maker-sulawesi-tenggara": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1107,7 +1072,6 @@
       </svg>
     `,
 
-    // 31. MALUKU: Om Dominggus — Alat Musik Tifa Kayu & Kerang Bia Maluku
     "maker-maluku": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1143,7 +1107,6 @@
       </svg>
     `,
 
-    // 32. MALUKU UTARA: Om Jafar — Besi Putih Morotai & Pandan Tidore
     "maker-maluku-utara": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1173,7 +1136,6 @@
       </svg>
     `,
 
-    // 33. PAPUA: Bapak Alex — Pemahat Ukiran Kayu Asmat & Tiang Mbitoro
     "maker-papua": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1212,7 +1174,6 @@
       </svg>
     `,
 
-    // 34. PAPUA BARAT: Mama Katrina — Tenun Kain Rumput & Serat Alami Mansinam
     "maker-papua-barat": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1247,7 +1208,6 @@
       </svg>
     `,
 
-    // 35. PAPUA SELATAN: Bapak Barnabas — Perisai Kayu & Ukiran Marind-Anim Merauke
     "maker-papua-selatan": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1283,7 +1243,6 @@
       </svg>
     `,
 
-    // 36. PAPUA TENGAH: Mama Martha — Noken Rajut Serat Anggrek Lembah Baliem
     "maker-papua-tengah": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1318,7 +1277,6 @@
       </svg>
     `,
 
-    // 37. PAPUA PEGUNUNGAN: Mama Yuliana — Noken Wamena & Busana Serat Jayawijaya
     "maker-papua-pegunungan": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1347,7 +1305,6 @@
       </svg>
     `,
 
-    // 38. PAPUA BARAT DAYA: Mama Sarah — Anyaman Tikar Pandan Laut & Karst Raja Ampat
     "maker-papua-barat-daya": `
       <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
         <defs>
@@ -1378,15 +1335,13 @@
     `
   };
 
-  // Export to global scope
   window.MAKER_ILLUSTRATIONS = illustrations;
 
   window.getMakerIllustrationSvg = function (makerId) {
     if (!makerId) return illustrations["maker-aceh"];
     const id = String(makerId).trim();
     if (illustrations[id]) return illustrations[id];
-    
-    // Normalize if id is without 'maker-' prefix
+
     const prefixed = "maker-" + id.replace(/^maker-/, "");
     if (illustrations[prefixed]) return illustrations[prefixed];
 
