@@ -33,7 +33,6 @@ window.WARISARA_UTILS = {
 window.WARISARA_POPUP = {
   lastTrigger: { x: window.innerWidth / 2, y: window.innerHeight / 2, element: null, time: 0 },
 
-  // Buka modal dengan animasi fade in & zoom dari posisi klik
   open: function (overlay, container, triggerSource) {
     if (typeof overlay === 'string') overlay = document.querySelector(overlay);
     if (!overlay) return;
@@ -43,7 +42,6 @@ window.WARISARA_POPUP = {
       container = overlay.querySelector('.modal-container, #province-detail-modal, #maker-detail-modal, .passport-book-modal, .compass-modal-card, #auth-modal-card, #interactive-book-modal > div, .relative') || overlay.firstElementChild;
     }
 
-    // Tentukan titik asal klik
     var clickX = window.innerWidth / 2;
     var clickY = window.innerHeight / 2;
 
@@ -65,7 +63,6 @@ window.WARISARA_POPUP = {
       }
     }
 
-    // Persiapkan overlay di dalam DOM
     overlay._isClosing = false;
     overlay.classList.remove('hidden', 'modal-closing', 'closing', 'modal-closing-backdrop');
     overlay.style.display = 'flex';
@@ -95,7 +92,6 @@ window.WARISARA_POPUP = {
 
     overlay.style.transition = 'opacity 360ms cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 360ms ease, background-color 360ms ease';
 
-    // Double requestAnimationFrame agar browser menerapkan transisi mulus
     void overlay.offsetWidth;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -111,7 +107,6 @@ window.WARISARA_POPUP = {
     });
   },
 
-  // Tutup modal dengan animasi fade out & susut kembali ke titik asal
   close: function (overlay, container, callback) {
     if (typeof overlay === 'string') overlay = document.querySelector(overlay);
     if (!overlay) return;
@@ -171,7 +166,6 @@ window.WARISARA_POPUP = {
   }
 };
 
-// Global click tracking untuk menentukan titik awal animasi popup
 document.addEventListener('pointerdown', function (e) {
   if (e.target.closest('.modal-overlay.active, [aria-label*="Tutup"], [title*="Tutup"], .province-modal-close-trigger, #modal-maker-close, #modal-maker-dismiss')) {
     return;

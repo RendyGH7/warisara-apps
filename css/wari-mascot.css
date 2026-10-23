@@ -1,7 +1,4 @@
-/* ==========================================================================
-   WARISARA — Wari AI Chatbot & Companion Design System
-   Pemandu Budaya Nusantara Cerdas & Mewah (Glassmorphism & Gold Heritage)
-   ========================================================================== */
+/* WARISARA — Wari AI Chatbot & Companion Design System | Pemandu Budaya Nusantara Cerdas & Mewah (Glassmorphism & Gold Heritage) */
 
 /* --- Floating Mascot Trigger (Pojok Kanan Bawah) --- */
 .wari-ai-widget {
@@ -172,9 +169,7 @@ html.province-modal-open #wari-ai-widget {
   pointer-events: none !important;
 }
 
-/* ==========================================================================
-   SEMBUNYIKAN SI WARI AI SECARA TOTAL SAAT TRANSISI HALAMAN & PRELOADER
-   ========================================================================== */
+/* SEMBUNYIKAN SI WARI AI SECARA TOTAL SAAT TRANSISI HALAMAN & PRELOADER */
 html.preloader-active #wari-ai-widget,
 body.preloader-active #wari-ai-widget,
 html.preloader-active .wari-ai-widget,
@@ -970,9 +965,7 @@ body.page-entering-active .wari-ai-widget,
   justify-content: flex-end;
 }
 
-/* ============================================================
-   ANIMATIONS — Enhanced Delightful Chatbot Experience
-   ============================================================ */
+/* ANIMATIONS — Enhanced Delightful Chatbot Experience */
 
 /* Core Mascot & Balon Komentar Float - Selaras & Harmonis (Tempo 4s) */
 @keyframes wariHaloBreathe {
@@ -1107,10 +1100,7 @@ body.page-entering-active .wari-ai-widget,
   100% { transform: scale(2.4); opacity: 0; }
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   OPEN & CLOSE CHAT WINDOW — Animasi Dedikasi
-   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════ | OPEN & CLOSE CHAT WINDOW — Animasi Dedikasi | ═══════════════════════════════════════════════════════ */
 
 /* ── Keyframe: Chat window BUKA — Spring bounce dari pojok bawah ── */
 @keyframes wariWindowOpen {
@@ -1198,8 +1188,6 @@ body.page-entering-active .wari-ai-widget,
 .wari-btn-close:hover {
   transform: rotate(90deg) scale(1.1) !important;
 }
-
-
 
 /* ── Header shimmer strip ── */
 .wari-chat-header::before {
@@ -1497,7 +1485,6 @@ body.page-entering-active .wari-ai-widget,
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-
 /* ── Wari trigger: excited state ── */
 .wari-ai-trigger.wari-excited .wari-trigger-mascot {
   animation: wariBounceIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -1604,5 +1591,4 @@ body.page-entering-active .wari-ai-widget,
     border-radius: 0 !important;
   }
 }
-
 

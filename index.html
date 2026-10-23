@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -138,10 +137,9 @@
 </head>
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="index">
-
   <header id="main-navbar"
     class="px-4 sm:px-6 py-2 flex items-center justify-between glass-nav">
-    
+
     <a href="#hero" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <img src="assets/images/logo/logo-emblem.png?v=30" alt="WARISARA" class="w-8 h-8 object-contain navbar-brand-emblem nav-brand-logo-interactive" />
     </a>
@@ -158,7 +156,6 @@
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-      <!-- Tombol Chat di Navbar -->
       <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
         <span class="material-symbols-outlined text-base">chat</span>
         <span class="nav-chat-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brass-400 text-ink text-[9px] font-bold flex items-center justify-center">2</span>
@@ -256,7 +253,6 @@
 
   <section id="hero"
     class="relative min-h-[100svh] w-full flex flex-col justify-between pt-20 sm:pt-24 pb-1 sm:pb-2 px-3 sm:px-6 lg:px-8 bg-hero-bg text-surface hero-texture overflow-hidden">
-
     <div class="hero-canvas-bg absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0"
       aria-hidden="true">
       <img src="assets/images/hero/bg-hero-batik-hd.jpg"
@@ -275,13 +271,12 @@
     <div id="hero-intro-block" class="relative z-10 max-w-4xl mx-auto text-center mt-0 mb-0">
       <h1 id="hero-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light leading-none mb-0 select-none"
         aria-label="WARISARA">
-        
         <span class="hero-letter" style="--i:0">W</span><span class="hero-letter" style="--i:1">A</span><span
           class="hero-letter" style="--i:2">R</span><span class="hero-letter" style="--i:3">I</span><span
           class="hero-letter" style="--i:4">S</span><span class="hero-letter" style="--i:5">A</span><span
           class="hero-letter" style="--i:6">R</span><span class="hero-letter" style="--i:7">A</span>
       </h1>
-      
+
       <div class="hero-title-rule" aria-hidden="true">
         <span class="hero-title-rule-line"></span>
         <span class="hero-title-rule-diamond">◆</span>
@@ -301,7 +296,6 @@
       class="relative z-10 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1520px] mx-auto my-0 flex-1 flex items-center justify-center min-h-[200px] sm:min-h-[260px] md:min-h-[300px]">
       <div id="map-container"
         class="relative w-full aspect-[982/390] max-h-[74vh] sm:max-h-[78vh] flex items-center justify-center">
-
         <svg id="indonesia-map-svg" viewBox="0 18 982 390" class="w-full h-full" role="region"
           aria-label="Peta Interaktif 38 Provinsi Indonesia" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -559,16 +553,11 @@
     <div id="province-detail-modal"
       class="relative w-full min-h-screen text-surface flex flex-col bg-[#0D0A08] modal-batik-texture pb-36 sm:pb-48"
       role="dialog" aria-modal="true" aria-labelledby="modal-province-name">
-
-      <!-- Ambient glow orbs in background -->
       <div class="fixed top-0 left-1/4 w-96 h-96 bg-brass-600/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-terracotta-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <!-- 1. TOP STICKY GLASS NAVIGATION BAR -->
       <header class="sticky top-0 z-50 bg-[#120E0B]/92 backdrop-blur-2xl border-b border-white/10 px-4 sm:px-8 py-3 transition-colors shadow-2xl">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          
-          <!-- Back button + Breadcrumb -->
           <div class="flex items-center gap-3">
             <button id="modal-btn-close-map"
               class="px-4 py-2 rounded-full bg-white/[0.06] hover:bg-brass-500/20 border border-white/15 hover:border-brass-400/50 text-surface/90 hover:text-white text-xs font-semibold tracking-wider uppercase transition-all duration-200 flex items-center gap-2 group shadow-sm">
@@ -583,7 +572,6 @@
             </div>
           </div>
 
-          <!-- Center Province Quick Switcher -->
           <div class="flex items-center gap-1.5 sm:gap-2">
             <button id="modal-prev-prov-btn"
               class="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-brass-500/20 border border-white/10 hover:border-brass-400/40 text-surface/70 hover:text-white flex items-center justify-center transition-all text-xs"
@@ -603,9 +591,7 @@
             </button>
           </div>
 
-          <!-- Right Action Controls -->
           <div class="flex items-center gap-2">
-            <!-- Audio Chime Button -->
             <button id="modal-btn-audio-chime"
               class="px-3 py-1.5 rounded-full bg-brass-500/15 hover:bg-brass-500/25 border border-brass-500/30 text-brass-300 text-xs font-medium flex items-center gap-1.5 transition-all shadow-sm"
               title="Dengarkan Suara Gong Tradisional">
@@ -613,14 +599,12 @@
               <span class="hidden sm:inline text-[11px] font-semibold tracking-wide">Gong Tradisi</span>
             </button>
 
-            <!-- Share Button -->
             <button id="modal-btn-share"
               class="w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-surface/80 hover:text-white flex items-center justify-center transition-all text-xs"
               title="Salin Tautan Informasi Provinsi Ini">
               <span class="material-symbols-outlined text-base">share</span>
             </button>
 
-            <!-- Close (X) Button -->
             <button id="province-modal-close-btn"
               class="w-9 h-9 rounded-full bg-white/[0.06] hover:bg-red-600 border border-white/10 hover:border-red-500 text-surface/80 hover:text-white flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.6)] text-xs group cursor-pointer"
               aria-label="Tutup Informasi Provinsi">
@@ -631,17 +615,12 @@
         </div>
       </header>
 
-      <!-- 2. MAIN IMMERSIVE CONTENT CONTAINER -->
       <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8 w-full flex-1 space-y-8">
-
-        <!-- HERO SPLIT SECTION: Left Typography, Pelestari Spotlight & Stats, Right Authentic Cultural Dual View -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          
-          <!-- Left Info Column (7 Cols on desktop) -->
+
           <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
-            
             <div class="space-y-4">
-              <!-- Clean Cultural Badges Row -->
+
               <div class="flex items-center gap-2 flex-wrap">
                 <span id="modal-province-island"
                   class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-500/15 border border-brass-500/35 text-[11px] font-bold uppercase tracking-wider text-brass-300 shadow-sm">
@@ -656,13 +635,11 @@
                 </span>
               </div>
 
-              <!-- Main Title with Refined Typography -->
               <h1 id="modal-province-name"
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight drop-shadow-sm">
                 Kalimantan Timur
               </h1>
 
-              <!-- Clean 1-Line Cultural Soul Quote (Bebas dari teks panjang yang melelahkan) -->
               <div class="border-l-2 border-brass-400/80 pl-3.5 py-1">
                 <blockquote id="modal-province-statement"
                   class="font-display italic text-base sm:text-lg text-brass-200 font-light leading-relaxed">
@@ -671,11 +648,9 @@
                 <p id="modal-province-desc" class="hidden"></p>
               </div>
 
-              <!-- SPOTLIGHT MAESTRO PELESTARI (Menampilkan Sosok Nyata Penjaga Tradisi — Selaras 38 Provinsi & Pelestari) -->
               <div id="modal-maker-spotlight"
                 class="rounded-2xl bg-gradient-to-r from-[#241B13] via-[#1A1410] to-[#120E0B] border border-brass-400/40 hover:border-brass-400/70 p-4 sm:p-4.5 shadow-xl transition-all duration-300 group">
                 <div class="flex items-center gap-3.5 sm:gap-4">
-                  <!-- Avatar Pelestari Otentik -->
                   <div class="relative flex-shrink-0">
                     <img id="modal-maker-avatar"
                       src="assets/images/Pelestari/kalimantan-timur.jpg"
@@ -684,7 +659,6 @@
                     <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-[#1A1410] flex items-center justify-center text-[9px] text-white" title="Pelestari Aktif">✓</span>
                   </div>
 
-                  <!-- Info Pelestari -->
                   <div class="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
                     <div class="flex items-center justify-between gap-2 flex-wrap">
                       <div class="flex items-center gap-1.5">
@@ -713,14 +687,12 @@
                   </div>
                 </div>
 
-                <!-- Petuah Singkat Pelestari -->
                 <p id="modal-maker-spotlight-quote"
                   class="mt-2.5 pt-2.5 border-t border-white/10 text-xs text-surface/85 italic font-light leading-relaxed line-clamp-2">
                   "Rotan dari belantara hutan adalah urat nadi kehidupan kami yang kami anyam menjadi doa perlindungan keluarga."
                 </p>
               </div>
 
-              <!-- Sleek 3-Pillar Meta Strip (Ringkas, informatif, dan mudah dipindai tanpa teks berlebihan) -->
               <div class="flex flex-wrap items-center gap-x-5 gap-y-2 py-2.5 px-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-brass-400 text-sm">location_city</span>
@@ -743,7 +715,6 @@
 
             </div>
 
-            <!-- Primary Action Gateway: Penghubung Langsung ke Pages 38 Provinsi & Pelestari -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <a id="modal-btn-explore-heritage" href="pages/jelajahi.html"
                 class="flex-1 px-6 py-3.5 rounded-full text-stone-950 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2.5 shadow-lg cursor-pointer">
@@ -761,30 +732,23 @@
 
           </div>
 
-          <!-- Right Column: Thematic Cultural Showcase with Dual View (5 Cols on desktop) -->
           <div class="lg:col-span-5 flex flex-col">
             <div id="modal-illustration-card"
               class="relative w-full h-full min-h-[340px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-brass-500/35 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group flex flex-col justify-between p-5 sm:p-6 bg-[#16120E]">
-              
-              <!-- Illustration Image -->
               <img id="modal-province-illustration"
                 src="assets/images/provinces/kalimantan-timur-cover.jpg"
                 alt="Ilustrasi Budaya Provinsi"
                 class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-out" />
-              
-              <!-- Subtle dark gradient vignette -->
+
               <div class="absolute inset-0 bg-gradient-to-t from-[#0C0907] via-black/40 to-black/20 pointer-events-none"></div>
 
-              <!-- Top Image Header: Dynamic Tag & Dual View Switcher (Selaras dengan Halaman Jelajahi) -->
               <div class="relative z-10 flex items-center justify-between gap-2 w-full">
-                <!-- Left: Dynamic Badge -->
                 <span id="modal-illustration-tag"
                   class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-wider text-brass-300 shadow-md">
                   <span id="modal-illustration-tag-icon" class="material-symbols-outlined text-xs text-brass-400">landscape</span>
                   <span id="modal-illustration-tag-text">Pusaka & Alam Nusantara</span>
                 </span>
 
-                <!-- Right: Dual Switcher (Landmark vs Pelestari) -->
                 <div class="inline-flex items-center p-0.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-md">
                   <button type="button" id="modal-toggle-view-landmark"
                     class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold text-[10.5px] transition-all flex items-center gap-1 shadow-sm cursor-pointer"
@@ -801,7 +765,6 @@
                 </div>
               </div>
 
-              <!-- Bottom Content Overlay -->
               <div class="relative z-10 space-y-1.5 mt-auto pt-8">
                 <div id="modal-illustration-category" class="text-[10px] uppercase font-bold tracking-widest text-brass-400">
                   Mahakarya Ikonik Wilayah
@@ -819,12 +782,10 @@
 
         </section>
 
-        <!-- 3. INTERACTIVE MASCOT COMPANION SECTION: "BERSAMA WARI" (Clean & Streamlined) -->
         <section class="rounded-2xl bg-gradient-to-r from-[#1C1612] via-[#16120E] to-[#120E0B] border border-brass-500/25 p-4 sm:p-5 shadow-lg relative overflow-hidden">
           <div class="absolute -right-16 -top-16 w-48 h-48 bg-brass-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div class="flex items-center gap-4 relative z-10">
-            <!-- Mascot Avatar -->
             <div id="modal-wari-trigger" class="flex-shrink-0 cursor-pointer group text-center" title="Klik Wari untuk mendengar fakta unik!">
               <img id="modal-wari-sprite"
                 src="assets/images/mascot/wari-idle-clean.png"
@@ -832,7 +793,6 @@
                 class="w-16 h-16 sm:w-20 sm:h-20 object-contain modal-wari-float transition-transform group-hover:scale-105 drop-shadow-md" />
             </div>
 
-            <!-- Speech Bubble -->
             <div class="flex-1 space-y-1.5 min-w-0">
               <div class="flex items-center justify-between gap-2 flex-wrap">
                 <div class="flex items-center gap-2">
@@ -849,7 +809,6 @@
                 </button>
               </div>
 
-              <!-- Speech text -->
               <p id="modal-wari-speech" class="text-xs sm:text-sm text-surface/90 font-light leading-relaxed italic">
                 "Halo Sahabat Budaya! Aku Wari. Tahukah kamu bahwa Kain Ulap Doyo ditenun dari serat daun liar Doyo yang hanya tumbuh di pedalaman Kutai Barat?"
               </p>
@@ -857,10 +816,7 @@
           </div>
         </section>
 
-        <!-- 4. INTERACTIVE TABBED SECTIONS -->
         <section class="space-y-6">
-          
-          <!-- Tab Navigation Bar -->
           <div class="flex items-center gap-2 overflow-x-auto pb-1 border-b border-white/10" role="tablist">
             <button class="province-tab-btn active px-4 py-2.5 rounded-xl border border-white/10 text-xs font-semibold tracking-wider transition-all flex items-center gap-2 whitespace-nowrap" data-tab="tab-heritage">
               <span class="material-symbols-outlined text-base text-brass-400">account_balance</span>
@@ -883,10 +839,7 @@
             </button>
           </div>
 
-          <!-- TAB 1: MAHAKARYA & TRADISI WBTB -->
           <div id="tab-heritage" class="province-tab-content space-y-6">
-            
-            <!-- Highlight Masterpiece Card (High-contrast, clearly elevated) -->
             <div class="rounded-2xl bg-gradient-to-r from-[#241C14] via-[#18130E] to-[#120E0A] border border-brass-400/40 p-4 sm:p-5 flex items-center gap-4 shadow-xl">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brass-500/30 to-terracotta-500/20 border border-brass-400/50 flex items-center justify-center text-brass-300 shadow-inner flex-shrink-0">
                 <span class="material-symbols-outlined text-2xl text-brass-300">auto_awesome</span>
@@ -902,7 +855,6 @@
               </div>
             </div>
 
-            <!-- Heritage Grid (3 Cards) -->
             <div>
               <div class="flex items-center justify-between mb-3.5">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-brass-300 flex items-center gap-2">
@@ -915,13 +867,11 @@
               </div>
 
               <div id="modal-heritage-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Injected via JS -->
               </div>
             </div>
 
           </div>
 
-          <!-- TAB 2: FILOSOFI & KEARIFAN WILAYAH -->
           <div id="tab-wisdom" class="province-tab-content hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
@@ -955,7 +905,6 @@
               </div>
             </div>
 
-            <!-- Detailed Cultural Lore -->
             <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
               <h4 class="text-xs font-bold uppercase tracking-widest text-brass-400">Selayang Pandang Sejarah & Kebudayaan</h4>
               <p id="modal-wisdom-fulltext" class="text-xs sm:text-sm text-surface/85 font-light leading-relaxed">
@@ -964,12 +913,10 @@
             </div>
           </div>
 
-          <!-- TAB 3: SUARA PENJAGA TRADISI (MAESTRO PELESTARI LENGKAP) -->
           <div id="tab-maker" class="province-tab-content hidden space-y-6">
             <div id="modal-maker-card"
               class="rounded-3xl bg-gradient-to-br from-[#1F1812] via-[#16120E] to-[#100D0A] border border-brass-400/40 p-6 sm:p-8 relative overflow-hidden shadow-2xl">
               <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
-                <!-- Foto Maestro & Pengalaman -->
                 <div class="md:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
                   <div class="relative">
                     <img id="modal-tab-maker-photo"
@@ -988,7 +935,6 @@
                   </div>
                 </div>
 
-                <!-- Detail Maestro & Petuah Luhur -->
                 <div class="md:col-span-8 space-y-4">
                   <div class="flex items-center justify-between gap-3 flex-wrap">
                     <div>
@@ -1019,7 +965,6 @@
             </div>
           </div>
 
-          <!-- TAB 4: STUDIO MOTIF CREATIVE LAB -->
           <div id="tab-studio" class="province-tab-content hidden space-y-6">
             <div class="rounded-3xl bg-gradient-to-r from-brass-900/30 via-surface/[0.03] to-transparent border border-brass-500/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
               <div class="space-y-3 max-w-xl">
@@ -1047,7 +992,6 @@
 
         </section>
 
-        <!-- BOTTOM ACTION FOOTER: Complete Exploration Gateway & Scroll to Top -->
         <div class="pt-8 pb-12 mt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-2 text-xs text-surface/70">
             <span class="material-symbols-outlined text-brass-400 text-sm">verified_user</span>
@@ -1075,18 +1019,13 @@
   </div>
 
   <main id="app-dynamic-modules" class="relative z-10 space-y-0">
-
-    <!-- MODULE JELAJAHI & MAESTRO (CUPLIKAN DIREKTORI 38 PROVINSI & PARA PENJAGA TRADISI) -->
     <section id="module-jelajahi" class="section-spacer section-batik-truntum-dark border-t border-border-dark relative">
       <!-- Invisible anchor to preserve backward compatibility with #module-makers -->
       <div id="module-makers" class="absolute -top-24 pointer-events-none"></div>
 
       <div class="section-container">
-        
-        <!-- Header with Segmented Dual View Switcher -->
         <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
-          
-          <!-- LUXURY DUAL VIEW SWITCHER: PROVINSI VS MAESTRO PELESTARI -->
+
           <div class="inline-flex items-center p-1.5 rounded-full bg-black/70 border border-brass-400/30 backdrop-blur-xl shadow-2xl mb-6">
             <button id="home-tab-btn-provinces" type="button" class="home-view-tab-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer">
               <span id="home-tab-icon-provinces" class="material-symbols-outlined text-base">travel_explore</span>
@@ -1098,14 +1037,12 @@
             </button>
           </div>
 
-          <!-- Dynamic Header: 38 Provinsi -->
           <div id="home-jelajahi-header-provinces" class="transition-opacity duration-300">
             <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
               38 Provinsi, Satu Jiwa Nusantara
             </h2>
           </div>
 
-          <!-- Dynamic Header: Para Penjaga Tradisi -->
           <div id="home-jelajahi-header-makers" class="hidden transition-opacity duration-300">
             <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
               Para Penjaga Tradisi
@@ -1114,9 +1051,7 @@
 
         </div>
 
-        <!-- VIEW 1: PROVINCES (PASPOR & 4 CARDS) -->
         <div id="home-view-provinces" class="transition-all duration-300">
-          <!-- Paspor Penjelajah Mini Teaser Widget -->
           <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brass-500/30 mb-8 max-w-4xl mx-auto bg-[#171411]/90 shadow-xl flex flex-col md:flex-row items-center justify-between gap-5">
             <div class="flex-1 w-full">
               <div class="flex items-center justify-between mb-2">
@@ -1148,10 +1083,7 @@
             </div>
           </div>
 
-          <!-- 4 Curated Province Representative Cards (2 per row on mobile, 4 on desktop) -->
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mb-10">
-            
-            <!-- Aceh (Sumatera) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
               <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/aceh-cover.jpg" alt="Aceh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1180,7 +1112,6 @@
               </div>
             </div>
 
-            <!-- DI Yogyakarta (Jawa) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
               <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/di-yogyakarta-cover.jpg" alt="DI Yogyakarta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1209,7 +1140,6 @@
               </div>
             </div>
 
-            <!-- Bali (Bali & Nusa Tenggara) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
               <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/bali-cover.jpg" alt="Bali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1238,7 +1168,6 @@
               </div>
             </div>
 
-            <!-- Papua (Maluku & Papua) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
               <div class="relative h-28 sm:h-44 overflow-hidden">
                 <img src="assets/images/provinces/papua-cover.jpg" alt="Papua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1270,18 +1199,14 @@
           </div>
         </div>
 
-        <!-- VIEW 2: MAKERS (3 CURATED MAESTRO CARDS DENGAN FOTO REALISTIS) -->
         <div id="home-view-makers" class="hidden transition-all duration-300">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            
-            <!-- Mbah Cipto (Jawa Tengah) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <!-- Foto Potret Realistis Maestro -->
+
               <div class="relative h-48 sm:h-52 overflow-hidden bg-[#120F0D]">
                 <img src="assets/images/Pelestari/mbah-cipto.jpg" alt="Mbah Cipto - Empu Pembatik Tulis Klasik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/35 to-transparent"></div>
-                
-                <!-- Floating Badges on Photo -->
+
                 <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
                   <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md">
                     <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
@@ -1292,7 +1217,6 @@
                   </span>
                 </div>
 
-                <!-- Maestro Title Overlay at Bottom of Photo -->
                 <div class="absolute bottom-2.5 left-3 right-3 flex items-center gap-2.5 z-10">
                   <div class="w-10 h-10 rounded-full border-2 border-brass-400/80 overflow-hidden shadow-lg flex-shrink-0 bg-black/60">
                     <img src="assets/images/Pelestari/mbah-cipto.jpg" alt="Mbah Cipto" class="w-full h-full object-cover object-top" />
@@ -1304,7 +1228,6 @@
                 </div>
               </div>
 
-              <!-- Card Body Content -->
               <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                 <div class="space-y-3">
                   <div class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-forest-500/20 text-forest-300 border border-forest-500/30">
@@ -1317,7 +1240,7 @@
                     Menjaga keaslian canting tembaga 0.3mm dan ramuan pewarna soga alam berbahan kulit kayu tingi tanpa bahan sintetis.
                   </p>
                 </div>
-                
+
                 <div class="pt-3 border-t border-white/10 space-y-2">
                   <button class="home-play-wisdom-btn w-full py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-xs text-brass-300 flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     data-name="Mbah Cipto"
@@ -1333,14 +1256,11 @@
               </div>
             </div>
 
-            <!-- Mama Rambu Koni (Nusa Tenggara Timur) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-terracotta-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <!-- Foto Potret Realistis Maestro -->
               <div class="relative h-48 sm:h-52 overflow-hidden bg-[#120F0D]">
                 <img src="assets/images/Pelestari/nusa-tenggara-timur.jpg" alt="Mama Rambu Koni - Penenun Pewarna Alami Marapu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/35 to-transparent"></div>
-                
-                <!-- Floating Badges on Photo -->
+
                 <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
                   <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-terracotta-300 border border-terracotta-400/40 backdrop-blur-md shadow-md">
                     <span class="material-symbols-outlined text-xs text-terracotta-400">location_on</span>
@@ -1351,7 +1271,6 @@
                   </span>
                 </div>
 
-                <!-- Maestro Title Overlay at Bottom of Photo -->
                 <div class="absolute bottom-2.5 left-3 right-3 flex items-center gap-2.5 z-10">
                   <div class="w-10 h-10 rounded-full border-2 border-terracotta-400/80 overflow-hidden shadow-lg flex-shrink-0 bg-black/60">
                     <img src="assets/images/Pelestari/nusa-tenggara-timur.jpg" alt="Mama Rambu Koni" class="w-full h-full object-cover object-top" />
@@ -1363,7 +1282,6 @@
                 </div>
               </div>
 
-              <!-- Card Body Content -->
               <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                 <div class="space-y-3">
                   <div class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30">
@@ -1376,7 +1294,7 @@
                     Melestarikan motif sakral Hinggi berpewarna tumbuhan padang sabana Sumba dengan doa syukur kepada alam.
                   </p>
                 </div>
-                
+
                 <div class="pt-3 border-t border-white/10 space-y-2">
                   <button class="home-play-wisdom-btn w-full py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-xs text-terracotta-300 flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     data-name="Mama Rambu Koni"
@@ -1392,14 +1310,11 @@
               </div>
             </div>
 
-            <!-- Panrita Lopi Muhammad (Sulawesi Selatan) -->
             <div class="glass-card rounded-2xl overflow-hidden group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-              <!-- Foto Potret Realistis Maestro -->
               <div class="relative h-48 sm:h-52 overflow-hidden bg-[#120F0D]">
                 <img src="assets/images/Pelestari/sulawesi-selatan.jpg" alt="Panrita Muhammad - Maestro Pembuat Perahu Pinisi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#151310] via-black/35 to-transparent"></div>
-                
-                <!-- Floating Badges on Photo -->
+
                 <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
                   <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md">
                     <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
@@ -1410,7 +1325,6 @@
                   </span>
                 </div>
 
-                <!-- Maestro Title Overlay at Bottom of Photo -->
                 <div class="absolute bottom-2.5 left-3 right-3 flex items-center gap-2.5 z-10">
                   <div class="w-10 h-10 rounded-full border-2 border-forest-400/80 overflow-hidden shadow-lg flex-shrink-0 bg-black/60">
                     <img src="assets/images/Pelestari/sulawesi-selatan.jpg" alt="Panrita Muhammad" class="w-full h-full object-cover object-top" />
@@ -1422,7 +1336,6 @@
                 </div>
               </div>
 
-              <!-- Card Body Content -->
               <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                 <div class="space-y-3">
                   <div class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-forest-500/20 text-forest-300 border border-forest-500/30">
@@ -1435,7 +1348,7 @@
                     Merancang mahakarya maritim tanpa cetak biru kertas, mengandalkan perhitungan intuisi matematis leluhur Konjo.
                   </p>
                 </div>
-                
+
                 <div class="pt-3 border-t border-white/10 space-y-2">
                   <button class="home-play-wisdom-btn w-full py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-xs text-forest-300 flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     data-name="Panrita Lopi Muhammad"
@@ -1454,7 +1367,6 @@
           </div>
         </div>
 
-        <!-- Shared Bottom Stats Bar & Dynamic Direct CTA (Borderless Organic Flow) -->
         <div class="border-t border-brass-500/20 pt-8 pb-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div id="home-stats-counter-bar" class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center md:text-left w-full md:w-auto">
             <div>
@@ -1484,21 +1396,15 @@
       </div>
     </section>
 
-    <!-- MODULE EKONOMI KREATIF (CUPLIKAN ETALASE PRODUK LOKAL & KRIYA UMKM) -->
     <section id="module-ekonomi-kreatif" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
       <div class="section-container">
-        
-        <!-- Header -->
         <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
             Etalase Kriya Berdaya Saing Global
           </h2>
         </div>
 
-        <!-- 4 Real Product Cards with Photo, Rating, and Quick Actions (2 per row on mobile) -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mb-10">
-          
-          <!-- Syal Tenun Sumba -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1">
             <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/syal-tenun-sumba.jpg" alt="Syal Tenun Sabana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1537,7 +1443,6 @@
             </div>
           </div>
 
-          <!-- Vas Kendi Maling -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-terracotta-400/60 transition-all duration-300 hover:-translate-y-1">
             <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/vas-banyumulek.jpg" alt="Vas Terracotta Kendi Maling" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1576,7 +1481,6 @@
             </div>
           </div>
 
-          <!-- Batik Tulis Jogja Parang -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1">
             <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/batik-tulis-jogja-parang.jpg" alt="Batik Tulis Parang Barong" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1615,7 +1519,6 @@
             </div>
           </div>
 
-          <!-- Noken Wamena -->
           <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-400/60 transition-all duration-300 hover:-translate-y-1">
             <div class="relative h-28 sm:h-48 overflow-hidden bg-black/40">
               <img src="assets/images/products/noken-wamena.jpg" alt="Tas Anyaman Noken Papua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -1666,21 +1569,15 @@
       </div>
     </section>
 
-    <!-- MODULE CREATIVE LAB (LABORATORIUM KREATIF & BATIK GENERATIF) -->
     <section id="module-creative-lab" class="section-spacer section-batik-parang-dark border-t border-border-dark">
       <div class="section-container">
-        
-        <!-- Header with 30% Demo Badge -->
         <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
             Ciptakan Komposisi Motif Khas Anda
           </h2>
         </div>
 
-        <!-- Studio Showcase Card -->
         <div class="max-w-5xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-brass-400/30 mb-8 shadow-2xl bg-[#14100D]/90">
-          
-          <!-- View Mode Switcher: 2D Pattern vs Shirt vs Scarf -->
           <div class="flex items-center justify-between flex-wrap gap-3 pb-6 mb-6 border-b border-white/10">
             <div class="flex items-center gap-1.5 sm:gap-2">
               <span class="text-xs font-bold uppercase tracking-wider text-surface/50 mr-1 hidden sm:inline">Pratinjau:</span>
@@ -1705,8 +1602,6 @@
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <!-- Canvas Display Stage -->
             <div class="lg:col-span-7 flex flex-col items-center justify-center">
               <div class="relative w-full aspect-square max-w-[360px] rounded-2xl overflow-hidden border-2 border-brass-500/40 shadow-2xl bg-[#F6F1E7]">
                 <canvas id="creative-canvas" width="400" height="400" class="w-full h-full block"></canvas>
@@ -1718,10 +1613,7 @@
               </div>
             </div>
 
-            <!-- Interactive Parameter Controls -->
             <div class="lg:col-span-5 flex flex-col gap-5">
-              
-              <!-- 1. Motif Selection (5 Curated) -->
               <div>
                 <label class="text-xs font-bold uppercase tracking-wider text-brass-400 block mb-2 flex items-center justify-between">
                   <span>Pilihan Motif Wastra:</span>
@@ -1746,7 +1638,6 @@
                 </div>
               </div>
 
-              <!-- 2. Natural Palette Selection -->
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <label class="text-xs font-bold uppercase tracking-wider text-brass-400">Palet Wastra Nusantara:</label>
@@ -1756,9 +1647,7 @@
                   </button>
                 </div>
 
-                <!-- Palette Swatch Buttons (Concentric Multi-Tone: Outer = Dasar Kain, Inner = Garis Canting) -->
                 <div class="flex items-center gap-2.5">
-                  <!-- 1. Sogan Keraton: Dasar Krem Mori (#F6F1E7) + Garis Cokelat Sogan (#2A1E14) -->
                   <button class="lab-palette-btn active relative w-9 h-9 rounded-full ring-2 ring-brass-400 scale-110 transition-all border border-white/30 shadow-md flex items-center justify-center overflow-hidden cursor-pointer group"
                           data-palette="sogan" title="Sogan Klasik Keraton: Kain Krem Mori (#F6F1E7) & Garis Cokelat Sogan (#2A1E14)"
                           style="background-color: #F6F1E7;">
@@ -1767,7 +1656,6 @@
                     </span>
                   </button>
 
-                  <!-- 2. Indigo Nila: Dasar Blacu (#ECE4D4) + Garis Biru Nila (#16213A) -->
                   <button class="lab-palette-btn relative w-9 h-9 rounded-full transition-all border border-white/30 shadow-md flex items-center justify-center overflow-hidden cursor-pointer group"
                           data-palette="indigo" title="Indigofera Tarum Pesisir: Kain Blacu (#ECE4D4) & Garis Biru Nila (#16213A)"
                           style="background-color: #ECE4D4;">
@@ -1776,7 +1664,6 @@
                     </span>
                   </button>
 
-                  <!-- 3. Terracotta: Dasar Ivory (#FFF8ED) + Garis Merah Bata (#8F3A1D) -->
                   <button class="lab-palette-btn relative w-9 h-9 rounded-full transition-all border border-white/30 shadow-md flex items-center justify-center overflow-hidden cursor-pointer group"
                           data-palette="terracotta" title="Terracotta Kayu Ubar: Kain Ivory (#FFF8ED) & Garis Merah Bata (#8F3A1D)"
                           style="background-color: #FFF8ED;">
@@ -1785,7 +1672,6 @@
                     </span>
                   </button>
 
-                  <!-- 4. Prada Emas: Dasar Emas Muda (#FBF3DF) + Garis Prada Emas (#C9A567) -->
                   <button class="lab-palette-btn relative w-9 h-9 rounded-full transition-all border border-white/30 shadow-md flex items-center justify-center overflow-hidden cursor-pointer group"
                           data-palette="brass" title="Prada Emas Kencana: Kain Emas Muda (#FBF3DF) & Garis Prada Emas (#C9A567)"
                           style="background-color: #FBF3DF;">
@@ -1794,7 +1680,6 @@
                     </span>
                   </button>
 
-                  <!-- 5. Hitam Wulung: Dasar Hitam Wulung (#181410) + Garis Prada Emas (#C9A567) -->
                   <button class="lab-palette-btn relative w-9 h-9 rounded-full transition-all border border-white/30 shadow-md flex items-center justify-center overflow-hidden cursor-pointer group"
                           data-palette="wulung" title="Hitam Wulung & Prada: Kain Hitam (#181410) & Garis Prada Emas (#C9A567)"
                           style="background-color: #181410;">
@@ -1804,7 +1689,6 @@
                   </button>
                 </div>
 
-                <!-- Live Active Palette Detail Badge -->
                 <div id="lab-active-palette-badge" class="mt-2.5 px-2.5 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between text-xs">
                   <div class="flex items-center gap-2 min-w-0">
                     <span id="badge-bg-dot" class="w-3.5 h-3.5 rounded-full border border-white/30 flex-shrink-0" title="Warna Dasar Kain" style="background-color: #F6F1E7;"></span>
@@ -1815,7 +1699,6 @@
                 </div>
               </div>
 
-              <!-- 3. Density Slider -->
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <label for="lab-density-slider" class="text-xs font-bold uppercase tracking-wider text-brass-400">Kerapatan Pola:</label>
@@ -1824,7 +1707,6 @@
                 <input id="lab-density-slider" type="range" min="2" max="6" step="1" value="4" class="w-full accent-[#C9A567] cursor-pointer bg-white/10 h-1.5 rounded-lg" />
               </div>
 
-              <!-- Action CTAs -->
               <div class="pt-2 flex flex-col gap-2.5">
                 <button id="canvas-download-btn" class="w-full py-2.5 rounded-full bg-brass-600 hover:bg-brass-500 text-stone-950 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-md">
                   <span class="material-symbols-outlined text-sm">download</span>
@@ -1843,21 +1725,15 @@
       </div>
     </section>
 
-    <!-- MODULE BELAJAR (MINI KUIS BUDAYA 30% DEMO) -->
     <section id="module-belajar" class="section-spacer section-batik-truntum-dark border-t border-border-dark">
       <div class="section-container">
-        
-        <!-- Header -->
         <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
             Uji Wawasan Budaya Nusantara
           </h2>
         </div>
 
-        <!-- Mini Quiz Interactive Card -->
         <div id="mini-quiz-card" class="max-w-3xl mx-auto glass-card p-6 sm:p-9 rounded-3xl border border-forest-500/30 mb-8 shadow-2xl bg-[#14120F]/90">
-          
-          <!-- Top Console: Step indicator, Live Score, Streak -->
           <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-white/10">
             <div class="flex items-center gap-2.5">
               <span id="mini-quiz-indicator" class="font-mono text-xs uppercase tracking-widest text-forest-300 font-bold">
@@ -1879,12 +1755,10 @@
             </div>
           </div>
 
-          <!-- Progress Bar -->
           <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden mb-6">
             <div id="mini-quiz-progress" class="h-full bg-gradient-to-r from-forest-500 via-forest-400 to-brass-400 transition-all duration-300" style="width: 33%;"></div>
           </div>
 
-          <!-- Wari Mascot Companion Mini Dialogue Stage -->
           <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-3.5 mb-6">
             <div class="w-12 h-12 rounded-xl bg-forest-500/20 border border-forest-500/30 flex items-center justify-center flex-shrink-0 overflow-hidden">
               <img id="mini-quiz-mascot-img" src="assets/images/mascot/wari-idle-clean.png" alt="Si Wari Maskot" class="w-10 h-10 object-contain" />
@@ -1900,9 +1774,7 @@
             </div>
           </div>
 
-          <!-- ACTIVE QUESTION STAGE -->
           <div id="mini-quiz-active-stage" class="space-y-6">
-            
             <div>
               <h3 id="mini-quiz-question-text" class="font-display text-lg sm:text-2xl text-surface font-light leading-snug mb-2">
                 Apa makna filosofis ombak berkesinambungan pada motif Batik Parang Rusak?
@@ -1912,12 +1784,9 @@
               </p>
             </div>
 
-            <!-- Dynamic Options Grid -->
             <div id="mini-quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <!-- Injected by home-belajar.js -->
             </div>
 
-            <!-- Feedback Explanation Box -->
             <div id="mini-quiz-feedback" class="hidden p-4 rounded-2xl bg-forest-950/40 border border-forest-500/40 space-y-1.5 transition-all">
               <div class="text-[10px] uppercase font-bold tracking-wider text-forest-300 flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-sm">menu_book</span>
@@ -1928,7 +1797,6 @@
               </p>
             </div>
 
-            <!-- Next Button -->
             <div class="flex items-center justify-end pt-2">
               <button id="mini-quiz-next-btn" class="hidden px-6 py-2.5 rounded-full bg-forest-600 hover:bg-forest-500 text-white text-xs font-bold tracking-wider uppercase transition-all duration-200 shadow-lg flex items-center gap-2">
                 <span>Tantangan Berikutnya</span>
@@ -1938,7 +1806,6 @@
 
           </div>
 
-          <!-- RESULT STAGE (Hidden Initially) -->
           <div id="mini-quiz-result-stage" class="hidden text-center py-6 space-y-5">
             <div class="w-16 h-16 mx-auto rounded-full bg-forest-500/20 border border-forest-500/40 flex items-center justify-center text-brass-300 shadow-lg">
               <span class="material-symbols-outlined text-3xl">emoji_events</span>
@@ -1967,7 +1834,6 @@
 
         </div>
 
-        <!-- Aksara Nusantara Mini Teaser (from pages/belajar.html) -->
         <div class="max-w-3xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-forest-500/25 bg-[#14120F]/90 shadow-xl space-y-5">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
             <div>
@@ -1984,7 +1850,6 @@
             </span>
           </div>
 
-          <!-- Aksara Selector Tabs -->
           <div class="flex flex-wrap items-center gap-2">
             <button class="home-aksara-tab active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-forest-500/30 text-forest-200 border border-forest-400/50 transition-all shadow-sm cursor-pointer" data-aksara="jawa">
               Aksara Jawa
@@ -2000,7 +1865,6 @@
             </button>
           </div>
 
-          <!-- Display Stage -->
           <div class="p-6 rounded-2xl bg-black/40 border border-white/10 text-center space-y-3">
             <div id="home-aksara-glyph" class="text-3xl sm:text-5xl text-brass-300 font-serif tracking-widest py-2 select-all">
               ꦲ ꦤ ꦕ ꦫ ꦏ
@@ -2025,18 +1889,14 @@
       </div>
     </section>
 
-    <!-- MODULE CERITA (30% LEMBARAN TUTUR LISAN SHOWCASE) -->
     <section id="module-cerita" class="section-spacer section-batik-ceplok-dark border-t border-border-dark">
       <div class="section-container">
-        
-        <!-- Header -->
         <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-surface leading-tight">
             Hikayat, Legenda & Falsafah Hidup
           </h2>
         </div>
 
-        <!-- Category Filter Tabs -->
         <div class="flex items-center justify-center gap-2 flex-wrap mb-8">
           <button class="home-story-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-terracotta-500 text-white transition-all shadow-sm cursor-pointer" data-theme="all">
             Semua Kisah (3)
@@ -2052,12 +1912,9 @@
           </button>
         </div>
 
-        <!-- Story Cards Grid (Injected by home-cerita.js, 2 columns on mobile) -->
         <div id="home-stories-grid" class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6 mb-12">
-          <!-- Injected via js/sections/home-cerita.js -->
         </div>
 
-        <!-- Shelf Bottom CTA to Full Cerita 3D Tome -->
         <div class="text-center">
           <a href="pages/cerita.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-terracotta-400/40 text-terracotta-300 hover:bg-terracotta-500/20 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors shadow-lg">
             <span>Buka Perpustakaan Lengkap 10 Kitab Pusaka 3D</span>
@@ -2067,11 +1924,8 @@
 
       </div>
 
-      <!-- IN-PAGE STORY PREVIEW MODAL -->
       <div id="home-story-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/20 backdrop-blur-md flex items-center justify-center p-4">
         <div class="relative w-full max-w-2xl bg-[#171310] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-          
-          <!-- Modal Header -->
           <div class="p-5 sm:p-6 border-b border-white/10 flex items-start justify-between bg-gradient-to-b from-white/5 to-transparent">
             <div>
               <span id="home-story-modal-origin" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-terracotta-500/20 text-terracotta-300 border border-terracotta-500/30 mb-1.5">
@@ -2086,7 +1940,6 @@
             </button>
           </div>
 
-          <!-- Modal Scrollable Body -->
           <div class="p-5 sm:p-6 overflow-y-auto space-y-5 text-xs sm:text-sm text-surface/85">
             <div class="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden bg-black/60 border border-white/10">
               <img id="home-story-modal-cover" src="assets/images/stories/story_pinisi.jpg" alt="Sampul Cerita" class="w-full h-full object-cover" />
@@ -2098,7 +1951,6 @@
               </div>
             </div>
 
-            <!-- Page Reading Content -->
             <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
               <div class="flex items-center justify-between">
                 <h4 id="home-story-modal-section-title" class="font-display text-base font-semibold text-brass-300">
@@ -2113,7 +1965,6 @@
               </p>
             </div>
 
-            <!-- Page Turner Controls & CTA -->
             <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
               <div class="flex items-center gap-2">
                 <button id="home-story-prev-page" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-surface/70 text-xs font-semibold flex items-center gap-1 transition-colors">
@@ -2137,7 +1988,6 @@
         </div>
       </div>
 
-      <!-- Floating Audio Quote Toast -->
       <div id="home-story-quote-toast" class="fixed bottom-6 right-6 z-[1060] max-w-sm p-4 rounded-2xl bg-[#1E1712]/95 backdrop-blur-xl border border-terracotta-500/40 shadow-2xl text-xs text-surface flex items-start gap-3 transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
         <span class="material-symbols-outlined text-xl text-terracotta-400 flex-shrink-0 mt-0.5">volume_up</span>
         <div class="flex-1">
@@ -2149,18 +1999,13 @@
 
   </main>
 
-              <!-- FOOTER PROFESIONAL & MODERN -->
   <footer class="relative bg-[#0E0C0A] text-surface/70 text-xs border-t border-white/10 pt-16 pb-12 px-4 sm:px-8 overflow-hidden">
-    <!-- Subtle Ambient Glow -->
     <div class="absolute -top-32 left-1/4 w-96 h-96 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 right-1/4 w-96 h-96 bg-forest-900/10 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto relative z-10 space-y-12">
-      
-      <!-- Bagian Atas: Brand + Deskripsi + Download App Buttons -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
-        
-        <!-- Kolom Brand & Penjelasan Web (5 Cols) -->
+
         <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-0">
           <div class="flex items-center gap-5">
             <img src="assets/images/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-14 h-14 object-contain drop-shadow" />
@@ -2172,7 +2017,6 @@
           </p>
         </div>
 
-        <!-- Kolom Tautan Cepat / Navigasi (3 Cols) -->
         <div class="lg:col-span-3 space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300">Eksplorasi Budaya</h4>
           <ul class="space-y-2 text-xs font-light text-surface/70">
@@ -2185,7 +2029,6 @@
           </ul>
         </div>
 
-        <!-- Kolom Download Mobile Apps di Google Play & App Store (4 Cols) -->
         <div class="lg:col-span-4 space-y-4">
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 mb-1 flex items-center gap-1.5">
@@ -2197,10 +2040,7 @@
             </p>
           </div>
 
-          <!-- App Store & Play Store Download Badges -->
           <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-1">
-            
-            <!-- Google Play Button -->
             <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Google Play Store">
               <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" fill="#EA4335"/>
@@ -2214,7 +2054,6 @@
               </div>
             </button>
 
-            <!-- Apple App Store Button -->
             <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Apple App Store">
               <svg class="w-6 h-6 flex-shrink-0 fill-surface group-hover:fill-brass-300 transition-colors" viewBox="0 0 170 170">
                 <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.59-7.71-11.72-14-4.89-7.4-8.86-15.8-11.91-25.19-3.05-9.39-4.58-18.42-4.58-27.11 0-12.5 3.17-23.11 9.5-31.84 6.33-8.72 14.33-13.2 24-13.43 4.9 0 10.37 1.34 16.42 4.02 6.04 2.68 9.94 4.08 11.68 4.22 1.95-.27 6.04-1.74 12.27-4.42 6.23-2.68 11.43-3.87 15.62-3.58 11.63.85 20.67 5.17 27.13 12.98-9.82 5.95-14.64 14.19-14.47 24.71.18 8.16 3.26 15.11 9.24 20.85 5.98 5.74 13.06 9.07 21.23 10-1.84 5.69-3.95 11.23-6.33 16.63zM119.22 31.02c0-7.25 2.66-13.97 7.98-20.17 5.32-6.19 11.83-10.05 19.53-11.58.55 3.15.55 6.13 0 8.94-.83 6.94-3.79 13.41-8.88 19.41-5.08 6.01-11.3 9.77-18.63 11.28v-7.88z"/>
@@ -2230,7 +2069,6 @@
 
       </div>
 
-      <!-- Bagian Bawah: Hak Cipta & Informasi Legal -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-surface/50 pt-2">
         <div>
           © 2026 <strong>WARISARA</strong>. Dikembangkan untuk <strong>TECHTOPIA Vol. 2 (INTEGER#8)</strong>.
@@ -2307,7 +2145,6 @@
   <script src="data/quiz.js?v=11"></script>
   <script src="data/stories.js?v=11"></script>
 
-  <!-- Marketplace C2C Auth & Chat Scripts -->
   <script src="js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="js/components/marketplace-chat.js"></script>
 
@@ -2323,7 +2160,7 @@
   <script src="js/config.example.js"></script>
   <script src="js/config.js"></script>
   <script src="js/utils/wari-mascot.js?v=53"></script>
-  <!-- Floating Toast Petuah Lisan Maestro -->
+
   <div id="home-story-quote-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 max-w-lg w-[90%] p-4 rounded-2xl bg-[#171411]/95 border border-brass-400/40 text-surface shadow-2xl backdrop-blur-xl opacity-0 pointer-events-none translate-y-4 transition-all duration-300 flex items-center gap-3">
     <span class="material-symbols-outlined text-brass-400 text-2xl flex-shrink-0 animate-pulse">format_quote</span>
     <p id="home-story-quote-toast-text" class="text-xs sm:text-sm font-light italic leading-snug flex-1"></p>

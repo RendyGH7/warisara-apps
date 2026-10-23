@@ -7,7 +7,6 @@
 (function () {
   'use strict';
 
-  // --- PATH NORMALIZER FOR LOCAL & REMOTE ASSETS ---
   function fixImgPath(url) {
     if (!url) return 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
@@ -23,7 +22,6 @@
     }
   }
 
-  // --- AUDIO SYNTHESIZER (Web Audio API) ---
   var activeAudioVoice = null;
   var audioCtx = null;
   function getAudioContext() {
@@ -43,7 +41,6 @@
 
       var now = ctx.currentTime;
       if (type === 'success') {
-        // Chord kemenangan ceria (C5, E5, G5, C6)
         var freqs = [523.25, 659.25, 783.99, 1046.50];
         freqs.forEach(function (f, idx) {
           var osc = ctx.createOscillator();
@@ -58,7 +55,6 @@
           osc.stop(now + idx * 0.08 + 0.6);
         });
       } else if (type === 'stamp') {
-        // Suara cap stempel mekanis mantap
         var oscStamp = ctx.createOscillator();
         var gainStamp = ctx.createGain();
         oscStamp.type = 'sine';
@@ -71,7 +67,6 @@
         oscStamp.start(now);
         oscStamp.stop(now + 0.25);
       } else if (type === 'wrong') {
-        // Suara boop lembut
         var oscW = ctx.createOscillator();
         var gainW = ctx.createGain();
         oscW.type = 'sawtooth';
@@ -84,7 +79,6 @@
         oscW.start(now);
         oscW.stop(now + 0.28);
       } else if (type === 'tick') {
-        // Tick jarum kompas
         var oscT = ctx.createOscillator();
         var gainT = ctx.createGain();
         oscT.type = 'triangle';
@@ -101,7 +95,6 @@
     }
   }
 
-  // --- VOICE SYNTHESIZER ---
   function speakRegionalGreeting(greetingText) {
     playSound('success');
     if (!('speechSynthesis' in window)) return;
@@ -116,7 +109,6 @@
     } catch (e) {}
   }
 
-  // --- CONFETTI GENERATOR ---
   function fireConfetti() {
     var canvas = document.getElementById('confetti-canvas-layer');
     if (!canvas) return;
@@ -232,7 +224,6 @@
     return { title: 'Calon Penjelajah', badge: 'Belum Mulai' };
   }
 
-  // --- STATE ---
   var currentIsland = 'all';
   var currentStatus = 'all';
   var currentSearchQuery = '';
@@ -243,7 +234,6 @@
   var activeGalleryIndex = 0;
   var activeGalleryList = [];
 
-  // --- UI UPDATE FOR PASSPORT WIDGET ---
   function updatePassportUI() {
     var data = getPassportData();
     var count = data.stamped.length;
@@ -267,7 +257,6 @@
     levelBadgeEls.forEach(function (el) { el.textContent = level.badge; });
   }
 
-  // --- HELPER: AMBIL PRODUK LOKAL OTENTIK DARI KATALOG WARISARA UNTUK PROVINSI INI ---
   function getMatchingProductsForProvince(prov) {
     if (!prov) return [];
     var all = (window.WARISARA_PRODUCTS && typeof window.WARISARA_PRODUCTS.getAll === 'function')
@@ -305,7 +294,6 @@
     return [all[0]];
   }
 
-  // --- PROVINCE RENDERING ---
   function renderProvincesGrid() {
     var gridEl = document.getElementById('provinces-grid');
     var emptyEl = document.getElementById('provinces-empty-state');
@@ -550,7 +538,6 @@
       card.addEventListener('click', function (e) {
         var id = card.getAttribute('data-prov-id');
 
-        // --- Card Click Ripple Effect ---
         var ripple = document.createElement('span');
         ripple.className = 'pcu-click-ripple';
         // Position ripple at click point relative to card
@@ -579,7 +566,6 @@
     });
   }
 
-  // --- PROVINCE DETAIL MODAL (HIGH-END PAVILION) ---
   function openProvinceModal(provId, triggerSource) {
     var prov = window.PROVINCES_DATA ? window.PROVINCES_DATA[provId] : null;
     if (!prov) return;
@@ -779,8 +765,6 @@
             ${raw}
           </p>
 
-
-
           ${(prov.historyFull && prov.historyFull !== raw) ? `
             <!-- Smooth Expand Narrative -->
             <div class="pt-1">
@@ -892,7 +876,6 @@
               </div>
             </div>
           ` : ''}
-
 
         </div>
       `;
@@ -1009,7 +992,7 @@
                   &ldquo;${maker.quote}&rdquo;
                 </p>
               </div>
-              
+
               <div class="flex items-center justify-between pt-2 border-t border-white/10 flex-wrap gap-2">
                 <button type="button" class="btn-play-maker-wisdom-spotlight px-3 py-1.5 rounded-full bg-brass-400/20 hover:bg-brass-400 hover:text-ink text-brass-300 border border-brass-400/40 text-[11px] font-bold flex items-center gap-1.5 transition-all cursor-pointer">
                   <span class="material-symbols-outlined text-sm">volume_up</span>
@@ -1491,7 +1474,6 @@
     }
   }
 
-  // --- QUIZ INTERACTION ---
   function renderProvinceQuiz(prov) {
     var quizContainer = document.getElementById('tab-quiz-content');
     if (!quizContainer) return;
@@ -1513,7 +1495,7 @@
             </span>
             <span class="text-[11px] text-surface/60 font-mono">1 Soal Kilat • Hadiah Stempel Paspor</span>
           </div>
-          
+
           <h4 class="font-display text-base sm:text-lg text-surface font-light leading-snug mb-5">
             ${quiz.question}
           </h4>
@@ -1673,7 +1655,6 @@
     }
   }
 
-  // --- LIGHTBOX VIEWER ---
   function openCustomLightbox(url, title, caption, triggerEl) {
     var lightbox = document.getElementById('gallery-lightbox-modal');
     if (!lightbox) return;
@@ -1779,7 +1760,6 @@
     }
   }
 
-  // --- PASPOR PENJELAJAH MODAL ---
   function openPassportModal() {
     var modal = document.getElementById('passport-book-modal');
     if (!modal || !window.PROVINCES_DATA) return;
@@ -1876,7 +1856,6 @@
     }
   }
 
-  // --- KOMPAS BUDAYA MODAL (RANDOMIZER) ---
   var isSpinning = false;
   function openCompassModal() {
     var modal = document.getElementById('compass-randomizer-modal');
@@ -1986,7 +1965,6 @@
     }, 1800);
   }
 
-  // --- PREV / NEXT PROVINCE CONTROLS ---
   function navigateProvince(offset) {
     if (!activeProvinceId || !window.PROVINCES_DATA) return;
     var keys = Object.keys(window.PROVINCES_DATA);
@@ -1997,9 +1975,6 @@
     openProvinceModal(keys[newIndex]);
   }
 
-  // =========================================================================
-  // --- INTEGRASI PELESTARI (MAKERS) KE JELAJAHI 38 PROVINSI ---
-  // =========================================================================
   var currentViewMode = 'provinces'; // 'provinces' | 'makers'
   var selectedMakerProvinceId = '';
   var activeSpeakingMakerId = null;
@@ -2114,7 +2089,7 @@
       return `
         <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden rounded-2xl sm:rounded-3xl ${isPlaying ? 'maker-card-playing' : ''}"
                  data-maker-id="${maker.id}" data-province-id="${maker.provinceId}">
-          
+
           <!-- Banner Ilustrasi & Potret Realistis Maestro -->
           <div class="relative w-full h-28 sm:h-52 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
             <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -2390,7 +2365,6 @@
     }
   }
 
-  // --- INITIALIZATION ---
   function init() {
     updatePassportUI();
     renderProvincesGrid();
@@ -2626,7 +2600,7 @@
         e.preventDefault();
         var storeText = btn.querySelector('.font-display') ? btn.querySelector('.font-display').textContent : 'Store';
         playSound('success');
-        
+
         var modal = document.createElement('div');
         modal.className = 'fixed inset-0 z-[1200] bg-black/40 backdrop-blur-md flex items-center justify-center p-4';
         modal.innerHTML = `

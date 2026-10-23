@@ -66,7 +66,6 @@
     },
 
     bindControls: function () {
-      // Motif buttons
       const motifBtns = document.querySelectorAll(".lab-motif-btn");
       motifBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -81,7 +80,6 @@
         });
       });
 
-      // Palette buttons
       const paletteBtns = document.querySelectorAll(".lab-palette-btn");
       paletteBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -102,7 +100,6 @@
           pal.primary = pal.bg;
           pal.bg = temp;
 
-          // Perbarui tampilan tombol swatch yang aktif
           const activeBtn = document.querySelector(`.lab-palette-btn[data-palette="${this.currentPaletteKey}"]`);
           if (activeBtn) {
             activeBtn.style.backgroundColor = pal.bg;
@@ -114,7 +111,6 @@
         });
       }
 
-      // Density slider
       const densitySlider = document.getElementById("lab-density-slider");
       const densityValDisplay = document.getElementById("lab-density-value");
       if (densitySlider) {
@@ -141,7 +137,6 @@
         });
       });
 
-      // Randomize button
       const randomBtn = document.getElementById("lab-randomize-btn");
       if (randomBtn) {
         randomBtn.addEventListener("click", () => {
@@ -155,7 +150,6 @@
           this.currentPaletteKey = randPal;
           this.currentDensity = randDensity;
 
-          // Sync UI
           motifBtns.forEach((b) => {
             const isMatch = b.dataset.motif === randMotif;
             b.classList.toggle("active", isMatch);
@@ -181,7 +175,6 @@
         });
       }
 
-      // Download button
       const downloadBtn = document.getElementById("canvas-download-btn");
       if (downloadBtn) {
         downloadBtn.addEventListener("click", () => {
@@ -280,7 +273,6 @@
       this.ctx.ellipse(cx, cy, r, r / 2.4, Math.PI / 2, 0, Math.PI * 2);
       this.ctx.stroke();
 
-      // Inti titik cecek emas
       this.ctx.beginPath();
       this.ctx.arc(cx, cy, r / 4.5, 0, Math.PI * 2);
       this.ctx.fillStyle = pal.accent;

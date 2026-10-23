@@ -1,11 +1,6 @@
-/* ==========================================================================
-   WARISARA — Comprehensive Responsive & Mobile UI/UX Design System
-   Optimasi Lengkap: Tata Letak, Proporsi, Tipografi, Kontrol Sentuh & Aksesibilitas
-   ========================================================================== */
+/* WARISARA — Comprehensive Responsive & Mobile UI/UX Design System | Optimasi Lengkap: Tata Letak, Proporsi, Tipografi, Kontrol Sentuh & Aksesibilitas */
 
-/* --------------------------------------------------------------------------
-   0. Global Reset & Focus Guards
-   -------------------------------------------------------------------------- */
+/* 0. Global Reset & Focus Guards */
 :focus-visible:not(svg):not(svg *):not(.map-province-group):not(.map-province-path):not(.map-marker) {
   outline: 2px solid var(--color-brass-400);
   outline-offset: 3px;
@@ -41,7 +36,7 @@ body {
   #main-navbar.glass-nav {
     top: max(0.75rem, env(safe-area-inset-top));
   }
-  
+
   #mobile-nav-drawer {
     top: max(4.5rem, calc(env(safe-area-inset-top) + 3.75rem));
     padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
@@ -51,15 +46,13 @@ body {
     bottom: max(16px, env(safe-area-inset-bottom));
     right: max(16px, env(safe-area-inset-right));
   }
-  
+
   footer {
     padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   }
 }
 
-/* --------------------------------------------------------------------------
-   1. Mobile Nav Drawer & Dark Frosted Backdrop
-   -------------------------------------------------------------------------- */
+/* 1. Mobile Nav Drawer & Dark Frosted Backdrop */
 #mobile-nav-backdrop {
   position: fixed;
   inset: 0;
@@ -98,9 +91,7 @@ body.mobile-nav-open {
   touch-action: manipulation;
 }
 
-/* --------------------------------------------------------------------------
-   2. Mobile Province Dropdown Glass Styling
-   -------------------------------------------------------------------------- */
+/* 2. Mobile Province Dropdown Glass Styling */
 .glass-select,
 #mobile-province-select {
   background-color: rgba(22, 18, 14, 0.94) !important;
@@ -128,9 +119,7 @@ body.mobile-nav-open {
   box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.25), 0 6px 20px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* --------------------------------------------------------------------------
-   3. Small Mobile Devices (<= 480px) — Smartphone Portrait
-   -------------------------------------------------------------------------- */
+/* 3. Small Mobile Devices (<= 480px) — Smartphone Portrait */
 @media (max-width: 480px) {
 
   /* Spacing & Container */
@@ -455,9 +444,7 @@ body.mobile-nav-open {
   }
 }
 
-/* --------------------------------------------------------------------------
-   4. Medium Mobile & Phablet (481px - 640px)
-   -------------------------------------------------------------------------- */
+/* 4. Medium Mobile & Phablet (481px - 640px) */
 @media (min-width: 481px) and (max-width: 640px) {
   .section-spacer {
     padding-top: 3.75rem !important;
@@ -501,9 +488,7 @@ body.mobile-nav-open {
   }
 }
 
-/* --------------------------------------------------------------------------
-   5. Tablet & Foldables (641px - 1024px)
-   -------------------------------------------------------------------------- */
+/* 5. Tablet & Foldables (641px - 1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
   .section-spacer {
     padding-top: 4.5rem !important;
@@ -541,9 +526,7 @@ body.mobile-nav-open {
   }
 }
 
-/* --------------------------------------------------------------------------
-   6. Touchscreen & Coarse Pointer Optimizations
-   -------------------------------------------------------------------------- */
+/* 6. Touchscreen & Coarse Pointer Optimizations */
 @media (hover: none) and (pointer: coarse) {
   .map-tooltip {
     display: none !important;
@@ -553,7 +536,7 @@ body.mobile-nav-open {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   .map-province-path {
     cursor: pointer;
   }
@@ -585,9 +568,7 @@ body.mobile-nav-open {
   }
 }
 
-/* --------------------------------------------------------------------------
-   7. Reduced Motion Support (Aksesibilitas)
-   -------------------------------------------------------------------------- */
+/* 7. Reduced Motion Support (Aksesibilitas) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -597,9 +578,7 @@ body.mobile-nav-open {
   }
 }
 
-/* --------------------------------------------------------------------------
-   8. Cross-Device UI/UX & Universal Ergonomics (Mobile, Tablet, Desktop)
-   -------------------------------------------------------------------------- */
+/* 8. Cross-Device UI/UX & Universal Ergonomics (Mobile, Tablet, Desktop) */
 /* Segmented Tabs & Dual-view Pill Switchers across all screen widths */
 .home-view-tab-btn,
 .view-switch-btn {
@@ -616,7 +595,7 @@ body.mobile-nav-open {
     font-size: clamp(0.7rem, 2.9vw, 0.8rem) !important;
     gap: 0.35rem !important;
   }
-  
+
   .home-view-tab-btn span.material-symbols-outlined,
   .view-switch-btn span.material-symbols-outlined {
     font-size: 1rem !important;

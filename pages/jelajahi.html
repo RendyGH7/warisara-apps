@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -136,13 +135,10 @@
 </head>
 
 <body class="bg-hero-bg text-surface selection:bg-brass-400 selection:text-ink font-body" data-page="jelajahi">
-
-  <!-- Confetti Canvas Layer -->
   <canvas id="confetti-canvas-layer"></canvas>
 
   <header id="main-navbar"
     class="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between glass-nav">
-    
     <a href="../index.html" class="flex items-center group focus:outline-none flex-shrink-0" aria-label="WARISARA Beranda">
       <img src="../assets/images/logo/logo-emblem.png?v=30" alt="WARISARA" class="w-8 h-8 object-contain hover:scale-105 transition-transform" />
     </a>
@@ -159,7 +155,6 @@
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-      <!-- Tombol Chat di Navbar -->
       <button id="nav-chat-toggle-btn" class="nav-chat-trigger btn-nav-icon relative" aria-label="Buka Chat Penjual" title="Pesan & Diskusi Produk">
         <span class="material-symbols-outlined text-base">chat</span>
         <span class="nav-chat-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brass-400 text-ink text-[9px] font-bold flex items-center justify-center">2</span>
@@ -219,8 +214,6 @@
   </div>
 
   <main id="page-content" class="page-module-main">
-    
-    <!-- Hero Section -->
     <section class="relative pt-28 sm:pt-36 pb-8 sm:pb-10 px-4 sm:px-6 bg-hero-bg text-surface overflow-hidden">
       <div class="absolute inset-0 w-full h-full pointer-events-none opacity-25">
         <div class="absolute inset-0 bg-gradient-to-b from-[#151310] via-transparent to-[#151310]"></div>
@@ -229,8 +222,6 @@
       </div>
 
       <div class="max-w-5xl mx-auto text-center relative z-10">
-        
-        <!-- LUXURY DUAL VIEW SWITCHER: PROVINSI VS MAESTRO PELESTARI -->
         <div class="inline-flex items-center p-1 sm:p-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl mb-5">
           <button id="btn-view-provinces" class="view-switch-btn active px-4 sm:px-5 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer">
             <span class="material-symbols-outlined text-base">travel_explore</span>
@@ -246,7 +237,6 @@
           38 Provinsi Nusantara
         </h1>
 
-        <!-- 1. PASSPORT & COMPASS HERO WIDGET (PROVINCES MODE) -->
         <div id="provinces-hero-container" class="passport-hero-widget p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl max-w-4xl mx-auto text-left flex flex-col md:flex-row items-center justify-between gap-5 transition-all">
           <div class="flex-1 w-full space-y-2.5">
             <div class="flex items-center justify-between">
@@ -268,7 +258,6 @@
               </span>
             </div>
 
-            <!-- Progress Bar -->
             <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden relative">
               <div class="passport-progress-fill h-full bg-gradient-to-r from-brass-600 via-brass-400 to-amber-200 transition-all duration-700 rounded-full" style="width: 0%;"></div>
             </div>
@@ -286,7 +275,6 @@
           </div>
         </div>
 
-        <!-- 2. MAKERS 4 STATS COUNTER BAR (MAKERS MODE) -->
         <div id="makers-hero-container" class="hidden grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
           <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-brass-400/30 transition-colors">
             <div class="text-2xl sm:text-3xl font-display font-semibold text-brass-300 mb-0.5">38</div>
@@ -313,15 +301,11 @@
       </div>
     </section>
 
-    <!-- SEARCH & MULTI-FILTER BAR (STATIS - TIDAK MENGIKUTI SCROLL) -->
     <section class="filter-bar-section py-4 px-4 sm:px-6 bg-[#151310]">
       <div class="max-w-6xl mx-auto">
-        <!-- Floating Glassmorphism Deck Card -->
         <div class="filter-deck-card p-3 sm:p-4 rounded-2xl border border-white/[0.08] bg-[#16120E]/90 backdrop-blur-2xl shadow-xl space-y-3">
-          
-          <!-- Baris 1: Kolom Pencarian + Filter Status Paspor / Selector 38 Maestro -->
+
           <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-            <!-- Search Input (Dinamis: Provinsi vs Maestro) -->
             <div class="relative flex-1 max-w-full md:max-w-md">
               <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/80 text-base pointer-events-none">search</span>
               <input id="province-search-input" type="text" placeholder="Cari provinsi, ibukota, tradisi, kuliner, wisata..."
@@ -331,7 +315,6 @@
               </button>
             </div>
 
-            <!-- Kontrol 1: Status Paspor (Muncul saat Mode Provinsi Aktif) -->
             <div id="provinces-filter-controls" class="flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
               <span class="text-[11px] text-surface/50 font-medium items-center gap-1.5 hidden sm:inline-flex">
                 <span class="material-symbols-outlined text-xs text-brass-400/80">verified_user</span>
@@ -353,7 +336,6 @@
               </div>
             </div>
 
-            <!-- Kontrol 2: Dropdown 38 Provinsi & Reset (Muncul saat Mode Pelestari Aktif) -->
             <div id="makers-filter-controls" class="hidden flex items-center justify-between md:justify-end gap-2 flex-shrink-0">
               <div class="relative w-full sm:w-64">
                 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-brass-400/70 text-sm pointer-events-none">location_on</span>
@@ -363,7 +345,6 @@
                 <span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-surface/50 text-sm">unfold_more</span>
               </div>
 
-              <!-- Quick Reset Button -->
               <button id="maker-reset-btn" class="hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-brass-400/30 bg-brass-400/10 hover:bg-brass-400/25 text-brass-300 text-xs font-medium cursor-pointer transition-all whitespace-nowrap shadow-sm" title="Kembalikan Filter ke Awal">
                 <span class="material-symbols-outlined text-sm">restart_alt</span>
                 <span>Reset</span>
@@ -372,11 +353,8 @@
 
           </div>
 
-          <!-- Baris 2: Navigasi Wilayah Berdasarkan Pulau Nusantara (Universal: Sinkron Provinsi & Maestro) -->
           <div class="pt-2.5 border-t border-white/[0.06] flex items-center overflow-x-auto no-scrollbar">
             <div id="island-filters" class="flex items-center gap-1.5 flex-nowrap min-w-max py-0.5 w-full">
-              
-              <!-- Tab Semua -->
               <button data-island="all" class="island-btn island-filter-pill active" title="Semua Wilayah">
                 <span class="material-symbols-outlined text-xs">travel_explore</span>
                 <span>Semua</span>
@@ -385,7 +363,6 @@
 
               <div class="island-group-divider"></div>
 
-              <!-- 5 Pulau Utama -->
               <button data-island="Sumatera" class="island-btn island-filter-pill">
                 <span>Sumatera</span>
                 <span class="pill-count">10</span>
@@ -409,7 +386,6 @@
 
               <div class="island-group-divider"></div>
 
-              <!-- Kepulauan -->
               <button data-island="Bali & Nusa Tenggara" class="island-btn island-filter-pill">
                 <span>Bali & NT</span>
                 <span class="pill-count">3</span>
@@ -426,16 +402,13 @@
       </div>
     </section>
 
-    <!-- VIEW 1: PROVINCES GRID SECTION -->
     <section id="provinces-view-container" class="py-10 px-4 sm:px-6 lg:px-8 bg-[#181512] min-h-[60vh]">
       <div class="max-w-6xl mx-auto">
         <div id="provinces-count-indicator" class="text-xs text-surface/50 mb-6 flex items-center justify-between px-1">
           <span>Menampilkan <strong id="visible-count" class="text-brass-300">38</strong> dari 38 Provinsi Nusantara</span>
         </div>
 
-        <!-- Staggered Dynamic Masonry Grid -->
         <div id="provinces-grid" class="provinces-staggered-container">
-          <!-- Staggered columns and cards injected dynamically by jelajahi-provinces.js -->
         </div>
 
         <div id="provinces-empty-state" class="hidden text-center py-20 text-surface/60">
@@ -446,16 +419,13 @@
       </div>
     </section>
 
-    <!-- VIEW 2: MAKERS GRID SECTION (TERINTEGRASI 100% DARI HALAMAN PELESTARI) -->
     <section id="makers-view-container" class="hidden py-10 px-4 sm:px-6 lg:px-8 bg-[#181512] min-h-[60vh]">
       <div class="max-w-6xl mx-auto">
-        <!-- Live Count Indicator -->
         <div class="text-xs text-surface/60 mb-6 px-1 flex items-center justify-between">
           <span>Menampilkan <strong id="makers-count-number" class="text-brass-300 font-semibold">38</strong> dari 38 Maestro Kebudayaan</span>
           <span class="text-[11px] text-surface/40 font-mono hidden sm:inline">1 Provinsi : 1 Maestro Penjaga Tradisi</span>
         </div>
 
-        <!-- Empty State -->
         <div id="makers-empty-state" class="hidden text-center py-20 px-4 bg-white/[0.02] border border-white/10 rounded-3xl">
           <span class="material-symbols-outlined text-4xl text-brass-400 mb-3">person_search</span>
           <h3 class="font-display text-2xl text-surface font-light mb-1">Maestro Tidak Ditemukan</h3>
@@ -467,44 +437,30 @@
           </button>
         </div>
 
-        <!-- Dynamic Grid of 38 Artisans (2 columns on mobile) -->
         <div id="makers-grid" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
-          <!-- Injected dynamically by jelajahi-provinces.js -->
         </div>
       </div>
     </section>
 
-
-    <!-- ULTIMATE PROVINCE DETAIL MODAL (PAVILION ENSIKLOPEDIA DIGITAL) -->
     <div id="province-modal-overlay" class="modal-overlay hidden fixed inset-0 z-[1000] bg-black/20 backdrop-blur-md items-center justify-center p-3 pt-7 sm:p-5 sm:pt-8 lg:p-8 lg:pt-8 overflow-y-auto overscroll-contain">
       <div class="relative w-full max-w-6xl my-auto pointer-events-none">
-        
-        <!-- Outside Close Button (Positioned outside popup box at top right) -->
         <button onclick="window.closeProvinceModal ? window.closeProvinceModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeProvinceModal && window.WARISARA_JELAJAHI.closeProvinceModal())" class="group province-modal-close-trigger pointer-events-auto absolute -top-4 right-1 sm:-top-5 sm:-right-2 lg:-top-5 lg:-right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Modal" title="Tutup">
           <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
         </button>
 
         <div id="province-detail-modal" class="pointer-events-auto modal-container w-full bg-[#14110E]/90 border border-brass-400/35 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[92vh] h-[92vh] lg:h-[86vh] backdrop-blur-2xl">
-        
-        <!-- LEFT PANEL: VISUAL SHOWCASE & PROVINCE IDENTITY -->
         <div class="lg:w-[44%] w-full flex flex-col relative border-b lg:border-b-0 lg:border-r border-white/10 bg-[#100D0B]/85 flex-shrink-0">
-          
-          <!-- Large Illustration Showcase Area -->
+
           <div id="modal-hero-banner" class="relative flex-1 min-h-[300px] sm:min-h-[360px] lg:min-h-0 bg-cover bg-center overflow-hidden flex flex-col justify-between p-5 sm:p-6">
-            <!-- Subtle lighting gradients that keep photo vividly visible & text legible -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25 pointer-events-none"></div>
 
-            <!-- Top Action Header on Illustration: Unified, Single-Row Luxury Design -->
             <div class="relative z-10 flex items-center justify-between gap-2.5 w-full flex-nowrap">
-              <!-- Left: Clean Island Region Pill -->
               <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-brass-300 text-[10px] font-bold tracking-wider uppercase shadow-xl flex-shrink-0">
                 <span class="material-symbols-outlined text-[13px] text-brass-400">explore</span>
                 <span id="modal-province-island">PULAU</span>
               </div>
 
-              <!-- Right: Unified Capsule Toolbar (Switcher + Quick Actions in 1 Sleek Bar) -->
               <div class="inline-flex items-center p-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 shadow-xl flex-shrink-0">
-                <!-- Dual Switcher: Landmark vs Pelestari -->
                 <div class="flex items-center p-0.5 rounded-full bg-white/5">
                   <button type="button" id="btn-hero-view-landmark" class="px-2.5 py-1 rounded-full bg-brass-400 text-ink font-bold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer text-[11px]" title="Lihat Foto Landmark Daerah">
                     <span class="material-symbols-outlined text-[13px]">landscape</span>
@@ -516,10 +472,8 @@
                   </button>
                 </div>
 
-                <!-- Divider -->
                 <div class="w-px h-3.5 bg-white/20 mx-1"></div>
 
-                <!-- Quick Action Icons -->
                 <div class="flex items-center gap-0.5 pr-0.5">
                   <button type="button" id="modal-voice-greeting-btn" class="w-7 h-7 rounded-full hover:bg-brass-400 hover:text-ink text-surface/90 flex items-center justify-center transition-all cursor-pointer" title="Dengarkan Sapaan Lokal">
                     <span class="material-symbols-outlined text-base">volume_up</span>
@@ -531,12 +485,11 @@
               </div>
             </div>
 
-            <!-- Bottom Metadata & Province Title on Illustration -->
             <div class="relative z-10 pt-10 sm:pt-14">
               <h2 id="modal-province-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-3 drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)] tracking-tight">
                 Nama Provinsi
               </h2>
-              <!-- Translucent Glass Box ("Lebih Bening, Foto Terlihat Jelas, Tulisan Tajam & Rapih") -->
+
               <div class="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs bg-black/20 hover:bg-black/30 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all">
                 <div class="flex items-center gap-2.5">
                   <div class="w-7 h-7 rounded-xl bg-brass-400/25 border border-brass-400/40 flex items-center justify-center text-brass-200 flex-shrink-0 shadow-sm backdrop-blur-sm">
@@ -570,7 +523,6 @@
 
           </div>
 
-          <!-- Single Iconic Landmark / Pelestari Hallmark Bar -->
           <div class="px-5 py-2.5 bg-[#0E0C0A]/90 border-t border-white/10 flex items-center justify-between gap-3 text-xs flex-shrink-0">
             <div class="flex items-center gap-2 min-w-0">
               <span id="illustration-caption-icon" class="material-symbols-outlined text-brass-400 text-sm flex-shrink-0">location_on</span>
@@ -583,10 +535,7 @@
 
         </div>
 
-        <!-- RIGHT PANEL: INFORMATION & ENCYCLOPEDIA PAVILION -->
         <div class="lg:w-[56%] w-full flex flex-col bg-[#14110E]/85 backdrop-blur-xl overflow-hidden flex-1 min-h-0">
-          
-          <!-- Navigation Tabs Bar (At the very top of right panel) -->
           <div class="px-5 py-3 sm:py-3.5 bg-[#100D0B]/90 border-b border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
             <button id="tab-btn-overview" data-tab="overview" class="modal-tab-btn active">
               <span class="material-symbols-outlined text-sm">auto_stories</span>
@@ -606,10 +555,7 @@
             </button>
           </div>
 
-          <!-- Tab Contents Scrollable Body -->
           <div class="modal-scroll-pane p-5 sm:p-7 pb-12 overflow-y-auto space-y-6 flex-1 min-h-0 text-xs sm:text-sm text-surface/85">
-            
-            <!-- Tab 1: Kisah & Identitas -->
             <div id="tab-overview-content" class="tab-pane space-y-5">
               <div class="relative p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-brass-400/12 via-white/[0.02] to-transparent border border-brass-400/30 flex items-start gap-3.5 sm:gap-4 shadow-lg group">
                 <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brass-400/15 border border-brass-400/30 flex items-center justify-center text-brass-300 flex-shrink-0 shadow-inner">
@@ -622,23 +568,18 @@
                   </p>
                 </div>
               </div>
-              
+
               <div id="tab-history-content"></div>
 
-              <!-- Spotlight Card: Maestro Pelestari Budaya Terpadu di Tab 1 -->
               <div id="tab-overview-maker-spotlight" class="pt-1"></div>
             </div>
 
-            <!-- Tab 2: Maestro Pelestari Budaya (Dedicated Comprehensive Pavilion) -->
             <div id="tab-maker-content" class="tab-pane hidden space-y-6"></div>
 
-            <!-- Tab 3: Kuliner & Mahakarya -->
             <div id="tab-culinary-weapon-content" class="tab-pane hidden space-y-6"></div>
 
-            <!-- Tab 4: Kuis Kilat -->
             <div id="tab-quiz-content" class="tab-pane hidden"></div>
 
-            <!-- Wari Mascot Interactive Commentary -->
             <div class="p-4 sm:p-4.5 rounded-2xl bg-gradient-to-r from-brass-900/20 via-white/[0.02] to-transparent border border-brass-400/25 flex items-center gap-3.5 sm:gap-4">
               <div class="flex-shrink-0 flex items-center justify-center">
                 <img src="../assets/images/mascot/wari-idle-clean.png" alt="Wari Maskot" class="w-11 h-11 sm:w-12 sm:h-12 object-contain drop-shadow" />
@@ -654,7 +595,6 @@
               </div>
             </div>
 
-            <!-- Bottom Navigation & CTA (At the very bottom of content, not fixed) -->
             <div class="pt-5 mt-6 border-t border-white/10 flex items-center justify-between gap-3 text-xs flex-wrap">
               <div class="flex items-center gap-2">
                 <button id="modal-nav-prev" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-surface/80 hover:text-surface flex items-center gap-1 transition-colors cursor-pointer">
@@ -686,11 +626,8 @@
     </div>
   </div>
 
-    <!-- PASPOR PENJELAJAH MODAL (PASSPORT BOOK 38 STEMPEL) -->
     <div id="passport-book-modal" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/20 backdrop-blur-md items-center justify-center p-3 sm:p-5">
       <div class="passport-book-modal w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-        
-        <!-- Passport Header -->
         <div class="p-6 border-b border-border-dark bg-gradient-to-r from-brass-900/30 via-black/40 to-black/60 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-2xl bg-brass-400/20 border border-brass-400/40 flex items-center justify-center text-brass-300">
@@ -706,7 +643,6 @@
           </button>
         </div>
 
-        <!-- Passport User Progress Card -->
         <div class="p-6 border-b border-white/10 bg-white/[0.02]">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
             <div>
@@ -727,17 +663,14 @@
           </div>
         </div>
 
-        <!-- Stamps Grid (38 Provinsi) -->
         <div class="p-6 overflow-y-auto flex-1">
           <p class="text-xs text-surface/60 mb-4 font-light">
             Selesaikan kuis edukasi pada tiap provinsi untuk memperoleh stempel emas kehormatan. Klik salah satu stempel untuk langsung membuka ensiklopedia provinsi tersebut.
           </p>
           <div id="passport-stamps-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            <!-- Stamped items injected dynamically -->
           </div>
         </div>
 
-        <!-- Passport Footer -->
         <div class="p-4 px-6 border-t border-border-dark bg-[#120F0D] flex items-center justify-between text-xs">
           <span class="text-surface/50 text-[11px]">Progres disimpan permanen di perangkat Anda.</span>
           <button onclick="window.closePassportModal ? window.closePassportModal() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closePassportModal && window.WARISARA_JELAJAHI.closePassportModal())" class="close-passport-trigger px-5 py-2 rounded-full bg-brass-400 hover:bg-brass-300 text-ink font-bold transition-colors cursor-pointer">
@@ -748,7 +681,6 @@
       </div>
     </div>
 
-    <!-- KOMPAS BUDAYA MODAL (RANDOMIZER) -->
     <div id="compass-randomizer-modal" class="modal-overlay hidden fixed inset-0 z-[1050] bg-black/20 backdrop-blur-md items-center justify-center p-4">
       <div class="w-full max-w-md bg-[#161310] border border-brass-400/40 rounded-3xl overflow-hidden shadow-2xl p-6 text-center">
         <div class="flex items-center justify-between mb-4">
@@ -763,7 +695,6 @@
           Bingung mau menjelajah ke mana hari ini? Putar jarum kompas dan biarkan takdir menuntunmu ke sudut Nusantara yang menakjubkan!
         </p>
 
-        <!-- Compass Dial Outer -->
         <div class="compass-dial-outer mb-6">
           <div id="compass-needle-el" class="compass-needle"></div>
           <div class="compass-pivot"></div>
@@ -782,29 +713,24 @@
       </div>
     </div>
 
-    <!-- LIGHTBOX MODAL FOR REALISTIC GALLERY -->
     <div id="gallery-lightbox-modal" class="modal-overlay hidden fixed inset-0 z-[1100] bg-black/25 backdrop-blur-md items-center justify-center p-4">
       <div class="relative w-full max-w-4xl flex flex-col items-center">
-        <!-- Close button -->
         <button onclick="window.closeLightbox ? window.closeLightbox() : (window.WARISARA_JELAJAHI && window.WARISARA_JELAJAHI.closeLightbox && window.WARISARA_JELAJAHI.closeLightbox())" class="group close-lightbox-trigger warisara-modal-close-btn absolute -top-12 right-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)] cursor-pointer" aria-label="Tutup Galeri" title="Tutup">
           <span class="material-symbols-outlined text-xl sm:text-2xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
         </button>
 
-        <!-- Main Image -->
         <div class="relative max-h-[75vh] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-black">
           <img id="lightbox-img" src="" alt="Galeri Realistis" class="max-h-[75vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl" />
-          
-          <!-- Prev Button -->
+
           <button id="lightbox-prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface border border-white/20 transition-all">
             <span class="material-symbols-outlined text-xl">chevron_left</span>
           </button>
-          <!-- Next Button -->
+
           <button id="lightbox-next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-brass-400 hover:text-ink text-surface border border-white/20 transition-all">
             <span class="material-symbols-outlined text-xl">chevron_right</span>
           </button>
         </div>
 
-        <!-- Caption -->
         <div class="mt-4 text-center max-w-xl">
           <div class="flex items-center justify-center gap-2 mb-1">
             <h4 id="lightbox-title" class="font-display text-base text-surface font-normal">Judul Foto</h4>
@@ -817,18 +743,13 @@
 
   </main>
 
-              <!-- FOOTER PROFESIONAL & MODERN -->
   <footer class="relative bg-[#0E0C0A] text-surface/70 text-xs border-t border-white/10 pt-16 pb-12 px-4 sm:px-8 overflow-hidden">
-    <!-- Subtle Ambient Glow -->
     <div class="absolute -top-32 left-1/4 w-96 h-96 bg-brass-900/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 right-1/4 w-96 h-96 bg-forest-900/10 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto relative z-10 space-y-12">
-      
-      <!-- Bagian Atas: Brand + Deskripsi + Download App Buttons -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
-        
-        <!-- Kolom Brand & Penjelasan Web (5 Cols) -->
+
         <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-0">
           <div class="flex items-center gap-5">
             <img src="../assets/images/logo/logo-emblem.png?v=30" alt="WARISARA Emblem" class="w-14 h-14 object-contain drop-shadow" />
@@ -840,7 +761,6 @@
           </p>
         </div>
 
-        <!-- Kolom Tautan Cepat / Navigasi (3 Cols) -->
         <div class="lg:col-span-3 space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300">Eksplorasi Budaya</h4>
           <ul class="space-y-2 text-xs font-light text-surface/70">
@@ -853,7 +773,6 @@
           </ul>
         </div>
 
-        <!-- Kolom Download Mobile Apps di Google Play & App Store (4 Cols) -->
         <div class="lg:col-span-4 space-y-4">
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-brass-300 mb-1 flex items-center gap-1.5">
@@ -865,10 +784,7 @@
             </p>
           </div>
 
-          <!-- App Store & Play Store Download Badges -->
           <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-1">
-            
-            <!-- Google Play Button -->
             <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Google Play Store">
               <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" fill="#EA4335"/>
@@ -882,7 +798,6 @@
               </div>
             </button>
 
-            <!-- Apple App Store Button -->
             <button class="app-download-btn group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 border border-white/15 hover:border-brass-400/60 transition-all text-left shadow-lg hover:shadow-brass-400/15 hover:-translate-y-0.5 cursor-pointer" title="Unduh di Apple App Store">
               <svg class="w-6 h-6 flex-shrink-0 fill-surface group-hover:fill-brass-300 transition-colors" viewBox="0 0 170 170">
                 <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.59-7.71-11.72-14-4.89-7.4-8.86-15.8-11.91-25.19-3.05-9.39-4.58-18.42-4.58-27.11 0-12.5 3.17-23.11 9.5-31.84 6.33-8.72 14.33-13.2 24-13.43 4.9 0 10.37 1.34 16.42 4.02 6.04 2.68 9.94 4.08 11.68 4.22 1.95-.27 6.04-1.74 12.27-4.42 6.23-2.68 11.43-3.87 15.62-3.58 11.63.85 20.67 5.17 27.13 12.98-9.82 5.95-14.64 14.19-14.47 24.71.18 8.16 3.26 15.11 9.24 20.85 5.98 5.74 13.06 9.07 21.23 10-1.84 5.69-3.95 11.23-6.33 16.63zM119.22 31.02c0-7.25 2.66-13.97 7.98-20.17 5.32-6.19 11.83-10.05 19.53-11.58.55 3.15.55 6.13 0 8.94-.83 6.94-3.79 13.41-8.88 19.41-5.08 6.01-11.3 9.77-18.63 11.28v-7.88z"/>
@@ -898,7 +813,6 @@
 
       </div>
 
-      <!-- Bagian Bawah: Hak Cipta & Informasi Legal -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-surface/50 pt-2">
         <div>
           © 2026 <strong>WARISARA</strong>. Dikembangkan untuk <strong>TECHTOPIA Vol. 2 (INTEGER#8)</strong>.
@@ -961,7 +875,6 @@
     })();
   </script>
 
-  <!-- Scripts -->
   <script src="../data/products.js"></script>
   <script src="../data/provinces.js?v=21"></script>
   <script src="../data/maker-illustrations.js"></script>

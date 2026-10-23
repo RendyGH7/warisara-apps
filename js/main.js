@@ -1,6 +1,6 @@
 (function () {
   function initApp() {
-    
+
     try {
       if (window.WARISARA_PAGE_CONNECTOR) window.WARISARA_PAGE_CONNECTOR.init();
     } catch (e) {

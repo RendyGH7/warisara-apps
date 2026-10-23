@@ -2,7 +2,7 @@
   "use strict";
 
   const StudioState = {
-    
+
     currentMode: "generative",
 
     motif: "kawung", 
@@ -540,7 +540,7 @@
     const h = canvas.height;
 
     if (StudioState.currentMode === "canting" && !StudioState.cantingIsPrinted) {
-      
+
       ctx.fillStyle = "#FAF8F5";
       ctx.fillRect(0, 0, w, h);
 
@@ -757,7 +757,7 @@
     targetCtx.lineJoin = "round";
 
     if (layout === "radial") {
-      
+
       const cx = w / 2;
       const cy = h / 2;
       const maxR = w * 0.48;
@@ -787,7 +787,7 @@
       targetCtx.restore();
 
     } else if (layout === "diagonal") {
-      
+
       const spacing = cellSize * 0.85;
       const diagSteps = Math.ceil((w + h) / spacing) + 2;
 
@@ -807,7 +807,7 @@
       }
 
     } else if (layout === "brick") {
-      
+
       let rowIdx = 0;
       for (let y = -cellSize / 2; y <= h + cellSize; y += cellSize * 0.86) {
         const xOffset = (rowIdx % 2 === 1) ? cellSize / 2 : 0;
@@ -825,7 +825,7 @@
       }
 
     } else if (layout === "organic") {
-      
+
       let count = 0;
       for (let y = 0; y < h; y += cellSize * 0.9) {
         for (let x = 0; x < w; x += cellSize * 0.9) {
@@ -843,7 +843,7 @@
       }
 
     } else {
-      
+
       let row = 0;
       for (let y = 0; y < h; y += cellSize) {
         let col = 0;
@@ -1611,12 +1611,10 @@
     if (!hex) return "Wastra Pusaka";
     const clean = hex.trim().toUpperCase();
     const formatted = clean.startsWith("#") ? clean : "#" + clean;
-    
-    // Exact match lookup
+
     const exact = NUSANTARA_PIGMENTS.find((p) => p.hex.toUpperCase() === formatted);
     if (exact) return exact.name;
 
-    // Euclidean distance match across all authentic Nusantara pigments
     const targetRgb = hexToRgb(formatted);
     let closestPigment = null;
     let minDistance = Infinity;
@@ -1740,7 +1738,6 @@
     const mockupCanvas = document.getElementById("mockup-preview-canvas");
     if (!mockupCanvas) return;
 
-    // Pastikan resolusi tajam
     if (mockupCanvas.width !== 1200) {
       mockupCanvas.width = 1200;
       mockupCanvas.height = 1200;
@@ -1752,7 +1749,6 @@
 
     mCtx.clearRect(0, 0, mw, mh);
 
-    // Buat pola berulang yang dapat di-scale dan di-rotate
     const pattern = createScaledRotatedPattern(
       mCtx,
       canvas,
@@ -1780,9 +1776,7 @@
     updateLivePaletteDisplay();
   }
 
-  // =========================================================================
   // 1. MOCKUP GAUN WASTRA NUSANTARA (MIDI BOHO DRESS - SESUAI GAMBAR 1)
-  // =========================================================================
   function drawDressMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -1822,7 +1816,7 @@
     mCtx.closePath();
     mCtx.fillStyle = "#1E1A16";
     mCtx.fill();
-    
+
     // Label leher
     mCtx.fillStyle = "rgba(201, 165, 103, 0.75)";
     mCtx.font = `bold ${w * 0.012}px 'Fraunces', serif`;
@@ -1849,7 +1843,7 @@
       ctx.lineTo(cx - w * 0.12, h * 0.44);
       // Rok jatuh mengembang kiri
       ctx.bezierCurveTo(cx - w * 0.16, h * 0.54, cx - w * 0.22, h * 0.68, cx - w * 0.28, h * 0.87);
-      
+
       // Kelim bawah rok dengan 7 lekukan lipatan natural
       const folds = 7;
       const skirtLeft = cx - w * 0.28;
@@ -1997,7 +1991,7 @@
 
     // DETAIL JAHITAN & AKSESORIS REALISTIS (Sesuai Gambar 1)
     mCtx.save();
-    
+
     // Garis tepi halus
     createDressPath(mCtx);
     mCtx.strokeStyle = "rgba(26, 22, 18, 0.45)";
@@ -2060,9 +2054,7 @@
     mCtx.restore();
   }
 
-  // =========================================================================
   // 2. MOCKUP TOTE BAG KRIYA KULIT & KANVAS (SESUAI GAMBAR REFERENSI 2)
-  // =========================================================================
   function drawLeatherStraps(mCtx, w, h, cx, isBack) {
     mCtx.save();
     const strapW = 28;
@@ -2333,9 +2325,7 @@
     mCtx.restore();
   }
 
-  // =========================================================================
   // 3. MOCKUP KEMEJA BATIK PRIA MODERN FIT
-  // =========================================================================
   function drawShirtMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2454,9 +2444,7 @@
     mCtx.restore();
   }
 
-  // =========================================================================
   // 4. MOCKUP SELENDANG SUTRA (SILK SCARF WITH GOLD FRINGES)
-  // =========================================================================
   function drawScarfMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2519,9 +2507,7 @@
     mCtx.restore();
   }
 
-  // =========================================================================
   // 5. MOCKUP BANTAL INTERIOR DEKORASI (CUSHION WITH PIPING)
-  // =========================================================================
   function drawCushionMockup(mCtx, w, h, pattern, fabric, shadowInt, highlightInt) {
     mCtx.save();
 
@@ -2600,9 +2586,7 @@
     mCtx.restore();
   }
 
-  // =========================================================================
   // 6. LEMBAR SPEK DESAIN FASHION & KRIYA / TECH PACK (SESUAI GAMBAR 1)
-  // =========================================================================
   function exportFashionTechPack() {
     const tWidth = 1600;
     const tHeight = 1100;
@@ -3332,7 +3316,7 @@
           StudioState.activeView = "flat";
           if (mockupTabs) mockupTabs.classList.add("hidden");
           freehandCtx.clearRect(0, 0, freehandCanvas.width, freehandCanvas.height);
-          
+
           const flatView = document.getElementById("view-flat-canvas");
           const mockupView = document.getElementById("view-mockup-wrapper");
           if (flatView) flatView.classList.remove("hidden");
@@ -3442,9 +3426,7 @@
     bindColorInput("picker-highlight", (val) => { StudioState.highlightColor = val; });
     bindColorInput("picker-bg", (val) => { StudioState.bgColor = val; });
 
-    // ==========================================
     // FITUR KOSTUMISASI WARNA MANDIRI & RACIKAN USER (100% PERSIS KODE USER)
-    // ==========================================
 
     function showStudioToast(msg, icon = "colorize") {
       let toast = document.getElementById("studio-live-toast");

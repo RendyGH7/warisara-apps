@@ -2,7 +2,7 @@
   'use strict';
 
   function initLanternCursor() {
-    
+
     if (document.getElementById('warisara-lantern-cursor')) return;
 
     const cursor = document.createElement('div');

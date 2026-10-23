@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -787,39 +786,31 @@
 </head>
 
 <body class="bg-hero-bg text-surface font-body antialiased min-h-screen min-h-[100dvh] flex flex-col selection:bg-brass-400 selection:text-ink relative" data-page="login">
-
-  <!-- ================= LATAR BELAKANG GERBANG NUSANTARA, WAYANG, BATIK & PULAU INDONESIA ================= -->
   <div class="portal-gate-wrapper" aria-hidden="true">
-    <!-- Gambar Gerbang Candi Bentar + Wayang Gunungan + Pulau Indonesia -->
+
     <img src="../assets/images/hero/bg-login-nusantara-gate.jpg" 
          alt="Gerbang Nusantara Pembuka WARISARA" 
          class="portal-gate-image" />
 
-    <!-- Lapisan Suasana Gelap Elegan (Vignette & Sinematik Kegelapan) -->
     <div class="portal-dark-vignette"></div>
 
-    <!-- Lapisan Tekstur Batik Nusantara Elegan di Sudut (seperti loading screen) -->
     <div class="batik-corner-tl" aria-hidden="true"></div>
     <div class="batik-corner-tr" aria-hidden="true"></div>
     <div class="batik-corner-bl" aria-hidden="true"></div>
     <div class="batik-corner-br" aria-hidden="true"></div>
 
-    <!-- Sinar Suci Cahaya Gerbang Pembuka (Celestial Portal Aura) -->
     <div class="portal-celestial-rays"></div>
   </div>
 
-  <!-- Canvas Animasi Debu Emas (Gold Dust) & Confetti Selebrasi -->
   <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-  <!-- Container Partikel Ambient Glow Tetap (Cegah scroll horizontal & peregangan tinggi halaman) -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
     <div class="ambient-gold-orb w-[420px] h-[420px] bg-brass-600/25 -top-20 -left-20"></div>
     <div class="ambient-gold-orb w-[520px] h-[520px] bg-amber-700/18 top-1/2 -right-32"></div>
     <div class="ambient-gold-orb w-[380px] h-[380px] bg-emerald-800/15 bottom-10 left-1/3"></div>
   </div>
 
-  <!-- Tombol Navigasi Kembali Minimalis -->
   <a href="javascript:if(document.referrer&&!document.referrer.includes('login.html')){history.back();}else{window.location.href='../index.html';}" 
      class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181512]/80 hover:bg-[#181512] border border-white/15 hover:border-brass-400/50 text-surface/80 hover:text-brass-300 text-xs font-semibold backdrop-blur-md transition-all shadow-lg group">
     <span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
@@ -827,12 +818,9 @@
     <span>Kembali</span>
   </a>
 
-  <!-- ================= MAIN PORTAL: MASKOT + AUTHENTICATION CARD ================= -->
   <main class="flex-1 min-h-screen min-h-[100dvh] relative z-10 py-8 sm:py-12 lg:py-14 px-4 sm:px-6 flex flex-col justify-start sm:justify-center">
-    
     <div class="w-full max-w-6xl mx-auto my-auto">
-      
-      <!-- Banner Notifikasi Redirect Otomatis (jika ada param redirect) -->
+
       <div id="auth-redirect-notice" class="hidden mb-6 p-3 rounded-2xl bg-brass-400/10 border border-brass-400/30 text-center text-xs text-brass-200 animate-pulse">
         <span class="inline-flex items-center gap-1.5 font-semibold">
           <span class="material-symbols-outlined text-sm text-brass-400">info</span>
@@ -840,13 +828,9 @@
         </span>
       </div>
 
-      <!-- Grid 2 Kolom: Kiri Judul Besar + Maskot + Komentar, Kanan Auth Card Glassmorphic -->
       <div class="auth-portal-grid grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        
-        <!-- ================= KOLOM KIRI: JUDUL BESAR DI TENGAH + MASKOT + KOMENTAR ================= -->
         <div class="auth-portal-left-col lg:col-span-7 flex flex-col justify-between text-center lg:py-2">
-          
-          <!-- 1. PALING ATAS: Animasi Ganti Tulisan Nusantara -->
+
           <div class="w-full flex items-center justify-center pt-1 flex-shrink-0" id="top-tagline-wrapper">
             <div class="cycling-tagline-pill" id="cycling-tagline-container" aria-live="polite">
               <span class="cycling-sparkle-icon material-symbols-outlined">auto_awesome</span>
@@ -857,7 +841,6 @@
             </div>
           </div>
 
-          <!-- 2. BENAR-BENAR DI TENGAH: Tulisan Selamat Datang di & Logo WariSara -->
           <div class="w-full flex flex-col items-center justify-center gap-2 my-auto py-6 sm:py-10 lg:py-14 text-center flex-grow" id="welcome-title-block">
             <h1 id="welcome-heading" class="welcome-title-text font-display font-light tracking-tight select-none sm:whitespace-nowrap">
               Selamat Datang di
@@ -868,12 +851,9 @@
                  class="welcome-logo-img w-auto object-contain select-none mt-2" />
           </div>
 
-          <!-- 3. DI PALING BAWAH: Maskot di Kiri, Komentar di Kanan Maskot -->
           <div class="w-full flex flex-col sm:flex-row items-center gap-5 lg:gap-6 pb-1 text-left flex-shrink-0">
-            
-            <!-- Maskot Wari Berada di Bawah Tulisan Selamat Datang -->
             <div class="mascot-container flex-shrink-0 relative">
-              <!-- Efek Cahaya Halus di Belakang Maskot -->
+
               <div class="mascot-backlight-halo" aria-hidden="true"></div>
 
               <div class="mascot-img-wrapper relative z-10" id="mascot-trigger" title="Klik Wari untuk sapaan seru!">
@@ -885,7 +865,6 @@
               <div class="mascot-shadow"></div>
             </div>
 
-            <!-- Komentar dari Maskot: Berada di Bawah Logo Tulisan, di Sebelah Kanan Maskot, di Sebelah Kiri Kotak Login -->
             <div class="flex-1 w-full max-w-sm sm:max-w-none">
               <div class="wari-speech-bubble" id="wari-speech-box">
                 <div class="flex items-center gap-2 mb-1.5">
@@ -906,20 +885,14 @@
 
         </div>
 
-        <!-- ================= KOLOM KANAN: KARTU AUTENTIKASI GOOGLE GLASSMORPHISM ================= -->
         <div class="lg:col-span-5 w-full max-w-md mx-auto relative">
-          
-          <!-- Efek Cahaya Halus di Belakang Kotak Login (Subtle Gold Backlight) -->
           <div class="card-backlight-glow" aria-hidden="true"></div>
 
           <div class="glass-auth-card p-6 sm:p-7 rounded-3xl relative">
-            <!-- Frost inner overlay -->
             <div class="glass-auth-card-inner-frost" aria-hidden="true"></div>
-            
-            <!-- Ornamen Aksen Sudut Batik Emas -->
+
             <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-brass-400/20 via-transparent to-transparent pointer-events-none"></div>
 
-            <!-- Header Card Bersih -->
             <div class="flex items-center gap-3.5 pb-4 border-b border-white/10">
               <img src="../assets/images/logo/logo-emblem.png" 
                    alt="WARISARA" 
@@ -930,10 +903,7 @@
               </div>
             </div>
 
-            <!-- ================= VIEW 1: STATE BELUM LOGIN ================= -->
             <div id="auth-unlogged-view" class="pt-4 space-y-4">
-              
-              <!-- Tab Switcher Minimalis (Masuk vs Daftar) -->
               <div class="flex items-center p-1 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold relative">
                 <button id="page-tab-login" type="button" 
                         class="flex-1 py-2 rounded-xl bg-brass-400 text-ink shadow font-bold transition-all flex items-center justify-center gap-1.5">
@@ -947,9 +917,7 @@
                 </button>
               </div>
 
-              <!-- ================= PANEL 1: MASUK AKUN ================= -->
               <div id="panel-tab-login" class="space-y-3.5">
-                <!-- Tombol Utama Google One-Tap -->
                 <button id="page-btn-google-primary" type="button"
                         class="btn-google-primary w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
                   <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
@@ -961,15 +929,12 @@
                   <span id="page-google-btn-text">Lanjutkan dengan Akun Google</span>
                 </button>
 
-                <!-- Divider -->
                 <div class="relative py-0.5 flex items-center justify-center">
                   <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
                   <span class="relative px-3 py-0.5 rounded-full bg-[#181512] border border-white/10 text-[10px] uppercase font-bold tracking-wider text-surface/60">atau masuk secara manual</span>
                 </div>
 
-                <!-- Formulir Masuk Manual -->
                 <form id="form-manual-login" novalidate class="space-y-2">
-                  <!-- Alert Box Notifikasi / Error -->
                   <div id="login-alert-box" class="hidden p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs flex items-start gap-2">
                     <span class="material-symbols-outlined text-sm text-rose-400 flex-shrink-0 mt-0.5">error</span>
                     <span id="login-alert-msg" class="leading-relaxed"></span>
@@ -1003,22 +968,18 @@
                   </button>
                 </form>
 
-                <!-- Pilihan Profil di Perangkat -->
                 <div class="pt-2 border-t border-white/10">
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-[10px] uppercase font-bold tracking-wider text-surface/50">Akun di Perangkat (1-Klik Masuk)</span>
                     <span class="text-[9px] text-brass-300 font-mono">Bebas Password</span>
                   </div>
-                  <!-- Daftar Akun di Perangkat (Hanya 2 Akun Preset Resmi) -->
+
                   <div id="page-device-accounts-list" class="space-y-2.5 pt-1 pb-1">
-                    <!-- Di-render dinamis oleh JavaScript -->
                   </div>
                 </div>
               </div>
 
-              <!-- ================= PANEL 2: DAFTAR BARU ================= -->
               <div id="panel-tab-register" class="space-y-3.5 hidden">
-                <!-- Tombol Cepat Google Register -->
                 <button id="page-btn-google-register" type="button"
                         class="btn-google-primary w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-3">
                   <svg viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0">
@@ -1030,15 +991,12 @@
                   <span>Daftar Cepat dengan Akun Google</span>
                 </button>
 
-                <!-- Divider -->
                 <div class="relative py-0.5 flex items-center justify-center">
                   <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
                   <span class="relative px-3 py-0.5 rounded-full bg-[#181512] border border-white/10 text-[10px] uppercase font-bold tracking-wider text-surface/60">atau buat data akun manual</span>
                 </div>
 
-                <!-- Formulir Pendaftaran Manual -->
                 <form id="form-manual-register" novalidate class="space-y-2">
-                  <!-- Alert Box Notifikasi / Error -->
                   <div id="reg-alert-box" class="hidden p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs flex items-start gap-2">
                     <span class="material-symbols-outlined text-sm text-rose-400 flex-shrink-0 mt-0.5">error</span>
                     <span id="reg-alert-msg" class="leading-relaxed"></span>
@@ -1094,17 +1052,13 @@
                 </form>
               </div>
 
-              <!-- Keamanan -->
               <div class="pt-2 border-t border-white/10 text-center text-[10px] text-surface/50 flex items-center justify-center gap-1.5">
                 <span class="material-symbols-outlined text-xs text-brass-400">verified_user</span>
                 <span>Data terenkripsi dan tersimpan aman di ekosistem WARISARA</span>
               </div>
             </div>
 
-            <!-- ================= VIEW 2: STATE SUDAH LOGIN (AKTIF) ================= -->
             <div id="auth-logged-view" class="pt-4 space-y-4 hidden">
-              
-              <!-- Card Profil Aktif -->
               <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-brass-400/35 flex items-center gap-3">
                 <div id="logged-user-avatar" class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-white font-bold text-base flex items-center justify-center shadow-lg flex-shrink-0">
                   R
@@ -1118,10 +1072,9 @@
                 </div>
               </div>
 
-              <!-- Shortcut Navigasi Cepat -->
               <div class="space-y-2">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-surface/50 block">Akses Layanan</span>
-                
+
                 <a href="ekonomi-kreatif.html"
                    class="w-full p-2.5 rounded-xl bg-brass-400/15 hover:bg-brass-400/25 border border-brass-400/30 text-surface flex items-center justify-between transition-all group">
                   <div class="flex items-center gap-2.5">
@@ -1147,7 +1100,6 @@
                 </button>
               </div>
 
-              <!-- Tombol Kembali ke Beranda dengan Auto Redirect 10 Detik -->
               <div class="pt-2 border-t border-white/10 space-y-2">
                 <a href="../index.html" id="logged-btn-home"
                    class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brass-400 via-amber-400 to-brass-500 hover:from-brass-300 hover:to-brass-400 text-ink font-bold text-xs sm:text-sm tracking-wide transition-all shadow-lg hover:shadow-brass-400/30 flex items-center justify-center gap-2 group cursor-pointer">
@@ -1156,7 +1108,6 @@
                   <span id="auto-redirect-badge" class="px-2 py-0.5 rounded-full bg-black/20 text-ink text-[11px] font-mono font-bold">10s</span>
                 </a>
 
-                <!-- Indikator Bar Hitung Mundur 10 Detik -->
                 <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden relative">
                   <div id="redirect-progress-bar" class="h-full bg-brass-400 transition-all duration-1000 ease-linear" style="width: 100%;"></div>
                 </div>
@@ -1179,23 +1130,18 @@
 
   </main>
 
-  <!-- ================= POP-UP MODAL GOOGLE AUTH (FITUR DARI GOOGLE-AUTH PAGE) ================= -->
   <div id="google-picker-modal" class="modal-overlay hidden fixed inset-0 z-[99999] bg-black/20 backdrop-blur-md overflow-y-auto p-4 flex justify-center items-center">
     <div class="relative w-full max-w-md bg-[#202124] border border-white/10 rounded-3xl overflow-hidden shadow-2xl animate-modal-enter my-auto text-[#e8eaed]">
-      
-      <!-- Loading bar Google -->
       <div id="picker-loading-bar" class="hidden absolute top-0 left-0 right-0 h-1 bg-[#4285f4] overflow-hidden z-20">
         <div class="absolute inset-y-0 w-1/3 bg-[#8ab4f8] animate-googleSlide"></div>
       </div>
 
-      <!-- Tombol Tutup Pop-up (Foto 1 Standard) -->
       <button id="picker-btn-close" type="button" 
               class="warisara-modal-close-btn group absolute top-4 right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181512] hover:bg-red-600 hover:border-red-500 text-surface/90 hover:text-white border border-brass-400/40 shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] cursor-pointer z-10" 
               aria-label="Tutup Pop-up" title="Tutup">
         <span class="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 ease-out group-hover:rotate-180">close</span>
       </button>
 
-      <!-- Panel Utama Pilihan Akun -->
       <div id="picker-main-panel" class="p-6 sm:p-8">
         <div class="text-center mb-5">
           <svg class="w-10 h-10 mx-auto mb-3" viewBox="0 0 24 24">
@@ -1208,12 +1154,9 @@
           <p id="picker-subtitle" class="text-xs text-[#9aa0a6]">untuk melanjutkan ke <strong class="text-brass-300 font-semibold">WARISARA</strong></p>
         </div>
 
-        <!-- Daftar Akun Google -->
         <div id="picker-accounts-container" class="space-y-1.5 max-h-60 overflow-y-auto pr-1">
-          <!-- Rendered via JS -->
         </div>
 
-        <!-- Tombol Tambah Akun Lain -->
         <button type="button" id="picker-btn-toggle-custom" 
                 class="w-full mt-3 p-3 rounded-xl border border-dashed border-white/20 hover:border-[#8ab4f8] hover:bg-[#8ab4f8]/5 flex items-center gap-3 transition-colors text-left group">
           <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#8ab4f8] group-hover:scale-105 transition-transform flex-shrink-0">
@@ -1225,7 +1168,6 @@
           </div>
         </button>
 
-        <!-- Box Input Email Custom -->
         <div id="picker-custom-account-box" class="hidden mt-3 p-3 rounded-xl bg-black/40 border border-white/10 space-y-2">
           <input type="email" id="picker-custom-email-input" placeholder="contoh: nama.anda@gmail.com" 
                  class="w-full bg-[#181512] border border-white/20 rounded-lg px-3 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#8ab4f8] transition-colors" />
@@ -1240,7 +1182,6 @@
         </div>
       </div>
 
-      <!-- Panel Status Loading Saat Menghubungkan -->
       <div id="picker-status-panel" class="hidden p-10 text-center space-y-4">
         <div class="w-10 h-10 border-2 border-white/15 border-t-[#8ab4f8] rounded-full animate-spin mx-auto"></div>
         <div>
@@ -1252,7 +1193,6 @@
     </div>
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
   <script src="../js/utils/page-transition.js"></script>
   <script src="../js/utils/marketplace-auth.js?v=20261013_3"></script>
   <script src="../js/components/marketplace-chat.js"></script>
@@ -1298,7 +1238,6 @@
       })();
 
       let currentTab = 'login'; // 'login' | 'register'
-
 
       // Elemen DOM
       const tabLogin = document.getElementById('page-tab-login');
@@ -1366,7 +1305,7 @@
 
       function setMascotMood(mood, text) {
         if (!mascotImg || !speechText) return;
-        
+
         if (mood === 'happy' || mood === 'success') {
           mascotImg.src = '../assets/images/mascot/wari-happy-clean.png';
         } else {
@@ -2018,7 +1957,7 @@
       function renderConfetti() {
         if (!confettiCtx) return;
         confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-        
+
         for (let i = activeConfetti.length - 1; i >= 0; i--) {
           const c = activeConfetti[i];
           c.x += c.vx;

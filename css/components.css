@@ -285,11 +285,7 @@
               filter 260ms ease !important;
 }
 
-/* ==========================================================================
-   WARISARA UNIVERSAL MODAL CLOSE BUTTON (FOTO 1 SPECIFICATION)
-   Desain bulat elegan bertema Nusantara: border emas brass, latar gelap #181512,
-   dan saat dihover berubah merah membara dengan ikon X yang memutar 180 derajat.
-   ========================================================================== */
+/* WARISARA UNIVERSAL MODAL CLOSE BUTTON (FOTO 1 SPECIFICATION) | Desain bulat elegan bertema Nusantara: border emas brass, latar gelap #181512, | dan saat dihover berubah merah membara dengan ikon X yang memutar 180 derajat. */
 .warisara-modal-close-btn,
 .province-modal-close-trigger,
 #province-modal-close-btn,
@@ -457,10 +453,7 @@
   color: #FFFFFF !important;
 }
 
-/* ==========================================================================
-   WARISARA LUXURY CUSTOM DROPDOWN
-   Menggantikan native select dengan komponen floating luxury bertema gelap
-   ========================================================================== */
+/* WARISARA LUXURY CUSTOM DROPDOWN | Menggantikan native select dengan komponen floating luxury bertema gelap */
 .custom-filter-dropdown {
   position: relative;
   user-select: none;
@@ -615,5 +608,4 @@
     white-space: nowrap;
   }
 }
-
 

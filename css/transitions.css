@@ -54,16 +54,12 @@ body:has(#page-transition-veil.active) #wari-ai-widget,
   pointer-events: none !important;
 }
 
-/* Sembunyikan konten logo/loader saat halaman baru dibuka dari transisi,
-   sehingga animasi logo & loader HANYA MUNCUL 1 KALI (pada saat berpindah),
-   dan halaman baru hanya membuka tirai dengan sangat halus tanpa kedip/dobel */
+/* Sembunyikan konten logo/loader saat halaman baru dibuka dari transisi, | sehingga animasi logo & loader HANYA MUNCUL 1 KALI (pada saat berpindah), | dan halaman baru hanya membuka tirai dengan sangat halus tanpa kedip/dobel */
 #page-transition-veil.veil-exit-only .veil-content {
   display: none !important;
 }
 
-/* Tahap keluar (Veil Exit):
-   Logo & teks melayang lembut ke atas sambil memudar,
-   kemudian tirai background memudar halus ke halaman baru tanpa patah */
+/* Tahap keluar (Veil Exit): | Logo & teks melayang lembut ke atas sambil memudar, | kemudian tirai background memudar halus ke halaman baru tanpa patah */
 #page-transition-veil.veil-exiting .veil-content {
   opacity: 0;
   transform: scale(0.96) translateY(-14px);
@@ -303,9 +299,7 @@ body:has(#page-transition-veil.active) #wari-ai-widget,
   }
 }
 
-/* === Animasi Masuk Halaman Tujuan yang Ultra-Smooth ===
-   Ketika transisi tirai selesai, konten halaman baru tampil dengan
-   efek meluncur lembut (gentle glide up), fade in, dan micro blur dissolve */
+/* === Animasi Masuk Halaman Tujuan yang Ultra-Smooth === | Ketika transisi tirai selesai, konten halaman baru tampil dengan | efek meluncur lembut (gentle glide up), fade in, dan micro blur dissolve */
 body.page-entering-active {
   overflow-x: clip;
 }

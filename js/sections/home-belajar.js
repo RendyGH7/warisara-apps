@@ -155,7 +155,6 @@
 
         const now = this.audioCtx.currentTime;
         if (isCorrect) {
-          // Melodi gamelan slendro ceria
           [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
             const osc = this.audioCtx.createOscillator();
             const gain = this.audioCtx.createGain();
@@ -170,7 +169,6 @@
             osc.stop(now + idx * 0.08 + 0.36);
           });
         } else {
-          // Nada lembut penjelasan
           const osc = this.audioCtx.createOscillator();
           const gain = this.audioCtx.createGain();
           osc.type = "triangle";
@@ -184,7 +182,6 @@
           osc.stop(now + 0.31);
         }
       } catch (e) {
-        // silent fallback
       }
     },
 
@@ -198,7 +195,6 @@
       if (this.feedbackBox) this.feedbackBox.classList.add("hidden");
       if (this.nextBtn) this.nextBtn.classList.add("hidden");
 
-      // Updates
       if (this.indicator) this.indicator.textContent = `Tantangan 0${this.currentIndex + 1} dari 0${DEMO_QUESTIONS.length}`;
       if (this.progressBar) {
         const percent = ((this.currentIndex + 1) / DEMO_QUESTIONS.length) * 100;
@@ -220,7 +216,6 @@
         this.mascotImg.src = "assets/images/mascot/wari-idle-clean.png";
       }
 
-      // Render options
       if (this.optionsContainer) {
         this.optionsContainer.innerHTML = "";
         const labels = ["A", "B", "C", "D"];
@@ -302,7 +297,6 @@
         }
       });
 
-      // Show explanation
       if (this.feedbackBox && this.feedbackText) {
         this.feedbackText.textContent = chosenOpt.explanation || (isCorrect ? "Jawaban Anda sangat tepat dan akurat." : "Simak jawaban benar yang ditandai hijau di atas.");
         this.feedbackBox.classList.remove("hidden");

@@ -3,7 +3,7 @@ window.WARISARA_SCROLL = {
 
   initObservers: function () {
     if (!('IntersectionObserver' in window)) {
-      
+
       document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale, .scroll-reveal-left, .scroll-reveal-right')
         .forEach(el => el.classList.add('revealed'));
       return;
@@ -57,10 +57,10 @@ window.WARISARA_SCROLL = {
   },
 
   autoTagSections: function () {
-    
+
     const sections = document.querySelectorAll('main#app-dynamic-modules > section');
     sections.forEach((sec) => {
-      
+
       const header = sec.querySelector('.section-container > div:first-child');
       if (header && !header.classList.contains('scroll-reveal')) {
         header.classList.add('scroll-reveal');

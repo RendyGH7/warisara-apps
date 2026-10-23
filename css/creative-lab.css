@@ -432,9 +432,7 @@ body.modal-open #mobile-nav-drawer {
   box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.22);
 }
 
-/* ==========================================================================
-   Creative Lab Studio Mobile Responsive Enhancements
-   ========================================================================== */
+/* Creative Lab Studio Mobile Responsive Enhancements */
 @media (max-width: 640px) {
   .studio-mode-switcher-container {
     padding: 0.35rem !important;
@@ -477,9 +475,7 @@ body.modal-open #mobile-nav-drawer {
   }
 }
 
-/* ==========================================================================
-   Creative Lab Studio 2.0: Photorealistic Mockup & Studio Tabs
-   ========================================================================== */
+/* Creative Lab Studio 2.0: Photorealistic Mockup & Studio Tabs */
 
 .studio-nav-tab {
   position: relative;
@@ -562,5 +558,4 @@ body.modal-open #mobile-nav-drawer {
 .color-swatch-badge:hover {
   transform: translateY(-2px) scale(1.03);
 }
-
 

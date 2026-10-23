@@ -146,7 +146,7 @@ window.WARISARA_PRELOADER = {
     if (document.getElementById("warisara-preloader")) {
       this.container = document.getElementById("warisara-preloader");
     } else {
-      
+
       const isSubpage = window.location.pathname.includes("/pages/");
       const assetPrefix = isSubpage ? "../" : "";
 
@@ -154,7 +154,7 @@ window.WARISARA_PRELOADER = {
       preloader.id = "warisara-preloader";
       preloader.setAttribute("aria-hidden", "true");
       preloader.innerHTML = `
-        
+
         <div class="preloader-backdrop-canvas">
           <img src="${assetPrefix}assets/images/loading-screen/bg-loading-batik-wayang.jpg" 
                class="preloader-backdrop-image" 
@@ -173,9 +173,9 @@ window.WARISARA_PRELOADER = {
         </button>
 
         <div class="preloader-stage">
-          
+
           <div class="preloader-seal-theater">
-            
+
             <svg class="preloader-wayang-silhouette" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M80 8C80 8 135 70 145 125C155 180 120 195 80 215C40 195 5 180 15 125C25 70 80 8 80 8Z" stroke="#C9A567" stroke-width="1.8" stroke-dasharray="3 2" fill="url(#gununganGoldGrad)" />
               <path d="M80 25V195M55 110C65 118 75 120 80 120C85 120 95 118 105 110M50 145C65 155 95 155 110 145M60 80C70 88 90 88 100 80" stroke="#E6D3A7" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />

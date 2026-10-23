@@ -178,7 +178,6 @@ window.WARISARA_PROVINCE_PANEL = {
       this.btnToggleMaker.addEventListener("click", () => this.switchHeroView("maker"));
     }
 
-    // Setup Tabs
     const tabBtns = document.querySelectorAll(".province-tab-btn");
     tabBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -187,7 +186,6 @@ window.WARISARA_PROVINCE_PANEL = {
       });
     });
 
-    // Keyboard support
     document.addEventListener("keydown", (e) => {
       if (!this.isOpen) return;
       if (e.key === "Escape") {
@@ -283,14 +281,11 @@ window.WARISARA_PROVINCE_PANEL = {
   interactWithWari: function () {
     if (!this.wariSprite || !this.currentProvinceId) return;
 
-    // Switch sprite to happy
     this.wariSprite.src = "assets/images/mascot/wari-happy-clean.png";
     this.wariSprite.classList.add("modal-wari-bounce");
 
-    // Play chime sound
     this.playTraditionalSound("chime");
 
-    // Next trivia fact
     const facts = this.getTriviaForProvince(this.currentProvinceId);
     this.currentFactIndex = (this.currentFactIndex + 1) % facts.length;
     if (this.wariSpeech) {
@@ -329,7 +324,6 @@ window.WARISARA_PROVINCE_PANEL = {
       const now = ctx.currentTime;
 
       if (type === "gong") {
-        // Deep resonant bronze gong tone
         const freqs = [110, 220, 277.18, 329.63, 440];
         freqs.forEach((freq, idx) => {
           const osc = ctx.createOscillator();

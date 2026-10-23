@@ -45,7 +45,7 @@
     }
 
     bindEvents() {
-      
+
       if (this.searchField) {
         this.searchField.addEventListener('input', (e) => {
           this.searchQuery = e.target.value.toLowerCase().trim();
@@ -56,7 +56,6 @@
       if (this.themeFilterBtns) {
         this.themeFilterBtns.forEach((btn) => {
           btn.addEventListener('click', (e) => {
-            // Ripple click effect
             const rect = btn.getBoundingClientRect();
             const ripple = document.createElement('span');
             ripple.className = 'story-filter-ripple';
@@ -69,7 +68,6 @@
             btn.appendChild(ripple);
             setTimeout(() => ripple.remove(), 650);
 
-            // Tactile press bounce effect
             btn.classList.add('btn-press');
             setTimeout(() => btn.classList.remove('btn-press'), 220);
 
@@ -83,7 +81,6 @@
 
             this.filterTheme = btn.dataset.theme || 'all';
 
-            // Smooth fade & slide transition for the bookshelf grid
             if (this.bookshelfGrid) {
               this.bookshelfGrid.style.transition = 'opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)';
               this.bookshelfGrid.style.opacity = '0.35';
@@ -688,7 +685,7 @@
                 INTISARI KEARIFAN
               </span>
               <h3 class="font-display text-2xl font-bold text-[#2A1F17] mb-4">Petuah Luhur Nenek Moyang</h3>
-              
+
               <div class="p-5 rounded-2xl bg-[#8F6A18]/10 border border-[#8F6A18]/30 mb-5 shadow-sm">
                 <span class="text-[10px] uppercase font-bold text-[#8F6A18] block mb-1">Mutiara Nilai Hidup:</span>
                 <p class="font-display italic text-base sm:text-lg text-[#2A1F17] font-medium leading-relaxed">
@@ -888,7 +885,7 @@
     }
 
     bindSpreadEventListeners() {
-      
+
       const btnOpen = document.getElementById('btn-open-from-cover');
       if (btnOpen) {
         btnOpen.addEventListener('click', () => this.turnPage(1));
@@ -963,10 +960,10 @@
             ${this.getPageLeftHTML(currentIdx)}
             ${this.getPageRightHTML(nextIdx)}
           </div>
-          
+
           <div class="real-page-turn-leaf turn-forward">
             <div class="leaf-3d-flipper">
-              
+
               <div class="leaf-face leaf-face-front">
                 <div class="leaf-face-inner leaf-face-inner-right">
                   ${this.getPageRightHTML(currentIdx)}
@@ -974,7 +971,7 @@
                   <div class="leaf-sheen"></div>
                 </div>
               </div>
-              
+
               <div class="leaf-face leaf-face-back">
                 <div class="leaf-face-inner leaf-face-inner-left">
                   ${this.getPageLeftHTML(nextIdx)}
@@ -984,9 +981,9 @@
               </div>
             </div>
           </div>
-          
+
           <div class="turn-cast-shadow shadow-left"></div>
-          
+
           <div class="turn-underneath-shadow on-right"></div>
         `;
       } else {
@@ -997,10 +994,10 @@
             ${this.getPageLeftHTML(nextIdx)}
             ${this.getPageRightHTML(currentIdx)}
           </div>
-          
+
           <div class="real-page-turn-leaf turn-backward">
             <div class="leaf-3d-flipper">
-              
+
               <div class="leaf-face leaf-face-front">
                 <div class="leaf-face-inner leaf-face-inner-left">
                   ${this.getPageLeftHTML(currentIdx)}
@@ -1008,7 +1005,7 @@
                   <div class="leaf-sheen"></div>
                 </div>
               </div>
-              
+
               <div class="leaf-face leaf-face-back">
                 <div class="leaf-face-inner leaf-face-inner-right">
                   ${this.getPageRightHTML(nextIdx)}
@@ -1018,9 +1015,9 @@
               </div>
             </div>
           </div>
-          
+
           <div class="turn-cast-shadow shadow-right"></div>
-          
+
           <div class="turn-underneath-shadow on-left"></div>
         `;
       }

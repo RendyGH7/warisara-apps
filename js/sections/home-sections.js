@@ -38,44 +38,36 @@
 
       const setActiveTab = (tab) => {
         if (tab === "makers") {
-          // Tombol aktif & inaktif
           btnMakers.className = "home-view-tab-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
           btnProvinces.className = "home-view-tab-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all duration-300 flex items-center gap-2 cursor-pointer";
 
           if (iconMakers) iconMakers.className = "material-symbols-outlined text-base";
           if (iconProvinces) iconProvinces.className = "material-symbols-outlined text-base text-brass-400";
 
-          // Header
           if (headerProvinces) headerProvinces.classList.add("hidden");
           if (headerMakers) headerMakers.classList.remove("hidden");
 
-          // Views
           viewProvinces.classList.add("hidden");
           viewMakers.classList.remove("hidden");
 
-          // Dynamic CTA
           if (ctaBtn && ctaText && ctaIcon) {
             ctaBtn.href = "pages/jelajahi.html?view=pelestari";
             ctaText.textContent = "Kenali Seluruh Maestro & Komunitas Pelestari";
             ctaIcon.textContent = "record_voice_over";
           }
         } else {
-          // Tombol aktif & inaktif
           btnProvinces.className = "home-view-tab-btn active px-4 sm:px-6 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 bg-brass-400 text-ink shadow-md cursor-pointer";
           btnMakers.className = "home-view-tab-btn px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm text-surface/80 hover:text-white transition-all duration-300 flex items-center gap-2 cursor-pointer";
 
           if (iconProvinces) iconProvinces.className = "material-symbols-outlined text-base";
           if (iconMakers) iconMakers.className = "material-symbols-outlined text-base text-brass-400";
 
-          // Header
           if (headerMakers) headerMakers.classList.add("hidden");
           if (headerProvinces) headerProvinces.classList.remove("hidden");
 
-          // Views
           viewMakers.classList.add("hidden");
           viewProvinces.classList.remove("hidden");
 
-          // Dynamic CTA
           if (ctaBtn && ctaText && ctaIcon) {
             ctaBtn.href = "pages/jelajahi.html";
             ctaText.textContent = "Buka Direktori 38 Provinsi Lengkap";

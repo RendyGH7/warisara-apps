@@ -911,7 +911,6 @@
       this.stopBGM();
       this.saveSessionStats();
 
-      // Mascot celebrate reaction
       setTimeout(() => {
         if (window.WariMascot && typeof window.WariMascot.react === 'function') window.WariMascot.react('celebrate');
       }, 600);

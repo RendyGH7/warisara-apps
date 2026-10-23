@@ -98,7 +98,6 @@
     return null;
   }
 
-  // Audio effect halus untuk chat
   function playChatChime(isIncoming = false) {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -122,7 +121,6 @@
     } catch (e) {}
   }
 
-  // Dapatkan thread percakapan pengguna saat ini
   function getUserThreads() {
     const user = getCurrentUser();
     if (!user || !user.email) return [];
@@ -135,7 +133,6 @@
     ).sort((a, b) => (b.lastUpdate || 0) - (a.lastUpdate || 0));
   }
 
-  // Inisialisasi DOM Drawer Messenger & Backdrop
   function initChatDrawerDOM() {
     if (document.getElementById("warisara-chat-drawer")) return;
 
@@ -334,7 +331,6 @@
     document.body.appendChild(drawer);
     chatDrawerEl = drawer;
 
-    // Event Listeners
     drawer.querySelector("#chat-drawer-close-btn").addEventListener("click", closeChatDrawer);
     drawer.querySelector("#chat-btn-back-to-list").addEventListener("click", showThreadsListView);
     drawer.querySelector("#chat-btn-switch-account").addEventListener("click", () => {
@@ -370,17 +366,14 @@
     chatDrawerEl.classList.remove("closed");
     chatDrawerEl.classList.add("open");
 
-    // Tampilkan backdrop overlay (HTML halaman berada di belakang)
     if (chatBackdropEl) {
       chatBackdropEl.classList.remove("opacity-0", "pointer-events-none");
       chatBackdropEl.classList.add("opacity-100", "pointer-events-auto");
     }
 
-    // Sembunyikan navbar dan kunci interaksi Wari di belakang drawer
     document.body.classList.add("chat-drawer-open");
     document.documentElement.classList.add("chat-drawer-open");
 
-    // Tempatkan Wari di belakang chat dan matikan klik / sembunyikan tooltip
     const wariWidget = document.getElementById("wari-ai-widget");
     if (wariWidget) {
       wariWidget.classList.add("chat-suppressed");
@@ -411,7 +404,6 @@
     chatDrawerEl.classList.remove("open");
     chatDrawerEl.classList.add("closed");
 
-    // Sembunyikan backdrop overlay
     if (chatBackdropEl) {
       chatBackdropEl.classList.add("opacity-0", "pointer-events-none");
       chatBackdropEl.classList.remove("opacity-100", "pointer-events-auto");

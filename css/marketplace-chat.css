@@ -1,7 +1,4 @@
-/**
- * WARISARA — Marketplace C2C & Chat Messenger Styles
- * Desain Elegan, Modern, Berkelas & Mewah Berpadu Nuansa Budaya Nusantara
- */
+/* WARISARA — Marketplace C2C & Chat Messenger Styles | * Desain Elegan, Modern, Berkelas & Mewah Berpadu Nuansa Budaya Nusantara */
 
 /* Chat Notification Badge Pulse */
 @keyframes chatBadgePulse {
@@ -275,10 +272,7 @@ html.chat-drawer-open .wari-chat-window {
   color: #6ee7b7;
 }
 
-/* ==========================================================================
-   WARISARA Tactile Action Buttons (Chat Penjual CTA)
-   Memberikan feedback fisik yang nyata saat di-hover dan diklik (tactile feel)
-   ========================================================================== */
+/* WARISARA Tactile Action Buttons (Chat Penjual CTA) | Memberikan feedback fisik yang nyata saat di-hover dan diklik (tactile feel) */
 .btn-chat-action {
   position: relative;
   overflow: hidden;

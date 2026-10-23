@@ -52,7 +52,7 @@ window.WARISARA_HERO_MAP = {
     };
 
     const runSequence = () => {
-      
+
       setTimeout(() => {
         showPhrase(0);
         if (this._taglineTimer) clearInterval(this._taglineTimer);
@@ -215,7 +215,7 @@ window.WARISARA_HERO_MAP = {
         this._animFrameId = requestAnimationFrame(step);
       } else {
         this._animFrameId = null;
-        
+
         if (this.bgImage) this.bgImage.style.willChange = "auto";
         if (callback) callback();
       }
@@ -233,7 +233,7 @@ window.WARISARA_HERO_MAP = {
 
     if (this.svgMap) {
       this.svgMap.classList.add("map-dimmed");
-      
+
       this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
 
       const targetGroup = this.svgMap.querySelector(`.map-province-group[data-province="${provId}"]`);

@@ -17,7 +17,6 @@
     thinking: BASE + 'assets/images/mascot/wari-thinking.png',
   };
 
-  // Preload gambar maskot
   Object.values(IMGS).forEach((src) => {
     const img = new Image();
     img.src = src;
@@ -442,7 +441,6 @@ Peran dan Pengetahuan Anda:
     return result.join('');
   }
 
-  // --- KOMPONEN UTAMA WARI AI CHATBOT ---
   let widgetEl = null;
   let chatWindowEl = null;
   let messagesContainer = null;
@@ -722,7 +720,6 @@ Peran dan Pengetahuan Anda:
     if (el) el.remove();
   }
 
-
   async function handleUserSubmit(queryText) {
     const q = queryText || chatInput.value.trim();
     if (!q || isThinking) return;
@@ -974,7 +971,6 @@ Peran dan Pengetahuan Anda:
       }
     } catch (e) {}
 
-    // Event Listeners
     const triggerBtn = document.getElementById('wari-ai-trigger');
     const tooltipEl = document.getElementById('wari-ai-tooltip');
     const closeBtn = document.getElementById('wari-btn-close');
@@ -1114,7 +1110,6 @@ Peran dan Pengetahuan Anda:
     }
   }
 
-  // --- Modal Detection & Automatic Tooltip Suppression ---
   function isAnyModalOpen() {
     if (
       document.body.classList.contains('modal-open') ||

@@ -47,7 +47,7 @@ window.WARISARA_NAVBAR = {
       const height = linkRect.height;
 
       if (!smooth) {
-        
+
         pill.style.transition = "none";
       } else {
         pill.style.transition =
@@ -58,7 +58,7 @@ window.WARISARA_NAVBAR = {
       pill.style.width = `${width}px`;
       pill.style.height = `${height}px`;
       pill.style.opacity = "1";
-      
+
       pill.style.visibility = "visible";
     }
 
@@ -531,9 +531,7 @@ window.WARISARA_NAVBAR = {
     setTimeout(syncInitialPill, 120);
     setTimeout(syncInitialPill, 300);
 
-    // ==========================================================================
     // WARISARA NAVBAR AUTH & PROFILE WIDGET
-    // ==========================================================================
     function initNavbarAuth() {
       const actionsContainer = document.querySelector("#main-navbar .flex.items-center.gap-2") ||
                                document.querySelector("#main-navbar .flex-shrink-0:last-child");
@@ -560,7 +558,6 @@ window.WARISARA_NAVBAR = {
           const isPagesDir = window.location.pathname.includes("/pages/");
           const authPageUrl = isPagesDir ? "login.html" : "pages/login.html";
 
-          // Tombol Masuk / Daftar Modern saat Pengguna Belum Login -> Mengarahkan Langsung ke Halaman Login/Registrasi
           authContainer.innerHTML = `
             <div class="flex items-center gap-1.5">
               <a id="nav-btn-login" href="${authPageUrl}" class="btn-nav-auth-login" title="Masuk atau Daftar dengan Google">
@@ -575,7 +572,6 @@ window.WARISARA_NAVBAR = {
             </div>
           `;
         } else {
-          // Widget Profil Mewah & Interaktif saat Pengguna Sudah Login
           const shortName = user.name ? (user.name.split(" ")[0] + (user.name.split(" ")[1] ? " " + user.name.split(" ")[1].charAt(0) + "." : "")) : "Akun";
           const avatarLetter = user.avatarLetter || (user.name ? user.name.charAt(0).toUpperCase() : "U");
           const avatarColor = user.avatarColor || "from-amber-600 to-yellow-500";
@@ -654,7 +650,6 @@ window.WARISARA_NAVBAR = {
               triggerBtn.setAttribute("aria-expanded", String(!isOpen));
             });
 
-            // Action: Pesan & Diskusi (Chat)
             const chatBtn = authContainer.querySelector("#nav-action-chat");
             if (chatBtn) {
               chatBtn.addEventListener("click", (e) => {
@@ -669,7 +664,6 @@ window.WARISARA_NAVBAR = {
               });
             }
 
-            // Action: + Jual Produk
             const sellBtn = authContainer.querySelector("#nav-action-sell");
             if (sellBtn) {
               sellBtn.addEventListener("click", (e) => {
@@ -694,7 +688,6 @@ window.WARISARA_NAVBAR = {
               });
             }
 
-            // Action: Ganti Akun
             const switchBtn = authContainer.querySelector("#nav-action-switch");
             if (switchBtn) {
               switchBtn.addEventListener("click", () => {
@@ -705,7 +698,6 @@ window.WARISARA_NAVBAR = {
               });
             }
 
-            // Action: Keluar
             const logoutBtn = authContainer.querySelector("#nav-action-logout");
             if (logoutBtn) {
               logoutBtn.addEventListener("click", () => {
@@ -716,7 +708,6 @@ window.WARISARA_NAVBAR = {
               });
             }
 
-            // Segera sinkronkan tanda notifikasi chat jika ada percakapan aktif
             if (window.WARISARA_CHAT && typeof window.WARISARA_CHAT.updateNavbarBadge === "function") {
               window.WARISARA_CHAT.updateNavbarBadge();
             }

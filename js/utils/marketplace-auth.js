@@ -38,7 +38,6 @@
   let currentUser = null;
   let activeModalMode = "login"; // "login" | "register"
 
-  // --- BERSIHKAN DATA KOTOR & DEDUPLIKASI KETAT ---
   function getCleanUsersDB() {
     let list = [];
     try {
@@ -130,7 +129,6 @@
     return getCleanUsersDB();
   }
 
-  // --- KELOLA ACTIVE USER ---
   function loadActiveUser() {
     try {
       const stored = localStorage.getItem(ACTIVE_USER_KEY);
@@ -168,7 +166,6 @@
     return currentUser !== null && typeof currentUser === "object" && !!currentUser.email;
   }
 
-  // --- REGISTRASI MANUAL DENGAN VALIDASI KETAT ---
   function registerManual({ name, email, password, confirmPassword }) {
     const trimmedName = (name || "").trim();
     const cleanEmail = (email || "").toLowerCase().trim();
@@ -236,7 +233,6 @@
     };
   }
 
-  // --- LOGIN MANUAL DENGAN VALIDASI KETAT ---
   function loginManual({ email, password }) {
     const cleanEmail = (email || "").toLowerCase().trim();
     const pass = (password || "").trim();
@@ -275,7 +271,6 @@
     };
   }
 
-  // --- LOGIN CEPAT / GANTI AKUN TANPA MENGGANDAKAN PRESET ---
   function loginAs(emailOrAccount) {
     if (!emailOrAccount) return null;
 
@@ -314,7 +309,6 @@
     return newAccount;
   }
 
-  // --- REGISTRASI DENGAN GOOGLE ASLI / POPUP ---
   function registerWithGoogle(userData) {
     const rawEmail = (userData.email || "").toLowerCase().trim();
     if (!rawEmail || !rawEmail.includes("@")) {
@@ -366,7 +360,6 @@
     showAuthToast("Anda telah keluar dari akun.");
   }
 
-  // --- ISOLASI DATA PENGGUNA BERBASIS EMAIL ---
   function getUserStorageKey(baseKey) {
     if (currentUser && currentUser.email) {
       return baseKey + "_" + currentUser.email.toLowerCase().trim();
@@ -394,7 +387,6 @@
     } catch (e) {}
   }
 
-  // --- MODAL GOOGLE AUTH GLOBAL ---
   function openGoogleAuthPopup(mode = "login") {
     if (typeof window.openGooglePickerModal === "function") {
       window.openGooglePickerModal(mode);

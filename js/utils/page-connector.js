@@ -64,7 +64,7 @@ window.WARISARA_PAGE_CONNECTOR = {
             return;
           }
         }
-        
+
         document.body.appendChild(modal.cloneNode(true));
         modal.remove(); 
       });
@@ -87,7 +87,7 @@ window.WARISARA_PAGE_CONNECTOR = {
   },
 
   normalizeUrls: function (container) {
-    
+
     const mediaElements = container.querySelectorAll("img, source, audio, video");
     mediaElements.forEach((el) => {
       const src = el.getAttribute("src");
@@ -123,7 +123,7 @@ window.WARISARA_PAGE_CONNECTOR = {
   },
 
   executeModuleScripts: function (doc, pageId) {
-    
+
     const pageFunctionMap = {
       jelajahi: "initJelajahiPage",
       warisan: "initWarisanPage",

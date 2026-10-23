@@ -1,6 +1,4 @@
-/* ==========================================================================
-   WARISARA - JELAJAHI 38 PROVINSI (EDISI ULTIMATE ENSIKLOPEDIA & PASPOR)
-   ========================================================================== */
+/* WARISARA - JELAJAHI 38 PROVINSI (EDISI ULTIMATE ENSIKLOPEDIA & PASPOR) */
 
 /* Modal Overlays display rules */
 .modal-overlay.active,
@@ -192,9 +190,7 @@
   background: linear-gradient(90deg, transparent, #C9A567, #E6D3A7, #C9A567, transparent);
 }
 
-/* =============================================
-   MODERN MINIMALIST PROVINCE CARDS (GLASSMORPHISM & STAGGERED MASONRY)
-   ============================================= */
+/* MODERN MINIMALIST PROVINCE CARDS (GLASSMORPHISM & STAGGERED MASONRY) */
 .provinces-staggered-container {
   display: flex;
   gap: 1.25rem;
@@ -902,10 +898,7 @@
   overscroll-behavior: contain;
 }
 
-/* ==========================================================================
-   ULTRA-SMOOTH MODAL OPEN & CLOSE MOTION (PAVILION ENSIKLOPEDIA & BUDAYA)
-   Animasi zoom-in langsung dari titik klik / kartu asal, dan shrink fade-out saat ditutup
-   ========================================================================== */
+/* ULTRA-SMOOTH MODAL OPEN & CLOSE MOTION (PAVILION ENSIKLOPEDIA & BUDAYA) | Animasi zoom-in langsung dari titik klik / kartu asal, dan shrink fade-out saat ditutup */
 #province-modal-overlay {
   overscroll-behavior: contain;
   opacity: 0;
@@ -1308,9 +1301,7 @@ body.modal-open {
   background: linear-gradient(90deg, transparent, rgba(201, 165, 103, 0.25), transparent);
 }
 
-/* ==========================================================================
-   2-COLUMN LUXURY PAVILION DETAIL MODAL
-   ========================================================================== */
+/* 2-COLUMN LUXURY PAVILION DETAIL MODAL */
 
 #province-detail-modal {
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(201, 165, 103, 0.12);
@@ -1448,9 +1439,7 @@ body.modal-open {
   box-shadow: 0 0 25px rgba(201, 165, 103, 0.25) !important;
 }
 
-/* ==========================================================================
-   2-Column Mobile Staggered Grid Optimizations (<640px)
-   ========================================================================== */
+/* 2-Column Mobile Staggered Grid Optimizations (<640px) */
 @media (max-width: 640px) {
   .provinces-staggered-container {
     gap: 0.65rem !important;
@@ -1503,6 +1492,4 @@ body.modal-open {
     font-size: 13px !important;
   }
 }
-
-
 

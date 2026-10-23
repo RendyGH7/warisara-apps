@@ -26,7 +26,7 @@
   -webkit-backdrop-filter: blur(28px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.09);
-  
+
   transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.6s ease,
     background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -254,7 +254,7 @@ body.modal-open .wari-companion {
   opacity: 0;
   visibility: hidden;
   transform: translate3d(0, 0, 0);
-  
+
   transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1),
               width 0.46s cubic-bezier(0.22, 1, 0.36, 1),
               height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
@@ -386,7 +386,7 @@ body.modal-open .wari-companion {
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
   border-radius: 1.25rem;
-  
+
   transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
               opacity 260ms ease-out;
 }
@@ -407,9 +407,7 @@ body.modal-open .wari-companion {
   box-shadow: 0 4px 12px var(--nav-brown-gold-glow);
 }
 
-/* ==========================================================================
-   WARISARA NAVBAR LOGO INTERACTIVE SPIN (HOVER SPIN & CLICK SPIN BACK)
-   ========================================================================== */
+/* WARISARA NAVBAR LOGO INTERACTIVE SPIN (HOVER SPIN & CLICK SPIN BACK) */
 .nav-brand-logo-interactive,
 #main-navbar a[aria-label*="WARISARA"] img,
 a[aria-label="WARISARA Beranda"] img,
@@ -453,9 +451,7 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   }
 }
 
-/* ==========================================================================
-   WARISARA LUXURY NAVBAR AUTH & PROFILE WIDGET
-   ========================================================================== */
+/* WARISARA LUXURY NAVBAR AUTH & PROFILE WIDGET */
 .nav-auth-wrapper {
   position: relative;
   display: inline-flex;
@@ -681,9 +677,7 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   color: #fecdd3;
 }
 
-/* ==========================================================================
-   WARISARA GOOGLE AUTH MODAL ENHANCEMENTS
-   ========================================================================== */
+/* WARISARA GOOGLE AUTH MODAL ENHANCEMENTS */
 .auth-modal-dialog {
   animation: authModalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;
@@ -724,7 +718,4 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
 .auth-modal-dialog *::-webkit-scrollbar-thumb:hover {
   background: rgba(201, 165, 103, 0.5);
 }
-
-
-
 
