@@ -626,3 +626,82 @@ select:focus-visible {
   }
 }
 
+/* ==========================================================================
+   MOBILE & TOUCH CARD HOVER / ACTIVE REFINEMENTS
+   - Fixes sluggish 350ms delay on touch
+   - Eliminates sticky/hanging :hover border and translation on mobile
+   - Adds immediate, tactile micro-press (:active) response with zero lag
+   - Suppresses mobile image zoom lag and cursor halos
+   ========================================================================== */
+
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  /* Fast, snappy transition for all interactive cards on mobile */
+  .glass-card,
+  .glass-card-light,
+  .home-story-card,
+  .product-card-item,
+  article.glass-card,
+  [class*="hover:-translate-y-"] {
+    transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.12s ease,
+                box-shadow 0.12s ease,
+                background-color 0.12s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation;
+  }
+
+  /* Reset lingering / sticky desktop hover transforms on mobile */
+  .glass-card:hover,
+  .glass-card-light:hover,
+  .home-story-card:hover,
+  .product-card-item:hover,
+  article.glass-card:hover,
+  [class*="hover:-translate-y-"]:hover {
+    transform: none !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.08),
+                0 15px 35px -10px rgba(0, 0, 0, 0.7) !important;
+  }
+
+  /* Instant tactile touch response on tap (:active) */
+  .glass-card:active,
+  .glass-card-light:active,
+  .product-card-item:active,
+  article.glass-card:active {
+    transform: scale(0.982) !important;
+    border-color: rgba(201, 165, 103, 0.55) !important;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.75),
+                0 0 14px rgba(201, 165, 103, 0.2) !important;
+    transition-duration: 0.06s !important;
+  }
+
+  /* Terracotta theme active feedback for Hikayat / Story cards */
+  .home-story-card:active,
+  #home-stories-grid .glass-card:active {
+    transform: scale(0.982) !important;
+    border-color: rgba(217, 119, 74, 0.7) !important;
+    box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.8),
+                0 0 16px rgba(217, 119, 74, 0.28) !important;
+    transition-duration: 0.06s !important;
+  }
+
+  /* Disable laggy image zoom on touch/mobile */
+  .glass-card .group-hover\:scale-105,
+  .home-story-card .group-hover\:scale-105,
+  #home-stories-grid .group-hover\:scale-105,
+  .glass-card img.group-hover\:scale-105,
+  article.glass-card img {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Snappy tactile press on card buttons */
+  .home-story-card button:active,
+  #home-stories-grid button:active,
+  .glass-card button:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.06s ease, background-color 0.06s ease !important;
+  }
+}
+
+
