@@ -1759,7 +1759,7 @@
           const categoryTag = p.badge || p.category || "Karya Nusantara";
 
           return `
-          <div class="product-card-item glass-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brass-500/10 relative cursor-pointer overflow-hidden border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-black/40 backdrop-blur-xl"
+          <div class="product-card-item glass-card p-2.5 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between group hover:border-brass-400/60 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brass-500/10 relative cursor-pointer overflow-hidden border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-black/40 backdrop-blur-xl"
                data-product-id="${p.id}"
                tabindex="0"
                role="link"
@@ -1770,60 +1770,60 @@
 
             <div>
               <!-- Gambar Produk & Badges -->
-              <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-black/60 shadow-inner">
+              <div class="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden mb-2 sm:mb-4 bg-black/60 shadow-inner">
                 <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" />
                 
                 <!-- Dark Vignette Overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30 pointer-events-none"></div>
                 
                 <!-- Category Pill -->
-                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-black/70 backdrop-blur-md text-brass-300 border border-brass-400/30 shadow-md flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brass-400"></span>
-                  <span>${categoryTag}</span>
+                <span class="absolute top-1.5 left-1.5 sm:top-3 sm:left-3 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold tracking-wider uppercase bg-black/70 backdrop-blur-md text-brass-300 border border-brass-400/30 shadow-md flex items-center gap-1">
+                  <span class="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-brass-400"></span>
+                  <span class="truncate max-w-[65px] sm:max-w-none">${categoryTag}</span>
                 </span>
 
                 <!-- Verified Authentic Chip -->
-                <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 backdrop-blur-md inline-flex items-center gap-1 shadow-sm">
-                  <span class="material-symbols-outlined text-[12px] text-emerald-400">verified</span>
-                  <span>100% Asli</span>
+                <span class="absolute top-1.5 right-1.5 sm:top-3 sm:right-3 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[7.5px] sm:text-[9px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 backdrop-blur-md inline-flex items-center gap-0.5 sm:gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-emerald-400">verified</span>
+                  <span class="hidden sm:inline">100% Asli</span>
                 </span>
 
                 <!-- Origin Pill -->
-                <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/75 backdrop-blur-md text-surface/90 border border-white/10 inline-flex items-center gap-1 shadow-sm">
-                  <span class="material-symbols-outlined text-[12px] text-brass-400">location_on</span>
-                  <span>${originCity}</span>
+                <span class="absolute bottom-1.5 left-1.5 sm:bottom-3 sm:left-3 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-medium bg-black/75 backdrop-blur-md text-surface/90 border border-white/10 inline-flex items-center gap-0.5 sm:gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-[10px] sm:text-[12px] text-brass-400">location_on</span>
+                  <span class="truncate max-w-[55px] sm:max-w-none">${originCity}</span>
                 </span>
               </div>
 
               <!-- Judul & Info -->
-              <h3 class="font-display text-lg sm:text-xl font-medium text-surface group-hover:text-brass-300 transition-colors duration-300 line-clamp-1 mb-1.5 tracking-tight">
+              <h3 class="font-display text-xs sm:text-xl font-medium text-surface group-hover:text-brass-300 transition-colors duration-300 line-clamp-1 mb-1 tracking-tight">
                 ${p.name}
               </h3>
 
               <!-- Maker Attribution (Clean & Prestisius, No Account/Email Box) -->
-              <div class="flex items-center gap-1.5 text-xs text-surface/60 line-clamp-1 mb-3.5 font-light">
-                <span class="text-brass-400/90 text-[11px] font-medium tracking-wide uppercase">Karya:</span>
+              <div class="flex items-center gap-1 text-[9px] sm:text-xs text-surface/60 line-clamp-1 mb-2 sm:mb-3.5 font-light">
+                <span class="text-brass-400/90 text-[8.5px] sm:text-[11px] font-medium tracking-wide uppercase">Karya:</span>
                 <span class="text-surface/85 font-medium truncate">${p.maker || 'Maestro Pengrajin Lokal'}</span>
               </div>
 
               <!-- Price & Rating Row -->
-              <div class="flex items-end justify-between mb-4 pb-3 border-b border-white/[0.08]">
+              <div class="flex items-end justify-between mb-2 sm:mb-4 pb-2 sm:pb-3 border-b border-white/[0.08]">
                 <div>
-                  <span class="block text-[10px] uppercase tracking-wider text-surface/50 font-semibold mb-0.5">Mulai Dari</span>
-                  <span class="font-display text-xl sm:text-2xl text-brass-300 font-bold tracking-tight">${p.priceEstimate}</span>
+                  <span class="block text-[7.5px] sm:text-[10px] uppercase tracking-wider text-surface/50 font-semibold mb-0.5">Mulai Dari</span>
+                  <span class="font-display text-xs sm:text-2xl text-brass-300 font-bold tracking-tight">${p.priceEstimate}</span>
                 </div>
-                <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-semibold shadow-sm">
-                  <span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+                <div class="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg bg-amber-400/10 border border-amber-400/20 text-amber-300 text-[8.5px] sm:text-xs font-semibold shadow-sm">
+                  <span class="material-symbols-outlined text-[10px] sm:text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
                   <span>${starScore}</span>
                 </div>
               </div>
             </div>
 
             <!-- Tombol Aksi: Chat Penjual Langsung -->
-            <div class="pt-1.5">
+            <div class="pt-1">
               <button type="button" data-action="chat" data-product-id="${p.id}"
-                      class="btn-chat-action w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-brass-500 via-brass-400 to-amber-400 hover:from-brass-400 hover:to-amber-300 text-[#140F0A] text-xs font-bold flex items-center justify-center gap-2 shadow-md shadow-brass-500/20 hover:shadow-lg hover:shadow-brass-500/35 transition-all">
-                <span class="material-symbols-outlined text-[16px] text-[#140F0A]">chat</span>
+                      class="btn-chat-action w-full py-1.5 sm:py-2.5 px-2 sm:px-4 rounded-lg sm:rounded-xl bg-gradient-to-r from-brass-500 via-brass-400 to-amber-400 hover:from-brass-400 hover:to-amber-300 text-[#140F0A] text-[10px] sm:text-xs font-bold flex items-center justify-center gap-1.5 shadow-md shadow-brass-500/20 hover:shadow-lg hover:shadow-brass-500/35 transition-all">
+                <span class="material-symbols-outlined text-[13px] sm:text-[16px] text-[#140F0A]">chat</span>
                 <span>Chat Penjual</span>
               </button>
             </div>
