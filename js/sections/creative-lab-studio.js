@@ -1561,39 +1561,95 @@
     render();
   }
 
+  const NUSANTARA_PIGMENTS = [
+    { name: "Sogan Keraton", hex: "#744208", origin: "Kayu Tingi & Jambal Solo" },
+    { name: "Sogan Gelap", hex: "#2A1E14", origin: "Kulit Kayu Mahoni Fermentasi" },
+    { name: "Hitam Malam", hex: "#1A1612", origin: "Lilin Malam Canting Alami" },
+    { name: "Hitam Wulung", hex: "#151310", origin: "Jelaga Damar Keraton" },
+    { name: "Cokelat Kuningan", hex: "#A47E3F", origin: "Tangi & Kulit Mahoni" },
+    { name: "Emas Pusaka", hex: "#C9A567", origin: "Prada Emas Kasunanan" },
+    { name: "Kencana Mataram", hex: "#B8924E", origin: "Benang Emas Songket Kerajaan" },
+    { name: "Kuning Praba", hex: "#E6D3A7", origin: "Kunyit & Rimpang Temulawak" },
+    { name: "Emas Muda", hex: "#D8BD87", origin: "Sepuhan Prada Halus" },
+    { name: "Emas Songket", hex: "#D49B4B", origin: "Tenun Emas Palembang" },
+    { name: "Merah Lasem", hex: "#A32020", origin: "Akar Mengkudu Pesisir Lasem" },
+    { name: "Merah Marun", hex: "#7A1C29", origin: "Kayu Secang Pekalongan" },
+    { name: "Merah Cabe", hex: "#C06A42", origin: "Pesisir Teratai Indramayu" },
+    { name: "Merah Gelap", hex: "#240A10", origin: "Endapan Kayu Secang Pekat" },
+    { name: "Merah Terracotta", hex: "#A8512F", origin: "Tanah Liat Gerabah Kasongan" },
+    { name: "Toraja Sa'dan", hex: "#8C2D19", origin: "Pigmen Tanah Liat Toraja" },
+    { name: "Kastuba Muda", hex: "#DDA07C", origin: "Kelopak Kastuba Alami" },
+    { name: "Indigo Nila", hex: "#16213A", origin: "Daun Tarum / Indigofera Tua" },
+    { name: "Biru Samudra", hex: "#233A5E", origin: "Indigofera Celupan Pekalongan" },
+    { name: "Nila Terang", hex: "#35578A", origin: "Wedel Nila Celupan Pertama" },
+    { name: "Langit Cerbon", hex: "#6B8AB8", origin: "Awan Megamendung Cirebon" },
+    { name: "Hijau Lumut", hex: "#1E2E24", origin: "Pandan & Indigofera Tua" },
+    { name: "Hijau Pesisir", hex: "#2E5C44", origin: "Daun Suji & Kunyit Segar" },
+    { name: "Pandan Wangi", hex: "#3F6350", origin: "Ekstrak Pandan Asli" },
+    { name: "Katun Mori", hex: "#F6F1E7", origin: "Kain Mori Primissima Halus" },
+    { name: "Krem Alami", hex: "#FBF8F2", origin: "Serat Nanas & Rami Subang" },
+    { name: "Blacu Halus", hex: "#ECE4D4", origin: "Tenun Blacu Tradisional" },
+    { name: "Kuning Gading", hex: "#EADCC2", origin: "Serat Sutra Sengkang Alami" },
+    { name: "Putih Sutra", hex: "#FFFFFF", origin: "Sutra Alam Garut Murni" },
+    { name: "Wulung Pekat", hex: "#000000", origin: "Jelaga Hitam Keraton Murni" }
+  ];
+
+  function hexToRgb(hex) {
+    if (!hex) return { r: 0, g: 0, b: 0 };
+    let c = hex.replace("#", "").trim();
+    if (c.length === 3) c = c.split("").map((x) => x + x).join("");
+    const num = parseInt(c, 16);
+    if (isNaN(num)) return { r: 0, g: 0, b: 0 };
+    return {
+      r: (num >> 16) & 255,
+      g: (num >> 8) & 255,
+      b: num & 255
+    };
+  }
+
   function getColorCulturalName(hex) {
     if (!hex) return "Wastra Pusaka";
-    const h = hex.toUpperCase();
-    const map = {
-      "#16213A": "Indigo Nila",
-      "#233A5E": "Biru Samudra",
-      "#35578A": "Nila Terang",
-      "#6B8AB8": "Langit Cerbon",
-      "#1A1612": "Hitam Malam",
-      "#2A1E14": "Sogan Gelap",
-      "#744208": "Sogan Keraton",
-      "#A47E3F": "Cokelat Kuningan",
-      "#B8924E": "Kencana Mataram",
-      "#C9A567": "Emas Pusaka",
-      "#D8BD87": "Emas Muda",
-      "#E6D3A7": "Kuning Praba",
-      "#A8512F": "Merah Terracotta",
-      "#C06A42": "Merah Cabe",
-      "#DDA07C": "Kastuba Muda",
-      "#A32020": "Merah Lasem",
-      "#7A1C29": "Merah Marun",
-      "#240A10": "Merah Gelap",
-      "#1E2E24": "Hijau Lumut",
-      "#2E5C44": "Hijau Pesisir",
-      "#3F6350": "Pandan Wangi",
-      "#F6F1E7": "Katun Mori",
-      "#FBF8F2": "Krem Alami",
-      "#ECE4D4": "Blacu Halus",
-      "#FFFFFF": "Putih Sutra",
-      "#000000": "Wulung Hitam"
-    };
-    if (map[h]) return map[h];
-    // Approximation by hue
+    const clean = hex.trim().toUpperCase();
+    const formatted = clean.startsWith("#") ? clean : "#" + clean;
+    
+    // Exact match lookup
+    const exact = NUSANTARA_PIGMENTS.find((p) => p.hex.toUpperCase() === formatted);
+    if (exact) return exact.name;
+
+    // Euclidean distance match across all authentic Nusantara pigments
+    const targetRgb = hexToRgb(formatted);
+    let closestPigment = null;
+    let minDistance = Infinity;
+
+    for (const p of NUSANTARA_PIGMENTS) {
+      const pRgb = hexToRgb(p.hex);
+      const d = Math.sqrt(
+        Math.pow(targetRgb.r - pRgb.r, 2) +
+        Math.pow(targetRgb.g - pRgb.g, 2) +
+        Math.pow(targetRgb.b - pRgb.b, 2)
+      );
+      if (d < minDistance) {
+        minDistance = d;
+        closestPigment = p;
+      }
+    }
+
+    if (closestPigment) {
+      if (minDistance < 28) {
+        return closestPigment.name;
+      }
+      const brightness = (targetRgb.r * 299 + targetRgb.g * 587 + targetRgb.b * 114) / 1000;
+      const refRgb = hexToRgb(closestPigment.hex);
+      const refBrightness = (refRgb.r * 299 + refRgb.g * 587 + refRgb.b * 114) / 1000;
+
+      if (brightness > refBrightness + 35) {
+        return `${closestPigment.name} Muda`;
+      } else if (brightness < refBrightness - 35) {
+        return `${closestPigment.name} Gelap`;
+      }
+      return `${closestPigment.name} Kostum`;
+    }
+
     return "Aksen Nusantara";
   }
 
@@ -1615,7 +1671,23 @@
       if (pickerEl && pickerEl.value.toLowerCase() !== c.hex.toLowerCase()) {
         pickerEl.value = c.hex;
       }
+
+      // Update Individual Custom Hex Inputs & Preview Swatches
+      const customHexInput = document.getElementById(`custom-hex-${c.id}`);
+      const customPreview = document.getElementById(`custom-preview-${c.id}`);
+      if (customHexInput && document.activeElement !== customHexInput) {
+        customHexInput.value = c.hex.toUpperCase();
+      }
+      if (customPreview) {
+        customPreview.style.backgroundColor = c.hex;
+      }
     });
+
+    // Update Multi-Hex String Input
+    const multiHexInput = document.getElementById("input-multi-hex-palette");
+    if (multiHexInput && document.activeElement !== multiHexInput) {
+      multiHexInput.value = `${StudioState.primaryColor.toUpperCase()}, ${StudioState.secondaryColor.toUpperCase()}, ${StudioState.highlightColor.toUpperCase()}, ${StudioState.bgColor.toUpperCase()}`;
+    }
 
     // Fallback extractContainer jika ada
     const extractContainer = document.getElementById("active-palette-extract-container");
@@ -1631,7 +1703,7 @@
       `).join("");
     }
 
-    // 2. Update di bawah Kanvas Stage sebagai Micro Dot Swatches yang rapih & elegan
+    // 2. Update di bawah Kanvas Stage sebagai 4 Micro Dot Swatches yang rapih & elegan
     const stageBreakdown = document.getElementById("stage-palette-breakdown");
     if (stageBreakdown) {
       stageBreakdown.innerHTML = activeColors.map((c) => `
@@ -3308,6 +3380,195 @@
     bindColorInput("picker-secondary", (val) => { StudioState.secondaryColor = val; });
     bindColorInput("picker-highlight", (val) => { StudioState.highlightColor = val; });
     bindColorInput("picker-bg", (val) => { StudioState.bgColor = val; });
+
+    // ==========================================
+    // FITUR KOSTUMISASI WARNA MANDIRI & RACIKAN USER (100% PERSIS KODE USER)
+    // ==========================================
+
+    function showStudioToast(msg, icon = "colorize") {
+      let toast = document.getElementById("studio-live-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "studio-live-toast";
+        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#1A1612]/95 border border-brass-400/40 text-surface text-xs font-semibold shadow-2xl backdrop-blur-md transition-all duration-300 opacity-0 translate-y-3 pointer-events-none";
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span class="material-symbols-outlined text-sm text-brass-400">${icon}</span><span>${msg}</span>`;
+      toast.classList.remove("opacity-0", "translate-y-3", "pointer-events-none");
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-3", "pointer-events-none");
+      }, 3000);
+    }
+
+    function sanitizeHex(val) {
+      if (!val) return null;
+      let s = val.trim();
+      if (!s.startsWith("#")) s = "#" + s;
+      if (/^#[0-9A-Fa-f]{3}$/.test(s)) {
+        s = "#" + s[1] + s[1] + s[2] + s[2] + s[3] + s[3];
+      }
+      if (/^#[0-9A-Fa-f]{6}$/.test(s)) {
+        return s.toUpperCase();
+      }
+      return null;
+    }
+
+    // 1. Multi-Hex input parser & apply (Mendukung 1, 2, 3, atau 4 kode hex sekaligus)
+    function applyMultiHexPalette(inputStr) {
+      if (!inputStr || !inputStr.trim()) return;
+      const rawTokens = inputStr.split(/[,;\s]+/).filter(Boolean);
+      const hexList = [];
+      for (const t of rawTokens) {
+        const h = sanitizeHex(t);
+        if (h) hexList.push(h);
+      }
+
+      if (hexList.length === 0) {
+        alert("Kode Hex tidak valid. Contoh format: #1A1612, #A47E3F, #A8512F, #F6F1E7");
+        return;
+      }
+
+      if (hexList[0]) StudioState.primaryColor = hexList[0];
+      if (hexList[1]) StudioState.secondaryColor = hexList[1];
+      if (hexList[2]) StudioState.highlightColor = hexList[2];
+      if (hexList[3]) StudioState.bgColor = hexList[3];
+
+      syncUiToState();
+      saveHistoryState();
+      render();
+      showStudioToast(`Palet kostum diterapkan (${hexList.length} warna 100% akurat)!`);
+    }
+
+    const btnApplyMultiHex = document.getElementById("btn-apply-multi-hex");
+    const inputMultiHex = document.getElementById("input-multi-hex-palette");
+    if (btnApplyMultiHex && inputMultiHex) {
+      btnApplyMultiHex.addEventListener("click", () => {
+        applyMultiHexPalette(inputMultiHex.value);
+      });
+      inputMultiHex.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          applyMultiHexPalette(inputMultiHex.value);
+        }
+      });
+    }
+
+    // 2. Individual Hex inputs for each role
+    const customRoleInputs = [
+      { id: "primary", prop: "primaryColor" },
+      { id: "secondary", prop: "secondaryColor" },
+      { id: "highlight", prop: "highlightColor" },
+      { id: "bg", prop: "bgColor" }
+    ];
+
+    customRoleInputs.forEach(({ id, prop }) => {
+      const inputEl = document.getElementById(`custom-hex-${id}`);
+      const previewEl = document.getElementById(`custom-preview-${id}`);
+
+      if (inputEl) {
+        const handleCustomInput = () => {
+          const valid = sanitizeHex(inputEl.value);
+          if (valid) {
+            StudioState[prop] = valid;
+            if (previewEl) previewEl.style.backgroundColor = valid;
+            const picker = document.getElementById(`picker-${id}`);
+            if (picker) picker.value = valid;
+            render();
+          }
+        };
+
+        inputEl.addEventListener("input", handleCustomInput);
+        inputEl.addEventListener("change", () => {
+          const valid = sanitizeHex(inputEl.value);
+          if (valid) {
+            StudioState[prop] = valid;
+            inputEl.value = valid;
+            syncUiToState();
+            saveHistoryState();
+            render();
+          }
+        });
+        inputEl.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            inputEl.blur();
+          }
+        });
+      }
+    });
+
+    // 3. Populate Kamus Pigmen Alami Nusantara Quick-Chips
+    const pigmentContainer = document.getElementById("pigment-quick-chips");
+    const targetRoleSelect = document.getElementById("select-target-role");
+
+    if (pigmentContainer) {
+      pigmentContainer.innerHTML = NUSANTARA_PIGMENTS.map((p) => `
+        <button type="button" data-pigment-hex="${p.hex}" data-pigment-name="${p.name}"
+                class="pigment-chip p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-brass-400/40 flex items-center gap-1.5 transition-all text-left group cursor-pointer"
+                title="${p.name} (${p.hex}) — ${p.origin}">
+          <span class="w-3 h-3 rounded-full flex-shrink-0 shadow-sm border border-white/20 group-hover:scale-110 transition-transform" style="background-color: ${p.hex}"></span>
+          <span class="text-[9px] text-surface/75 group-hover:text-brass-300 font-medium truncate">${p.name}</span>
+        </button>
+      `).join("");
+
+      pigmentContainer.querySelectorAll(".pigment-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const hex = chip.dataset.pigmentHex;
+          const name = chip.dataset.pigmentName;
+          const targetRole = targetRoleSelect ? targetRoleSelect.value : "primary";
+
+          if (targetRole === "primary") StudioState.primaryColor = hex;
+          else if (targetRole === "secondary") StudioState.secondaryColor = hex;
+          else if (targetRole === "highlight") StudioState.highlightColor = hex;
+          else if (targetRole === "bg") StudioState.bgColor = hex;
+
+          syncUiToState();
+          saveHistoryState();
+          render();
+          showStudioToast(`Pigmen ${name} (${hex}) diterapkan ke ${targetRole.toUpperCase()}`);
+        });
+      });
+    }
+
+    // 4. Salin Kode Palet
+    const btnCopyPalette = document.getElementById("btn-copy-palette-code");
+    if (btnCopyPalette) {
+      btnCopyPalette.addEventListener("click", () => {
+        const palStr = `${StudioState.primaryColor.toUpperCase()}, ${StudioState.secondaryColor.toUpperCase()}, ${StudioState.highlightColor.toUpperCase()}, ${StudioState.bgColor.toUpperCase()}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(palStr).then(() => {
+            showStudioToast("Kode 4 Palet Berhasil Disalin ke Clipboard!", "content_copy");
+          }).catch(() => {
+            prompt("Salin kode palet Anda:", palStr);
+          });
+        } else {
+          prompt("Salin kode palet Anda:", palStr);
+        }
+      });
+    }
+
+    // 5. Harmonisasi Warna Palet (Golden Ratio & Kontras Tradisional Wastra)
+    const btnHarmonize = document.getElementById("btn-harmonize-palette");
+    if (btnHarmonize) {
+      btnHarmonize.addEventListener("click", () => {
+        const bgRgb = hexToRgb(StudioState.bgColor);
+        const isDarkBg = (bgRgb.r * 299 + bgRgb.g * 587 + bgRgb.b * 114) / 1000 < 128;
+
+        if (isDarkBg) {
+          StudioState.primaryColor = adjustColorBrightness(StudioState.primaryColor, 25);
+          StudioState.highlightColor = "#E6D3A7";
+        } else {
+          StudioState.primaryColor = adjustColorBrightness(StudioState.primaryColor, -25);
+          StudioState.highlightColor = "#C9A567";
+        }
+
+        syncUiToState();
+        saveHistoryState();
+        render();
+        showStudioToast("Palet berhasil diharmonisasi secara tradisional!", "auto_fix_high");
+      });
+    }
 
     bindSlider("slider-density", "val-density", (val) => { StudioState.density = parseInt(val, 10); return `${val}x${val}`; });
     bindSlider("slider-thickness", "val-thickness", (val) => { StudioState.strokeWidth = parseFloat(val); return `${val}px`; });
