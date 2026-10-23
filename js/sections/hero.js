@@ -346,6 +346,7 @@ window.WARISARA_HERO_MAP = {
 
     this.animateViewBox(newMinX, newMinY, newWidth, newHeight, 500, callback);
     this.isZoomed = true;
+    this.updateResetButton(true);
   },
 
   resetView: function (callback = null) {
@@ -362,6 +363,19 @@ window.WARISARA_HERO_MAP = {
       this.svgMap.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
       this.selectedProvinceId = null;
       this.isZoomed = false;
+      this.updateResetButton(false);
+
+      document.querySelectorAll(".btn-island-chip").forEach((btn) => {
+        const isAll = btn.dataset.island === "all";
+        btn.classList.toggle("active", isAll);
+        btn.classList.toggle("bg-brass-400/20", isAll);
+        btn.classList.toggle("text-brass-200", isAll);
+        btn.classList.toggle("border-brass-400/40", isAll);
+        btn.classList.toggle("bg-white/5", !isAll);
+        btn.classList.toggle("text-surface/75", !isAll);
+        btn.classList.toggle("border-white/10", !isAll);
+      });
+
       if (callback) callback();
     });
 
