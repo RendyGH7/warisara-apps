@@ -71,12 +71,6 @@ window.WARISARA_HERO_MAP = {
     document.querySelectorAll(".btn-island-chip").forEach((btn) => {
       const match = btn.dataset.island === islandKey;
       btn.classList.toggle("active", match);
-      btn.classList.toggle("bg-brass-400/20", match);
-      btn.classList.toggle("text-brass-200", match);
-      btn.classList.toggle("border-brass-400/40", match);
-      btn.classList.toggle("bg-white/5", !match);
-      btn.classList.toggle("text-surface/75", !match);
-      btn.classList.toggle("border-white/10", !match);
     });
   },
 
@@ -148,8 +142,16 @@ window.WARISARA_HERO_MAP = {
 
     this.provinceSelectDropdown.addEventListener("change", (e) => {
       const provId = e.target.value;
-      if (provId) {
+      const label = document.getElementById("hero-selected-province-label");
+      if (provId && window.PROVINCES_DATA && window.PROVINCES_DATA[provId]) {
+        if (label) {
+          label.textContent = `${window.PROVINCES_DATA[provId].name} (${window.PROVINCES_DATA[provId].island})`;
+        }
         this.selectProvince(provId, true);
+      } else {
+        if (label) {
+          label.textContent = "Pilih Provinsi Nusantara";
+        }
       }
     });
   },
@@ -315,6 +317,11 @@ window.WARISARA_HERO_MAP = {
       this.provinceSelectDropdown.value = provId;
     }
 
+    const label = document.getElementById("hero-selected-province-label");
+    if (label && data) {
+      label.textContent = `${data.name} (${data.island})`;
+    }
+
     this.focusMapOnProvince(data.svgCenter);
 
     if (shouldOpenPanel) {
@@ -368,12 +375,6 @@ window.WARISARA_HERO_MAP = {
       document.querySelectorAll(".btn-island-chip").forEach((btn) => {
         const isAll = btn.dataset.island === "all";
         btn.classList.toggle("active", isAll);
-        btn.classList.toggle("bg-brass-400/20", isAll);
-        btn.classList.toggle("text-brass-200", isAll);
-        btn.classList.toggle("border-brass-400/40", isAll);
-        btn.classList.toggle("bg-white/5", !isAll);
-        btn.classList.toggle("text-surface/75", !isAll);
-        btn.classList.toggle("border-white/10", !isAll);
       });
 
       if (callback) callback();
@@ -381,6 +382,11 @@ window.WARISARA_HERO_MAP = {
 
     if (this.provinceSelectDropdown) {
       this.provinceSelectDropdown.value = "";
+    }
+
+    const label = document.getElementById("hero-selected-province-label");
+    if (label) {
+      label.textContent = "Pilih Provinsi Nusantara";
     }
   }
 };

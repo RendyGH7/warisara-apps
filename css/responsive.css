@@ -86,8 +86,7 @@ body.mobile-nav-open {
   touch-action: manipulation;
 }
 
-.glass-select,
-#mobile-province-select {
+.glass-select {
   background-color: rgba(22, 18, 14, 0.94) !important;
   border: 1px solid rgba(201, 165, 103, 0.45) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
@@ -107,8 +106,7 @@ body.mobile-nav-open {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.glass-select:focus,
-#mobile-province-select:focus {
+.glass-select:focus {
   border-color: #C9A567 !important;
   box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.25), 0 6px 20px rgba(0, 0, 0, 0.6) !important;
 }
@@ -260,16 +258,6 @@ body.mobile-nav-open {
   .btn-island-chip {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    padding: 0.35rem 0.75rem !important;
-    min-height: 32px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  #mobile-province-select {
-    min-height: 44px !important;
-    font-size: 0.82rem !important;
   }
 
 

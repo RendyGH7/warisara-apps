@@ -656,6 +656,13 @@ body.modal-open .wari-ai-widget {
   transform: scale(0.96);
 }
 
+/* Modern Island Jump Segmented Dock */
+.island-jump-dock-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
 .island-jump-chips {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -666,46 +673,88 @@ body.modal-open .wari-ai-widget {
 }
 
 .btn-island-chip {
-  transition: all 180ms ease;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(245, 237, 224, 0.75);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
   user-select: none;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .btn-island-chip {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+  }
 }
 
 .btn-island-chip:hover {
-  background: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
-  border-color: rgba(201, 165, 103, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .btn-island-chip.active {
-  background: rgba(201, 165, 103, 0.22) !important;
-  color: #FFFFFF !important;
-  border-color: rgba(201, 165, 103, 0.7) !important;
-  box-shadow: 0 0 14px -2px rgba(201, 165, 103, 0.4);
+  background: linear-gradient(135deg, #ECC880 0%, #C9A567 100%) !important;
+  color: #120D08 !important;
+  font-weight: 700 !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(201, 165, 103, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
 }
 
 .btn-island-chip:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
-#mobile-province-select {
-  background-color: rgba(20, 16, 13, 0.94);
-  border: 1px solid rgba(201, 165, 103, 0.45);
-  color: #FBF8F2;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
-  transition: border-color 180ms ease, box-shadow 180ms ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Modern Province Selector Capsule */
+.hero-province-selector-capsule {
+  perspective: 1000px;
 }
 
-#mobile-province-select:focus {
+.hero-province-selector-capsule .selector-display-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-province-selector-capsule:hover .selector-display-card {
+  transform: translateY(-1px);
+  border-color: rgba(201, 165, 103, 0.65);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 165, 103, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.hero-province-selector-capsule:focus-within .selector-display-card {
   border-color: #C9A567;
-  box-shadow: 0 0 0 3px rgba(201, 165, 103, 0.25), 0 8px 24px -4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.3), 0 12px 32px rgba(0, 0, 0, 0.65);
+}
+
+/* Invisible Overlay Select (Native Mobile/Desktop Wheel Picker) */
+.hero-province-selector-capsule select#mobile-province-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  cursor: pointer !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 10 !important;
 }
 
 #mobile-province-select option {
-  background-color: #1a1511;
+  background-color: #16120E;
   color: #FBF8F2;
-  padding: 8px 12px;
+  padding: 10px 14px;
 }
 
 
