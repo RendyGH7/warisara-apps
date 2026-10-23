@@ -9,21 +9,31 @@
 
   const PALETTES = {
     sogan: {
+      name: "Sogan Klasik Keraton",
       primary: "#2A1E14",
       accent: "#C9A567",
       bg: "#F6F1E7"
     },
     indigo: {
+      name: "Indigofera Tarum Pesisir",
       primary: "#16213A",
       accent: "#35578A",
       bg: "#ECE4D4"
     },
     terracotta: {
+      name: "Terracotta Kayu Ubar",
       primary: "#8F3A1D",
       accent: "#DDA07C",
       bg: "#FFF8ED"
     },
     brass: {
+      name: "Prada Emas Kencana",
+      primary: "#C9A567",
+      accent: "#744208",
+      bg: "#FBF3DF"
+    },
+    wulung: {
+      name: "Hitam Wulung & Prada",
       primary: "#C9A567",
       accent: "#E6D3A7",
       bg: "#181410"
@@ -75,12 +85,34 @@
       const paletteBtns = document.querySelectorAll(".lab-palette-btn");
       paletteBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          paletteBtns.forEach((b) => b.classList.remove("ring-2", "ring-brass-400", "scale-110"));
-          btn.classList.add("ring-2", "ring-brass-400", "scale-110");
+          paletteBtns.forEach((b) => b.classList.remove("ring-2", "ring-brass-400", "scale-110", "active"));
+          btn.classList.add("ring-2", "ring-brass-400", "scale-110", "active");
           this.currentPaletteKey = btn.dataset.palette;
           this.render();
         });
       });
+
+      // Swap Colors Button (Tukar Warna Dasar Kain dengan Garis Canting)
+      const btnSwap = document.getElementById("lab-btn-swap-colors");
+      if (btnSwap) {
+        btnSwap.addEventListener("click", () => {
+          const pal = PALETTES[this.currentPaletteKey];
+          if (!pal) return;
+          const temp = pal.primary;
+          pal.primary = pal.bg;
+          pal.bg = temp;
+
+          // Perbarui tampilan tombol swatch yang aktif
+          const activeBtn = document.querySelector(`.lab-palette-btn[data-palette="${this.currentPaletteKey}"]`);
+          if (activeBtn) {
+            activeBtn.style.backgroundColor = pal.bg;
+            const inner = activeBtn.querySelector("span");
+            if (inner) inner.style.backgroundColor = pal.primary;
+          }
+
+          this.render();
+        });
+      }
 
       // Density slider
       const densitySlider = document.getElementById("lab-density-slider");
@@ -173,6 +205,19 @@
       }
     },
 
+    updatePaletteBadge: function (pal) {
+      if (!pal) return;
+      const bgDot = document.getElementById("badge-bg-dot");
+      const primaryDot = document.getElementById("badge-primary-dot");
+      const nameEl = document.getElementById("badge-palette-name");
+      const detailEl = document.getElementById("badge-palette-detail");
+
+      if (bgDot) bgDot.style.backgroundColor = pal.bg;
+      if (primaryDot) primaryDot.style.backgroundColor = pal.primary;
+      if (nameEl) nameEl.textContent = pal.name || "Palet Wastra";
+      if (detailEl) detailEl.textContent = `Kain: ${pal.bg.toUpperCase()} • Canting: ${pal.primary.toUpperCase()}`;
+    },
+
     render: function () {
       this.renderPattern();
       if (this.activeView !== "flat") {
@@ -186,6 +231,8 @@
       const w = this.canvas.width;
       const h = this.canvas.height;
       const palette = PALETTES[this.currentPaletteKey] || PALETTES.sogan;
+
+      this.updatePaletteBadge(palette);
 
       this.ctx.fillStyle = palette.bg;
       this.ctx.fillRect(0, 0, w, h);
