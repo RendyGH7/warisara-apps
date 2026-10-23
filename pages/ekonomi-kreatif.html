@@ -547,24 +547,24 @@
         </div>
 
         <div class="max-w-5xl mx-auto text-center relative z-10">
-          <h1 class="font-display text-4xl sm:text-6xl font-light text-surface tracking-tight leading-tight mb-3">
+          <h1 class="font-display text-2xl sm:text-5xl lg:text-6xl font-light text-surface tracking-tight leading-tight mb-3">
             Pasar Kriya & Produk Lokal Nusantara
           </h1>
          
 
           <!-- Main Mode Switcher & Quick Sell Action -->
-          <div class="inline-flex items-center p-1.5 rounded-full bg-black/60 border border-brass-400/30 backdrop-blur-md shadow-2xl gap-2 flex-wrap justify-center">
-            <button id="view-mode-catalog" type="button" class="px-5 sm:px-6 py-2 rounded-full bg-brass-400 text-ink font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2">
-              <span class="material-symbols-outlined text-sm sm:text-base text-ink">storefront</span>
+          <div class="inline-flex items-center p-1 sm:p-1.5 rounded-full bg-black/60 border border-brass-400/30 backdrop-blur-md shadow-2xl gap-1.5 sm:gap-2 flex-wrap justify-center">
+            <button id="view-mode-catalog" type="button" class="px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-brass-400 text-ink font-bold text-[11px] sm:text-sm shadow-md transition-all flex items-center gap-1.5 sm:gap-2">
+              <span class="material-symbols-outlined text-xs sm:text-base text-ink">storefront</span>
               <span>Etalase Siap Beli</span>
             </button>
-            <button id="view-mode-commission" type="button" class="px-5 sm:px-6 py-2 rounded-full text-surface/70 hover:text-surface font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 relative">
-              <span class="material-symbols-outlined text-sm sm:text-base text-brass-400">palette</span>
+            <button id="view-mode-commission" type="button" class="px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-full text-surface/70 hover:text-surface font-semibold text-[11px] sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 relative">
+              <span class="material-symbols-outlined text-xs sm:text-base text-brass-400">palette</span>
               <span>Pesanan Kustom</span>
             </button>
-            <button id="hero-quick-action-btn" type="button" onclick="window.handleHeroQuickAction ? window.handleHeroQuickAction() : (window.openSellProductModal && window.openSellProductModal())" class="px-5 sm:px-6 py-2 rounded-full bg-brass-400/15 hover:bg-brass-400 hover:text-ink text-brass-300 font-bold text-xs sm:text-sm border border-brass-400/40 transition-all flex items-center gap-1.5 shadow-md cursor-pointer group">
-              <span id="hero-quick-action-icon" class="material-symbols-outlined text-sm sm:text-base text-brass-400 group-hover:text-ink">add_circle</span>
-              <span id="hero-quick-action-text">+ Buat Penawaran Produk</span>
+            <button id="hero-quick-action-btn" type="button" onclick="window.handleHeroQuickAction ? window.handleHeroQuickAction() : (window.openSellProductModal && window.openSellProductModal())" class="px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-brass-400/15 hover:bg-brass-400 hover:text-ink text-brass-300 font-bold text-[11px] sm:text-sm border border-brass-400/40 transition-all flex items-center gap-1 sm:gap-1.5 shadow-md cursor-pointer group">
+              <span id="hero-quick-action-icon" class="material-symbols-outlined text-xs sm:text-base text-brass-400 group-hover:text-ink">add_circle</span>
+              <span id="hero-quick-action-text">+ Buat Penawaran</span>
             </button>
           </div>
 
@@ -587,20 +587,20 @@
           </div>
 
           <!-- Switcher Tab: Semua Produk vs Karya Saya + Tombol Penawaran -->
-          <div class="flex items-center gap-2.5 flex-wrap self-end sm:self-auto">
+          <div class="flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto">
             <div class="flex items-center gap-1 bg-black/40 p-1 rounded-full border border-white/10">
-              <button id="tab-all-products" class="px-3.5 py-1.5 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-xs transition-all">
+              <button id="tab-all-products" class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brass-400/20 text-brass-300 font-semibold text-[11px] sm:text-xs transition-all whitespace-nowrap">
                 Semua Etalase (<span id="total-catalog-count">14</span>)
               </button>
-              <button id="tab-my-products" class="px-3.5 py-1.5 rounded-full text-surface/60 hover:text-surface text-xs transition-all">
+              <button id="tab-my-products" class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-surface/60 hover:text-surface text-[11px] sm:text-xs transition-all whitespace-nowrap">
                 Karya Saya
               </button>
             </div>
 
             <!-- Tombol Buat Penawaran Produk yang Mudah Dilihat & Digunakan -->
-            <button type="button" onclick="window.openSellProductModal && window.openSellProductModal()" class="px-4 py-1.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md hover:shadow-brass-400/25 transition-all cursor-pointer">
+            <button type="button" onclick="window.openSellProductModal && window.openSellProductModal()" class="px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-brass-400 hover:bg-brass-300 text-ink text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-md hover:shadow-brass-400/25 transition-all cursor-pointer whitespace-nowrap flex-shrink-0">
               <span class="material-symbols-outlined text-sm font-bold">add</span>
-              <span>+ Buat Penawaran</span>
+              <span>+ Penawaran</span>
             </button>
           </div>
         </div>
