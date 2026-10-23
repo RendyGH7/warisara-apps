@@ -336,29 +336,34 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   -webkit-backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
   transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.24s ease,
               background-color 0.24s ease;
-  will-change: transform, box-shadow;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) {
   .province-preview-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(201, 165, 103, 0.65);
+    transform: translate3d(0, -3px, 0);
+    border-color: rgba(201, 165, 103, 0.7);
     background: rgba(26, 21, 16, 0.98);
     box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
-                0 0 18px rgba(201, 165, 103, 0.2),
+                0 0 18px rgba(201, 165, 103, 0.22),
                 inset 0 1px 1px rgba(255, 255, 255, 0.1);
   }
 
-  /* NO IMAGE ZOOM - Image stays completely still, crisp and stable */
+  /* NO BLUR: Lighter overlay & sharper contrast makes the photo clearer on hover */
+  .province-preview-card:hover .province-card-gradient {
+    opacity: 0.45;
+  }
+
   .province-preview-card:hover .province-card-img {
-    transform: none !important;
-    filter: brightness(1.03);
+    filter: contrast(1.05) brightness(1.04);
   }
 
   .province-preview-card:hover .province-card-tag {
@@ -389,8 +394,15 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   height: 100%;
   object-fit: cover;
   transform: none !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   transition: filter 0.24s ease;
-  will-change: auto;
+}
+
+.province-card-gradient {
+  transition: opacity 0.25s ease;
 }
 
 .province-card-tag {
