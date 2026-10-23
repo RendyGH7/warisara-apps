@@ -2112,11 +2112,11 @@
       var photoPath = fixImgPath('assets/images/Pelestari/' + maker.provinceId + '.jpg');
 
       return `
-        <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden ${isPlaying ? 'maker-card-playing' : ''}"
+        <article class="glass-card flex flex-col justify-between group hover:border-brass-400/50 transition-all cursor-pointer hover:-translate-y-1.5 duration-300 relative overflow-hidden rounded-2xl sm:rounded-3xl ${isPlaying ? 'maker-card-playing' : ''}"
                  data-maker-id="${maker.id}" data-province-id="${maker.provinceId}">
           
           <!-- Banner Ilustrasi & Potret Realistis Maestro -->
-          <div class="relative w-full h-48 sm:h-52 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
+          <div class="relative w-full h-28 sm:h-52 overflow-hidden rounded-t-2xl bg-[#120F0D] border-b border-white/10 group-hover:border-brass-400/30 transition-colors">
             <div class="w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
               <img src="${photoPath}" alt="${maker.name} - ${maker.role}" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
               <div class="w-full h-full" style="display: none;">
@@ -2126,40 +2126,40 @@
             <div class="absolute inset-0 bg-gradient-to-t from-[#181512] via-black/15 to-transparent pointer-events-none"></div>
 
             <!-- Floating Badges on Illustration -->
-            <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
-              <button type="button" class="btn-maker-province-pill inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md hover:bg-brass-400/20 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Buka Pavilion Kebudayaan ${maker.provinceName}">
-                <span class="material-symbols-outlined text-xs text-brass-400">location_on</span>
-                <span>${maker.provinceName}</span>
+            <div class="absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 flex items-center justify-between gap-1 sm:gap-2 z-10">
+              <button type="button" class="btn-maker-province-pill inline-flex items-center gap-1 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider bg-black/60 text-brass-300 border border-brass-400/40 backdrop-blur-md shadow-md hover:bg-brass-400/20 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Buka Pavilion Kebudayaan ${maker.provinceName}">
+                <span class="material-symbols-outlined text-[10px] sm:text-xs text-brass-400">location_on</span>
+                <span class="truncate max-w-[65px] sm:max-w-none">${maker.provinceName}</span>
               </button>
               ${statusBadge}
             </div>
 
             <!-- Craft Signature Pill at bottom of illustration -->
-            <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] z-10">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-black/75 text-surface/90 border border-white/15 backdrop-blur-md truncate max-w-[70%] shadow-sm">
+            <div class="absolute bottom-1.5 left-2 right-2 sm:bottom-2.5 sm:left-3 sm:right-3 flex items-center justify-between text-[9px] sm:text-[11px] z-10">
+              <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full text-[8px] sm:text-[10px] font-semibold bg-black/75 text-surface/90 border border-white/15 backdrop-blur-md truncate max-w-[60%] sm:max-w-[70%] shadow-sm">
                 ${maker.craft}
               </span>
-              <span class="text-[10px] font-mono text-brass-300/90 bg-black/75 px-2 py-0.5 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
+              <span class="text-[8px] sm:text-[10px] font-mono text-brass-300/90 bg-black/75 px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
                 ${maker.island}
               </span>
             </div>
           </div>
 
           <!-- Card Body Content -->
-          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+          <div class="p-2.5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
               <!-- Maestro Profile Header with Illustrated Avatar -->
-              <div class="flex items-start gap-3.5 mb-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all overflow-hidden relative">
+              <div class="flex items-start gap-2 sm:gap-3.5 mb-2 sm:mb-3">
+                <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-brass-400/25 via-forest-500/15 to-transparent border border-brass-400/40 flex items-center justify-center font-display text-xs sm:text-sm font-bold text-brass-200 shadow-md flex-shrink-0 group-hover:scale-105 group-hover:border-brass-400 transition-all overflow-hidden relative">
                   <img src="${photoPath}" alt="${maker.name}" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'" />
                   <span class="absolute z-0 font-bold">${initials}</span>
                 </div>
                 <div class="flex-1 min-w-0">
-                  <h3 class="font-display text-xl sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
+                  <h3 class="font-display text-xs sm:text-2xl font-light text-surface group-hover:text-brass-300 transition-colors leading-snug truncate">
                     ${maker.name}
                   </h3>
-                  <p class="text-xs text-brass-300 font-medium truncate mt-0.5">${maker.role}</p>
-                  <p class="text-[11px] text-surface/50 mt-0.5 flex items-center gap-1 truncate">
+                  <p class="text-[9.5px] sm:text-xs text-brass-300 font-medium truncate mt-0.5">${maker.role}</p>
+                  <p class="text-[8.5px] sm:text-[11px] text-surface/50 mt-0.5 flex items-center gap-1 truncate">
                     <span>${maker.location}</span>
                     <span>•</span>
                     <span class="text-surface/70 font-mono">${maker.experience}</span>
@@ -2168,40 +2168,40 @@
               </div>
 
               <!-- Wisdom Quote Box -->
-              <div class="relative pl-3 border-l-2 border-brass-400/60 py-1 mb-4 bg-white/[0.02] rounded-r-lg pr-2">
-                <p class="text-xs text-surface/85 font-light italic leading-relaxed line-clamp-3">
+              <div class="relative pl-2 sm:pl-3 border-l-2 border-brass-400/60 py-0.5 sm:py-1 mb-2.5 sm:mb-4 bg-white/[0.02] rounded-r-lg pr-1 sm:pr-2">
+                <p class="text-[9px] sm:text-xs text-surface/85 font-light italic leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
                   "${maker.quote}"
                 </p>
               </div>
 
               <!-- Signature & Materials Preview -->
-              <div class="pt-3 border-t border-white/10 space-y-2 mb-4 text-xs">
+              <div class="pt-2 sm:pt-3 border-t border-white/10 space-y-1 sm:space-y-2 mb-2.5 sm:mb-4 text-[9px] sm:text-xs">
                 <div>
-                  <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">✨ Mahakarya Ikonik</span>
-                  <p class="text-[11px] text-surface/80 line-clamp-1 leading-snug">${maker.signature}</p>
+                  <span class="text-[7.5px] sm:text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">✨ Mahakarya</span>
+                  <p class="text-[9px] sm:text-[11px] text-surface/80 line-clamp-1 leading-snug">${maker.signature}</p>
                 </div>
                 <div>
-                  <span class="text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">🌿 Bahan Baku Tradisi</span>
-                  <p class="text-[11px] text-surface/60 line-clamp-1 leading-snug">${maker.materials}</p>
+                  <span class="text-[7.5px] sm:text-[10px] uppercase tracking-wider text-surface/40 font-bold block mb-0.5">🌿 Bahan Baku</span>
+                  <p class="text-[9px] sm:text-[11px] text-surface/60 line-clamp-1 leading-snug">${maker.materials}</p>
                 </div>
               </div>
             </div>
 
             <!-- Card Action Row -->
-            <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 mt-auto z-10">
-              <button class="btn-card-audio flex items-center gap-1.5 px-3 py-1.5 rounded-full ${isPlaying ? 'bg-brass-400 text-ink font-bold' : 'bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold'} border border-brass-400/30 text-[11px] transition-all cursor-pointer"
+            <div class="pt-2 sm:pt-3 border-t border-white/10 flex items-center justify-between gap-1 sm:gap-2 mt-auto z-10">
+              <button class="btn-card-audio flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full ${isPlaying ? 'bg-brass-400 text-ink font-bold' : 'bg-brass-400/15 hover:bg-brass-400/30 text-brass-300 font-semibold'} border border-brass-400/30 text-[9px] sm:text-[11px] transition-all cursor-pointer"
                       data-maker-id="${maker.id}" title="Dengarkan Petuah Suara">
-                <span class="material-symbols-outlined text-sm">${isPlaying ? 'stop_circle' : 'volume_up'}</span>
-                <span>${isPlaying ? 'Berhenti' : 'Petuah'}</span>
+                <span class="material-symbols-outlined text-xs sm:text-sm">${isPlaying ? 'stop_circle' : 'volume_up'}</span>
+                <span>${isPlaying ? 'Stop' : 'Petuah'}</span>
               </button>
 
-              <div class="flex items-center gap-1.5">
-                <button type="button" class="btn-card-open-pavilion p-1.5 rounded-full hover:bg-white/10 text-surface/60 hover:text-forest-300 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Jelajahi Kebudayaan ${maker.provinceName}">
-                  <span class="material-symbols-outlined text-base">travel_explore</span>
+              <div class="flex items-center gap-1 sm:gap-1.5">
+                <button type="button" class="btn-card-open-pavilion p-1 sm:p-1.5 rounded-full hover:bg-white/10 text-surface/60 hover:text-forest-300 transition-colors cursor-pointer" data-prov-id="${maker.provinceId}" title="Jelajahi Kebudayaan ${maker.provinceName}">
+                  <span class="material-symbols-outlined text-sm sm:text-base">travel_explore</span>
                 </button>
-                <button class="btn-card-detail flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-[11px] font-semibold transition-colors cursor-pointer" data-maker-id="${maker.id}" data-prov-id="${maker.provinceId}">
-                  <span>Kisah Lengkap</span>
-                  <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                <button class="btn-card-detail flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-surface text-[9px] sm:text-[11px] font-semibold transition-colors cursor-pointer" data-maker-id="${maker.id}" data-prov-id="${maker.provinceId}">
+                  <span class="truncate">Kisah</span>
+                  <span class="material-symbols-outlined text-xs sm:text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
                 </button>
               </div>
             </div>
