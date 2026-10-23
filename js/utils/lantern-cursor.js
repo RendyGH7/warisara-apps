@@ -20,7 +20,19 @@
     let isVisible = false;
     let isHovering = false;
 
+    function isMobileOrTouch() {
+      return window.innerWidth <= 1024 || (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches);
+    }
+
     function moveCursor(x, y) {
+      if (isMobileOrTouch()) {
+        if (isVisible) {
+          isVisible = false;
+          cursor.classList.remove('is-active', 'is-hovering');
+        }
+        return;
+      }
+
       cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
       if (!isVisible) {
@@ -32,6 +44,7 @@
     window.addEventListener(
       'pointermove',
       (e) => {
+        if (e.pointerType === 'touch') return;
         moveCursor(e.clientX, e.clientY);
       },
       { passive: true }
@@ -45,12 +58,23 @@
       { passive: true }
     );
 
+    window.addEventListener(
+      'touchstart',
+      () => {
+        isVisible = false;
+        isHovering = false;
+        cursor.classList.remove('is-active', 'is-hovering');
+      },
+      { passive: true }
+    );
+
     document.addEventListener('mouseleave', () => {
       isVisible = false;
       cursor.classList.remove('is-active');
     });
 
     document.addEventListener('mouseenter', (e) => {
+      if (isMobileOrTouch()) return;
       moveCursor(e.clientX, e.clientY);
     });
 
@@ -60,6 +84,7 @@
     document.addEventListener(
       'mouseover',
       (e) => {
+        if (isMobileOrTouch()) return;
         const target = e.target;
         if (target && target.closest && target.closest(interactiveSelector)) {
           if (!isHovering) {
@@ -74,6 +99,7 @@
     document.addEventListener(
       'mouseout',
       (e) => {
+        if (isMobileOrTouch()) return;
         const target = e.target;
         if (target && target.closest && target.closest(interactiveSelector)) {
           if (isHovering) {

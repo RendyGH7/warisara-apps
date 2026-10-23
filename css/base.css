@@ -343,8 +343,11 @@ textarea {
   -webkit-filter: blur(16px);
 }
 
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
   .warisara-lantern-cursor {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
