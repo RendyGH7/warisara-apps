@@ -417,6 +417,188 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   PREMIUM PRODUCT PREVIEW CARDS (PASAR KRIYA / EKONOMI KREATIF)
+   ========================================================================== */
+.product-preview-card,
+.product-card-item {
+  position: relative;
+  border-radius: 1.15rem;
+  overflow: hidden;
+  background: rgba(20, 16, 12, 0.95);
+  border: 1px solid rgba(201, 165, 103, 0.25);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.24s ease,
+              background-color 0.24s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .product-preview-card:hover,
+  .product-card-item:hover {
+    transform: translate3d(0, -3px, 0);
+    border-color: rgba(201, 165, 103, 0.7);
+    background: rgba(26, 21, 16, 0.98);
+    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
+                0 0 18px rgba(201, 165, 103, 0.22),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .product-preview-card:hover .product-card-img,
+  .product-card-item:hover .product-card-img {
+    filter: contrast(1.05) brightness(1.04);
+  }
+
+  .product-preview-card:hover .product-card-tag,
+  .product-card-item:hover .product-card-tag {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(201, 165, 103, 0.35);
+  }
+
+  .product-preview-card:hover .product-card-action-icon,
+  .product-card-item:hover .product-card-action-icon {
+    transform: translate(2px, -2px);
+  }
+}
+
+.product-preview-card:active,
+.product-card-item:active {
+  transform: scale(0.98);
+  border-color: rgba(201, 165, 103, 0.75);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.8),
+              0 0 14px rgba(201, 165, 103, 0.25);
+  transition-duration: 0.08s;
+}
+
+.product-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: filter 0.24s ease;
+}
+
+.product-card-tag {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card-action-icon {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   PREMIUM STORY PREVIEW CARDS (CERITA RAKYAT NUSANTARA)
+   ========================================================================== */
+.home-story-card {
+  position: relative;
+  border-radius: 1.15rem;
+  overflow: hidden;
+  background: rgba(20, 16, 12, 0.95);
+  border: 1px solid rgba(201, 165, 103, 0.25);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.24s ease,
+              background-color 0.24s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .home-story-card:hover {
+    transform: translate3d(0, -3px, 0);
+    border-color: rgba(217, 119, 74, 0.7);
+    background: rgba(26, 21, 16, 0.98);
+    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
+                0 0 18px rgba(217, 119, 74, 0.25),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .home-story-card:hover .home-story-gradient {
+    opacity: 0.45;
+  }
+
+  .home-story-card:hover .home-story-img {
+    filter: contrast(1.05) brightness(1.04);
+  }
+
+  .home-story-card:hover .home-story-tag {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(217, 119, 74, 0.35);
+  }
+
+  .home-story-card:hover .home-story-arrow {
+    transform: translateX(4px);
+  }
+}
+
+.home-story-card:active {
+  transform: scale(0.98);
+  border-color: rgba(217, 119, 74, 0.75);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.8),
+              0 0 14px rgba(217, 119, 74, 0.28);
+  transition-duration: 0.08s;
+}
+
+.home-story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: filter 0.24s ease;
+}
+
+.home-story-gradient {
+  transition: opacity 0.25s ease;
+}
+
+.home-story-tag {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-story-arrow {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-book-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: filter 0.24s ease;
+}
+
+.book-3d-card:hover .story-book-cover-img {
+  filter: contrast(1.05) brightness(1.04);
+}
+
 .home-story-filter-btn {
   position: relative;
   overflow: hidden;

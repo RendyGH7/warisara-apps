@@ -230,9 +230,9 @@
                 </span>
               </div>
 
-              <div class="mx-4 my-1 aspect-[4/3] rounded-xl overflow-hidden antique-frame relative z-10 shadow-lg group-hover:scale-[1.015] transition-transform">
+              <div class="mx-4 my-1 aspect-[4/3] rounded-xl overflow-hidden antique-frame relative z-10 shadow-lg border-b border-white/10">
                 <div class="antique-frame-inner w-full h-full">
-                  <img src="${s.coverImage}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <img src="${s.coverImage}" alt="${s.title}" class="story-book-cover-img w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
 

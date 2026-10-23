@@ -58,6 +58,25 @@
         title: "Empat Tiang Falsafah Luhur Dayak",
         text: "Kehidupan di Betang ditegakkan oleh empat pilar: gotong royong tanpa pamrih, kesetaraan hak pria dan wanita, musyawarah mufakat, serta ketaatan mutlak menjaga kelestarian rimba Kalimantan dari kerusakan serakah."
       }
+    },
+    {
+      id: "makna-parang-rusak",
+      title: "Pertapaan Sultan Agung & Batik Parang",
+      subtitle: "Falsafah Ombak Karang Laut Selatan & Kemenangan Hawa Nafsu",
+      origin: "Yogyakarta & Surakarta",
+      category: "Falsafah Keraton",
+      theme: "batik",
+      coverImage: "assets/images/stories/story_parang.jpg",
+      quote: "Ombak yang memecah karang mengajarkan kita bahwa musuh terberat bukanlah orang lain, melainkan ego dan nafsu di dalam diri sendiri.",
+      summary: "Gulungan ombak samudra selatan yang tak henti memecah karang menginspirasi Sultan Agung menciptakan motif batik sakral di Jawa.",
+      excerptPage1: {
+        title: "Hening Tapa Brata di Tebing Karang",
+        text: "Sultan Agung Hanyokrokusumo kerap melakukan perjalanan batin menyusuri pesisir selatan Jawa. Di atas tebing karang terjal Pantai Parangtritis, beliau duduk bersila dalam hening tapa brata di hadapan Samudra Hindia yang bergelora tanpa batas."
+      },
+      excerptPage2: {
+        title: "Guratan Ombak Memecah Batu Karang",
+        text: "Pandangan batin Sultan Agung tertuju pada buih ombak yang miring 45 derajat memecah karang baja. Bentuk ombak diagonal menyerupai bilah pedang parang meliuk dinamis membentuk aksara 'S' berkesinambungan: pantang mundur dalam kebajikan."
+      }
     }
   ];
 
@@ -216,17 +235,17 @@
 
       filtered.forEach((story) => {
         const card = document.createElement("div");
-        card.className = "home-story-card glass-card rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 md:hover:border-terracotta-400/50 transition-all duration-200 md:duration-300 md:hover:-translate-y-1.5 flex flex-col justify-between group shadow-xl bg-[#16120F] cursor-pointer select-none touch-manipulation";
+        card.className = "home-story-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer select-none touch-manipulation";
 
         card.innerHTML = `
           <div>
-            <!-- Cover image header with badges -->
-            <div class="relative w-full h-28 sm:h-52 overflow-hidden bg-black/60 pointer-events-none">
-              <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-500 ease-out" />
-              <div class="absolute inset-0 bg-gradient-to-t from-[#16120F] via-black/30 to-black/20 pointer-events-none"></div>
+            <!-- Cover image header with crisp bottom border -->
+            <div class="relative w-full h-28 sm:h-52 overflow-hidden bg-black/60 pointer-events-none border-b border-white/10">
+              <img src="${story.coverImage}" alt="${story.title}" class="home-story-img w-full h-full object-cover" />
+              <div class="home-story-gradient absolute inset-0 bg-gradient-to-t from-[#16120F] via-black/30 to-black/20 pointer-events-none"></div>
 
               <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
-                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-terracotta-300">
+                <span class="home-story-tag inline-flex items-center gap-1 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-terracotta-300">
                   <span class="material-symbols-outlined text-[10px] sm:text-xs">auto_stories</span>
                   <span class="truncate max-w-[80px] sm:max-w-none">${story.category}</span>
                 </span>
@@ -249,15 +268,15 @@
           </div>
 
           <!-- Card Actions -->
-          <div class="p-3 pt-0 sm:p-5 sm:pt-0 border-t border-white/5 flex items-center justify-between gap-1.5 sm:gap-2">
+          <div class="p-3 pt-0 sm:p-5 sm:pt-0 border-t border-white/10 flex items-center justify-between gap-1.5 sm:gap-2">
             <button type="button" class="btn-play-quote flex-1 py-1.5 px-2 sm:py-2 sm:px-3 rounded-full bg-white/[0.05] hover:bg-terracotta-500/20 active:bg-terracotta-500/30 active:scale-95 border border-white/10 hover:border-terracotta-400/40 text-surface/80 hover:text-white text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 transition-all duration-150 touch-manipulation cursor-pointer" title="Dengarkan Petuah Hikayat">
               <span class="material-symbols-outlined text-[12px] sm:text-sm text-terracotta-400">volume_up</span>
               <span class="truncate">Petuah</span>
             </button>
 
-            <button type="button" class="btn-open-preview flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 active:scale-95 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-all duration-150 shadow-md touch-manipulation cursor-pointer">
+            <button type="button" class="btn-open-preview home-story-read-btn flex-1 py-1.5 px-2 sm:py-2 sm:px-4 rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-500 hover:from-terracotta-500 hover:to-terracotta-400 active:scale-95 text-white text-[9px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-1 transition-all duration-150 shadow-md touch-manipulation cursor-pointer">
               <span class="truncate">Baca</span>
-              <span class="material-symbols-outlined text-[12px] sm:text-sm">arrow_forward</span>
+              <span class="material-symbols-outlined text-[12px] sm:text-sm home-story-arrow">arrow_forward</span>
             </button>
           </div>
         `;

@@ -569,6 +569,8 @@ body.mobile-nav-open {
 
   .glass-card.overflow-hidden,
   .glass-card[class*="overflow-hidden"],
+  .product-preview-card,
+  .province-preview-card,
   .home-story-card {
     padding: 0 !important;
   }

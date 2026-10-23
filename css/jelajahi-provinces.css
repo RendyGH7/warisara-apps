@@ -233,6 +233,7 @@
   overflow: hidden;
   background: #0E0C0A;
   flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .province-card-cover.pcu-aspect-portrait {
@@ -261,6 +262,8 @@
   transition: filter 0.4s ease;
   filter: brightness(0.92) saturate(1.02);
   transform: none !important; 
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .province-card-ultimate:hover .province-card-cover img {
