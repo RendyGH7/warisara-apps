@@ -1599,13 +1599,25 @@
 
   function updateLivePaletteDisplay() {
     const activeColors = [
-      { role: "Garis Canting", hex: StudioState.primaryColor, name: getColorCulturalName(StudioState.primaryColor) },
-      { role: "Isian Ornamen", hex: StudioState.secondaryColor, name: getColorCulturalName(StudioState.secondaryColor) },
-      { role: "Inti Roset", hex: StudioState.highlightColor, name: getColorCulturalName(StudioState.highlightColor) },
-      { role: "Dasar Kain", hex: StudioState.bgColor, name: getColorCulturalName(StudioState.bgColor) }
+      { id: "primary", role: "Garis Canting", hex: StudioState.primaryColor, name: getColorCulturalName(StudioState.primaryColor) },
+      { id: "secondary", role: "Isian Ornamen", hex: StudioState.secondaryColor, name: getColorCulturalName(StudioState.secondaryColor) },
+      { id: "highlight", role: "Inti Roset", hex: StudioState.highlightColor, name: getColorCulturalName(StudioState.highlightColor) },
+      { id: "bg", role: "Dasar Kain", hex: StudioState.bgColor, name: getColorCulturalName(StudioState.bgColor) }
     ];
 
-    // 1. Update di Tab 2 Inspector (Color tab)
+    // 1. Update Master Unified Cards di Tab 2
+    activeColors.forEach((c) => {
+      const nameEl = document.getElementById(`label-name-${c.id}`);
+      const hexEl = document.getElementById(`label-hex-${c.id}`);
+      const pickerEl = document.getElementById(`picker-${c.id}`);
+      if (nameEl) nameEl.textContent = c.name;
+      if (hexEl) hexEl.textContent = c.hex.toUpperCase();
+      if (pickerEl && pickerEl.value.toLowerCase() !== c.hex.toLowerCase()) {
+        pickerEl.value = c.hex;
+      }
+    });
+
+    // Fallback extractContainer jika ada
     const extractContainer = document.getElementById("active-palette-extract-container");
     if (extractContainer) {
       extractContainer.innerHTML = activeColors.map((c) => `
@@ -1619,18 +1631,13 @@
       `).join("");
     }
 
-    // 2. Update di bawah Kanvas Stage (Komposisi Warna Desain sesuai Gambar 1 & 3)
+    // 2. Update di bawah Kanvas Stage sebagai Micro Dot Swatches yang rapih & elegan
     const stageBreakdown = document.getElementById("stage-palette-breakdown");
     if (stageBreakdown) {
       stageBreakdown.innerHTML = activeColors.map((c) => `
-        <div class="flex items-center gap-2 p-2 rounded-xl bg-white/[0.02] border border-white/5">
-          <span class="w-7 h-7 rounded-lg flex-shrink-0 shadow-sm border border-white/15" style="background-color: ${c.hex}"></span>
-          <div class="min-w-0">
-            <span class="text-[10px] text-surface/50 uppercase tracking-wider block font-medium truncate">${c.role}</span>
-            <span class="text-xs font-semibold text-surface block truncate">${c.name}</span>
-            <span class="text-[9px] font-mono text-brass-400 block">${c.hex.toUpperCase()}</span>
-          </div>
-        </div>
+        <span class="w-3.5 h-3.5 rounded-full shadow-sm border border-white/30 inline-block transition-transform hover:scale-125 cursor-pointer"
+              style="background-color: ${c.hex}"
+              title="${c.role}: ${c.name} (${c.hex.toUpperCase()})"></span>
       `).join("");
     }
   }

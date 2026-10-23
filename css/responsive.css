@@ -310,9 +310,22 @@ body.mobile-nav-open {
   }
 
   #creative-canvas,
-  #creative-mockup-canvas {
-    max-width: 280px !important;
-    max-height: 280px !important;
+  #creative-mockup-canvas,
+  #mockup-preview-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  #view-flat-canvas,
+  #view-mockup-wrapper {
+    width: 100% !important;
+    max-width: min(520px, 100%) !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
   }
 
   .lab-motif-btn {
@@ -471,9 +484,14 @@ body.mobile-nav-open {
   }
 
   #creative-canvas,
-  #creative-mockup-canvas {
-    max-width: 320px !important;
-    max-height: 320px !important;
+  #creative-mockup-canvas,
+  #mockup-preview-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
   }
 
   .home-play-wisdom-btn,
@@ -512,9 +530,14 @@ body.mobile-nav-open {
   }
 
   #creative-canvas,
-  #creative-mockup-canvas {
-    max-width: 360px !important;
-    max-height: 360px !important;
+  #creative-mockup-canvas,
+  #mockup-preview-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
   }
 }
 

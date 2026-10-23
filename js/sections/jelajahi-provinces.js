@@ -358,13 +358,12 @@
 
     if (emptyEl) emptyEl.classList.add('hidden');
 
-    // Staggered column count based on viewport
+    // Staggered column count based on viewport (2 columns on mobile for compact layout)
     function getStaggeredColCount() {
       var w = window.innerWidth;
       if (w >= 1280) return 4;
       if (w >= 1024) return 3;
-      if (w >= 640) return 2;
-      return 1;
+      return 2; // Always 2 columns on mobile & tablet
     }
 
     var colCount = getStaggeredColCount();
