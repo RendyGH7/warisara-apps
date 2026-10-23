@@ -542,34 +542,53 @@
       </div>
     </div>
 
-    <!-- Hero Map Mobile & Interactive Controls -->
+    <!-- Hero Map Modern Explorer Controls -->
     <div id="hero-map-controls-wrapper"
-      class="relative z-10 w-full max-w-2xl mx-auto px-3 sm:px-4 mt-1 sm:mt-2 mb-1 flex flex-col items-center gap-2 hero-map-prompt-anim">
+      class="relative z-10 w-full max-w-2xl mx-auto px-3 sm:px-4 mt-2 sm:mt-3 mb-2 flex flex-col items-center gap-2.5 hero-map-prompt-anim">
 
-      <!-- Island Quick Jump Chips (Mobile & Desktop) -->
-      <div class="island-jump-chips flex items-center justify-center flex-wrap gap-1 sm:gap-1.5 w-full">
-        <button type="button" class="btn-island-chip active px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-brass-400/20 text-brass-200 border border-brass-400/40 hover:bg-brass-400/30 transition-all touch-manipulation cursor-pointer" data-island="all">Semua</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Sumatera">Sumatera</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Jawa">Jawa</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Bali & Nusa Tenggara">Bali & NT</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Kalimantan">Kalimantan</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Sulawesi">Sulawesi</button>
-        <button type="button" class="btn-island-chip px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/5 text-surface/75 border border-white/10 hover:bg-white/10 transition-all touch-manipulation cursor-pointer" data-island="Maluku & Papua">Maluku & Papua</button>
+      <!-- Island Jump Segmented Dock -->
+      <div class="island-jump-dock-wrapper w-full flex items-center justify-center">
+        <div class="island-jump-chips flex items-center justify-start sm:justify-center gap-1 sm:gap-1.5 p-1 rounded-full bg-[#130E0A]/85 border border-brass-400/20 backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.5)] overflow-x-auto no-scrollbar scroll-smooth max-w-full">
+          <button type="button" class="btn-island-chip active" data-island="all">Semua</button>
+          <button type="button" class="btn-island-chip" data-island="Sumatera">Sumatera</button>
+          <button type="button" class="btn-island-chip" data-island="Jawa">Jawa</button>
+          <button type="button" class="btn-island-chip" data-island="Bali & Nusa Tenggara">Bali & NT</button>
+          <button type="button" class="btn-island-chip" data-island="Kalimantan">Kalimantan</button>
+          <button type="button" class="btn-island-chip" data-island="Sulawesi">Sulawesi</button>
+          <button type="button" class="btn-island-chip" data-island="Maluku & Papua">Maluku & Papua</button>
+        </div>
       </div>
 
-      <!-- Quick Province Dropdown Selector (Crucial for Mobile Tap) -->
-      <div class="w-full max-w-xs sm:max-w-sm relative">
-        <select id="mobile-province-select" class="glass-select w-full py-2 pl-8 pr-8 rounded-full bg-[#181410]/95 border border-brass-400/50 text-surface text-[11px] sm:text-xs font-medium backdrop-blur-md appearance-none cursor-pointer focus:outline-none focus:border-brass-300 shadow-lg">
-          <option value="">🗺️ Pilih Provinsi (38 Provinsi Nusantara)...</option>
+      <!-- Quick Province Explorer Capsule (Modern Search & Select Bar) -->
+      <div class="hero-province-selector-capsule relative w-full max-w-xs sm:max-w-sm mx-auto group">
+        <!-- Visual Glass Capsule -->
+        <div class="selector-display-card flex items-center justify-between gap-2.5 px-3.5 py-2 sm:py-2.5 rounded-full bg-[#16120E]/90 border border-brass-400/35 group-hover:border-brass-400/70 shadow-[0_8px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-xl transition-all duration-300">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-brass-400/15 border border-brass-400/30 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-brass-300 text-xs sm:text-sm">explore</span>
+            </div>
+            <span id="hero-selected-province-label" class="text-xs sm:text-sm font-medium text-stone-200 truncate tracking-wide">
+              Pilih Provinsi Nusantara
+            </span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-[10px] font-semibold text-brass-300/90 bg-brass-400/15 border border-brass-400/25 px-2 py-0.5 rounded-full">
+              38 Daerah
+            </span>
+            <span class="material-symbols-outlined text-stone-400 group-hover:text-brass-300 text-sm transition-colors">unfold_more</span>
+          </div>
+        </div>
+
+        <!-- Real Select Overlay (Native Mobile/Desktop Accessibility) -->
+        <select id="mobile-province-select" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" aria-label="Pilih Provinsi Nusantara">
+          <option value="">Pilih Provinsi Nusantara...</option>
         </select>
-        <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-brass-400 text-xs sm:text-sm pointer-events-none">explore</span>
-        <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-surface/50 text-xs sm:text-sm pointer-events-none">expand_more</span>
       </div>
 
-      <!-- Explanatory Prompt -->
-      <div id="hero-map-prompt" class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs uppercase tracking-wider text-surface/60 font-medium">
-        <span class="material-symbols-outlined text-xs sm:text-sm text-brass-400">touch_app</span>
-        <span>Sentuh peta atau pilih pulau untuk menjelajah</span>
+      <!-- Modern Micro-Prompt -->
+      <div id="hero-map-prompt" class="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-stone-400/80 font-normal tracking-wide">
+        <span class="w-1.5 h-1.5 rounded-full bg-brass-400/80 animate-pulse"></span>
+        <span>Sentuh pulau pada peta atau pilih provinsi di atas</span>
       </div>
     </div>
 
