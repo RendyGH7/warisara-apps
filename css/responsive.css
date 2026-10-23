@@ -290,15 +290,6 @@ body.mobile-nav-open {
     padding: 0 !important;
   }
 
-  #home-view-provinces .glass-card:first-of-type {
-    padding: 1.15rem !important;
-  }
-
-  #home-view-provinces .glass-card:first-of-type a {
-    width: 100% !important;
-    justify-content: center !important;
-    min-height: 44px !important;
-  }
 
   #module-jelajahi .grid.grid-cols-1 .relative.h-44 {
     height: 11.5rem !important;
