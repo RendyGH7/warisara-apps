@@ -129,30 +129,179 @@ window.WARISARA_HERO_MAP = {
   },
 
   populateMobileDropdown: function () {
-    if (!this.provinceSelectDropdown || !window.PROVINCES_DATA) return;
+    if (!window.PROVINCES_DATA) return;
+
+    // Fill hidden native select if present for accessibility
+    if (this.provinceSelectDropdown) {
+      this.provinceSelectDropdown.innerHTML = '<option value="">Pilih Provinsi Nusantara...</option>';
+      const sorted = Object.values(window.PROVINCES_DATA).sort((a, b) => a.name.localeCompare(b.name));
+      sorted.forEach((province) => {
+        const option = document.createElement("option");
+        option.value = province.id;
+        option.textContent = `${province.name} (${province.island})`;
+        this.provinceSelectDropdown.appendChild(option);
+      });
+    }
+
+    this.initCustomProvinceDropdown();
+  },
+
+  initCustomProvinceDropdown: function () {
+    const capsule = document.getElementById("hero-province-selector-capsule");
+    const triggerBtn = document.getElementById("hero-province-trigger-btn");
+    const menu = document.getElementById("hero-province-menu");
+    const backdrop = document.getElementById("hero-province-menu-backdrop");
+    const listContainer = document.getElementById("hero-province-list");
+    const searchInput = document.getElementById("hero-province-search-input");
+    const searchClear = document.getElementById("hero-province-search-clear");
+    const filterChips = document.querySelectorAll("#hero-province-filter-chips .hero-prov-chip");
+    const emptyState = document.getElementById("hero-province-empty");
+    const countBadge = document.getElementById("hero-province-count-badge");
+
+    if (!triggerBtn || !menu || !listContainer) return;
+
+    let activeIslandFilter = "all";
+    let currentSearchQuery = "";
 
     const sortedProvinces = Object.values(window.PROVINCES_DATA).sort((a, b) => a.name.localeCompare(b.name));
 
+    // Render luxury province items
+    listContainer.innerHTML = "";
     sortedProvinces.forEach((province) => {
-      const option = document.createElement("option");
-      option.value = province.id;
-      option.textContent = `${province.name} (${province.island})`;
-      this.provinceSelectDropdown.appendChild(option);
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "hero-province-item w-full flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-left transition-all duration-150 group cursor-pointer hover:bg-brass-400/15 hover:border-brass-400/40 border border-transparent";
+      item.dataset.provId = province.id;
+      item.dataset.provName = province.name.toLowerCase();
+      item.dataset.provIsland = province.island;
+      item.dataset.provCapital = (province.capital || "").toLowerCase();
+
+      item.innerHTML = `
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-6 h-6 rounded-full bg-white/[0.06] group-hover:bg-brass-400/25 border border-white/10 group-hover:border-brass-400/50 flex items-center justify-center shrink-0 transition-colors">
+            <span class="material-symbols-outlined text-xs text-brass-300">location_on</span>
+          </div>
+          <div class="min-w-0">
+            <div class="province-name-text text-xs font-semibold text-stone-100 group-hover:text-brass-200 truncate transition-colors">${province.name}</div>
+            <div class="text-[10px] text-stone-400 font-light truncate">${province.capital ? province.capital + ' • ' : ''}${province.island}</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <span class="text-[9px] font-medium text-stone-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 group-hover:border-brass-400/30 group-hover:text-brass-300 transition-colors">${province.island}</span>
+          <span class="material-symbols-outlined text-xs text-stone-500 group-hover:text-brass-300 group-hover:translate-x-0.5 transition-all">chevron_right</span>
+        </div>
+      `;
+
+      item.addEventListener("click", () => {
+        closeDropdown();
+        this.selectProvince(province.id, true);
+      });
+
+      listContainer.appendChild(item);
     });
 
-    this.provinceSelectDropdown.addEventListener("change", (e) => {
-      const provId = e.target.value;
-      const label = document.getElementById("hero-selected-province-label");
-      if (provId && window.PROVINCES_DATA && window.PROVINCES_DATA[provId]) {
-        if (label) {
-          label.textContent = `${window.PROVINCES_DATA[provId].name} (${window.PROVINCES_DATA[provId].island})`;
+    const filterList = () => {
+      let visibleCount = 0;
+      const items = listContainer.querySelectorAll(".hero-province-item");
+
+      items.forEach((item) => {
+        const matchesIsland = activeIslandFilter === "all" || item.dataset.provIsland === activeIslandFilter;
+        const matchesSearch = !currentSearchQuery || 
+          item.dataset.provName.includes(currentSearchQuery) || 
+          item.dataset.provCapital.includes(currentSearchQuery) || 
+          item.dataset.provIsland.toLowerCase().includes(currentSearchQuery);
+
+        if (matchesIsland && matchesSearch) {
+          item.classList.remove("hidden");
+          item.style.display = "flex";
+          visibleCount++;
+        } else {
+          item.classList.add("hidden");
+          item.style.display = "none";
         }
-        this.selectProvince(provId, true);
-      } else {
-        if (label) {
-          label.textContent = "Pilih Provinsi Nusantara";
-        }
+      });
+
+      if (emptyState) emptyState.classList.toggle("hidden", visibleCount > 0);
+      if (countBadge) countBadge.textContent = `${visibleCount} Provinsi`;
+    };
+
+    const openDropdown = () => {
+      menu.classList.remove("hidden");
+      if (backdrop) backdrop.classList.remove("hidden");
+      if (capsule) capsule.classList.add("is-menu-open");
+      triggerBtn.setAttribute("aria-expanded", "true");
+
+      const items = listContainer.querySelectorAll(".hero-province-item");
+      items.forEach((item) => {
+        const isSelected = item.dataset.provId === this.selectedProvinceId;
+        item.classList.toggle("active-selected", isSelected);
+      });
+
+      setTimeout(() => {
+        if (searchInput && window.innerWidth > 640) searchInput.focus();
+      }, 50);
+    };
+
+    const closeDropdown = () => {
+      menu.classList.add("hidden");
+      if (backdrop) backdrop.classList.add("hidden");
+      if (capsule) capsule.classList.remove("is-menu-open");
+      triggerBtn.setAttribute("aria-expanded", "false");
+    };
+
+    triggerBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      if (isOpen) closeDropdown();
+      else openDropdown();
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener("click", closeDropdown);
+    }
+
+    document.addEventListener("click", (e) => {
+      if (capsule && !capsule.contains(e.target) && (!backdrop || !backdrop.contains(e.target))) {
+        closeDropdown();
       }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.classList.contains("hidden")) {
+        closeDropdown();
+      }
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        currentSearchQuery = e.target.value.toLowerCase().trim();
+        if (searchClear) searchClear.classList.toggle("hidden", !currentSearchQuery);
+        filterList();
+      });
+    }
+
+    if (searchClear && searchInput) {
+      searchClear.addEventListener("click", () => {
+        searchInput.value = "";
+        currentSearchQuery = "";
+        searchClear.classList.add("hidden");
+        filterList();
+        searchInput.focus();
+      });
+    }
+
+    filterChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        filterChips.forEach((c) => {
+          c.classList.remove("bg-brass-400", "text-ink", "font-bold");
+          c.classList.add("bg-white/5", "border", "border-white/10", "text-stone-300", "font-medium");
+        });
+        chip.classList.add("bg-brass-400", "text-ink", "font-bold");
+        chip.classList.remove("bg-white/5", "border", "border-white/10", "text-stone-300", "font-medium");
+
+        activeIslandFilter = chip.dataset.island || "all";
+        filterList();
+      });
     });
   },
 
@@ -322,6 +471,13 @@ window.WARISARA_HERO_MAP = {
       label.textContent = `${data.name} (${data.island})`;
     }
 
+    const listContainer = document.getElementById("hero-province-list");
+    if (listContainer) {
+      listContainer.querySelectorAll(".hero-province-item").forEach((item) => {
+        item.classList.toggle("active-selected", item.dataset.provId === provId);
+      });
+    }
+
     this.focusMapOnProvince(data.svgCenter);
 
     if (shouldOpenPanel) {
@@ -387,6 +543,13 @@ window.WARISARA_HERO_MAP = {
     const label = document.getElementById("hero-selected-province-label");
     if (label) {
       label.textContent = "Pilih Provinsi Nusantara";
+    }
+
+    const listContainer = document.getElementById("hero-province-list");
+    if (listContainer) {
+      listContainer.querySelectorAll(".hero-province-item").forEach((item) => {
+        item.classList.remove("active-selected");
+      });
     }
   }
 };

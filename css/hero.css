@@ -730,31 +730,95 @@ body.modal-open .wari-ai-widget {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 165, 103, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
-.hero-province-selector-capsule:focus-within .selector-display-card {
-  border-color: #C9A567;
-  box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.3), 0 12px 32px rgba(0, 0, 0, 0.65);
+.hero-province-selector-capsule.is-menu-open .selector-display-card {
+  border-color: #C9A567 !important;
+  box-shadow: 0 0 0 2px rgba(201, 165, 103, 0.35), 0 12px 32px rgba(0, 0, 0, 0.75) !important;
+  background: rgba(28, 22, 17, 0.98) !important;
 }
 
-/* Invisible Overlay Select (Native Mobile/Desktop Wheel Picker) */
-.hero-province-selector-capsule select#mobile-province-select {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  opacity: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  width: 100% !important;
-  height: 100% !important;
-  cursor: pointer !important;
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 10 !important;
+.hero-province-selector-capsule.is-menu-open #hero-province-chevron {
+  transform: rotate(180deg);
+  color: #C9A567;
 }
 
-#mobile-province-select option {
-  background-color: #16120E;
-  color: #FBF8F2;
-  padding: 10px 14px;
+/* Custom Luxury Province Dropdown Menu */
+.hero-custom-province-menu {
+  animation: heroDropdownIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes heroDropdownIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.hero-custom-province-menu .custom-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.hero-custom-province-menu .custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.hero-custom-province-menu .custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 103, 0.35);
+  border-radius: 9999px;
+}
+.hero-custom-province-menu .custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 165, 103, 0.65);
+}
+
+.hero-prov-chip {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-province-item {
+  position: relative;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-province-item.active-selected {
+  background: rgba(201, 165, 103, 0.2) !important;
+  border-color: rgba(201, 165, 103, 0.55) !important;
+}
+
+.hero-province-item.active-selected .province-name-text {
+  color: #FFF2D1 !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 640px) {
+  .hero-custom-province-menu {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 1.25rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    transform: none !important;
+    max-height: 75vh !important;
+    border-radius: 1.5rem !important;
+  }
+
+  @keyframes heroDropdownIn {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
 }
 
 
