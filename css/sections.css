@@ -269,18 +269,32 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   filter: blur(0px);
 }
 
-.scroll-stagger > *:nth-child(1) { transition-delay: 60ms; }
-.scroll-stagger > *:nth-child(2) { transition-delay: 160ms; }
-.scroll-stagger > *:nth-child(3) { transition-delay: 260ms; }
-.scroll-stagger > *:nth-child(4) { transition-delay: 360ms; }
-.scroll-stagger > *:nth-child(5) { transition-delay: 460ms; }
-.scroll-stagger > *:nth-child(6) { transition-delay: 560ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(1) { transition-delay: 60ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(2) { transition-delay: 140ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(3) { transition-delay: 220ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(4) { transition-delay: 300ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(5) { transition-delay: 380ms; }
+.scroll-stagger:not(.revealed) > *:nth-child(6) { transition-delay: 460ms; }
 
-.stagger-1 { transition-delay: 80ms !important; }
-.stagger-2 { transition-delay: 180ms !important; }
-.stagger-3 { transition-delay: 280ms !important; }
-.stagger-4 { transition-delay: 380ms !important; }
-.stagger-5 { transition-delay: 480ms !important; }
+/* Eliminate lingering transition delay once revealed or when hovered for zero-latency interactivity */
+.scroll-stagger.revealed > *,
+.scroll-stagger > *:hover {
+  transition-delay: 0s !important;
+}
+
+.stagger-1:not(.revealed) { transition-delay: 80ms !important; }
+.stagger-2:not(.revealed) { transition-delay: 180ms !important; }
+.stagger-3:not(.revealed) { transition-delay: 280ms !important; }
+.stagger-4:not(.revealed) { transition-delay: 380ms !important; }
+.stagger-5:not(.revealed) { transition-delay: 480ms !important; }
+
+.stagger-1.revealed,
+.stagger-2.revealed,
+.stagger-3.revealed,
+.stagger-4.revealed,
+.stagger-5.revealed {
+  transition-delay: 0s !important;
+}
 
 .section-header-glow {
   position: relative;
@@ -307,23 +321,25 @@ body:not(.preloader-active) .scroll-reveal.revealed {
 }
 
 .glass-card {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              box-shadow 0.35s ease,
-              background-color 0.35s ease;
+  transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.2s ease,
+              box-shadow 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.2s ease !important;
+  transition-delay: 0s !important;
 }
 
 .glass-card:hover {
   box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7),
               0 0 20px rgba(201, 165, 103, 0.12);
+  transition-delay: 0s !important;
 }
 
 /* ==========================================================================
    PREMIUM PROVINCE PREVIEW CARDS (HOME JELAJAHI)
-   - Ultra-smooth elevation & warm brass glow
-   - Parallax image zoom & contrast enhancement
-   - Dynamic tag & arrow hover translation
-   - Tactile spring press feedback
+   - Zero-latency responsive hover (no delay)
+   - Smooth 6px elevation with multi-tier brass backlight glow
+   - Strictly no image zoom (enhanced sharpness, contrast & clarity only)
+   - Dynamic tag lift & arrow glide micro-interactions
    ========================================================================== */
 .province-preview-card {
   position: relative;
@@ -339,54 +355,64 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.24s ease,
-              background-color 0.24s ease;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease !important;
+  transition-delay: 0s !important;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) {
   .province-preview-card:hover {
-    transform: translate3d(0, -3px, 0);
-    border-color: rgba(201, 165, 103, 0.7);
-    background: rgba(26, 21, 16, 0.98);
-    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
-                0 0 18px rgba(201, 165, 103, 0.22),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-6px) translateZ(0) !important;
+    border-color: rgba(201, 165, 103, 0.85) !important;
+    background: rgba(28, 22, 16, 0.98) !important;
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.85),
+                0 0 28px -2px rgba(201, 165, 103, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16),
+                inset 0 0 16px rgba(201, 165, 103, 0.08) !important;
+    transition-delay: 0s !important;
   }
 
-  /* NO BLUR: Lighter overlay & sharper contrast makes the photo clearer on hover */
   .province-preview-card:hover .province-card-gradient {
-    opacity: 0.45;
+    opacity: 0.35;
   }
 
-  .province-preview-card:hover .province-card-img {
-    filter: contrast(1.05) brightness(1.04);
+  /* NO ZOOM on hover: keep frame steady, enhance clarity and richness */
+  .province-preview-card:hover .province-card-img,
+  .province-preview-card:hover img {
+    transform: none !important;
+    filter: brightness(1.06) contrast(1.06) saturate(1.06);
   }
 
   .province-preview-card:hover .province-card-tag {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(201, 165, 103, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 165, 103, 0.45);
+  }
+
+  .province-preview-card:hover h3 {
+    color: #F8DFAC;
   }
 
   .province-preview-card:hover .province-card-link {
-    color: #FBF8F2;
-    border-color: rgba(201, 165, 103, 0.35);
+    color: #FDF9F2;
+    border-color: rgba(201, 165, 103, 0.45);
   }
 
   .province-preview-card:hover .province-card-link .material-symbols-outlined {
-    transform: translateX(4px);
+    transform: translateX(6px);
+    color: #F8DFAC;
   }
 }
 
 .province-preview-card:active {
-  transform: scale(0.98);
-  border-color: rgba(201, 165, 103, 0.75);
-  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.8),
-              0 0 14px rgba(201, 165, 103, 0.25);
-  transition-duration: 0.08s;
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: rgba(201, 165, 103, 0.85);
+  box-shadow: 0 6px 18px -2px rgba(0, 0, 0, 0.8),
+              0 0 14px rgba(201, 165, 103, 0.3);
+  transition-duration: 0.06s !important;
 }
 
 .province-card-img {
@@ -398,27 +424,36 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   image-rendering: crisp-edges;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transition: filter 0.24s ease;
+  transition: filter 0.22s ease !important;
+  transition-delay: 0s !important;
 }
 
 .province-card-gradient {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.22s ease;
+  transition-delay: 0s !important;
 }
 
 .province-card-tag {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 .province-card-link {
   transition: color 0.2s ease, border-color 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 .province-card-link .material-symbols-outlined {
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 /* ==========================================================================
    PREMIUM PRODUCT PREVIEW CARDS (PASAR KRIYA / EKONOMI KREATIF)
+   - Zero-latency responsive hover (no delay)
+   - Smooth 6px elevation with warm brass glow & specular rim
+   - Strictly no image zoom (enhanced sharpness, contrast & clarity only)
+   - Interactive badge lift & north_east action icon slide
    ========================================================================== */
 .product-preview-card,
 .product-card-item {
@@ -435,10 +470,11 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.24s ease,
-              background-color 0.24s ease;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease !important;
+  transition-delay: 0s !important;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -446,38 +482,50 @@ body:not(.preloader-active) .scroll-reveal.revealed {
 @media (hover: hover) {
   .product-preview-card:hover,
   .product-card-item:hover {
-    transform: translate3d(0, -3px, 0);
-    border-color: rgba(201, 165, 103, 0.7);
-    background: rgba(26, 21, 16, 0.98);
-    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
-                0 0 18px rgba(201, 165, 103, 0.22),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-6px) translateZ(0) !important;
+    border-color: rgba(201, 165, 103, 0.85) !important;
+    background: rgba(28, 22, 16, 0.98) !important;
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.85),
+                0 0 28px -2px rgba(201, 165, 103, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16),
+                inset 0 0 16px rgba(201, 165, 103, 0.08) !important;
+    transition-delay: 0s !important;
   }
 
+  /* NO ZOOM on hover: keep frame steady, enhance clarity and richness */
   .product-preview-card:hover .product-card-img,
-  .product-card-item:hover .product-card-img {
-    filter: contrast(1.05) brightness(1.04);
+  .product-preview-card:hover img,
+  .product-card-item:hover .product-card-img,
+  .product-card-item:hover img {
+    transform: none !important;
+    filter: brightness(1.06) contrast(1.06) saturate(1.06);
   }
 
   .product-preview-card:hover .product-card-tag,
   .product-card-item:hover .product-card-tag {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(201, 165, 103, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 165, 103, 0.45);
+  }
+
+  .product-preview-card:hover h4,
+  .product-card-item:hover h4 {
+    color: #F8DFAC;
   }
 
   .product-preview-card:hover .product-card-action-icon,
   .product-card-item:hover .product-card-action-icon {
-    transform: translate(2px, -2px);
+    transform: translate(3px, -3px);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
   }
 }
 
 .product-preview-card:active,
 .product-card-item:active {
-  transform: scale(0.98);
-  border-color: rgba(201, 165, 103, 0.75);
-  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.8),
-              0 0 14px rgba(201, 165, 103, 0.25);
-  transition-duration: 0.08s;
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: rgba(201, 165, 103, 0.85);
+  box-shadow: 0 6px 18px -2px rgba(0, 0, 0, 0.8),
+              0 0 14px rgba(201, 165, 103, 0.3);
+  transition-duration: 0.06s !important;
 }
 
 .product-card-img {
@@ -489,19 +537,26 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   image-rendering: crisp-edges;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transition: filter 0.24s ease;
+  transition: filter 0.22s ease !important;
+  transition-delay: 0s !important;
 }
 
 .product-card-tag {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 .product-card-action-icon {
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 /* ==========================================================================
    PREMIUM STORY PREVIEW CARDS (CERITA RAKYAT NUSANTARA)
+   - Zero-latency responsive hover (no delay)
+   - Smooth 6px elevation with glowing terracotta ember backlight
+   - Strictly no image zoom (enhanced sharpness, contrast & clarity only)
+   - Dynamic tag lift & arrow glide micro-interactions
    ========================================================================== */
 .home-story-card {
   position: relative;
@@ -517,48 +572,63 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.24s ease,
-              background-color 0.24s ease;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease !important;
+  transition-delay: 0s !important;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) {
   .home-story-card:hover {
-    transform: translate3d(0, -3px, 0);
-    border-color: rgba(217, 119, 74, 0.7);
-    background: rgba(26, 21, 16, 0.98);
-    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.8),
-                0 0 18px rgba(217, 119, 74, 0.25),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-6px) translateZ(0) !important;
+    border-color: rgba(217, 119, 74, 0.85) !important;
+    background: rgba(28, 22, 16, 0.98) !important;
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.85),
+                0 0 28px -2px rgba(217, 119, 74, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16),
+                inset 0 0 16px rgba(217, 119, 74, 0.08) !important;
+    transition-delay: 0s !important;
   }
 
   .home-story-card:hover .home-story-gradient {
-    opacity: 0.45;
+    opacity: 0.35;
   }
 
-  .home-story-card:hover .home-story-img {
-    filter: contrast(1.05) brightness(1.04);
+  /* NO ZOOM on hover: keep frame steady, enhance clarity and richness */
+  .home-story-card:hover .home-story-img,
+  .home-story-card:hover img {
+    transform: none !important;
+    filter: brightness(1.06) contrast(1.06) saturate(1.06);
   }
 
   .home-story-card:hover .home-story-tag {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(217, 119, 74, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(217, 119, 74, 0.45);
+  }
+
+  .home-story-card:hover h3 {
+    color: #FDF9F2;
   }
 
   .home-story-card:hover .home-story-arrow {
-    transform: translateX(4px);
+    transform: translateX(5px);
+  }
+
+  .home-story-card:hover .home-story-read-btn {
+    box-shadow: 0 4px 16px rgba(217, 119, 74, 0.45);
+    filter: brightness(1.08);
   }
 }
 
 .home-story-card:active {
-  transform: scale(0.98);
-  border-color: rgba(217, 119, 74, 0.75);
-  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.8),
-              0 0 14px rgba(217, 119, 74, 0.28);
-  transition-duration: 0.08s;
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: rgba(217, 119, 74, 0.85);
+  box-shadow: 0 6px 18px -2px rgba(0, 0, 0, 0.8),
+              0 0 14px rgba(217, 119, 74, 0.32);
+  transition-duration: 0.06s !important;
 }
 
 .home-story-img {
@@ -570,19 +640,43 @@ body:not(.preloader-active) .scroll-reveal.revealed {
   image-rendering: crisp-edges;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transition: filter 0.24s ease;
+  transition: filter 0.22s ease !important;
+  transition-delay: 0s !important;
 }
 
 .home-story-gradient {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.22s ease;
+  transition-delay: 0s !important;
 }
 
 .home-story-tag {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  transition-delay: 0s !important;
 }
 
 .home-story-arrow {
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: 0s !important;
+}
+
+.home-story-read-btn {
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: 0s !important;
+}
+
+/* Universal rule: Ensure NO card images zoom/scale on hover across the entire application */
+.province-preview-card img,
+.province-preview-card:hover img,
+.product-preview-card img,
+.product-preview-card:hover img,
+.product-card-item img,
+.product-card-item:hover img,
+.home-story-card img,
+.home-story-card:hover img,
+.glass-card:hover img,
+.glass-card:hover .group-hover\:scale-105,
+.group:hover img.group-hover\:scale-105 {
+  transform: none !important;
 }
 
 .story-book-cover-img {
