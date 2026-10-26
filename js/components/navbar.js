@@ -540,7 +540,7 @@ window.WARISARA_NAVBAR = {
       if (!authContainer) {
         authContainer = document.createElement("div");
         authContainer.id = "navbar-auth-section";
-        authContainer.className = "nav-auth-wrapper";
+        authContainer.className = "nav-auth-wrapper hidden xl:inline-flex";
         const mobileBtn = actionsContainer.querySelector("#mobile-menu-btn");
         if (mobileBtn) {
           actionsContainer.insertBefore(authContainer, mobileBtn);

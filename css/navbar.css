@@ -453,6 +453,13 @@ a[aria-label="WARISARA Beranda"] img.spin-back,
   align-items: center;
 }
 
+@media (max-width: 1279px) {
+  .nav-auth-wrapper,
+  #navbar-auth-section {
+    display: none !important;
+  }
+}
+
 .btn-nav-auth-login {
   display: inline-flex;
   align-items: center;
