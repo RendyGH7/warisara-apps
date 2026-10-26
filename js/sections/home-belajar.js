@@ -218,15 +218,15 @@
         q.options.forEach((opt, idx) => {
           const btn = document.createElement("button");
           btn.type = "button";
-          btn.className = "mini-quiz-opt p-3.5 sm:p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-brass-400/40 text-left transition-all duration-200 flex items-start gap-3.5 group cursor-pointer text-xs sm:text-sm text-surface/90";
+          btn.className = "mini-quiz-opt p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-brass-400/40 text-left transition-all duration-200 flex items-start gap-2.5 sm:gap-3.5 group cursor-pointer text-[11.5px] sm:text-sm text-surface/90";
           btn.dataset.idx = idx;
 
           btn.innerHTML = `
-            <span class="w-6 h-6 rounded-full bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-brass-300 group-hover:bg-brass-500/20 group-hover:border-brass-400/60 flex-shrink-0 transition-colors">
+            <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/10 border border-white/15 flex items-center justify-center font-bold text-[10px] sm:text-xs text-brass-300 group-hover:bg-brass-500/20 group-hover:border-brass-400/60 flex-shrink-0 transition-colors">
               ${labels[idx]}
             </span>
             <span class="flex-1 leading-snug">${opt.text}</span>
-            <span class="mini-opt-status-icon material-symbols-outlined text-base opacity-0 transition-opacity flex-shrink-0">check_circle</span>
+            <span class="mini-opt-status-icon material-symbols-outlined text-sm sm:text-base opacity-0 transition-opacity flex-shrink-0">check_circle</span>
           `;
 
           btn.addEventListener("click", () => this.handleAnswer(idx, q));
