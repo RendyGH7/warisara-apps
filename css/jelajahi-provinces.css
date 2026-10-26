@@ -944,7 +944,9 @@
   opacity: 1;
   transform: scale(1) rotate(0deg);
 }
-#province-modal-overlay.active .province-modal-close-trigger:hover {
+#province-modal-overlay.active .province-modal-close-trigger:hover,
+#province-modal-overlay.active .province-modal-close-trigger:active,
+#province-modal-overlay.active .province-modal-close-trigger:focus-visible {
   background-color: #DC2626 !important; 
   border-color: #EF4444 !important;
   color: #FFFFFF !important;
@@ -957,7 +959,9 @@
   transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease !important;
 }
 .province-modal-close-trigger:hover span,
-.province-modal-close-trigger:hover .material-symbols-outlined {
+.province-modal-close-trigger:active span,
+.province-modal-close-trigger:hover .material-symbols-outlined,
+.province-modal-close-trigger:active .material-symbols-outlined {
   transform: rotate(180deg) !important;
   color: #FFFFFF !important;
 }
