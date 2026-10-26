@@ -967,6 +967,28 @@
   transition: opacity 200ms ease, transform 200ms ease;
 }
 
+@media (max-width: 639px) {
+  #province-modal-overlay {
+    padding-top: max(3.5rem, calc(env(safe-area-inset-top, 0px) + 1.25rem)) !important;
+    padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 1rem)) !important;
+    align-items: flex-start !important;
+  }
+  #province-modal-overlay .province-modal-close-trigger {
+    top: -0.875rem !important;
+    right: 0.25rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    min-height: 2.5rem !important;
+    z-index: 100 !important;
+    touch-action: manipulation !important;
+  }
+  #province-detail-modal {
+    max-height: calc(100dvh - 5.5rem) !important;
+    height: calc(100dvh - 5.5rem) !important;
+  }
+}
+
 .passport-book-modal,
 .compass-modal-card {
   transform: scale(0.18);
