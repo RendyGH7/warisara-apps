@@ -383,6 +383,10 @@ window.WARISARA_NAVBAR = {
 
     const openMobileNav = () => {
       if (!mobileNavDrawer) return;
+      if (mobileMenuBtn) {
+        mobileMenuBtn.classList.add("is-spinning");
+        setTimeout(() => mobileMenuBtn.classList.remove("is-spinning"), 650);
+      }
       mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
       mobileNavDrawer.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
       document.body.classList.add("mobile-nav-open");

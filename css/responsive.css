@@ -51,18 +51,26 @@ body {
 #mobile-nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(8, 6, 5, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(8, 6, 5, 0.75);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   z-index: 45;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.38s ease,
+              visibility 0.38s !important;
+  will-change: opacity, backdrop-filter;
 }
 
 body.mobile-nav-open #mobile-nav-backdrop {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.4s ease,
+              visibility 0s !important;
 }
 
 body.mobile-nav-open {
@@ -70,14 +78,65 @@ body.mobile-nav-open {
 }
 
 #mobile-nav-drawer {
-  background: rgba(16, 13, 10, 0.96) !important;
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border: 1px solid rgba(201, 165, 103, 0.35) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(201, 165, 103, 0.1) !important;
+  background: rgba(16, 13, 10, 0.97) !important;
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(201, 165, 103, 0.38) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92), 
+              0 0 35px rgba(201, 165, 103, 0.15),
+              inset 0 1px 1px rgba(255, 255, 255, 0.12) !important;
   border-radius: 1.5rem !important;
   -webkit-overflow-scrolling: touch;
+
+  /* Closed State: Pop-up starts slightly scaled down and elevated */
+  transform: translateY(-20px) scale(0.94) !important;
+  opacity: 0 !important;
+  filter: blur(8px) !important;
+  pointer-events: none !important;
+  visibility: hidden;
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.28s ease,
+              visibility 0.34s !important;
+  will-change: transform, opacity, filter;
 }
+
+body.mobile-nav-open #mobile-nav-drawer {
+  /* Open State: Smooth Pop-up expansion */
+  transform: translateY(0) scale(1) !important;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s !important;
+}
+
+/* Staggered entrance for items inside drawer */
+@keyframes drawerItemEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link {
+  animation: drawerItemEntrance 0.38s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(1) { animation-delay: 0.04s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(2) { animation-delay: 0.08s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(3) { animation-delay: 0.12s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(4) { animation-delay: 0.16s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(5) { animation-delay: 0.20s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(6) { animation-delay: 0.24s; }
+body.mobile-nav-open #mobile-nav-drawer .mobile-nav-link:nth-child(7) { animation-delay: 0.28s; }
 
 #mobile-nav-drawer .mobile-nav-link {
   min-height: 44px;
@@ -142,7 +201,11 @@ body.mobile-nav-open {
   }
 
   #mobile-menu-btn {
-    padding: 0.4rem !important;
+    padding: 0.35rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   #hero {
