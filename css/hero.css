@@ -86,7 +86,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -312,7 +312,7 @@ body.hero-animated .hero-canvas-image {
 }
 
 #hero-map-wrapper {
-  perspective: 1000px;
+  position: relative;
   overflow: visible;
   opacity: 0;
   transform: scale(0.93) translateY(32px);
@@ -717,7 +717,7 @@ body.modal-open .wari-ai-widget {
 
 /* Modern Province Selector Capsule */
 .hero-province-selector-capsule {
-  perspective: 1000px;
+  position: relative;
 }
 
 .hero-province-selector-capsule .selector-display-card {
@@ -741,16 +741,16 @@ body.modal-open .wari-ai-widget {
   color: #C9A567;
 }
 
-/* Custom Luxury Province Dropdown Menu */
+/* Custom Luxury Province Dropdown Menu (Dropup) */
 .hero-custom-province-menu {
   animation: heroDropdownIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transform-origin: top center;
+  transform-origin: bottom center;
 }
 
 @keyframes heroDropdownIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -8px) scale(0.97);
+    transform: translate(-50%, 10px) scale(0.97);
   }
   to {
     opacity: 1;
@@ -796,29 +796,67 @@ body.modal-open .wari-ai-widget {
 
 @media (max-width: 640px) {
   .hero-custom-province-menu {
-    position: fixed !important;
+    position: absolute !important;
     top: auto !important;
-    bottom: 1.25rem !important;
-    left: 1rem !important;
-    right: 1rem !important;
-    width: auto !important;
+    bottom: calc(100% + 0.5rem) !important;
+    left: 50% !important;
+    right: auto !important;
+    width: calc(100vw - 1.5rem) !important;
     min-width: 0 !important;
-    max-width: none !important;
-    transform: none !important;
-    max-height: 75vh !important;
-    border-radius: 1.5rem !important;
+    max-width: 380px !important;
+    transform: translateX(-50%) !important;
+    max-height: calc(100svh - 130px) !important;
+    border-radius: 1.25rem !important;
   }
 
   @keyframes heroDropdownIn {
     from {
       opacity: 0;
-      transform: translateY(24px) scale(0.96);
+      transform: translate(-50%, 8px) scale(0.97);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translate(-50%, 0) scale(1);
     }
   }
 }
 
 
+
+
+/* ==========================================================================
+   WARISARA PROVINCE MODAL INTERACTIVE FEATURES
+   ========================================================================== */
+@keyframes stampSlam {
+  0% {
+    transform: scale(1.4) rotate(-4deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.stamp-slam-anim {
+  animation: stampSlam 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes eqWave {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 12px;
+  }
+}
+
+.eq-bar-1 {
+  animation: eqWave 0.7s ease-in-out infinite;
+}
+.eq-bar-2 {
+  animation: eqWave 0.5s ease-in-out infinite 0.15s;
+}
+.eq-bar-3 {
+  animation: eqWave 0.6s ease-in-out infinite 0.3s;
+}
