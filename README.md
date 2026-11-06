@@ -13,6 +13,7 @@
   </p>
 
   <p>
+    <a href="showcase.html"><img src="https://img.shields.io/badge/Showcase-Buka%20Showcase%20Mewah-B8924F?style=for-the-badge&logoColor=0C0A08" alt="Showcase Mewah" /></a>
     <a href="#pintu-masuk"><img src="https://img.shields.io/badge/Jelajahi-Buka%20Web%20Sekarang-16213A?style=for-the-badge&logoColor=F6F1E7" alt="Jelajahi Sekarang" /></a>
     <a href="#creative-lab"><img src="https://img.shields.io/badge/Studio-Creative%20Lab%202.0-C06A42?style=for-the-badge&logoColor=F6F1E7" alt="Creative Lab" /></a>
     <a href="#arsitektur"><img src="https://img.shields.io/badge/Arsitektur-Pure%20Vanilla%20%2B%20Tailwind-2E4A38?style=for-the-badge&logoColor=F6F1E7" alt="Tech Stack" /></a>
@@ -56,6 +57,10 @@ Tidak ada halaman statis yang kaku. Di halaman utama, Anda disambut oleh peta ve
 - **Kedalaman Konten Otentik**: Menampilkan kuliner pusaka yang khas, destinasi kultural berbobot, ragam dialek tutur asli, hingga kuis uji wawasan kedaerahan.
 - **Paspor Penjelajah Digital**: Setiap provinsi yang Anda kunjungi akan dicap otomatis ke dalam paspor digital pribadi Anda.
 
+<p align="center">
+  <img src="assets/images/showcase/showcase-01-hero-map.jpg" alt="Peta Nusantara Interaktif 38 Provinsi" width="100%" />
+</p>
+
 <a id="creative-lab"></a>
 ### 2. Creative Lab Studio 2.0 — Menenun Motif di Kanvas Digital
 Bukan sekadar penonton, di sini Anda diajak menjadi perajin masa kini:
@@ -64,10 +69,18 @@ Bukan sekadar penonton, di sini Anda diajak menjadi perajin masa kini:
 - **Simulasi Busana 3D**: Proyeksikan motif yang baru saja Anda rancang ke model busana tiga dimensi untuk melihat keanggunannya saat dikenakan.
 - **Sertifikat Digital Karya**: Unduh mahakarya kriya digital Anda lengkap dengan sertifikat keaslian dan nomor registrasi personal.
 
+<p align="center">
+  <img src="assets/images/showcase/showcase-02-creative-lab.jpg" alt="Creative Lab Batik Studio 2.0" width="100%" />
+</p>
+
 ### 3. Cerita Pusaka Lisan — Buku Interaktif 3D Bersuara
 Mendengarkan kisah bertutur selalu menyentuh relung batin terdalam:
 - Buka lembaran buku 3D interaktif yang membawakan narasi adiluhung: rahasia layar perahu Pinisi pelaut Bugis-Makassar, mistisisme Tenun Gringsing Bali Aga, hingga filosofi tali Noken Papua.
 - **Narator Suara Asli**: Didukung oleh mesin sintesis suara lisan (*Web Speech & Audio Synthesis*) dengan iringan instrumen etnik lembut yang larut dalam cerita.
+
+<p align="center">
+  <img src="assets/images/showcase/showcase-03-story-book.jpg" alt="3D Heritage Story Book Bersuara" width="100%" />
+</p>
 
 ### 4. Belajar dari Akar & Kuis Budaya Interaktif
 Mengubah pendidikan budaya lokal menjadi petualangan rasa ingin tahu:
@@ -75,10 +88,18 @@ Mengubah pendidikan budaya lokal menjadi petualangan rasa ingin tahu:
 - **Tantangan Waktu & Skor Instan**: Kuis interaktif dengan hitung mundur dan papan evaluasi untuk mengukur kedalaman wawasan budaya Anda.
 - **Bimbingan Maskot Wari**: Maskot interaktif yang memberikan konteks historis di setiap butir soal.
 
+<p align="center">
+  <img src="assets/images/showcase/showcase-04-belajar-kuis.jpg" alt="Belajar dari Akar & Kuis Budaya" width="100%" />
+</p>
+
 ### 5. Gerbang Masuk Nusantara & Persona Komunitas
 Pintu silaturahmi digital bagi pemerhati kriya, kolektor, dan pegiat seni tradisi:
 - **Kemudahan Akses**: Fitur 1-klik Google SSO dan simulasi profil persona (kolektor maupun perajin lokal).
 - **Atmosfer Gerbang Candi**: Transisi visual bergaya gapura Nusantara dengan kartu kaca (*frosted glassmorphism*).
+
+<p align="center">
+  <img src="assets/images/showcase/showcase-05-gerbang-masuk.jpg" alt="Gerbang Masuk Nusantara & Persona Komunitas" width="100%" />
+</p>
 
 ### 6. Direktori 38 Maestro Adat & Suara Pelestari
 Di balik setiap pusaka, ada tangan manusia yang mengabdikan seluruh jalan hidupnya:
