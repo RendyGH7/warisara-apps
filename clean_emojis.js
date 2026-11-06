@@ -8,4 +8,3 @@ html = html.replace('⭐ UNESCO Living Heritage', '<span class="material-symbols
 
 fs.writeFileSync('index.html', html, 'utf8');
 console.log('Cleaned emojis in index.html');
-
